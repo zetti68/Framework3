@@ -7,6 +7,7 @@
 #define _ComItextpdfTextPdfSecurityRootStoreVerifier_H_
 
 @class JavaSecurityCertX509Certificate;
+@class JavaSecurityKeyStore;
 @class JavaUtilDate;
 @protocol ComItextpdfTextLogLogger;
 @protocol JavaUtilList;
@@ -15,18 +16,26 @@
 #include "com/itextpdf/text/pdf/security/CertificateVerifier.h"
 
 @interface ComItextpdfTextPdfSecurityRootStoreVerifier : ComItextpdfTextPdfSecurityCertificateVerifier {
+ @public
+  JavaSecurityKeyStore *rootStore_;
 }
 
 - (instancetype)initWithComItextpdfTextPdfSecurityCertificateVerifier:(ComItextpdfTextPdfSecurityCertificateVerifier *)verifier;
+
+- (void)setRootStoreWithJavaSecurityKeyStore:(JavaSecurityKeyStore *)keyStore;
 
 - (id<JavaUtilList>)verifyWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)signCert
                           withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert
                                              withJavaUtilDate:(JavaUtilDate *)signDate;
 
+- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityRootStoreVerifier *)other;
+
 @end
 
 FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityRootStoreVerifier_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityRootStoreVerifier)
+
+J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityRootStoreVerifier, rootStore_, JavaSecurityKeyStore *)
 
 FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextPdfSecurityRootStoreVerifier_LOGGER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityRootStoreVerifier, LOGGER_, id<ComItextpdfTextLogLogger>)

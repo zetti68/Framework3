@@ -7,21 +7,22 @@
 #define _ComItextpdfTextPdfSecurityPrivateKeySignature_H_
 
 @class IOSByteArray;
+@protocol JavaSecurityPrivateKey;
 
 #import "JreEmulation.h"
 #include "com/itextpdf/text/pdf/security/ExternalSignature.h"
 
 @interface ComItextpdfTextPdfSecurityPrivateKeySignature : NSObject < ComItextpdfTextPdfSecurityExternalSignature > {
  @public
-  id pk_;
+  id<JavaSecurityPrivateKey> pk_;
   NSString *hashAlgorithm_;
   NSString *encryptionAlgorithm_;
   NSString *provider_;
 }
 
-- (instancetype)initWithId:(id)pk
-              withNSString:(NSString *)hashAlgorithm
-              withNSString:(NSString *)provider;
+- (instancetype)initWithJavaSecurityPrivateKey:(id<JavaSecurityPrivateKey>)pk
+                                  withNSString:(NSString *)hashAlgorithm
+                                  withNSString:(NSString *)provider;
 
 - (NSString *)getHashAlgorithm;
 
@@ -35,7 +36,7 @@
 
 __attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityPrivateKeySignature_init() {}
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, pk_, id)
+J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, pk_, id<JavaSecurityPrivateKey>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, hashAlgorithm_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, encryptionAlgorithm_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, provider_, NSString *)
