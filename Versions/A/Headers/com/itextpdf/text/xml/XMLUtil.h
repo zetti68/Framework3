@@ -6,24 +6,19 @@
 #ifndef _ComItextpdfTextXmlXMLUtil_H_
 #define _ComItextpdfTextXmlXMLUtil_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSCharArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlXMLUtil : NSObject
 
-@interface ComItextpdfTextXmlXMLUtil : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (NSString *)escapeXMLWithNSString:(NSString *)s
                         withBoolean:(jboolean)onlyASCII;
-
-+ (NSString *)unescapeXMLWithNSString:(NSString *)s;
-
-+ (jint)unescapeWithNSString:(NSString *)s;
-
-+ (jboolean)isValidCharacterValueWithNSString:(NSString *)s;
-
-+ (jboolean)isValidCharacterValueWithInt:(jint)c;
 
 + (jint)findInArrayWithChar:(jchar)needle
               withCharArray:(IOSCharArray *)haystack
@@ -31,10 +26,36 @@
 
 + (NSString *)getEncodingNameWithByteArray:(IOSByteArray *)b4;
 
-- (instancetype)init;
++ (jboolean)isValidCharacterValueWithInt:(jint)c;
+
++ (jboolean)isValidCharacterValueWithNSString:(NSString *)s;
+
++ (jint)unescapeWithNSString:(NSString *)s;
+
++ (NSString *)unescapeXMLWithNSString:(NSString *)s;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXMLUtil_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXMLUtil)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXMLUtil_escapeXMLWithNSString_withBoolean_(NSString *s, jboolean onlyASCII);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXMLUtil_unescapeXMLWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT jint ComItextpdfTextXmlXMLUtil_unescapeWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextXmlXMLUtil_isValidCharacterValueWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextXmlXMLUtil_isValidCharacterValueWithInt_(jint c);
+
+FOUNDATION_EXPORT jint ComItextpdfTextXmlXMLUtil_findInArrayWithChar_withCharArray_withInt_(jchar needle, IOSCharArray *haystack, jint start);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXMLUtil_getEncodingNameWithByteArray_(IOSByteArray *b4);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXMLUtil_init(ComItextpdfTextXmlXMLUtil *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXMLUtil *new_ComItextpdfTextXmlXMLUtil_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXMLUtil)
 
 #endif // _ComItextpdfTextXmlXMLUtil_H_

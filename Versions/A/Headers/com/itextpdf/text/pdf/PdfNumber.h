@@ -6,27 +6,22 @@
 #ifndef _ComItextpdfTextPdfPdfNumber_H_
 #define _ComItextpdfTextPdfPdfNumber_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfObject.h"
 
-@interface ComItextpdfTextPdfPdfNumber : ComItextpdfTextPdfPdfObject {
- @public
-  jdouble value_;
-}
+@interface ComItextpdfTextPdfPdfNumber : ComItextpdfTextPdfPdfObject
 
-- (instancetype)initWithNSString:(NSString *)content;
-
-- (instancetype)initWithInt:(jint)value;
-
-- (instancetype)initWithLong:(jlong)value;
+#pragma mark Public
 
 - (instancetype)initWithDouble:(jdouble)value;
 
 - (instancetype)initWithFloat:(jfloat)value;
 
-- (jint)intValue;
+- (instancetype)initWithInt:(jint)value;
 
-- (jlong)longValue;
+- (instancetype)initWithLong:(jlong)value;
+
+- (instancetype)initWithNSString:(NSString *)content;
 
 - (jdouble)doubleValue;
 
@@ -34,10 +29,34 @@
 
 - (void)increment;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfNumber *)other;
+- (jint)intValue;
+
+- (jlong)longValue;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfNumber_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfNumber)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumber_initWithNSString_(ComItextpdfTextPdfPdfNumber *self, NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *new_ComItextpdfTextPdfPdfNumber_initWithNSString_(NSString *content) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumber_initWithInt_(ComItextpdfTextPdfPdfNumber *self, jint value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *new_ComItextpdfTextPdfPdfNumber_initWithInt_(jint value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumber_initWithLong_(ComItextpdfTextPdfPdfNumber *self, jlong value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *new_ComItextpdfTextPdfPdfNumber_initWithLong_(jlong value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumber_initWithDouble_(ComItextpdfTextPdfPdfNumber *self, jdouble value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *new_ComItextpdfTextPdfPdfNumber_initWithDouble_(jdouble value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumber_initWithFloat_(ComItextpdfTextPdfPdfNumber *self, jfloat value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *new_ComItextpdfTextPdfPdfNumber_initWithFloat_(jfloat value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfNumber)
 
 #endif // _ComItextpdfTextPdfPdfNumber_H_

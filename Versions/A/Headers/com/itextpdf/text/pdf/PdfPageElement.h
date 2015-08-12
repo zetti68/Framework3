@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfPageElement_H_
 #define _ComItextpdfTextPdfPdfPageElement_H_
 
-@class ComItextpdfTextPdfPdfIndirectReference;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfPdfIndirectReference;
 
 @protocol ComItextpdfTextPdfPdfPageElement < NSObject, JavaObject >
 
@@ -18,6 +18,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPageElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPageElement)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPageElement)
 
 #endif // _ComItextpdfTextPdfPdfPageElement_H_

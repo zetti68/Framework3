@@ -6,26 +6,27 @@
 #ifndef _ComItextpdfTextPdfSecurityProviderDigest_H_
 #define _ComItextpdfTextPdfSecurityProviderDigest_H_
 
-@class JavaSecurityMessageDigest;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/security/ExternalDigest.h"
 
-@interface ComItextpdfTextPdfSecurityProviderDigest : NSObject < ComItextpdfTextPdfSecurityExternalDigest > {
- @public
-  NSString *provider_;
-}
+@class JavaSecurityMessageDigest;
+
+@interface ComItextpdfTextPdfSecurityProviderDigest : NSObject < ComItextpdfTextPdfSecurityExternalDigest >
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)provider;
 
 - (JavaSecurityMessageDigest *)getMessageDigestWithNSString:(NSString *)hashAlgorithm;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityProviderDigest *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityProviderDigest_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityProviderDigest)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityProviderDigest, provider_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityProviderDigest_initWithNSString_(ComItextpdfTextPdfSecurityProviderDigest *self, NSString *provider);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityProviderDigest *new_ComItextpdfTextPdfSecurityProviderDigest_initWithNSString_(NSString *provider) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityProviderDigest)
 
 #endif // _ComItextpdfTextPdfSecurityProviderDigest_H_

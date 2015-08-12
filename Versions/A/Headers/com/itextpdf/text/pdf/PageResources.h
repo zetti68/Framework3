@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPageResources_H_
 #define _ComItextpdfTextPdfPageResources_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
@@ -13,8 +15,6 @@
 @class IOSIntArray;
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfPageResources : NSObject {
  @public
@@ -31,50 +31,50 @@
   JavaUtilHashMap *usedNames_;
 }
 
+#pragma mark Package-Private
+
 - (instancetype)init;
+
+- (ComItextpdfTextPdfPdfName *)addColorWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                          withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (void)addDefaultColorWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
+
+- (void)addDefaultColorWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                     withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
+
+- (void)addDefaultColorDiffWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
+
+- (ComItextpdfTextPdfPdfName *)addExtGStateWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                              withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfName *)addFontWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                         withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfName *)addPatternWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfName *)addPropertyWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                             withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfName *)addShadingWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfName *)addXObjectWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (ComItextpdfTextPdfPdfDictionary *)getResources;
+
+- (jboolean)hasResources;
 
 - (void)setOriginalResourcesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)resources
                                                    withIntArray:(IOSIntArray *)newNamePtr;
 
 - (ComItextpdfTextPdfPdfName *)translateNameWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
 
-- (ComItextpdfTextPdfPdfName *)addFontWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                         withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfName *)addXObjectWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfName *)addColorWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                          withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (void)addDefaultColorWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                     withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
-
-- (void)addDefaultColorWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
-
-- (void)addDefaultColorDiffWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
-
-- (ComItextpdfTextPdfPdfName *)addShadingWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfName *)addPatternWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfName *)addExtGStateWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                              withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfName *)addPropertyWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                             withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfDictionary *)getResources;
-
-- (jboolean)hasResources;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPageResources *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPageResources_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPageResources)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, fontDictionary_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, xObjectDictionary_, ComItextpdfTextPdfPdfDictionary *)
@@ -87,5 +87,11 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, forbiddenNames_, JavaUtilHa
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, originalResources_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, namePtr_, IOSIntArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPageResources, usedNames_, JavaUtilHashMap *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPageResources_init(ComItextpdfTextPdfPageResources *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPageResources *new_ComItextpdfTextPdfPageResources_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPageResources)
 
 #endif // _ComItextpdfTextPdfPageResources_H_

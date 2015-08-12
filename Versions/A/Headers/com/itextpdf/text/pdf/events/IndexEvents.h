@@ -6,46 +6,21 @@
 #ifndef _ComItextpdfTextPdfEventsIndexEvents_H_
 #define _ComItextpdfTextPdfEventsIndexEvents_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfPageEventHelper.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfPdfWriter;
 @class ComItextpdfTextRectangle;
+@protocol JavaUtilComparator;
 @protocol JavaUtilList;
-@protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfPageEventHelper.h"
-#include "java/util/Comparator.h"
+@interface ComItextpdfTextPdfEventsIndexEvents : ComItextpdfTextPdfPdfPageEventHelper
 
-@interface ComItextpdfTextPdfEventsIndexEvents : ComItextpdfTextPdfPdfPageEventHelper {
- @public
-  id<JavaUtilMap> indextag_;
-  jlong indexcounter_;
-  id<JavaUtilList> indexentry_;
-  id<JavaUtilComparator> comparator_;
-}
+#pragma mark Public
 
-- (void)onGenericTagWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                        withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
-                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                       withNSString:(NSString *)text;
-
-- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
-                                withNSString:(NSString *)in1
-                                withNSString:(NSString *)in2
-                                withNSString:(NSString *)in3;
-
-- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
-                                withNSString:(NSString *)in1;
-
-- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
-                                withNSString:(NSString *)in1
-                                withNSString:(NSString *)in2;
-
-- (void)createWithComItextpdfTextChunk:(ComItextpdfTextChunk *)text
-                          withNSString:(NSString *)in1
-                          withNSString:(NSString *)in2
-                          withNSString:(NSString *)in3;
+- (instancetype)init;
 
 - (void)createWithComItextpdfTextChunk:(ComItextpdfTextChunk *)text
                           withNSString:(NSString *)in1;
@@ -54,32 +29,45 @@
                           withNSString:(NSString *)in1
                           withNSString:(NSString *)in2;
 
-- (void)setComparatorWithJavaUtilComparator:(id<JavaUtilComparator>)aComparator;
+- (void)createWithComItextpdfTextChunk:(ComItextpdfTextChunk *)text
+                          withNSString:(NSString *)in1
+                          withNSString:(NSString *)in2
+                          withNSString:(NSString *)in3;
+
+- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
+                                withNSString:(NSString *)in1;
+
+- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
+                                withNSString:(NSString *)in1
+                                withNSString:(NSString *)in2;
+
+- (ComItextpdfTextChunk *)createWithNSString:(NSString *)text
+                                withNSString:(NSString *)in1
+                                withNSString:(NSString *)in2
+                                withNSString:(NSString *)in3;
 
 - (id<JavaUtilList>)getSortedEntries;
 
-- (instancetype)init;
+- (void)onGenericTagWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                        withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
+                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                       withNSString:(NSString *)text;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsIndexEvents *)other;
+- (void)setComparatorWithJavaUtilComparator:(id<JavaUtilComparator>)aComparator;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsIndexEvents_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsIndexEvents)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents, indextag_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents, indexentry_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents, comparator_, id<JavaUtilComparator>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsIndexEvents_init(ComItextpdfTextPdfEventsIndexEvents *self);
 
-@interface ComItextpdfTextPdfEventsIndexEvents_Entry : NSObject {
- @public
-  ComItextpdfTextPdfEventsIndexEvents *this$0_;
-  NSString *in1_;
-  NSString *in2_;
-  NSString *in3_;
-  NSString *tag_;
-  id<JavaUtilList> pagenumbers_;
-  id<JavaUtilList> tags_;
-}
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsIndexEvents *new_ComItextpdfTextPdfEventsIndexEvents_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsIndexEvents)
+
+@interface ComItextpdfTextPdfEventsIndexEvents_Entry : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfEventsIndexEvents:(ComItextpdfTextPdfEventsIndexEvents *)outer$
                                                withNSString:(NSString *)aIn1
@@ -87,51 +75,35 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents, comparator_, id<JavaUti
                                                withNSString:(NSString *)aIn3
                                                withNSString:(NSString *)aTag;
 
+- (void)addPageNumberAndTagWithInt:(jint)number
+                      withNSString:(NSString *)tag;
+
 - (NSString *)getIn1;
 
 - (NSString *)getIn2;
 
 - (NSString *)getIn3;
 
-- (NSString *)getTag;
+- (NSString *)getKey;
 
 - (jint)getPageNumber;
 
-- (void)addPageNumberAndTagWithInt:(jint)number
-                      withNSString:(NSString *)tag;
-
-- (NSString *)getKey;
-
 - (id<JavaUtilList>)getPagenumbers;
+
+- (NSString *)getTag;
 
 - (id<JavaUtilList>)getTags;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsIndexEvents_Entry *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsIndexEvents_Entry_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsIndexEvents_Entry)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, this$0_, ComItextpdfTextPdfEventsIndexEvents *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, in1_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, in2_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, in3_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, tag_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, pagenumbers_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsIndexEvents_Entry, tags_, id<JavaUtilList>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsIndexEvents_Entry_initWithComItextpdfTextPdfEventsIndexEvents_withNSString_withNSString_withNSString_withNSString_(ComItextpdfTextPdfEventsIndexEvents_Entry *self, ComItextpdfTextPdfEventsIndexEvents *outer$, NSString *aIn1, NSString *aIn2, NSString *aIn3, NSString *aTag);
 
-@interface ComItextpdfTextPdfEventsIndexEvents_$1 : NSObject < JavaUtilComparator > {
-}
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsIndexEvents_Entry *new_ComItextpdfTextPdfEventsIndexEvents_Entry_initWithComItextpdfTextPdfEventsIndexEvents_withNSString_withNSString_withNSString_withNSString_(ComItextpdfTextPdfEventsIndexEvents *outer$, NSString *aIn1, NSString *aIn2, NSString *aIn3, NSString *aTag) NS_RETURNS_RETAINED;
 
-- (jint)compareWithId:(ComItextpdfTextPdfEventsIndexEvents_Entry *)en1
-               withId:(ComItextpdfTextPdfEventsIndexEvents_Entry *)en2;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsIndexEvents_$1_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsIndexEvents_Entry)
 
 #endif // _ComItextpdfTextPdfEventsIndexEvents_H_

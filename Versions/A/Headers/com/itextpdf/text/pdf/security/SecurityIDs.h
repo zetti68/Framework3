@@ -6,16 +6,17 @@
 #ifndef _ComItextpdfTextPdfSecuritySecurityIDs_H_
 #define _ComItextpdfTextPdfSecuritySecurityIDs_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextPdfSecuritySecurityIDs : NSObject {
-}
+@interface ComItextpdfTextPdfSecuritySecurityIDs : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecuritySecurityIDs_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecuritySecurityIDs)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecuritySecurityIDs_ID_PKCS7_DATA_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityIDs, ID_PKCS7_DATA_, NSString *)
@@ -55,5 +56,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityIDs, ID_AA_SIGNING_
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecuritySecurityIDs_ID_AA_SIGNING_CERTIFICATE_V2_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityIDs, ID_AA_SIGNING_CERTIFICATE_V2_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecuritySecurityIDs_init(ComItextpdfTextPdfSecuritySecurityIDs *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecuritySecurityIDs *new_ComItextpdfTextPdfSecuritySecurityIDs_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecuritySecurityIDs)
 
 #endif // _ComItextpdfTextPdfSecuritySecurityIDs_H_

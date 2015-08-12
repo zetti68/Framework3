@@ -6,19 +6,21 @@
 #ifndef _ComItextpdfTextPdfDrawVerticalPositionMark_H_
 #define _ComItextpdfTextPdfDrawVerticalPositionMark_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+#include "com/itextpdf/text/pdf/draw/DrawInterface.h"
+
 @class ComItextpdfTextPdfPdfContentByte;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
-#include "com/itextpdf/text/pdf/draw/DrawInterface.h"
 
 @interface ComItextpdfTextPdfDrawVerticalPositionMark : NSObject < ComItextpdfTextPdfDrawDrawInterface, ComItextpdfTextElement > {
  @public
   id<ComItextpdfTextPdfDrawDrawInterface> drawInterface_;
   jfloat offset_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -32,30 +34,38 @@
                                        withFloat:(jfloat)ury
                                        withFloat:(jfloat)y;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (id<JavaUtilList>)getChunks;
 
-- (jint)type;
+- (id<ComItextpdfTextPdfDrawDrawInterface>)getDrawInterface;
+
+- (jfloat)getOffset;
 
 - (jboolean)isContent;
 
 - (jboolean)isNestable;
 
-- (id<JavaUtilList>)getChunks;
-
-- (id<ComItextpdfTextPdfDrawDrawInterface>)getDrawInterface;
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (void)setDrawInterfaceWithComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)drawInterface;
 
-- (jfloat)getOffset;
-
 - (void)setOffsetWithFloat:(jfloat)offset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfDrawVerticalPositionMark *)other;
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfDrawVerticalPositionMark_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfDrawVerticalPositionMark)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfDrawVerticalPositionMark, drawInterface_, id<ComItextpdfTextPdfDrawDrawInterface>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawVerticalPositionMark_init(ComItextpdfTextPdfDrawVerticalPositionMark *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawVerticalPositionMark *new_ComItextpdfTextPdfDrawVerticalPositionMark_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawVerticalPositionMark_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_(ComItextpdfTextPdfDrawVerticalPositionMark *self, id<ComItextpdfTextPdfDrawDrawInterface> drawInterface, jfloat offset);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawVerticalPositionMark *new_ComItextpdfTextPdfDrawVerticalPositionMark_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_(id<ComItextpdfTextPdfDrawDrawInterface> drawInterface, jfloat offset) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfDrawVerticalPositionMark)
 
 #endif // _ComItextpdfTextPdfDrawVerticalPositionMark_H_

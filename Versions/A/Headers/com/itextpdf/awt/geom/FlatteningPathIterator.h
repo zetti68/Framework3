@@ -6,15 +6,11 @@
 #ifndef _ComItextpdfAwtGeomFlatteningPathIterator_H_
 #define _ComItextpdfAwtGeomFlatteningPathIterator_H_
 
-@class IOSDoubleArray;
-@class IOSFloatArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/awt/geom/PathIterator.h"
 
-#define ComItextpdfAwtGeomFlatteningPathIterator_BUFFER_CAPACITY 16
-#define ComItextpdfAwtGeomFlatteningPathIterator_BUFFER_LIMIT 16
-#define ComItextpdfAwtGeomFlatteningPathIterator_BUFFER_SIZE 16
+@class IOSDoubleArray;
+@class IOSFloatArray;
 
 @interface ComItextpdfAwtGeomFlatteningPathIterator : NSObject < ComItextpdfAwtGeomPathIterator > {
  @public
@@ -33,12 +29,18 @@
   IOSDoubleArray *coords_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfAwtGeomPathIterator:(id<ComItextpdfAwtGeomPathIterator>)path
                                             withDouble:(jdouble)flatness;
 
 - (instancetype)initWithComItextpdfAwtGeomPathIterator:(id<ComItextpdfAwtGeomPathIterator>)path
                                             withDouble:(jdouble)flatness
                                                withInt:(jint)limit;
+
+- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+
+- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
 
 - (jdouble)getFlatness;
 
@@ -48,28 +50,28 @@
 
 - (jboolean)isDone;
 
-- (void)evaluate;
-
 - (void)next;
 
-- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
+#pragma mark Package-Private
 
-- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomFlatteningPathIterator *)other;
+- (void)evaluate;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomFlatteningPathIterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomFlatteningPathIterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomFlatteningPathIterator, buf_, IOSDoubleArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomFlatteningPathIterator, p_, id<ComItextpdfAwtGeomPathIterator>)
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomFlatteningPathIterator, coords_, IOSDoubleArray *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomFlatteningPathIterator, BUFFER_SIZE, jint)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomFlatteningPathIterator_initWithComItextpdfAwtGeomPathIterator_withDouble_(ComItextpdfAwtGeomFlatteningPathIterator *self, id<ComItextpdfAwtGeomPathIterator> path, jdouble flatness);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomFlatteningPathIterator, BUFFER_LIMIT, jint)
+FOUNDATION_EXPORT ComItextpdfAwtGeomFlatteningPathIterator *new_ComItextpdfAwtGeomFlatteningPathIterator_initWithComItextpdfAwtGeomPathIterator_withDouble_(id<ComItextpdfAwtGeomPathIterator> path, jdouble flatness) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomFlatteningPathIterator, BUFFER_CAPACITY, jint)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomFlatteningPathIterator_initWithComItextpdfAwtGeomPathIterator_withDouble_withInt_(ComItextpdfAwtGeomFlatteningPathIterator *self, id<ComItextpdfAwtGeomPathIterator> path, jdouble flatness, jint limit);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomFlatteningPathIterator *new_ComItextpdfAwtGeomFlatteningPathIterator_initWithComItextpdfAwtGeomPathIterator_withDouble_withInt_(id<ComItextpdfAwtGeomPathIterator> path, jdouble flatness, jint limit) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomFlatteningPathIterator)
 
 #endif // _ComItextpdfAwtGeomFlatteningPathIterator_H_

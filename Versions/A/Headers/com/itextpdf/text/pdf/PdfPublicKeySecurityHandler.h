@@ -6,42 +6,42 @@
 #ifndef _ComItextpdfTextPdfPdfPublicKeySecurityHandler_H_
 #define _ComItextpdfTextPdfPdfPublicKeySecurityHandler_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfPublicKeyRecipient;
 @class IOSByteArray;
-@class JavaUtilArrayList;
-
-#import "JreEmulation.h"
 
 #define ComItextpdfTextPdfPdfPublicKeySecurityHandler_SEED_LENGTH 20
 
-@interface ComItextpdfTextPdfPdfPublicKeySecurityHandler : NSObject {
- @public
-  JavaUtilArrayList *recipients_;
-  IOSByteArray *seed_;
-}
+@interface ComItextpdfTextPdfPdfPublicKeySecurityHandler : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (void)addRecipientWithComItextpdfTextPdfPdfPublicKeyRecipient:(ComItextpdfTextPdfPdfPublicKeyRecipient *)recipient;
 
-- (IOSByteArray *)getSeed;
-
-- (jint)getRecipientsSize;
-
 - (IOSByteArray *)getEncodedRecipientWithInt:(jint)index;
 
 - (ComItextpdfTextPdfPdfArray *)getEncodedRecipients;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPublicKeySecurityHandler *)other;
+- (jint)getRecipientsSize;
+
+#pragma mark Protected
+
+- (IOSByteArray *)getSeed;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPublicKeySecurityHandler_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPublicKeySecurityHandler, recipients_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPublicKeySecurityHandler, seed_, IOSByteArray *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPublicKeySecurityHandler)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPublicKeySecurityHandler, SEED_LENGTH, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPublicKeySecurityHandler_init(ComItextpdfTextPdfPdfPublicKeySecurityHandler *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPublicKeySecurityHandler *new_ComItextpdfTextPdfPdfPublicKeySecurityHandler_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPublicKeySecurityHandler)
 
 #endif // _ComItextpdfTextPdfPdfPublicKeySecurityHandler_H_

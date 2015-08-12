@@ -6,33 +6,34 @@
 #ifndef _ComItextpdfTextPdfParserGlyphRenderListener_H_
 #define _ComItextpdfTextPdfParserGlyphRenderListener_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+@interface ComItextpdfTextPdfParserGlyphRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener >
 
-@interface ComItextpdfTextPdfParserGlyphRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener > {
- @public
-  id<ComItextpdfTextPdfParserRenderListener> delegate_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfParserRenderListener:(id<ComItextpdfTextPdfParserRenderListener>)delegate;
 
 - (void)beginTextBlock;
 
-- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
-
 - (void)endTextBlock;
 
 - (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserGlyphRenderListener *)other;
+- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserGlyphRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserGlyphRenderListener)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGlyphRenderListener, delegate_, id<ComItextpdfTextPdfParserRenderListener>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserGlyphRenderListener_initWithComItextpdfTextPdfParserRenderListener_(ComItextpdfTextPdfParserGlyphRenderListener *self, id<ComItextpdfTextPdfParserRenderListener> delegate);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserGlyphRenderListener *new_ComItextpdfTextPdfParserGlyphRenderListener_initWithComItextpdfTextPdfParserRenderListener_(id<ComItextpdfTextPdfParserRenderListener> delegate) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserGlyphRenderListener)
 
 #endif // _ComItextpdfTextPdfParserGlyphRenderListener_H_

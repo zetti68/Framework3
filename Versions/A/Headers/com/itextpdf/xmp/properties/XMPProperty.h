@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfXmpPropertiesXMPProperty_H_
 #define _ComItextpdfXmpPropertiesXMPProperty_H_
 
-@class ComItextpdfXmpOptionsPropertyOptions;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfXmpOptionsPropertyOptions;
 
 @protocol ComItextpdfXmpPropertiesXMPProperty < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpPropertiesXMPProperty_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpPropertiesXMPProperty)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpPropertiesXMPProperty)
 
 #endif // _ComItextpdfXmpPropertiesXMPProperty_H_

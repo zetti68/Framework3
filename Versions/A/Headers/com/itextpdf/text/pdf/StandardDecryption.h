@@ -6,44 +6,33 @@
 #ifndef _ComItextpdfTextPdfStandardDecryption_H_
 #define _ComItextpdfTextPdfStandardDecryption_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfStandardDecryption : NSObject
 
-#define ComItextpdfTextPdfStandardDecryption_AES_128 4
-#define ComItextpdfTextPdfStandardDecryption_AES_256 5
-
-@interface ComItextpdfTextPdfStandardDecryption : NSObject {
- @public
-  IOSByteArray *key_;
-  jboolean aes_;
-  jboolean initiated_;
-  IOSByteArray *iv_;
-  jint ivptr_;
-}
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)key
                           withInt:(jint)off
                           withInt:(jint)len
                           withInt:(jint)revision;
 
+- (IOSByteArray *)finish;
+
 - (IOSByteArray *)updateWithByteArray:(IOSByteArray *)b
                               withInt:(jint)off
                               withInt:(jint)len;
 
-- (IOSByteArray *)finish;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfStandardDecryption *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfStandardDecryption_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfStandardDecryption)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfStandardDecryption, key_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfStandardDecryption, iv_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfStandardDecryption_initWithByteArray_withInt_withInt_withInt_(ComItextpdfTextPdfStandardDecryption *self, IOSByteArray *key, jint off, jint len, jint revision);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfStandardDecryption, AES_128, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfStandardDecryption *new_ComItextpdfTextPdfStandardDecryption_initWithByteArray_withInt_withInt_withInt_(IOSByteArray *key, jint off, jint len, jint revision) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfStandardDecryption, AES_256, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfStandardDecryption)
 
 #endif // _ComItextpdfTextPdfStandardDecryption_H_

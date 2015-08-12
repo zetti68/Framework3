@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfEventsPdfPTableEventForwarder_H_
 #define _ComItextpdfTextPdfEventsPdfPTableEventForwarder_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfPTableEventAfterSplit.h"
+
 @class ComItextpdfTextPdfPdfPRow;
 @class ComItextpdfTextPdfPdfPTable;
 @class IOSFloatArray;
@@ -13,15 +16,22 @@
 @class JavaUtilArrayList;
 @protocol ComItextpdfTextPdfPdfPTableEvent;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfPTableEventAfterSplit.h"
-
 @interface ComItextpdfTextPdfEventsPdfPTableEventForwarder : NSObject < ComItextpdfTextPdfPdfPTableEventAfterSplit > {
  @public
   JavaUtilArrayList *events_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (void)addTableEventWithComItextpdfTextPdfPdfPTableEvent:(id<ComItextpdfTextPdfPdfPTableEvent>)event;
+
+- (void)afterSplitTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
+                         withComItextpdfTextPdfPdfPRow:(ComItextpdfTextPdfPdfPRow *)startRow
+                                               withInt:(jint)startIdx;
+
+- (void)splitTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
 - (void)tableLayoutWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
                                    withFloatArray2:(IOSObjectArray *)widths
@@ -30,20 +40,16 @@
                                            withInt:(jint)rowStart
          withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
-- (void)splitTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
-
-- (void)afterSplitTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
-                         withComItextpdfTextPdfPdfPRow:(ComItextpdfTextPdfPdfPRow *)startRow
-                                               withInt:(jint)startIdx;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsPdfPTableEventForwarder *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsPdfPTableEventForwarder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsPdfPTableEventForwarder)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsPdfPTableEventForwarder, events_, JavaUtilArrayList *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsPdfPTableEventForwarder_init(ComItextpdfTextPdfEventsPdfPTableEventForwarder *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsPdfPTableEventForwarder *new_ComItextpdfTextPdfEventsPdfPTableEventForwarder_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsPdfPTableEventForwarder)
 
 #endif // _ComItextpdfTextPdfEventsPdfPTableEventForwarder_H_

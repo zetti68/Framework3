@@ -6,22 +6,14 @@
 #ifndef _ComItextpdfTextError_messagesMessageLocalization_H_
 #define _ComItextpdfTextError_messagesMessageLocalization_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
-@class JavaIoInputStream;
 @class JavaIoReader;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextError_messagesMessageLocalization : NSObject
 
-@interface ComItextpdfTextError_messagesMessageLocalization : NSObject {
-}
-
-- (instancetype)init;
-
-+ (NSString *)getMessageWithNSString:(NSString *)key;
-
-+ (NSString *)getMessageWithNSString:(NSString *)key
-                         withBoolean:(jboolean)useDefaultLanguageIfMessageNotFound;
+#pragma mark Public
 
 + (NSString *)getComposedMessageWithNSString:(NSString *)key
                                      withInt:(jint)p1;
@@ -29,32 +21,32 @@
 + (NSString *)getComposedMessageWithNSString:(NSString *)key
                            withNSObjectArray:(IOSObjectArray *)param;
 
++ (NSString *)getMessageWithNSString:(NSString *)key;
+
++ (NSString *)getMessageWithNSString:(NSString *)key
+                         withBoolean:(jboolean)useDefaultLanguageIfMessageNotFound;
+
 + (jboolean)setLanguageWithNSString:(NSString *)language
                        withNSString:(NSString *)country;
 
 + (void)setMessagesWithJavaIoReader:(JavaIoReader *)r;
 
-+ (JavaUtilHashMap *)getLanguageMessagesWithNSString:(NSString *)language
-                                        withNSString:(NSString *)country;
-
-+ (JavaUtilHashMap *)readLanguageStreamWithJavaIoInputStream:(JavaIoInputStream *)is;
-
-+ (JavaUtilHashMap *)readLanguageStreamWithJavaIoReader:(JavaIoReader *)r;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextError_messagesMessageLocalization_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextError_messagesMessageLocalization)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextError_messagesMessageLocalization_defaultLanguage_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextError_messagesMessageLocalization, defaultLanguage_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextError_messagesMessageLocalization, defaultLanguage_, JavaUtilHashMap *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextError_messagesMessageLocalization_getMessageWithNSString_(NSString *key);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextError_messagesMessageLocalization_currentLanguage_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextError_messagesMessageLocalization, currentLanguage_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextError_messagesMessageLocalization, currentLanguage_, JavaUtilHashMap *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextError_messagesMessageLocalization_getMessageWithNSString_withBoolean_(NSString *key, jboolean useDefaultLanguageIfMessageNotFound);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextError_messagesMessageLocalization_BASE_PATH_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextError_messagesMessageLocalization, BASE_PATH_, NSString *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextError_messagesMessageLocalization_getComposedMessageWithNSString_withInt_(NSString *key, jint p1);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextError_messagesMessageLocalization_getComposedMessageWithNSString_withNSObjectArray_(NSString *key, IOSObjectArray *param);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextError_messagesMessageLocalization_setLanguageWithNSString_withNSString_(NSString *language, NSString *country);
+
+FOUNDATION_EXPORT void ComItextpdfTextError_messagesMessageLocalization_setMessagesWithJavaIoReader_(JavaIoReader *r);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextError_messagesMessageLocalization)
 
 #endif // _ComItextpdfTextError_messagesMessageLocalization_H_

@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfPatternPainter_H_
 #define _ComItextpdfTextPdfPdfPatternPainter_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfTemplate.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfPattern;
 @class ComItextpdfTextPdfPdfSpotColor;
 @class ComItextpdfTextPdfPdfWriter;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfTemplate.h"
 
 @interface ComItextpdfTextPdfPdfPatternPainter : ComItextpdfTextPdfPdfTemplate {
  @public
@@ -23,71 +23,7 @@
   ComItextpdfTextBaseColor *defaultColor_;
 }
 
-- (instancetype)init;
-
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
-
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr
-                       withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)defaultColor;
-
-- (void)setXStepWithFloat:(jfloat)xstep;
-
-- (void)setYStepWithFloat:(jfloat)ystep;
-
-- (jfloat)getXStep;
-
-- (jfloat)getYStep;
-
-- (jboolean)isStencil;
-
-- (void)setPatternMatrixWithFloat:(jfloat)a
-                        withFloat:(jfloat)b
-                        withFloat:(jfloat)c
-                        withFloat:(jfloat)d
-                        withFloat:(jfloat)e
-                        withFloat:(jfloat)f;
-
-- (ComItextpdfTextPdfPdfPattern *)getPattern;
-
-- (ComItextpdfTextPdfPdfPattern *)getPatternWithInt:(jint)compressionLevel;
-
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
-
-- (ComItextpdfTextBaseColor *)getDefaultColor;
-
-- (void)setGrayFillWithFloat:(jfloat)gray;
-
-- (void)resetGrayFill;
-
-- (void)setGrayStrokeWithFloat:(jfloat)gray;
-
-- (void)resetGrayStroke;
-
-- (void)setRGBColorFillFWithFloat:(jfloat)red
-                        withFloat:(jfloat)green
-                        withFloat:(jfloat)blue;
-
-- (void)resetRGBColorFill;
-
-- (void)setRGBColorStrokeFWithFloat:(jfloat)red
-                          withFloat:(jfloat)green
-                          withFloat:(jfloat)blue;
-
-- (void)resetRGBColorStroke;
-
-- (void)setCMYKColorFillFWithFloat:(jfloat)cyan
-                         withFloat:(jfloat)magenta
-                         withFloat:(jfloat)yellow
-                         withFloat:(jfloat)black;
-
-- (void)resetCMYKColorFill;
-
-- (void)setCMYKColorStrokeFWithFloat:(jfloat)cyan
-                           withFloat:(jfloat)magenta
-                           withFloat:(jfloat)yellow
-                           withFloat:(jfloat)black;
-
-- (void)resetCMYKColorStroke;
+#pragma mark Public
 
 - (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                withFloat:(jfloat)a
@@ -97,33 +33,65 @@
                                withFloat:(jfloat)e
                                withFloat:(jfloat)f;
 
+- (ComItextpdfTextBaseColor *)getDefaultColor;
+
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+
+- (ComItextpdfTextPdfPdfPattern *)getPattern;
+
+- (ComItextpdfTextPdfPdfPattern *)getPatternWithInt:(jint)compressionLevel;
+
+- (jfloat)getXStep;
+
+- (jfloat)getYStep;
+
+- (jboolean)isStencil;
+
+- (void)resetCMYKColorFill;
+
+- (void)resetCMYKColorStroke;
+
+- (void)resetGrayFill;
+
+- (void)resetGrayStroke;
+
+- (void)resetRGBColorFill;
+
+- (void)resetRGBColorStroke;
+
 - (void)setCMYKColorFillWithInt:(jint)cyan
                         withInt:(jint)magenta
                         withInt:(jint)yellow
                         withInt:(jint)black;
+
+- (void)setCMYKColorFillFWithFloat:(jfloat)cyan
+                         withFloat:(jfloat)magenta
+                         withFloat:(jfloat)yellow
+                         withFloat:(jfloat)black;
 
 - (void)setCMYKColorStrokeWithInt:(jint)cyan
                           withInt:(jint)magenta
                           withInt:(jint)yellow
                           withInt:(jint)black;
 
-- (void)setRGBColorFillWithInt:(jint)red
-                       withInt:(jint)green
-                       withInt:(jint)blue;
-
-- (void)setRGBColorStrokeWithInt:(jint)red
-                         withInt:(jint)green
-                         withInt:(jint)blue;
-
-- (void)setColorStrokeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (void)setCMYKColorStrokeFWithFloat:(jfloat)cyan
+                           withFloat:(jfloat)magenta
+                           withFloat:(jfloat)yellow
+                           withFloat:(jfloat)black;
 
 - (void)setColorFillWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
 - (void)setColorFillWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
                                              withFloat:(jfloat)tint;
 
+- (void)setColorStrokeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
 - (void)setColorStrokeWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
                                                withFloat:(jfloat)tint;
+
+- (void)setGrayFillWithFloat:(jfloat)gray;
+
+- (void)setGrayStrokeWithFloat:(jfloat)gray;
 
 - (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
 
@@ -131,20 +99,62 @@
                                  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
                                                     withFloat:(jfloat)tint;
 
+- (void)setPatternMatrixWithFloat:(jfloat)a
+                        withFloat:(jfloat)b
+                        withFloat:(jfloat)c
+                        withFloat:(jfloat)d
+                        withFloat:(jfloat)e
+                        withFloat:(jfloat)f;
+
+- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
+
 - (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
                                    withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
                                                       withFloat:(jfloat)tint;
 
-- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
+- (void)setRGBColorFillWithInt:(jint)red
+                       withInt:(jint)green
+                       withInt:(jint)blue;
+
+- (void)setRGBColorFillFWithFloat:(jfloat)red
+                        withFloat:(jfloat)green
+                        withFloat:(jfloat)blue;
+
+- (void)setRGBColorStrokeWithInt:(jint)red
+                         withInt:(jint)green
+                         withInt:(jint)blue;
+
+- (void)setRGBColorStrokeFWithFloat:(jfloat)red
+                          withFloat:(jfloat)green
+                          withFloat:(jfloat)blue;
+
+- (void)setXStepWithFloat:(jfloat)xstep;
+
+- (void)setYStepWithFloat:(jfloat)ystep;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr
+                       withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)defaultColor;
 
 - (void)checkNoColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPatternPainter *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPatternPainter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPatternPainter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPatternPainter, defaultColor_, ComItextpdfTextBaseColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPatternPainter_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfPatternPainter *self, ComItextpdfTextPdfPdfWriter *wr);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPatternPainter *new_ComItextpdfTextPdfPdfPatternPainter_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *wr) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPatternPainter_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextBaseColor_(ComItextpdfTextPdfPdfPatternPainter *self, ComItextpdfTextPdfPdfWriter *wr, ComItextpdfTextBaseColor *defaultColor);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPatternPainter *new_ComItextpdfTextPdfPdfPatternPainter_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextBaseColor_(ComItextpdfTextPdfPdfWriter *wr, ComItextpdfTextBaseColor *defaultColor) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPatternPainter)
 
 #endif // _ComItextpdfTextPdfPdfPatternPainter_H_

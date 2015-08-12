@@ -6,39 +6,46 @@
 #ifndef _ComItextpdfTextLogNoOpLogger_H_
 #define _ComItextpdfTextLogNoOpLogger_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/log/Logger.h"
+
 @class ComItextpdfTextLogLevelEnum;
 @class IOSClass;
 @class JavaLangException;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/log/Logger.h"
+@interface ComItextpdfTextLogNoOpLogger : NSObject < ComItextpdfTextLogLogger >
 
-@interface ComItextpdfTextLogNoOpLogger : NSObject < ComItextpdfTextLogLogger > {
-}
+#pragma mark Public
 
-- (id<ComItextpdfTextLogLogger>)getLoggerWithIOSClass:(IOSClass *)name;
-
-- (void)warnWithNSString:(NSString *)message;
-
-- (void)traceWithNSString:(NSString *)message;
+- (instancetype)init;
 
 - (void)debugWithNSString:(NSString *)message;
 
-- (void)infoWithNSString:(NSString *)message;
+- (void)errorWithNSString:(NSString *)message;
 
 - (void)errorWithNSString:(NSString *)message
     withJavaLangException:(JavaLangException *)e;
 
-- (jboolean)isLoggingWithComItextpdfTextLogLevelEnum:(ComItextpdfTextLogLevelEnum *)level;
-
-- (void)errorWithNSString:(NSString *)message;
+- (id<ComItextpdfTextLogLogger>)getLoggerWithIOSClass:(IOSClass *)name;
 
 - (id<ComItextpdfTextLogLogger>)getLoggerWithNSString:(NSString *)name;
 
-- (instancetype)init;
+- (void)infoWithNSString:(NSString *)message;
+
+- (jboolean)isLoggingWithComItextpdfTextLogLevelEnum:(ComItextpdfTextLogLevelEnum *)level;
+
+- (void)traceWithNSString:(NSString *)message;
+
+- (void)warnWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogNoOpLogger_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogNoOpLogger)
+
+FOUNDATION_EXPORT void ComItextpdfTextLogNoOpLogger_init(ComItextpdfTextLogNoOpLogger *self);
+
+FOUNDATION_EXPORT ComItextpdfTextLogNoOpLogger *new_ComItextpdfTextLogNoOpLogger_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogNoOpLogger)
 
 #endif // _ComItextpdfTextLogNoOpLogger_H_

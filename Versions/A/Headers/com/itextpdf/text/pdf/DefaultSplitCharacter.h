@@ -6,16 +6,18 @@
 #ifndef _ComItextpdfTextPdfDefaultSplitCharacter_H_
 #define _ComItextpdfTextPdfDefaultSplitCharacter_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/SplitCharacter.h"
+
 @class IOSCharArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/SplitCharacter.h"
 
 @interface ComItextpdfTextPdfDefaultSplitCharacter : NSObject < ComItextpdfTextSplitCharacter > {
  @public
   IOSCharArray *characters_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -29,20 +31,33 @@
                       withCharArray:(IOSCharArray *)cc
 withComItextpdfTextPdfPdfChunkArray:(IOSObjectArray *)ck;
 
+#pragma mark Protected
+
 - (jchar)getCurrentCharacterWithInt:(jint)current
                       withCharArray:(IOSCharArray *)cc
 withComItextpdfTextPdfPdfChunkArray:(IOSObjectArray *)ck;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfDefaultSplitCharacter *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfDefaultSplitCharacter_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfDefaultSplitCharacter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfDefaultSplitCharacter, characters_, IOSCharArray *)
 
 FOUNDATION_EXPORT id<ComItextpdfTextSplitCharacter> ComItextpdfTextPdfDefaultSplitCharacter_DEFAULT_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfDefaultSplitCharacter, DEFAULT_, id<ComItextpdfTextSplitCharacter>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDefaultSplitCharacter_init(ComItextpdfTextPdfDefaultSplitCharacter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDefaultSplitCharacter *new_ComItextpdfTextPdfDefaultSplitCharacter_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDefaultSplitCharacter_initWithChar_(ComItextpdfTextPdfDefaultSplitCharacter *self, jchar character);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDefaultSplitCharacter *new_ComItextpdfTextPdfDefaultSplitCharacter_initWithChar_(jchar character) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDefaultSplitCharacter_initWithCharArray_(ComItextpdfTextPdfDefaultSplitCharacter *self, IOSCharArray *characters);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDefaultSplitCharacter *new_ComItextpdfTextPdfDefaultSplitCharacter_initWithCharArray_(IOSCharArray *characters) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfDefaultSplitCharacter)
 
 #endif // _ComItextpdfTextPdfDefaultSplitCharacter_H_

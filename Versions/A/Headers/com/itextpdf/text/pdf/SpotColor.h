@@ -6,12 +6,10 @@
 #ifndef _ComItextpdfTextPdfSpotColor_H_
 #define _ComItextpdfTextPdfSpotColor_H_
 
-@class ComItextpdfTextPdfPdfSpotColor;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/ExtendedColor.h"
 
-#define ComItextpdfTextPdfSpotColor_serialVersionUID -6257004582113248079LL
+@class ComItextpdfTextPdfPdfSpotColor;
 
 @interface ComItextpdfTextPdfSpotColor : ComItextpdfTextPdfExtendedColor {
  @public
@@ -19,25 +17,29 @@
   jfloat tint_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)spot
                                              withFloat:(jfloat)tint;
+
+- (jboolean)isEqual:(id)obj;
 
 - (ComItextpdfTextPdfPdfSpotColor *)getPdfSpotColor;
 
 - (jfloat)getTint;
 
-- (jboolean)isEqual:(id)obj;
-
 - (NSUInteger)hash;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSpotColor *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSpotColor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSpotColor)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSpotColor, spot_, ComItextpdfTextPdfPdfSpotColor *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSpotColor, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSpotColor_initWithComItextpdfTextPdfPdfSpotColor_withFloat_(ComItextpdfTextPdfSpotColor *self, ComItextpdfTextPdfPdfSpotColor *spot, jfloat tint);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSpotColor *new_ComItextpdfTextPdfSpotColor_initWithComItextpdfTextPdfPdfSpotColor_withFloat_(ComItextpdfTextPdfPdfSpotColor *spot, jfloat tint) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSpotColor)
 
 #endif // _ComItextpdfTextPdfSpotColor_H_

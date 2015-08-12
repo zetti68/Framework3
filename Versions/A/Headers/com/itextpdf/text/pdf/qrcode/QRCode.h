@@ -6,41 +6,32 @@
 #ifndef _ComItextpdfTextPdfQrcodeQRCode_H_
 #define _ComItextpdfTextPdfQrcodeQRCode_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeByteMatrix;
 @class ComItextpdfTextPdfQrcodeErrorCorrectionLevel;
 @class ComItextpdfTextPdfQrcodeMode;
 
-#import "JreEmulation.h"
-
 #define ComItextpdfTextPdfQrcodeQRCode_NUM_MASK_PATTERNS 8
 
-@interface ComItextpdfTextPdfQrcodeQRCode : NSObject {
- @public
-  ComItextpdfTextPdfQrcodeMode *mode_;
-  ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel_;
-  jint version__;
-  jint matrixWidth_;
-  jint maskPattern_;
-  jint numTotalBytes_;
-  jint numDataBytes_;
-  jint numECBytes_;
-  jint numRSBlocks_;
-  ComItextpdfTextPdfQrcodeByteMatrix *matrix_;
-}
+@interface ComItextpdfTextPdfQrcodeQRCode : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (ComItextpdfTextPdfQrcodeMode *)getMode;
+- (jint)atWithInt:(jint)x
+          withInt:(jint)y;
 
 - (ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)getECLevel;
 
-- (jint)getVersion;
+- (jint)getMaskPattern;
+
+- (ComItextpdfTextPdfQrcodeByteMatrix *)getMatrix;
 
 - (jint)getMatrixWidth;
 
-- (jint)getMaskPattern;
-
-- (jint)getNumTotalBytes;
+- (ComItextpdfTextPdfQrcodeMode *)getMode;
 
 - (jint)getNumDataBytes;
 
@@ -48,26 +39,23 @@
 
 - (jint)getNumRSBlocks;
 
-- (ComItextpdfTextPdfQrcodeByteMatrix *)getMatrix;
+- (jint)getNumTotalBytes;
 
-- (jint)atWithInt:(jint)x
-          withInt:(jint)y;
+- (jint)getVersion;
 
 - (jboolean)isValid;
 
-- (NSString *)description;
-
-- (void)setModeWithComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)value;
++ (jboolean)isValidMaskPatternWithInt:(jint)maskPattern;
 
 - (void)setECLevelWithComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)value;
 
-- (void)setVersionWithInt:(jint)value;
+- (void)setMaskPatternWithInt:(jint)value;
+
+- (void)setMatrixWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)value;
 
 - (void)setMatrixWidthWithInt:(jint)value;
 
-- (void)setMaskPatternWithInt:(jint)value;
-
-- (void)setNumTotalBytesWithInt:(jint)value;
+- (void)setModeWithComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)value;
 
 - (void)setNumDataBytesWithInt:(jint)value;
 
@@ -75,20 +63,24 @@
 
 - (void)setNumRSBlocksWithInt:(jint)value;
 
-- (void)setMatrixWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)value;
+- (void)setNumTotalBytesWithInt:(jint)value;
 
-+ (jboolean)isValidMaskPatternWithInt:(jint)maskPattern;
+- (void)setVersionWithInt:(jint)value;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeQRCode *)other;
+- (NSString *)description;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeQRCode_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeQRCode, mode_, ComItextpdfTextPdfQrcodeMode *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeQRCode, ecLevel_, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeQRCode, matrix_, ComItextpdfTextPdfQrcodeByteMatrix *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeQRCode)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeQRCode, NUM_MASK_PATTERNS, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeQRCode_init(ComItextpdfTextPdfQrcodeQRCode *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeQRCode *new_ComItextpdfTextPdfQrcodeQRCode_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfQrcodeQRCode_isValidMaskPatternWithInt_(jint maskPattern);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeQRCode)
 
 #endif // _ComItextpdfTextPdfQrcodeQRCode_H_

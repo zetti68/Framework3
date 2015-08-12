@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfColumnText_H_
 #define _ComItextpdfTextPdfColumnText_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextPdfBidiLine;
@@ -17,32 +19,28 @@
 @class JavaUtilArrayList;
 @class JavaUtilLinkedList;
 @protocol ComItextpdfTextElement;
-@protocol ComItextpdfTextLogLogger;
 @protocol ComItextpdfTextPdfInterfacesIAccessibleElement;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-
+#define ComItextpdfTextPdfColumnText_AR_NOVOWEL 1
 #define ComItextpdfTextPdfColumnText_AR_COMPOSEDTASHKEEL 4
 #define ComItextpdfTextPdfColumnText_AR_LIG 8
-#define ComItextpdfTextPdfColumnText_AR_NOVOWEL 1
-#define ComItextpdfTextPdfColumnText_DIGITS_AN2EN 64
 #define ComItextpdfTextPdfColumnText_DIGITS_EN2AN 32
-#define ComItextpdfTextPdfColumnText_DIGITS_EN2AN_INIT_AL 128
+#define ComItextpdfTextPdfColumnText_DIGITS_AN2EN 64
 #define ComItextpdfTextPdfColumnText_DIGITS_EN2AN_INIT_LR 96
+#define ComItextpdfTextPdfColumnText_DIGITS_EN2AN_INIT_AL 128
 #define ComItextpdfTextPdfColumnText_DIGIT_TYPE_AN 0
 #define ComItextpdfTextPdfColumnText_DIGIT_TYPE_AN_EXTENDED 256
 #define ComItextpdfTextPdfColumnText_GLOBAL_SPACE_CHAR_RATIO 0.0f
-#define ComItextpdfTextPdfColumnText_LINE_STATUS_NOLINE 2
-#define ComItextpdfTextPdfColumnText_LINE_STATUS_OFFLIMITS 1
-#define ComItextpdfTextPdfColumnText_LINE_STATUS_OK 0
-#define ComItextpdfTextPdfColumnText_NO_MORE_COLUMN 2
-#define ComItextpdfTextPdfColumnText_NO_MORE_TEXT 1
 #define ComItextpdfTextPdfColumnText_START_COLUMN 0
+#define ComItextpdfTextPdfColumnText_NO_MORE_TEXT 1
+#define ComItextpdfTextPdfColumnText_NO_MORE_COLUMN 2
+#define ComItextpdfTextPdfColumnText_LINE_STATUS_OK 0
+#define ComItextpdfTextPdfColumnText_LINE_STATUS_OFFLIMITS 1
+#define ComItextpdfTextPdfColumnText_LINE_STATUS_NOLINE 2
 
 @interface ComItextpdfTextPdfColumnText : NSObject {
  @public
-  id<ComItextpdfTextLogLogger> LOGGER_;
   jint runDirection_;
   jfloat maxY_;
   jfloat minY_;
@@ -66,57 +64,146 @@
   jfloat extraParagraphSpace_;
   jfloat rectangularWidth_;
   jboolean rectangularMode_;
-  jfloat spaceCharRatio_;
-  jboolean lastWasNewline_;
-  jboolean repeatFirstLineIndent_;
-  jint linesWritten_;
-  jfloat firstLineY_;
-  jboolean firstLineYDone_;
-  jint arabicOptions_;
   jfloat descender_;
   jboolean composite_;
   ComItextpdfTextPdfColumnText *compositeColumn_;
   JavaUtilLinkedList *compositeElements_;
   jint listIdx_;
   jint rowIdx_;
-  jint splittedRow_;
   ComItextpdfTextPhrase *waitPhrase_;
-  jboolean useAscender_;
-  jfloat filledWidth_;
-  jboolean adjustFirstLine_;
-  jboolean inheritGraphicState_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
 
-+ (ComItextpdfTextPdfColumnText *)duplicateWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
-
-- (ComItextpdfTextPdfColumnText *)setACopyWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
-
-- (void)setSimpleVarsWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
-
-- (void)addWaitingPhrase;
-
-- (void)addTextWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
-
-- (void)setTextWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+- (void)addElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 - (void)addTextWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
 
-- (void)addElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
+- (void)addTextWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+
+- (void)clearChunks;
+
++ (ComItextpdfTextPdfColumnText *)duplicateWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
+
++ (jfloat)fitTextWithComItextpdfTextFont:(ComItextpdfTextFont *)font
+                            withNSString:(NSString *)text
+            withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                               withFloat:(jfloat)maxFontSize
+                                 withInt:(jint)runDirection;
+
+- (jint)getAlignment;
+
+- (jint)getArabicOptions;
+
+- (ComItextpdfTextPdfPdfContentByte *)getCanvas;
+
+- (IOSObjectArray *)getCanvases;
+
+- (id<JavaUtilList>)getCompositeElements;
+
+- (jfloat)getCurrentLeading;
+
+- (jfloat)getDescender;
+
+- (jfloat)getExtraParagraphSpace;
+
+- (jfloat)getFilledWidth;
+
+- (jfloat)getFollowingIndent;
+
+- (jfloat)getIndent;
+
+- (jboolean)getInheritGraphicState;
+
+- (jfloat)getLastX;
+
+- (jfloat)getLeading;
+
+- (jint)getLinesWritten;
+
+- (jfloat)getMultipliedLeading;
+
+- (jfloat)getRightIndent;
+
+- (jint)getRowsDrawn;
+
+- (jint)getRunDirection;
+
+- (jfloat)getSpaceCharRatio;
+
++ (jfloat)getWidthWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+
++ (jfloat)getWidthWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase
+                                    withInt:(jint)runDirection
+                                    withInt:(jint)arabicOptions;
+
+- (jfloat)getYLine;
+
+- (jint)go;
+
+- (jint)goWithBoolean:(jboolean)simulate;
+
+- (jint)goWithBoolean:(jboolean)simulate
+withComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)elementToGo;
+
++ (jboolean)hasMoreTextWithInt:(jint)status;
+
+- (jboolean)isAdjustFirstLine;
 
 + (jboolean)isAllowedElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
-- (JavaUtilArrayList *)convertColumnWithFloatArray:(IOSFloatArray *)cLine;
+- (jboolean)isUseAscender;
 
-- (jfloat)findLimitsPointWithJavaUtilArrayList:(JavaUtilArrayList *)wall;
+- (ComItextpdfTextPdfColumnText *)setACopyWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
 
-- (IOSFloatArray *)findLimitsOneLine;
+- (void)setAdjustFirstLineWithBoolean:(jboolean)adjustFirstLine;
 
-- (IOSFloatArray *)findLimitsTwoLines;
+- (void)setAlignmentWithInt:(jint)alignment;
+
+- (void)setArabicOptionsWithInt:(jint)arabicOptions;
+
+- (void)setCanvasWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
+
+- (void)setCanvasesWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
 - (void)setColumnsWithFloatArray:(IOSFloatArray *)leftLine
                   withFloatArray:(IOSFloatArray *)rightLine;
+
+- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
+
+- (void)setFilledWidthWithFloat:(jfloat)filledWidth;
+
+- (void)setFollowingIndentWithFloat:(jfloat)indent;
+
+- (void)setIndentWithFloat:(jfloat)indent;
+
+- (void)setIndentWithFloat:(jfloat)indent
+               withBoolean:(jboolean)repeatFirstLineIndent;
+
+- (void)setInheritGraphicStateWithBoolean:(jboolean)inheritGraphicState;
+
+- (void)setLeadingWithFloat:(jfloat)leading;
+
+- (void)setLeadingWithFloat:(jfloat)fixedLeading
+                  withFloat:(jfloat)multipliedLeading;
+
+- (void)setRightIndentWithFloat:(jfloat)indent;
+
+- (void)setRunDirectionWithInt:(jint)runDirection;
+
+- (void)setSimpleColumnWithFloat:(jfloat)llx
+                       withFloat:(jfloat)lly
+                       withFloat:(jfloat)urx
+                       withFloat:(jfloat)ury;
+
+- (void)setSimpleColumnWithFloat:(jfloat)llx
+                       withFloat:(jfloat)lly
+                       withFloat:(jfloat)urx
+                       withFloat:(jfloat)ury
+                       withFloat:(jfloat)leading
+                         withInt:(jint)alignment;
 
 - (void)setSimpleColumnWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase
                                        withFloat:(jfloat)llx
@@ -126,96 +213,22 @@
                                        withFloat:(jfloat)leading
                                          withInt:(jint)alignment;
 
-- (void)setSimpleColumnWithFloat:(jfloat)llx
-                       withFloat:(jfloat)lly
-                       withFloat:(jfloat)urx
-                       withFloat:(jfloat)ury
-                       withFloat:(jfloat)leading
-                         withInt:(jint)alignment;
-
-- (void)setSimpleColumnWithFloat:(jfloat)llx
-                       withFloat:(jfloat)lly
-                       withFloat:(jfloat)urx
-                       withFloat:(jfloat)ury;
-
 - (void)setSimpleColumnWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
-
-- (void)setLeadingWithFloat:(jfloat)leading;
-
-- (void)setLeadingWithFloat:(jfloat)fixedLeading
-                  withFloat:(jfloat)multipliedLeading;
-
-- (jfloat)getLeading;
-
-- (jfloat)getMultipliedLeading;
-
-- (void)setYLineWithFloat:(jfloat)yLine;
-
-- (jfloat)getYLine;
-
-- (jint)getRowsDrawn;
-
-- (void)setAlignmentWithInt:(jint)alignment;
-
-- (jint)getAlignment;
-
-- (void)setIndentWithFloat:(jfloat)indent;
-
-- (void)setIndentWithFloat:(jfloat)indent
-               withBoolean:(jboolean)repeatFirstLineIndent;
-
-- (jfloat)getIndent;
-
-- (void)setFollowingIndentWithFloat:(jfloat)indent;
-
-- (jfloat)getFollowingIndent;
-
-- (void)setRightIndentWithFloat:(jfloat)indent;
-
-- (jfloat)getRightIndent;
-
-- (jfloat)getCurrentLeading;
-
-- (jboolean)getInheritGraphicState;
-
-- (void)setInheritGraphicStateWithBoolean:(jboolean)inheritGraphicState;
-
-- (jint)go;
-
-- (jint)goWithBoolean:(jboolean)simulate;
-
-- (jint)goWithBoolean:(jboolean)simulate
-withComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)elementToGo;
-
-- (jfloat)getExtraParagraphSpace;
-
-- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
-
-- (void)clearChunks;
-
-- (jfloat)getSpaceCharRatio;
 
 - (void)setSpaceCharRatioWithFloat:(jfloat)spaceCharRatio;
 
-- (void)setRunDirectionWithInt:(jint)runDirection;
+- (void)setTextWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (jint)getRunDirection;
+- (void)setUseAscenderWithBoolean:(jboolean)useAscender;
 
-- (jint)getLinesWritten;
+- (void)setYLineWithFloat:(jfloat)yLine;
 
-- (jfloat)getLastX;
-
-- (jint)getArabicOptions;
-
-- (void)setArabicOptionsWithInt:(jint)arabicOptions;
-
-- (jfloat)getDescender;
-
-+ (jfloat)getWidthWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase
-                                    withInt:(jint)runDirection
-                                    withInt:(jint)arabicOptions;
-
-+ (jfloat)getWidthWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
++ (void)showTextAlignedWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
+                                                    withInt:(jint)alignment
+                                  withComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase
+                                                  withFloat:(jfloat)x
+                                                  withFloat:(jfloat)y
+                                                  withFloat:(jfloat)rotation;
 
 + (void)showTextAlignedWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
                                                     withInt:(jint)alignment
@@ -226,58 +239,28 @@ withComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfa
                                                     withInt:(jint)runDirection
                                                     withInt:(jint)arabicOptions;
 
-+ (void)showTextAlignedWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
-                                                    withInt:(jint)alignment
-                                  withComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase
-                                                  withFloat:(jfloat)x
-                                                  withFloat:(jfloat)y
-                                                  withFloat:(jfloat)rotation;
-
-+ (jfloat)fitTextWithComItextpdfTextFont:(ComItextpdfTextFont *)font
-                            withNSString:(NSString *)text
-            withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                               withFloat:(jfloat)maxFontSize
-                                 withInt:(jint)runDirection;
-
-- (jint)goCompositeWithBoolean:(jboolean)simulate;
-
-- (ComItextpdfTextPdfPdfContentByte *)getCanvas;
-
-- (void)setCanvasWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
-
-- (void)setCanvasesWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
-
-- (IOSObjectArray *)getCanvases;
+- (void)updateFilledWidthWithFloat:(jfloat)w;
 
 - (jboolean)zeroHeightElement;
 
-- (id<JavaUtilList>)getCompositeElements;
+#pragma mark Protected
 
-- (jboolean)isUseAscender;
+- (JavaUtilArrayList *)convertColumnWithFloatArray:(IOSFloatArray *)cLine;
 
-- (void)setUseAscenderWithBoolean:(jboolean)useAscender;
+- (IOSFloatArray *)findLimitsOneLine;
 
-+ (jboolean)hasMoreTextWithInt:(jint)status;
+- (jfloat)findLimitsPointWithJavaUtilArrayList:(JavaUtilArrayList *)wall;
 
-- (jfloat)getFilledWidth;
+- (IOSFloatArray *)findLimitsTwoLines;
 
-- (void)setFilledWidthWithFloat:(jfloat)filledWidth;
+- (jint)goCompositeWithBoolean:(jboolean)simulate;
 
-- (void)updateFilledWidthWithFloat:(jfloat)w;
-
-- (jboolean)isAdjustFirstLine;
-
-- (void)setAdjustFirstLineWithBoolean:(jboolean)adjustFirstLine;
-
-+ (jboolean)isTaggedWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfColumnText *)other;
+- (void)setSimpleVarsWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)org;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfColumnText_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfColumnText)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColumnText, LOGGER_, id<ComItextpdfTextLogLogger>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColumnText, leftWall_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColumnText, rightWall_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColumnText, bidiLine_, ComItextpdfTextPdfBidiLine *)
@@ -318,5 +301,27 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfColumnText, LINE_STATUS_OK, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfColumnText, LINE_STATUS_OFFLIMITS, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfColumnText, LINE_STATUS_NOLINE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfColumnText_initWithComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfColumnText *self, ComItextpdfTextPdfPdfContentByte *canvas);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfColumnText *new_ComItextpdfTextPdfColumnText_initWithComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfPdfContentByte *canvas) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfColumnText *ComItextpdfTextPdfColumnText_duplicateWithComItextpdfTextPdfColumnText_(ComItextpdfTextPdfColumnText *org);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfColumnText_isAllowedElementWithComItextpdfTextElement_(id<ComItextpdfTextElement> element);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfColumnText_getWidthWithComItextpdfTextPhrase_withInt_withInt_(ComItextpdfTextPhrase *phrase, jint runDirection, jint arabicOptions);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfColumnText_getWidthWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfColumnText_showTextAlignedWithComItextpdfTextPdfPdfContentByte_withInt_withComItextpdfTextPhrase_withFloat_withFloat_withFloat_withInt_withInt_(ComItextpdfTextPdfPdfContentByte *canvas, jint alignment, ComItextpdfTextPhrase *phrase, jfloat x, jfloat y, jfloat rotation, jint runDirection, jint arabicOptions);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfColumnText_showTextAlignedWithComItextpdfTextPdfPdfContentByte_withInt_withComItextpdfTextPhrase_withFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfContentByte *canvas, jint alignment, ComItextpdfTextPhrase *phrase, jfloat x, jfloat y, jfloat rotation);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfColumnText_fitTextWithComItextpdfTextFont_withNSString_withComItextpdfTextRectangle_withFloat_withInt_(ComItextpdfTextFont *font, NSString *text, ComItextpdfTextRectangle *rect, jfloat maxFontSize, jint runDirection);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfColumnText_hasMoreTextWithInt_(jint status);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfColumnText)
 
 #endif // _ComItextpdfTextPdfColumnText_H_

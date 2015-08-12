@@ -6,37 +6,37 @@
 #ifndef _ComItextpdfTextPdfHyphenationHyphenation_H_
 #define _ComItextpdfTextPdfHyphenationHyphenation_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSIntArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfHyphenationHyphenation : NSObject
 
-@interface ComItextpdfTextPdfHyphenationHyphenation : NSObject {
- @public
-  IOSIntArray *hyphenPoints_;
-  NSString *word_;
-  jint len_;
-}
+#pragma mark Public
+
+- (IOSIntArray *)getHyphenationPoints;
+
+- (NSString *)getPostHyphenTextWithInt:(jint)index;
+
+- (NSString *)getPreHyphenTextWithInt:(jint)index;
+
+- (jint)length;
+
+- (NSString *)description;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithNSString:(NSString *)word
                     withIntArray:(IOSIntArray *)points;
 
-- (jint)length;
-
-- (NSString *)getPreHyphenTextWithInt:(jint)index;
-
-- (NSString *)getPostHyphenTextWithInt:(jint)index;
-
-- (IOSIntArray *)getHyphenationPoints;
-
-- (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationHyphenation *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationHyphenation_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationHyphenation)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenation, hyphenPoints_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenation, word_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationHyphenation_initWithNSString_withIntArray_(ComItextpdfTextPdfHyphenationHyphenation *self, NSString *word, IOSIntArray *points);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationHyphenation *new_ComItextpdfTextPdfHyphenationHyphenation_initWithNSString_withIntArray_(NSString *word, IOSIntArray *points) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationHyphenation)
 
 #endif // _ComItextpdfTextPdfHyphenationHyphenation_H_

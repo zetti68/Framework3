@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextApiIndentable_H_
 #define _ComItextpdfTextApiIndentable_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextApiIndentable < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextApiIndentable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextApiIndentable)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextApiIndentable)
 
 #endif // _ComItextpdfTextApiIndentable_H_

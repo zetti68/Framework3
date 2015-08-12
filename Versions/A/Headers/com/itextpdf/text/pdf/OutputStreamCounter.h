@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfOutputStreamCounter_H_
 #define _ComItextpdfTextPdfOutputStreamCounter_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/OutputStream.h"
+
+@class IOSByteArray;
 
 @interface ComItextpdfTextPdfOutputStreamCounter : JavaIoOutputStream {
  @public
@@ -17,30 +17,36 @@
   jlong counter_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg;
 
 - (void)close;
 
 - (void)flush;
 
-- (void)writeWithByteArray:(IOSByteArray *)b;
+- (jlong)getCounter;
 
-- (void)writeWithInt:(jint)b;
+- (void)resetCounter;
+
+- (void)writeWithByteArray:(IOSByteArray *)b;
 
 - (void)writeWithByteArray:(IOSByteArray *)b
                    withInt:(jint)off
                    withInt:(jint)len;
 
-- (jlong)getCounter;
-
-- (void)resetCounter;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfOutputStreamCounter *)other;
+- (void)writeWithInt:(jint)b;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfOutputStreamCounter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfOutputStreamCounter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfOutputStreamCounter, out_, JavaIoOutputStream *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfOutputStreamCounter_initWithJavaIoOutputStream_(ComItextpdfTextPdfOutputStreamCounter *self, JavaIoOutputStream *outArg);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfOutputStreamCounter *new_ComItextpdfTextPdfOutputStreamCounter_initWithJavaIoOutputStream_(JavaIoOutputStream *outArg) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfOutputStreamCounter)
 
 #endif // _ComItextpdfTextPdfOutputStreamCounter_H_

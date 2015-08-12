@@ -6,40 +6,43 @@
 #ifndef _ComItextpdfXmpXMPPathFactory_H_
 #define _ComItextpdfXmpXMPPathFactory_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfXmpXMPPathFactory : NSObject {
-}
+@interface ComItextpdfXmpXMPPathFactory : NSObject
 
-- (instancetype)init;
+#pragma mark Public
 
 + (NSString *)composeArrayItemPathWithNSString:(NSString *)arrayName
                                        withInt:(jint)itemIndex;
-
-+ (NSString *)composeStructFieldPathWithNSString:(NSString *)fieldNS
-                                    withNSString:(NSString *)fieldName;
-
-+ (NSString *)composeQualifierPathWithNSString:(NSString *)qualNS
-                                  withNSString:(NSString *)qualName;
-
-+ (NSString *)composeLangSelectorWithNSString:(NSString *)arrayName
-                                 withNSString:(NSString *)langName;
 
 + (NSString *)composeFieldSelectorWithNSString:(NSString *)arrayName
                                   withNSString:(NSString *)fieldNS
                                   withNSString:(NSString *)fieldName
                                   withNSString:(NSString *)fieldValue;
 
-+ (void)assertQualNSWithNSString:(NSString *)qualNS;
++ (NSString *)composeLangSelectorWithNSString:(NSString *)arrayName
+                                 withNSString:(NSString *)langName;
 
-+ (void)assertQualNameWithNSString:(NSString *)qualName;
++ (NSString *)composeQualifierPathWithNSString:(NSString *)qualNS
+                                  withNSString:(NSString *)qualName;
 
-+ (void)assertFieldNSWithNSString:(NSString *)fieldNS;
-
-+ (void)assertFieldNameWithNSString:(NSString *)fieldName;
++ (NSString *)composeStructFieldPathWithNSString:(NSString *)fieldNS
+                                    withNSString:(NSString *)fieldName;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPPathFactory_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPPathFactory)
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPPathFactory_composeArrayItemPathWithNSString_withInt_(NSString *arrayName, jint itemIndex);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPPathFactory_composeStructFieldPathWithNSString_withNSString_(NSString *fieldNS, NSString *fieldName);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPPathFactory_composeQualifierPathWithNSString_withNSString_(NSString *qualNS, NSString *qualName);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPPathFactory_composeLangSelectorWithNSString_withNSString_(NSString *arrayName, NSString *langName);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPPathFactory_composeFieldSelectorWithNSString_withNSString_withNSString_withNSString_(NSString *arrayName, NSString *fieldNS, NSString *fieldName, NSString *fieldValue);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPPathFactory)
 
 #endif // _ComItextpdfXmpXMPPathFactory_H_

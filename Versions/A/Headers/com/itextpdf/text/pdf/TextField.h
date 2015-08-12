@@ -6,113 +6,92 @@
 #ifndef _ComItextpdfTextPdfTextField_H_
 #define _ComItextpdfTextPdfTextField_H_
 
-@class ComItextpdfTextBaseColor;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/BaseField.h"
+
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfPdfAppearance;
 @class ComItextpdfTextPdfPdfFormField;
 @class ComItextpdfTextPdfPdfWriter;
-@class ComItextpdfTextPhrase;
 @class ComItextpdfTextRectangle;
 @class IOSObjectArray;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/BaseField.h"
+@interface ComItextpdfTextPdfTextField : ComItextpdfTextPdfBaseField
 
-@interface ComItextpdfTextPdfTextField : ComItextpdfTextPdfBaseField {
- @public
-  NSString *defaultText_;
-  IOSObjectArray *choices_;
-  IOSObjectArray *choiceExports_;
-  JavaUtilArrayList *choiceSelections_;
-  jint topFirst_;
-  jfloat extraMarginLeft_;
-  jfloat extraMarginTop_;
-  JavaUtilArrayList *substitutionFonts_;
-  ComItextpdfTextPdfBaseFont *extensionFont_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                        withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)box
                                        withNSString:(NSString *)fieldName;
 
-+ (jboolean)checkRTLWithNSString:(NSString *)text;
-
-+ (void)changeFontSizeWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)p
-                                      withFloat:(jfloat)size;
-
-- (ComItextpdfTextPhrase *)composePhraseWithNSString:(NSString *)text
-                      withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)ufont
-                        withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                           withFloat:(jfloat)fontSize;
-
-+ (NSString *)removeCRLFWithNSString:(NSString *)text;
-
-+ (NSString *)obfuscatePasswordWithNSString:(NSString *)text;
+- (void)addChoiceSelectionWithInt:(jint)selection;
 
 - (ComItextpdfTextPdfPdfAppearance *)getAppearance;
 
-- (ComItextpdfTextPdfPdfAppearance *)getListAppearance;
-
-- (ComItextpdfTextPdfPdfFormField *)getTextField;
-
-- (ComItextpdfTextPdfPdfFormField *)getComboField;
-
-- (ComItextpdfTextPdfPdfFormField *)getListField;
-
-- (jint)getTopChoice;
-
-- (ComItextpdfTextPdfPdfFormField *)getChoiceFieldWithBoolean:(jboolean)isList;
-
-- (void)writeMultipleValuesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                           withNSStringArray2:(IOSObjectArray *)mix;
-
-- (NSString *)getDefaultText;
-
-- (void)setDefaultTextWithNSString:(NSString *)defaultText;
-
-- (IOSObjectArray *)getChoices;
-
-- (void)setChoicesWithNSStringArray:(IOSObjectArray *)choices;
-
 - (IOSObjectArray *)getChoiceExports;
 
-- (void)setChoiceExportsWithNSStringArray:(IOSObjectArray *)choiceExports;
+- (IOSObjectArray *)getChoices;
 
 - (jint)getChoiceSelection;
 
 - (JavaUtilArrayList *)getChoiceSelections;
 
-- (void)setChoiceSelectionWithInt:(jint)choiceSelection;
+- (ComItextpdfTextPdfPdfFormField *)getComboField;
 
-- (void)addChoiceSelectionWithInt:(jint)selection;
+- (NSString *)getDefaultText;
+
+- (ComItextpdfTextPdfBaseFont *)getExtensionFont;
+
+- (ComItextpdfTextPdfPdfFormField *)getListField;
+
+- (JavaUtilArrayList *)getSubstitutionFonts;
+
+- (ComItextpdfTextPdfPdfFormField *)getTextField;
+
++ (NSString *)obfuscatePasswordWithNSString:(NSString *)text;
+
++ (NSString *)removeCRLFWithNSString:(NSString *)text;
+
+- (void)setChoiceExportsWithNSStringArray:(IOSObjectArray *)choiceExports;
+
+- (void)setChoicesWithNSStringArray:(IOSObjectArray *)choices;
+
+- (void)setChoiceSelectionWithInt:(jint)choiceSelection;
 
 - (void)setChoiceSelectionsWithJavaUtilArrayList:(JavaUtilArrayList *)selections;
 
-- (jint)getTopFirst;
+- (void)setDefaultTextWithNSString:(NSString *)defaultText;
+
+- (void)setExtensionFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)extensionFont;
 
 - (void)setExtraMarginWithFloat:(jfloat)extraMarginLeft
                       withFloat:(jfloat)extraMarginTop;
 
-- (JavaUtilArrayList *)getSubstitutionFonts;
-
 - (void)setSubstitutionFontsWithJavaUtilArrayList:(JavaUtilArrayList *)substitutionFonts;
 
-- (ComItextpdfTextPdfBaseFont *)getExtensionFont;
+#pragma mark Protected
 
-- (void)setExtensionFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)extensionFont;
+- (ComItextpdfTextPdfPdfFormField *)getChoiceFieldWithBoolean:(jboolean)isList;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTextField *)other;
+#pragma mark Package-Private
+
+- (ComItextpdfTextPdfPdfAppearance *)getListAppearance;
+
+- (jint)getTopFirst;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfTextField_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfTextField)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, defaultText_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, choices_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, choiceExports_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, choiceSelections_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, substitutionFonts_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTextField, extensionFont_, ComItextpdfTextPdfBaseFont *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfTextField_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_(ComItextpdfTextPdfTextField *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *box, NSString *fieldName);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTextField *new_ComItextpdfTextPdfTextField_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *box, NSString *fieldName) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfTextField_removeCRLFWithNSString_(NSString *text);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfTextField_obfuscatePasswordWithNSString_(NSString *text);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTextField)
 
 #endif // _ComItextpdfTextPdfTextField_H_

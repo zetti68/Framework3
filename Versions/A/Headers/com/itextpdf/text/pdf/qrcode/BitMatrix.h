@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfQrcodeBitMatrix_H_
 #define _ComItextpdfTextPdfQrcodeBitMatrix_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeBitArray;
 @class IOSIntArray;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfQrcodeBitMatrix : NSObject {
  @public
@@ -19,44 +19,54 @@
   IOSIntArray *bits_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)dimension;
 
 - (instancetype)initWithInt:(jint)width
                     withInt:(jint)height;
 
-- (jboolean)getWithInt:(jint)x
-               withInt:(jint)y;
-
-- (void)setWithInt:(jint)x
-           withInt:(jint)y;
+- (void)clear;
 
 - (void)flipWithInt:(jint)x
             withInt:(jint)y;
 
-- (void)clear;
+- (jboolean)getWithInt:(jint)x
+               withInt:(jint)y;
 
-- (void)setRegionWithInt:(jint)left
-                 withInt:(jint)top
-                 withInt:(jint)width
-                 withInt:(jint)height;
+- (jint)getDimension;
+
+- (jint)getHeight;
 
 - (ComItextpdfTextPdfQrcodeBitArray *)getRowWithInt:(jint)y
                withComItextpdfTextPdfQrcodeBitArray:(ComItextpdfTextPdfQrcodeBitArray *)row;
 
 - (jint)getWidth;
 
-- (jint)getHeight;
+- (void)setWithInt:(jint)x
+           withInt:(jint)y;
 
-- (jint)getDimension;
+- (void)setRegionWithInt:(jint)left
+                 withInt:(jint)top
+                 withInt:(jint)width
+                 withInt:(jint)height;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeBitMatrix *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeBitMatrix_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeBitMatrix)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeBitMatrix, bits_, IOSIntArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeBitMatrix_initWithInt_(ComItextpdfTextPdfQrcodeBitMatrix *self, jint dimension);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeBitMatrix *new_ComItextpdfTextPdfQrcodeBitMatrix_initWithInt_(jint dimension) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeBitMatrix_initWithInt_withInt_(ComItextpdfTextPdfQrcodeBitMatrix *self, jint width, jint height);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeBitMatrix *new_ComItextpdfTextPdfQrcodeBitMatrix_initWithInt_withInt_(jint width, jint height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeBitMatrix)
 
 #endif // _ComItextpdfTextPdfQrcodeBitMatrix_H_

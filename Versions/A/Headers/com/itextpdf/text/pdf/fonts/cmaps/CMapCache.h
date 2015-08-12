@@ -6,42 +6,43 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCMapCache_H_
 #define _ComItextpdfTextPdfFontsCmapsCMapCache_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfFontsCmapsCMapByteCid;
 @class ComItextpdfTextPdfFontsCmapsCMapCidByte;
 @class ComItextpdfTextPdfFontsCmapsCMapCidUni;
 @class ComItextpdfTextPdfFontsCmapsCMapUniCid;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfFontsCmapsCMapCache : NSObject
 
-@interface ComItextpdfTextPdfFontsCmapsCMapCache : NSObject {
-}
-
-+ (ComItextpdfTextPdfFontsCmapsCMapUniCid *)getCachedCMapUniCidWithNSString:(NSString *)name;
-
-+ (ComItextpdfTextPdfFontsCmapsCMapCidUni *)getCachedCMapCidUniWithNSString:(NSString *)name;
-
-+ (ComItextpdfTextPdfFontsCmapsCMapCidByte *)getCachedCMapCidByteWithNSString:(NSString *)name;
-
-+ (ComItextpdfTextPdfFontsCmapsCMapByteCid *)getCachedCMapByteCidWithNSString:(NSString *)name;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (ComItextpdfTextPdfFontsCmapsCMapByteCid *)getCachedCMapByteCidWithNSString:(NSString *)name;
+
++ (ComItextpdfTextPdfFontsCmapsCMapCidByte *)getCachedCMapCidByteWithNSString:(NSString *)name;
+
++ (ComItextpdfTextPdfFontsCmapsCMapCidUni *)getCachedCMapCidUniWithNSString:(NSString *)name;
+
++ (ComItextpdfTextPdfFontsCmapsCMapUniCid *)getCachedCMapUniCidWithNSString:(NSString *)name;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfFontsCmapsCMapCache_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCMapCache)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfFontsCmapsCMapCache_cacheUniCid_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapCache, cacheUniCid_, JavaUtilHashMap *)
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapUniCid *ComItextpdfTextPdfFontsCmapsCMapCache_getCachedCMapUniCidWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfFontsCmapsCMapCache_cacheCidUni_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapCache, cacheCidUni_, JavaUtilHashMap *)
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapCidUni *ComItextpdfTextPdfFontsCmapsCMapCache_getCachedCMapCidUniWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfFontsCmapsCMapCache_cacheCidByte_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapCache, cacheCidByte_, JavaUtilHashMap *)
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapCidByte *ComItextpdfTextPdfFontsCmapsCMapCache_getCachedCMapCidByteWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfFontsCmapsCMapCache_cacheByteCid_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapCache, cacheByteCid_, JavaUtilHashMap *)
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapByteCid *ComItextpdfTextPdfFontsCmapsCMapCache_getCachedCMapByteCidWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapCache_init(ComItextpdfTextPdfFontsCmapsCMapCache *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapCache *new_ComItextpdfTextPdfFontsCmapsCMapCache_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCMapCache)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCMapCache_H_

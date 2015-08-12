@@ -6,34 +6,25 @@
 #ifndef _ComItextpdfTextPdfQrcodeByteArray_H_
 #define _ComItextpdfTextPdfQrcodeByteArray_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeByteArray : NSObject
 
-#define ComItextpdfTextPdfQrcodeByteArray_INITIAL_SIZE 32
-
-@interface ComItextpdfTextPdfQrcodeByteArray : NSObject {
- @public
-  IOSByteArray *bytes_;
-  jint size__;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
+- (instancetype)initWithByteArray:(IOSByteArray *)byteArray;
+
 - (instancetype)initWithInt:(jint)size;
 
-- (instancetype)initWithByteArray:(IOSByteArray *)byteArray;
+- (void)appendByteWithInt:(jint)value;
 
 - (jint)atWithInt:(jint)index;
 
-- (void)setWithInt:(jint)index
-           withInt:(jint)value;
-
-- (jint)size;
-
 - (jboolean)isEmpty;
-
-- (void)appendByteWithInt:(jint)value;
 
 - (void)reserveWithInt:(jint)capacity;
 
@@ -41,14 +32,27 @@
                  withInt:(jint)offset
                  withInt:(jint)count;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeByteArray *)other;
+- (void)setWithInt:(jint)index
+           withInt:(jint)value;
+
+- (jint)size;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeByteArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeByteArray)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeByteArray, bytes_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeByteArray_init(ComItextpdfTextPdfQrcodeByteArray *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeByteArray, INITIAL_SIZE, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeByteArray *new_ComItextpdfTextPdfQrcodeByteArray_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeByteArray_initWithInt_(ComItextpdfTextPdfQrcodeByteArray *self, jint size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeByteArray *new_ComItextpdfTextPdfQrcodeByteArray_initWithInt_(jint size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeByteArray_initWithByteArray_(ComItextpdfTextPdfQrcodeByteArray *self, IOSByteArray *byteArray);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeByteArray *new_ComItextpdfTextPdfQrcodeByteArray_initWithByteArray_(IOSByteArray *byteArray) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeByteArray)
 
 #endif // _ComItextpdfTextPdfQrcodeByteArray_H_

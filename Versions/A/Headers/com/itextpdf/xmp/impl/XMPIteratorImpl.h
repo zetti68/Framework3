@@ -6,178 +6,51 @@
 #ifndef _ComItextpdfXmpImplXMPIteratorImpl_H_
 #define _ComItextpdfXmpImplXMPIteratorImpl_H_
 
-@class ComItextpdfXmpImplXMPMetaImpl;
-@class ComItextpdfXmpImplXMPNode;
-@class ComItextpdfXmpOptionsIteratorOptions;
-@class ComItextpdfXmpOptionsPropertyOptions;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/XMPIterator.h"
-#include "com/itextpdf/xmp/properties/XMPPropertyInfo.h"
-#include "java/util/Iterator.h"
+
+@class ComItextpdfXmpImplXMPMetaImpl;
+@class ComItextpdfXmpOptionsIteratorOptions;
 
 @interface ComItextpdfXmpImplXMPIteratorImpl : NSObject < ComItextpdfXmpXMPIterator > {
  @public
-  ComItextpdfXmpOptionsIteratorOptions *options_;
-  NSString *baseNS_;
   jboolean skipSiblings__;
   jboolean skipSubtree__;
-  id<JavaUtilIterator> nodeIterator_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
                                          withNSString:(NSString *)schemaNS
                                          withNSString:(NSString *)propPath
              withComItextpdfXmpOptionsIteratorOptions:(ComItextpdfXmpOptionsIteratorOptions *)options;
 
-- (void)skipSubtree;
+- (jboolean)hasNext;
+
+- (id)next;
+
+- (void)remove;
 
 - (void)skipSiblings;
 
-- (jboolean)hasNext;
+- (void)skipSubtree;
 
-- (id)next;
-
-- (void)remove;
-
-- (ComItextpdfXmpOptionsIteratorOptions *)getOptions;
+#pragma mark Protected
 
 - (NSString *)getBaseNS;
 
+- (ComItextpdfXmpOptionsIteratorOptions *)getOptions;
+
 - (void)setBaseNSWithNSString:(NSString *)baseNS;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPIteratorImpl *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPIteratorImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPIteratorImpl)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl, options_, ComItextpdfXmpOptionsIteratorOptions *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl, baseNS_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl, nodeIterator_, id<JavaUtilIterator>)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPIteratorImpl_initWithComItextpdfXmpImplXMPMetaImpl_withNSString_withNSString_withComItextpdfXmpOptionsIteratorOptions_(ComItextpdfXmpImplXMPIteratorImpl *self, ComItextpdfXmpImplXMPMetaImpl *xmp, NSString *schemaNS, NSString *propPath, ComItextpdfXmpOptionsIteratorOptions *options);
 
-@interface ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1 : NSObject < ComItextpdfXmpPropertiesXMPPropertyInfo > {
- @public
-  ComItextpdfXmpImplXMPNode *val$node_;
-  NSString *val$baseNS_;
-  NSString *val$path_;
-  NSString *val$value_;
-}
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPIteratorImpl *new_ComItextpdfXmpImplXMPIteratorImpl_initWithComItextpdfXmpImplXMPMetaImpl_withNSString_withNSString_withComItextpdfXmpOptionsIteratorOptions_(ComItextpdfXmpImplXMPMetaImpl *xmp, NSString *schemaNS, NSString *propPath, ComItextpdfXmpOptionsIteratorOptions *options) NS_RETURNS_RETAINED;
 
-- (NSString *)getNamespace;
-
-- (NSString *)getPath;
-
-- (NSString *)getValue;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)getOptions;
-
-- (NSString *)getLanguage;
-
-- (instancetype)initWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)capture$0
-                                     withNSString:(NSString *)capture$1
-                                     withNSString:(NSString *)capture$2
-                                     withNSString:(NSString *)capture$3;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1, val$node_, ComItextpdfXmpImplXMPNode *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1, val$baseNS_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1, val$path_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_$1, val$value_, NSString *)
-
-#define ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_ITERATE_CHILDREN 1
-#define ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_ITERATE_NODE 0
-#define ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_ITERATE_QUALIFIER 2
-
-@interface ComItextpdfXmpImplXMPIteratorImpl_NodeIterator : NSObject < JavaUtilIterator > {
- @public
-  ComItextpdfXmpImplXMPIteratorImpl *this$0_;
-  jint state_;
-  ComItextpdfXmpImplXMPNode *visitedNode_;
-  NSString *path_;
-  id<JavaUtilIterator> childrenIterator_;
-  jint index_;
-  id<JavaUtilIterator> subIterator_;
-  id<ComItextpdfXmpPropertiesXMPPropertyInfo> returnProperty_;
-}
-
-- (instancetype)initWithComItextpdfXmpImplXMPIteratorImpl:(ComItextpdfXmpImplXMPIteratorImpl *)outer$;
-
-- (instancetype)initWithComItextpdfXmpImplXMPIteratorImpl:(ComItextpdfXmpImplXMPIteratorImpl *)outer$
-                            withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)visitedNode
-                                             withNSString:(NSString *)parentPath
-                                                  withInt:(jint)index;
-
-- (jboolean)hasNext;
-
-- (jboolean)reportNode;
-
-- (jboolean)iterateChildrenWithJavaUtilIterator:(id<JavaUtilIterator>)iterator;
-
-- (id)next;
-
-- (void)remove;
-
-- (NSString *)accumulatePathWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)currNode
-                                             withNSString:(NSString *)parentPath
-                                                  withInt:(jint)currentIndex;
-
-- (id<ComItextpdfXmpPropertiesXMPPropertyInfo>)createPropertyInfoWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
-                                                                                  withNSString:(NSString *)baseNS
-                                                                                  withNSString:(NSString *)path;
-
-- (id<JavaUtilIterator>)getChildrenIterator;
-
-- (void)setChildrenIteratorWithJavaUtilIterator:(id<JavaUtilIterator>)childrenIterator;
-
-- (id<ComItextpdfXmpPropertiesXMPPropertyInfo>)getReturnProperty;
-
-- (void)setReturnPropertyWithComItextpdfXmpPropertiesXMPPropertyInfo:(id<ComItextpdfXmpPropertiesXMPPropertyInfo>)returnProperty;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPIteratorImpl_NodeIterator_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, this$0_, ComItextpdfXmpImplXMPIteratorImpl *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, visitedNode_, ComItextpdfXmpImplXMPNode *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, path_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, childrenIterator_, id<JavaUtilIterator>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, subIterator_, id<JavaUtilIterator>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, returnProperty_, id<ComItextpdfXmpPropertiesXMPPropertyInfo>)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, ITERATE_NODE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, ITERATE_CHILDREN, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIterator, ITERATE_QUALIFIER, jint)
-
-@interface ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren : ComItextpdfXmpImplXMPIteratorImpl_NodeIterator {
- @public
-  ComItextpdfXmpImplXMPIteratorImpl *this$1_;
-  NSString *parentPath_;
-  id<JavaUtilIterator> childrenIterator_NodeIteratorChildren_;
-  jint index_NodeIteratorChildren_;
-}
-
-- (instancetype)initWithComItextpdfXmpImplXMPIteratorImpl:(ComItextpdfXmpImplXMPIteratorImpl *)outer$
-                            withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)parentNode
-                                             withNSString:(NSString *)parentPath;
-
-- (jboolean)hasNext;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren, this$1_, ComItextpdfXmpImplXMPIteratorImpl *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren, parentPath_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPIteratorImpl_NodeIteratorChildren, childrenIterator_NodeIteratorChildren_, id<JavaUtilIterator>)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPIteratorImpl)
 
 #endif // _ComItextpdfXmpImplXMPIteratorImpl_H_

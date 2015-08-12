@@ -6,33 +6,35 @@
 #ifndef _ComItextpdfTextPdfPdfNameTree_H_
 #define _ComItextpdfTextPdfPdfNameTree_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
-@class ComItextpdfTextPdfPdfString;
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfPdfNameTree : NSObject
 
-#define ComItextpdfTextPdfPdfNameTree_leafSize 64
+#pragma mark Public
 
-@interface ComItextpdfTextPdfPdfNameTree : NSObject {
-}
+- (instancetype)init;
+
++ (JavaUtilHashMap *)readTreeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
 
 + (ComItextpdfTextPdfPdfDictionary *)writeTreeWithJavaUtilHashMap:(JavaUtilHashMap *)items
                                   withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-+ (ComItextpdfTextPdfPdfString *)iterateItemsWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic
-                                                             withJavaUtilHashMap:(JavaUtilHashMap *)items
-                                                 withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)leftOverString;
-
-+ (JavaUtilHashMap *)readTreeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
-
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfNameTree_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfNameTree)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfNameTree, leafSize, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDictionary *ComItextpdfTextPdfPdfNameTree_writeTreeWithJavaUtilHashMap_withComItextpdfTextPdfPdfWriter_(JavaUtilHashMap *items, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfNameTree_readTreeWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *dic);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNameTree_init(ComItextpdfTextPdfPdfNameTree *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNameTree *new_ComItextpdfTextPdfPdfNameTree_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfNameTree)
 
 #endif // _ComItextpdfTextPdfPdfNameTree_H_

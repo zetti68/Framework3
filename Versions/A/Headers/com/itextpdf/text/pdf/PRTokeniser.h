@@ -6,18 +6,17 @@
 #ifndef _ComItextpdfTextPdfPRTokeniser_H_
 #define _ComItextpdfTextPdfPRTokeniser_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextPdfPRTokeniser_TokenTypeEnum;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSBooleanArray;
 @class IOSByteArray;
 @class IOSLongArray;
 
-#import "JreEmulation.h"
-#include "java/lang/Enum.h"
-
 @interface ComItextpdfTextPdfPRTokeniser : NSObject {
  @public
-  ComItextpdfTextPdfRandomAccessFileOrArray *file_;
   ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *type_;
   NSString *stringValue_;
   jint reference_;
@@ -25,74 +24,72 @@
   jboolean hexString_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)file;
 
-- (void)seekWithLong:(jlong)pos;
+- (void)backOnePositionWithInt:(jint)ch;
 
-- (jlong)getFilePointer;
+- (void)checkFdfHeader;
+
++ (IOSLongArray *)checkObjectStartWithByteArray:(IOSByteArray *)line;
+
+- (jchar)checkPdfHeader;
 
 - (void)close;
 
-- (jlong)length;
+- (ComItextpdfTextPdfRandomAccessFileOrArray *)getFile;
 
-- (jint)read;
+- (jlong)getFilePointer;
+
+- (jint)getGeneration;
+
+- (jint)getHeaderOffset;
+
++ (jint)getHexWithInt:(jint)v;
+
+- (jint)getReference;
 
 - (ComItextpdfTextPdfRandomAccessFileOrArray *)getSafeFile;
 
-- (ComItextpdfTextPdfRandomAccessFileOrArray *)getFile;
+- (jlong)getStartxref;
 
-- (NSString *)readStringWithInt:(jint)size;
+- (NSString *)getStringValue;
 
-+ (jboolean)isWhitespaceWithInt:(jint)ch;
+- (ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)getTokenType;
+
+- (jint)intValue;
 
 + (jboolean)isDelimiterWithInt:(jint)ch;
 
 + (jboolean)isDelimiterWhitespaceWithInt:(jint)ch;
 
-- (ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)getTokenType;
+- (jboolean)isHexString;
 
-- (NSString *)getStringValue;
++ (jboolean)isWhitespaceWithInt:(jint)ch;
 
-- (jint)getReference;
-
-- (jint)getGeneration;
-
-- (void)backOnePositionWithInt:(jint)ch;
-
-- (void)throwErrorWithNSString:(NSString *)error;
-
-- (jint)getHeaderOffset;
-
-- (jchar)checkPdfHeader;
-
-- (void)checkFdfHeader;
-
-- (jlong)getStartxref;
-
-+ (jint)getHexWithInt:(jint)v;
-
-- (void)nextValidToken;
-
-- (jboolean)nextToken;
+- (jlong)length;
 
 - (jlong)longValue;
 
-- (jint)intValue;
+- (jboolean)nextToken;
+
+- (void)nextValidToken;
+
+- (jint)read;
 
 - (jboolean)readLineSegmentWithByteArray:(IOSByteArray *)input;
 
-+ (IOSLongArray *)checkObjectStartWithByteArray:(IOSByteArray *)line;
+- (NSString *)readStringWithInt:(jint)size;
 
-- (jboolean)isHexString;
+- (void)seekWithLong:(jlong)pos;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPRTokeniser *)other;
+- (void)throwErrorWithNSString:(NSString *)error;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPRTokeniser_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPRTokeniser)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRTokeniser, file_, ComItextpdfTextPdfRandomAccessFileOrArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRTokeniser, type_, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRTokeniser, stringValue_, NSString *)
 
@@ -102,7 +99,23 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser, delims_, IOSBooleanArr
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPRTokeniser_EMPTY_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser, EMPTY_, NSString *)
 
-typedef enum {
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRTokeniser_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfPRTokeniser *self, ComItextpdfTextPdfRandomAccessFileOrArray *file);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRTokeniser *new_ComItextpdfTextPdfPRTokeniser_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *file) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPRTokeniser_isWhitespaceWithInt_(jint ch);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPRTokeniser_isDelimiterWithInt_(jint ch);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPRTokeniser_isDelimiterWhitespaceWithInt_(jint ch);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfPRTokeniser_getHexWithInt_(jint v);
+
+FOUNDATION_EXPORT IOSLongArray *ComItextpdfTextPdfPRTokeniser_checkObjectStartWithByteArray_(IOSByteArray *line);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPRTokeniser)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPRTokeniser_TokenType) {
   ComItextpdfTextPdfPRTokeniser_TokenType_NUMBER = 0,
   ComItextpdfTextPdfPRTokeniser_TokenType_STRING = 1,
   ComItextpdfTextPdfPRTokeniser_TokenType_NAME = 2,
@@ -114,59 +127,59 @@ typedef enum {
   ComItextpdfTextPdfPRTokeniser_TokenType_REF = 8,
   ComItextpdfTextPdfPRTokeniser_TokenType_OTHER = 9,
   ComItextpdfTextPdfPRTokeniser_TokenType_ENDOFFILE = 10,
-} ComItextpdfTextPdfPRTokeniser_TokenType;
+};
 
-@interface ComItextpdfTextPdfPRTokeniser_TokenTypeEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfPRTokeniser_TokenTypeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values();
 
 + (ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[];
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_NUMBER ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_NUMBER]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, NUMBER, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, NUMBER)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_STRING ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_STRING]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, STRING, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, STRING)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_NAME ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_NAME]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, NAME, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, NAME)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_COMMENT ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_COMMENT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, COMMENT, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, COMMENT)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_START_ARRAY ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_START_ARRAY]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, START_ARRAY, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, START_ARRAY)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_END_ARRAY ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_END_ARRAY]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, END_ARRAY, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, END_ARRAY)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_START_DIC ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_START_DIC]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, START_DIC, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, START_DIC)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_END_DIC ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_END_DIC]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, END_DIC, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, END_DIC)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_REF ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_REF]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, REF, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, REF)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_OTHER ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_OTHER]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, OTHER, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, OTHER)
 
 #define ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_ENDOFFILE ComItextpdfTextPdfPRTokeniser_TokenTypeEnum_values_[ComItextpdfTextPdfPRTokeniser_TokenType_ENDOFFILE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, ENDOFFILE, ComItextpdfTextPdfPRTokeniser_TokenTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum, ENDOFFILE)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPRTokeniser_TokenTypeEnum)
 
 #endif // _ComItextpdfTextPdfPRTokeniser_H_

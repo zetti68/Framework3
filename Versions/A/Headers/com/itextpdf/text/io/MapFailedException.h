@@ -6,16 +6,23 @@
 #ifndef _ComItextpdfTextIoMapFailedException_H_
 #define _ComItextpdfTextIoMapFailedException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/IOException.h"
 
-@interface ComItextpdfTextIoMapFailedException : JavaIoIOException {
-}
+@interface ComItextpdfTextIoMapFailedException : JavaIoIOException
+
+#pragma mark Public
 
 - (instancetype)initWithJavaIoIOException:(JavaIoIOException *)e;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoMapFailedException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoMapFailedException)
+
+FOUNDATION_EXPORT void ComItextpdfTextIoMapFailedException_initWithJavaIoIOException_(ComItextpdfTextIoMapFailedException *self, JavaIoIOException *e);
+
+FOUNDATION_EXPORT ComItextpdfTextIoMapFailedException *new_ComItextpdfTextIoMapFailedException_initWithJavaIoIOException_(JavaIoIOException *e) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoMapFailedException)
 
 #endif // _ComItextpdfTextIoMapFailedException_H_

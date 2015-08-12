@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfParserTextRenderInfo_H_
 #define _ComItextpdfTextPdfParserTextRenderInfo_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfDocumentFont;
 @class ComItextpdfTextPdfParserGraphicsState;
@@ -15,75 +17,56 @@
 @protocol JavaUtilCollection;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserTextRenderInfo : NSObject
 
-@interface ComItextpdfTextPdfParserTextRenderInfo : NSObject {
- @public
-  NSString *text_;
-  ComItextpdfTextPdfParserMatrix *textToUserSpaceTransformMatrix_;
-  ComItextpdfTextPdfParserGraphicsState *gs_;
-  id<JavaUtilCollection> markedContentInfos_;
-}
+#pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)text
-withComItextpdfTextPdfParserGraphicsState:(ComItextpdfTextPdfParserGraphicsState *)gs
-withComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)textMatrix
-          withJavaUtilCollection:(id<JavaUtilCollection>)markedContentInfo;
+- (ComItextpdfTextPdfParserLineSegment *)getAscentLine;
 
-- (instancetype)initWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)parent
-                                                       withInt:(jint)charIndex
-                                                     withFloat:(jfloat)horizontalOffset;
+- (ComItextpdfTextPdfParserLineSegment *)getBaseline;
+
+- (id<JavaUtilList>)getCharacterRenderInfos;
+
+- (ComItextpdfTextPdfParserLineSegment *)getDescentLine;
+
+- (ComItextpdfTextBaseColor *)getFillColor;
+
+- (ComItextpdfTextPdfDocumentFont *)getFont;
+
+- (JavaLangInteger *)getMcid;
+
+- (jfloat)getRise;
+
+- (jfloat)getSingleSpaceWidth;
+
+- (ComItextpdfTextBaseColor *)getStrokeColor;
 
 - (NSString *)getText;
+
+- (jint)getTextRenderMode;
 
 - (jboolean)hasMcidWithInt:(jint)mcid;
 
 - (jboolean)hasMcidWithInt:(jint)mcid
                withBoolean:(jboolean)checkTheTopmostLevelOnly;
 
-- (JavaLangInteger *)getMcid;
+#pragma mark Package-Private
+
+- (instancetype)initWithNSString:(NSString *)text
+withComItextpdfTextPdfParserGraphicsState:(ComItextpdfTextPdfParserGraphicsState *)gs
+withComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)textMatrix
+          withJavaUtilCollection:(id<JavaUtilCollection>)markedContentInfo;
 
 - (jfloat)getUnscaledWidth;
 
-- (ComItextpdfTextPdfParserLineSegment *)getBaseline;
-
-- (ComItextpdfTextPdfParserLineSegment *)getAscentLine;
-
-- (ComItextpdfTextPdfParserLineSegment *)getDescentLine;
-
-- (ComItextpdfTextPdfParserLineSegment *)getUnscaledBaselineWithOffsetWithFloat:(jfloat)yOffset;
-
-- (ComItextpdfTextPdfDocumentFont *)getFont;
-
-- (jfloat)getRise;
-
-- (jfloat)convertWidthFromTextSpaceToUserSpaceWithFloat:(jfloat)width;
-
-- (jfloat)convertHeightFromTextSpaceToUserSpaceWithFloat:(jfloat)height;
-
-- (jfloat)getSingleSpaceWidth;
-
-- (jint)getTextRenderMode;
-
-- (ComItextpdfTextBaseColor *)getFillColor;
-
-- (ComItextpdfTextBaseColor *)getStrokeColor;
-
-- (jfloat)getUnscaledFontSpaceWidth;
-
-- (jfloat)getStringWidthWithNSString:(NSString *)string;
-
-- (id<JavaUtilList>)getCharacterRenderInfos;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserTextRenderInfo *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserTextRenderInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserTextRenderInfo)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTextRenderInfo, text_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTextRenderInfo, textToUserSpaceTransformMatrix_, ComItextpdfTextPdfParserMatrix *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTextRenderInfo, gs_, ComItextpdfTextPdfParserGraphicsState *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTextRenderInfo, markedContentInfos_, id<JavaUtilCollection>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserTextRenderInfo_initWithNSString_withComItextpdfTextPdfParserGraphicsState_withComItextpdfTextPdfParserMatrix_withJavaUtilCollection_(ComItextpdfTextPdfParserTextRenderInfo *self, NSString *text, ComItextpdfTextPdfParserGraphicsState *gs, ComItextpdfTextPdfParserMatrix *textMatrix, id<JavaUtilCollection> markedContentInfo);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserTextRenderInfo *new_ComItextpdfTextPdfParserTextRenderInfo_initWithNSString_withComItextpdfTextPdfParserGraphicsState_withComItextpdfTextPdfParserMatrix_withJavaUtilCollection_(NSString *text, ComItextpdfTextPdfParserGraphicsState *gs, ComItextpdfTextPdfParserMatrix *textMatrix, id<JavaUtilCollection> markedContentInfo) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserTextRenderInfo)
 
 #endif // _ComItextpdfTextPdfParserTextRenderInfo_H_

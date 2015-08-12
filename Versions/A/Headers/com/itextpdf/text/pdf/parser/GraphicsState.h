@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfParserGraphicsState_H_
 #define _ComItextpdfTextPdfParserGraphicsState_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfCMapAwareDocumentFont;
 @class ComItextpdfTextPdfParserMatrix;
 @class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfParserGraphicsState : NSObject {
  @public
@@ -31,43 +31,43 @@
   ComItextpdfTextBaseColor *strokeColor_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfParserGraphicsState:(ComItextpdfTextPdfParserGraphicsState *)source;
 
-- (ComItextpdfTextPdfParserMatrix *)getCtm;
-
 - (jfloat)getCharacterSpacing;
-
-- (jfloat)getWordSpacing;
-
-- (jfloat)getHorizontalScaling;
-
-- (jfloat)getLeading;
-
-- (ComItextpdfTextPdfCMapAwareDocumentFont *)getFont;
-
-- (jfloat)getFontSize;
-
-- (jint)getRenderMode;
-
-- (jfloat)getRise;
-
-- (jboolean)isKnockout;
 
 - (ComItextpdfTextPdfPdfName *)getColorSpaceFill;
 
 - (ComItextpdfTextPdfPdfName *)getColorSpaceStroke;
 
+- (ComItextpdfTextPdfParserMatrix *)getCtm;
+
 - (ComItextpdfTextBaseColor *)getFillColor;
+
+- (ComItextpdfTextPdfCMapAwareDocumentFont *)getFont;
+
+- (jfloat)getFontSize;
+
+- (jfloat)getHorizontalScaling;
+
+- (jfloat)getLeading;
+
+- (jint)getRenderMode;
+
+- (jfloat)getRise;
 
 - (ComItextpdfTextBaseColor *)getStrokeColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserGraphicsState *)other;
+- (jfloat)getWordSpacing;
+
+- (jboolean)isKnockout;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserGraphicsState_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserGraphicsState)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, ctm_, ComItextpdfTextPdfParserMatrix *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, font_, ComItextpdfTextPdfCMapAwareDocumentFont *)
@@ -75,5 +75,15 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, colorSpaceFill_, ComI
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, colorSpaceStroke_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, fillColor_, ComItextpdfTextBaseColor *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGraphicsState, strokeColor_, ComItextpdfTextBaseColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserGraphicsState_init(ComItextpdfTextPdfParserGraphicsState *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserGraphicsState *new_ComItextpdfTextPdfParserGraphicsState_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserGraphicsState_initWithComItextpdfTextPdfParserGraphicsState_(ComItextpdfTextPdfParserGraphicsState *self, ComItextpdfTextPdfParserGraphicsState *source);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserGraphicsState *new_ComItextpdfTextPdfParserGraphicsState_initWithComItextpdfTextPdfParserGraphicsState_(ComItextpdfTextPdfParserGraphicsState *source) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserGraphicsState)
 
 #endif // _ComItextpdfTextPdfParserGraphicsState_H_

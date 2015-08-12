@@ -6,16 +6,17 @@
 #ifndef _ComItextpdfTextXmlXmpXmpMMProperties_H_
 #define _ComItextpdfTextXmlXmpXmpMMProperties_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextXmlXmpXmpMMProperties : NSObject {
-}
+@interface ComItextpdfTextXmlXmpXmpMMProperties : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpXmpMMProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpXmpMMProperties)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpMMProperties_DERIVEDFROM_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpMMProperties, DERIVEDFROM_, NSString *)
@@ -52,5 +53,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpMMProperties, VERSIONID_, NSS
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpMMProperties_VERSIONS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpMMProperties, VERSIONS_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpMMProperties_init(ComItextpdfTextXmlXmpXmpMMProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpMMProperties *new_ComItextpdfTextXmlXmpXmpMMProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpXmpMMProperties)
 
 #endif // _ComItextpdfTextXmlXmpXmpMMProperties_H_

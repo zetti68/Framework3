@@ -6,27 +6,28 @@
 #ifndef _ComItextpdfTextPdfParserPdfReaderContentParser_H_
 #define _ComItextpdfTextPdfParserPdfReaderContentParser_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @protocol ComItextpdfTextPdfParserRenderListener;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserPdfReaderContentParser : NSObject
 
-@interface ComItextpdfTextPdfParserPdfReaderContentParser : NSObject {
- @public
-  ComItextpdfTextPdfPdfReader *reader_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
 - (id)processContentWithInt:(jint)pageNumber
 withComItextpdfTextPdfParserRenderListener:(id<ComItextpdfTextPdfParserRenderListener>)renderListener;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserPdfReaderContentParser *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserPdfReaderContentParser_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserPdfReaderContentParser)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfReaderContentParser, reader_, ComItextpdfTextPdfPdfReader *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfReaderContentParser_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfParserPdfReaderContentParser *self, ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfReaderContentParser *new_ComItextpdfTextPdfParserPdfReaderContentParser_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserPdfReaderContentParser)
 
 #endif // _ComItextpdfTextPdfParserPdfReaderContentParser_H_

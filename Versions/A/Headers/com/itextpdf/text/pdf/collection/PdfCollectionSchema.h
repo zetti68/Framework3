@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfCollectionPdfCollectionSchema_H_
 #define _ComItextpdfTextPdfCollectionPdfCollectionSchema_H_
 
-@class ComItextpdfTextPdfCollectionPdfCollectionField;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfCollectionPdfCollectionSchema : ComItextpdfTextPdfPdfDictionary {
-}
+@class ComItextpdfTextPdfCollectionPdfCollectionField;
+
+@interface ComItextpdfTextPdfCollectionPdfCollectionSchema : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -21,6 +22,12 @@ withComItextpdfTextPdfCollectionPdfCollectionField:(ComItextpdfTextPdfCollection
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCollectionPdfCollectionSchema_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCollectionPdfCollectionSchema)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfCollectionSchema_init(ComItextpdfTextPdfCollectionPdfCollectionSchema *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfCollectionSchema *new_ComItextpdfTextPdfCollectionPdfCollectionSchema_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCollectionPdfCollectionSchema)
 
 #endif // _ComItextpdfTextPdfCollectionPdfCollectionSchema_H_

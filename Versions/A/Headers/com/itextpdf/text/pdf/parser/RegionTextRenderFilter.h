@@ -6,30 +6,35 @@
 #ifndef _ComItextpdfTextPdfParserRegionTextRenderFilter_H_
 #define _ComItextpdfTextPdfParserRegionTextRenderFilter_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/RenderFilter.h"
+
 @class ComItextpdfAwtGeomRectangle2D;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 @class ComItextpdfTextRectangle;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/RenderFilter.h"
+@interface ComItextpdfTextPdfParserRegionTextRenderFilter : ComItextpdfTextPdfParserRenderFilter
 
-@interface ComItextpdfTextPdfParserRegionTextRenderFilter : ComItextpdfTextPdfParserRenderFilter {
- @public
-  ComItextpdfAwtGeomRectangle2D *filterRect_;
-}
-
-- (instancetype)initWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)filterRect;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)filterRect;
 
-- (jboolean)allowTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
+- (instancetype)initWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)filterRect;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserRegionTextRenderFilter *)other;
+- (jboolean)allowTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserRegionTextRenderFilter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserRegionTextRenderFilter)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserRegionTextRenderFilter, filterRect_, ComItextpdfAwtGeomRectangle2D *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserRegionTextRenderFilter_initWithComItextpdfAwtGeomRectangle2D_(ComItextpdfTextPdfParserRegionTextRenderFilter *self, ComItextpdfAwtGeomRectangle2D *filterRect);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserRegionTextRenderFilter *new_ComItextpdfTextPdfParserRegionTextRenderFilter_initWithComItextpdfAwtGeomRectangle2D_(ComItextpdfAwtGeomRectangle2D *filterRect) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserRegionTextRenderFilter_initWithComItextpdfTextRectangle_(ComItextpdfTextPdfParserRegionTextRenderFilter *self, ComItextpdfTextRectangle *filterRect);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserRegionTextRenderFilter *new_ComItextpdfTextPdfParserRegionTextRenderFilter_initWithComItextpdfTextRectangle_(ComItextpdfTextRectangle *filterRect) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserRegionTextRenderFilter)
 
 #endif // _ComItextpdfTextPdfParserRegionTextRenderFilter_H_

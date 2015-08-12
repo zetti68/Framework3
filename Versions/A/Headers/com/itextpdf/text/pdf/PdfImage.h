@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfImage_H_
 #define _ComItextpdfTextPdfPdfImage_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfStream.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfStream.h"
 
 #define ComItextpdfTextPdfPdfImage_TRANSFERSIZE 4096
 
@@ -23,31 +23,41 @@
   ComItextpdfTextImage *image_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                 withNSString:(NSString *)name
   withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)maskRef;
 
+- (ComItextpdfTextImage *)getImage;
+
 - (ComItextpdfTextPdfPdfName *)name;
 
-- (ComItextpdfTextImage *)getImage;
+#pragma mark Protected
+
+- (void)importAllWithComItextpdfTextPdfPdfImage:(ComItextpdfTextPdfPdfImage *)dup;
+
+#pragma mark Package-Private
 
 + (void)transferBytesWithJavaIoInputStream:(JavaIoInputStream *)inArg
                     withJavaIoOutputStream:(JavaIoOutputStream *)outArg
                                    withInt:(jint)len;
 
-- (void)importAllWithComItextpdfTextPdfPdfImage:(ComItextpdfTextPdfPdfImage *)dup;
-
-- (void)generateImgResNameWithComItextpdfTextImage:(ComItextpdfTextImage *)img;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfImage *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfImage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfImage)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfImage, name__, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfImage, image_, ComItextpdfTextImage *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfImage, TRANSFERSIZE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfImage_initWithComItextpdfTextImage_withNSString_withComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextPdfPdfImage *self, ComItextpdfTextImage *image, NSString *name, ComItextpdfTextPdfPdfIndirectReference *maskRef);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfImage *new_ComItextpdfTextPdfPdfImage_initWithComItextpdfTextImage_withNSString_withComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextImage *image, NSString *name, ComItextpdfTextPdfPdfIndirectReference *maskRef) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfImage_transferBytesWithJavaIoInputStream_withJavaIoOutputStream_withInt_(JavaIoInputStream *inArg, JavaIoOutputStream *outArg, jint len);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfImage)
 
 #endif // _ComItextpdfTextPdfPdfImage_H_

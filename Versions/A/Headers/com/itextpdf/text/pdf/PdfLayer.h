@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfLayer_H_
 #define _ComItextpdfTextPdfPdfLayer_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+#include "com/itextpdf/text/pdf/PdfOCG.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSObjectArray;
 @class JavaUtilArrayList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-#include "com/itextpdf/text/pdf/PdfOCG.h"
 
 @interface ComItextpdfTextPdfPdfLayer : ComItextpdfTextPdfPdfDictionary < ComItextpdfTextPdfPdfOCG > {
  @public
@@ -22,74 +22,84 @@
   JavaUtilArrayList *children_;
   ComItextpdfTextPdfPdfLayer *parent_;
   NSString *title_;
-  jboolean on_;
-  jboolean onPanel_;
 }
 
-- (instancetype)initWithNSString:(NSString *)title;
-
-+ (ComItextpdfTextPdfPdfLayer *)createTitleWithNSString:(NSString *)title
-                        withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)name
  withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (NSString *)getTitle;
-
 - (void)addChildWithComItextpdfTextPdfPdfLayer:(ComItextpdfTextPdfPdfLayer *)child;
 
-- (ComItextpdfTextPdfPdfLayer *)getParent;
++ (ComItextpdfTextPdfPdfLayer *)createTitleWithNSString:(NSString *)title
+                        withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 - (JavaUtilArrayList *)getChildren;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
-
-- (void)setRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref;
-
-- (void)setNameWithNSString:(NSString *)name;
+- (ComItextpdfTextPdfPdfLayer *)getParent;
 
 - (ComItextpdfTextPdfPdfObject *)getPdfObject;
 
+- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
+
 - (jboolean)isOn;
 
-- (void)setOnWithBoolean:(jboolean)on;
-
-- (ComItextpdfTextPdfPdfDictionary *)getUsage;
+- (jboolean)isOnPanel;
 
 - (void)setCreatorInfoWithNSString:(NSString *)creator
                       withNSString:(NSString *)subtype;
 
+- (void)setExportWithBoolean:(jboolean)export_;
+
 - (void)setLanguageWithNSString:(NSString *)lang
                     withBoolean:(jboolean)preferred;
 
-- (void)setExportWithBoolean:(jboolean)export_;
+- (void)setNameWithNSString:(NSString *)name;
 
-- (void)setZoomWithFloat:(jfloat)min
-               withFloat:(jfloat)max;
+- (void)setOnWithBoolean:(jboolean)on;
+
+- (void)setOnPanelWithBoolean:(jboolean)onPanel;
+
+- (void)setPageElementWithNSString:(NSString *)pe;
 
 - (void)setPrintWithNSString:(NSString *)subtype
                  withBoolean:(jboolean)printstate;
 
-- (void)setViewWithBoolean:(jboolean)view;
-
-- (void)setPageElementWithNSString:(NSString *)pe;
-
 - (void)setUserWithNSString:(NSString *)type
           withNSStringArray:(IOSObjectArray *)names;
 
-- (jboolean)isOnPanel;
+- (void)setViewWithBoolean:(jboolean)view;
 
-- (void)setOnPanelWithBoolean:(jboolean)onPanel;
+- (void)setZoomWithFloat:(jfloat)min
+               withFloat:(jfloat)max;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfLayer *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithNSString:(NSString *)title;
+
+- (NSString *)getTitle;
+
+- (void)setRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfLayer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfLayer)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLayer, ref_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLayer, children_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLayer, parent_, ComItextpdfTextPdfPdfLayer *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLayer, title_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLayer_initWithNSString_(ComItextpdfTextPdfPdfLayer *self, NSString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLayer *new_ComItextpdfTextPdfPdfLayer_initWithNSString_(NSString *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLayer *ComItextpdfTextPdfPdfLayer_createTitleWithNSString_withComItextpdfTextPdfPdfWriter_(NSString *title, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLayer_initWithNSString_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfLayer *self, NSString *name, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLayer *new_ComItextpdfTextPdfPdfLayer_initWithNSString_withComItextpdfTextPdfPdfWriter_(NSString *name, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfLayer)
 
 #endif // _ComItextpdfTextPdfPdfLayer_H_

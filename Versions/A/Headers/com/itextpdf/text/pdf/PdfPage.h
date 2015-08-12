@@ -6,51 +6,45 @@
 #ifndef _ComItextpdfTextPdfPdfPage_H_
 #define _ComItextpdfTextPdfPdfPage_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfRectangle;
-@class IOSObjectArray;
 @class JavaUtilHashMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
 
 @interface ComItextpdfTextPdfPdfPage : ComItextpdfTextPdfPdfDictionary {
  @public
   ComItextpdfTextPdfPdfRectangle *mediaBox_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfRectangle:(ComItextpdfTextPdfPdfRectangle *)mediaBox
-                                   withJavaUtilHashMap:(JavaUtilHashMap *)boxSize
-                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)resources
-                                               withInt:(jint)rotate;
+#pragma mark Public
+
+- (jboolean)isParent;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfRectangle:(ComItextpdfTextPdfPdfRectangle *)mediaBox
                                    withJavaUtilHashMap:(JavaUtilHashMap *)boxSize
                    withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)resources;
 
-- (jboolean)isParent;
+- (instancetype)initWithComItextpdfTextPdfPdfRectangle:(ComItextpdfTextPdfPdfRectangle *)mediaBox
+                                   withJavaUtilHashMap:(JavaUtilHashMap *)boxSize
+                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)resources
+                                               withInt:(jint)rotate;
 
 - (void)addWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)contents;
 
-- (ComItextpdfTextPdfPdfRectangle *)rotateMediaBox;
-
 - (ComItextpdfTextPdfPdfRectangle *)getMediaBox;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPage *)other;
+- (ComItextpdfTextPdfPdfRectangle *)rotateMediaBox;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfPage_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfPage)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPage, mediaBox_, ComItextpdfTextPdfPdfRectangle *)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPage_boxStrings_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPage, boxStrings_, IOSObjectArray *)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPage_boxNames_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPage, boxNames_, IOSObjectArray *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *ComItextpdfTextPdfPdfPage_PORTRAIT_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPage, PORTRAIT_, ComItextpdfTextPdfPdfNumber *)
@@ -63,5 +57,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPage, INVERTEDPORTRAIT_, ComItex
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *ComItextpdfTextPdfPdfPage_SEASCAPE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPage, SEASCAPE_, ComItextpdfTextPdfPdfNumber *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPage_initWithComItextpdfTextPdfPdfRectangle_withJavaUtilHashMap_withComItextpdfTextPdfPdfDictionary_withInt_(ComItextpdfTextPdfPdfPage *self, ComItextpdfTextPdfPdfRectangle *mediaBox, JavaUtilHashMap *boxSize, ComItextpdfTextPdfPdfDictionary *resources, jint rotate);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPage *new_ComItextpdfTextPdfPdfPage_initWithComItextpdfTextPdfPdfRectangle_withJavaUtilHashMap_withComItextpdfTextPdfPdfDictionary_withInt_(ComItextpdfTextPdfPdfRectangle *mediaBox, JavaUtilHashMap *boxSize, ComItextpdfTextPdfPdfDictionary *resources, jint rotate) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPage_initWithComItextpdfTextPdfPdfRectangle_withJavaUtilHashMap_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfPage *self, ComItextpdfTextPdfPdfRectangle *mediaBox, JavaUtilHashMap *boxSize, ComItextpdfTextPdfPdfDictionary *resources);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPage *new_ComItextpdfTextPdfPdfPage_initWithComItextpdfTextPdfPdfRectangle_withJavaUtilHashMap_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfRectangle *mediaBox, JavaUtilHashMap *boxSize, ComItextpdfTextPdfPdfDictionary *resources) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPage)
 
 #endif // _ComItextpdfTextPdfPdfPage_H_

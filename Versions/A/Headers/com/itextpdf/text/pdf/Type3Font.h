@@ -6,39 +6,32 @@
 #ifndef _ComItextpdfTextPdfType3Font_H_
 #define _ComItextpdfTextPdfType3Font_H_
 
-@class ComItextpdfTextPdfIntHashtable;
-@class ComItextpdfTextPdfPageResources;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/BaseFont.h"
+
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfStream;
 @class ComItextpdfTextPdfPdfWriter;
-@class IOSBooleanArray;
 @class IOSByteArray;
 @class IOSCharArray;
 @class IOSIntArray;
 @class IOSObjectArray;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/BaseFont.h"
+@interface ComItextpdfTextPdfType3Font : ComItextpdfTextPdfBaseFont
 
-@interface ComItextpdfTextPdfType3Font : ComItextpdfTextPdfBaseFont {
- @public
-  IOSBooleanArray *usedSlot_;
-  ComItextpdfTextPdfIntHashtable *widths3_;
-  JavaUtilHashMap *char2glyph_;
-  ComItextpdfTextPdfPdfWriter *writer_;
-  jfloat llx_, lly_, urx_, ury_;
-  ComItextpdfTextPdfPageResources *pageResources_;
-  jboolean colorized_;
-}
+#pragma mark Public
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                        withBoolean:(jboolean)colorized;
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                       withCharArray:(IOSCharArray *)chars
                                         withBoolean:(jboolean)colorized;
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                        withBoolean:(jboolean)colorized;
+- (jboolean)charExistsWithInt:(jint)c;
+
+- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
 
 - (ComItextpdfTextPdfPdfContentByte *)defineGlyphWithChar:(jchar)c
                                                 withFloat:(jfloat)wx
@@ -47,6 +40,10 @@
                                                 withFloat:(jfloat)urx
                                                 withFloat:(jfloat)ury;
 
+- (IOSObjectArray *)getAllNameEntries;
+
+- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
+
 - (IOSObjectArray *)getFamilyFontName;
 
 - (jfloat)getFontDescriptorWithInt:(jint)key
@@ -54,20 +51,21 @@
 
 - (IOSObjectArray *)getFullFontName;
 
-- (IOSObjectArray *)getAllNameEntries;
+- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
 
 - (jint)getKerningWithInt:(jint)char1
                   withInt:(jint)char2;
 
 - (NSString *)getPostscriptFontName;
 
-- (IOSIntArray *)getRawCharBBoxWithInt:(jint)c
-                          withNSString:(NSString *)name;
+- (jint)getWidthWithInt:(jint)char1;
 
-- (jint)getRawWidthWithInt:(jint)c
-              withNSString:(NSString *)name;
+- (jint)getWidthWithNSString:(NSString *)text;
 
 - (jboolean)hasKernPairs;
+
+- (jboolean)setCharAdvanceWithInt:(jint)c
+                          withInt:(jint)advance;
 
 - (jboolean)setKerningWithInt:(jint)char1
                       withInt:(jint)char2
@@ -75,37 +73,34 @@
 
 - (void)setPostscriptFontNameWithNSString:(NSString *)name;
 
+#pragma mark Protected
+
+- (IOSIntArray *)getRawCharBBoxWithInt:(jint)c
+                          withNSString:(NSString *)name;
+
+#pragma mark Package-Private
+
+- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
+
+- (jint)getRawWidthWithInt:(jint)c
+              withNSString:(NSString *)name;
+
 - (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
       withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
                                withNSObjectArray:(IOSObjectArray *)params;
 
-- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
-
-- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
-
-- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
-
-- (jint)getWidthWithInt:(jint)char1;
-
-- (jint)getWidthWithNSString:(NSString *)text;
-
-- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
-
-- (jboolean)charExistsWithInt:(jint)c;
-
-- (jboolean)setCharAdvanceWithInt:(jint)c
-                          withInt:(jint)advance;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfType3Font *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfType3Font_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfType3Font)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Font, usedSlot_, IOSBooleanArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Font, widths3_, ComItextpdfTextPdfIntHashtable *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Font, char2glyph_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Font, writer_, ComItextpdfTextPdfPdfWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Font, pageResources_, ComItextpdfTextPdfPageResources *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfType3Font_initWithComItextpdfTextPdfPdfWriter_withCharArray_withBoolean_(ComItextpdfTextPdfType3Font *self, ComItextpdfTextPdfPdfWriter *writer, IOSCharArray *chars, jboolean colorized);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfType3Font *new_ComItextpdfTextPdfType3Font_initWithComItextpdfTextPdfPdfWriter_withCharArray_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, IOSCharArray *chars, jboolean colorized) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfType3Font_initWithComItextpdfTextPdfPdfWriter_withBoolean_(ComItextpdfTextPdfType3Font *self, ComItextpdfTextPdfPdfWriter *writer, jboolean colorized);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfType3Font *new_ComItextpdfTextPdfType3Font_initWithComItextpdfTextPdfPdfWriter_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, jboolean colorized) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfType3Font)
 
 #endif // _ComItextpdfTextPdfType3Font_H_

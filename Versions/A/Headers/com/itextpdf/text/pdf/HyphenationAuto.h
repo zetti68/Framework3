@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfHyphenationAuto_H_
 #define _ComItextpdfTextPdfHyphenationAuto_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/HyphenationEvent.h"
+
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfHyphenationHyphenator;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/HyphenationEvent.h"
 
 @interface ComItextpdfTextPdfHyphenationAuto : NSObject < ComItextpdfTextPdfHyphenationEvent > {
  @public
@@ -18,27 +18,33 @@
   NSString *post_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithNSString:(NSString *)lang
                     withNSString:(NSString *)country
                          withInt:(jint)leftMin
                          withInt:(jint)rightMin;
 
-- (NSString *)getHyphenSymbol;
+- (NSString *)getHyphenatedWordPost;
 
 - (NSString *)getHyphenatedWordPreWithNSString:(NSString *)word
                 withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
                                      withFloat:(jfloat)fontSize
                                      withFloat:(jfloat)remainingWidth;
 
-- (NSString *)getHyphenatedWordPost;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationAuto *)other;
+- (NSString *)getHyphenSymbol;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationAuto_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationAuto)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationAuto, hyphenator_, ComItextpdfTextPdfHyphenationHyphenator *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationAuto, post_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationAuto_initWithNSString_withNSString_withInt_withInt_(ComItextpdfTextPdfHyphenationAuto *self, NSString *lang, NSString *country, jint leftMin, jint rightMin);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationAuto *new_ComItextpdfTextPdfHyphenationAuto_initWithNSString_withNSString_withInt_withInt_(NSString *lang, NSString *country, jint leftMin, jint rightMin) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationAuto)
 
 #endif // _ComItextpdfTextPdfHyphenationAuto_H_

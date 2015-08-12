@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfSecurityTSAClient_H_
 #define _ComItextpdfTextPdfSecurityTSAClient_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class JavaSecurityMessageDigest;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfSecurityTSAClient < NSObject, JavaObject >
 
@@ -21,6 +21,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityTSAClient_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityTSAClient)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityTSAClient)
 
 #endif // _ComItextpdfTextPdfSecurityTSAClient_H_

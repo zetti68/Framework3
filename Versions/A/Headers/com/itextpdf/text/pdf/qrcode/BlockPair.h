@@ -6,30 +6,31 @@
 #ifndef _ComItextpdfTextPdfQrcodeBlockPair_H_
 #define _ComItextpdfTextPdfQrcodeBlockPair_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeBlockPair : NSObject
 
-@interface ComItextpdfTextPdfQrcodeBlockPair : NSObject {
- @public
-  ComItextpdfTextPdfQrcodeByteArray *dataBytes_;
-  ComItextpdfTextPdfQrcodeByteArray *errorCorrectionBytes_;
-}
-
-- (instancetype)initWithComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)data
-                    withComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)errorCorrection;
+#pragma mark Public
 
 - (ComItextpdfTextPdfQrcodeByteArray *)getDataBytes;
 
 - (ComItextpdfTextPdfQrcodeByteArray *)getErrorCorrectionBytes;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeBlockPair *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)data
+                    withComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)errorCorrection;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeBlockPair_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeBlockPair)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeBlockPair, dataBytes_, ComItextpdfTextPdfQrcodeByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeBlockPair, errorCorrectionBytes_, ComItextpdfTextPdfQrcodeByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeBlockPair_initWithComItextpdfTextPdfQrcodeByteArray_withComItextpdfTextPdfQrcodeByteArray_(ComItextpdfTextPdfQrcodeBlockPair *self, ComItextpdfTextPdfQrcodeByteArray *data, ComItextpdfTextPdfQrcodeByteArray *errorCorrection);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeBlockPair *new_ComItextpdfTextPdfQrcodeBlockPair_initWithComItextpdfTextPdfQrcodeByteArray_withComItextpdfTextPdfQrcodeByteArray_(ComItextpdfTextPdfQrcodeByteArray *data, ComItextpdfTextPdfQrcodeByteArray *errorCorrection) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeBlockPair)
 
 #endif // _ComItextpdfTextPdfQrcodeBlockPair_H_

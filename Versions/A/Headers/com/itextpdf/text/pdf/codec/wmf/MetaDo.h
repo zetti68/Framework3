@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfCodecWmfMetaDo_H_
 #define _ComItextpdfTextPdfCodecWmfMetaDo_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfCodecWmfInputMeta;
 @class ComItextpdfTextPdfCodecWmfMetaState;
@@ -14,76 +16,74 @@
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_ANIMATEPALETTE 1078
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_ARC 2071
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_BITBLT 2338
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CHORD 2096
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEBRUSHINDIRECT 764
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEFONTINDIRECT 763
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPALETTE 247
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPATTERNBRUSH 505
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPENINDIRECT 762
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEREGION 1791
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_DELETEOBJECT 496
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBBITBLT 2368
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBCREATEPATTERNBRUSH 322
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBSTRETCHBLT 2881
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_ELLIPSE 1048
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_ESCAPE 1574
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXCLUDECLIPRECT 1045
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXTFLOODFILL 1352
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXTTEXTOUT 2610
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_FILLREGION 552
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_FLOODFILL 1049
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_FRAMEREGION 1065
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_INTERSECTCLIPRECT 1046
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_INVERTREGION 298
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_LINETO 531
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_MOVETO 532
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETCLIPRGN 544
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETVIEWPORTORG 529
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETWINDOWORG 527
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_PAINTREGION 299
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_PATBLT 1565
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_PIE 2074
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYGON 804
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYLINE 805
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYPOLYGON 1336
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_REALIZEPALETTE 53
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_RECTANGLE 1051
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_RESIZEPALETTE 313
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_RESTOREDC 295
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_ROUNDRECT 1564
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SAVEDC 30
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SCALEVIEWPORTEXT 1042
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SCALEWINDOWEXT 1040
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTCLIPREGION 300
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTOBJECT 301
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTPALETTE 564
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETBKCOLOR 513
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETBKMODE 258
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETDIBTODEV 3379
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETMAPMODE 259
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETMAPPERFLAGS 561
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPALENTRIES 55
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPIXEL 1055
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPOLYFILLMODE 262
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETRELABS 261
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETROP2 260
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETRELABS 261
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPOLYFILLMODE 262
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETSTRETCHBLTMODE 263
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETTEXTALIGN 302
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETTEXTCHAREXTRA 264
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETTEXTCOLOR 521
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETTEXTJUSTIFICATION 522
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETVIEWPORTEXT 526
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETVIEWPORTORG 525
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETWINDOWEXT 524
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_SETWINDOWORG 523
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_STRETCHBLT 2851
-#define ComItextpdfTextPdfCodecWmfMetaDo_META_STRETCHDIB 3907
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETWINDOWEXT 524
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETVIEWPORTORG 525
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETVIEWPORTEXT 526
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETWINDOWORG 527
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SCALEWINDOWEXT 1040
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETVIEWPORTORG 529
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SCALEVIEWPORTEXT 1042
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_LINETO 531
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_MOVETO 532
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXCLUDECLIPRECT 1045
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_INTERSECTCLIPRECT 1046
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_ARC 2071
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_ELLIPSE 1048
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_FLOODFILL 1049
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_PIE 2074
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_RECTANGLE 1051
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_ROUNDRECT 1564
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_PATBLT 1565
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SAVEDC 30
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPIXEL 1055
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_OFFSETCLIPRGN 544
 #define ComItextpdfTextPdfCodecWmfMetaDo_META_TEXTOUT 1313
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_BITBLT 2338
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_STRETCHBLT 2851
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYGON 804
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYLINE 805
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_ESCAPE 1574
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_RESTOREDC 295
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_FILLREGION 552
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_FRAMEREGION 1065
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_INVERTREGION 298
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_PAINTREGION 299
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTCLIPREGION 300
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTOBJECT 301
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETTEXTALIGN 302
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CHORD 2096
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETMAPPERFLAGS 561
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXTTEXTOUT 2610
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETDIBTODEV 3379
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SELECTPALETTE 564
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_REALIZEPALETTE 53
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_ANIMATEPALETTE 1078
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_SETPALENTRIES 55
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_POLYPOLYGON 1336
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_RESIZEPALETTE 313
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBBITBLT 2368
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBSTRETCHBLT 2881
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_DIBCREATEPATTERNBRUSH 322
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_STRETCHDIB 3907
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_EXTFLOODFILL 1352
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_DELETEOBJECT 496
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPALETTE 247
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPATTERNBRUSH 505
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEPENINDIRECT 762
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEFONTINDIRECT 763
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEBRUSHINDIRECT 764
+#define ComItextpdfTextPdfCodecWmfMetaDo_META_CREATEREGION 1791
 
 @interface ComItextpdfTextPdfCodecWmfMetaDo : NSObject {
  @public
@@ -97,10 +97,12 @@
   ComItextpdfTextPdfCodecWmfMetaState *state_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inArg
      withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (void)readAll;
+- (jboolean)isNullStrokeFillWithBoolean:(jboolean)isRectangle;
 
 - (void)outputTextWithInt:(jint)x
                   withInt:(jint)y
@@ -111,28 +113,28 @@
                   withInt:(jint)y2
              withNSString:(NSString *)text;
 
-- (jboolean)isNullStrokeFillWithBoolean:(jboolean)isRectangle;
+- (void)readAll;
 
 - (void)strokeAndFill;
+
++ (IOSByteArray *)wrapBMPWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
++ (void)writeDWordWithJavaIoOutputStream:(JavaIoOutputStream *)os
+                                 withInt:(jint)v;
+
++ (void)writeWordWithJavaIoOutputStream:(JavaIoOutputStream *)os
+                                withInt:(jint)v;
+
+#pragma mark Package-Private
 
 + (jfloat)getArcWithFloat:(jfloat)xCenter
                 withFloat:(jfloat)yCenter
                 withFloat:(jfloat)xDot
                 withFloat:(jfloat)yDot;
 
-+ (IOSByteArray *)wrapBMPWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-+ (void)writeWordWithJavaIoOutputStream:(JavaIoOutputStream *)os
-                                withInt:(jint)v;
-
-+ (void)writeDWordWithJavaIoOutputStream:(JavaIoOutputStream *)os
-                                 withInt:(jint)v;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfMetaDo *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfMetaDo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfMetaDo)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaDo, cb_, ComItextpdfTextPdfPdfContentByte *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaDo, in_, ComItextpdfTextPdfCodecWmfInputMeta *)
@@ -273,5 +275,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaDo, META_CREATEFONTINDI
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaDo, META_CREATEBRUSHINDIRECT, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaDo, META_CREATEREGION, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaDo_initWithJavaIoInputStream_withComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfCodecWmfMetaDo *self, JavaIoInputStream *inArg, ComItextpdfTextPdfPdfContentByte *cb);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaDo *new_ComItextpdfTextPdfCodecWmfMetaDo_initWithJavaIoInputStream_withComItextpdfTextPdfPdfContentByte_(JavaIoInputStream *inArg, ComItextpdfTextPdfPdfContentByte *cb) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfCodecWmfMetaDo_getArcWithFloat_withFloat_withFloat_withFloat_(jfloat xCenter, jfloat yCenter, jfloat xDot, jfloat yDot);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecWmfMetaDo_wrapBMPWithComItextpdfTextImage_(ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaDo_writeWordWithJavaIoOutputStream_withInt_(JavaIoOutputStream *os, jint v);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaDo_writeDWordWithJavaIoOutputStream_withInt_(JavaIoOutputStream *os, jint v);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfMetaDo)
 
 #endif // _ComItextpdfTextPdfCodecWmfMetaDo_H_

@@ -6,6 +6,12 @@
 #ifndef _ComItextpdfTextParagraph_H_
 #define _ComItextpdfTextParagraph_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Phrase.h"
+#include "com/itextpdf/text/api/Indentable.h"
+#include "com/itextpdf/text/api/Spaceable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
@@ -15,42 +21,28 @@
 @protocol ComItextpdfTextElement;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Phrase.h"
-#include "com/itextpdf/text/api/Indentable.h"
-#include "com/itextpdf/text/api/Spaceable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
-#define ComItextpdfTextParagraph_serialVersionUID 7852314969733375514LL
-
 @interface ComItextpdfTextParagraph : ComItextpdfTextPhrase < ComItextpdfTextApiIndentable, ComItextpdfTextApiSpaceable, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
   jint alignment_;
   jfloat indentationLeft_;
   jfloat indentationRight_;
-  jfloat firstLineIndent_;
   jfloat spacingBefore__;
   jfloat spacingAfter__;
-  jfloat extraParagraphSpace_;
   jboolean keeptogether_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
-  ComItextpdfTextAccessibleElementId *id__;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (instancetype)initWithFloat:(jfloat)leading;
-
 - (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
+
+- (instancetype)initWithFloat:(jfloat)leading;
 
 - (instancetype)initWithFloat:(jfloat)leading
      withComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
-
-- (instancetype)initWithNSString:(NSString *)string;
-
-- (instancetype)initWithNSString:(NSString *)string
-         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (instancetype)initWithFloat:(jfloat)leading
                  withNSString:(NSString *)string;
@@ -61,78 +53,120 @@
 
 - (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (ComItextpdfTextParagraph *)cloneShallowWithBoolean:(jboolean)spacingBefore;
+- (instancetype)initWithNSString:(NSString *)string;
 
-- (id<JavaUtilList>)breakUp;
+- (instancetype)initWithNSString:(NSString *)string
+         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
-- (jint)type;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 - (jboolean)addWithId:(id<ComItextpdfTextElement>)o;
 
-- (void)setAlignmentWithInt:(jint)alignment;
+- (id<JavaUtilList>)breakUp;
 
-- (void)setIndentationLeftWithFloat:(jfloat)indentation;
+- (ComItextpdfTextParagraph *)cloneShallowWithBoolean:(jboolean)spacingBefore;
 
-- (void)setIndentationRightWithFloat:(jfloat)indentation;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (void)setFirstLineIndentWithFloat:(jfloat)firstLineIndent;
-
-- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
-
-- (void)setSpacingAfterWithFloat:(jfloat)spacing;
-
-- (void)setKeepTogetherWithBoolean:(jboolean)keeptogether;
-
-- (jboolean)getKeepTogether;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
 - (jint)getAlignment;
+
+- (jfloat)getExtraParagraphSpace;
+
+- (jfloat)getFirstLineIndent;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
 
 - (jfloat)getIndentationLeft;
 
 - (jfloat)getIndentationRight;
 
-- (jfloat)getFirstLineIndent;
+- (jboolean)getKeepTogether;
 
-- (jfloat)getSpacingBefore;
+- (ComItextpdfTextPdfPdfName *)getRole;
 
 - (jfloat)getSpacingAfter;
 
-- (jfloat)getExtraParagraphSpace;
+- (jfloat)getSpacingBefore;
 
-- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
-
-- (jfloat)spacingBefore;
-
-- (jfloat)spacingAfter;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+- (jboolean)isInline;
 
 - (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
                             withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
+- (void)setAlignmentWithInt:(jint)alignment;
 
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
 
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (void)setFirstLineIndentWithFloat:(jfloat)firstLineIndent;
 
 - (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
 
-- (jboolean)isInline;
+- (void)setIndentationLeftWithFloat:(jfloat)indentation;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextParagraph *)other;
+- (void)setIndentationRightWithFloat:(jfloat)indentation;
+
+- (void)setKeepTogetherWithBoolean:(jboolean)keeptogether;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setSpacingAfterWithFloat:(jfloat)spacing;
+
+- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
+
+- (jfloat)spacingAfter;
+
+- (jfloat)spacingBefore;
+
+- (jint)type;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextParagraph_init() {}
+J2OBJC_STATIC_INIT(ComItextpdfTextParagraph)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextParagraph, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextParagraph, accessibleAttributes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextParagraph, id__, ComItextpdfTextAccessibleElementId *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextParagraph, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_init(ComItextpdfTextParagraph *self);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithFloat_(ComItextpdfTextParagraph *self, jfloat leading);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithFloat_(jfloat leading) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithComItextpdfTextChunk_(ComItextpdfTextParagraph *self, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithFloat_withComItextpdfTextChunk_(ComItextpdfTextParagraph *self, jfloat leading, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithFloat_withComItextpdfTextChunk_(jfloat leading, ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithNSString_(ComItextpdfTextParagraph *self, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithNSString_(NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithNSString_withComItextpdfTextFont_(ComItextpdfTextParagraph *self, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithNSString_withComItextpdfTextFont_(NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithFloat_withNSString_(ComItextpdfTextParagraph *self, jfloat leading, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithFloat_withNSString_(jfloat leading, NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithFloat_withNSString_withComItextpdfTextFont_(ComItextpdfTextParagraph *self, jfloat leading, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithFloat_withNSString_withComItextpdfTextFont_(jfloat leading, NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextParagraph_initWithComItextpdfTextPhrase_(ComItextpdfTextParagraph *self, ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *new_ComItextpdfTextParagraph_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextParagraph)
 
 #endif // _ComItextpdfTextParagraph_H_

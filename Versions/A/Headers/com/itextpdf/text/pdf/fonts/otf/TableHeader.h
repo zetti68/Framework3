@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfFontsOtfTableHeader_H_
 #define _ComItextpdfTextPdfFontsOtfTableHeader_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @interface ComItextpdfTextPdfFontsOtfTableHeader : NSObject {
  @public
@@ -16,15 +16,21 @@
   jint lookupListOffset_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)version_
                     withInt:(jint)scriptListOffset
                     withInt:(jint)featureListOffset
                     withInt:(jint)lookupListOffset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsOtfTableHeader *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfTableHeader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfTableHeader)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfTableHeader_initWithInt_withInt_withInt_withInt_(ComItextpdfTextPdfFontsOtfTableHeader *self, jint version_, jint scriptListOffset, jint featureListOffset, jint lookupListOffset);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfTableHeader *new_ComItextpdfTextPdfFontsOtfTableHeader_initWithInt_withInt_withInt_withInt_(jint version_, jint scriptListOffset, jint featureListOffset, jint lookupListOffset) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfTableHeader)
 
 #endif // _ComItextpdfTextPdfFontsOtfTableHeader_H_

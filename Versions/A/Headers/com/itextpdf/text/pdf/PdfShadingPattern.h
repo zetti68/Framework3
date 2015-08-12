@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfShadingPattern_H_
 #define _ComItextpdfTextPdfPdfShadingPattern_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfColorDetails;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfShading;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSFloatArray;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
 
 @interface ComItextpdfTextPdfPdfShadingPattern : ComItextpdfTextPdfPdfDictionary {
  @public
@@ -25,38 +25,46 @@
   ComItextpdfTextPdfPdfIndirectReference *patternReference_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfShading:(ComItextpdfTextPdfPdfShading *)shading;
 
-- (ComItextpdfTextPdfPdfName *)getPatternName;
-
-- (ComItextpdfTextPdfPdfName *)getShadingName;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getPatternReference;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getShadingReference;
-
-- (void)setNameWithInt:(jint)number;
-
 - (void)addToBody;
-
-- (void)setMatrixWithFloatArray:(IOSFloatArray *)matrix;
 
 - (IOSFloatArray *)getMatrix;
 
 - (ComItextpdfTextPdfPdfShading *)getShading;
 
+- (void)setMatrixWithFloatArray:(IOSFloatArray *)matrix;
+
+#pragma mark Package-Private
+
 - (ComItextpdfTextPdfColorDetails *)getColorDetails;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfShadingPattern *)other;
+- (ComItextpdfTextPdfPdfName *)getPatternName;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getPatternReference;
+
+- (ComItextpdfTextPdfPdfName *)getShadingName;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getShadingReference;
+
+- (void)setNameWithInt:(jint)number;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfShadingPattern_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfShadingPattern)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShadingPattern, shading_, ComItextpdfTextPdfPdfShading *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShadingPattern, writer_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShadingPattern, matrix_, IOSFloatArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShadingPattern, patternName_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShadingPattern, patternReference_, ComItextpdfTextPdfPdfIndirectReference *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfShadingPattern_initWithComItextpdfTextPdfPdfShading_(ComItextpdfTextPdfPdfShadingPattern *self, ComItextpdfTextPdfPdfShading *shading);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShadingPattern *new_ComItextpdfTextPdfPdfShadingPattern_initWithComItextpdfTextPdfPdfShading_(ComItextpdfTextPdfPdfShading *shading) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfShadingPattern)
 
 #endif // _ComItextpdfTextPdfPdfShadingPattern_H_

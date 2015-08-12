@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfCodecTIFFField_H_
 #define _ComItextpdfTextPdfCodecTIFFField_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/Serializable.h"
+#include "java/lang/Comparable.h"
+
 @class IOSByteArray;
 @class IOSCharArray;
 @class IOSDoubleArray;
@@ -15,23 +19,18 @@
 @class IOSObjectArray;
 @class IOSShortArray;
 
-#import "JreEmulation.h"
-#include "java/io/Serializable.h"
-#include "java/lang/Comparable.h"
-
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_ASCII 2
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_BYTE 1
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_DOUBLE 12
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_FLOAT 11
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_ASCII 2
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_SHORT 3
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_LONG 4
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_RATIONAL 5
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_SBYTE 6
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_SHORT 3
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_UNDEFINED 7
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_SSHORT 8
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_SLONG 9
 #define ComItextpdfTextPdfCodecTIFFField_TIFF_SRATIONAL 10
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_SSHORT 8
-#define ComItextpdfTextPdfCodecTIFFField_TIFF_UNDEFINED 7
-#define ComItextpdfTextPdfCodecTIFFField_serialVersionUID 9088332901412823834LL
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_FLOAT 11
+#define ComItextpdfTextPdfCodecTIFFField_TIFF_DOUBLE 12
 
 @interface ComItextpdfTextPdfCodecTIFFField : NSObject < JavaLangComparable, JavaIoSerializable > {
  @public
@@ -41,62 +40,62 @@
   id data_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)tag
                     withInt:(jint)type
                     withInt:(jint)count
                      withId:(id)data;
 
-- (jint)getTag;
-
-- (jint)getType;
-
-- (jint)getCount;
+- (jint)compareToWithId:(ComItextpdfTextPdfCodecTIFFField *)o;
 
 - (IOSByteArray *)getAsBytes;
 
 - (IOSCharArray *)getAsChars;
 
-- (IOSShortArray *)getAsShorts;
-
-- (IOSIntArray *)getAsInts;
-
-- (IOSLongArray *)getAsLongs;
-
-- (IOSFloatArray *)getAsFloats;
+- (jdouble)getAsDoubleWithInt:(jint)index;
 
 - (IOSDoubleArray *)getAsDoubles;
 
-- (IOSObjectArray *)getAsSRationals;
+- (jfloat)getAsFloatWithInt:(jint)index;
 
-- (IOSObjectArray *)getAsRationals;
+- (IOSFloatArray *)getAsFloats;
 
 - (jint)getAsIntWithInt:(jint)index;
 
+- (IOSIntArray *)getAsInts;
+
 - (jlong)getAsLongWithInt:(jint)index;
 
-- (jfloat)getAsFloatWithInt:(jint)index;
-
-- (jdouble)getAsDoubleWithInt:(jint)index;
-
-- (NSString *)getAsStringWithInt:(jint)index;
-
-- (IOSIntArray *)getAsSRationalWithInt:(jint)index;
+- (IOSLongArray *)getAsLongs;
 
 - (IOSLongArray *)getAsRationalWithInt:(jint)index;
 
-- (jint)compareToWithId:(ComItextpdfTextPdfCodecTIFFField *)o;
+- (IOSObjectArray *)getAsRationals;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecTIFFField *)other;
+- (IOSShortArray *)getAsShorts;
+
+- (IOSIntArray *)getAsSRationalWithInt:(jint)index;
+
+- (IOSObjectArray *)getAsSRationals;
+
+- (NSString *)getAsStringWithInt:(jint)index;
+
+- (jint)getCount;
+
+- (jint)getTag;
+
+- (jint)getType;
+
+#pragma mark Package-Private
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecTIFFField_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecTIFFField)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFField, data_, id)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFField, serialVersionUID, jlong)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFField, TIFF_BYTE, jint)
 
@@ -121,5 +120,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFField, TIFF_SRATIONAL, jin
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFField, TIFF_FLOAT, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFField, TIFF_DOUBLE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFField_init(ComItextpdfTextPdfCodecTIFFField *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFField *new_ComItextpdfTextPdfCodecTIFFField_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFField_initWithInt_withInt_withInt_withId_(ComItextpdfTextPdfCodecTIFFField *self, jint tag, jint type, jint count, id data);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFField *new_ComItextpdfTextPdfCodecTIFFField_initWithInt_withInt_withInt_withId_(jint tag, jint type, jint count, id data) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecTIFFField)
 
 #endif // _ComItextpdfTextPdfCodecTIFFField_H_

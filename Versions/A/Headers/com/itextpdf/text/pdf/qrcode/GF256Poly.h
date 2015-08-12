@@ -6,32 +6,36 @@
 #ifndef _ComItextpdfTextPdfQrcodeGF256Poly_H_
 #define _ComItextpdfTextPdfQrcodeGF256Poly_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeGF256;
 @class IOSIntArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeGF256Poly : NSObject
 
-@interface ComItextpdfTextPdfQrcodeGF256Poly : NSObject {
- @public
-  ComItextpdfTextPdfQrcodeGF256 *field_;
-  IOSIntArray *coefficients_;
-}
+#pragma mark Public
+
+- (NSString *)description;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfQrcodeGF256:(ComItextpdfTextPdfQrcodeGF256 *)field
                                          withIntArray:(IOSIntArray *)coefficients;
+
+- (ComItextpdfTextPdfQrcodeGF256Poly *)addOrSubtractWithComItextpdfTextPdfQrcodeGF256Poly:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
+
+- (IOSObjectArray *)divideWithComItextpdfTextPdfQrcodeGF256Poly:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
+
+- (jint)evaluateAtWithInt:(jint)a;
+
+- (jint)getCoefficientWithInt:(jint)degree;
 
 - (IOSIntArray *)getCoefficients;
 
 - (jint)getDegree;
 
 - (jboolean)isZero;
-
-- (jint)getCoefficientWithInt:(jint)degree;
-
-- (jint)evaluateAtWithInt:(jint)a;
-
-- (ComItextpdfTextPdfQrcodeGF256Poly *)addOrSubtractWithComItextpdfTextPdfQrcodeGF256Poly:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
 
 - (ComItextpdfTextPdfQrcodeGF256Poly *)multiplyWithComItextpdfTextPdfQrcodeGF256Poly:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
 
@@ -40,17 +44,14 @@
 - (ComItextpdfTextPdfQrcodeGF256Poly *)multiplyByMonomialWithInt:(jint)degree
                                                          withInt:(jint)coefficient;
 
-- (IOSObjectArray *)divideWithComItextpdfTextPdfQrcodeGF256Poly:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
-
-- (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeGF256Poly *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeGF256Poly_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeGF256Poly)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256Poly, field_, ComItextpdfTextPdfQrcodeGF256 *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256Poly, coefficients_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeGF256Poly_initWithComItextpdfTextPdfQrcodeGF256_withIntArray_(ComItextpdfTextPdfQrcodeGF256Poly *self, ComItextpdfTextPdfQrcodeGF256 *field, IOSIntArray *coefficients);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeGF256Poly *new_ComItextpdfTextPdfQrcodeGF256Poly_initWithComItextpdfTextPdfQrcodeGF256_withIntArray_(ComItextpdfTextPdfQrcodeGF256 *field, IOSIntArray *coefficients) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeGF256Poly)
 
 #endif // _ComItextpdfTextPdfQrcodeGF256Poly_H_

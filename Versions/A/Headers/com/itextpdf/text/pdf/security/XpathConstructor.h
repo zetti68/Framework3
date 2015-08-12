@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfSecurityXpathConstructor_H_
 #define _ComItextpdfTextPdfSecurityXpathConstructor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextPdfSecurityXpathConstructor < NSObject, JavaObject >
 
@@ -14,6 +14,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityXpathConstructor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityXpathConstructor)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityXpathConstructor)
 
 #endif // _ComItextpdfTextPdfSecurityXpathConstructor_H_

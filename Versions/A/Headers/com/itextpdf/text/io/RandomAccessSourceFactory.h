@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextIoRandomAccessSourceFactory_H_
 #define _ComItextpdfTextIoRandomAccessSourceFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSLongArray;
 @class JavaIoInputStream;
@@ -14,46 +16,41 @@
 @class JavaNioChannelsFileChannel;
 @protocol ComItextpdfTextIoRandomAccessSource;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextIoRandomAccessSourceFactory : NSObject
 
-@interface ComItextpdfTextIoRandomAccessSourceFactory : NSObject {
- @public
-  jboolean forceRead_;
-  jboolean usePlainRandomAccess_;
-  jboolean exclusivelyLockFile_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-- (ComItextpdfTextIoRandomAccessSourceFactory *)setForceReadWithBoolean:(jboolean)forceRead;
+- (id<ComItextpdfTextIoRandomAccessSource>)createBestSourceWithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel;
 
-- (ComItextpdfTextIoRandomAccessSourceFactory *)setUsePlainRandomAccessWithBoolean:(jboolean)usePlainRandomAccess;
+- (id<ComItextpdfTextIoRandomAccessSource>)createBestSourceWithNSString:(NSString *)filename;
 
-- (ComItextpdfTextIoRandomAccessSourceFactory *)setExclusivelyLockFileWithBoolean:(jboolean)exclusivelyLockFile;
+- (id<ComItextpdfTextIoRandomAccessSource>)createRangedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
+                                                                                 withLongArray:(IOSLongArray *)ranges;
 
 - (id<ComItextpdfTextIoRandomAccessSource>)createSourceWithByteArray:(IOSByteArray *)data;
+
+- (id<ComItextpdfTextIoRandomAccessSource>)createSourceWithJavaIoInputStream:(JavaIoInputStream *)is;
 
 - (id<ComItextpdfTextIoRandomAccessSource>)createSourceWithJavaIoRandomAccessFile:(JavaIoRandomAccessFile *)raf;
 
 - (id<ComItextpdfTextIoRandomAccessSource>)createSourceWithJavaNetURL:(JavaNetURL *)url;
 
-- (id<ComItextpdfTextIoRandomAccessSource>)createSourceWithJavaIoInputStream:(JavaIoInputStream *)is;
+- (ComItextpdfTextIoRandomAccessSourceFactory *)setExclusivelyLockFileWithBoolean:(jboolean)exclusivelyLockFile;
 
-- (id<ComItextpdfTextIoRandomAccessSource>)createBestSourceWithNSString:(NSString *)filename;
+- (ComItextpdfTextIoRandomAccessSourceFactory *)setForceReadWithBoolean:(jboolean)forceRead;
 
-- (id<ComItextpdfTextIoRandomAccessSource>)createBestSourceWithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel;
-
-- (id<ComItextpdfTextIoRandomAccessSource>)createRangedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
-                                                                                 withLongArray:(IOSLongArray *)ranges;
-
-- (id<ComItextpdfTextIoRandomAccessSource>)createByReadingToMemoryWithNSString:(NSString *)filename;
-
-- (id<ComItextpdfTextIoRandomAccessSource>)createByReadingToMemoryWithJavaIoInputStream:(JavaIoInputStream *)is;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoRandomAccessSourceFactory *)other;
+- (ComItextpdfTextIoRandomAccessSourceFactory *)setUsePlainRandomAccessWithBoolean:(jboolean)usePlainRandomAccess;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoRandomAccessSourceFactory_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoRandomAccessSourceFactory)
+
+FOUNDATION_EXPORT void ComItextpdfTextIoRandomAccessSourceFactory_init(ComItextpdfTextIoRandomAccessSourceFactory *self);
+
+FOUNDATION_EXPORT ComItextpdfTextIoRandomAccessSourceFactory *new_ComItextpdfTextIoRandomAccessSourceFactory_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoRandomAccessSourceFactory)
 
 #endif // _ComItextpdfTextIoRandomAccessSourceFactory_H_

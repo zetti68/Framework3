@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfSimpleBookmark_H_
 #define _ComItextpdfTextPdfSimpleBookmark_H_
 
-@class ComItextpdfTextPdfIntHashtable;
-@class ComItextpdfTextPdfPdfArray;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
-@class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSIntArray;
@@ -19,64 +19,20 @@
 @class JavaIoOutputStream;
 @class JavaIoReader;
 @class JavaIoWriter;
-@class JavaUtilArrayList;
 @class JavaUtilHashMap;
-@class JavaUtilStack;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+@interface ComItextpdfTextPdfSimpleBookmark : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler >
 
-@interface ComItextpdfTextPdfSimpleBookmark : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler > {
- @public
-  JavaUtilArrayList *topList_;
-  JavaUtilStack *attr_;
-}
-
-- (instancetype)init;
-
-+ (id<JavaUtilList>)bookmarkDepthWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                             withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)outline
-                              withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)pages
-                                                     withBoolean:(jboolean)processCurrentOutlineOnly;
-
-+ (void)mapGotoBookmarkWithJavaUtilHashMap:(JavaUtilHashMap *)map
-           withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)dest
-        withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)pages;
-
-+ (NSString *)makeBookmarkParamWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)dest
-                           withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)pages;
-
-+ (jint)getNumberWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)indirect;
-
-+ (id<JavaUtilList>)getBookmarkWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-+ (id<JavaUtilList>)getBookmarkWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                           withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)outline
-                                                   withBoolean:(jboolean)includeRoot;
+#pragma mark Public
 
 + (void)eliminatePagesWithJavaUtilList:(id<JavaUtilList>)list
                           withIntArray:(IOSIntArray *)pageRange;
 
-+ (void)shiftPageNumbersWithJavaUtilList:(id<JavaUtilList>)list
-                                 withInt:(jint)pageShift
-                            withIntArray:(IOSIntArray *)pageRange;
+- (void)endDocument;
 
-+ (void)createOutlineActionWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)outline
-                                           withJavaUtilHashMap:(JavaUtilHashMap *)map
-                               withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                   withBoolean:(jboolean)namedAsNames;
-
-+ (IOSObjectArray *)iterateOutlinesWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                        withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)parent
-                                                  withJavaUtilList:(id<JavaUtilList>)kids
-                                                       withBoolean:(jboolean)namedAsNames;
-
-+ (void)exportToXMLNodeWithJavaUtilList:(id<JavaUtilList>)list
-                       withJavaIoWriter:(JavaIoWriter *)outArg
-                                withInt:(jint)indent
-                            withBoolean:(jboolean)onlyASCII;
+- (void)endElementWithNSString:(NSString *)tag;
 
 + (void)exportToXMLWithJavaUtilList:(id<JavaUtilList>)list
              withJavaIoOutputStream:(JavaIoOutputStream *)outArg
@@ -88,13 +44,29 @@
                        withNSString:(NSString *)encoding
                         withBoolean:(jboolean)onlyASCII;
 
++ (void)exportToXMLNodeWithJavaUtilList:(id<JavaUtilList>)list
+                       withJavaIoWriter:(JavaIoWriter *)outArg
+                                withInt:(jint)indent
+                            withBoolean:(jboolean)onlyASCII;
+
++ (id<JavaUtilList>)getBookmarkWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
++ (id<JavaUtilList>)getBookmarkWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                           withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)outline
+                                                   withBoolean:(jboolean)includeRoot;
+
 + (id<JavaUtilList>)importFromXMLWithJavaIoInputStream:(JavaIoInputStream *)inArg;
 
 + (id<JavaUtilList>)importFromXMLWithJavaIoReader:(JavaIoReader *)inArg;
 
-- (void)endDocument;
++ (IOSObjectArray *)iterateOutlinesWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                        withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)parent
+                                                  withJavaUtilList:(id<JavaUtilList>)kids
+                                                       withBoolean:(jboolean)namedAsNames;
 
-- (void)endElementWithNSString:(NSString *)tag;
++ (void)shiftPageNumbersWithJavaUtilList:(id<JavaUtilList>)list
+                                 withInt:(jint)pageShift
+                            withIntArray:(IOSIntArray *)pageRange;
 
 - (void)startDocument;
 
@@ -103,13 +75,39 @@
 
 - (void)textWithNSString:(NSString *)str;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSimpleBookmark *)other;
+#pragma mark Package-Private
+
++ (void)createOutlineActionWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)outline
+                                           withJavaUtilHashMap:(JavaUtilHashMap *)map
+                               withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                   withBoolean:(jboolean)namedAsNames;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSimpleBookmark_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSimpleBookmark)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSimpleBookmark, topList_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSimpleBookmark, attr_, JavaUtilStack *)
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfSimpleBookmark_getBookmarkWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfSimpleBookmark_getBookmarkWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfDictionary_withBoolean_(ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfDictionary *outline, jboolean includeRoot);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_eliminatePagesWithJavaUtilList_withIntArray_(id<JavaUtilList> list, IOSIntArray *pageRange);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_shiftPageNumbersWithJavaUtilList_withInt_withIntArray_(id<JavaUtilList> list, jint pageShift, IOSIntArray *pageRange);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_createOutlineActionWithComItextpdfTextPdfPdfDictionary_withJavaUtilHashMap_withComItextpdfTextPdfPdfWriter_withBoolean_(ComItextpdfTextPdfPdfDictionary *outline, JavaUtilHashMap *map, ComItextpdfTextPdfPdfWriter *writer, jboolean namedAsNames);
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfSimpleBookmark_iterateOutlinesWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPdfIndirectReference_withJavaUtilList_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPdfIndirectReference *parent, id<JavaUtilList> kids, jboolean namedAsNames);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_exportToXMLNodeWithJavaUtilList_withJavaIoWriter_withInt_withBoolean_(id<JavaUtilList> list, JavaIoWriter *outArg, jint indent, jboolean onlyASCII);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_exportToXMLWithJavaUtilList_withJavaIoOutputStream_withNSString_withBoolean_(id<JavaUtilList> list, JavaIoOutputStream *outArg, NSString *encoding, jboolean onlyASCII);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleBookmark_exportToXMLWithJavaUtilList_withJavaIoWriter_withNSString_withBoolean_(id<JavaUtilList> list, JavaIoWriter *wrt, NSString *encoding, jboolean onlyASCII);
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfSimpleBookmark_importFromXMLWithJavaIoInputStream_(JavaIoInputStream *inArg);
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfSimpleBookmark_importFromXMLWithJavaIoReader_(JavaIoReader *inArg);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSimpleBookmark)
 
 #endif // _ComItextpdfTextPdfSimpleBookmark_H_

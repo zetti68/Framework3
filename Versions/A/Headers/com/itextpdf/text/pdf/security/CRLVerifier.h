@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfSecurityCRLVerifier_H_
 #define _ComItextpdfTextPdfSecurityCRLVerifier_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/RootStoreVerifier.h"
+
 @class ComItextpdfTextPdfSecurityCertificateVerifier;
 @class JavaSecurityCertX509CRL;
 @class JavaSecurityCertX509Certificate;
@@ -13,16 +16,21 @@
 @protocol ComItextpdfTextLogLogger;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/RootStoreVerifier.h"
-
 @interface ComItextpdfTextPdfSecurityCRLVerifier : ComItextpdfTextPdfSecurityRootStoreVerifier {
  @public
   id<JavaUtilList> crls_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfSecurityCertificateVerifier:(ComItextpdfTextPdfSecurityCertificateVerifier *)verifier
                                                      withJavaUtilList:(id<JavaUtilList>)crls;
+
+- (JavaSecurityCertX509CRL *)getCRLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)signCert
+                                   withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert;
+
+- (jboolean)isSignatureValidWithJavaSecurityCertX509CRL:(JavaSecurityCertX509CRL *)crl
+                    withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)crlIssuer;
 
 - (id<JavaUtilList>)verifyWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)signCert
                           withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert
@@ -33,22 +41,19 @@
           withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert
                              withJavaUtilDate:(JavaUtilDate *)signDate;
 
-- (JavaSecurityCertX509CRL *)getCRLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)signCert
-                                   withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert;
-
-- (jboolean)isSignatureValidWithJavaSecurityCertX509CRL:(JavaSecurityCertX509CRL *)crl
-                    withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)crlIssuer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityCRLVerifier *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityCRLVerifier_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityCRLVerifier)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityCRLVerifier, crls_, id<JavaUtilList>)
 
 FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextPdfSecurityCRLVerifier_LOGGER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityCRLVerifier, LOGGER_, id<ComItextpdfTextLogLogger>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCRLVerifier_initWithComItextpdfTextPdfSecurityCertificateVerifier_withJavaUtilList_(ComItextpdfTextPdfSecurityCRLVerifier *self, ComItextpdfTextPdfSecurityCertificateVerifier *verifier, id<JavaUtilList> crls);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCRLVerifier *new_ComItextpdfTextPdfSecurityCRLVerifier_initWithComItextpdfTextPdfSecurityCertificateVerifier_withJavaUtilList_(ComItextpdfTextPdfSecurityCertificateVerifier *verifier, id<JavaUtilList> crls) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityCRLVerifier)
 
 #endif // _ComItextpdfTextPdfSecurityCRLVerifier_H_

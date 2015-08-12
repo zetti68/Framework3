@@ -6,15 +6,14 @@
 #ifndef _ComItextpdfTextImgCCITT_H_
 #define _ComItextpdfTextImgCCITT_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Image.h"
 
-@interface ComItextpdfTextImgCCITT : ComItextpdfTextImage {
-}
+@class IOSByteArray;
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+@interface ComItextpdfTextImgCCITT : ComItextpdfTextImage
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)width
                     withInt:(jint)height
@@ -23,8 +22,22 @@
                     withInt:(jint)parameters
               withByteArray:(IOSByteArray *)data;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImgCCITT_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImgCCITT)
+
+FOUNDATION_EXPORT void ComItextpdfTextImgCCITT_initWithComItextpdfTextImage_(ComItextpdfTextImgCCITT *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImgCCITT *new_ComItextpdfTextImgCCITT_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgCCITT_initWithInt_withInt_withBoolean_withInt_withInt_withByteArray_(ComItextpdfTextImgCCITT *self, jint width, jint height, jboolean reverseBits, jint typeCCITT, jint parameters, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextImgCCITT *new_ComItextpdfTextImgCCITT_initWithInt_withInt_withBoolean_withInt_withInt_withByteArray_(jint width, jint height, jboolean reverseBits, jint typeCCITT, jint parameters, IOSByteArray *data) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImgCCITT)
 
 #endif // _ComItextpdfTextImgCCITT_H_

@@ -6,16 +6,14 @@
 #ifndef _ComItextpdfTextPdfCodecTIFFDirectory_H_
 #define _ComItextpdfTextPdfCodecTIFFDirectory_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/Serializable.h"
+
 @class ComItextpdfTextPdfCodecTIFFField;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSIntArray;
 @class IOSObjectArray;
 @class JavaUtilHashtable;
-
-#import "JreEmulation.h"
-#include "java/io/Serializable.h"
-
-#define ComItextpdfTextPdfCodecTIFFDirectory_serialVersionUID -168636766193675380LL
 
 @interface ComItextpdfTextPdfCodecTIFFDirectory : NSObject < JavaIoSerializable > {
  @public
@@ -27,9 +25,7 @@
   jlong nextIFDOffset_;
 }
 
-- (instancetype)init;
-
-+ (jboolean)isValidEndianTagWithInt:(jint)endian;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream
                                                           withInt:(jint)directory;
@@ -38,79 +34,69 @@
                                                          withLong:(jlong)ifd_offset
                                                           withInt:(jint)directory;
 
-- (void)initialize__WithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream OBJC_METHOD_FAMILY_NONE;
-
-- (jint)getNumEntries;
-
 - (ComItextpdfTextPdfCodecTIFFField *)getFieldWithInt:(jint)tag;
 
-- (jboolean)isTagPresentWithInt:(jint)tag;
-
-- (IOSIntArray *)getTags;
-
-- (IOSObjectArray *)getFields;
+- (jbyte)getFieldAsByteWithInt:(jint)tag;
 
 - (jbyte)getFieldAsByteWithInt:(jint)tag
                        withInt:(jint)index;
 
-- (jbyte)getFieldAsByteWithInt:(jint)tag;
-
-- (jlong)getFieldAsLongWithInt:(jint)tag
-                       withInt:(jint)index;
-
-- (jlong)getFieldAsLongWithInt:(jint)tag;
-
-- (jfloat)getFieldAsFloatWithInt:(jint)tag
-                         withInt:(jint)index;
-
-- (jfloat)getFieldAsFloatWithInt:(jint)tag;
+- (jdouble)getFieldAsDoubleWithInt:(jint)tag;
 
 - (jdouble)getFieldAsDoubleWithInt:(jint)tag
                            withInt:(jint)index;
 
-- (jdouble)getFieldAsDoubleWithInt:(jint)tag;
+- (jfloat)getFieldAsFloatWithInt:(jint)tag;
 
-- (jshort)readShortWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
+- (jfloat)getFieldAsFloatWithInt:(jint)tag
+                         withInt:(jint)index;
 
-- (jint)readUnsignedShortWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
+- (jlong)getFieldAsLongWithInt:(jint)tag;
 
-- (jint)readIntWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
+- (jlong)getFieldAsLongWithInt:(jint)tag
+                       withInt:(jint)index;
 
-- (jlong)readUnsignedIntWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
-
-- (jlong)readLongWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
-
-- (jfloat)readFloatWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
-
-- (jdouble)readDoubleWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
-
-+ (jint)readUnsignedShortWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream
-                                                           withBoolean:(jboolean)isBigEndian;
-
-+ (jlong)readUnsignedIntWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream
-                                                          withBoolean:(jboolean)isBigEndian;
-
-+ (jint)getNumDirectoriesWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
-
-- (jboolean)isBigEndian;
+- (IOSObjectArray *)getFields;
 
 - (jlong)getIFDOffset;
 
 - (jlong)getNextIFDOffset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecTIFFDirectory *)other;
++ (jint)getNumDirectoriesWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)stream;
+
+- (jint)getNumEntries;
+
+- (IOSIntArray *)getTags;
+
+- (jboolean)isBigEndian;
+
+- (jboolean)isTagPresentWithInt:(jint)tag;
+
+#pragma mark Package-Private
+
+- (instancetype)init;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecTIFFDirectory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecTIFFDirectory)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFDirectory, fields_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFDirectory, fieldIndex_, JavaUtilHashtable *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFDirectory, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFDirectory_init(ComItextpdfTextPdfCodecTIFFDirectory *self);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfCodecTIFFDirectory_sizeOfType_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFDirectory, sizeOfType_, IOSIntArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFDirectory *new_ComItextpdfTextPdfCodecTIFFDirectory_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFDirectory_initWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_(ComItextpdfTextPdfCodecTIFFDirectory *self, ComItextpdfTextPdfRandomAccessFileOrArray *stream, jint directory);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFDirectory *new_ComItextpdfTextPdfCodecTIFFDirectory_initWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *stream, jint directory) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFDirectory_initWithComItextpdfTextPdfRandomAccessFileOrArray_withLong_withInt_(ComItextpdfTextPdfCodecTIFFDirectory *self, ComItextpdfTextPdfRandomAccessFileOrArray *stream, jlong ifd_offset, jint directory);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFDirectory *new_ComItextpdfTextPdfCodecTIFFDirectory_initWithComItextpdfTextPdfRandomAccessFileOrArray_withLong_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *stream, jlong ifd_offset, jint directory) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecTIFFDirectory_getNumDirectoriesWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *stream);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecTIFFDirectory)
 
 #endif // _ComItextpdfTextPdfCodecTIFFDirectory_H_

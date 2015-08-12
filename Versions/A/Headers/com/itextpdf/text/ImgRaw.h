@@ -6,15 +6,14 @@
 #ifndef _ComItextpdfTextImgRaw_H_
 #define _ComItextpdfTextImgRaw_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Image.h"
 
-@interface ComItextpdfTextImgRaw : ComItextpdfTextImage {
-}
+@class IOSByteArray;
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+@interface ComItextpdfTextImgRaw : ComItextpdfTextImage
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)width
                     withInt:(jint)height
@@ -22,8 +21,22 @@
                     withInt:(jint)bpc
               withByteArray:(IOSByteArray *)data;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImgRaw_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImgRaw)
+
+FOUNDATION_EXPORT void ComItextpdfTextImgRaw_initWithComItextpdfTextImage_(ComItextpdfTextImgRaw *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImgRaw *new_ComItextpdfTextImgRaw_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgRaw_initWithInt_withInt_withInt_withInt_withByteArray_(ComItextpdfTextImgRaw *self, jint width, jint height, jint components, jint bpc, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextImgRaw *new_ComItextpdfTextImgRaw_initWithInt_withInt_withInt_withInt_withByteArray_(jint width, jint height, jint components, jint bpc, IOSByteArray *data) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImgRaw)
 
 #endif // _ComItextpdfTextImgRaw_H_

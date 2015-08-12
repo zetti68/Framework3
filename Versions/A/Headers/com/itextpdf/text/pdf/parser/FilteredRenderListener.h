@@ -6,23 +6,19 @@
 #ifndef _ComItextpdfTextPdfParserFilteredRenderListener_H_
 #define _ComItextpdfTextPdfParserFilteredRenderListener_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+@interface ComItextpdfTextPdfParserFilteredRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener >
 
-@interface ComItextpdfTextPdfParserFilteredRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener > {
- @public
-  id<ComItextpdfTextPdfParserRenderListener> delegate_;
-  IOSObjectArray *filters_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfParserRenderListener:(id<ComItextpdfTextPdfParserRenderListener>)delegate
                  withComItextpdfTextPdfParserRenderFilterArray:(IOSObjectArray *)filters;
-
-- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 - (void)beginTextBlock;
 
@@ -30,13 +26,16 @@
 
 - (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserFilteredRenderListener *)other;
+- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserFilteredRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserFilteredRenderListener)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserFilteredRenderListener, delegate_, id<ComItextpdfTextPdfParserRenderListener>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserFilteredRenderListener, filters_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserFilteredRenderListener_initWithComItextpdfTextPdfParserRenderListener_withComItextpdfTextPdfParserRenderFilterArray_(ComItextpdfTextPdfParserFilteredRenderListener *self, id<ComItextpdfTextPdfParserRenderListener> delegate, IOSObjectArray *filters);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserFilteredRenderListener *new_ComItextpdfTextPdfParserFilteredRenderListener_initWithComItextpdfTextPdfParserRenderListener_withComItextpdfTextPdfParserRenderFilterArray_(id<ComItextpdfTextPdfParserRenderListener> delegate, IOSObjectArray *filters) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserFilteredRenderListener)
 
 #endif // _ComItextpdfTextPdfParserFilteredRenderListener_H_

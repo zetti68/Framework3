@@ -6,69 +6,42 @@
 #ifndef _ComItextpdfTextPdfParserInlineImageUtils_H_
 #define _ComItextpdfTextPdfParserInlineImageUtils_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/IOException.h"
+
 @class ComItextpdfTextPdfParserInlineImageInfo;
 @class ComItextpdfTextPdfPdfContentParser;
 @class ComItextpdfTextPdfPdfDictionary;
-@class ComItextpdfTextPdfPdfName;
-@class ComItextpdfTextPdfPdfObject;
-@class IOSByteArray;
-@protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "java/io/IOException.h"
+@interface ComItextpdfTextPdfParserInlineImageUtils : NSObject
 
-@interface ComItextpdfTextPdfParserInlineImageUtils : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (ComItextpdfTextPdfParserInlineImageInfo *)parseInlineImageWithComItextpdfTextPdfPdfContentParser:(ComItextpdfTextPdfPdfContentParser *)ps
                                                                 withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
 
-+ (ComItextpdfTextPdfPdfDictionary *)parseInlineImageDictionaryWithComItextpdfTextPdfPdfContentParser:(ComItextpdfTextPdfPdfContentParser *)ps;
-
-+ (ComItextpdfTextPdfPdfObject *)getAlternateValueWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                                                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-+ (jint)getComponentsPerPixelWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)colorSpaceName
-                       withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
-
-+ (jint)computeBytesPerRowWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)imageDictionary
-                          withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
-
-+ (IOSByteArray *)parseUnfilteredSamplesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)imageDictionary
-                                        withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic
-                                     withComItextpdfTextPdfPdfContentParser:(ComItextpdfTextPdfPdfContentParser *)ps;
-
-+ (IOSByteArray *)parseInlineImageSamplesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)imageDictionary
-                                         withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic
-                                      withComItextpdfTextPdfPdfContentParser:(ComItextpdfTextPdfPdfContentParser *)ps;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfParserInlineImageUtils_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfParserInlineImageUtils)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfParserInlineImageUtils_inlineImageEntryAbbreviationMap_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserInlineImageUtils, inlineImageEntryAbbreviationMap_, id<JavaUtilMap>)
+FOUNDATION_EXPORT ComItextpdfTextPdfParserInlineImageInfo *ComItextpdfTextPdfParserInlineImageUtils_parseInlineImageWithComItextpdfTextPdfPdfContentParser_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfContentParser *ps, ComItextpdfTextPdfPdfDictionary *colorSpaceDic);
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfParserInlineImageUtils_inlineImageColorSpaceAbbreviationMap_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserInlineImageUtils, inlineImageColorSpaceAbbreviationMap_, id<JavaUtilMap>)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserInlineImageUtils)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfParserInlineImageUtils_inlineImageFilterAbbreviationMap_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserInlineImageUtils, inlineImageFilterAbbreviationMap_, id<JavaUtilMap>)
+@interface ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException : JavaIoIOException
 
-#define ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException_serialVersionUID 233760879000268548LL
-
-@interface ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException : JavaIoIOException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException_initWithNSString_(ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException *new_ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserInlineImageUtils_InlineImageParseException)
 
 #endif // _ComItextpdfTextPdfParserInlineImageUtils_H_

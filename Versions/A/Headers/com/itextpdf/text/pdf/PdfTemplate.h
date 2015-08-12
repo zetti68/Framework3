@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfTemplate_H_
 #define _ComItextpdfTextPdfPdfTemplate_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfContentByte.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextPdfPageResources;
 @class ComItextpdfTextPdfPdfArray;
@@ -20,13 +24,9 @@
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextPdfPdfOCG;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfContentByte.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
+#define ComItextpdfTextPdfPdfTemplate_TYPE_TEMPLATE 1
 #define ComItextpdfTextPdfPdfTemplate_TYPE_IMPORTED 2
 #define ComItextpdfTextPdfPdfTemplate_TYPE_PATTERN 3
-#define ComItextpdfTextPdfPdfTemplate_TYPE_TEMPLATE 1
 
 @interface ComItextpdfTextPdfPdfTemplate : ComItextpdfTextPdfPdfContentByte < ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
@@ -39,42 +39,74 @@
   id<ComItextpdfTextPdfPdfOCG> layer_;
   ComItextpdfTextPdfPdfIndirectReference *pageReference_;
   jboolean contentTagged_;
-  ComItextpdfTextPdfPdfDictionary *additional_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
-  ComItextpdfTextAccessibleElementId *id__;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
+- (void)beginVariableText;
 
 + (ComItextpdfTextPdfPdfTemplate *)createTemplateWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                        withFloat:(jfloat)width
                                                                        withFloat:(jfloat)height;
 
-+ (ComItextpdfTextPdfPdfTemplate *)createTemplateWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                       withFloat:(jfloat)width
-                                                                       withFloat:(jfloat)height
-                                                   withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
+- (void)endVariableText;
 
-- (jboolean)isTagged;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (void)setWidthWithFloat:(jfloat)width;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
-- (void)setHeightWithFloat:(jfloat)height;
-
-- (jfloat)getWidth;
-
-- (jfloat)getHeight;
+- (ComItextpdfTextPdfPdfDictionary *)getAdditional;
 
 - (ComItextpdfTextRectangle *)getBoundingBox;
 
-- (void)setBoundingBoxWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)bBox;
+- (ComItextpdfTextPdfPdfIndirectReference *)getCurrentPage;
 
-- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+
+- (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)compressionLevel;
+
+- (ComItextpdfTextPdfPdfTransparencyGroup *)getGroup;
+
+- (jfloat)getHeight;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
 
 - (id<ComItextpdfTextPdfPdfOCG>)getLayer;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getPageReference;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jint)getType;
+
+- (jfloat)getWidth;
+
+- (jboolean)isContentTagged;
+
+- (jboolean)isInline;
+
+- (jboolean)isTagged;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)setAdditionalWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)additional;
+
+- (void)setBoundingBoxWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)bBox;
+
+- (void)setContentTaggedWithBoolean:(jboolean)contentTagged;
+
+- (void)setGroupWithComItextpdfTextPdfPdfTransparencyGroup:(ComItextpdfTextPdfPdfTransparencyGroup *)group;
+
+- (void)setHeightWithFloat:(jfloat)height;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
 
 - (void)setMatrixWithFloat:(jfloat)a
                  withFloat:(jfloat)b
@@ -83,64 +115,34 @@
                  withFloat:(jfloat)e
                  withFloat:(jfloat)f;
 
-- (ComItextpdfTextPdfPdfArray *)getMatrix;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
-
-- (void)beginVariableText;
-
-- (void)endVariableText;
-
-- (ComItextpdfTextPdfPdfObject *)getResources;
-
-- (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)compressionLevel;
-
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
-
-- (jint)getType;
-
-- (ComItextpdfTextPdfPageResources *)getPageResources;
-
-- (ComItextpdfTextPdfPdfTransparencyGroup *)getGroup;
-
-- (void)setGroupWithComItextpdfTextPdfPdfTransparencyGroup:(ComItextpdfTextPdfPdfTransparencyGroup *)group;
-
-- (ComItextpdfTextPdfPdfDictionary *)getAdditional;
-
-- (void)setAdditionalWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)additional;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getCurrentPage;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getPageReference;
-
 - (void)setPageReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)pageReference;
-
-- (jboolean)isContentTagged;
-
-- (void)setContentTaggedWithBoolean:(jboolean)contentTagged;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
 
 - (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (void)setWidthWithFloat:(jfloat)width;
 
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+#pragma mark Protected
 
-- (jboolean)isInline;
+- (instancetype)init;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfTemplate *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
+
++ (ComItextpdfTextPdfPdfTemplate *)createTemplateWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                       withFloat:(jfloat)width
+                                                                       withFloat:(jfloat)height
+                                                   withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
+
+- (ComItextpdfTextPdfPdfArray *)getMatrix;
+
+- (ComItextpdfTextPdfPageResources *)getPageResources;
+
+- (ComItextpdfTextPdfPdfObject *)getResources;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfTemplate_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfTemplate)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, thisReference_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, pageResources_, ComItextpdfTextPdfPageResources *)
@@ -149,15 +151,27 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, matrix_, ComItextpdfTextPdfPd
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, group_, ComItextpdfTextPdfPdfTransparencyGroup *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, layer_, id<ComItextpdfTextPdfPdfOCG>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, pageReference_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, additional_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, accessibleAttributes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTemplate, id__, ComItextpdfTextAccessibleElementId *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTemplate, TYPE_TEMPLATE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTemplate, TYPE_IMPORTED, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTemplate, TYPE_PATTERN, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTemplate_init(ComItextpdfTextPdfPdfTemplate *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTemplate *new_ComItextpdfTextPdfPdfTemplate_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTemplate_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfTemplate *self, ComItextpdfTextPdfPdfWriter *wr);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTemplate *new_ComItextpdfTextPdfPdfTemplate_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *wr) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTemplate *ComItextpdfTextPdfPdfTemplate_createTemplateWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_(ComItextpdfTextPdfPdfWriter *writer, jfloat width, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTemplate *ComItextpdfTextPdfPdfTemplate_createTemplateWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfWriter *writer, jfloat width, jfloat height, ComItextpdfTextPdfPdfName *forcedName);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfTemplate)
 
 #endif // _ComItextpdfTextPdfPdfTemplate_H_

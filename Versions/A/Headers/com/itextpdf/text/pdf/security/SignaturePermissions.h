@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfSecuritySignaturePermissions_H_
 #define _ComItextpdfTextPdfSecuritySignaturePermissions_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfSecuritySignaturePermissions : NSObject {
  @public
@@ -21,30 +21,38 @@
   id<JavaUtilList> fieldLocks_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)sigDict
      withComItextpdfTextPdfSecuritySignaturePermissions:(ComItextpdfTextPdfSecuritySignaturePermissions *)previous;
+
+- (id<JavaUtilList>)getFieldLocks;
+
+- (jboolean)isAnnotationsAllowed;
 
 - (jboolean)isCertification;
 
 - (jboolean)isFillInAllowed;
 
-- (jboolean)isAnnotationsAllowed;
-
-- (id<JavaUtilList>)getFieldLocks;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecuritySignaturePermissions *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecuritySignaturePermissions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecuritySignaturePermissions)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecuritySignaturePermissions, fieldLocks_, id<JavaUtilList>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecuritySignaturePermissions_initWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfSecuritySignaturePermissions_(ComItextpdfTextPdfSecuritySignaturePermissions *self, ComItextpdfTextPdfPdfDictionary *sigDict, ComItextpdfTextPdfSecuritySignaturePermissions *previous);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecuritySignaturePermissions *new_ComItextpdfTextPdfSecuritySignaturePermissions_initWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfSecuritySignaturePermissions_(ComItextpdfTextPdfPdfDictionary *sigDict, ComItextpdfTextPdfSecuritySignaturePermissions *previous) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecuritySignaturePermissions)
 
 @interface ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock : NSObject {
  @public
   ComItextpdfTextPdfPdfName *action_;
   ComItextpdfTextPdfPdfArray *fields_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfSecuritySignaturePermissions:(ComItextpdfTextPdfSecuritySignaturePermissions *)outer$
                                          withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)action
@@ -56,13 +64,17 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecuritySignaturePermissions, fieldLocks_,
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock, action_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock, fields_, ComItextpdfTextPdfPdfArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock_initWithComItextpdfTextPdfSecuritySignaturePermissions_withComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfArray_(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock *self, ComItextpdfTextPdfSecuritySignaturePermissions *outer$, ComItextpdfTextPdfPdfName *action, ComItextpdfTextPdfPdfArray *fields);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock *new_ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock_initWithComItextpdfTextPdfSecuritySignaturePermissions_withComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfArray_(ComItextpdfTextPdfSecuritySignaturePermissions *outer$, ComItextpdfTextPdfPdfName *action, ComItextpdfTextPdfPdfArray *fields) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecuritySignaturePermissions_FieldLock)
 
 #endif // _ComItextpdfTextPdfSecuritySignaturePermissions_H_

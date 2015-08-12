@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfLZWDecoder_H_
 #define _ComItextpdfTextPdfLZWDecoder_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSObjectArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfLZWDecoder : NSObject {
  @public
@@ -25,34 +25,40 @@
   IOSIntArray *andTable_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
+
+- (void)addStringToTableWithByteArray:(IOSByteArray *)string;
+
+- (void)addStringToTableWithByteArray:(IOSByteArray *)oldString
+                             withByte:(jbyte)newString;
+
+- (IOSByteArray *)composeStringWithByteArray:(IOSByteArray *)oldString
+                                    withByte:(jbyte)newString;
 
 - (void)decodeWithByteArray:(IOSByteArray *)data
      withJavaIoOutputStream:(JavaIoOutputStream *)uncompData;
+
+- (jint)getNextCode;
 
 - (void)initializeStringTable OBJC_METHOD_FAMILY_NONE;
 
 - (void)writeStringWithByteArray:(IOSByteArray *)string;
 
-- (void)addStringToTableWithByteArray:(IOSByteArray *)oldString
-                             withByte:(jbyte)newString;
-
-- (void)addStringToTableWithByteArray:(IOSByteArray *)string;
-
-- (IOSByteArray *)composeStringWithByteArray:(IOSByteArray *)oldString
-                                    withByte:(jbyte)newString;
-
-- (jint)getNextCode;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLZWDecoder *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLZWDecoder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLZWDecoder)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLZWDecoder, stringTable_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLZWDecoder, data_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLZWDecoder, uncompData_, JavaIoOutputStream *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLZWDecoder, andTable_, IOSIntArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLZWDecoder_init(ComItextpdfTextPdfLZWDecoder *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLZWDecoder *new_ComItextpdfTextPdfLZWDecoder_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLZWDecoder)
 
 #endif // _ComItextpdfTextPdfLZWDecoder_H_

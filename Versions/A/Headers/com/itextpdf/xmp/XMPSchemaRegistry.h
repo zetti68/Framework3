@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfXmpXMPSchemaRegistry_H_
 #define _ComItextpdfXmpXMPSchemaRegistry_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
 @protocol ComItextpdfXmpPropertiesXMPAliasInfo;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfXmpXMPSchemaRegistry < NSObject, JavaObject >
 
@@ -38,6 +38,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPSchemaRegistry_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPSchemaRegistry)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPSchemaRegistry)
 
 #endif // _ComItextpdfXmpXMPSchemaRegistry_H_

@@ -6,28 +6,24 @@
 #ifndef _ComItextpdfTextPdfPdfPRow_H_
 #define _ComItextpdfTextPdfPdfPRow_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextPdfColumnText;
-@class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfPCell;
 @class ComItextpdfTextPdfPdfPTable;
 @class IOSFloatArray;
-@class IOSIntArray;
 @class IOSObjectArray;
 @class JavaUtilHashMap;
-@protocol ComItextpdfTextLogLogger;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
 
 #define ComItextpdfTextPdfPdfPRow_BOTTOM_LIMIT -1.07374182E9f
 #define ComItextpdfTextPdfPdfPRow_RIGHT_LIMIT 20000.0f
 
 @interface ComItextpdfTextPdfPdfPRow : NSObject < ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
-  id<ComItextpdfTextLogLogger> LOGGER_;
   jboolean mayNotBreak_;
   IOSObjectArray *cells_;
   IOSFloatArray *widths_;
@@ -35,11 +31,12 @@
   jfloat maxHeight_;
   jboolean calculated_;
   jboolean adjusted_;
-  IOSIntArray *canvasesPos_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
   ComItextpdfTextAccessibleElementId *id__;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfPCellArray:(IOSObjectArray *)cells;
 
@@ -48,24 +45,88 @@
 
 - (instancetype)initWithComItextpdfTextPdfPdfPRow:(ComItextpdfTextPdfPdfPRow *)row;
 
-- (jboolean)setWidthsWithFloatArray:(IOSFloatArray *)widths;
+- (void)copyRowContentWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
+                                              withInt:(jint)idx OBJC_METHOD_FAMILY_NONE;
 
-- (void)initExtraHeights OBJC_METHOD_FAMILY_NONE;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+
+- (JavaUtilHashMap *)getAccessibleAttributes;
+
+- (IOSObjectArray *)getCells;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (jfloat)getMaxHeights;
+
+- (jfloat)getMaxRowHeightsWithoutCalculating;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jboolean)hasRowspan;
+
+- (jboolean)isAdjusted;
+
+- (jboolean)isCalculated;
+
+- (jboolean)isInline;
+
+- (jboolean)isMayNotBreak;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)setAdjustedWithBoolean:(jboolean)adjusted;
+
++ (jfloat)setColumnWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)ct
+                                          withFloat:(jfloat)left
+                                          withFloat:(jfloat)bottom
+                                          withFloat:(jfloat)right
+                                          withFloat:(jfloat)top;
 
 - (void)setExtraHeightWithInt:(jint)cell
                     withFloat:(jfloat)height;
 
-- (void)calculateHeights;
+- (void)setFinalMaxHeightsWithFloat:(jfloat)maxHeight;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setMaxHeightsWithFloat:(jfloat)maxHeight;
 
 - (void)setMayNotBreakWithBoolean:(jboolean)mayNotBreak;
 
-- (jboolean)isMayNotBreak;
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (jboolean)setWidthsWithFloatArray:(IOSFloatArray *)widths;
+
+- (ComItextpdfTextPdfPdfPRow *)splitRowWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
+                                                               withInt:(jint)rowIndex
+                                                             withFloat:(jfloat)new_height;
+
+- (void)splitRowspansWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)original
+                                             withInt:(jint)originalIdx
+                     withComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)part
+                                             withInt:(jint)partIdx;
 
 - (void)writeBorderAndBackgroundWithFloat:(jfloat)xPos
                                 withFloat:(jfloat)yPos
                                 withFloat:(jfloat)currentMaxHeight
            withComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell
 withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
+
+- (void)writeCellsWithInt:(jint)colStart
+                  withInt:(jint)colEnd
+                withFloat:(jfloat)xPos
+                withFloat:(jfloat)yPos
+withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases
+              withBoolean:(jboolean)reusable;
+
+#pragma mark Protected
+
+- (void)calculateHeights;
+
+- (void)initExtraHeights OBJC_METHOD_FAMILY_NONE;
+
+- (void)restoreCanvasesWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
 - (void)saveAndRotateCanvasesWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases
                                                              withFloat:(jfloat)a
@@ -75,84 +136,18 @@ withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
                                                              withFloat:(jfloat)e
                                                              withFloat:(jfloat)f;
 
-- (void)restoreCanvasesWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
-
-+ (jfloat)setColumnWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)ct
-                                          withFloat:(jfloat)left
-                                          withFloat:(jfloat)bottom
-                                          withFloat:(jfloat)right
-                                          withFloat:(jfloat)top;
-
-- (void)writeCellsWithInt:(jint)colStart
-                  withInt:(jint)colEnd
-                withFloat:(jfloat)xPos
-                withFloat:(jfloat)yPos
-withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases
-              withBoolean:(jboolean)reusable;
-
-- (jboolean)isCalculated;
-
-- (jfloat)getMaxHeights;
-
-- (void)setMaxHeightsWithFloat:(jfloat)maxHeight;
+#pragma mark Package-Private
 
 - (IOSFloatArray *)getEventWidthWithFloat:(jfloat)xPos
                            withFloatArray:(IOSFloatArray *)absoluteWidths;
 
-- (void)copyRowContentWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
-                                              withInt:(jint)idx OBJC_METHOD_FAMILY_NONE;
-
-- (ComItextpdfTextPdfPdfPRow *)splitRowWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
-                                                               withInt:(jint)rowIndex
-                                                             withFloat:(jfloat)new_height;
-
-- (jfloat)getMaxRowHeightsWithoutCalculating;
-
-- (void)setFinalMaxHeightsWithFloat:(jfloat)maxHeight;
-
-- (void)splitRowspansWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)original
-                                             withInt:(jint)originalIdx
-                     withComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)part
-                                             withInt:(jint)partIdx;
-
-- (IOSObjectArray *)getCells;
-
-- (jboolean)hasRowspan;
-
-- (jboolean)isAdjusted;
-
-- (void)setAdjustedWithBoolean:(jboolean)adjusted;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
-
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
-
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-+ (jboolean)isTaggedWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
-
-- (jboolean)isInline;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPRow *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPRow_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPRow)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, LOGGER_, id<ComItextpdfTextLogLogger>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, cells_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, widths_, IOSFloatArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, extraHeights_, IOSFloatArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, canvasesPos_, IOSIntArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, accessibleAttributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, id__, ComItextpdfTextAccessibleElementId *)
@@ -160,5 +155,21 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPRow, id__, ComItextpdfTextAccessibleEl
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPRow, BOTTOM_LIMIT, jfloat)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPRow, RIGHT_LIMIT, jfloat)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPCellArray_(ComItextpdfTextPdfPdfPRow *self, IOSObjectArray *cells);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPRow *new_ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPCellArray_(IOSObjectArray *cells) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPCellArray_withComItextpdfTextPdfPdfPRow_(ComItextpdfTextPdfPdfPRow *self, IOSObjectArray *cells, ComItextpdfTextPdfPdfPRow *source);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPRow *new_ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPCellArray_withComItextpdfTextPdfPdfPRow_(IOSObjectArray *cells, ComItextpdfTextPdfPdfPRow *source) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPRow_(ComItextpdfTextPdfPdfPRow *self, ComItextpdfTextPdfPdfPRow *row);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPRow *new_ComItextpdfTextPdfPdfPRow_initWithComItextpdfTextPdfPdfPRow_(ComItextpdfTextPdfPdfPRow *row) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfPdfPRow_setColumnWithComItextpdfTextPdfColumnText_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfColumnText *ct, jfloat left, jfloat bottom, jfloat right, jfloat top);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPRow)
 
 #endif // _ComItextpdfTextPdfPdfPRow_H_

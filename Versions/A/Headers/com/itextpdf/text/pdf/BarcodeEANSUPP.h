@@ -6,18 +6,20 @@
 #ifndef _ComItextpdfTextPdfBarcodeEANSUPP_H_
 #define _ComItextpdfTextPdfBarcodeEANSUPP_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
 
 @interface ComItextpdfTextPdfBarcodeEANSUPP : ComItextpdfTextPdfBarcode {
  @public
   ComItextpdfTextPdfBarcode *ean_;
   ComItextpdfTextPdfBarcode *supp_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfBarcode:(ComItextpdfTextPdfBarcode *)ean
                     withComItextpdfTextPdfBarcode:(ComItextpdfTextPdfBarcode *)supp;
@@ -28,13 +30,17 @@
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBarcodeEANSUPP *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfBarcodeEANSUPP_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfBarcodeEANSUPP)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcodeEANSUPP, ean_, ComItextpdfTextPdfBarcode *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcodeEANSUPP, supp_, ComItextpdfTextPdfBarcode *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeEANSUPP_initWithComItextpdfTextPdfBarcode_withComItextpdfTextPdfBarcode_(ComItextpdfTextPdfBarcodeEANSUPP *self, ComItextpdfTextPdfBarcode *ean, ComItextpdfTextPdfBarcode *supp);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeEANSUPP *new_ComItextpdfTextPdfBarcodeEANSUPP_initWithComItextpdfTextPdfBarcode_withComItextpdfTextPdfBarcode_(ComItextpdfTextPdfBarcode *ean, ComItextpdfTextPdfBarcode *supp) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeEANSUPP)
 
 #endif // _ComItextpdfTextPdfBarcodeEANSUPP_H_

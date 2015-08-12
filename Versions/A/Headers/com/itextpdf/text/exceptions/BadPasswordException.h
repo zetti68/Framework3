@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextExceptionsBadPasswordException_H_
 #define _ComItextpdfTextExceptionsBadPasswordException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/IOException.h"
 
-#define ComItextpdfTextExceptionsBadPasswordException_serialVersionUID -4333706268155063964LL
+@interface ComItextpdfTextExceptionsBadPasswordException : JavaIoIOException
 
-@interface ComItextpdfTextExceptionsBadPasswordException : JavaIoIOException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionsBadPasswordException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionsBadPasswordException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionsBadPasswordException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsBadPasswordException_initWithNSString_(ComItextpdfTextExceptionsBadPasswordException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextExceptionsBadPasswordException *new_ComItextpdfTextExceptionsBadPasswordException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionsBadPasswordException)
 
 #endif // _ComItextpdfTextExceptionsBadPasswordException_H_

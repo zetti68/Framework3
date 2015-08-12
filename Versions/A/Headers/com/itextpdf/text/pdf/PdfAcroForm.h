@@ -6,8 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfAcroForm_H_
 #define _ComItextpdfTextPdfPdfAcroForm_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfBaseFont;
-@class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfFormField;
 @class ComItextpdfTextPdfPdfIndirectReference;
@@ -16,33 +18,52 @@
 @class JavaIoOutputStream;
 @class JavaUtilHashSet;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
+@interface ComItextpdfTextPdfPdfAcroForm : ComItextpdfTextPdfPdfDictionary
 
-@interface ComItextpdfTextPdfPdfAcroForm : ComItextpdfTextPdfPdfDictionary {
- @public
-  ComItextpdfTextPdfPdfWriter *writer_;
-  JavaUtilHashSet *fieldTemplates_;
-  ComItextpdfTextPdfPdfArray *documentFields_;
-  ComItextpdfTextPdfPdfArray *calculationOrder_;
-  jint sigFlags_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (void)setNeedAppearancesWithBoolean:(jboolean)value;
+- (void)addCalculationOrderWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)formField;
 
-- (void)addFieldTemplatesWithJavaUtilHashSet:(JavaUtilHashSet *)ft;
+- (ComItextpdfTextPdfPdfFormField *)addCheckBoxWithNSString:(NSString *)name
+                                               withNSString:(NSString *)value
+                                                withBoolean:(jboolean)status
+                                                  withFloat:(jfloat)llx
+                                                  withFloat:(jfloat)lly
+                                                  withFloat:(jfloat)urx
+                                                  withFloat:(jfloat)ury;
+
+- (ComItextpdfTextPdfPdfFormField *)addComboBoxWithNSString:(NSString *)name
+                                          withNSStringArray:(IOSObjectArray *)options
+                                               withNSString:(NSString *)defaultValue
+                                                withBoolean:(jboolean)editable
+                             withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                  withFloat:(jfloat)fontSize
+                                                  withFloat:(jfloat)llx
+                                                  withFloat:(jfloat)lly
+                                                  withFloat:(jfloat)urx
+                                                  withFloat:(jfloat)ury;
+
+- (ComItextpdfTextPdfPdfFormField *)addComboBoxWithNSString:(NSString *)name
+                                         withNSStringArray2:(IOSObjectArray *)options
+                                               withNSString:(NSString *)defaultValue
+                                                withBoolean:(jboolean)editable
+                             withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                  withFloat:(jfloat)fontSize
+                                                  withFloat:(jfloat)llx
+                                                  withFloat:(jfloat)lly
+                                                  withFloat:(jfloat)urx
+                                                  withFloat:(jfloat)ury;
 
 - (void)addDocumentFieldWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref;
 
-- (jboolean)isValid;
-
-- (void)addCalculationOrderWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)formField;
-
-- (void)setSigFlagsWithInt:(jint)f;
+- (void)addFieldTemplatesWithJavaUtilHashSet:(JavaUtilHashSet *)ft;
 
 - (void)addFormFieldWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)formField;
+
+- (ComItextpdfTextPdfPdfFormField *)addHiddenFieldWithNSString:(NSString *)name
+                                                  withNSString:(NSString *)value;
 
 - (ComItextpdfTextPdfPdfFormField *)addHtmlPostButtonWithNSString:(NSString *)name
                                                      withNSString:(NSString *)caption
@@ -55,16 +76,6 @@
                                                         withFloat:(jfloat)urx
                                                         withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfFormField *)addResetButtonWithNSString:(NSString *)name
-                                                  withNSString:(NSString *)caption
-                                                  withNSString:(NSString *)value
-                                withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                     withFloat:(jfloat)fontSize
-                                                     withFloat:(jfloat)llx
-                                                     withFloat:(jfloat)lly
-                                                     withFloat:(jfloat)urx
-                                                     withFloat:(jfloat)ury;
-
 - (ComItextpdfTextPdfPdfFormField *)addMapWithNSString:(NSString *)name
                                           withNSString:(NSString *)value
                                           withNSString:(NSString *)url
@@ -73,32 +84,6 @@
                                              withFloat:(jfloat)lly
                                              withFloat:(jfloat)urx
                                              withFloat:(jfloat)ury;
-
-- (void)setButtonParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button
-                                                  withInt:(jint)characteristics
-                                             withNSString:(NSString *)name
-                                             withNSString:(NSString *)value;
-
-- (void)drawButtonWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button
-                                        withNSString:(NSString *)caption
-                      withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                           withFloat:(jfloat)fontSize
-                                           withFloat:(jfloat)llx
-                                           withFloat:(jfloat)lly
-                                           withFloat:(jfloat)urx
-                                           withFloat:(jfloat)ury;
-
-- (ComItextpdfTextPdfPdfFormField *)addHiddenFieldWithNSString:(NSString *)name
-                                                  withNSString:(NSString *)value;
-
-- (ComItextpdfTextPdfPdfFormField *)addSingleLineTextFieldWithNSString:(NSString *)name
-                                                          withNSString:(NSString *)text
-                                        withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                             withFloat:(jfloat)fontSize
-                                                             withFloat:(jfloat)llx
-                                                             withFloat:(jfloat)lly
-                                                             withFloat:(jfloat)urx
-                                                             withFloat:(jfloat)ury;
 
 - (ComItextpdfTextPdfPdfFormField *)addMultiLineTextFieldWithNSString:(NSString *)name
                                                          withNSString:(NSString *)text
@@ -109,71 +94,6 @@
                                                             withFloat:(jfloat)urx
                                                             withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfFormField *)addSingleLinePasswordFieldWithNSString:(NSString *)name
-                                                              withNSString:(NSString *)text
-                                            withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                                 withFloat:(jfloat)fontSize
-                                                                 withFloat:(jfloat)llx
-                                                                 withFloat:(jfloat)lly
-                                                                 withFloat:(jfloat)urx
-                                                                 withFloat:(jfloat)ury;
-
-- (void)setTextFieldParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                                withNSString:(NSString *)text
-                                                withNSString:(NSString *)name
-                                                   withFloat:(jfloat)llx
-                                                   withFloat:(jfloat)lly
-                                                   withFloat:(jfloat)urx
-                                                   withFloat:(jfloat)ury;
-
-- (void)drawSingleLineOfTextWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                                  withNSString:(NSString *)text
-                                withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                     withFloat:(jfloat)fontSize
-                                                     withFloat:(jfloat)llx
-                                                     withFloat:(jfloat)lly
-                                                     withFloat:(jfloat)urx
-                                                     withFloat:(jfloat)ury;
-
-- (void)drawMultiLineOfTextWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                                 withNSString:(NSString *)text
-                               withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                    withFloat:(jfloat)fontSize
-                                                    withFloat:(jfloat)llx
-                                                    withFloat:(jfloat)lly
-                                                    withFloat:(jfloat)urx
-                                                    withFloat:(jfloat)ury;
-
-- (ComItextpdfTextPdfPdfFormField *)addCheckBoxWithNSString:(NSString *)name
-                                               withNSString:(NSString *)value
-                                                withBoolean:(jboolean)status
-                                                  withFloat:(jfloat)llx
-                                                  withFloat:(jfloat)lly
-                                                  withFloat:(jfloat)urx
-                                                  withFloat:(jfloat)ury;
-
-- (void)setCheckBoxParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                               withNSString:(NSString *)name
-                                               withNSString:(NSString *)value
-                                                withBoolean:(jboolean)status
-                                                  withFloat:(jfloat)llx
-                                                  withFloat:(jfloat)lly
-                                                  withFloat:(jfloat)urx
-                                                  withFloat:(jfloat)ury;
-
-- (void)drawCheckBoxAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                                     withNSString:(NSString *)value
-                                                        withFloat:(jfloat)llx
-                                                        withFloat:(jfloat)lly
-                                                        withFloat:(jfloat)urx
-                                                        withFloat:(jfloat)ury;
-
-- (ComItextpdfTextPdfPdfFormField *)getRadioGroupWithNSString:(NSString *)name
-                                                 withNSString:(NSString *)defaultValue
-                                                  withBoolean:(jboolean)noToggleToOff;
-
-- (void)addRadioGroupWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)radiogroup;
-
 - (ComItextpdfTextPdfPdfFormField *)addRadioButtonWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)radiogroup
                                                                         withNSString:(NSString *)value
                                                                            withFloat:(jfloat)llx
@@ -181,8 +101,13 @@
                                                                            withFloat:(jfloat)urx
                                                                            withFloat:(jfloat)ury;
 
-- (void)drawRadioAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+- (void)addRadioGroupWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)radiogroup;
+
+- (ComItextpdfTextPdfPdfFormField *)addResetButtonWithNSString:(NSString *)name
+                                                  withNSString:(NSString *)caption
                                                   withNSString:(NSString *)value
+                                withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                     withFloat:(jfloat)fontSize
                                                      withFloat:(jfloat)llx
                                                      withFloat:(jfloat)lly
                                                      withFloat:(jfloat)urx
@@ -208,23 +133,92 @@
                                                     withFloat:(jfloat)urx
                                                     withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfFormField *)addComboBoxWithNSString:(NSString *)name
-                                          withNSStringArray:(IOSObjectArray *)options
-                                               withNSString:(NSString *)defaultValue
-                                                withBoolean:(jboolean)editable
-                             withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                  withFloat:(jfloat)fontSize
-                                                  withFloat:(jfloat)llx
-                                                  withFloat:(jfloat)lly
-                                                  withFloat:(jfloat)urx
-                                                  withFloat:(jfloat)ury;
+- (ComItextpdfTextPdfPdfFormField *)addSignatureWithNSString:(NSString *)name
+                                                   withFloat:(jfloat)llx
+                                                   withFloat:(jfloat)lly
+                                                   withFloat:(jfloat)urx
+                                                   withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfFormField *)addComboBoxWithNSString:(NSString *)name
-                                         withNSStringArray2:(IOSObjectArray *)options
-                                               withNSString:(NSString *)defaultValue
-                                                withBoolean:(jboolean)editable
-                             withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
-                                                  withFloat:(jfloat)fontSize
+- (ComItextpdfTextPdfPdfFormField *)addSingleLinePasswordFieldWithNSString:(NSString *)name
+                                                              withNSString:(NSString *)text
+                                            withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                                 withFloat:(jfloat)fontSize
+                                                                 withFloat:(jfloat)llx
+                                                                 withFloat:(jfloat)lly
+                                                                 withFloat:(jfloat)urx
+                                                                 withFloat:(jfloat)ury;
+
+- (ComItextpdfTextPdfPdfFormField *)addSingleLineTextFieldWithNSString:(NSString *)name
+                                                          withNSString:(NSString *)text
+                                        withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                             withFloat:(jfloat)fontSize
+                                                             withFloat:(jfloat)llx
+                                                             withFloat:(jfloat)lly
+                                                             withFloat:(jfloat)urx
+                                                             withFloat:(jfloat)ury;
+
+- (void)drawButtonWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button
+                                        withNSString:(NSString *)caption
+                      withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                           withFloat:(jfloat)fontSize
+                                           withFloat:(jfloat)llx
+                                           withFloat:(jfloat)lly
+                                           withFloat:(jfloat)urx
+                                           withFloat:(jfloat)ury;
+
+- (void)drawCheckBoxAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                     withNSString:(NSString *)value
+                                                        withFloat:(jfloat)llx
+                                                        withFloat:(jfloat)lly
+                                                        withFloat:(jfloat)urx
+                                                        withFloat:(jfloat)ury;
+
+- (void)drawMultiLineOfTextWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                 withNSString:(NSString *)text
+                               withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                    withFloat:(jfloat)fontSize
+                                                    withFloat:(jfloat)llx
+                                                    withFloat:(jfloat)lly
+                                                    withFloat:(jfloat)urx
+                                                    withFloat:(jfloat)ury;
+
+- (void)drawRadioAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                  withNSString:(NSString *)value
+                                                     withFloat:(jfloat)llx
+                                                     withFloat:(jfloat)lly
+                                                     withFloat:(jfloat)urx
+                                                     withFloat:(jfloat)ury;
+
+- (void)drawSignatureAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                         withFloat:(jfloat)llx
+                                                         withFloat:(jfloat)lly
+                                                         withFloat:(jfloat)urx
+                                                         withFloat:(jfloat)ury;
+
+- (void)drawSingleLineOfTextWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                  withNSString:(NSString *)text
+                                withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font
+                                                     withFloat:(jfloat)fontSize
+                                                     withFloat:(jfloat)llx
+                                                     withFloat:(jfloat)lly
+                                                     withFloat:(jfloat)urx
+                                                     withFloat:(jfloat)ury;
+
+- (ComItextpdfTextPdfPdfFormField *)getRadioGroupWithNSString:(NSString *)name
+                                                 withNSString:(NSString *)defaultValue
+                                                  withBoolean:(jboolean)noToggleToOff;
+
+- (jboolean)isValid;
+
+- (void)setButtonParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button
+                                                  withInt:(jint)characteristics
+                                             withNSString:(NSString *)name
+                                             withNSString:(NSString *)value;
+
+- (void)setCheckBoxParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                               withNSString:(NSString *)name
+                                               withNSString:(NSString *)value
+                                                withBoolean:(jboolean)status
                                                   withFloat:(jfloat)llx
                                                   withFloat:(jfloat)lly
                                                   withFloat:(jfloat)urx
@@ -238,11 +232,9 @@
                                                 withFloat:(jfloat)urx
                                                 withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfFormField *)addSignatureWithNSString:(NSString *)name
-                                                   withFloat:(jfloat)llx
-                                                   withFloat:(jfloat)lly
-                                                   withFloat:(jfloat)urx
-                                                   withFloat:(jfloat)ury;
+- (void)setNeedAppearancesWithBoolean:(jboolean)value;
+
+- (void)setSigFlagsWithInt:(jint)f;
 
 - (void)setSignatureParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
                                                 withNSString:(NSString *)name
@@ -251,24 +243,25 @@
                                                    withFloat:(jfloat)urx
                                                    withFloat:(jfloat)ury;
 
-- (void)drawSignatureAppearencesWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
-                                                         withFloat:(jfloat)llx
-                                                         withFloat:(jfloat)lly
-                                                         withFloat:(jfloat)urx
-                                                         withFloat:(jfloat)ury;
+- (void)setTextFieldParamsWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field
+                                                withNSString:(NSString *)text
+                                                withNSString:(NSString *)name
+                                                   withFloat:(jfloat)llx
+                                                   withFloat:(jfloat)lly
+                                                   withFloat:(jfloat)urx
+                                                   withFloat:(jfloat)ury;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfAcroForm *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfAcroForm_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfAcroForm)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAcroForm, writer_, ComItextpdfTextPdfPdfWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAcroForm, fieldTemplates_, JavaUtilHashSet *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAcroForm, documentFields_, ComItextpdfTextPdfPdfArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAcroForm, calculationOrder_, ComItextpdfTextPdfPdfArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAcroForm_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfAcroForm *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAcroForm *new_ComItextpdfTextPdfPdfAcroForm_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfAcroForm)
 
 #endif // _ComItextpdfTextPdfPdfAcroForm_H_

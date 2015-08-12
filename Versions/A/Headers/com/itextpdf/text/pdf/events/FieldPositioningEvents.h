@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfEventsFieldPositioningEvents_H_
 #define _ComItextpdfTextPdfEventsFieldPositioningEvents_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfPCellEvent.h"
+#include "com/itextpdf/text/pdf/PdfPageEventHelper.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfPdfFormField;
 @class ComItextpdfTextPdfPdfPCell;
@@ -13,10 +17,6 @@
 @class ComItextpdfTextRectangle;
 @class IOSObjectArray;
 @class JavaUtilHashMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfPCellEvent.h"
-#include "com/itextpdf/text/pdf/PdfPageEventHelper.h"
 
 @interface ComItextpdfTextPdfEventsFieldPositioningEvents : ComItextpdfTextPdfPdfPageEventHelper < ComItextpdfTextPdfPdfPCellEvent > {
  @public
@@ -27,46 +27,68 @@
   jfloat padding_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (void)addFieldWithNSString:(NSString *)text
-withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
-
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                 withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
 
 - (instancetype)initWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)parent
                     withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                       withNSString:(NSString *)text;
+                 withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                  withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)parent
                                        withNSString:(NSString *)text;
 
-- (void)setPaddingWithFloat:(jfloat)padding;
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                       withNSString:(NSString *)text;
 
-- (void)setParentWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)parent;
+- (void)addFieldWithNSString:(NSString *)text
+withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
+
+- (void)cellLayoutWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell
+                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+       withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
 - (void)onGenericTagWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                         withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
                        withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
                                        withNSString:(NSString *)text;
 
-- (void)cellLayoutWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell
-                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-       withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
+- (void)setPaddingWithFloat:(jfloat)padding;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsFieldPositioningEvents *)other;
+- (void)setParentWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)parent;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsFieldPositioningEvents_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsFieldPositioningEvents)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsFieldPositioningEvents, genericChunkFields_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsFieldPositioningEvents, cellField_, ComItextpdfTextPdfPdfFormField *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsFieldPositioningEvents, fieldWriter_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsFieldPositioningEvents, parent_, ComItextpdfTextPdfPdfFormField *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsFieldPositioningEvents_init(ComItextpdfTextPdfEventsFieldPositioningEvents *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsFieldPositioningEvents *new_ComItextpdfTextPdfEventsFieldPositioningEvents_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPdfFormField_(ComItextpdfTextPdfEventsFieldPositioningEvents *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPdfFormField *field);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsFieldPositioningEvents *new_ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPdfFormField_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPdfFormField *field) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfFormField_withComItextpdfTextPdfPdfFormField_(ComItextpdfTextPdfEventsFieldPositioningEvents *self, ComItextpdfTextPdfPdfFormField *parent, ComItextpdfTextPdfPdfFormField *field);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsFieldPositioningEvents *new_ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfFormField_withComItextpdfTextPdfPdfFormField_(ComItextpdfTextPdfPdfFormField *parent, ComItextpdfTextPdfPdfFormField *field) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withNSString_(ComItextpdfTextPdfEventsFieldPositioningEvents *self, ComItextpdfTextPdfPdfWriter *writer, NSString *text);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsFieldPositioningEvents *new_ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withNSString_(ComItextpdfTextPdfPdfWriter *writer, NSString *text) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPdfFormField_withNSString_(ComItextpdfTextPdfEventsFieldPositioningEvents *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPdfFormField *parent, NSString *text);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsFieldPositioningEvents *new_ComItextpdfTextPdfEventsFieldPositioningEvents_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPdfFormField_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPdfFormField *parent, NSString *text) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsFieldPositioningEvents)
 
 #endif // _ComItextpdfTextPdfEventsFieldPositioningEvents_H_

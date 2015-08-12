@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfSecurityExternalSignatureContainer_H_
 #define _ComItextpdfTextPdfSecurityExternalSignatureContainer_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class IOSByteArray;
 @class JavaIoInputStream;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfSecurityExternalSignatureContainer < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityExternalSignatureContainer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityExternalSignatureContainer)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityExternalSignatureContainer)
 
 #endif // _ComItextpdfTextPdfSecurityExternalSignatureContainer_H_

@@ -6,32 +6,31 @@
 #ifndef _ComItextpdfTextAccessibleElementId_H_
 #define _ComItextpdfTextAccessibleElementId_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Comparable.h"
 
-@interface ComItextpdfTextAccessibleElementId : NSObject < JavaLangComparable > {
- @public
-  jint id__;
-}
+@interface ComItextpdfTextAccessibleElementId : NSObject < JavaLangComparable >
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (NSString *)description;
-
-- (NSUInteger)hash;
+- (jint)compareToWithId:(ComItextpdfTextAccessibleElementId *)elementId;
 
 - (jboolean)isEqual:(id)o;
 
-- (jint)compareToWithId:(ComItextpdfTextAccessibleElementId *)elementId;
+- (NSUInteger)hash;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextAccessibleElementId *)other;
+- (NSString *)description;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextAccessibleElementId_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextAccessibleElementId)
 
-FOUNDATION_EXPORT jint ComItextpdfTextAccessibleElementId_id_counter_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextAccessibleElementId, id_counter_, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextAccessibleElementId, id_counter_, jint)
+FOUNDATION_EXPORT void ComItextpdfTextAccessibleElementId_init(ComItextpdfTextAccessibleElementId *self);
+
+FOUNDATION_EXPORT ComItextpdfTextAccessibleElementId *new_ComItextpdfTextAccessibleElementId_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextAccessibleElementId)
 
 #endif // _ComItextpdfTextAccessibleElementId_H_

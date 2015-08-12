@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfCodecTiffImage_H_
 #define _ComItextpdfTextPdfCodecTiffImage_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfCodecTIFFDirectory;
 @class ComItextpdfTextPdfCodecTIFFField;
@@ -14,15 +16,26 @@
 @class IOSLongArray;
 @class JavaUtilZipDeflaterOutputStream;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCodecTiffImage : NSObject
 
-@interface ComItextpdfTextPdfCodecTiffImage : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
+
++ (void)applyPredictorWithByteArray:(IOSByteArray *)uncompData
+                            withInt:(jint)predictor
+                            withInt:(jint)w
+                            withInt:(jint)h
+                            withInt:(jint)samplesPerPixel;
+
++ (void)decodePackbitsWithByteArray:(IOSByteArray *)data
+                      withByteArray:(IOSByteArray *)dst;
 
 + (jint)getNumberOfPagesWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s;
 
-+ (jint)getDpiWithComItextpdfTextPdfCodecTIFFField:(ComItextpdfTextPdfCodecTIFFField *)fd
-                                           withInt:(jint)resolutionUnit;
++ (ComItextpdfTextImage *)getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s
+                                                                        withBoolean:(jboolean)recoverFromImageError
+                                                                            withInt:(jint)page;
 
 + (ComItextpdfTextImage *)getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s
                                                                         withBoolean:(jboolean)recoverFromImageError
@@ -30,18 +43,27 @@
                                                                         withBoolean:(jboolean)direct;
 
 + (ComItextpdfTextImage *)getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s
-                                                                        withBoolean:(jboolean)recoverFromImageError
-                                                                            withInt:(jint)page;
-
-+ (ComItextpdfTextImage *)getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s
                                                                             withInt:(jint)page;
 
 + (ComItextpdfTextImage *)getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s
                                                                             withInt:(jint)page
                                                                         withBoolean:(jboolean)direct;
+
++ (void)inflateWithByteArray:(IOSByteArray *)deflated
+               withByteArray:(IOSByteArray *)inflated;
+
+#pragma mark Protected
 
 + (ComItextpdfTextImage *)getTiffImageColorWithComItextpdfTextPdfCodecTIFFDirectory:(ComItextpdfTextPdfCodecTIFFDirectory *)dir
                                       withComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)s;
+
+#pragma mark Package-Private
+
++ (IOSLongArray *)getArrayLongShortWithComItextpdfTextPdfCodecTIFFDirectory:(ComItextpdfTextPdfCodecTIFFDirectory *)dir
+                                                                    withInt:(jint)tag;
+
++ (jint)getDpiWithComItextpdfTextPdfCodecTIFFField:(ComItextpdfTextPdfCodecTIFFField *)fd
+                                           withInt:(jint)resolutionUnit;
 
 + (ComItextpdfTextImage *)ProcessExtraSamplesWithJavaUtilZipDeflaterOutputStream:(JavaUtilZipDeflaterOutputStream *)zip
                                              withJavaUtilZipDeflaterOutputStream:(JavaUtilZipDeflaterOutputStream *)mzip
@@ -51,25 +73,38 @@
                                                                          withInt:(jint)width
                                                                          withInt:(jint)height;
 
-+ (IOSLongArray *)getArrayLongShortWithComItextpdfTextPdfCodecTIFFDirectory:(ComItextpdfTextPdfCodecTIFFDirectory *)dir
-                                                                    withInt:(jint)tag;
-
-+ (void)decodePackbitsWithByteArray:(IOSByteArray *)data
-                      withByteArray:(IOSByteArray *)dst;
-
-+ (void)inflateWithByteArray:(IOSByteArray *)deflated
-               withByteArray:(IOSByteArray *)inflated;
-
-+ (void)applyPredictorWithByteArray:(IOSByteArray *)uncompData
-                            withInt:(jint)predictor
-                            withInt:(jint)w
-                            withInt:(jint)h
-                            withInt:(jint)samplesPerPixel;
-
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecTiffImage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecTiffImage)
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecTiffImage_getNumberOfPagesWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *s);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecTiffImage_getDpiWithComItextpdfTextPdfCodecTIFFField_withInt_(ComItextpdfTextPdfCodecTIFFField *fd, jint resolutionUnit);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray_withBoolean_withInt_withBoolean_(ComItextpdfTextPdfRandomAccessFileOrArray *s, jboolean recoverFromImageError, jint page, jboolean direct);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray_withBoolean_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *s, jboolean recoverFromImageError, jint page);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *s, jint page);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_getTiffImageWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_withBoolean_(ComItextpdfTextPdfRandomAccessFileOrArray *s, jint page, jboolean direct);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_getTiffImageColorWithComItextpdfTextPdfCodecTIFFDirectory_withComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfCodecTIFFDirectory *dir, ComItextpdfTextPdfRandomAccessFileOrArray *s);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecTiffImage_ProcessExtraSamplesWithJavaUtilZipDeflaterOutputStream_withJavaUtilZipDeflaterOutputStream_withByteArray_withInt_withInt_withInt_withInt_(JavaUtilZipDeflaterOutputStream *zip, JavaUtilZipDeflaterOutputStream *mzip, IOSByteArray *outBuf, jint samplePerPixel, jint bitsPerSample, jint width, jint height);
+
+FOUNDATION_EXPORT IOSLongArray *ComItextpdfTextPdfCodecTiffImage_getArrayLongShortWithComItextpdfTextPdfCodecTIFFDirectory_withInt_(ComItextpdfTextPdfCodecTIFFDirectory *dir, jint tag);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTiffImage_decodePackbitsWithByteArray_withByteArray_(IOSByteArray *data, IOSByteArray *dst);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTiffImage_inflateWithByteArray_withByteArray_(IOSByteArray *deflated, IOSByteArray *inflated);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTiffImage_applyPredictorWithByteArray_withInt_withInt_withInt_withInt_(IOSByteArray *uncompData, jint predictor, jint w, jint h, jint samplesPerPixel);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTiffImage_init(ComItextpdfTextPdfCodecTiffImage *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTiffImage *new_ComItextpdfTextPdfCodecTiffImage_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecTiffImage)
 
 #endif // _ComItextpdfTextPdfCodecTiffImage_H_

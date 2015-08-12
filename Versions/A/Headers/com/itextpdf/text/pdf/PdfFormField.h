@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfFormField_H_
 #define _ComItextpdfTextPdfPdfFormField_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfAnnotation.h"
+
 @class ComItextpdfTextPdfPdfAction;
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
@@ -17,46 +20,45 @@
 @class IOSObjectArray;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfAnnotation.h"
-
-#define ComItextpdfTextPdfPdfFormField_FF_COMB 16777216
-#define ComItextpdfTextPdfPdfFormField_FF_COMBO 131072
-#define ComItextpdfTextPdfPdfFormField_FF_DONOTSCROLL 8388608
-#define ComItextpdfTextPdfPdfFormField_FF_DONOTSPELLCHECK 4194304
-#define ComItextpdfTextPdfPdfFormField_FF_EDIT 262144
-#define ComItextpdfTextPdfPdfFormField_FF_FILESELECT 1048576
-#define ComItextpdfTextPdfPdfFormField_FF_MULTILINE 4096
-#define ComItextpdfTextPdfPdfFormField_FF_MULTISELECT 2097152
-#define ComItextpdfTextPdfPdfFormField_FF_NO_EXPORT 4
-#define ComItextpdfTextPdfPdfFormField_FF_NO_TOGGLE_TO_OFF 16384
-#define ComItextpdfTextPdfPdfFormField_FF_PASSWORD 8192
-#define ComItextpdfTextPdfPdfFormField_FF_PUSHBUTTON 65536
-#define ComItextpdfTextPdfPdfFormField_FF_RADIO 32768
-#define ComItextpdfTextPdfPdfFormField_FF_RADIOSINUNISON 33554432
 #define ComItextpdfTextPdfPdfFormField_FF_READ_ONLY 1
 #define ComItextpdfTextPdfPdfFormField_FF_REQUIRED 2
+#define ComItextpdfTextPdfPdfFormField_FF_NO_EXPORT 4
+#define ComItextpdfTextPdfPdfFormField_FF_NO_TOGGLE_TO_OFF 16384
+#define ComItextpdfTextPdfPdfFormField_FF_RADIO 32768
+#define ComItextpdfTextPdfPdfFormField_FF_PUSHBUTTON 65536
+#define ComItextpdfTextPdfPdfFormField_FF_MULTILINE 4096
+#define ComItextpdfTextPdfPdfFormField_FF_PASSWORD 8192
+#define ComItextpdfTextPdfPdfFormField_FF_COMBO 131072
+#define ComItextpdfTextPdfPdfFormField_FF_EDIT 262144
+#define ComItextpdfTextPdfPdfFormField_FF_FILESELECT 1048576
+#define ComItextpdfTextPdfPdfFormField_FF_MULTISELECT 2097152
+#define ComItextpdfTextPdfPdfFormField_FF_DONOTSPELLCHECK 4194304
+#define ComItextpdfTextPdfPdfFormField_FF_DONOTSCROLL 8388608
+#define ComItextpdfTextPdfPdfFormField_FF_COMB 16777216
+#define ComItextpdfTextPdfPdfFormField_FF_RADIOSINUNISON 33554432
 #define ComItextpdfTextPdfPdfFormField_FF_RICHTEXT 33554432
-#define ComItextpdfTextPdfPdfFormField_MK_CAPTION_ABOVE 3
+#define ComItextpdfTextPdfPdfFormField_Q_LEFT 0
+#define ComItextpdfTextPdfPdfFormField_Q_CENTER 1
+#define ComItextpdfTextPdfPdfFormField_Q_RIGHT 2
+#define ComItextpdfTextPdfPdfFormField_MK_NO_ICON 0
+#define ComItextpdfTextPdfPdfFormField_MK_NO_CAPTION 1
 #define ComItextpdfTextPdfPdfFormField_MK_CAPTION_BELOW 2
+#define ComItextpdfTextPdfPdfFormField_MK_CAPTION_ABOVE 3
+#define ComItextpdfTextPdfPdfFormField_MK_CAPTION_RIGHT 4
 #define ComItextpdfTextPdfPdfFormField_MK_CAPTION_LEFT 5
 #define ComItextpdfTextPdfPdfFormField_MK_CAPTION_OVERLAID 6
-#define ComItextpdfTextPdfPdfFormField_MK_CAPTION_RIGHT 4
-#define ComItextpdfTextPdfPdfFormField_MK_NO_CAPTION 1
-#define ComItextpdfTextPdfPdfFormField_MK_NO_ICON 0
 #define ComItextpdfTextPdfPdfFormField_MULTILINE YES
-#define ComItextpdfTextPdfPdfFormField_PASSWORD YES
-#define ComItextpdfTextPdfPdfFormField_PLAINTEXT NO
-#define ComItextpdfTextPdfPdfFormField_Q_CENTER 1
-#define ComItextpdfTextPdfPdfFormField_Q_LEFT 0
-#define ComItextpdfTextPdfPdfFormField_Q_RIGHT 2
 #define ComItextpdfTextPdfPdfFormField_SINGLELINE NO
+#define ComItextpdfTextPdfPdfFormField_PLAINTEXT NO
+#define ComItextpdfTextPdfPdfFormField_PASSWORD YES
 
 @interface ComItextpdfTextPdfPdfFormField : ComItextpdfTextPdfPdfAnnotation {
  @public
   ComItextpdfTextPdfPdfFormField *parent_;
   JavaUtilArrayList *kids_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                           withFloat:(jfloat)llx
@@ -65,42 +67,9 @@
                                           withFloat:(jfloat)ury
                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (void)setWidgetWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
-
-+ (ComItextpdfTextPdfPdfFormField *)createEmptyWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (void)setButtonWithInt:(jint)flags;
-
-+ (ComItextpdfTextPdfPdfFormField *)createButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                        withInt:(jint)flags;
-
-+ (ComItextpdfTextPdfPdfFormField *)createPushButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+- (void)addKidWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
 
 + (ComItextpdfTextPdfPdfFormField *)createCheckBoxWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-+ (ComItextpdfTextPdfPdfFormField *)createRadioButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                         withBoolean:(jboolean)noToggleToOff;
-
-+ (ComItextpdfTextPdfPdfFormField *)createTextFieldWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                       withBoolean:(jboolean)multiline
-                                                                       withBoolean:(jboolean)password
-                                                                           withInt:(jint)maxLen;
-
-+ (ComItextpdfTextPdfPdfFormField *)createChoiceWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                        withInt:(jint)flags
-                                                 withComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)options
-                                                                        withInt:(jint)topIndex;
-
-+ (ComItextpdfTextPdfPdfFormField *)createListWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                            withNSStringArray:(IOSObjectArray *)options
-                                                                      withInt:(jint)topIndex;
-
-+ (ComItextpdfTextPdfPdfFormField *)createListWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                           withNSStringArray2:(IOSObjectArray *)options
-                                                                      withInt:(jint)topIndex;
 
 + (ComItextpdfTextPdfPdfFormField *)createComboWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                    withBoolean:(jboolean)edit
@@ -112,56 +81,90 @@
                                                             withNSStringArray2:(IOSObjectArray *)options
                                                                        withInt:(jint)topIndex;
 
-+ (ComItextpdfTextPdfPdfArray *)processOptionsWithNSStringArray:(IOSObjectArray *)options;
++ (ComItextpdfTextPdfPdfFormField *)createEmptyWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-+ (ComItextpdfTextPdfPdfArray *)processOptionsWithNSStringArray2:(IOSObjectArray *)options;
++ (ComItextpdfTextPdfPdfFormField *)createListWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                            withNSStringArray:(IOSObjectArray *)options
+                                                                      withInt:(jint)topIndex;
+
++ (ComItextpdfTextPdfPdfFormField *)createListWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                           withNSStringArray2:(IOSObjectArray *)options
+                                                                      withInt:(jint)topIndex;
+
++ (ComItextpdfTextPdfPdfFormField *)createPushButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
++ (ComItextpdfTextPdfPdfFormField *)createRadioButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                         withBoolean:(jboolean)noToggleToOff;
 
 + (ComItextpdfTextPdfPdfFormField *)createSignatureWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (ComItextpdfTextPdfPdfFormField *)getParent;
-
-- (void)addKidWithComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)field;
++ (ComItextpdfTextPdfPdfFormField *)createTextFieldWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                       withBoolean:(jboolean)multiline
+                                                                       withBoolean:(jboolean)password
+                                                                           withInt:(jint)maxLen;
 
 - (JavaUtilArrayList *)getKids;
 
-- (jint)setFieldFlagsWithInt:(jint)flags;
+- (ComItextpdfTextPdfPdfFormField *)getParent;
 
-- (void)setValueAsStringWithNSString:(NSString *)s;
-
-- (void)setValueAsNameWithNSString:(NSString *)s;
-
-- (void)setValueWithComItextpdfTextPdfPdfSignature:(ComItextpdfTextPdfPdfSignature *)sig;
-
-- (void)setRichValueWithNSString:(NSString *)rv;
-
-- (void)setDefaultValueAsStringWithNSString:(NSString *)s;
+- (void)setButtonWithInt:(jint)flags;
 
 - (void)setDefaultValueAsNameWithNSString:(NSString *)s;
 
-- (void)setFieldNameWithNSString:(NSString *)s;
+- (void)setDefaultValueAsStringWithNSString:(NSString *)s;
 
-- (void)setUserNameWithNSString:(NSString *)s;
+- (jint)setFieldFlagsWithInt:(jint)flags;
+
+- (void)setFieldNameWithNSString:(NSString *)s;
 
 - (void)setMappingNameWithNSString:(NSString *)s;
 
 - (void)setQuaddingWithInt:(jint)v;
 
-+ (void)mergeResourcesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)result
-                      withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)source
-                      withComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
+- (void)setRichValueWithNSString:(NSString *)rv;
+
+- (void)setUsed;
+
+- (void)setUserNameWithNSString:(NSString *)s;
+
+- (void)setValueWithComItextpdfTextPdfPdfSignature:(ComItextpdfTextPdfPdfSignature *)sig;
+
+- (void)setValueAsNameWithNSString:(NSString *)s;
+
+- (void)setValueAsStringWithNSString:(NSString *)s;
+
+- (void)setWidgetWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
+
++ (ComItextpdfTextPdfPdfAnnotation *)shallowDuplicateWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot;
+
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
++ (ComItextpdfTextPdfPdfFormField *)createButtonWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                        withInt:(jint)flags;
+
++ (ComItextpdfTextPdfPdfFormField *)createChoiceWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                        withInt:(jint)flags
+                                                 withComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)options
+                                                                        withInt:(jint)topIndex;
+
++ (ComItextpdfTextPdfPdfArray *)processOptionsWithNSStringArray:(IOSObjectArray *)options;
+
++ (ComItextpdfTextPdfPdfArray *)processOptionsWithNSStringArray2:(IOSObjectArray *)options;
+
+#pragma mark Package-Private
 
 + (void)mergeResourcesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)result
                       withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)source;
 
-- (void)setUsed;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)shallowDuplicateWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfFormField *)other;
++ (void)mergeResourcesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)result
+                      withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)source
+                      withComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfFormField_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfFormField)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFormField, parent_, ComItextpdfTextPdfPdfFormField *)
@@ -250,5 +253,49 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfFormField, PASSWORD, jboolean)
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfFormField_mergeTarget_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfFormField, mergeTarget_, IOSObjectArray *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfFormField, mergeTarget_, IOSObjectArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFormField_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfAction_(ComItextpdfTextPdfPdfFormField *self, ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfAction *action);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *new_ComItextpdfTextPdfPdfFormField_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfAction_(ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfAction *action) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFormField_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfFormField *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *new_ComItextpdfTextPdfPdfFormField_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createEmptyWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createButtonWithComItextpdfTextPdfPdfWriter_withInt_(ComItextpdfTextPdfPdfWriter *writer, jint flags);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createPushButtonWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createCheckBoxWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createRadioButtonWithComItextpdfTextPdfPdfWriter_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, jboolean noToggleToOff);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createTextFieldWithComItextpdfTextPdfPdfWriter_withBoolean_withBoolean_withInt_(ComItextpdfTextPdfPdfWriter *writer, jboolean multiline, jboolean password, jint maxLen);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createChoiceWithComItextpdfTextPdfPdfWriter_withInt_withComItextpdfTextPdfPdfArray_withInt_(ComItextpdfTextPdfPdfWriter *writer, jint flags, ComItextpdfTextPdfPdfArray *options, jint topIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createListWithComItextpdfTextPdfPdfWriter_withNSStringArray_withInt_(ComItextpdfTextPdfPdfWriter *writer, IOSObjectArray *options, jint topIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createListWithComItextpdfTextPdfPdfWriter_withNSStringArray2_withInt_(ComItextpdfTextPdfPdfWriter *writer, IOSObjectArray *options, jint topIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createComboWithComItextpdfTextPdfPdfWriter_withBoolean_withNSStringArray_withInt_(ComItextpdfTextPdfPdfWriter *writer, jboolean edit, IOSObjectArray *options, jint topIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createComboWithComItextpdfTextPdfPdfWriter_withBoolean_withNSStringArray2_withInt_(ComItextpdfTextPdfPdfWriter *writer, jboolean edit, IOSObjectArray *options, jint topIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *ComItextpdfTextPdfPdfFormField_processOptionsWithNSStringArray_(IOSObjectArray *options);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *ComItextpdfTextPdfPdfFormField_processOptionsWithNSStringArray2_(IOSObjectArray *options);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormField *ComItextpdfTextPdfPdfFormField_createSignatureWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFormField_mergeResourcesWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfStamperImp_(ComItextpdfTextPdfPdfDictionary *result, ComItextpdfTextPdfPdfDictionary *source, ComItextpdfTextPdfPdfStamperImp *writer);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFormField_mergeResourcesWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *result, ComItextpdfTextPdfPdfDictionary *source);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfFormField_shallowDuplicateWithComItextpdfTextPdfPdfAnnotation_(ComItextpdfTextPdfPdfAnnotation *annot);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfFormField)
 
 #endif // _ComItextpdfTextPdfPdfFormField_H_

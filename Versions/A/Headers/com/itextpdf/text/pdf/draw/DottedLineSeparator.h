@@ -6,15 +6,19 @@
 #ifndef _ComItextpdfTextPdfDrawDottedLineSeparator_H_
 #define _ComItextpdfTextPdfDrawDottedLineSeparator_H_
 
-@class ComItextpdfTextPdfPdfContentByte;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/draw/LineSeparator.h"
+
+@class ComItextpdfTextPdfPdfContentByte;
 
 @interface ComItextpdfTextPdfDrawDottedLineSeparator : ComItextpdfTextPdfDrawLineSeparator {
  @public
   jfloat gap_;
 }
+
+#pragma mark Public
+
+- (instancetype)init;
 
 - (void)drawWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
                                        withFloat:(jfloat)llx
@@ -27,12 +31,14 @@
 
 - (void)setGapWithFloat:(jfloat)gap;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfDrawDottedLineSeparator *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfDrawDottedLineSeparator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfDrawDottedLineSeparator)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawDottedLineSeparator_init(ComItextpdfTextPdfDrawDottedLineSeparator *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawDottedLineSeparator *new_ComItextpdfTextPdfDrawDottedLineSeparator_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfDrawDottedLineSeparator)
 
 #endif // _ComItextpdfTextPdfDrawDottedLineSeparator_H_

@@ -6,21 +6,19 @@
 #ifndef _ComItextpdfTextPdfParserLocationTextExtractionStrategy_H_
 #define _ComItextpdfTextPdfParserLocationTextExtractionStrategy_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/TextExtractionStrategy.h"
+#include "java/lang/Comparable.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 @class ComItextpdfTextPdfParserVector;
 @protocol ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter;
-@protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/TextExtractionStrategy.h"
-#include "java/lang/Comparable.h"
+@interface ComItextpdfTextPdfParserLocationTextExtractionStrategy : NSObject < ComItextpdfTextPdfParserTextExtractionStrategy >
 
-@interface ComItextpdfTextPdfParserLocationTextExtractionStrategy : NSObject < ComItextpdfTextPdfParserTextExtractionStrategy > {
- @public
-  id<JavaUtilList> locationalResult_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -28,85 +26,65 @@
 
 - (void)endTextBlock;
 
-- (jboolean)startsWithSpaceWithNSString:(NSString *)str;
+- (NSString *)getResultantText;
 
-- (jboolean)endsWithSpaceWithNSString:(NSString *)str;
+- (NSString *)getResultantTextWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter:(id<ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter>)chunkFilter;
 
-- (id<JavaUtilList>)filterTextChunksWithJavaUtilList:(id<JavaUtilList>)textChunks
-withComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter:(id<ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter>)filter;
+- (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
+
+- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
+
+#pragma mark Protected
 
 - (jboolean)isChunkAtWordBoundaryWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)chunk
                                  withComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)previousChunk;
 
-- (NSString *)getResultantTextWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter:(id<ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter>)chunkFilter;
-
-- (NSString *)getResultantText;
-
-- (void)dumpState;
-
-- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
-
-- (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserLocationTextExtractionStrategy *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserLocationTextExtractionStrategy_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy, locationalResult_, id<JavaUtilList>)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserLocationTextExtractionStrategy)
 
 FOUNDATION_EXPORT jboolean ComItextpdfTextPdfParserLocationTextExtractionStrategy_DUMP_STATE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy, DUMP_STATE_, jboolean)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy, DUMP_STATE_, jboolean)
 
-@interface ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk : NSObject < JavaLangComparable > {
- @public
-  NSString *text_;
-  ComItextpdfTextPdfParserVector *startLocation_;
-  ComItextpdfTextPdfParserVector *endLocation_;
-  ComItextpdfTextPdfParserVector *orientationVector_;
-  jint orientationMagnitude_;
-  jint distPerpendicular_;
-  jfloat distParallelStart_;
-  jfloat distParallelEnd_;
-  jfloat charSpaceWidth_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserLocationTextExtractionStrategy_init(ComItextpdfTextPdfParserLocationTextExtractionStrategy *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserLocationTextExtractionStrategy *new_ComItextpdfTextPdfParserLocationTextExtractionStrategy_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserLocationTextExtractionStrategy)
+
+@interface ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk : NSObject < JavaLangComparable >
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)string
 withComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)startLocation
 withComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)endLocation
                        withFloat:(jfloat)charSpaceWidth;
 
-- (ComItextpdfTextPdfParserVector *)getStartLocation;
-
-- (ComItextpdfTextPdfParserVector *)getEndLocation;
-
-- (NSString *)getText;
-
-- (jfloat)getCharSpaceWidth;
-
-- (void)printDiagnostics;
-
-- (jboolean)sameLineWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)as;
+- (jint)compareToWithId:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)rhs;
 
 - (jfloat)distanceFromEndOfWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)other;
 
-- (jint)compareToWithId:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)rhs;
+- (jfloat)getCharSpaceWidth;
 
-+ (jint)compareIntsWithInt:(jint)int1
-                   withInt:(jint)int2;
+- (ComItextpdfTextPdfParserVector *)getEndLocation;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)other;
+- (ComItextpdfTextPdfParserVector *)getStartLocation;
+
+- (NSString *)getText;
+
+- (jboolean)sameLineWithComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk:(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *)as;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk, text_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk, startLocation_, ComItextpdfTextPdfParserVector *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk, endLocation_, ComItextpdfTextPdfParserVector *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk, orientationVector_, ComItextpdfTextPdfParserVector *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk_initWithNSString_withComItextpdfTextPdfParserVector_withComItextpdfTextPdfParserVector_withFloat_(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *self, NSString *string, ComItextpdfTextPdfParserVector *startLocation, ComItextpdfTextPdfParserVector *endLocation, jfloat charSpaceWidth);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk *new_ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk_initWithNSString_withComItextpdfTextPdfParserVector_withComItextpdfTextPdfParserVector_withFloat_(NSString *string, ComItextpdfTextPdfParserVector *startLocation, ComItextpdfTextPdfParserVector *endLocation, jfloat charSpaceWidth) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunk)
 
 @protocol ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter < NSObject, JavaObject >
 
@@ -114,6 +92,8 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextC
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserLocationTextExtractionStrategy_TextChunkFilter)
 
 #endif // _ComItextpdfTextPdfParserLocationTextExtractionStrategy_H_

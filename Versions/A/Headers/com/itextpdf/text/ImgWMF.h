@@ -6,30 +6,49 @@
 #ifndef _ComItextpdfTextImgWMF_H_
 #define _ComItextpdfTextImgWMF_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Image.h"
+
 @class ComItextpdfTextPdfPdfTemplate;
 @class IOSByteArray;
 @class JavaNetURL;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Image.h"
+@interface ComItextpdfTextImgWMF : ComItextpdfTextImage
 
-@interface ComItextpdfTextImgWMF : ComItextpdfTextImage {
-}
-
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
-
-- (instancetype)initWithNSString:(NSString *)filename;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)img;
 
-- (void)processParameters;
+- (instancetype)initWithNSString:(NSString *)filename;
+
+- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
 
 - (void)readWMFWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImgWMF_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImgWMF)
+
+FOUNDATION_EXPORT void ComItextpdfTextImgWMF_initWithComItextpdfTextImage_(ComItextpdfTextImgWMF *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImgWMF *new_ComItextpdfTextImgWMF_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgWMF_initWithJavaNetURL_(ComItextpdfTextImgWMF *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextImgWMF *new_ComItextpdfTextImgWMF_initWithJavaNetURL_(JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgWMF_initWithNSString_(ComItextpdfTextImgWMF *self, NSString *filename);
+
+FOUNDATION_EXPORT ComItextpdfTextImgWMF *new_ComItextpdfTextImgWMF_initWithNSString_(NSString *filename) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgWMF_initWithByteArray_(ComItextpdfTextImgWMF *self, IOSByteArray *img);
+
+FOUNDATION_EXPORT ComItextpdfTextImgWMF *new_ComItextpdfTextImgWMF_initWithByteArray_(IOSByteArray *img) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImgWMF)
 
 #endif // _ComItextpdfTextImgWMF_H_

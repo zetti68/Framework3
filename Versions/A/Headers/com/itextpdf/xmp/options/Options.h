@@ -6,15 +6,11 @@
 #ifndef _ComItextpdfXmpOptionsOptions_H_
 #define _ComItextpdfXmpOptionsOptions_H_
 
-@protocol JavaUtilMap;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpOptionsOptions : NSObject
 
-@interface ComItextpdfXmpOptionsOptions : NSObject {
- @public
-  jint options_;
-  id<JavaUtilMap> optionNames_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -22,47 +18,45 @@
 
 - (void)clear;
 
-- (jboolean)isExactlyWithInt:(jint)optionBits;
-
 - (jboolean)containsAllOptionsWithInt:(jint)optionBits;
 
 - (jboolean)containsOneOfWithInt:(jint)optionBits;
 
-- (jboolean)getOptionWithInt:(jint)optionBit;
+- (jboolean)isEqual:(id)obj;
+
+- (jint)getOptions;
+
+- (NSString *)getOptionsString;
+
+- (NSUInteger)hash;
+
+- (jboolean)isExactlyWithInt:(jint)optionBits;
 
 - (void)setOptionWithInt:(jint)optionBits
              withBoolean:(jboolean)value;
 
-- (jint)getOptions;
-
 - (void)setOptionsWithInt:(jint)options;
-
-- (jboolean)isEqual:(id)obj;
-
-- (NSUInteger)hash;
-
-- (NSString *)getOptionsString;
 
 - (NSString *)description;
 
-- (jint)getValidOptions;
-
-- (NSString *)defineOptionNameWithInt:(jint)option;
+#pragma mark Protected
 
 - (void)assertConsistencyWithInt:(jint)options;
 
-- (void)assertOptionsValidWithInt:(jint)options;
+- (NSString *)defineOptionNameWithInt:(jint)option;
 
-- (NSString *)getOptionNameWithInt:(jint)option;
+- (jboolean)getOptionWithInt:(jint)optionBit;
 
-- (id<JavaUtilMap>)procureOptionNames;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpOptionsOptions *)other;
+- (jint)getValidOptions;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpOptionsOptions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpOptionsOptions)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpOptionsOptions, optionNames_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsOptions_init(ComItextpdfXmpOptionsOptions *self);
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsOptions_initWithInt_(ComItextpdfXmpOptionsOptions *self, jint options);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpOptionsOptions)
 
 #endif // _ComItextpdfXmpOptionsOptions_H_

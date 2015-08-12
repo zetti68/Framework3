@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfParserXObjectDoHandler_H_
 #define _ComItextpdfTextPdfParserXObjectDoHandler_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfParserPdfContentStreamProcessor;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfStream;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfParserXObjectDoHandler < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserXObjectDoHandler_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserXObjectDoHandler)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserXObjectDoHandler)
 
 #endif // _ComItextpdfTextPdfParserXObjectDoHandler_H_

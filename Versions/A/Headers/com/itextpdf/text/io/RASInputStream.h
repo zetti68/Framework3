@@ -6,32 +6,32 @@
 #ifndef _ComItextpdfTextIoRASInputStream_H_
 #define _ComItextpdfTextIoRASInputStream_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/InputStream.h"
+
 @class IOSByteArray;
 @protocol ComItextpdfTextIoRandomAccessSource;
 
-#import "JreEmulation.h"
-#include "java/io/InputStream.h"
+@interface ComItextpdfTextIoRASInputStream : JavaIoInputStream
 
-@interface ComItextpdfTextIoRASInputStream : JavaIoInputStream {
- @public
-  id<ComItextpdfTextIoRandomAccessSource> source_;
-  jlong position_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
+
+- (jint)read;
 
 - (jint)readWithByteArray:(IOSByteArray *)b
                   withInt:(jint)off
                   withInt:(jint)len;
 
-- (jint)read;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoRASInputStream *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoRASInputStream_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoRASInputStream)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoRASInputStream, source_, id<ComItextpdfTextIoRandomAccessSource>)
+FOUNDATION_EXPORT void ComItextpdfTextIoRASInputStream_initWithComItextpdfTextIoRandomAccessSource_(ComItextpdfTextIoRASInputStream *self, id<ComItextpdfTextIoRandomAccessSource> source);
+
+FOUNDATION_EXPORT ComItextpdfTextIoRASInputStream *new_ComItextpdfTextIoRASInputStream_initWithComItextpdfTextIoRandomAccessSource_(id<ComItextpdfTextIoRandomAccessSource> source) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoRASInputStream)
 
 #endif // _ComItextpdfTextIoRASInputStream_H_

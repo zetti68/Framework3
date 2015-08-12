@@ -6,20 +6,12 @@
 #ifndef _ComItextpdfTextPdfCodecLZWStringTable_H_
 #define _ComItextpdfTextPdfCodecLZWStringTable_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSShortArray;
 @class JavaIoPrintStream;
-
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfCodecLZWStringTable_HASHSIZE 9973
-#define ComItextpdfTextPdfCodecLZWStringTable_HASHSTEP 2039
-#define ComItextpdfTextPdfCodecLZWStringTable_HASH_FREE -1
-#define ComItextpdfTextPdfCodecLZWStringTable_MAXBITS 12
-#define ComItextpdfTextPdfCodecLZWStringTable_MAXSTR 4096
-#define ComItextpdfTextPdfCodecLZWStringTable_NEXT_FIRST -1
-#define ComItextpdfTextPdfCodecLZWStringTable_RES_CODES 2
 
 @interface ComItextpdfTextPdfCodecLZWStringTable : NSObject {
  @public
@@ -30,49 +22,43 @@
   IOSIntArray *strLen__;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (jint)AddCharStringWithShort:(jshort)index
                       withByte:(jbyte)b;
 
-- (jshort)FindCharStringWithShort:(jshort)index
-                         withByte:(jbyte)b;
-
 - (void)ClearTableWithInt:(jint)codesize;
 
-+ (jint)HashWithShort:(jshort)index
-             withByte:(jbyte)lastbyte;
+- (void)dumpWithJavaIoPrintStream:(JavaIoPrintStream *)outArg;
 
 - (jint)expandCodeWithByteArray:(IOSByteArray *)buf
                         withInt:(jint)offset
                       withShort:(jshort)code
                         withInt:(jint)skipHead;
 
-- (void)dumpWithJavaIoPrintStream:(JavaIoPrintStream *)outArg;
+- (jshort)FindCharStringWithShort:(jshort)index
+                         withByte:(jbyte)b;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecLZWStringTable *)other;
++ (jint)HashWithShort:(jshort)index
+             withByte:(jbyte)lastbyte;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecLZWStringTable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecLZWStringTable)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWStringTable, strChr__, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWStringTable, strNxt__, IOSShortArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWStringTable, strHsh__, IOSShortArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWStringTable, strLen__, IOSIntArray *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, RES_CODES, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecLZWStringTable_init(ComItextpdfTextPdfCodecLZWStringTable *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, HASH_FREE, jshort)
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecLZWStringTable *new_ComItextpdfTextPdfCodecLZWStringTable_init() NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, NEXT_FIRST, jshort)
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecLZWStringTable_HashWithShort_withByte_(jshort index, jbyte lastbyte);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, MAXBITS, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, MAXSTR, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, HASHSIZE, jshort)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecLZWStringTable, HASHSTEP, jshort)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecLZWStringTable)
 
 #endif // _ComItextpdfTextPdfCodecLZWStringTable_H_

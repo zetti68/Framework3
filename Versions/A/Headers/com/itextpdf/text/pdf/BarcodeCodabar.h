@@ -6,27 +6,25 @@
 #ifndef _ComItextpdfTextPdfBarcodeCodabar_H_
 #define _ComItextpdfTextPdfBarcodeCodabar_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
+@interface ComItextpdfTextPdfBarcodeCodabar : ComItextpdfTextPdfBarcode
 
-#define ComItextpdfTextPdfBarcodeCodabar_START_STOP_IDX 16
-
-@interface ComItextpdfTextPdfBarcodeCodabar : ComItextpdfTextPdfBarcode {
-}
+#pragma mark Public
 
 - (instancetype)init;
-
-+ (IOSByteArray *)getBarsCodabarWithNSString:(NSString *)text;
 
 + (NSString *)calculateChecksumWithNSString:(NSString *)code;
 
 - (ComItextpdfTextRectangle *)getBarcodeSize;
+
++ (IOSByteArray *)getBarsCodabarWithNSString:(NSString *)text;
 
 - (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
@@ -34,15 +32,16 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeCodabar_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeCodabar)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeCodabar_BARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeCodabar, BARS_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeCodabar_init(ComItextpdfTextPdfBarcodeCodabar *self);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcodeCodabar_CHARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeCodabar, CHARS_, NSString *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeCodabar *new_ComItextpdfTextPdfBarcodeCodabar_init() NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeCodabar, START_STOP_IDX, jint)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeCodabar_getBarsCodabarWithNSString_(NSString *text);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcodeCodabar_calculateChecksumWithNSString_(NSString *code);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeCodabar)
 
 #endif // _ComItextpdfTextPdfBarcodeCodabar_H_

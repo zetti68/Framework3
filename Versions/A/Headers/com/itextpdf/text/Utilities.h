@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextUtilities_H_
 #define _ComItextpdfTextUtilities_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSCharArray;
 @class IOSObjectArray;
@@ -16,12 +18,11 @@
 @class JavaUtilProperties;
 @protocol JavaUtilSet;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextUtilities : NSObject
 
-@interface ComItextpdfTextUtilities : NSObject {
-}
+#pragma mark Public
 
-+ (id<JavaUtilSet>)getKeySetWithJavaUtilHashtable:(JavaUtilHashtable *)table;
+- (instancetype)init;
 
 + (IOSObjectArray *)addToArrayWithNSObjectArray2:(IOSObjectArray *)original
                                withNSObjectArray:(IOSObjectArray *)item;
@@ -29,34 +30,9 @@
 + (jboolean)checkTrueOrFalseWithJavaUtilProperties:(JavaUtilProperties *)attributes
                                       withNSString:(NSString *)key;
 
-+ (NSString *)unEscapeURLWithNSString:(NSString *)src;
++ (NSString *)convertFromUtf32WithInt:(jint)codePoint;
 
-+ (JavaNetURL *)toURLWithNSString:(NSString *)filename;
-
-+ (void)skipWithJavaIoInputStream:(JavaIoInputStream *)is
-                          withInt:(jint)size;
-
-+ (jfloat)millimetersToPointsWithFloat:(jfloat)value;
-
-+ (jfloat)millimetersToInchesWithFloat:(jfloat)value;
-
-+ (jfloat)pointsToMillimetersWithFloat:(jfloat)value;
-
-+ (jfloat)pointsToInchesWithFloat:(jfloat)value;
-
-+ (jfloat)inchesToMillimetersWithFloat:(jfloat)value;
-
-+ (jfloat)inchesToPointsWithFloat:(jfloat)value;
-
-+ (jboolean)isSurrogateHighWithChar:(jchar)c;
-
-+ (jboolean)isSurrogateLowWithChar:(jchar)c;
-
-+ (jboolean)isSurrogatePairWithNSString:(NSString *)text
-                                withInt:(jint)idx;
-
-+ (jboolean)isSurrogatePairWithCharArray:(IOSCharArray *)text
-                                 withInt:(jint)idx;
++ (NSString *)convertToHexWithByteArray:(IOSByteArray *)bytes;
 
 + (jint)convertToUtf32WithChar:(jchar)highSurrogate
                       withChar:(jchar)lowSurrogate;
@@ -67,18 +43,95 @@
 + (jint)convertToUtf32WithNSString:(NSString *)text
                            withInt:(jint)idx;
 
-+ (NSString *)convertFromUtf32WithInt:(jint)codePoint;
++ (id<JavaUtilSet>)getKeySetWithJavaUtilHashtable:(JavaUtilHashtable *)table;
 
-+ (NSString *)readFileToStringWithNSString:(NSString *)path;
++ (jfloat)inchesToMillimetersWithFloat:(jfloat)value;
+
++ (jfloat)inchesToPointsWithFloat:(jfloat)value;
+
++ (jboolean)isSurrogateHighWithChar:(jchar)c;
+
++ (jboolean)isSurrogateLowWithChar:(jchar)c;
+
++ (jboolean)isSurrogatePairWithCharArray:(IOSCharArray *)text
+                                 withInt:(jint)idx;
+
++ (jboolean)isSurrogatePairWithNSString:(NSString *)text
+                                withInt:(jint)idx;
+
++ (jfloat)millimetersToInchesWithFloat:(jfloat)value;
+
++ (jfloat)millimetersToPointsWithFloat:(jfloat)value;
+
++ (jfloat)pointsToInchesWithFloat:(jfloat)value;
+
++ (jfloat)pointsToMillimetersWithFloat:(jfloat)value;
 
 + (NSString *)readFileToStringWithJavaIoFile:(JavaIoFile *)file;
 
-+ (NSString *)convertToHexWithByteArray:(IOSByteArray *)bytes;
++ (NSString *)readFileToStringWithNSString:(NSString *)path;
 
-- (instancetype)init;
++ (void)skipWithJavaIoInputStream:(JavaIoInputStream *)is
+                          withInt:(jint)size;
+
++ (JavaNetURL *)toURLWithNSString:(NSString *)filename;
+
++ (NSString *)unEscapeURLWithNSString:(NSString *)src;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextUtilities_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextUtilities)
+
+FOUNDATION_EXPORT id<JavaUtilSet> ComItextpdfTextUtilities_getKeySetWithJavaUtilHashtable_(JavaUtilHashtable *table);
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextUtilities_addToArrayWithNSObjectArray2_withNSObjectArray_(IOSObjectArray *original, IOSObjectArray *item);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextUtilities_checkTrueOrFalseWithJavaUtilProperties_withNSString_(JavaUtilProperties *attributes, NSString *key);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextUtilities_unEscapeURLWithNSString_(NSString *src);
+
+FOUNDATION_EXPORT JavaNetURL *ComItextpdfTextUtilities_toURLWithNSString_(NSString *filename);
+
+FOUNDATION_EXPORT void ComItextpdfTextUtilities_skipWithJavaIoInputStream_withInt_(JavaIoInputStream *is, jint size);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_millimetersToPointsWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_millimetersToInchesWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_pointsToMillimetersWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_pointsToInchesWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_inchesToMillimetersWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextUtilities_inchesToPointsWithFloat_(jfloat value);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextUtilities_isSurrogateHighWithChar_(jchar c);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextUtilities_isSurrogateLowWithChar_(jchar c);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextUtilities_isSurrogatePairWithNSString_withInt_(NSString *text, jint idx);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextUtilities_isSurrogatePairWithCharArray_withInt_(IOSCharArray *text, jint idx);
+
+FOUNDATION_EXPORT jint ComItextpdfTextUtilities_convertToUtf32WithChar_withChar_(jchar highSurrogate, jchar lowSurrogate);
+
+FOUNDATION_EXPORT jint ComItextpdfTextUtilities_convertToUtf32WithCharArray_withInt_(IOSCharArray *text, jint idx);
+
+FOUNDATION_EXPORT jint ComItextpdfTextUtilities_convertToUtf32WithNSString_withInt_(NSString *text, jint idx);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextUtilities_convertFromUtf32WithInt_(jint codePoint);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextUtilities_readFileToStringWithNSString_(NSString *path);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextUtilities_readFileToStringWithJavaIoFile_(JavaIoFile *file);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextUtilities_convertToHexWithByteArray_(IOSByteArray *bytes);
+
+FOUNDATION_EXPORT void ComItextpdfTextUtilities_init(ComItextpdfTextUtilities *self);
+
+FOUNDATION_EXPORT ComItextpdfTextUtilities *new_ComItextpdfTextUtilities_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextUtilities)
 
 #endif // _ComItextpdfTextUtilities_H_

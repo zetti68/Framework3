@@ -6,15 +6,16 @@
 #ifndef _ComItextpdfTextPdfPdfContents_H_
 #define _ComItextpdfTextPdfPdfContents_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfStream.h"
+
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfStream.h"
+@interface ComItextpdfTextPdfPdfContents : ComItextpdfTextPdfPdfStream
 
-@interface ComItextpdfTextPdfPdfContents : ComItextpdfTextPdfPdfStream {
-}
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)under
                     withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)content
@@ -24,7 +25,6 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfContents_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfContents)
 
 FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfContents_SAVESTATE_;
@@ -44,5 +44,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContents, ROTATE270_, IOSByteArr
 
 FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfContents_ROTATEFINAL_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContents, ROTATEFINAL_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContents_initWithComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextRectangle_(ComItextpdfTextPdfPdfContents *self, ComItextpdfTextPdfPdfContentByte *under, ComItextpdfTextPdfPdfContentByte *content, ComItextpdfTextPdfPdfContentByte *text, ComItextpdfTextPdfPdfContentByte *secondContent, ComItextpdfTextRectangle *page);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContents *new_ComItextpdfTextPdfPdfContents_initWithComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextPdfPdfContentByte_withComItextpdfTextRectangle_(ComItextpdfTextPdfPdfContentByte *under, ComItextpdfTextPdfPdfContentByte *content, ComItextpdfTextPdfPdfContentByte *text, ComItextpdfTextPdfPdfContentByte *secondContent, ComItextpdfTextRectangle *page) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfContents)
 
 #endif // _ComItextpdfTextPdfPdfContents_H_

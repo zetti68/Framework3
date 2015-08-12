@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfSimpleNamedDestination_H_
 #define _ComItextpdfTextPdfSimpleNamedDestination_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfReader;
@@ -17,19 +20,15 @@
 @class JavaUtilHashMap;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+@interface ComItextpdfTextPdfSimpleNamedDestination : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler >
 
-@interface ComItextpdfTextPdfSimpleNamedDestination : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler > {
- @public
-  JavaUtilHashMap *xmlNames_;
-  JavaUtilHashMap *xmlLast_;
-}
+#pragma mark Public
 
-- (instancetype)init;
+- (void)endDocument;
 
-+ (JavaUtilHashMap *)getNamedDestinationWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                                            withBoolean:(jboolean)fromNames;
+- (void)endElementWithNSString:(NSString *)tag;
+
++ (NSString *)escapeBinaryStringWithNSString:(NSString *)s;
 
 + (void)exportToXMLWithJavaUtilHashMap:(JavaUtilHashMap *)names
                 withJavaIoOutputStream:(JavaIoOutputStream *)outArg
@@ -41,26 +40,18 @@
                           withNSString:(NSString *)encoding
                            withBoolean:(jboolean)onlyASCII;
 
++ (JavaUtilHashMap *)getNamedDestinationWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                                            withBoolean:(jboolean)fromNames;
+
 + (JavaUtilHashMap *)importFromXMLWithJavaIoInputStream:(JavaIoInputStream *)inArg;
 
 + (JavaUtilHashMap *)importFromXMLWithJavaIoReader:(JavaIoReader *)inArg;
-
-+ (ComItextpdfTextPdfPdfArray *)createDestinationArrayWithNSString:(NSString *)value
-                                   withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 + (ComItextpdfTextPdfPdfDictionary *)outputNamedDestinationAsNamesWithJavaUtilHashMap:(JavaUtilHashMap *)names
                                                       withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 + (ComItextpdfTextPdfPdfDictionary *)outputNamedDestinationAsStringsWithJavaUtilHashMap:(JavaUtilHashMap *)names
                                                         withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-+ (NSString *)escapeBinaryStringWithNSString:(NSString *)s;
-
-+ (NSString *)unEscapeBinaryStringWithNSString:(NSString *)s;
-
-- (void)endDocument;
-
-- (void)endElementWithNSString:(NSString *)tag;
 
 - (void)startDocument;
 
@@ -69,13 +60,37 @@
 
 - (void)textWithNSString:(NSString *)str;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSimpleNamedDestination *)other;
++ (NSString *)unEscapeBinaryStringWithNSString:(NSString *)s;
+
+#pragma mark Package-Private
+
++ (ComItextpdfTextPdfPdfArray *)createDestinationArrayWithNSString:(NSString *)value
+                                   withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSimpleNamedDestination_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSimpleNamedDestination)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSimpleNamedDestination, xmlNames_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSimpleNamedDestination, xmlLast_, JavaUtilHashMap *)
+FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSimpleNamedDestination_getNamedDestinationWithComItextpdfTextPdfPdfReader_withBoolean_(ComItextpdfTextPdfPdfReader *reader, jboolean fromNames);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleNamedDestination_exportToXMLWithJavaUtilHashMap_withJavaIoOutputStream_withNSString_withBoolean_(JavaUtilHashMap *names, JavaIoOutputStream *outArg, NSString *encoding, jboolean onlyASCII);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSimpleNamedDestination_exportToXMLWithJavaUtilHashMap_withJavaIoWriter_withNSString_withBoolean_(JavaUtilHashMap *names, JavaIoWriter *wrt, NSString *encoding, jboolean onlyASCII);
+
+FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSimpleNamedDestination_importFromXMLWithJavaIoInputStream_(JavaIoInputStream *inArg);
+
+FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSimpleNamedDestination_importFromXMLWithJavaIoReader_(JavaIoReader *inArg);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *ComItextpdfTextPdfSimpleNamedDestination_createDestinationArrayWithNSString_withComItextpdfTextPdfPdfWriter_(NSString *value, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDictionary *ComItextpdfTextPdfSimpleNamedDestination_outputNamedDestinationAsNamesWithJavaUtilHashMap_withComItextpdfTextPdfPdfWriter_(JavaUtilHashMap *names, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDictionary *ComItextpdfTextPdfSimpleNamedDestination_outputNamedDestinationAsStringsWithJavaUtilHashMap_withComItextpdfTextPdfPdfWriter_(JavaUtilHashMap *names, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSimpleNamedDestination_escapeBinaryStringWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSimpleNamedDestination_unEscapeBinaryStringWithNSString_(NSString *s);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSimpleNamedDestination)
 
 #endif // _ComItextpdfTextPdfSimpleNamedDestination_H_

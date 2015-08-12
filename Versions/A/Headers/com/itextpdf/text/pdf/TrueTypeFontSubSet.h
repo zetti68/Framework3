@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfTrueTypeFontSubSet_H_
 #define _ComItextpdfTextPdfTrueTypeFontSubSet_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSByteArray;
 @class IOSIntArray;
@@ -14,16 +16,14 @@
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfTrueTypeFontSubSet_ARG_1_AND_2_ARE_WORDS 1
-#define ComItextpdfTextPdfTrueTypeFontSubSet_HEAD_LOCA_FORMAT_OFFSET 51
-#define ComItextpdfTextPdfTrueTypeFontSubSet_MORE_COMPONENTS 32
 #define ComItextpdfTextPdfTrueTypeFontSubSet_TABLE_CHECKSUM 0
-#define ComItextpdfTextPdfTrueTypeFontSubSet_TABLE_LENGTH 2
 #define ComItextpdfTextPdfTrueTypeFontSubSet_TABLE_OFFSET 1
-#define ComItextpdfTextPdfTrueTypeFontSubSet_WE_HAVE_AN_X_AND_Y_SCALE 64
+#define ComItextpdfTextPdfTrueTypeFontSubSet_TABLE_LENGTH 2
+#define ComItextpdfTextPdfTrueTypeFontSubSet_HEAD_LOCA_FORMAT_OFFSET 51
+#define ComItextpdfTextPdfTrueTypeFontSubSet_ARG_1_AND_2_ARE_WORDS 1
 #define ComItextpdfTextPdfTrueTypeFontSubSet_WE_HAVE_A_SCALE 8
+#define ComItextpdfTextPdfTrueTypeFontSubSet_MORE_COMPONENTS 32
+#define ComItextpdfTextPdfTrueTypeFontSubSet_WE_HAVE_AN_X_AND_Y_SCALE 64
 #define ComItextpdfTextPdfTrueTypeFontSubSet_WE_HAVE_A_TWO_BY_TWO 128
 
 @interface ComItextpdfTextPdfTrueTypeFontSubSet : NSObject {
@@ -48,6 +48,34 @@
   jint directoryOffset_;
 }
 
+#pragma mark Protected
+
+- (void)assembleFont;
+
+- (jint)calculateChecksumWithByteArray:(IOSByteArray *)b;
+
+- (void)checkGlyphCompositeWithInt:(jint)glyph;
+
+- (void)createNewGlyphTables;
+
+- (void)createTableDirectory;
+
+- (void)flatGlyphs;
+
+- (void)locaTobytes;
+
+- (void)readLoca;
+
+- (NSString *)readStandardStringWithInt:(jint)length;
+
+- (void)writeFontIntWithInt:(jint)n;
+
+- (void)writeFontShortWithInt:(jint)n;
+
+- (void)writeFontStringWithNSString:(NSString *)s;
+
+#pragma mark Package-Private
+
 - (instancetype)initWithNSString:(NSString *)fileName
 withComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)rf
              withJavaUtilHashSet:(JavaUtilHashSet *)glyphsUsed
@@ -57,35 +85,8 @@ withComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFil
 
 - (IOSByteArray *)process;
 
-- (void)assembleFont;
-
-- (void)createTableDirectory;
-
-- (void)readLoca;
-
-- (void)createNewGlyphTables;
-
-- (void)locaTobytes;
-
-- (void)flatGlyphs;
-
-- (void)checkGlyphCompositeWithInt:(jint)glyph;
-
-- (NSString *)readStandardStringWithInt:(jint)length;
-
-- (void)writeFontShortWithInt:(jint)n;
-
-- (void)writeFontIntWithInt:(jint)n;
-
-- (void)writeFontStringWithNSString:(NSString *)s;
-
-- (jint)calculateChecksumWithByteArray:(IOSByteArray *)b;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFontSubSet *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfTrueTypeFontSubSet_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfTrueTypeFontSubSet)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFontSubSet, tableDirectory_, JavaUtilHashMap *)
@@ -128,5 +129,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFontSubSet, MORE_COMPONENTS
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFontSubSet, WE_HAVE_AN_X_AND_Y_SCALE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFontSubSet, WE_HAVE_A_TWO_BY_TWO, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFontSubSet_initWithNSString_withComItextpdfTextPdfRandomAccessFileOrArray_withJavaUtilHashSet_withInt_withBoolean_withBoolean_(ComItextpdfTextPdfTrueTypeFontSubSet *self, NSString *fileName, ComItextpdfTextPdfRandomAccessFileOrArray *rf, JavaUtilHashSet *glyphsUsed, jint directoryOffset, jboolean includeCmap, jboolean includeExtras);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFontSubSet *new_ComItextpdfTextPdfTrueTypeFontSubSet_initWithNSString_withComItextpdfTextPdfRandomAccessFileOrArray_withJavaUtilHashSet_withInt_withBoolean_withBoolean_(NSString *fileName, ComItextpdfTextPdfRandomAccessFileOrArray *rf, JavaUtilHashSet *glyphsUsed, jint directoryOffset, jboolean includeCmap, jboolean includeExtras) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFontSubSet)
 
 #endif // _ComItextpdfTextPdfTrueTypeFontSubSet_H_

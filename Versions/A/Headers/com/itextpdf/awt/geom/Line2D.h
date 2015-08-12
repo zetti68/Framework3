@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfAwtGeomLine2D_H_
 #define _ComItextpdfAwtGeomLine2D_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/awt/geom/PathIterator.h"
+#include "com/itextpdf/awt/geom/Shape.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfAwtGeomPoint2D;
 @class ComItextpdfAwtGeomRectangle2D;
@@ -13,50 +17,56 @@
 @class IOSDoubleArray;
 @class IOSFloatArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/awt/geom/PathIterator.h"
-#include "com/itextpdf/awt/geom/Shape.h"
+@interface ComItextpdfAwtGeomLine2D : NSObject < ComItextpdfAwtGeomShape, NSCopying >
 
-@interface ComItextpdfAwtGeomLine2D : NSObject < ComItextpdfAwtGeomShape, NSCopying > {
-}
+#pragma mark Public
 
-- (instancetype)init;
+- (id)clone;
 
-- (jdouble)getX1;
+- (jboolean)containsWithDouble:(jdouble)px
+                    withDouble:(jdouble)py;
 
-- (jdouble)getY1;
+- (jboolean)containsWithDouble:(jdouble)rx
+                    withDouble:(jdouble)ry
+                    withDouble:(jdouble)rw
+                    withDouble:(jdouble)rh;
 
-- (jdouble)getX2;
+- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (jdouble)getY2;
+- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle *)getBounds;
 
 - (ComItextpdfAwtGeomPoint2D *)getP1;
 
 - (ComItextpdfAwtGeomPoint2D *)getP2;
 
-- (void)setLineWithDouble:(jdouble)x1
-               withDouble:(jdouble)y1
-               withDouble:(jdouble)x2
-               withDouble:(jdouble)y2;
+- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
 
-- (void)setLineWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
-               withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
+- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at
+                                                                                withDouble:(jdouble)flatness;
 
-- (void)setLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)line;
+- (jdouble)getX1;
 
-- (ComItextpdfAwtGeomRectangle *)getBounds;
+- (jdouble)getX2;
 
-+ (jint)relativeCCWWithDouble:(jdouble)x1
-                   withDouble:(jdouble)y1
-                   withDouble:(jdouble)x2
-                   withDouble:(jdouble)y2
-                   withDouble:(jdouble)px
-                   withDouble:(jdouble)py;
+- (jdouble)getY1;
 
-- (jint)relativeCCWWithDouble:(jdouble)px
-                   withDouble:(jdouble)py;
+- (jdouble)getY2;
 
-- (jint)relativeCCWWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+- (jboolean)intersectsWithDouble:(jdouble)rx
+                      withDouble:(jdouble)ry
+                      withDouble:(jdouble)rw
+                      withDouble:(jdouble)rh;
+
+- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (jboolean)intersectsLineWithDouble:(jdouble)x1
+                          withDouble:(jdouble)y1
+                          withDouble:(jdouble)x2
+                          withDouble:(jdouble)y2;
+
+- (jboolean)intersectsLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l;
 
 + (jboolean)linesIntersectWithDouble:(jdouble)x1
                           withDouble:(jdouble)y1
@@ -67,43 +77,8 @@
                           withDouble:(jdouble)x4
                           withDouble:(jdouble)y4;
 
-- (jboolean)intersectsLineWithDouble:(jdouble)x1
-                          withDouble:(jdouble)y1
-                          withDouble:(jdouble)x2
-                          withDouble:(jdouble)y2;
-
-- (jboolean)intersectsLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l;
-
-+ (jdouble)ptSegDistSqWithDouble:(jdouble)x1
-                      withDouble:(jdouble)y1
-                      withDouble:(jdouble)x2
-                      withDouble:(jdouble)y2
-                      withDouble:(jdouble)px
-                      withDouble:(jdouble)py;
-
-+ (jdouble)ptSegDistWithDouble:(jdouble)x1
-                    withDouble:(jdouble)y1
-                    withDouble:(jdouble)x2
-                    withDouble:(jdouble)y2
-                    withDouble:(jdouble)px
-                    withDouble:(jdouble)py;
-
-- (jdouble)ptSegDistSqWithDouble:(jdouble)px
-                      withDouble:(jdouble)py;
-
-- (jdouble)ptSegDistSqWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-- (jdouble)ptSegDistWithDouble:(jdouble)px
-                    withDouble:(jdouble)py;
-
-- (jdouble)ptSegDistWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-+ (jdouble)ptLineDistSqWithDouble:(jdouble)x1
-                       withDouble:(jdouble)y1
-                       withDouble:(jdouble)x2
-                       withDouble:(jdouble)y2
-                       withDouble:(jdouble)px
-                       withDouble:(jdouble)py;
+- (jdouble)ptLineDistWithDouble:(jdouble)px
+                     withDouble:(jdouble)py;
 
 + (jdouble)ptLineDistWithDouble:(jdouble)x1
                      withDouble:(jdouble)y1
@@ -112,47 +87,89 @@
                      withDouble:(jdouble)px
                      withDouble:(jdouble)py;
 
+- (jdouble)ptLineDistWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+
 - (jdouble)ptLineDistSqWithDouble:(jdouble)px
+                       withDouble:(jdouble)py;
+
++ (jdouble)ptLineDistSqWithDouble:(jdouble)x1
+                       withDouble:(jdouble)y1
+                       withDouble:(jdouble)x2
+                       withDouble:(jdouble)y2
+                       withDouble:(jdouble)px
                        withDouble:(jdouble)py;
 
 - (jdouble)ptLineDistSqWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (jdouble)ptLineDistWithDouble:(jdouble)px
-                     withDouble:(jdouble)py;
-
-- (jdouble)ptLineDistWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-- (jboolean)containsWithDouble:(jdouble)px
+- (jdouble)ptSegDistWithDouble:(jdouble)px
                     withDouble:(jdouble)py;
 
-- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
++ (jdouble)ptSegDistWithDouble:(jdouble)x1
+                    withDouble:(jdouble)y1
+                    withDouble:(jdouble)x2
+                    withDouble:(jdouble)y2
+                    withDouble:(jdouble)px
+                    withDouble:(jdouble)py;
 
-- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+- (jdouble)ptSegDistWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (jboolean)containsWithDouble:(jdouble)rx
-                    withDouble:(jdouble)ry
-                    withDouble:(jdouble)rw
-                    withDouble:(jdouble)rh;
+- (jdouble)ptSegDistSqWithDouble:(jdouble)px
+                      withDouble:(jdouble)py;
 
-- (jboolean)intersectsWithDouble:(jdouble)rx
-                      withDouble:(jdouble)ry
-                      withDouble:(jdouble)rw
-                      withDouble:(jdouble)rh;
++ (jdouble)ptSegDistSqWithDouble:(jdouble)x1
+                      withDouble:(jdouble)y1
+                      withDouble:(jdouble)x2
+                      withDouble:(jdouble)y2
+                      withDouble:(jdouble)px
+                      withDouble:(jdouble)py;
 
-- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+- (jdouble)ptSegDistSqWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
+- (jint)relativeCCWWithDouble:(jdouble)px
+                   withDouble:(jdouble)py;
 
-- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at
-                                                                                withDouble:(jdouble)flatness;
++ (jint)relativeCCWWithDouble:(jdouble)x1
+                   withDouble:(jdouble)y1
+                   withDouble:(jdouble)x2
+                   withDouble:(jdouble)y2
+                   withDouble:(jdouble)px
+                   withDouble:(jdouble)py;
 
-- (id)clone;
+- (jint)relativeCCWWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (id)copyWithZone:(NSZone *)zone;
+- (void)setLineWithDouble:(jdouble)x1
+               withDouble:(jdouble)y1
+               withDouble:(jdouble)x2
+               withDouble:(jdouble)y2;
+
+- (void)setLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)line;
+
+- (void)setLineWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
+               withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
+
+#pragma mark Protected
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomLine2D)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_init(ComItextpdfAwtGeomLine2D *self);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomLine2D_relativeCCWWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble px, jdouble py);
+
+FOUNDATION_EXPORT jboolean ComItextpdfAwtGeomLine2D_linesIntersectWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble x3, jdouble y3, jdouble x4, jdouble y4);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomLine2D_ptSegDistSqWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble px, jdouble py);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomLine2D_ptSegDistWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble px, jdouble py);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomLine2D_ptLineDistSqWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble px, jdouble py);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomLine2D_ptLineDistWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble px, jdouble py);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomLine2D)
 
 @interface ComItextpdfAwtGeomLine2D_Float : ComItextpdfAwtGeomLine2D {
  @public
@@ -161,6 +178,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_init() {}
   jfloat x2_;
   jfloat y2_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -172,17 +191,19 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_init() {}
 - (instancetype)initWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
                     withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
 
-- (jdouble)getX1;
-
-- (jdouble)getY1;
-
-- (jdouble)getX2;
-
-- (jdouble)getY2;
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
 
 - (ComItextpdfAwtGeomPoint2D *)getP1;
 
 - (ComItextpdfAwtGeomPoint2D *)getP2;
+
+- (jdouble)getX1;
+
+- (jdouble)getX2;
+
+- (jdouble)getY1;
+
+- (jdouble)getY2;
 
 - (void)setLineWithDouble:(jdouble)x1
                withDouble:(jdouble)y1
@@ -194,13 +215,23 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_init() {}
                withFloat:(jfloat)x2
                withFloat:(jfloat)y2;
 
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomLine2D_Float *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Float_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomLine2D_Float)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Float_init(ComItextpdfAwtGeomLine2D_Float *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Float *new_ComItextpdfAwtGeomLine2D_Float_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Float_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfAwtGeomLine2D_Float *self, jfloat x1, jfloat y1, jfloat x2, jfloat y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Float *new_ComItextpdfAwtGeomLine2D_Float_initWithFloat_withFloat_withFloat_withFloat_(jfloat x1, jfloat y1, jfloat x2, jfloat y2) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Float_initWithComItextpdfAwtGeomPoint2D_withComItextpdfAwtGeomPoint2D_(ComItextpdfAwtGeomLine2D_Float *self, ComItextpdfAwtGeomPoint2D *p1, ComItextpdfAwtGeomPoint2D *p2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Float *new_ComItextpdfAwtGeomLine2D_Float_initWithComItextpdfAwtGeomPoint2D_withComItextpdfAwtGeomPoint2D_(ComItextpdfAwtGeomPoint2D *p1, ComItextpdfAwtGeomPoint2D *p2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomLine2D_Float)
 
 @interface ComItextpdfAwtGeomLine2D_Double : ComItextpdfAwtGeomLine2D {
  @public
@@ -209,6 +240,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Float_init()
   jdouble x2_;
   jdouble y2_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -220,30 +253,42 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Float_init()
 - (instancetype)initWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
                     withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
 
-- (jdouble)getX1;
-
-- (jdouble)getY1;
-
-- (jdouble)getX2;
-
-- (jdouble)getY2;
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
 
 - (ComItextpdfAwtGeomPoint2D *)getP1;
 
 - (ComItextpdfAwtGeomPoint2D *)getP2;
+
+- (jdouble)getX1;
+
+- (jdouble)getX2;
+
+- (jdouble)getY1;
+
+- (jdouble)getY2;
 
 - (void)setLineWithDouble:(jdouble)x1
                withDouble:(jdouble)y1
                withDouble:(jdouble)x2
                withDouble:(jdouble)y2;
 
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomLine2D_Double *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Double_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomLine2D_Double)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Double_init(ComItextpdfAwtGeomLine2D_Double *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Double *new_ComItextpdfAwtGeomLine2D_Double_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Double_initWithDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomLine2D_Double *self, jdouble x1, jdouble y1, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Double *new_ComItextpdfAwtGeomLine2D_Double_initWithDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Double_initWithComItextpdfAwtGeomPoint2D_withComItextpdfAwtGeomPoint2D_(ComItextpdfAwtGeomLine2D_Double *self, ComItextpdfAwtGeomPoint2D *p1, ComItextpdfAwtGeomPoint2D *p2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Double *new_ComItextpdfAwtGeomLine2D_Double_initWithComItextpdfAwtGeomPoint2D_withComItextpdfAwtGeomPoint2D_(ComItextpdfAwtGeomPoint2D *p1, ComItextpdfAwtGeomPoint2D *p2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomLine2D_Double)
 
 @interface ComItextpdfAwtGeomLine2D_Iterator : NSObject < ComItextpdfAwtGeomPathIterator > {
  @public
@@ -255,9 +300,11 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Double_init(
   jint index_;
 }
 
-- (instancetype)initWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)outer$
-                    withComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l
-           withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
+#pragma mark Public
+
+- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+
+- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
 
 - (jint)getWindingRule;
 
@@ -265,16 +312,22 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Double_init(
 
 - (void)next;
 
-- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+#pragma mark Package-Private
 
-- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomLine2D_Iterator *)other;
+- (instancetype)initWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)outer$
+                    withComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l
+           withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomLine2D_Iterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomLine2D_Iterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomLine2D_Iterator, t_, ComItextpdfAwtGeomAffineTransform *)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomLine2D_Iterator_initWithComItextpdfAwtGeomLine2D_withComItextpdfAwtGeomLine2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomLine2D_Iterator *self, ComItextpdfAwtGeomLine2D *outer$, ComItextpdfAwtGeomLine2D *l, ComItextpdfAwtGeomAffineTransform *at);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomLine2D_Iterator *new_ComItextpdfAwtGeomLine2D_Iterator_initWithComItextpdfAwtGeomLine2D_withComItextpdfAwtGeomLine2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomLine2D *outer$, ComItextpdfAwtGeomLine2D *l, ComItextpdfAwtGeomAffineTransform *at) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomLine2D_Iterator)
 
 #endif // _ComItextpdfAwtGeomLine2D_H_

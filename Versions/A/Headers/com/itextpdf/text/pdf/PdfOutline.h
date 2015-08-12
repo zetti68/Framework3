@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfOutline_H_
 #define _ComItextpdfTextPdfPdfOutline_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextParagraph;
 @class ComItextpdfTextPdfPdfAction;
@@ -16,142 +19,180 @@
 @class JavaIoOutputStream;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-
 @interface ComItextpdfTextPdfPdfOutline : ComItextpdfTextPdfPdfDictionary {
  @public
-  ComItextpdfTextPdfPdfIndirectReference *reference_;
-  jint count_;
-  ComItextpdfTextPdfPdfOutline *parent__;
-  ComItextpdfTextPdfPdfDestination *destination_;
-  ComItextpdfTextPdfPdfAction *action_;
   JavaUtilArrayList *kids_;
   ComItextpdfTextPdfPdfWriter *writer_;
-  NSString *tag_;
-  jboolean open_;
-  ComItextpdfTextBaseColor *color_;
-  jint style_;
 }
+
+#pragma mark Public
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
+                                         withBoolean:(jboolean)open;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title
+                                         withBoolean:(jboolean)open;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                                        withNSString:(NSString *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                                        withNSString:(NSString *)title
+                                         withBoolean:(jboolean)open;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
+                                         withBoolean:(jboolean)open;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title
+                                         withBoolean:(jboolean)open;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                                        withNSString:(NSString *)title;
+
+- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
+                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
+                                        withNSString:(NSString *)title
+                                         withBoolean:(jboolean)open;
+
+- (void)addKidWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)outline;
+
+- (ComItextpdfTextBaseColor *)getColor;
+
+- (JavaUtilArrayList *)getKids;
+
+- (ComItextpdfTextPdfPdfDestination *)getPdfDestination;
+
+- (jint)getStyle;
+
+- (NSString *)getTag;
+
+- (NSString *)getTitle;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)indirectReference;
+
+- (jboolean)isOpen;
+
+- (jint)level;
+
+- (ComItextpdfTextPdfPdfOutline *)parent;
+
+- (void)setColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (jboolean)setDestinationPageWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)pageReference;
+
+- (void)setIndirectReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
+
+- (void)setKidsWithJavaUtilArrayList:(JavaUtilArrayList *)kids;
+
+- (void)setOpenWithBoolean:(jboolean)open;
+
+- (void)setStyleWithInt:(jint)style;
+
+- (void)setTagWithNSString:(NSString *)tag;
+
+- (void)setTitleWithNSString:(NSString *)title;
+
+- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                                        withNSString:(NSString *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                                        withNSString:(NSString *)title
-                                         withBoolean:(jboolean)open;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                                        withNSString:(NSString *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                                        withNSString:(NSString *)title
-                                         withBoolean:(jboolean)open;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title
-                                         withBoolean:(jboolean)open;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)title
-                                         withBoolean:(jboolean)open;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                     withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
-                                         withBoolean:(jboolean)open;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
-
-- (instancetype)initWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
-                withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination
-                        withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
-                                         withBoolean:(jboolean)open;
+- (jint)getCount;
 
 - (void)initOutlineWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)parent
                                        withNSString:(NSString *)title
                                         withBoolean:(jboolean)open OBJC_METHOD_FAMILY_NONE;
 
-- (void)setIndirectReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)indirectReference;
-
-- (ComItextpdfTextPdfPdfOutline *)parent;
-
-- (jboolean)setDestinationPageWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)pageReference;
-
-- (ComItextpdfTextPdfPdfDestination *)getPdfDestination;
-
-- (jint)getCount;
-
 - (void)setCountWithInt:(jint)count;
-
-- (jint)level;
-
-- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
-
-- (void)addKidWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)outline;
-
-- (JavaUtilArrayList *)getKids;
-
-- (void)setKidsWithJavaUtilArrayList:(JavaUtilArrayList *)kids;
-
-- (NSString *)getTag;
-
-- (void)setTagWithNSString:(NSString *)tag;
-
-- (NSString *)getTitle;
-
-- (void)setTitleWithNSString:(NSString *)title;
-
-- (jboolean)isOpen;
-
-- (void)setOpenWithBoolean:(jboolean)open;
-
-- (ComItextpdfTextBaseColor *)getColor;
-
-- (void)setColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (jint)getStyle;
-
-- (void)setStyleWithInt:(jint)style;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfOutline *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfOutline_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfOutline)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, reference_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, parent__, ComItextpdfTextPdfPdfOutline *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, destination_, ComItextpdfTextPdfPdfDestination *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, action_, ComItextpdfTextPdfPdfAction *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, kids_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, writer_, ComItextpdfTextPdfPdfWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, tag_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfOutline, color_, ComItextpdfTextBaseColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withNSString_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, NSString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withNSString_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, NSString *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withNSString_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, NSString *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withNSString_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, NSString *title, jboolean open) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withNSString_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, NSString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withNSString_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, NSString *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withNSString_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, NSString *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withNSString_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, NSString *title, jboolean open) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextPdfPdfString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextPdfPdfString *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextPdfPdfString_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextPdfPdfString *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextPdfPdfString_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextPdfPdfString *title, jboolean open) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextPdfPdfString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextPdfPdfString *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextPdfPdfString_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextPdfPdfString *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextPdfPdfString_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextPdfPdfString *title, jboolean open) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextParagraph_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextParagraph *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextParagraph_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextParagraph *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextParagraph_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextParagraph *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfAction_withComItextpdfTextParagraph_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfAction *action, ComItextpdfTextParagraph *title, jboolean open) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextParagraph_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextParagraph *title);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextParagraph_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextParagraph *title) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextParagraph_withBoolean_(ComItextpdfTextPdfPdfOutline *self, ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextParagraph *title, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOutline *new_ComItextpdfTextPdfPdfOutline_initWithComItextpdfTextPdfPdfOutline_withComItextpdfTextPdfPdfDestination_withComItextpdfTextParagraph_withBoolean_(ComItextpdfTextPdfPdfOutline *parent, ComItextpdfTextPdfPdfDestination *destination, ComItextpdfTextParagraph *title, jboolean open) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfOutline)
 
 #endif // _ComItextpdfTextPdfPdfOutline_H_

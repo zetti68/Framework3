@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextExceptionsUnsupportedPdfException_H_
 #define _ComItextpdfTextExceptionsUnsupportedPdfException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/exceptions/InvalidPdfException.h"
 
-#define ComItextpdfTextExceptionsUnsupportedPdfException_serialVersionUID 2180764250839096628LL
+@interface ComItextpdfTextExceptionsUnsupportedPdfException : ComItextpdfTextExceptionsInvalidPdfException
 
-@interface ComItextpdfTextExceptionsUnsupportedPdfException : ComItextpdfTextExceptionsInvalidPdfException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionsUnsupportedPdfException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionsUnsupportedPdfException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionsUnsupportedPdfException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsUnsupportedPdfException_initWithNSString_(ComItextpdfTextExceptionsUnsupportedPdfException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextExceptionsUnsupportedPdfException *new_ComItextpdfTextExceptionsUnsupportedPdfException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionsUnsupportedPdfException)
 
 #endif // _ComItextpdfTextExceptionsUnsupportedPdfException_H_

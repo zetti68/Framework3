@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfHyphenationHyphenationTree_H_
 #define _ComItextpdfTextPdfHyphenationHyphenationTree_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/hyphenation/PatternConsumer.h"
+#include "com/itextpdf/text/pdf/hyphenation/TernaryTree.h"
+
 @class ComItextpdfTextPdfHyphenationByteVector;
 @class ComItextpdfTextPdfHyphenationHyphenation;
 @class IOSByteArray;
@@ -14,50 +18,16 @@
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/hyphenation/PatternConsumer.h"
-#include "com/itextpdf/text/pdf/hyphenation/TernaryTree.h"
-
-#define ComItextpdfTextPdfHyphenationHyphenationTree_serialVersionUID -7763254239309429432LL
-
 @interface ComItextpdfTextPdfHyphenationHyphenationTree : ComItextpdfTextPdfHyphenationTernaryTree < ComItextpdfTextPdfHyphenationPatternConsumer > {
  @public
   ComItextpdfTextPdfHyphenationByteVector *vspace_;
   JavaUtilHashMap *stoplist_;
   ComItextpdfTextPdfHyphenationTernaryTree *classmap_;
-  ComItextpdfTextPdfHyphenationTernaryTree *ivalues_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (jint)packValuesWithNSString:(NSString *)values;
-
-- (NSString *)unpackValuesWithInt:(jint)k;
-
-- (void)loadSimplePatternsWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (NSString *)findPatternWithNSString:(NSString *)pat;
-
-- (jint)hstrcmpWithCharArray:(IOSCharArray *)s
-                     withInt:(jint)si
-               withCharArray:(IOSCharArray *)t
-                     withInt:(jint)ti;
-
-- (IOSByteArray *)getValuesWithInt:(jint)k;
-
-- (void)searchPatternsWithCharArray:(IOSCharArray *)word
-                            withInt:(jint)index
-                      withByteArray:(IOSByteArray *)il;
-
-- (ComItextpdfTextPdfHyphenationHyphenation *)hyphenateWithNSString:(NSString *)word
-                                                            withInt:(jint)remainCharCount
-                                                            withInt:(jint)pushCharCount;
-
-- (ComItextpdfTextPdfHyphenationHyphenation *)hyphenateWithCharArray:(IOSCharArray *)w
-                                                             withInt:(jint)offset
-                                                             withInt:(jint)len
-                                                             withInt:(jint)remainCharCount
-                                                             withInt:(jint)pushCharCount;
 
 - (void)addClassWithNSString:(NSString *)chargroup;
 
@@ -67,19 +37,51 @@
 - (void)addPatternWithNSString:(NSString *)pattern
                   withNSString:(NSString *)ivalue;
 
+- (NSString *)findPatternWithNSString:(NSString *)pat;
+
+- (ComItextpdfTextPdfHyphenationHyphenation *)hyphenateWithCharArray:(IOSCharArray *)w
+                                                             withInt:(jint)offset
+                                                             withInt:(jint)len
+                                                             withInt:(jint)remainCharCount
+                                                             withInt:(jint)pushCharCount;
+
+- (ComItextpdfTextPdfHyphenationHyphenation *)hyphenateWithNSString:(NSString *)word
+                                                            withInt:(jint)remainCharCount
+                                                            withInt:(jint)pushCharCount;
+
+- (void)loadSimplePatternsWithJavaIoInputStream:(JavaIoInputStream *)stream;
+
 - (void)printStats;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationHyphenationTree *)other;
+#pragma mark Protected
+
+- (IOSByteArray *)getValuesWithInt:(jint)k;
+
+- (jint)hstrcmpWithCharArray:(IOSCharArray *)s
+                     withInt:(jint)si
+               withCharArray:(IOSCharArray *)t
+                     withInt:(jint)ti;
+
+- (jint)packValuesWithNSString:(NSString *)values;
+
+- (void)searchPatternsWithCharArray:(IOSCharArray *)word
+                            withInt:(jint)index
+                      withByteArray:(IOSByteArray *)il;
+
+- (NSString *)unpackValuesWithInt:(jint)k;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationHyphenationTree_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationHyphenationTree)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenationTree, vspace_, ComItextpdfTextPdfHyphenationByteVector *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenationTree, stoplist_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenationTree, classmap_, ComItextpdfTextPdfHyphenationTernaryTree *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphenationTree, ivalues_, ComItextpdfTextPdfHyphenationTernaryTree *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationHyphenationTree, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationHyphenationTree_init(ComItextpdfTextPdfHyphenationHyphenationTree *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationHyphenationTree *new_ComItextpdfTextPdfHyphenationHyphenationTree_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationHyphenationTree)
 
 #endif // _ComItextpdfTextPdfHyphenationHyphenationTree_H_

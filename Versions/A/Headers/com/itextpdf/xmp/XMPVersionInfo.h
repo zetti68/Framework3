@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfXmpXMPVersionInfo_H_
 #define _ComItextpdfXmpXMPVersionInfo_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfXmpXMPVersionInfo < NSObject, JavaObject >
 
@@ -24,6 +24,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPVersionInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPVersionInfo)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPVersionInfo)
 
 #endif // _ComItextpdfXmpXMPVersionInfo_H_

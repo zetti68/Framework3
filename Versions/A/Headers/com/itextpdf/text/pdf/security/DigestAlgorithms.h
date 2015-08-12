@@ -6,40 +6,39 @@
 #ifndef _ComItextpdfTextPdfSecurityDigestAlgorithms_H_
 #define _ComItextpdfTextPdfSecurityDigestAlgorithms_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaSecurityMessageDigest;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfSecurityDigestAlgorithms : NSObject
 
-@interface ComItextpdfTextPdfSecurityDigestAlgorithms : NSObject {
-}
+#pragma mark Public
 
-+ (JavaSecurityMessageDigest *)getMessageDigestFromOidWithNSString:(NSString *)digestOid
-                                                      withNSString:(NSString *)provider;
+- (instancetype)init;
 
-+ (JavaSecurityMessageDigest *)getMessageDigestWithNSString:(NSString *)hashAlgorithm
-                                               withNSString:(NSString *)provider;
++ (IOSByteArray *)digestWithJavaIoInputStream:(JavaIoInputStream *)data
+                withJavaSecurityMessageDigest:(JavaSecurityMessageDigest *)messageDigest;
 
 + (IOSByteArray *)digestWithJavaIoInputStream:(JavaIoInputStream *)data
                                  withNSString:(NSString *)hashAlgorithm
                                  withNSString:(NSString *)provider;
 
-+ (IOSByteArray *)digestWithJavaIoInputStream:(JavaIoInputStream *)data
-                withJavaSecurityMessageDigest:(JavaSecurityMessageDigest *)messageDigest;
++ (NSString *)getAllowedDigestsWithNSString:(NSString *)name;
 
 + (NSString *)getDigestWithNSString:(NSString *)oid;
 
++ (JavaSecurityMessageDigest *)getMessageDigestWithNSString:(NSString *)hashAlgorithm
+                                               withNSString:(NSString *)provider;
+
++ (JavaSecurityMessageDigest *)getMessageDigestFromOidWithNSString:(NSString *)digestOid
+                                                      withNSString:(NSString *)provider;
+
 + (NSString *)normalizeDigestNameWithNSString:(NSString *)algo;
-
-+ (NSString *)getAllowedDigestsWithNSString:(NSString *)name;
-
-- (instancetype)init;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityDigestAlgorithms_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityDigestAlgorithms)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityDigestAlgorithms_SHA1_;
@@ -57,13 +56,24 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityDigestAlgorithms, SHA512_, 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityDigestAlgorithms_RIPEMD160_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityDigestAlgorithms, RIPEMD160_, NSString *)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSecurityDigestAlgorithms_digestNames_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityDigestAlgorithms, digestNames_, JavaUtilHashMap *)
+FOUNDATION_EXPORT JavaSecurityMessageDigest *ComItextpdfTextPdfSecurityDigestAlgorithms_getMessageDigestFromOidWithNSString_withNSString_(NSString *digestOid, NSString *provider);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSecurityDigestAlgorithms_fixNames_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityDigestAlgorithms, fixNames_, JavaUtilHashMap *)
+FOUNDATION_EXPORT JavaSecurityMessageDigest *ComItextpdfTextPdfSecurityDigestAlgorithms_getMessageDigestWithNSString_withNSString_(NSString *hashAlgorithm, NSString *provider);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSecurityDigestAlgorithms_allowedDigests_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityDigestAlgorithms, allowedDigests_, JavaUtilHashMap *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfSecurityDigestAlgorithms_digestWithJavaIoInputStream_withNSString_withNSString_(JavaIoInputStream *data, NSString *hashAlgorithm, NSString *provider);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfSecurityDigestAlgorithms_digestWithJavaIoInputStream_withJavaSecurityMessageDigest_(JavaIoInputStream *data, JavaSecurityMessageDigest *messageDigest);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityDigestAlgorithms_getDigestWithNSString_(NSString *oid);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityDigestAlgorithms_normalizeDigestNameWithNSString_(NSString *algo);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityDigestAlgorithms_getAllowedDigestsWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityDigestAlgorithms_init(ComItextpdfTextPdfSecurityDigestAlgorithms *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityDigestAlgorithms *new_ComItextpdfTextPdfSecurityDigestAlgorithms_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityDigestAlgorithms)
 
 #endif // _ComItextpdfTextPdfSecurityDigestAlgorithms_H_

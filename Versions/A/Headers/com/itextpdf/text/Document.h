@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextDocument_H_
 #define _ComItextpdfTextDocument_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/DocListener.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
@@ -13,10 +17,6 @@
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/DocListener.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
 
 @interface ComItextpdfTextDocument : NSObject < ComItextpdfTextDocListener, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
@@ -40,6 +40,8 @@
   ComItextpdfTextAccessibleElementId *id__;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
@@ -50,118 +52,116 @@
                                        withFloat:(jfloat)marginTop
                                        withFloat:(jfloat)marginBottom;
 
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
+
+- (jboolean)addAuthorWithNSString:(NSString *)author;
+
+- (jboolean)addCreationDate;
+
+- (jboolean)addCreatorWithNSString:(NSString *)creator;
+
 - (void)addDocListenerWithComItextpdfTextDocListener:(id<ComItextpdfTextDocListener>)listener;
 
-- (void)removeDocListenerWithComItextpdfTextDocListener:(id<ComItextpdfTextDocListener>)listener;
+- (jboolean)addHeaderWithNSString:(NSString *)name
+                     withNSString:(NSString *)content;
 
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
+- (jboolean)addKeywordsWithNSString:(NSString *)keywords;
+
+- (jboolean)addLanguageWithNSString:(NSString *)language;
+
+- (jboolean)addProducer;
+
+- (jboolean)addSubjectWithNSString:(NSString *)subject;
+
+- (jboolean)addTitleWithNSString:(NSString *)title;
+
+- (jfloat)bottom;
+
+- (jfloat)bottomWithFloat:(jfloat)margin;
+
+- (jfloat)bottomMargin;
+
+- (void)close;
+
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+
+- (JavaUtilHashMap *)getAccessibleAttributes;
+
+- (NSString *)getHtmlStyleClass;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (NSString *)getJavaScript_onLoad;
+
+- (NSString *)getJavaScript_onUnLoad;
+
+- (jint)getPageNumber;
+
+- (ComItextpdfTextRectangle *)getPageSize;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jboolean)isInline;
+
+- (jboolean)isMarginMirroring;
+
+- (jboolean)isOpen;
+
+- (jfloat)left;
+
+- (jfloat)leftWithFloat:(jfloat)margin;
+
+- (jfloat)leftMargin;
+
+- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
 
 - (void)open;
 
-- (jboolean)setPageSizeWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
+- (void)removeDocListenerWithComItextpdfTextDocListener:(id<ComItextpdfTextDocListener>)listener;
+
+- (void)resetPageCount;
+
+- (jfloat)right;
+
+- (jfloat)rightWithFloat:(jfloat)margin;
+
+- (jfloat)rightMargin;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)setHtmlStyleClassWithNSString:(NSString *)htmlStyleClass;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setJavaScript_onLoadWithNSString:(NSString *)code;
+
+- (void)setJavaScript_onUnLoadWithNSString:(NSString *)code;
+
+- (jboolean)setMarginMirroringWithBoolean:(jboolean)marginMirroring;
+
+- (jboolean)setMarginMirroringTopBottomWithBoolean:(jboolean)marginMirroringTopBottom;
 
 - (jboolean)setMarginsWithFloat:(jfloat)marginLeft
                       withFloat:(jfloat)marginRight
                       withFloat:(jfloat)marginTop
                       withFloat:(jfloat)marginBottom;
 
-- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
-
-- (void)resetPageCount;
-
 - (void)setPageCountWithInt:(jint)pageN;
 
-- (jint)getPageNumber;
-
-- (void)close;
-
-- (jboolean)addHeaderWithNSString:(NSString *)name
-                     withNSString:(NSString *)content;
-
-- (jboolean)addTitleWithNSString:(NSString *)title;
-
-- (jboolean)addSubjectWithNSString:(NSString *)subject;
-
-- (jboolean)addKeywordsWithNSString:(NSString *)keywords;
-
-- (jboolean)addAuthorWithNSString:(NSString *)author;
-
-- (jboolean)addCreatorWithNSString:(NSString *)creator;
-
-- (jboolean)addProducer;
-
-- (jboolean)addLanguageWithNSString:(NSString *)language;
-
-- (jboolean)addCreationDate;
-
-- (jfloat)leftMargin;
-
-- (jfloat)rightMargin;
-
-- (jfloat)topMargin;
-
-- (jfloat)bottomMargin;
-
-- (jfloat)left;
-
-- (jfloat)right;
-
-- (jfloat)top;
-
-- (jfloat)bottom;
-
-- (jfloat)leftWithFloat:(jfloat)margin;
-
-- (jfloat)rightWithFloat:(jfloat)margin;
-
-- (jfloat)topWithFloat:(jfloat)margin;
-
-- (jfloat)bottomWithFloat:(jfloat)margin;
-
-- (ComItextpdfTextRectangle *)getPageSize;
-
-- (jboolean)isOpen;
-
-- (void)setJavaScript_onLoadWithNSString:(NSString *)code;
-
-- (NSString *)getJavaScript_onLoad;
-
-- (void)setJavaScript_onUnLoadWithNSString:(NSString *)code;
-
-- (NSString *)getJavaScript_onUnLoad;
-
-- (void)setHtmlStyleClassWithNSString:(NSString *)htmlStyleClass;
-
-- (NSString *)getHtmlStyleClass;
-
-- (jboolean)setMarginMirroringWithBoolean:(jboolean)marginMirroring;
-
-- (jboolean)setMarginMirroringTopBottomWithBoolean:(jboolean)marginMirroringTopBottom;
-
-- (jboolean)isMarginMirroring;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (jboolean)setPageSizeWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
 
 - (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (jfloat)top;
 
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+- (jfloat)topWithFloat:(jfloat)margin;
 
-- (jboolean)isInline;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextDocument *)other;
+- (jfloat)topMargin;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextDocument_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextDocument)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextDocument, listeners_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextDocument, pageSize_, ComItextpdfTextRectangle *)
@@ -183,5 +183,19 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextDocument, plainRandomAccess_, jboo
 FOUNDATION_EXPORT jfloat ComItextpdfTextDocument_wmfFontCorrection_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextDocument, wmfFontCorrection_, jfloat)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextDocument, wmfFontCorrection_, jfloat)
+
+FOUNDATION_EXPORT void ComItextpdfTextDocument_init(ComItextpdfTextDocument *self);
+
+FOUNDATION_EXPORT ComItextpdfTextDocument *new_ComItextpdfTextDocument_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextDocument_initWithComItextpdfTextRectangle_(ComItextpdfTextDocument *self, ComItextpdfTextRectangle *pageSize);
+
+FOUNDATION_EXPORT ComItextpdfTextDocument *new_ComItextpdfTextDocument_initWithComItextpdfTextRectangle_(ComItextpdfTextRectangle *pageSize) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextDocument_initWithComItextpdfTextRectangle_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextDocument *self, ComItextpdfTextRectangle *pageSize, jfloat marginLeft, jfloat marginRight, jfloat marginTop, jfloat marginBottom);
+
+FOUNDATION_EXPORT ComItextpdfTextDocument *new_ComItextpdfTextDocument_initWithComItextpdfTextRectangle_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextRectangle *pageSize, jfloat marginLeft, jfloat marginRight, jfloat marginTop, jfloat marginBottom) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextDocument)
 
 #endif // _ComItextpdfTextDocument_H_

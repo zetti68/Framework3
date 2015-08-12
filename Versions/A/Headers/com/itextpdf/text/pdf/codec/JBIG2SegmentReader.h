@@ -6,86 +6,71 @@
 #ifndef _ComItextpdfTextPdfCodecJBIG2SegmentReader_H_
 #define _ComItextpdfTextPdfCodecJBIG2SegmentReader_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Comparable.h"
+
 @class ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page;
 @class ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSBooleanArray;
 @class IOSByteArray;
 @class IOSIntArray;
-@protocol JavaUtilSortedMap;
-@protocol JavaUtilSortedSet;
 
-#import "JreEmulation.h"
-#include "java/lang/Comparable.h"
-
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_END_OF_FILE 51
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_SYMBOL_DICTIONARY 0
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_TEXT_REGION 4
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_TEXT_REGION 6
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_TEXT_REGION 7
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_PATTERN_DICTIONARY 16
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_HALFTONE_REGION 20
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_HALFTONE_REGION 22
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_HALFTONE_REGION 23
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_GENERIC_REGION 36
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_GENERIC_REGION 38
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_GENERIC_REGION 39
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_GENERIC_REFINEMENT_REGION 40
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_GENERIC_REFINEMENT_REGION 42
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_GENERIC_REFINEMENT_REGION 43
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_PAGE_INFORMATION 48
 #define ComItextpdfTextPdfCodecJBIG2SegmentReader_END_OF_PAGE 49
 #define ComItextpdfTextPdfCodecJBIG2SegmentReader_END_OF_STRIPE 50
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_EXTENSION 62
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_GENERIC_REFINEMENT_REGION 42
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_GENERIC_REGION 38
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_HALFTONE_REGION 22
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_GENERIC_REFINEMENT_REGION 43
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_GENERIC_REGION 39
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_HALFTONE_REGION 23
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_LOSSLESS_TEXT_REGION 7
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_IMMEDIATE_TEXT_REGION 6
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_GENERIC_REFINEMENT_REGION 40
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_GENERIC_REGION 36
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_HALFTONE_REGION 20
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_INTERMEDIATE_TEXT_REGION 4
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_PAGE_INFORMATION 48
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_PATTERN_DICTIONARY 16
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_END_OF_FILE 51
 #define ComItextpdfTextPdfCodecJBIG2SegmentReader_PROFILES 52
-#define ComItextpdfTextPdfCodecJBIG2SegmentReader_SYMBOL_DICTIONARY 0
 #define ComItextpdfTextPdfCodecJBIG2SegmentReader_TABLES 53
+#define ComItextpdfTextPdfCodecJBIG2SegmentReader_EXTENSION 62
 
-@interface ComItextpdfTextPdfCodecJBIG2SegmentReader : NSObject {
- @public
-  id<JavaUtilSortedMap> segments_;
-  id<JavaUtilSortedMap> pages_;
-  id<JavaUtilSortedSet> globals_;
-  ComItextpdfTextPdfRandomAccessFileOrArray *ra_;
-  jboolean sequential_;
-  jboolean number_of_pages_known_;
-  jint number_of_pages_;
-  jboolean read__;
-}
+@interface ComItextpdfTextPdfCodecJBIG2SegmentReader : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)ra;
 
 + (IOSByteArray *)copyByteArrayWithByteArray:(IOSByteArray *)b OBJC_METHOD_FAMILY_NONE;
 
-- (void)read;
+- (IOSByteArray *)getGlobalWithBoolean:(jboolean)for_embedding;
 
-- (void)readSegmentWithComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)s;
-
-- (ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)readHeader;
-
-- (void)readFileHeader;
-
-- (jint)numberOfPages;
+- (ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page *)getPageWithInt:(jint)page;
 
 - (jint)getPageHeightWithInt:(jint)i;
 
 - (jint)getPageWidthWithInt:(jint)i;
 
-- (ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page *)getPageWithInt:(jint)page;
+- (jint)numberOfPages;
 
-- (IOSByteArray *)getGlobalWithBoolean:(jboolean)for_embedding;
+- (void)read;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecJBIG2SegmentReader *)other;
+#pragma mark Package-Private
+
+- (void)readFileHeader;
+
+- (ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)readHeader;
+
+- (void)readSegmentWithComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)s;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecJBIG2SegmentReader_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, segments_, id<JavaUtilSortedMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, pages_, id<JavaUtilSortedMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, globals_, id<JavaUtilSortedSet>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, ra_, ComItextpdfTextPdfRandomAccessFileOrArray *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecJBIG2SegmentReader)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, SYMBOL_DICTIONARY, jint)
 
@@ -129,6 +114,14 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, TABLES, ji
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, EXTENSION, jint)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecJBIG2SegmentReader_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfCodecJBIG2SegmentReader *self, ComItextpdfTextPdfRandomAccessFileOrArray *ra);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecJBIG2SegmentReader *new_ComItextpdfTextPdfCodecJBIG2SegmentReader_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *ra) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecJBIG2SegmentReader_copyByteArrayWithByteArray_(IOSByteArray *b);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecJBIG2SegmentReader)
+
 @interface ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment : NSObject < JavaLangComparable > {
  @public
   jint segmentNumber_;
@@ -145,44 +138,51 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader, EXTENSION,
   jint page_association_offset_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)segment_number;
 
 - (jint)compareToWithId:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)s;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment, referredToSegmentNumbers_, IOSIntArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment, segmentRetentionFlags_, IOSBooleanArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment, data_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment, headerData_, IOSByteArray *)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment_initWithInt_(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *self, jint segment_number);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *new_ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment_initWithInt_(jint segment_number) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment)
+
 @interface ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page : NSObject {
  @public
   jint page_;
-  ComItextpdfTextPdfCodecJBIG2SegmentReader *sr_;
-  id<JavaUtilSortedMap> segs_;
   jint pageBitmapWidth_;
   jint pageBitmapHeight_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)page
 withComItextpdfTextPdfCodecJBIG2SegmentReader:(ComItextpdfTextPdfCodecJBIG2SegmentReader *)sr;
 
-- (IOSByteArray *)getDataWithBoolean:(jboolean)for_embedding;
-
 - (void)addSegmentWithComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Segment *)s;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page *)other;
+- (IOSByteArray *)getDataWithBoolean:(jboolean)for_embedding;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page, sr_, ComItextpdfTextPdfCodecJBIG2SegmentReader *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page, segs_, id<JavaUtilSortedMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page_initWithInt_withComItextpdfTextPdfCodecJBIG2SegmentReader_(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page *self, jint page, ComItextpdfTextPdfCodecJBIG2SegmentReader *sr);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page *new_ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page_initWithInt_withComItextpdfTextPdfCodecJBIG2SegmentReader_(jint page, ComItextpdfTextPdfCodecJBIG2SegmentReader *sr) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecJBIG2SegmentReader_JBIG2Page)
 
 #endif // _ComItextpdfTextPdfCodecJBIG2SegmentReader_H_

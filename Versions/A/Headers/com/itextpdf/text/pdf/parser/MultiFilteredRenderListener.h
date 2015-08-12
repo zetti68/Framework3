@@ -6,19 +6,16 @@
 #ifndef _ComItextpdfTextPdfParserMultiFilteredRenderListener_H_
 #define _ComItextpdfTextPdfParserMultiFilteredRenderListener_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 @class IOSObjectArray;
-@protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+@interface ComItextpdfTextPdfParserMultiFilteredRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener >
 
-@interface ComItextpdfTextPdfParserMultiFilteredRenderListener : NSObject < ComItextpdfTextPdfParserRenderListener > {
- @public
-  id<JavaUtilList> delegates_;
-  id<JavaUtilList> filters_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -27,19 +24,20 @@
 
 - (void)beginTextBlock;
 
-- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
-
 - (void)endTextBlock;
 
 - (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserMultiFilteredRenderListener *)other;
+- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserMultiFilteredRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserMultiFilteredRenderListener)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserMultiFilteredRenderListener, delegates_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserMultiFilteredRenderListener, filters_, id<JavaUtilList>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMultiFilteredRenderListener_init(ComItextpdfTextPdfParserMultiFilteredRenderListener *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMultiFilteredRenderListener *new_ComItextpdfTextPdfParserMultiFilteredRenderListener_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserMultiFilteredRenderListener)
 
 #endif // _ComItextpdfTextPdfParserMultiFilteredRenderListener_H_

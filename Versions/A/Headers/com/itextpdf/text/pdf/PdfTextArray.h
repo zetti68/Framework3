@@ -6,41 +6,46 @@
 #ifndef _ComItextpdfTextPdfPdfTextArray_H_
 #define _ComItextpdfTextPdfPdfTextArray_H_
 
-@class ComItextpdfTextPdfPdfNumber;
-@class JavaLangFloat;
-@class JavaUtilArrayList;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfPdfNumber;
+@class JavaUtilArrayList;
 
 @interface ComItextpdfTextPdfPdfTextArray : NSObject {
  @public
   JavaUtilArrayList *arrayList_;
-  NSString *lastStr_;
-  JavaLangFloat *lastNum_;
 }
 
-- (instancetype)initWithNSString:(NSString *)str;
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)addWithComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)number;
+- (instancetype)initWithNSString:(NSString *)str;
 
 - (void)addWithFloat:(jfloat)number;
 
+- (void)addWithComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)number;
+
 - (void)addWithNSString:(NSString *)str;
+
+#pragma mark Package-Private
 
 - (JavaUtilArrayList *)getArrayList;
 
-- (void)replaceLastWithId:(id)obj;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfTextArray *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfTextArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfTextArray)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTextArray, arrayList_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTextArray, lastStr_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfTextArray, lastNum_, JavaLangFloat *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTextArray_initWithNSString_(ComItextpdfTextPdfPdfTextArray *self, NSString *str);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTextArray *new_ComItextpdfTextPdfPdfTextArray_initWithNSString_(NSString *str) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTextArray_init(ComItextpdfTextPdfPdfTextArray *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTextArray *new_ComItextpdfTextPdfPdfTextArray_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfTextArray)
 
 #endif // _ComItextpdfTextPdfPdfTextArray_H_

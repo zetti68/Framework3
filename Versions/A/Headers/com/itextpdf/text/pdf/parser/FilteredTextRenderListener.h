@@ -6,28 +6,29 @@
 #ifndef _ComItextpdfTextPdfParserFilteredTextRenderListener_H_
 #define _ComItextpdfTextPdfParserFilteredTextRenderListener_H_
 
-@class IOSObjectArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/parser/FilteredRenderListener.h"
 #include "com/itextpdf/text/pdf/parser/TextExtractionStrategy.h"
 
-@interface ComItextpdfTextPdfParserFilteredTextRenderListener : ComItextpdfTextPdfParserFilteredRenderListener < ComItextpdfTextPdfParserTextExtractionStrategy > {
- @public
-  id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate_FilteredTextRenderListener_;
-}
+@class IOSObjectArray;
+
+@interface ComItextpdfTextPdfParserFilteredTextRenderListener : ComItextpdfTextPdfParserFilteredRenderListener < ComItextpdfTextPdfParserTextExtractionStrategy >
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfParserTextExtractionStrategy:(id<ComItextpdfTextPdfParserTextExtractionStrategy>)delegate
                          withComItextpdfTextPdfParserRenderFilterArray:(IOSObjectArray *)filters;
 
 - (NSString *)getResultantText;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserFilteredTextRenderListener *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserFilteredTextRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserFilteredTextRenderListener)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserFilteredTextRenderListener, delegate_FilteredTextRenderListener_, id<ComItextpdfTextPdfParserTextExtractionStrategy>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserFilteredTextRenderListener_initWithComItextpdfTextPdfParserTextExtractionStrategy_withComItextpdfTextPdfParserRenderFilterArray_(ComItextpdfTextPdfParserFilteredTextRenderListener *self, id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate, IOSObjectArray *filters);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserFilteredTextRenderListener *new_ComItextpdfTextPdfParserFilteredTextRenderListener_initWithComItextpdfTextPdfParserTextExtractionStrategy_withComItextpdfTextPdfParserRenderFilterArray_(id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate, IOSObjectArray *filters) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserFilteredTextRenderListener)
 
 #endif // _ComItextpdfTextPdfParserFilteredTextRenderListener_H_

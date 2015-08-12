@@ -6,56 +6,45 @@
 #ifndef _ComItextpdfTextPdfQrcodeGF256_H_
 #define _ComItextpdfTextPdfQrcodeGF256_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeGF256Poly;
-@class IOSIntArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeGF256 : NSObject
 
-@interface ComItextpdfTextPdfQrcodeGF256 : NSObject {
- @public
-  IOSIntArray *expTable_;
-  IOSIntArray *logTable_;
-  ComItextpdfTextPdfQrcodeGF256Poly *zero_;
-  ComItextpdfTextPdfQrcodeGF256Poly *one_;
-}
-
-- (instancetype)initWithInt:(jint)primitive;
-
-- (ComItextpdfTextPdfQrcodeGF256Poly *)getZero;
-
-- (ComItextpdfTextPdfQrcodeGF256Poly *)getOne;
-
-- (ComItextpdfTextPdfQrcodeGF256Poly *)buildMonomialWithInt:(jint)degree
-                                                    withInt:(jint)coefficient;
+#pragma mark Package-Private
 
 + (jint)addOrSubtractWithInt:(jint)a
                      withInt:(jint)b;
 
+- (ComItextpdfTextPdfQrcodeGF256Poly *)buildMonomialWithInt:(jint)degree
+                                                    withInt:(jint)coefficient;
+
 - (jint)expWithInt:(jint)a;
 
-- (jint)logWithInt:(jint)a;
+- (ComItextpdfTextPdfQrcodeGF256Poly *)getOne;
+
+- (ComItextpdfTextPdfQrcodeGF256Poly *)getZero;
 
 - (jint)inverseWithInt:(jint)a;
+
+- (jint)logWithInt:(jint)a;
 
 - (jint)multiplyWithInt:(jint)a
                 withInt:(jint)b;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeGF256 *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeGF256_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeGF256)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256, expTable_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256, logTable_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256, zero_, ComItextpdfTextPdfQrcodeGF256Poly *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeGF256, one_, ComItextpdfTextPdfQrcodeGF256Poly *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeGF256 *ComItextpdfTextPdfQrcodeGF256_QR_CODE_FIELD_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeGF256, QR_CODE_FIELD_, ComItextpdfTextPdfQrcodeGF256 *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeGF256 *ComItextpdfTextPdfQrcodeGF256_DATA_MATRIX_FIELD_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeGF256, DATA_MATRIX_FIELD_, ComItextpdfTextPdfQrcodeGF256 *)
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeGF256_addOrSubtractWithInt_withInt_(jint a, jint b);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeGF256)
 
 #endif // _ComItextpdfTextPdfQrcodeGF256_H_

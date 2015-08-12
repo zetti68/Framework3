@@ -6,39 +6,41 @@
 #ifndef _ComItextpdfTextPdfGrayColor_H_
 #define _ComItextpdfTextPdfGrayColor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/ExtendedColor.h"
 
-#define ComItextpdfTextPdfGrayColor_serialVersionUID -6571835680819282746LL
+@interface ComItextpdfTextPdfGrayColor : ComItextpdfTextPdfExtendedColor
 
-@interface ComItextpdfTextPdfGrayColor : ComItextpdfTextPdfExtendedColor {
- @public
-  jfloat gray_;
-}
-
-- (instancetype)initWithInt:(jint)intGray;
+#pragma mark Public
 
 - (instancetype)initWithFloat:(jfloat)floatGray;
 
-- (jfloat)getGray;
+- (instancetype)initWithInt:(jint)intGray;
 
 - (jboolean)isEqual:(id)obj;
 
-- (NSUInteger)hash;
+- (jfloat)getGray;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfGrayColor *)other;
+- (NSUInteger)hash;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfGrayColor_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfGrayColor)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfGrayColor, serialVersionUID, jlong)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfGrayColor *ComItextpdfTextPdfGrayColor_GRAYBLACK_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfGrayColor, GRAYBLACK_, ComItextpdfTextPdfGrayColor *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfGrayColor *ComItextpdfTextPdfGrayColor_GRAYWHITE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfGrayColor, GRAYWHITE_, ComItextpdfTextPdfGrayColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfGrayColor_initWithInt_(ComItextpdfTextPdfGrayColor *self, jint intGray);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfGrayColor *new_ComItextpdfTextPdfGrayColor_initWithInt_(jint intGray) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfGrayColor_initWithFloat_(ComItextpdfTextPdfGrayColor *self, jfloat floatGray);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfGrayColor *new_ComItextpdfTextPdfGrayColor_initWithFloat_(jfloat floatGray) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfGrayColor)
 
 #endif // _ComItextpdfTextPdfGrayColor_H_

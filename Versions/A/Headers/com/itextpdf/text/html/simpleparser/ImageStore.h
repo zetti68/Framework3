@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserImageStore_H_
 #define _ComItextpdfTextHtmlSimpleparserImageStore_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/util/HashMap.h"
 
-#define ComItextpdfTextHtmlSimpleparserImageStore_serialVersionUID -148924031490995024LL
+@interface ComItextpdfTextHtmlSimpleparserImageStore : JavaUtilHashMap
 
-@interface ComItextpdfTextHtmlSimpleparserImageStore : JavaUtilHashMap {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserImageStore_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserImageStore)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserImageStore, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserImageStore_init(ComItextpdfTextHtmlSimpleparserImageStore *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserImageStore *new_ComItextpdfTextHtmlSimpleparserImageStore_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserImageStore)
 
 #endif // _ComItextpdfTextHtmlSimpleparserImageStore_H_

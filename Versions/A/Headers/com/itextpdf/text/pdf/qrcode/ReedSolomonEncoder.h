@@ -6,33 +6,28 @@
 #ifndef _ComItextpdfTextPdfQrcodeReedSolomonEncoder_H_
 #define _ComItextpdfTextPdfQrcodeReedSolomonEncoder_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeGF256;
-@class ComItextpdfTextPdfQrcodeGF256Poly;
 @class IOSIntArray;
-@class JavaUtilArrayList;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeReedSolomonEncoder : NSObject
 
-@interface ComItextpdfTextPdfQrcodeReedSolomonEncoder : NSObject {
- @public
-  ComItextpdfTextPdfQrcodeGF256 *field_;
-  JavaUtilArrayList *cachedGenerators_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfQrcodeGF256:(ComItextpdfTextPdfQrcodeGF256 *)field;
-
-- (ComItextpdfTextPdfQrcodeGF256Poly *)buildGeneratorWithInt:(jint)degree;
 
 - (void)encodeWithIntArray:(IOSIntArray *)toEncode
                    withInt:(jint)ecBytes;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeReedSolomonEncoder *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeReedSolomonEncoder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeReedSolomonEncoder)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeReedSolomonEncoder, field_, ComItextpdfTextPdfQrcodeGF256 *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeReedSolomonEncoder, cachedGenerators_, JavaUtilArrayList *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeReedSolomonEncoder_initWithComItextpdfTextPdfQrcodeGF256_(ComItextpdfTextPdfQrcodeReedSolomonEncoder *self, ComItextpdfTextPdfQrcodeGF256 *field);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeReedSolomonEncoder *new_ComItextpdfTextPdfQrcodeReedSolomonEncoder_initWithComItextpdfTextPdfQrcodeGF256_(ComItextpdfTextPdfQrcodeGF256 *field) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeReedSolomonEncoder)
 
 #endif // _ComItextpdfTextPdfQrcodeReedSolomonEncoder_H_

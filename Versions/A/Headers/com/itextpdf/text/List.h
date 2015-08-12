@@ -6,6 +6,11 @@
 #ifndef _ComItextpdfTextList_H_
 #define _ComItextpdfTextList_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/TextElementArray.h"
+#include "com/itextpdf/text/api/Indentable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextListItem;
@@ -17,17 +22,12 @@
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/TextElementArray.h"
-#include "com/itextpdf/text/api/Indentable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
-#define ComItextpdfTextList_ALPHABETICAL YES
-#define ComItextpdfTextList_LOWERCASE YES
-#define ComItextpdfTextList_NUMERICAL NO
 #define ComItextpdfTextList_ORDERED YES
 #define ComItextpdfTextList_UNORDERED NO
+#define ComItextpdfTextList_NUMERICAL NO
+#define ComItextpdfTextList_ALPHABETICAL YES
 #define ComItextpdfTextList_UPPERCASE NO
+#define ComItextpdfTextList_LOWERCASE YES
 
 @interface ComItextpdfTextList : NSObject < ComItextpdfTextTextElementArray, ComItextpdfTextApiIndentable, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
@@ -46,12 +46,11 @@
   jfloat symbolIndent_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
-  ComItextpdfTextAccessibleElementId *id__;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithFloat:(jfloat)symbolIndent;
+- (instancetype)init;
 
 - (instancetype)initWithBoolean:(jboolean)numbered;
 
@@ -59,112 +58,112 @@
                     withBoolean:(jboolean)lettered;
 
 - (instancetype)initWithBoolean:(jboolean)numbered
-                      withFloat:(jfloat)symbolIndent;
-
-- (instancetype)initWithBoolean:(jboolean)numbered
                     withBoolean:(jboolean)lettered
                       withFloat:(jfloat)symbolIndent;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (instancetype)initWithBoolean:(jboolean)numbered
+                      withFloat:(jfloat)symbolIndent;
 
-- (jint)type;
-
-- (id<JavaUtilList>)getChunks;
-
-- (jboolean)addWithNSString:(NSString *)s;
+- (instancetype)initWithFloat:(jfloat)symbolIndent;
 
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
-- (void)normalizeIndentation;
+- (jboolean)addWithNSString:(NSString *)s;
 
-- (void)setNumberedWithBoolean:(jboolean)numbered;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (void)setLetteredWithBoolean:(jboolean)lettered;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
-- (void)setLowercaseWithBoolean:(jboolean)uppercase;
-
-- (void)setAutoindentWithBoolean:(jboolean)autoindent;
-
-- (void)setAlignindentWithBoolean:(jboolean)alignindent;
-
-- (void)setFirstWithInt:(jint)first;
-
-- (void)setListSymbolWithComItextpdfTextChunk:(ComItextpdfTextChunk *)symbol;
-
-- (void)setListSymbolWithNSString:(NSString *)symbol;
-
-- (void)setIndentationLeftWithFloat:(jfloat)indentation;
-
-- (void)setIndentationRightWithFloat:(jfloat)indentation;
-
-- (void)setSymbolIndentWithFloat:(jfloat)symbolIndent;
-
-- (JavaUtilArrayList *)getItems;
-
-- (jint)size;
-
-- (jboolean)isEmpty;
-
-- (jfloat)getTotalLeading;
-
-- (jboolean)isNumbered;
-
-- (jboolean)isLettered;
-
-- (jboolean)isLowercase;
-
-- (jboolean)isAutoindent;
-
-- (jboolean)isAlignindent;
+- (id<JavaUtilList>)getChunks;
 
 - (jint)getFirst;
 
-- (ComItextpdfTextChunk *)getSymbol;
+- (ComItextpdfTextListItem *)getFirstItem;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
 
 - (jfloat)getIndentationLeft;
 
 - (jfloat)getIndentationRight;
 
-- (jfloat)getSymbolIndent;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (NSString *)getPostSymbol;
-
-- (void)setPostSymbolWithNSString:(NSString *)postSymbol;
-
-- (NSString *)getPreSymbol;
-
-- (void)setPreSymbolWithNSString:(NSString *)preSymbol;
-
-- (ComItextpdfTextListItem *)getFirstItem;
+- (JavaUtilArrayList *)getItems;
 
 - (ComItextpdfTextListItem *)getLastItem;
 
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+- (NSString *)getPostSymbol;
+
+- (NSString *)getPreSymbol;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (ComItextpdfTextChunk *)getSymbol;
+
+- (jfloat)getSymbolIndent;
+
+- (jfloat)getTotalLeading;
+
+- (jboolean)isAlignindent;
+
+- (jboolean)isAutoindent;
+
+- (jboolean)isContent;
+
+- (jboolean)isEmpty;
+
+- (jboolean)isInline;
+
+- (jboolean)isLettered;
+
+- (jboolean)isLowercase;
+
+- (jboolean)isNestable;
+
+- (jboolean)isNumbered;
+
+- (void)normalizeIndentation;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
                             withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
+- (void)setAlignindentWithBoolean:(jboolean)alignindent;
 
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (void)setAutoindentWithBoolean:(jboolean)autoindent;
 
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (void)setFirstWithInt:(jint)first;
 
 - (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
 
-- (jboolean)isInline;
+- (void)setIndentationLeftWithFloat:(jfloat)indentation;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextList *)other;
+- (void)setIndentationRightWithFloat:(jfloat)indentation;
+
+- (void)setLetteredWithBoolean:(jboolean)lettered;
+
+- (void)setListSymbolWithComItextpdfTextChunk:(ComItextpdfTextChunk *)symbol;
+
+- (void)setListSymbolWithNSString:(NSString *)symbol;
+
+- (void)setLowercaseWithBoolean:(jboolean)uppercase;
+
+- (void)setNumberedWithBoolean:(jboolean)numbered;
+
+- (void)setPostSymbolWithNSString:(NSString *)postSymbol;
+
+- (void)setPreSymbolWithNSString:(NSString *)preSymbol;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setSymbolIndentWithFloat:(jfloat)symbolIndent;
+
+- (jint)size;
+
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextList)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextList, list_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextList, symbol_, ComItextpdfTextChunk *)
@@ -172,7 +171,6 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextList, preSymbol_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextList, postSymbol_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextList, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextList, accessibleAttributes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextList, id__, ComItextpdfTextAccessibleElementId *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextList, ORDERED, jboolean)
 
@@ -185,5 +183,31 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextList, ALPHABETICAL, jboolean)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextList, UPPERCASE, jboolean)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextList, LOWERCASE, jboolean)
+
+FOUNDATION_EXPORT void ComItextpdfTextList_init(ComItextpdfTextList *self);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextList_initWithFloat_(ComItextpdfTextList *self, jfloat symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_initWithFloat_(jfloat symbolIndent) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextList_initWithBoolean_(ComItextpdfTextList *self, jboolean numbered);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_initWithBoolean_(jboolean numbered) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextList_initWithBoolean_withBoolean_(ComItextpdfTextList *self, jboolean numbered, jboolean lettered);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_initWithBoolean_withBoolean_(jboolean numbered, jboolean lettered) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextList_initWithBoolean_withFloat_(ComItextpdfTextList *self, jboolean numbered, jfloat symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_initWithBoolean_withFloat_(jboolean numbered, jfloat symbolIndent) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextList_initWithBoolean_withBoolean_withFloat_(ComItextpdfTextList *self, jboolean numbered, jboolean lettered, jfloat symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextList *new_ComItextpdfTextList_initWithBoolean_withBoolean_withFloat_(jboolean numbered, jboolean lettered, jfloat symbolIndent) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextList)
 
 #endif // _ComItextpdfTextList_H_

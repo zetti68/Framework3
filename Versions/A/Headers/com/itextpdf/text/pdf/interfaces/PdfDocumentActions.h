@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfInterfacesPdfDocumentActions_H_
 #define _ComItextpdfTextPdfInterfacesPdfDocumentActions_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfAction;
 @class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfInterfacesPdfDocumentActions < NSObject, JavaObject >
 
@@ -22,6 +22,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesPdfDocumentActions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesPdfDocumentActions)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesPdfDocumentActions)
 
 #endif // _ComItextpdfTextPdfInterfacesPdfDocumentActions_H_

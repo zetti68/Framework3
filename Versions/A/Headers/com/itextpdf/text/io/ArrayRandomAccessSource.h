@@ -6,17 +6,18 @@
 #ifndef _ComItextpdfTextIoArrayRandomAccessSource_H_
 #define _ComItextpdfTextIoArrayRandomAccessSource_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/io/RandomAccessSource.h"
 
-@interface ComItextpdfTextIoArrayRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource > {
- @public
-  IOSByteArray *array_;
-}
+@class IOSByteArray;
+
+@interface ComItextpdfTextIoArrayRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource >
+
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)array;
+
+- (void)close;
 
 - (jint)getWithLong:(jlong)offset;
 
@@ -27,14 +28,14 @@
 
 - (jlong)length;
 
-- (void)close;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoArrayRandomAccessSource *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoArrayRandomAccessSource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoArrayRandomAccessSource)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoArrayRandomAccessSource, array_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextIoArrayRandomAccessSource_initWithByteArray_(ComItextpdfTextIoArrayRandomAccessSource *self, IOSByteArray *array);
+
+FOUNDATION_EXPORT ComItextpdfTextIoArrayRandomAccessSource *new_ComItextpdfTextIoArrayRandomAccessSource_initWithByteArray_(IOSByteArray *array) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoArrayRandomAccessSource)
 
 #endif // _ComItextpdfTextIoArrayRandomAccessSource_H_

@@ -6,17 +6,31 @@
 #ifndef _ComItextpdfTextPdfPdfEncryptor_H_
 #define _ComItextpdfTextPdfPdfEncryptor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @class IOSByteArray;
 @class JavaIoOutputStream;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfPdfEncryptor : NSObject
 
-@interface ComItextpdfTextPdfPdfEncryptor : NSObject {
-}
+#pragma mark Public
 
-- (instancetype)init;
++ (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                        withJavaIoOutputStream:(JavaIoOutputStream *)os
+                                   withBoolean:(jboolean)strength
+                                  withNSString:(NSString *)userPassword
+                                  withNSString:(NSString *)ownerPassword
+                                       withInt:(jint)permissions;
+
++ (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                        withJavaIoOutputStream:(JavaIoOutputStream *)os
+                                   withBoolean:(jboolean)strength
+                                  withNSString:(NSString *)userPassword
+                                  withNSString:(NSString *)ownerPassword
+                                       withInt:(jint)permissions
+                           withJavaUtilHashMap:(JavaUtilHashMap *)newInfo;
 
 + (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                         withJavaIoOutputStream:(JavaIoOutputStream *)os
@@ -35,18 +49,10 @@
 
 + (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                         withJavaIoOutputStream:(JavaIoOutputStream *)os
-                                   withBoolean:(jboolean)strength
+                                       withInt:(jint)type
                                   withNSString:(NSString *)userPassword
                                   withNSString:(NSString *)ownerPassword
                                        withInt:(jint)permissions;
-
-+ (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                        withJavaIoOutputStream:(JavaIoOutputStream *)os
-                                   withBoolean:(jboolean)strength
-                                  withNSString:(NSString *)userPassword
-                                  withNSString:(NSString *)ownerPassword
-                                       withInt:(jint)permissions
-                           withJavaUtilHashMap:(JavaUtilHashMap *)newInfo;
 
 + (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                         withJavaIoOutputStream:(JavaIoOutputStream *)os
@@ -55,34 +61,59 @@
                                   withNSString:(NSString *)ownerPassword
                                        withInt:(jint)permissions
                            withJavaUtilHashMap:(JavaUtilHashMap *)newInfo;
-
-+ (void)encryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                        withJavaIoOutputStream:(JavaIoOutputStream *)os
-                                       withInt:(jint)type
-                                  withNSString:(NSString *)userPassword
-                                  withNSString:(NSString *)ownerPassword
-                                       withInt:(jint)permissions;
 
 + (NSString *)getPermissionsVerboseWithInt:(jint)permissions;
 
-+ (jboolean)isPrintingAllowedWithInt:(jint)permissions;
-
-+ (jboolean)isModifyContentsAllowedWithInt:(jint)permissions;
++ (jboolean)isAssemblyAllowedWithInt:(jint)permissions;
 
 + (jboolean)isCopyAllowedWithInt:(jint)permissions;
 
-+ (jboolean)isModifyAnnotationsAllowedWithInt:(jint)permissions;
++ (jboolean)isDegradedPrintingAllowedWithInt:(jint)permissions;
 
 + (jboolean)isFillInAllowedWithInt:(jint)permissions;
 
++ (jboolean)isModifyAnnotationsAllowedWithInt:(jint)permissions;
+
++ (jboolean)isModifyContentsAllowedWithInt:(jint)permissions;
+
++ (jboolean)isPrintingAllowedWithInt:(jint)permissions;
+
 + (jboolean)isScreenReadersAllowedWithInt:(jint)permissions;
-
-+ (jboolean)isAssemblyAllowedWithInt:(jint)permissions;
-
-+ (jboolean)isDegradedPrintingAllowedWithInt:(jint)permissions;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfEncryptor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfEncryptor)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withByteArray_withByteArray_withInt_withBoolean_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, IOSByteArray *userPassword, IOSByteArray *ownerPassword, jint permissions, jboolean strength128Bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withByteArray_withByteArray_withInt_withBoolean_withJavaUtilHashMap_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, IOSByteArray *userPassword, IOSByteArray *ownerPassword, jint permissions, jboolean strength128Bits, JavaUtilHashMap *newInfo);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withBoolean_withNSString_withNSString_withInt_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, jboolean strength, NSString *userPassword, NSString *ownerPassword, jint permissions);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withBoolean_withNSString_withNSString_withInt_withJavaUtilHashMap_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, jboolean strength, NSString *userPassword, NSString *ownerPassword, jint permissions, JavaUtilHashMap *newInfo);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withInt_withNSString_withNSString_withInt_withJavaUtilHashMap_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, jint type, NSString *userPassword, NSString *ownerPassword, jint permissions, JavaUtilHashMap *newInfo);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryptor_encryptWithComItextpdfTextPdfPdfReader_withJavaIoOutputStream_withInt_withNSString_withNSString_withInt_(ComItextpdfTextPdfPdfReader *reader, JavaIoOutputStream *os, jint type, NSString *userPassword, NSString *ownerPassword, jint permissions);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfEncryptor_getPermissionsVerboseWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isPrintingAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isModifyContentsAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isCopyAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isModifyAnnotationsAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isFillInAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isScreenReadersAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isAssemblyAllowedWithInt_(jint permissions);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncryptor_isDegradedPrintingAllowedWithInt_(jint permissions);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfEncryptor)
 
 #endif // _ComItextpdfTextPdfPdfEncryptor_H_

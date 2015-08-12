@@ -6,21 +6,22 @@
 #ifndef _ComItextpdfTextPdfExtendedColor_H_
 #define _ComItextpdfTextPdfExtendedColor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/BaseColor.h"
 
-#define ComItextpdfTextPdfExtendedColor_TYPE_CMYK 2
-#define ComItextpdfTextPdfExtendedColor_TYPE_GRAY 1
-#define ComItextpdfTextPdfExtendedColor_TYPE_PATTERN 4
 #define ComItextpdfTextPdfExtendedColor_TYPE_RGB 0
+#define ComItextpdfTextPdfExtendedColor_TYPE_GRAY 1
+#define ComItextpdfTextPdfExtendedColor_TYPE_CMYK 2
 #define ComItextpdfTextPdfExtendedColor_TYPE_SEPARATION 3
+#define ComItextpdfTextPdfExtendedColor_TYPE_PATTERN 4
 #define ComItextpdfTextPdfExtendedColor_TYPE_SHADING 5
-#define ComItextpdfTextPdfExtendedColor_serialVersionUID 2722660170712380080LL
 
 @interface ComItextpdfTextPdfExtendedColor : ComItextpdfTextBaseColor {
  @public
   jint type_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)type;
 
@@ -39,15 +40,13 @@
 
 + (jint)getTypeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-+ (jfloat)normalizeWithFloat:(jfloat)value;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfExtendedColor *)other;
++ (jfloat)normalizeWithFloat:(jfloat)value;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfExtendedColor_init() {}
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfExtendedColor, serialVersionUID, jlong)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfExtendedColor)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfExtendedColor, TYPE_RGB, jint)
 
@@ -60,5 +59,17 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfExtendedColor, TYPE_SEPARATION, jin
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfExtendedColor, TYPE_PATTERN, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfExtendedColor, TYPE_SHADING, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfExtendedColor_initWithInt_(ComItextpdfTextPdfExtendedColor *self, jint type);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfExtendedColor_initWithInt_withFloat_withFloat_withFloat_(ComItextpdfTextPdfExtendedColor *self, jint type, jfloat red, jfloat green, jfloat blue);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfExtendedColor_initWithInt_withInt_withInt_withInt_withInt_(ComItextpdfTextPdfExtendedColor *self, jint type, jint red, jint green, jint blue, jint alpha);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfExtendedColor_getTypeWithComItextpdfTextBaseColor_(ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextPdfExtendedColor_normalizeWithFloat_(jfloat value);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfExtendedColor)
 
 #endif // _ComItextpdfTextPdfExtendedColor_H_

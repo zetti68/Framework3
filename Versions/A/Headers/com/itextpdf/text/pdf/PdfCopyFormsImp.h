@@ -6,23 +6,32 @@
 #ifndef _ComItextpdfTextPdfPdfCopyFormsImp_H_
 #define _ComItextpdfTextPdfPdfCopyFormsImp_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfCopyFieldsImp.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfCopyFieldsImp.h"
+@interface ComItextpdfTextPdfPdfCopyFormsImp : ComItextpdfTextPdfPdfCopyFieldsImp
 
-@interface ComItextpdfTextPdfPdfCopyFormsImp : ComItextpdfTextPdfPdfCopyFieldsImp {
-}
-
-- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
+#pragma mark Public
 
 - (void)copyDocumentFieldsWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader OBJC_METHOD_FAMILY_NONE;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 - (void)mergeFields;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfCopyFormsImp_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfCopyFormsImp)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfCopyFormsImp_initWithJavaIoOutputStream_(ComItextpdfTextPdfPdfCopyFormsImp *self, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfCopyFormsImp *new_ComItextpdfTextPdfPdfCopyFormsImp_initWithJavaIoOutputStream_(JavaIoOutputStream *os) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfCopyFormsImp)
 
 #endif // _ComItextpdfTextPdfPdfCopyFormsImp_H_

@@ -6,16 +6,23 @@
 #ifndef _ComItextpdfTextPdfPdfOCProperties_H_
 #define _ComItextpdfTextPdfPdfOCProperties_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfPdfOCProperties : ComItextpdfTextPdfPdfDictionary {
-}
+@interface ComItextpdfTextPdfPdfOCProperties : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfOCProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfOCProperties)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfOCProperties_init(ComItextpdfTextPdfPdfOCProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfOCProperties *new_ComItextpdfTextPdfPdfOCProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfOCProperties)
 
 #endif // _ComItextpdfTextPdfPdfOCProperties_H_

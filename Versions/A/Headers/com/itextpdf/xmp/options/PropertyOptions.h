@@ -6,94 +6,97 @@
 #ifndef _ComItextpdfXmpOptionsPropertyOptions_H_
 #define _ComItextpdfXmpOptionsPropertyOptions_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/options/Options.h"
 
+#define ComItextpdfXmpOptionsPropertyOptions_NO_OPTIONS 0
+#define ComItextpdfXmpOptionsPropertyOptions_URI 2
+#define ComItextpdfXmpOptionsPropertyOptions_HAS_QUALIFIERS 16
+#define ComItextpdfXmpOptionsPropertyOptions_QUALIFIER 32
+#define ComItextpdfXmpOptionsPropertyOptions_HAS_LANGUAGE 64
+#define ComItextpdfXmpOptionsPropertyOptions_HAS_TYPE 128
+#define ComItextpdfXmpOptionsPropertyOptions_STRUCT 256
 #define ComItextpdfXmpOptionsPropertyOptions_ARRAY 512
+#define ComItextpdfXmpOptionsPropertyOptions_ARRAY_ORDERED 1024
 #define ComItextpdfXmpOptionsPropertyOptions_ARRAY_ALTERNATE 2048
 #define ComItextpdfXmpOptionsPropertyOptions_ARRAY_ALT_TEXT 4096
-#define ComItextpdfXmpOptionsPropertyOptions_ARRAY_ORDERED 1024
-#define ComItextpdfXmpOptionsPropertyOptions_DELETE_EXISTING 536870912
-#define ComItextpdfXmpOptionsPropertyOptions_HAS_LANGUAGE 64
-#define ComItextpdfXmpOptionsPropertyOptions_HAS_QUALIFIERS 16
-#define ComItextpdfXmpOptionsPropertyOptions_HAS_TYPE 128
-#define ComItextpdfXmpOptionsPropertyOptions_NO_OPTIONS 0
-#define ComItextpdfXmpOptionsPropertyOptions_QUALIFIER 32
 #define ComItextpdfXmpOptionsPropertyOptions_SCHEMA_NODE ((jint) 0x80000000)
+#define ComItextpdfXmpOptionsPropertyOptions_DELETE_EXISTING 536870912
 #define ComItextpdfXmpOptionsPropertyOptions_SEPARATE_NODE 1073741824
-#define ComItextpdfXmpOptionsPropertyOptions_STRUCT 256
-#define ComItextpdfXmpOptionsPropertyOptions_URI 2
 
-@interface ComItextpdfXmpOptionsPropertyOptions : ComItextpdfXmpOptionsOptions {
-}
+@interface ComItextpdfXmpOptionsPropertyOptions : ComItextpdfXmpOptionsOptions
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)options;
 
-- (jboolean)isURI;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setURIWithBoolean:(jboolean)value;
-
-- (jboolean)getHasQualifiers;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setHasQualifiersWithBoolean:(jboolean)value;
-
-- (jboolean)isQualifier;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setQualifierWithBoolean:(jboolean)value;
-
-- (jboolean)getHasLanguage;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setHasLanguageWithBoolean:(jboolean)value;
-
-- (jboolean)getHasType;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setHasTypeWithBoolean:(jboolean)value;
-
-- (jboolean)isStruct;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setStructWithBoolean:(jboolean)value;
-
-- (jboolean)isArray;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setArrayWithBoolean:(jboolean)value;
-
-- (jboolean)isArrayOrdered;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setArrayOrderedWithBoolean:(jboolean)value;
-
-- (jboolean)isArrayAlternate;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setArrayAlternateWithBoolean:(jboolean)value;
-
-- (jboolean)isArrayAltText;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setArrayAltTextWithBoolean:(jboolean)value;
-
-- (jboolean)isSchemaNode;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)setSchemaNodeWithBoolean:(jboolean)value;
-
-- (jboolean)isCompositeProperty;
-
-- (jboolean)isSimple;
+- (void)assertConsistencyWithInt:(jint)options;
 
 - (jboolean)equalArrayTypesWithComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
-- (void)mergeWithWithComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+- (jboolean)getHasLanguage;
+
+- (jboolean)getHasQualifiers;
+
+- (jboolean)getHasType;
+
+- (jboolean)isArray;
+
+- (jboolean)isArrayAlternate;
+
+- (jboolean)isArrayAltText;
+
+- (jboolean)isArrayOrdered;
+
+- (jboolean)isCompositeProperty;
 
 - (jboolean)isOnlyArrayOptions;
 
-- (jint)getValidOptions;
+- (jboolean)isQualifier;
+
+- (jboolean)isSchemaNode;
+
+- (jboolean)isSimple;
+
+- (jboolean)isStruct;
+
+- (jboolean)isURI;
+
+- (void)mergeWithWithComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setArrayWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setArrayAlternateWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setArrayAltTextWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setArrayOrderedWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setHasLanguageWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setHasQualifiersWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setHasTypeWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setQualifierWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setSchemaNodeWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setStructWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsPropertyOptions *)setURIWithBoolean:(jboolean)value;
+
+#pragma mark Protected
 
 - (NSString *)defineOptionNameWithInt:(jint)option;
 
-- (void)assertConsistencyWithInt:(jint)options;
+- (jint)getValidOptions;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpOptionsPropertyOptions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpOptionsPropertyOptions)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsPropertyOptions, NO_OPTIONS, jint)
 
@@ -122,5 +125,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsPropertyOptions, SCHEMA_NODE, ji
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsPropertyOptions, DELETE_EXISTING, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsPropertyOptions, SEPARATE_NODE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsPropertyOptions_init(ComItextpdfXmpOptionsPropertyOptions *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsPropertyOptions *new_ComItextpdfXmpOptionsPropertyOptions_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsPropertyOptions_initWithInt_(ComItextpdfXmpOptionsPropertyOptions *self, jint options);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsPropertyOptions *new_ComItextpdfXmpOptionsPropertyOptions_initWithInt_(jint options) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpOptionsPropertyOptions)
 
 #endif // _ComItextpdfXmpOptionsPropertyOptions_H_

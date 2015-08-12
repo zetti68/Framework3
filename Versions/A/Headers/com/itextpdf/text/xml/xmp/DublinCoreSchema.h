@@ -6,44 +6,41 @@
 #ifndef _ComItextpdfTextXmlXmpDublinCoreSchema_H_
 #define _ComItextpdfTextXmlXmpDublinCoreSchema_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/xml/xmp/XmpSchema.h"
+
 @class ComItextpdfTextXmlXmpLangAlt;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/xml/xmp/XmpSchema.h"
+@interface ComItextpdfTextXmlXmpDublinCoreSchema : ComItextpdfTextXmlXmpXmpSchema
 
-#define ComItextpdfTextXmlXmpDublinCoreSchema_serialVersionUID -4551741356374797330LL
-
-@interface ComItextpdfTextXmlXmpDublinCoreSchema : ComItextpdfTextXmlXmpXmpSchema {
-}
+#pragma mark Public
 
 - (instancetype)init;
-
-- (void)addTitleWithNSString:(NSString *)title;
-
-- (void)addTitleWithComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)title;
-
-- (void)addDescriptionWithNSString:(NSString *)desc;
-
-- (void)addDescriptionWithComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)desc;
-
-- (void)addSubjectWithNSString:(NSString *)subject;
-
-- (void)addSubjectWithNSStringArray:(IOSObjectArray *)subject;
 
 - (void)addAuthorWithNSString:(NSString *)author;
 
 - (void)addAuthorWithNSStringArray:(IOSObjectArray *)author;
 
+- (void)addDescriptionWithComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)desc;
+
+- (void)addDescriptionWithNSString:(NSString *)desc;
+
 - (void)addPublisherWithNSString:(NSString *)publisher;
 
 - (void)addPublisherWithNSStringArray:(IOSObjectArray *)publisher;
 
+- (void)addSubjectWithNSString:(NSString *)subject;
+
+- (void)addSubjectWithNSStringArray:(IOSObjectArray *)subject;
+
+- (void)addTitleWithComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)title;
+
+- (void)addTitleWithNSString:(NSString *)title;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpDublinCoreSchema_init() {}
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreSchema, serialVersionUID, jlong)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpDublinCoreSchema)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpDublinCoreSchema_DEFAULT_XPATH_ID_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreSchema, DEFAULT_XPATH_ID_, NSString *)
@@ -95,5 +92,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreSchema, TITLE_, NSStri
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpDublinCoreSchema_TYPE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreSchema, TYPE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreSchema_init(ComItextpdfTextXmlXmpDublinCoreSchema *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpDublinCoreSchema *new_ComItextpdfTextXmlXmpDublinCoreSchema_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpDublinCoreSchema)
 
 #endif // _ComItextpdfTextXmlXmpDublinCoreSchema_H_

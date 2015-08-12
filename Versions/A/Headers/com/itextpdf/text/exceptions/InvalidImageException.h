@@ -6,17 +6,14 @@
 #ifndef _ComItextpdfTextExceptionsInvalidImageException_H_
 #define _ComItextpdfTextExceptionsInvalidImageException_H_
 
-@class JavaLangThrowable;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
-#define ComItextpdfTextExceptionsInvalidImageException_serialVersionUID -1319471492541702697LL
+@class JavaLangThrowable;
 
-@interface ComItextpdfTextExceptionsInvalidImageException : JavaLangRuntimeException {
- @public
-  JavaLangThrowable *cause_;
-}
+@interface ComItextpdfTextExceptionsInvalidImageException : JavaLangRuntimeException
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
@@ -25,14 +22,18 @@
 
 - (JavaLangThrowable *)getCause;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextExceptionsInvalidImageException *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionsInvalidImageException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionsInvalidImageException)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextExceptionsInvalidImageException, cause_, JavaLangThrowable *)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsInvalidImageException_initWithNSString_(ComItextpdfTextExceptionsInvalidImageException *self, NSString *message);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionsInvalidImageException, serialVersionUID, jlong)
+FOUNDATION_EXPORT ComItextpdfTextExceptionsInvalidImageException *new_ComItextpdfTextExceptionsInvalidImageException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsInvalidImageException_initWithNSString_withJavaLangThrowable_(ComItextpdfTextExceptionsInvalidImageException *self, NSString *message, JavaLangThrowable *cause);
+
+FOUNDATION_EXPORT ComItextpdfTextExceptionsInvalidImageException *new_ComItextpdfTextExceptionsInvalidImageException_initWithNSString_withJavaLangThrowable_(NSString *message, JavaLangThrowable *cause) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionsInvalidImageException)
 
 #endif // _ComItextpdfTextExceptionsInvalidImageException_H_

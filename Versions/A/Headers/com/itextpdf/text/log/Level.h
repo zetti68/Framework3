@@ -6,50 +6,50 @@
 #ifndef _ComItextpdfTextLogLevel_H_
 #define _ComItextpdfTextLogLevel_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, ComItextpdfTextLogLevel) {
   ComItextpdfTextLogLevel_ERROR = 0,
   ComItextpdfTextLogLevel_WARN = 1,
   ComItextpdfTextLogLevel_INFO = 2,
   ComItextpdfTextLogLevel_DEBUG = 3,
   ComItextpdfTextLogLevel_TRACE = 4,
-} ComItextpdfTextLogLevel;
+};
 
-@interface ComItextpdfTextLogLevelEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextLogLevelEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextLogLevelEnum_values();
 
 + (ComItextpdfTextLogLevelEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextLogLevelEnum *ComItextpdfTextLogLevelEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextLogLevelEnum *ComItextpdfTextLogLevelEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextLogLevelEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextLogLevelEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextLogLevelEnum *ComItextpdfTextLogLevelEnum_values_[];
 
 #define ComItextpdfTextLogLevelEnum_ERROR ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_ERROR]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLevelEnum, ERROR, ComItextpdfTextLogLevelEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextLogLevelEnum, ERROR)
 
 #define ComItextpdfTextLogLevelEnum_WARN ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_WARN]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLevelEnum, WARN, ComItextpdfTextLogLevelEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextLogLevelEnum, WARN)
 
 #define ComItextpdfTextLogLevelEnum_INFO ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_INFO]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLevelEnum, INFO, ComItextpdfTextLogLevelEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextLogLevelEnum, INFO)
 
-#define ComItextpdfTextLogLevelEnum_DEBUG_ ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_DEBUG]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLevelEnum, DEBUG_, ComItextpdfTextLogLevelEnum *)
+#define ComItextpdfTextLogLevelEnum_DEBUG ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_DEBUG]
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextLogLevelEnum, DEBUG)
 
 #define ComItextpdfTextLogLevelEnum_TRACE ComItextpdfTextLogLevelEnum_values_[ComItextpdfTextLogLevel_TRACE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLevelEnum, TRACE, ComItextpdfTextLogLevelEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextLogLevelEnum, TRACE)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogLevelEnum)
 
 #endif // _ComItextpdfTextLogLevel_H_

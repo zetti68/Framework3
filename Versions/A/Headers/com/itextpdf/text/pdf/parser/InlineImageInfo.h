@@ -6,16 +6,14 @@
 #ifndef _ComItextpdfTextPdfParserInlineImageInfo_H_
 #define _ComItextpdfTextPdfParserInlineImageInfo_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserInlineImageInfo : NSObject
 
-@interface ComItextpdfTextPdfParserInlineImageInfo : NSObject {
- @public
-  IOSByteArray *samples_;
-  ComItextpdfTextPdfPdfDictionary *imageDictionary_;
-}
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)samples
 withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)imageDictionary;
@@ -24,13 +22,14 @@ withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)imageDict
 
 - (IOSByteArray *)getSamples;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserInlineImageInfo *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserInlineImageInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserInlineImageInfo)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserInlineImageInfo, samples_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserInlineImageInfo, imageDictionary_, ComItextpdfTextPdfPdfDictionary *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserInlineImageInfo_initWithByteArray_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserInlineImageInfo *self, IOSByteArray *samples, ComItextpdfTextPdfPdfDictionary *imageDictionary);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserInlineImageInfo *new_ComItextpdfTextPdfParserInlineImageInfo_initWithByteArray_withComItextpdfTextPdfPdfDictionary_(IOSByteArray *samples, ComItextpdfTextPdfPdfDictionary *imageDictionary) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserInlineImageInfo)
 
 #endif // _ComItextpdfTextPdfParserInlineImageInfo_H_

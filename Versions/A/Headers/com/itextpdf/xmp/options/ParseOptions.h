@@ -6,39 +6,42 @@
 #ifndef _ComItextpdfXmpOptionsParseOptions_H_
 #define _ComItextpdfXmpOptionsParseOptions_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/options/Options.h"
 
-#define ComItextpdfXmpOptionsParseOptions_ACCEPT_LATIN_1 16
-#define ComItextpdfXmpOptionsParseOptions_FIX_CONTROL_CHARS 8
-#define ComItextpdfXmpOptionsParseOptions_OMIT_NORMALIZATION 32
 #define ComItextpdfXmpOptionsParseOptions_REQUIRE_XMP_META 1
 #define ComItextpdfXmpOptionsParseOptions_STRICT_ALIASING 4
+#define ComItextpdfXmpOptionsParseOptions_FIX_CONTROL_CHARS 8
+#define ComItextpdfXmpOptionsParseOptions_ACCEPT_LATIN_1 16
+#define ComItextpdfXmpOptionsParseOptions_OMIT_NORMALIZATION 32
 
-@interface ComItextpdfXmpOptionsParseOptions : ComItextpdfXmpOptionsOptions {
-}
+@interface ComItextpdfXmpOptionsParseOptions : ComItextpdfXmpOptionsOptions
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (jboolean)getRequireXMPMeta;
-
-- (ComItextpdfXmpOptionsParseOptions *)setRequireXMPMetaWithBoolean:(jboolean)value;
-
-- (jboolean)getStrictAliasing;
-
-- (ComItextpdfXmpOptionsParseOptions *)setStrictAliasingWithBoolean:(jboolean)value;
+- (jboolean)getAcceptLatin1;
 
 - (jboolean)getFixControlChars;
 
-- (ComItextpdfXmpOptionsParseOptions *)setFixControlCharsWithBoolean:(jboolean)value;
+- (jboolean)getOmitNormalization;
 
-- (jboolean)getAcceptLatin1;
+- (jboolean)getRequireXMPMeta;
+
+- (jboolean)getStrictAliasing;
+
+- (ComItextpdfXmpOptionsParseOptions *)setAcceptLatin1WithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsParseOptions *)setFixControlCharsWithBoolean:(jboolean)value;
 
 - (ComItextpdfXmpOptionsParseOptions *)setOmitNormalizationWithBoolean:(jboolean)value;
 
-- (jboolean)getOmitNormalization;
+- (ComItextpdfXmpOptionsParseOptions *)setRequireXMPMetaWithBoolean:(jboolean)value;
 
-- (ComItextpdfXmpOptionsParseOptions *)setAcceptLatin1WithBoolean:(jboolean)value;
+- (ComItextpdfXmpOptionsParseOptions *)setStrictAliasingWithBoolean:(jboolean)value;
+
+#pragma mark Protected
 
 - (NSString *)defineOptionNameWithInt:(jint)option;
 
@@ -46,7 +49,7 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpOptionsParseOptions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpOptionsParseOptions)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsParseOptions, REQUIRE_XMP_META, jint)
 
@@ -57,5 +60,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsParseOptions, FIX_CONTROL_CHARS,
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsParseOptions, ACCEPT_LATIN_1, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsParseOptions, OMIT_NORMALIZATION, jint)
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsParseOptions_init(ComItextpdfXmpOptionsParseOptions *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsParseOptions *new_ComItextpdfXmpOptionsParseOptions_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpOptionsParseOptions)
 
 #endif // _ComItextpdfXmpOptionsParseOptions_H_

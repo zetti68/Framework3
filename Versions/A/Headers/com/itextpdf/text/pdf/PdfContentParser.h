@@ -6,45 +6,46 @@
 #ifndef _ComItextpdfTextPdfPdfContentParser_H_
 #define _ComItextpdfTextPdfPdfContentParser_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPRTokeniser;
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfObject;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-
 #define ComItextpdfTextPdfPdfContentParser_COMMAND_TYPE 200
 
-@interface ComItextpdfTextPdfPdfContentParser : NSObject {
- @public
-  ComItextpdfTextPdfPRTokeniser *tokeniser_;
-}
+@interface ComItextpdfTextPdfPdfContentParser : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPRTokeniser:(ComItextpdfTextPdfPRTokeniser *)tokeniser;
 
-- (JavaUtilArrayList *)parseWithJavaUtilArrayList:(JavaUtilArrayList *)ls;
-
 - (ComItextpdfTextPdfPRTokeniser *)getTokeniser;
-
-- (void)setTokeniserWithComItextpdfTextPdfPRTokeniser:(ComItextpdfTextPdfPRTokeniser *)tokeniser;
-
-- (ComItextpdfTextPdfPdfDictionary *)readDictionary;
-
-- (ComItextpdfTextPdfPdfArray *)readArray;
-
-- (ComItextpdfTextPdfPdfObject *)readPRObject;
 
 - (jboolean)nextValidToken;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfContentParser *)other;
+- (JavaUtilArrayList *)parseWithJavaUtilArrayList:(JavaUtilArrayList *)ls;
+
+- (ComItextpdfTextPdfPdfArray *)readArray;
+
+- (ComItextpdfTextPdfPdfDictionary *)readDictionary;
+
+- (ComItextpdfTextPdfPdfObject *)readPRObject;
+
+- (void)setTokeniserWithComItextpdfTextPdfPRTokeniser:(ComItextpdfTextPdfPRTokeniser *)tokeniser;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfContentParser_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentParser, tokeniser_, ComItextpdfTextPdfPRTokeniser *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfContentParser)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentParser, COMMAND_TYPE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentParser_initWithComItextpdfTextPdfPRTokeniser_(ComItextpdfTextPdfPdfContentParser *self, ComItextpdfTextPdfPRTokeniser *tokeniser);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContentParser *new_ComItextpdfTextPdfPdfContentParser_initWithComItextpdfTextPdfPRTokeniser_(ComItextpdfTextPdfPRTokeniser *tokeniser) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfContentParser)
 
 #endif // _ComItextpdfTextPdfPdfContentParser_H_

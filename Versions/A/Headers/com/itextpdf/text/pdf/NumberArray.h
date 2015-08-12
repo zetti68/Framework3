@@ -6,22 +6,35 @@
 #ifndef _ComItextpdfTextPdfNumberArray_H_
 #define _ComItextpdfTextPdfNumberArray_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfArray.h"
+
 @class IOSFloatArray;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfArray.h"
+@interface ComItextpdfTextPdfNumberArray : ComItextpdfTextPdfPdfArray
 
-@interface ComItextpdfTextPdfNumberArray : ComItextpdfTextPdfPdfArray {
-}
+#pragma mark Public
 
 - (instancetype)initWithFloatArray:(IOSFloatArray *)numbers;
 
 - (instancetype)initWithJavaUtilList:(id<JavaUtilList>)numbers;
 
+#pragma mark Package-Private
+
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfNumberArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfNumberArray)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfNumberArray_initWithFloatArray_(ComItextpdfTextPdfNumberArray *self, IOSFloatArray *numbers);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfNumberArray *new_ComItextpdfTextPdfNumberArray_initWithFloatArray_(IOSFloatArray *numbers) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfNumberArray_initWithJavaUtilList_(ComItextpdfTextPdfNumberArray *self, id<JavaUtilList> numbers);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfNumberArray *new_ComItextpdfTextPdfNumberArray_initWithJavaUtilList_(id<JavaUtilList> numbers) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfNumberArray)
 
 #endif // _ComItextpdfTextPdfNumberArray_H_

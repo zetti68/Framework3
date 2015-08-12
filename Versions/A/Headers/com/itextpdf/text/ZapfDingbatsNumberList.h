@@ -6,31 +6,41 @@
 #ifndef _ComItextpdfTextZapfDingbatsNumberList_H_
 #define _ComItextpdfTextZapfDingbatsNumberList_H_
 
-@protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/List.h"
+
+@protocol ComItextpdfTextElement;
 
 @interface ComItextpdfTextZapfDingbatsNumberList : ComItextpdfTextList {
  @public
   jint type_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)type;
 
 - (instancetype)initWithInt:(jint)type
                     withInt:(jint)symbolIndent;
 
-- (void)setTypeWithInt:(jint)type;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 - (jint)getType;
 
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextZapfDingbatsNumberList *)other;
+- (void)setTypeWithInt:(jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextZapfDingbatsNumberList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextZapfDingbatsNumberList)
+
+FOUNDATION_EXPORT void ComItextpdfTextZapfDingbatsNumberList_initWithInt_(ComItextpdfTextZapfDingbatsNumberList *self, jint type);
+
+FOUNDATION_EXPORT ComItextpdfTextZapfDingbatsNumberList *new_ComItextpdfTextZapfDingbatsNumberList_initWithInt_(jint type) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextZapfDingbatsNumberList_initWithInt_withInt_(ComItextpdfTextZapfDingbatsNumberList *self, jint type, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextZapfDingbatsNumberList *new_ComItextpdfTextZapfDingbatsNumberList_initWithInt_withInt_(jint type, jint symbolIndent) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextZapfDingbatsNumberList)
 
 #endif // _ComItextpdfTextZapfDingbatsNumberList_H_

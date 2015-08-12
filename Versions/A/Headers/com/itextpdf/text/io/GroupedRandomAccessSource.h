@@ -6,29 +6,19 @@
 #ifndef _ComItextpdfTextIoGroupedRandomAccessSource_H_
 #define _ComItextpdfTextIoGroupedRandomAccessSource_H_
 
-@class ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/io/RandomAccessSource.h"
+
 @class IOSByteArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/io/RandomAccessSource.h"
+@interface ComItextpdfTextIoGroupedRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource >
 
-@interface ComItextpdfTextIoGroupedRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource > {
- @public
-  IOSObjectArray *sources_;
-  ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry *currentSourceEntry_;
-  jlong size_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextIoRandomAccessSourceArray:(IOSObjectArray *)sources;
 
-- (jint)getStartingSourceIndexWithLong:(jlong)offset;
-
-- (ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry *)getSourceEntryForOffsetWithLong:(jlong)offset;
-
-- (void)sourceReleasedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
-
-- (void)sourceInUseWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
+- (void)close;
 
 - (jint)getWithLong:(jlong)position;
 
@@ -39,37 +29,22 @@
 
 - (jlong)length;
 
-- (void)close;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextIoGroupedRandomAccessSource *)other;
+- (jint)getStartingSourceIndexWithLong:(jlong)offset;
 
-@end
+- (void)sourceInUseWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoGroupedRandomAccessSource_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoGroupedRandomAccessSource, sources_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoGroupedRandomAccessSource, currentSourceEntry_, ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry *)
-
-@interface ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry : NSObject {
- @public
-  id<ComItextpdfTextIoRandomAccessSource> source_;
-  jlong firstByte_;
-  jlong lastByte_;
-  jint index_;
-}
-
-- (instancetype)initWithInt:(jint)index
-withComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
-                   withLong:(jlong)offset;
-
-- (jlong)offsetNWithLong:(jlong)absoluteOffset;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry *)other;
+- (void)sourceReleasedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoGroupedRandomAccessSource)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoGroupedRandomAccessSource_SourceEntry, source_, id<ComItextpdfTextIoRandomAccessSource>)
+FOUNDATION_EXPORT void ComItextpdfTextIoGroupedRandomAccessSource_initWithComItextpdfTextIoRandomAccessSourceArray_(ComItextpdfTextIoGroupedRandomAccessSource *self, IOSObjectArray *sources);
+
+FOUNDATION_EXPORT ComItextpdfTextIoGroupedRandomAccessSource *new_ComItextpdfTextIoGroupedRandomAccessSource_initWithComItextpdfTextIoRandomAccessSourceArray_(IOSObjectArray *sources) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoGroupedRandomAccessSource)
 
 #endif // _ComItextpdfTextIoGroupedRandomAccessSource_H_

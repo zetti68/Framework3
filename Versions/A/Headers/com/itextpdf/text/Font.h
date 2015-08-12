@@ -6,101 +6,96 @@
 #ifndef _ComItextpdfTextFont_H_
 #define _ComItextpdfTextFont_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Comparable.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextFont_FontFamilyEnum;
 @class ComItextpdfTextPdfBaseFont;
 
-#import "JreEmulation.h"
-#include "java/lang/Comparable.h"
-#include "java/lang/Enum.h"
-
-#define ComItextpdfTextFont_BOLD 1
-#define ComItextpdfTextFont_BOLDITALIC 3
-#define ComItextpdfTextFont_DEFAULTSIZE 12
-#define ComItextpdfTextFont_ITALIC 2
 #define ComItextpdfTextFont_NORMAL 0
-#define ComItextpdfTextFont_STRIKETHRU 8
-#define ComItextpdfTextFont_UNDEFINED -1
+#define ComItextpdfTextFont_BOLD 1
+#define ComItextpdfTextFont_ITALIC 2
 #define ComItextpdfTextFont_UNDERLINE 4
+#define ComItextpdfTextFont_STRIKETHRU 8
+#define ComItextpdfTextFont_BOLDITALIC 3
+#define ComItextpdfTextFont_UNDEFINED -1
+#define ComItextpdfTextFont_DEFAULTSIZE 12
 
-@interface ComItextpdfTextFont : NSObject < JavaLangComparable > {
- @public
-  ComItextpdfTextFont_FontFamilyEnum *family_;
-  jfloat size_;
-  jint style_;
-  ComItextpdfTextBaseColor *color_;
-  ComItextpdfTextPdfBaseFont *baseFont_;
-}
+@interface ComItextpdfTextFont : NSObject < JavaLangComparable >
 
-- (instancetype)initWithComItextpdfTextFont:(ComItextpdfTextFont *)other;
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family
-                                                 withFloat:(jfloat)size
-                                                   withInt:(jint)style
-                              withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (instancetype)init;
+
+- (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf;
 
 - (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
-                                         withFloat:(jfloat)size
-                                           withInt:(jint)style
-                      withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+                                         withFloat:(jfloat)size;
 
 - (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
                                          withFloat:(jfloat)size
                                            withInt:(jint)style;
 
 - (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
-                                         withFloat:(jfloat)size;
+                                         withFloat:(jfloat)size
+                                           withInt:(jint)style
+                      withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-- (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf;
+- (instancetype)initWithComItextpdfTextFont:(ComItextpdfTextFont *)other;
+
+- (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family;
+
+- (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family
+                                                 withFloat:(jfloat)size;
 
 - (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family
                                                  withFloat:(jfloat)size
                                                    withInt:(jint)style;
 
 - (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family
-                                                 withFloat:(jfloat)size;
-
-- (instancetype)initWithComItextpdfTextFont_FontFamilyEnum:(ComItextpdfTextFont_FontFamilyEnum *)family;
-
-- (instancetype)init;
+                                                 withFloat:(jfloat)size
+                                                   withInt:(jint)style
+                              withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
 - (jint)compareToWithId:(ComItextpdfTextFont *)font;
 
-- (ComItextpdfTextFont_FontFamilyEnum *)getFamily;
+- (ComItextpdfTextFont *)differenceWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
-- (NSString *)getFamilyname;
+- (ComItextpdfTextPdfBaseFont *)getBaseFont;
 
-- (void)setFamilyWithNSString:(NSString *)family;
-
-+ (ComItextpdfTextFont_FontFamilyEnum *)getFamilyWithNSString:(NSString *)family;
-
-- (jfloat)getSize;
-
-- (jfloat)getCalculatedSize;
+- (ComItextpdfTextPdfBaseFont *)getCalculatedBaseFontWithBoolean:(jboolean)specialEncoding;
 
 - (jfloat)getCalculatedLeadingWithFloat:(jfloat)linespacing;
 
-- (void)setSizeWithFloat:(jfloat)size;
+- (jfloat)getCalculatedSize;
+
+- (jint)getCalculatedStyle;
+
+- (ComItextpdfTextBaseColor *)getColor;
+
+- (ComItextpdfTextFont_FontFamilyEnum *)getFamily;
+
++ (ComItextpdfTextFont_FontFamilyEnum *)getFamilyWithNSString:(NSString *)family;
+
+- (NSString *)getFamilyname;
+
+- (jfloat)getSize;
 
 - (jint)getStyle;
 
-- (jint)getCalculatedStyle;
++ (jint)getStyleValueWithNSString:(NSString *)style;
 
 - (jboolean)isBold;
 
 - (jboolean)isItalic;
 
-- (jboolean)isUnderlined;
+- (jboolean)isStandardFont;
 
 - (jboolean)isStrikethru;
 
-- (void)setStyleWithInt:(jint)style;
-
-- (void)setStyleWithNSString:(NSString *)style;
-
-+ (jint)getStyleValueWithNSString:(NSString *)style;
-
-- (ComItextpdfTextBaseColor *)getColor;
+- (jboolean)isUnderlined;
 
 - (void)setColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
@@ -108,23 +103,17 @@
                 withInt:(jint)green
                 withInt:(jint)blue;
 
-- (ComItextpdfTextPdfBaseFont *)getBaseFont;
+- (void)setFamilyWithNSString:(NSString *)family;
 
-- (ComItextpdfTextPdfBaseFont *)getCalculatedBaseFontWithBoolean:(jboolean)specialEncoding;
+- (void)setSizeWithFloat:(jfloat)size;
 
-- (jboolean)isStandardFont;
+- (void)setStyleWithInt:(jint)style;
 
-- (ComItextpdfTextFont *)differenceWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextFont *)other;
+- (void)setStyleWithNSString:(NSString *)style;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextFont_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextFont, family_, ComItextpdfTextFont_FontFamilyEnum *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextFont, color_, ComItextpdfTextBaseColor *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextFont, baseFont_, ComItextpdfTextPdfBaseFont *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextFont)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont, NORMAL, jint)
 
@@ -142,105 +131,148 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont, UNDEFINED, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont, DEFAULTSIZE, jint)
 
-typedef enum {
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextFont_(ComItextpdfTextFont *self, ComItextpdfTextFont *other);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextFont_(ComItextpdfTextFont *other) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_withInt_withComItextpdfTextBaseColor_(ComItextpdfTextFont *self, ComItextpdfTextFont_FontFamilyEnum *family, jfloat size, jint style, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_withInt_withComItextpdfTextBaseColor_(ComItextpdfTextFont_FontFamilyEnum *family, jfloat size, jint style, ComItextpdfTextBaseColor *color) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_withInt_withComItextpdfTextBaseColor_(ComItextpdfTextFont *self, ComItextpdfTextPdfBaseFont *bf, jfloat size, jint style, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_withInt_withComItextpdfTextBaseColor_(ComItextpdfTextPdfBaseFont *bf, jfloat size, jint style, ComItextpdfTextBaseColor *color) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_withInt_(ComItextpdfTextFont *self, ComItextpdfTextPdfBaseFont *bf, jfloat size, jint style);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_withInt_(ComItextpdfTextPdfBaseFont *bf, jfloat size, jint style) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_(ComItextpdfTextFont *self, ComItextpdfTextPdfBaseFont *bf, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_withFloat_(ComItextpdfTextPdfBaseFont *bf, jfloat size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_(ComItextpdfTextFont *self, ComItextpdfTextPdfBaseFont *bf);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextPdfBaseFont_(ComItextpdfTextPdfBaseFont *bf) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_withInt_(ComItextpdfTextFont *self, ComItextpdfTextFont_FontFamilyEnum *family, jfloat size, jint style);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_withInt_(ComItextpdfTextFont_FontFamilyEnum *family, jfloat size, jint style) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_(ComItextpdfTextFont *self, ComItextpdfTextFont_FontFamilyEnum *family, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_withFloat_(ComItextpdfTextFont_FontFamilyEnum *family, jfloat size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_(ComItextpdfTextFont *self, ComItextpdfTextFont_FontFamilyEnum *family);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_initWithComItextpdfTextFont_FontFamilyEnum_(ComItextpdfTextFont_FontFamilyEnum *family) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextFont_init(ComItextpdfTextFont *self);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *new_ComItextpdfTextFont_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextFont_FontFamilyEnum *ComItextpdfTextFont_getFamilyWithNSString_(NSString *family);
+
+FOUNDATION_EXPORT jint ComItextpdfTextFont_getStyleValueWithNSString_(NSString *style);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFont)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextFont_FontFamily) {
   ComItextpdfTextFont_FontFamily_COURIER = 0,
   ComItextpdfTextFont_FontFamily_HELVETICA = 1,
   ComItextpdfTextFont_FontFamily_TIMES_ROMAN = 2,
   ComItextpdfTextFont_FontFamily_SYMBOL = 3,
   ComItextpdfTextFont_FontFamily_ZAPFDINGBATS = 4,
   ComItextpdfTextFont_FontFamily_UNDEFINED = 5,
-} ComItextpdfTextFont_FontFamily;
+};
 
-@interface ComItextpdfTextFont_FontFamilyEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextFont_FontFamilyEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextFont_FontFamilyEnum_values();
 
 + (ComItextpdfTextFont_FontFamilyEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextFont_FontFamilyEnum *ComItextpdfTextFont_FontFamilyEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextFont_FontFamilyEnum *ComItextpdfTextFont_FontFamilyEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextFont_FontFamilyEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextFont_FontFamilyEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextFont_FontFamilyEnum *ComItextpdfTextFont_FontFamilyEnum_values_[];
 
 #define ComItextpdfTextFont_FontFamilyEnum_COURIER ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_COURIER]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, COURIER, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, COURIER)
 
 #define ComItextpdfTextFont_FontFamilyEnum_HELVETICA ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_HELVETICA]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, HELVETICA, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, HELVETICA)
 
 #define ComItextpdfTextFont_FontFamilyEnum_TIMES_ROMAN ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_TIMES_ROMAN]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, TIMES_ROMAN, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, TIMES_ROMAN)
 
 #define ComItextpdfTextFont_FontFamilyEnum_SYMBOL ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_SYMBOL]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, SYMBOL, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, SYMBOL)
 
 #define ComItextpdfTextFont_FontFamilyEnum_ZAPFDINGBATS ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_ZAPFDINGBATS]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, ZAPFDINGBATS, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, ZAPFDINGBATS)
 
 #define ComItextpdfTextFont_FontFamilyEnum_UNDEFINED ComItextpdfTextFont_FontFamilyEnum_values_[ComItextpdfTextFont_FontFamily_UNDEFINED]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontFamilyEnum, UNDEFINED, ComItextpdfTextFont_FontFamilyEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontFamilyEnum, UNDEFINED)
 
-typedef enum {
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFont_FontFamilyEnum)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextFont_FontStyle) {
   ComItextpdfTextFont_FontStyle_NORMAL = 0,
   ComItextpdfTextFont_FontStyle_BOLD = 1,
   ComItextpdfTextFont_FontStyle_ITALIC = 2,
   ComItextpdfTextFont_FontStyle_OBLIQUE = 3,
   ComItextpdfTextFont_FontStyle_UNDERLINE = 4,
   ComItextpdfTextFont_FontStyle_LINETHROUGH = 5,
-} ComItextpdfTextFont_FontStyle;
+};
 
-@interface ComItextpdfTextFont_FontStyleEnum : JavaLangEnum < NSCopying > {
- @public
-  NSString *code_;
-}
+@interface ComItextpdfTextFont_FontStyleEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)code
-                    withNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Public
 
 - (NSString *)getValue;
+
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextFont_FontStyleEnum_values();
 
 + (ComItextpdfTextFont_FontStyleEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextFont_FontStyleEnum *ComItextpdfTextFont_FontStyleEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextFont_FontStyleEnum *ComItextpdfTextFont_FontStyleEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextFont_FontStyleEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextFont_FontStyleEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextFont_FontStyleEnum *ComItextpdfTextFont_FontStyleEnum_values_[];
 
 #define ComItextpdfTextFont_FontStyleEnum_NORMAL ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_NORMAL]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, NORMAL, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, NORMAL)
 
 #define ComItextpdfTextFont_FontStyleEnum_BOLD ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_BOLD]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, BOLD, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, BOLD)
 
 #define ComItextpdfTextFont_FontStyleEnum_ITALIC ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_ITALIC]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, ITALIC, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, ITALIC)
 
 #define ComItextpdfTextFont_FontStyleEnum_OBLIQUE ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_OBLIQUE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, OBLIQUE, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, OBLIQUE)
 
 #define ComItextpdfTextFont_FontStyleEnum_UNDERLINE ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_UNDERLINE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, UNDERLINE, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, UNDERLINE)
 
 #define ComItextpdfTextFont_FontStyleEnum_LINETHROUGH ComItextpdfTextFont_FontStyleEnum_values_[ComItextpdfTextFont_FontStyle_LINETHROUGH]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFont_FontStyleEnum, LINETHROUGH, ComItextpdfTextFont_FontStyleEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextFont_FontStyleEnum, LINETHROUGH)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextFont_FontStyleEnum, code_, NSString *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFont_FontStyleEnum)
 
 #endif // _ComItextpdfTextFont_H_

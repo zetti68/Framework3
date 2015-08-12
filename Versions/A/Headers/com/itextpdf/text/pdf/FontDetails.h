@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfFontDetails_H_
 #define _ComItextpdfTextPdfFontDetails_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfCJKFont;
 @class ComItextpdfTextPdfIntHashtable;
@@ -15,9 +17,6 @@
 @class ComItextpdfTextPdfTrueTypeFontUnicode;
 @class IOSByteArray;
 @class JavaUtilHashMap;
-@protocol ComItextpdfTextPdfLanguagesGlyphRepositioner;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfFontDetails : NSObject {
  @public
@@ -34,35 +33,31 @@
   jboolean subset_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)fontName
-       withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)indirectReference
-                   withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)baseFont;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
-
-- (ComItextpdfTextPdfPdfName *)getFontName;
-
-- (ComItextpdfTextPdfBaseFont *)getBaseFont;
-
-- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
-
-- (jboolean)canApplyGlyphSubstitution;
-
-- (IOSByteArray *)convertToBytesAfterGlyphSubstitutionWithNSString:(NSString *)text;
-
-- (id<ComItextpdfTextPdfLanguagesGlyphRepositioner>)getGlyphRepositioner;
-
-- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
 - (jboolean)isSubset;
 
 - (void)setSubsetWithBoolean:(jboolean)subset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontDetails *)other;
+- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)fontName
+       withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)indirectReference
+                   withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)baseFont;
+
+- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
+
+- (ComItextpdfTextPdfBaseFont *)getBaseFont;
+
+- (ComItextpdfTextPdfPdfName *)getFontName;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontDetails_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontDetails)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, indirectReference_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, fontName_, ComItextpdfTextPdfPdfName *)
@@ -72,5 +67,11 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, cjkFont_, ComItextpdfTextPdfC
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, shortTag_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, longTag_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontDetails, cjkTag_, ComItextpdfTextPdfIntHashtable *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontDetails_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfBaseFont_(ComItextpdfTextPdfFontDetails *self, ComItextpdfTextPdfPdfName *fontName, ComItextpdfTextPdfPdfIndirectReference *indirectReference, ComItextpdfTextPdfBaseFont *baseFont);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontDetails *new_ComItextpdfTextPdfFontDetails_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfBaseFont_(ComItextpdfTextPdfPdfName *fontName, ComItextpdfTextPdfPdfIndirectReference *indirectReference, ComItextpdfTextPdfBaseFont *baseFont) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontDetails)
 
 #endif // _ComItextpdfTextPdfFontDetails_H_

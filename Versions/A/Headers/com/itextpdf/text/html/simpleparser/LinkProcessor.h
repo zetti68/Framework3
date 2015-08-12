@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserLinkProcessor_H_
 #define _ComItextpdfTextHtmlSimpleparserLinkProcessor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextHtmlSimpleparserChainedProperties;
 @class ComItextpdfTextParagraph;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextHtmlSimpleparserLinkProcessor < NSObject, JavaObject >
 
@@ -18,6 +18,8 @@ withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimplep
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserLinkProcessor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserLinkProcessor)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserLinkProcessor)
 
 #endif // _ComItextpdfTextHtmlSimpleparserLinkProcessor_H_

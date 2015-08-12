@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfContentByte_H_
 #define _ComItextpdfTextPdfPdfContentByte_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PatternColor.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextImage;
@@ -39,30 +42,26 @@
 @class IOSByteArray;
 @class IOSFloatArray;
 @class JavaUtilArrayList;
-@class JavaUtilHashMap;
 @protocol ComItextpdfTextPdfInterfacesIAccessibleElement;
 @protocol ComItextpdfTextPdfPdfOCG;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PatternColor.h"
 
 #define ComItextpdfTextPdfPdfContentByte_ALIGN_CENTER 1
 #define ComItextpdfTextPdfPdfContentByte_ALIGN_LEFT 0
 #define ComItextpdfTextPdfPdfContentByte_ALIGN_RIGHT 2
 #define ComItextpdfTextPdfPdfContentByte_LINE_CAP_BUTT 0
-#define ComItextpdfTextPdfPdfContentByte_LINE_CAP_PROJECTING_SQUARE 2
 #define ComItextpdfTextPdfPdfContentByte_LINE_CAP_ROUND 1
-#define ComItextpdfTextPdfPdfContentByte_LINE_JOIN_BEVEL 2
+#define ComItextpdfTextPdfPdfContentByte_LINE_CAP_PROJECTING_SQUARE 2
 #define ComItextpdfTextPdfPdfContentByte_LINE_JOIN_MITER 0
 #define ComItextpdfTextPdfPdfContentByte_LINE_JOIN_ROUND 1
-#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_CLIP 7
+#define ComItextpdfTextPdfPdfContentByte_LINE_JOIN_BEVEL 2
 #define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL 0
-#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_CLIP 4
-#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_STROKE 2
-#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_STROKE_CLIP 6
-#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_INVISIBLE 3
 #define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_STROKE 1
+#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_STROKE 2
+#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_INVISIBLE 3
+#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_CLIP 4
 #define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_STROKE_CLIP 5
+#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_FILL_STROKE_CLIP 6
+#define ComItextpdfTextPdfPdfContentByte_TEXT_RENDER_MODE_CLIP 7
 
 @interface ComItextpdfTextPdfPdfContentByte : NSObject {
  @public
@@ -74,37 +73,383 @@
   JavaUtilArrayList *stateList_;
   JavaUtilArrayList *layerDepth_;
   jint separator_;
-  jint mcDepth_;
-  jboolean inText_;
-  JavaUtilArrayList *mcElements_;
   ComItextpdfTextPdfPdfContentByte *duplicatedFrom_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
 
-- (NSString *)description;
+- (void)addWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)other;
 
-- (jboolean)isTagged;
+- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
+- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
+   withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+
+- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
+                             withBoolean:(jboolean)inlineImage;
+
+- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
+                               withFloat:(jfloat)a
+                               withFloat:(jfloat)b
+                               withFloat:(jfloat)c
+                               withFloat:(jfloat)d
+                               withFloat:(jfloat)e
+                               withFloat:(jfloat)f;
+
+- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
+                               withFloat:(jfloat)a
+                               withFloat:(jfloat)b
+                               withFloat:(jfloat)c
+                               withFloat:(jfloat)d
+                               withFloat:(jfloat)e
+                               withFloat:(jfloat)f
+                             withBoolean:(jboolean)inlineImage;
+
+- (void)addOutlineWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)outline
+                                      withNSString:(NSString *)name;
+
+- (void)addPSXObjectWithComItextpdfTextPdfPdfPSXObject:(ComItextpdfTextPdfPdfPSXObject *)psobject;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform
+                                         withBoolean:(jboolean)tagContent;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+                                           withFloat:(jfloat)x
+                                           withFloat:(jfloat)y;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+                                           withFloat:(jfloat)x
+                                           withFloat:(jfloat)y
+                                         withBoolean:(jboolean)tagContent;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+                                           withFloat:(jfloat)a
+                                           withFloat:(jfloat)b
+                                           withFloat:(jfloat)c
+                                           withFloat:(jfloat)d
+                                           withFloat:(jfloat)e
+                                           withFloat:(jfloat)f;
+
+- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
+                                           withFloat:(jfloat)a
+                                           withFloat:(jfloat)b
+                                           withFloat:(jfloat)c
+                                           withFloat:(jfloat)d
+                                           withFloat:(jfloat)e
+                                           withFloat:(jfloat)f
+                                         withBoolean:(jboolean)tagContent;
+
+- (void)arcWithFloat:(jfloat)x1
+           withFloat:(jfloat)y1
+           withFloat:(jfloat)x2
+           withFloat:(jfloat)y2
+           withFloat:(jfloat)startAng
+           withFloat:(jfloat)extent;
+
+- (void)beginLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
+
+- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)tag;
+
+- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)tag
+                            withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)property
+                                                    withBoolean:(jboolean)inline_;
+
+- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfStructureElement:(ComItextpdfTextPdfPdfStructureElement *)struc;
+
+- (void)beginText;
+
++ (JavaUtilArrayList *)bezierArcWithFloat:(jfloat)x1
+                                withFloat:(jfloat)y1
+                                withFloat:(jfloat)x2
+                                withFloat:(jfloat)y2
+                                withFloat:(jfloat)startAng
+                                withFloat:(jfloat)extent;
+
+- (void)circleWithFloat:(jfloat)x
+              withFloat:(jfloat)y
+              withFloat:(jfloat)r;
+
+- (void)clip;
+
+- (void)closeMCBlockWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
+
+- (void)closePath;
+
+- (void)closePathEoFillStroke;
+
+- (void)closePathFillStroke;
+
+- (void)closePathStroke;
+
+- (void)concatCTMWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+
+- (void)concatCTMWithFloat:(jfloat)a
+                 withFloat:(jfloat)b
+                 withFloat:(jfloat)c
+                 withFloat:(jfloat)d
+                 withFloat:(jfloat)e
+                 withFloat:(jfloat)f;
+
+- (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithFloat:(jfloat)width
+                                                     withFloat:(jfloat)height;
+
+- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
+                                                      withFloat:(jfloat)height;
+
+- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
+                                                      withFloat:(jfloat)height
+                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
+                                                      withFloat:(jfloat)height
+                                                      withFloat:(jfloat)xstep
+                                                      withFloat:(jfloat)ystep;
+
+- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
+                                                      withFloat:(jfloat)height
+                                                      withFloat:(jfloat)xstep
+                                                      withFloat:(jfloat)ystep
+                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithFloat:(jfloat)width
+                                                 withFloat:(jfloat)height;
+
+- (void)curveFromToWithFloat:(jfloat)x1
+                   withFloat:(jfloat)y1
+                   withFloat:(jfloat)x3
+                   withFloat:(jfloat)y3;
+
+- (void)curveToWithFloat:(jfloat)x2
+               withFloat:(jfloat)y2
+               withFloat:(jfloat)x3
+               withFloat:(jfloat)y3;
+
+- (void)curveToWithFloat:(jfloat)x1
+               withFloat:(jfloat)y1
+               withFloat:(jfloat)x2
+               withFloat:(jfloat)y2
+               withFloat:(jfloat)x3
+               withFloat:(jfloat)y3;
+
+- (void)drawButtonWithFloat:(jfloat)llx
+                  withFloat:(jfloat)lly
+                  withFloat:(jfloat)urx
+                  withFloat:(jfloat)ury
+               withNSString:(NSString *)text
+withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
+                  withFloat:(jfloat)size;
+
+- (void)drawRadioFieldWithFloat:(jfloat)llx
+                      withFloat:(jfloat)lly
+                      withFloat:(jfloat)urx
+                      withFloat:(jfloat)ury
+                    withBoolean:(jboolean)on;
+
+- (void)drawTextFieldWithFloat:(jfloat)llx
+                     withFloat:(jfloat)lly
+                     withFloat:(jfloat)urx
+                     withFloat:(jfloat)ury;
+
+- (void)ellipseWithFloat:(jfloat)x1
+               withFloat:(jfloat)y1
+               withFloat:(jfloat)x2
+               withFloat:(jfloat)y2;
+
+- (void)endLayer;
+
+- (void)endMarkedContentSequence;
+
+- (void)endText;
+
+- (void)eoClip;
+
+- (void)eoFill;
+
+- (void)eoFillStroke;
+
+- (void)fill;
+
+- (void)fillStroke;
+
+- (jfloat)getCharacterSpacing;
+
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicateWithBoolean:(jboolean)inheritGraphicState;
+
+- (jfloat)getEffectiveStringWidthWithNSString:(NSString *)text
+                                  withBoolean:(jboolean)kerned;
+
+- (jfloat)getHorizontalScaling;
 
 - (ComItextpdfTextPdfByteBuffer *)getInternalBuffer;
 
-- (IOSByteArray *)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
++ (ComItextpdfTextPdfPdfTextArray *)getKernArrayWithNSString:(NSString *)text
+                              withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
 
-- (void)addWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)other;
+- (jfloat)getLeading;
+
+- (ComItextpdfTextPdfPdfDocument *)getPdfDocument;
+
+- (ComItextpdfTextPdfPdfWriter *)getPdfWriter;
+
+- (ComItextpdfTextPdfPdfOutline *)getRootOutline;
+
+- (jfloat)getWordSpacing;
 
 - (jfloat)getXTLM;
 
 - (jfloat)getYTLM;
 
-- (jfloat)getLeading;
+- (jboolean)isTagged;
 
-- (jfloat)getCharacterSpacing;
+- (void)lineToWithFloat:(jfloat)x
+              withFloat:(jfloat)y;
 
-- (jfloat)getWordSpacing;
+- (jboolean)localDestinationWithNSString:(NSString *)name
+    withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination;
 
-- (jfloat)getHorizontalScaling;
+- (void)localGotoWithNSString:(NSString *)name
+                    withFloat:(jfloat)llx
+                    withFloat:(jfloat)lly
+                    withFloat:(jfloat)urx
+                    withFloat:(jfloat)ury;
+
+- (void)moveTextWithFloat:(jfloat)x
+                withFloat:(jfloat)y;
+
+- (void)moveTextWithLeadingWithFloat:(jfloat)x
+                           withFloat:(jfloat)y;
+
+- (void)moveToWithFloat:(jfloat)x
+              withFloat:(jfloat)y;
+
+- (void)newlineShowTextWithFloat:(jfloat)wordSpacing
+                       withFloat:(jfloat)charSpacing
+                    withNSString:(NSString *)text OBJC_METHOD_FAMILY_NONE;
+
+- (void)newlineShowTextWithNSString:(NSString *)text OBJC_METHOD_FAMILY_NONE;
+
+- (void)newlineText OBJC_METHOD_FAMILY_NONE;
+
+- (void)newPath OBJC_METHOD_FAMILY_NONE;
+
+- (void)openMCBlockWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
+
+- (void)paintShadingWithComItextpdfTextPdfPdfShading:(ComItextpdfTextPdfPdfShading *)shading;
+
+- (void)paintShadingWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
+
+- (void)rectangleWithFloat:(jfloat)x
+                 withFloat:(jfloat)y
+                 withFloat:(jfloat)w
+                 withFloat:(jfloat)h;
+
+- (void)rectangleWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
+
+- (void)remoteGotoWithNSString:(NSString *)filename
+                       withInt:(jint)page
+                     withFloat:(jfloat)llx
+                     withFloat:(jfloat)lly
+                     withFloat:(jfloat)urx
+                     withFloat:(jfloat)ury;
+
+- (void)remoteGotoWithNSString:(NSString *)filename
+                  withNSString:(NSString *)name
+                     withFloat:(jfloat)llx
+                     withFloat:(jfloat)lly
+                     withFloat:(jfloat)urx
+                     withFloat:(jfloat)ury;
+
+- (void)reset;
+
+- (void)resetWithBoolean:(jboolean)validateContent;
+
+- (void)resetCMYKColorFill;
+
+- (void)resetCMYKColorStroke;
+
+- (void)resetGrayFill;
+
+- (void)resetGrayStroke;
+
+- (void)resetRGBColorFill;
+
+- (void)resetRGBColorStroke;
+
+- (void)restoreState;
+
+- (void)roundRectangleWithFloat:(jfloat)x
+                      withFloat:(jfloat)y
+                      withFloat:(jfloat)w
+                      withFloat:(jfloat)h
+                      withFloat:(jfloat)r;
+
+- (void)sanityCheck;
+
+- (void)saveState;
+
+- (void)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
+                                       withFloat:(jfloat)llx
+                                       withFloat:(jfloat)lly
+                                       withFloat:(jfloat)urx
+                                       withFloat:(jfloat)ury;
+
+- (void)setCharacterSpacingWithFloat:(jfloat)charSpace;
+
+- (void)setCMYKColorFillWithInt:(jint)cyan
+                        withInt:(jint)magenta
+                        withInt:(jint)yellow
+                        withInt:(jint)black;
+
+- (void)setCMYKColorFillFWithFloat:(jfloat)cyan
+                         withFloat:(jfloat)magenta
+                         withFloat:(jfloat)yellow
+                         withFloat:(jfloat)black;
+
+- (void)setCMYKColorStrokeWithInt:(jint)cyan
+                          withInt:(jint)magenta
+                          withInt:(jint)yellow
+                          withInt:(jint)black;
+
+- (void)setCMYKColorStrokeFWithFloat:(jfloat)cyan
+                           withFloat:(jfloat)magenta
+                           withFloat:(jfloat)yellow
+                           withFloat:(jfloat)black;
+
+- (void)setColorFillWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (void)setColorFillWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
+                                             withFloat:(jfloat)tint;
+
+- (void)setColorStrokeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (void)setColorStrokeWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
+                                               withFloat:(jfloat)tint;
+
+- (void)setDefaultColorspaceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+                          withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
 
 - (void)setFlatnessWithFloat:(jfloat)flatness;
+
+- (void)setFontAndSizeWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
+                                           withFloat:(jfloat)size;
+
+- (void)setGrayFillWithFloat:(jfloat)gray;
+
+- (void)setGrayStrokeWithFloat:(jfloat)gray;
+
+- (void)setGStateWithComItextpdfTextPdfPdfGState:(ComItextpdfTextPdfPdfGState *)gstate;
+
+- (void)setHorizontalScalingWithFloat:(jfloat)scale_;
+
+- (void)setLeadingWithFloat:(jfloat)leading;
 
 - (void)setLineCapWithInt:(jint)style;
 
@@ -124,182 +469,56 @@
 
 - (void)setLineWidthWithFloat:(jfloat)w;
 
+- (void)setLiteralWithChar:(jchar)c;
+
+- (void)setLiteralWithFloat:(jfloat)n;
+
+- (void)setLiteralWithNSString:(NSString *)s;
+
 - (void)setMiterLimitWithFloat:(jfloat)miterLimit;
 
-- (void)clip;
+- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
 
-- (void)eoClip;
+- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
+                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-- (void)setGrayFillWithFloat:(jfloat)gray;
+- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
+                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
+                                                    withFloat:(jfloat)tint;
 
-- (void)resetGrayFill;
+- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
 
-- (void)setGrayStrokeWithFloat:(jfloat)gray;
+- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
+                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-- (void)resetGrayStroke;
+- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
+                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
+                                                      withFloat:(jfloat)tint;
 
-- (void)HelperRGBWithFloat:(jfloat)red
-                 withFloat:(jfloat)green
-                 withFloat:(jfloat)blue;
+- (void)setRGBColorFillWithInt:(jint)red
+                       withInt:(jint)green
+                       withInt:(jint)blue;
 
 - (void)setRGBColorFillFWithFloat:(jfloat)red
                         withFloat:(jfloat)green
                         withFloat:(jfloat)blue;
 
-- (void)resetRGBColorFill;
+- (void)setRGBColorStrokeWithInt:(jint)red
+                         withInt:(jint)green
+                         withInt:(jint)blue;
 
 - (void)setRGBColorStrokeFWithFloat:(jfloat)red
                           withFloat:(jfloat)green
                           withFloat:(jfloat)blue;
 
-- (void)resetRGBColorStroke;
+- (void)setShadingFillWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
 
-- (void)HelperCMYKWithFloat:(jfloat)cyan
-                  withFloat:(jfloat)magenta
-                  withFloat:(jfloat)yellow
-                  withFloat:(jfloat)black;
+- (void)setShadingStrokeWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
 
-- (void)setCMYKColorFillFWithFloat:(jfloat)cyan
-                         withFloat:(jfloat)magenta
-                         withFloat:(jfloat)yellow
-                         withFloat:(jfloat)black;
+- (void)setTextMatrixWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
 
-- (void)resetCMYKColorFill;
-
-- (void)setCMYKColorStrokeFWithFloat:(jfloat)cyan
-                           withFloat:(jfloat)magenta
-                           withFloat:(jfloat)yellow
-                           withFloat:(jfloat)black;
-
-- (void)resetCMYKColorStroke;
-
-- (void)moveToWithFloat:(jfloat)x
-              withFloat:(jfloat)y;
-
-- (void)lineToWithFloat:(jfloat)x
-              withFloat:(jfloat)y;
-
-- (void)curveToWithFloat:(jfloat)x1
-               withFloat:(jfloat)y1
-               withFloat:(jfloat)x2
-               withFloat:(jfloat)y2
-               withFloat:(jfloat)x3
-               withFloat:(jfloat)y3;
-
-- (void)curveToWithFloat:(jfloat)x2
-               withFloat:(jfloat)y2
-               withFloat:(jfloat)x3
-               withFloat:(jfloat)y3;
-
-- (void)curveFromToWithFloat:(jfloat)x1
-                   withFloat:(jfloat)y1
-                   withFloat:(jfloat)x3
-                   withFloat:(jfloat)y3;
-
-- (void)circleWithFloat:(jfloat)x
-              withFloat:(jfloat)y
-              withFloat:(jfloat)r;
-
-- (void)rectangleWithFloat:(jfloat)x
-                 withFloat:(jfloat)y
-                 withFloat:(jfloat)w
-                 withFloat:(jfloat)h;
-
-- (jboolean)compareColorsWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)c1
-                         withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)c2;
-
-- (void)variableRectangleWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
-
-- (void)rectangleWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
-
-- (void)closePath;
-
-- (void)newPath OBJC_METHOD_FAMILY_NONE;
-
-- (void)stroke;
-
-- (void)closePathStroke;
-
-- (void)fill;
-
-- (void)eoFill;
-
-- (void)fillStroke;
-
-- (void)closePathFillStroke;
-
-- (void)eoFillStroke;
-
-- (void)closePathEoFillStroke;
-
-- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
-                             withBoolean:(jboolean)inlineImage;
-
-- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
-                               withFloat:(jfloat)a
-                               withFloat:(jfloat)b
-                               withFloat:(jfloat)c
-                               withFloat:(jfloat)d
-                               withFloat:(jfloat)e
-                               withFloat:(jfloat)f;
-
-- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
-   withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
-
-- (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
-                               withFloat:(jfloat)a
-                               withFloat:(jfloat)b
-                               withFloat:(jfloat)c
-                               withFloat:(jfloat)d
-                               withFloat:(jfloat)e
-                               withFloat:(jfloat)f
-                             withBoolean:(jboolean)inlineImage;
-
-- (void)reset;
-
-- (void)resetWithBoolean:(jboolean)validateContent;
-
-- (void)beginTextWithBoolean:(jboolean)restoreTM;
-
-- (void)beginText;
-
-- (void)endText;
-
-- (void)saveState;
-
-- (void)restoreState;
-
-- (void)setCharacterSpacingWithFloat:(jfloat)charSpace;
-
-- (void)setWordSpacingWithFloat:(jfloat)wordSpace;
-
-- (void)setHorizontalScalingWithFloat:(jfloat)scale_;
-
-- (void)setLeadingWithFloat:(jfloat)leading;
-
-- (void)setFontAndSizeWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
-                                           withFloat:(jfloat)size;
-
-- (void)setTextRenderingModeWithInt:(jint)rendering;
-
-- (void)setTextRiseWithFloat:(jfloat)rise;
-
-- (void)showText2WithNSString:(NSString *)text;
-
-- (void)showTextWithNSString:(NSString *)text;
-
-+ (ComItextpdfTextPdfPdfTextArray *)getKernArrayWithNSString:(NSString *)text
-                              withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
-
-- (void)showTextKernedWithNSString:(NSString *)text;
-
-- (void)newlineShowTextWithNSString:(NSString *)text OBJC_METHOD_FAMILY_NONE;
-
-- (void)newlineShowTextWithFloat:(jfloat)wordSpacing
-                       withFloat:(jfloat)charSpacing
-                    withNSString:(NSString *)text OBJC_METHOD_FAMILY_NONE;
+- (void)setTextMatrixWithFloat:(jfloat)x
+                     withFloat:(jfloat)y;
 
 - (void)setTextMatrixWithFloat:(jfloat)a
                      withFloat:(jfloat)b
@@ -308,39 +527,15 @@
                      withFloat:(jfloat)x
                      withFloat:(jfloat)y;
 
-- (void)setTextMatrixWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+- (void)setTextRenderingModeWithInt:(jint)rendering;
 
-- (void)setTextMatrixWithFloat:(jfloat)x
-                     withFloat:(jfloat)y;
+- (void)setTextRiseWithFloat:(jfloat)rise;
 
-- (void)moveTextWithFloat:(jfloat)x
-                withFloat:(jfloat)y;
+- (void)setWordSpacingWithFloat:(jfloat)wordSpace;
 
-- (void)moveTextWithLeadingWithFloat:(jfloat)x
-                           withFloat:(jfloat)y;
+- (void)showTextWithComItextpdfTextPdfPdfTextArray:(ComItextpdfTextPdfPdfTextArray *)text;
 
-- (void)newlineText OBJC_METHOD_FAMILY_NONE;
-
-- (jint)size;
-
-- (jint)sizeWithBoolean:(jboolean)includeMarkedContentSize;
-
-+ (IOSByteArray *)escapeStringWithByteArray:(IOSByteArray *)b;
-
-+ (void)escapeStringWithByteArray:(IOSByteArray *)b
- withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)content;
-
-- (void)addOutlineWithComItextpdfTextPdfPdfOutline:(ComItextpdfTextPdfPdfOutline *)outline
-                                      withNSString:(NSString *)name;
-
-- (ComItextpdfTextPdfPdfOutline *)getRootOutline;
-
-- (jfloat)getEffectiveStringWidthWithNSString:(NSString *)text
-                                  withBoolean:(jboolean)kerned;
-
-- (jfloat)getEffectiveStringWidthWithNSString:(NSString *)text
-                                  withBoolean:(jboolean)kerned
-                                    withFloat:(jfloat)kerning;
+- (void)showTextWithNSString:(NSString *)text;
 
 - (void)showTextAlignedWithInt:(jint)alignment
                   withNSString:(NSString *)text
@@ -348,104 +543,57 @@
                      withFloat:(jfloat)y
                      withFloat:(jfloat)rotation;
 
-- (void)showTextAlignedWithInt:(jint)alignment
-                  withNSString:(NSString *)text
-                     withFloat:(jfloat)x
-                     withFloat:(jfloat)y
-                     withFloat:(jfloat)rotation
-                   withBoolean:(jboolean)kerned;
-
 - (void)showTextAlignedKernedWithInt:(jint)alignment
                         withNSString:(NSString *)text
                            withFloat:(jfloat)x
                            withFloat:(jfloat)y
                            withFloat:(jfloat)rotation;
 
-- (void)concatCTMWithFloat:(jfloat)a
-                 withFloat:(jfloat)b
-                 withFloat:(jfloat)c
-                 withFloat:(jfloat)d
-                 withFloat:(jfloat)e
-                 withFloat:(jfloat)f;
+- (void)showTextKernedWithNSString:(NSString *)text;
 
-- (void)concatCTMWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+- (void)stroke;
 
-+ (JavaUtilArrayList *)bezierArcWithFloat:(jfloat)x1
-                                withFloat:(jfloat)y1
-                                withFloat:(jfloat)x2
-                                withFloat:(jfloat)y2
-                                withFloat:(jfloat)startAng
-                                withFloat:(jfloat)extent;
+- (IOSByteArray *)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (void)arcWithFloat:(jfloat)x1
-           withFloat:(jfloat)y1
-           withFloat:(jfloat)x2
-           withFloat:(jfloat)y2
-           withFloat:(jfloat)startAng
-           withFloat:(jfloat)extent;
+- (NSString *)description;
 
-- (void)ellipseWithFloat:(jfloat)x1
-               withFloat:(jfloat)y1
-               withFloat:(jfloat)x2
-               withFloat:(jfloat)y2;
+- (void)transformWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)af;
 
-- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
-                                                      withFloat:(jfloat)height
-                                                      withFloat:(jfloat)xstep
-                                                      withFloat:(jfloat)ystep;
+- (void)variableRectangleWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
 
-- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
-                                                      withFloat:(jfloat)height;
+#pragma mark Protected
 
-- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
-                                                      withFloat:(jfloat)height
-                                                      withFloat:(jfloat)xstep
-                                                      withFloat:(jfloat)ystep
-                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (void)beginTextWithBoolean:(jboolean)restoreTM;
 
-- (ComItextpdfTextPdfPdfPatternPainter *)createPatternWithFloat:(jfloat)width
-                                                      withFloat:(jfloat)height
-                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (void)checkState;
 
-- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithFloat:(jfloat)width
-                                                 withFloat:(jfloat)height;
+- (void)checkWriter;
 
-- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithFloat:(jfloat)width
-                                                 withFloat:(jfloat)height
-                             withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
+- (ComItextpdfTextPdfPdfIndirectReference *)getCurrentPage;
 
-- (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithFloat:(jfloat)width
-                                                     withFloat:(jfloat)height;
+- (jboolean)getInText;
 
-- (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithFloat:(jfloat)width
-                                                     withFloat:(jfloat)height
-                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
+- (jint)getMcDepth;
 
-- (void)addPSXObjectWithComItextpdfTextPdfPdfPSXObject:(ComItextpdfTextPdfPdfPSXObject *)psobject;
+- (JavaUtilArrayList *)getMcElements;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-                                           withFloat:(jfloat)a
-                                           withFloat:(jfloat)b
-                                           withFloat:(jfloat)c
-                                           withFloat:(jfloat)d
-                                           withFloat:(jfloat)e
-                                           withFloat:(jfloat)f;
+- (void)restoreMCBlocksWithJavaUtilArrayList:(JavaUtilArrayList *)mcElements;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-                                           withFloat:(jfloat)a
-                                           withFloat:(jfloat)b
-                                           withFloat:(jfloat)c
-                                           withFloat:(jfloat)d
-                                           withFloat:(jfloat)e
-                                           withFloat:(jfloat)f
-                                         withBoolean:(jboolean)tagContent;
+- (JavaUtilArrayList *)saveMCBlocks;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
+- (void)setMcDepthWithInt:(jint)value;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform
-                                         withBoolean:(jboolean)tagContent;
+- (void)setMcElementsWithJavaUtilArrayList:(JavaUtilArrayList *)value;
+
+- (void)updateTxWithNSString:(NSString *)text
+                   withFloat:(jfloat)Tj;
+
+#pragma mark Package-Private
+
+- (void)addAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot;
+
+- (void)addAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot
+                                             withBoolean:(jboolean)applyCTM;
 
 - (void)addTemplateReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)template_
                                          withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
@@ -456,222 +604,32 @@
                                                              withFloat:(jfloat)e
                                                              withFloat:(jfloat)f;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-                                           withFloat:(jfloat)x
-                                           withFloat:(jfloat)y;
+- (void)checkNoPatternWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)t;
 
-- (void)addTemplateWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
-                                           withFloat:(jfloat)x
-                                           withFloat:(jfloat)y
-                                         withBoolean:(jboolean)tagContent;
+- (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithFloat:(jfloat)width
+                                                     withFloat:(jfloat)height
+                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
 
-- (void)setCMYKColorFillWithInt:(jint)cyan
-                        withInt:(jint)magenta
-                        withInt:(jint)yellow
-                        withInt:(jint)black;
+- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithFloat:(jfloat)width
+                                                 withFloat:(jfloat)height
+                             withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
 
-- (void)setCMYKColorStrokeWithInt:(jint)cyan
-                          withInt:(jint)magenta
-                          withInt:(jint)yellow
-                          withInt:(jint)black;
++ (IOSByteArray *)escapeStringWithByteArray:(IOSByteArray *)b;
 
-- (void)setRGBColorFillWithInt:(jint)red
-                       withInt:(jint)green
-                       withInt:(jint)blue;
++ (void)escapeStringWithByteArray:(IOSByteArray *)b
+ withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)content;
 
-- (void)setRGBColorStrokeWithInt:(jint)red
-                         withInt:(jint)green
-                         withInt:(jint)blue;
-
-- (void)setColorStrokeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setColorFillWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setColorFillWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
-                                             withFloat:(jfloat)tint;
-
-- (void)setColorStrokeWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
-                                               withFloat:(jfloat)tint;
-
-- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
+- (ComItextpdfTextPdfPageResources *)getPageResources;
 
 - (void)outputColorNumbersWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
                                              withFloat:(jfloat)tint;
 
-- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
-                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (jint)size;
 
-- (void)setPatternFillWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
-                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                                    withFloat:(jfloat)tint;
-
-- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
-                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
-                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                                      withFloat:(jfloat)tint;
-
-- (void)setPatternStrokeWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p;
-
-- (void)paintShadingWithComItextpdfTextPdfPdfShading:(ComItextpdfTextPdfPdfShading *)shading;
-
-- (void)paintShadingWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
-
-- (void)setShadingFillWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
-
-- (void)setShadingStrokeWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shading;
-
-- (void)checkWriter;
-
-- (void)showTextWithComItextpdfTextPdfPdfTextArray:(ComItextpdfTextPdfPdfTextArray *)text;
-
-- (ComItextpdfTextPdfPdfWriter *)getPdfWriter;
-
-- (ComItextpdfTextPdfPdfDocument *)getPdfDocument;
-
-- (void)localGotoWithNSString:(NSString *)name
-                    withFloat:(jfloat)llx
-                    withFloat:(jfloat)lly
-                    withFloat:(jfloat)urx
-                    withFloat:(jfloat)ury;
-
-- (jboolean)localDestinationWithNSString:(NSString *)name
-    withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)destination;
-
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
-
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicateWithBoolean:(jboolean)inheritGraphicState;
-
-- (void)remoteGotoWithNSString:(NSString *)filename
-                  withNSString:(NSString *)name
-                     withFloat:(jfloat)llx
-                     withFloat:(jfloat)lly
-                     withFloat:(jfloat)urx
-                     withFloat:(jfloat)ury;
-
-- (void)remoteGotoWithNSString:(NSString *)filename
-                       withInt:(jint)page
-                     withFloat:(jfloat)llx
-                     withFloat:(jfloat)lly
-                     withFloat:(jfloat)urx
-                     withFloat:(jfloat)ury;
-
-- (void)roundRectangleWithFloat:(jfloat)x
-                      withFloat:(jfloat)y
-                      withFloat:(jfloat)w
-                      withFloat:(jfloat)h
-                      withFloat:(jfloat)r;
-
-- (void)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
-                                       withFloat:(jfloat)llx
-                                       withFloat:(jfloat)lly
-                                       withFloat:(jfloat)urx
-                                       withFloat:(jfloat)ury;
-
-- (void)setLiteralWithNSString:(NSString *)s;
-
-- (void)setLiteralWithChar:(jchar)c;
-
-- (void)setLiteralWithFloat:(jfloat)n;
-
-- (void)checkNoPatternWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)t;
-
-- (void)drawRadioFieldWithFloat:(jfloat)llx
-                      withFloat:(jfloat)lly
-                      withFloat:(jfloat)urx
-                      withFloat:(jfloat)ury
-                    withBoolean:(jboolean)on;
-
-- (void)drawTextFieldWithFloat:(jfloat)llx
-                     withFloat:(jfloat)lly
-                     withFloat:(jfloat)urx
-                     withFloat:(jfloat)ury;
-
-- (void)drawButtonWithFloat:(jfloat)llx
-                  withFloat:(jfloat)lly
-                  withFloat:(jfloat)urx
-                  withFloat:(jfloat)ury
-               withNSString:(NSString *)text
-withComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
-                  withFloat:(jfloat)size;
-
-- (ComItextpdfTextPdfPageResources *)getPageResources;
-
-- (void)setGStateWithComItextpdfTextPdfPdfGState:(ComItextpdfTextPdfPdfGState *)gstate;
-
-- (void)beginLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
-
-- (void)beginLayer2WithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
-
-- (void)endLayer;
-
-- (void)transformWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)af;
-
-- (void)addAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot;
-
-- (void)addAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot
-                                             withBoolean:(jboolean)applyCTM;
-
-- (void)setDefaultColorspaceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                          withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
-
-- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfStructureElement:(ComItextpdfTextPdfPdfStructureElement *)struc;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getCurrentPage;
-
-- (void)endMarkedContentSequence;
-
-- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)tag
-                            withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)property
-                                                    withBoolean:(jboolean)inline_;
-
-- (void)beginMarkedContentSequenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)tag;
-
-- (void)sanityCheck;
-
-- (void)openMCBlockWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
-
-- (ComItextpdfTextPdfPdfDictionary *)getParentStructureElement;
-
-- (ComItextpdfTextPdfPdfStructureElement *)openMCBlockIntWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
-
-- (void)closeMCBlockWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
-
-- (void)closeMCBlockIntWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
-
-- (JavaUtilArrayList *)saveMCBlocks;
-
-- (void)restoreMCBlocksWithJavaUtilArrayList:(JavaUtilArrayList *)mcElements;
-
-- (jint)getMcDepth;
-
-- (void)setMcDepthWithInt:(jint)value;
-
-- (JavaUtilArrayList *)getMcElements;
-
-- (void)setMcElementsWithJavaUtilArrayList:(JavaUtilArrayList *)value;
-
-- (void)updateTxWithNSString:(NSString *)text
-                   withFloat:(jfloat)Tj;
-
-- (void)saveColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                  withBoolean:(jboolean)fill;
-
-- (void)restoreColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                     withBoolean:(jboolean)fill;
-
-- (void)restoreColor;
-
-- (jboolean)getInText;
-
-- (void)checkState;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfContentByte *)other;
+- (jint)sizeWithBoolean:(jboolean)includeMarkedContentSize;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfContentByte_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfContentByte)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, content_, ComItextpdfTextPdfByteBuffer *)
@@ -680,7 +638,6 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, pdf_, ComItextpdfTextPdfPd
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, state_, ComItextpdfTextPdfPdfContentByte_GraphicState *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, stateList_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, layerDepth_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, mcElements_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, duplicatedFrom_, ComItextpdfTextPdfPdfContentByte *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentByte, ALIGN_CENTER, jint)
@@ -717,12 +674,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentByte, TEXT_RENDER_MODE_FI
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentByte, TEXT_RENDER_MODE_CLIP, jint)
 
-FOUNDATION_EXPORT IOSFloatArray *ComItextpdfTextPdfPdfContentByte_unitRect_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentByte, unitRect_, IOSFloatArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentByte_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfContentByte *self, ComItextpdfTextPdfPdfWriter *wr);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfContentByte_abrev_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfContentByte, abrev_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, abrev_, JavaUtilHashMap *)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContentByte *new_ComItextpdfTextPdfPdfContentByte_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *wr) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTextArray *ComItextpdfTextPdfPdfContentByte_getKernArrayWithNSString_withComItextpdfTextPdfBaseFont_(NSString *text, ComItextpdfTextPdfBaseFont *font);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfContentByte_escapeStringWithByteArray_(IOSByteArray *b);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentByte_escapeStringWithByteArray_withComItextpdfTextPdfByteBuffer_(IOSByteArray *b, ComItextpdfTextPdfByteBuffer *content);
+
+FOUNDATION_EXPORT JavaUtilArrayList *ComItextpdfTextPdfPdfContentByte_bezierArcWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(jfloat x1, jfloat y1, jfloat x2, jfloat y2, jfloat startAng, jfloat extent);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfContentByte)
 
 @interface ComItextpdfTextPdfPdfContentByte_GraphicState : NSObject {
  @public
@@ -749,6 +713,8 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, abrev_, JavaUtilHas
   ComItextpdfTextPdfPdfObject *extGState_;
 }
 
+#pragma mark Package-Private
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfPdfContentByte_GraphicState:(ComItextpdfTextPdfPdfContentByte_GraphicState *)cp;
@@ -757,11 +723,9 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte, abrev_, JavaUtilHas
 
 - (void)restoreWithComItextpdfTextPdfPdfContentByte_GraphicState:(ComItextpdfTextPdfPdfContentByte_GraphicState *)restore;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfContentByte_GraphicState *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfContentByte_GraphicState_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfContentByte_GraphicState)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_GraphicState, fontDetails_, ComItextpdfTextPdfFontDetails *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_GraphicState, colorDetails_, ComItextpdfTextPdfColorDetails *)
@@ -772,24 +736,42 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_GraphicState, colorStroke_,
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_GraphicState, CTM_, ComItextpdfAwtGeomAffineTransform *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_GraphicState, extGState_, ComItextpdfTextPdfPdfObject *)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentByte_GraphicState_init(ComItextpdfTextPdfPdfContentByte_GraphicState *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContentByte_GraphicState *new_ComItextpdfTextPdfPdfContentByte_GraphicState_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentByte_GraphicState_initWithComItextpdfTextPdfPdfContentByte_GraphicState_(ComItextpdfTextPdfPdfContentByte_GraphicState *self, ComItextpdfTextPdfPdfContentByte_GraphicState *cp);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContentByte_GraphicState *new_ComItextpdfTextPdfPdfContentByte_GraphicState_initWithComItextpdfTextPdfPdfContentByte_GraphicState_(ComItextpdfTextPdfPdfContentByte_GraphicState *cp) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfContentByte_GraphicState)
+
 @interface ComItextpdfTextPdfPdfContentByte_UncoloredPattern : ComItextpdfTextPdfPatternColor {
  @public
   ComItextpdfTextBaseColor *color_;
   jfloat tint_;
 }
 
+#pragma mark Public
+
+- (jboolean)isEqual:(id)obj;
+
+#pragma mark Protected
+
 - (instancetype)initWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)p
                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
                                                   withFloat:(jfloat)tint;
 
-- (jboolean)isEqual:(id)obj;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfContentByte_UncoloredPattern *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfContentByte_UncoloredPattern_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfContentByte_UncoloredPattern)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfContentByte_UncoloredPattern, color_, ComItextpdfTextBaseColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfContentByte_UncoloredPattern_initWithComItextpdfTextPdfPdfPatternPainter_withComItextpdfTextBaseColor_withFloat_(ComItextpdfTextPdfPdfContentByte_UncoloredPattern *self, ComItextpdfTextPdfPdfPatternPainter *p, ComItextpdfTextBaseColor *color, jfloat tint);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfContentByte_UncoloredPattern *new_ComItextpdfTextPdfPdfContentByte_UncoloredPattern_initWithComItextpdfTextPdfPdfPatternPainter_withComItextpdfTextBaseColor_withFloat_(ComItextpdfTextPdfPdfPatternPainter *p, ComItextpdfTextBaseColor *color, jfloat tint) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfContentByte_UncoloredPattern)
 
 #endif // _ComItextpdfTextPdfPdfContentByte_H_

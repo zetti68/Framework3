@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfPHeaderCell_H_
 #define _ComItextpdfTextPdfPdfPHeaderCell_H_
 
-@class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfPCell.h"
 
-#define ComItextpdfTextPdfPdfPHeaderCell_BOTH 3
-#define ComItextpdfTextPdfPdfPHeaderCell_COLUMN 2
+@class ComItextpdfTextPdfPdfName;
+
 #define ComItextpdfTextPdfPdfPHeaderCell_NONE 0
 #define ComItextpdfTextPdfPdfPHeaderCell_ROW 1
+#define ComItextpdfTextPdfPdfPHeaderCell_COLUMN 2
+#define ComItextpdfTextPdfPdfPHeaderCell_BOTH 3
 
 @interface ComItextpdfTextPdfPdfPHeaderCell : ComItextpdfTextPdfPdfPCell {
  @public
@@ -22,27 +22,27 @@
   NSString *name_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfPdfPHeaderCell:(ComItextpdfTextPdfPdfPHeaderCell *)headerCell;
-
-- (void)setNameWithNSString:(NSString *)name;
 
 - (NSString *)getName;
 
 - (ComItextpdfTextPdfPdfName *)getRole;
 
+- (jint)getScope;
+
+- (void)setNameWithNSString:(NSString *)name;
+
 - (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
 - (void)setScopeWithInt:(jint)scope;
 
-- (jint)getScope;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPHeaderCell *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPHeaderCell_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPHeaderCell)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPHeaderCell, name_, NSString *)
 
@@ -53,5 +53,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPHeaderCell, ROW, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPHeaderCell, COLUMN, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPHeaderCell, BOTH, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPHeaderCell_init(ComItextpdfTextPdfPdfPHeaderCell *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPHeaderCell *new_ComItextpdfTextPdfPdfPHeaderCell_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPHeaderCell_initWithComItextpdfTextPdfPdfPHeaderCell_(ComItextpdfTextPdfPdfPHeaderCell *self, ComItextpdfTextPdfPdfPHeaderCell *headerCell);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPHeaderCell *new_ComItextpdfTextPdfPdfPHeaderCell_initWithComItextpdfTextPdfPdfPHeaderCell_(ComItextpdfTextPdfPdfPHeaderCell *headerCell) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPHeaderCell)
 
 #endif // _ComItextpdfTextPdfPdfPHeaderCell_H_

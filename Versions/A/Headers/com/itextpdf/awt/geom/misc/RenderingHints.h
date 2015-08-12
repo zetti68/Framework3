@@ -6,69 +6,60 @@
 #ifndef _ComItextpdfAwtGeomMiscRenderingHints_H_
 #define _ComItextpdfAwtGeomMiscRenderingHints_H_
 
+#include "J2ObjC_header.h"
+#include "java/util/Map.h"
+
 @class ComItextpdfAwtGeomMiscRenderingHints_Key;
-@class JavaUtilHashMap;
 @protocol JavaUtilCollection;
 @protocol JavaUtilSet;
 
-#import "JreEmulation.h"
-#include "java/util/Map.h"
+@interface ComItextpdfAwtGeomMiscRenderingHints : NSObject < JavaUtilMap, NSCopying >
 
-@interface ComItextpdfAwtGeomMiscRenderingHints : NSObject < JavaUtilMap, NSCopying > {
- @public
-  JavaUtilHashMap *map_;
-}
-
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)map;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfAwtGeomMiscRenderingHints_Key:(ComItextpdfAwtGeomMiscRenderingHints_Key *)key
                                                           withId:(id)value;
 
+- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)map;
+
 - (void)addWithComItextpdfAwtGeomMiscRenderingHints:(ComItextpdfAwtGeomMiscRenderingHints *)hints;
+
+- (void)clear;
+
+- (id)clone;
+
+- (jboolean)containsKeyWithId:(id)key;
+
+- (jboolean)containsValueWithId:(id)value;
+
+- (id<JavaUtilSet>)entrySet;
+
+- (jboolean)isEqual:(id)o;
+
+- (id)getWithId:(id)key;
+
+- (NSUInteger)hash;
+
+- (jboolean)isEmpty;
+
+- (id<JavaUtilSet>)keySet;
 
 - (id)putWithId:(id)key
          withId:(id)value;
 
-- (id)removeWithId:(id)key;
-
-- (id)getWithId:(id)key;
-
-- (id<JavaUtilSet>)keySet;
-
-- (id<JavaUtilSet>)entrySet;
-
 - (void)putAllWithJavaUtilMap:(id<JavaUtilMap>)m;
 
-- (id<JavaUtilCollection>)values;
-
-- (jboolean)containsValueWithId:(id)value;
-
-- (jboolean)containsKeyWithId:(id)key;
-
-- (jboolean)isEmpty;
-
-- (void)clear;
+- (id)removeWithId:(id)key;
 
 - (jint)size;
 
-- (jboolean)isEqual:(id)o;
-
-- (NSUInteger)hash;
-
-- (id)clone;
-
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomMiscRenderingHints *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (id<JavaUtilCollection>)values;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfAwtGeomMiscRenderingHints_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfAwtGeomMiscRenderingHints)
-
-J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomMiscRenderingHints, map_, JavaUtilHashMap *)
 
 FOUNDATION_EXPORT ComItextpdfAwtGeomMiscRenderingHints_Key *ComItextpdfAwtGeomMiscRenderingHints_KEY_ALPHA_INTERPOLATION_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomMiscRenderingHints, KEY_ALPHA_INTERPOLATION_, ComItextpdfAwtGeomMiscRenderingHints_Key *)
@@ -178,51 +169,38 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomMiscRenderingHints, VALUE_TEXT_ANTI
 FOUNDATION_EXPORT id ComItextpdfAwtGeomMiscRenderingHints_VALUE_TEXT_ANTIALIAS_OFF_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomMiscRenderingHints, VALUE_TEXT_ANTIALIAS_OFF_, id)
 
-@interface ComItextpdfAwtGeomMiscRenderingHints_Key : NSObject {
- @public
-  jint key_;
-}
+FOUNDATION_EXPORT void ComItextpdfAwtGeomMiscRenderingHints_initWithJavaUtilMap_(ComItextpdfAwtGeomMiscRenderingHints *self, id<JavaUtilMap> map);
 
-- (instancetype)initWithInt:(jint)key;
+FOUNDATION_EXPORT ComItextpdfAwtGeomMiscRenderingHints *new_ComItextpdfAwtGeomMiscRenderingHints_initWithJavaUtilMap_(id<JavaUtilMap> map) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomMiscRenderingHints_initWithComItextpdfAwtGeomMiscRenderingHints_Key_withId_(ComItextpdfAwtGeomMiscRenderingHints *self, ComItextpdfAwtGeomMiscRenderingHints_Key *key, id value);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomMiscRenderingHints *new_ComItextpdfAwtGeomMiscRenderingHints_initWithComItextpdfAwtGeomMiscRenderingHints_Key_withId_(ComItextpdfAwtGeomMiscRenderingHints_Key *key, id value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomMiscRenderingHints)
+
+@interface ComItextpdfAwtGeomMiscRenderingHints_Key : NSObject
+
+#pragma mark Public
 
 - (jboolean)isEqual:(id)o;
 
 - (NSUInteger)hash;
 
-- (jint)intKey;
-
 - (jboolean)isCompatibleValueWithId:(id)val;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomMiscRenderingHints_Key *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomMiscRenderingHints_Key_init() {}
-
-@interface ComItextpdfAwtGeomMiscRenderingHints_KeyImpl : ComItextpdfAwtGeomMiscRenderingHints_Key {
-}
+#pragma mark Protected
 
 - (instancetype)initWithInt:(jint)key;
 
-- (jboolean)isCompatibleValueWithId:(id)val;
+- (jint)intKey;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomMiscRenderingHints_KeyImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomMiscRenderingHints_Key)
 
-@interface ComItextpdfAwtGeomMiscRenderingHints_KeyValue : NSObject {
- @public
-  ComItextpdfAwtGeomMiscRenderingHints_Key *key_;
-}
+FOUNDATION_EXPORT void ComItextpdfAwtGeomMiscRenderingHints_Key_initWithInt_(ComItextpdfAwtGeomMiscRenderingHints_Key *self, jint key);
 
-- (instancetype)initWithComItextpdfAwtGeomMiscRenderingHints_Key:(ComItextpdfAwtGeomMiscRenderingHints_Key *)key;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomMiscRenderingHints_KeyValue *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomMiscRenderingHints_KeyValue_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomMiscRenderingHints_KeyValue, key_, ComItextpdfAwtGeomMiscRenderingHints_Key *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomMiscRenderingHints_Key)
 
 #endif // _ComItextpdfAwtGeomMiscRenderingHints_H_

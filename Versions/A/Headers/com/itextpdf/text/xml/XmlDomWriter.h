@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextXmlXmlDomWriter_H_
 #define _ComItextpdfTextXmlXmlDomWriter_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
 @class JavaIoOutputStream;
 @class JavaIoPrintWriter;
@@ -13,14 +15,14 @@
 @protocol OrgW3cDomNamedNodeMap;
 @protocol OrgW3cDomNode;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextXmlXmlDomWriter : NSObject {
  @public
   JavaIoPrintWriter *fOut_;
   jboolean fCanonical_;
   jboolean fXML11_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -35,20 +37,30 @@
 
 - (void)writeWithOrgW3cDomNode:(id<OrgW3cDomNode>)node;
 
-- (IOSObjectArray *)sortAttributesWithOrgW3cDomNamedNodeMap:(id<OrgW3cDomNamedNodeMap>)attrs;
-
-- (void)normalizeAndPrintWithNSString:(NSString *)s
-                          withBoolean:(jboolean)isAttValue;
+#pragma mark Protected
 
 - (void)normalizeAndPrintWithChar:(jchar)c
                       withBoolean:(jboolean)isAttValue;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextXmlXmlDomWriter *)other;
+- (void)normalizeAndPrintWithNSString:(NSString *)s
+                          withBoolean:(jboolean)isAttValue;
+
+- (IOSObjectArray *)sortAttributesWithOrgW3cDomNamedNodeMap:(id<OrgW3cDomNamedNodeMap>)attrs;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmlDomWriter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmlDomWriter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextXmlXmlDomWriter, fOut_, JavaIoPrintWriter *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmlDomWriter_init(ComItextpdfTextXmlXmlDomWriter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmlDomWriter *new_ComItextpdfTextXmlXmlDomWriter_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmlDomWriter_initWithBoolean_(ComItextpdfTextXmlXmlDomWriter *self, jboolean canonical);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmlDomWriter *new_ComItextpdfTextXmlXmlDomWriter_initWithBoolean_(jboolean canonical) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmlDomWriter)
 
 #endif // _ComItextpdfTextXmlXmlDomWriter_H_

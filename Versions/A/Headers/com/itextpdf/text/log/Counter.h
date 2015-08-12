@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextLogCounter_H_
 #define _ComItextpdfTextLogCounter_H_
 
-@class IOSClass;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class IOSClass;
 
 @protocol ComItextpdfTextLogCounter < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogCounter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogCounter)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogCounter)
 
 #endif // _ComItextpdfTextLogCounter_H_

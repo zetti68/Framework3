@@ -6,19 +6,23 @@
 #ifndef _ComItextpdfTextPdfParserTextMarginFinder_H_
 #define _ComItextpdfTextPdfParserTextMarginFinder_H_
 
-@class ComItextpdfAwtGeomRectangle2D_Float;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/parser/RenderListener.h"
+@interface ComItextpdfTextPdfParserTextMarginFinder : NSObject < ComItextpdfTextPdfParserRenderListener >
 
-@interface ComItextpdfTextPdfParserTextMarginFinder : NSObject < ComItextpdfTextPdfParserRenderListener > {
- @public
-  ComItextpdfAwtGeomRectangle2D_Float *textRectangle_;
-}
+#pragma mark Public
 
-- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
+- (instancetype)init;
+
+- (void)beginTextBlock;
+
+- (void)endTextBlock;
+
+- (jfloat)getHeight;
 
 - (jfloat)getLlx;
 
@@ -30,22 +34,18 @@
 
 - (jfloat)getWidth;
 
-- (jfloat)getHeight;
-
-- (void)beginTextBlock;
-
-- (void)endTextBlock;
-
 - (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserTextMarginFinder *)other;
+- (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserTextMarginFinder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserTextMarginFinder)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTextMarginFinder, textRectangle_, ComItextpdfAwtGeomRectangle2D_Float *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserTextMarginFinder_init(ComItextpdfTextPdfParserTextMarginFinder *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserTextMarginFinder *new_ComItextpdfTextPdfParserTextMarginFinder_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserTextMarginFinder)
 
 #endif // _ComItextpdfTextPdfParserTextMarginFinder_H_

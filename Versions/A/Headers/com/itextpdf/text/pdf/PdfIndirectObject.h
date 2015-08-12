@@ -6,13 +6,13 @@
 #ifndef _ComItextpdfTextPdfPdfIndirectObject_H_
 #define _ComItextpdfTextPdfPdfIndirectObject_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfPdfIndirectObject : NSObject {
  @public
@@ -22,7 +22,22 @@
   ComItextpdfTextPdfPdfWriter *writer_;
 }
 
+#pragma mark Public
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
+
+#pragma mark Protected
+
 - (instancetype)initWithInt:(jint)number
+withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object
+withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+- (void)writeToWithJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithInt:(jint)number
+                    withInt:(jint)generation
 withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object
 withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
@@ -30,20 +45,8 @@ withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
                                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object
                                withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (instancetype)initWithInt:(jint)number
-                    withInt:(jint)generation
-withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object
-withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
-
-- (void)writeToWithJavaIoOutputStream:(JavaIoOutputStream *)os;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfIndirectObject *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfIndirectObject_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfIndirectObject)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfIndirectObject, object_, ComItextpdfTextPdfPdfObject *)
@@ -57,5 +60,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfIndirectObject, ENDOBJ_, IOSByte
 
 FOUNDATION_EXPORT jint ComItextpdfTextPdfPdfIndirectObject_SIZEOBJ_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfIndirectObject, SIZEOBJ_, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfIndirectObject_initWithInt_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfIndirectObject *self, jint number, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfIndirectObject *new_ComItextpdfTextPdfPdfIndirectObject_initWithInt_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(jint number, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfIndirectObject_initWithComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfIndirectObject *self, ComItextpdfTextPdfPdfIndirectReference *ref, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfIndirectObject *new_ComItextpdfTextPdfPdfIndirectObject_initWithComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfIndirectReference *ref, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfIndirectObject_initWithInt_withInt_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfIndirectObject *self, jint number, jint generation, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfIndirectObject *new_ComItextpdfTextPdfPdfIndirectObject_initWithInt_withInt_withComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfWriter_(jint number, jint generation, ComItextpdfTextPdfPdfObject *object, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfIndirectObject)
 
 #endif // _ComItextpdfTextPdfPdfIndirectObject_H_

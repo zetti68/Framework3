@@ -6,99 +6,82 @@
 #ifndef _ComItextpdfTextPdfCJKFont_H_
 #define _ComItextpdfTextPdfCJKFont_H_
 
-@class ComItextpdfTextPdfFontsCmapsCMapCidByte;
-@class ComItextpdfTextPdfFontsCmapsCMapCidUni;
-@class ComItextpdfTextPdfFontsCmapsCMapUniCid;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/BaseFont.h"
+
 @class ComItextpdfTextPdfIntHashtable;
-@class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfStream;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSObjectArray;
-@class JavaUtilHashMap;
 @class JavaUtilProperties;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/BaseFont.h"
+@interface ComItextpdfTextPdfCJKFont : ComItextpdfTextPdfBaseFont
 
-#define ComItextpdfTextPdfCJKFont_BRACKET 1
-#define ComItextpdfTextPdfCJKFont_FIRST 0
-#define ComItextpdfTextPdfCJKFont_SERIAL 2
-#define ComItextpdfTextPdfCJKFont_V1Y 880
+#pragma mark Public
 
-@interface ComItextpdfTextPdfCJKFont : ComItextpdfTextPdfBaseFont {
- @public
-  ComItextpdfTextPdfFontsCmapsCMapCidByte *cidByte_;
-  ComItextpdfTextPdfFontsCmapsCMapUniCid *uniCid_;
-  ComItextpdfTextPdfFontsCmapsCMapCidUni *cidUni_;
-  NSString *uniMap_;
-  NSString *fontName_;
-  NSString *style_;
-  NSString *CMap_;
-  jboolean cidDirect_;
-  ComItextpdfTextPdfIntHashtable *vMetrics_;
-  ComItextpdfTextPdfIntHashtable *hMetrics_;
-  JavaUtilHashMap *fontDesc_;
-}
+- (jboolean)charExistsWithInt:(jint)c;
 
-+ (void)loadProperties;
+- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
 
-+ (void)loadRegistry;
+- (IOSObjectArray *)getAllNameEntries;
 
-- (instancetype)initWithNSString:(NSString *)fontName
-                    withNSString:(NSString *)enc
-                     withBoolean:(jboolean)emb;
+- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
 
-- (NSString *)getUniMap;
-
-- (void)loadCMaps;
+- (jint)getCidCodeWithInt:(jint)c;
 
 + (NSString *)GetCompatibleFontWithNSString:(NSString *)enc;
 
-+ (jboolean)isCJKFontWithNSString:(NSString *)fontName
-                     withNSString:(NSString *)enc;
+- (IOSObjectArray *)getFamilyFontName;
+
+- (jfloat)getFontDescriptorWithInt:(jint)key
+                         withFloat:(jfloat)fontSize;
+
+- (IOSObjectArray *)getFullFontName;
+
+- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
+
+- (jint)getKerningWithInt:(jint)char1
+                  withInt:(jint)char2;
+
+- (NSString *)getPostscriptFontName;
+
+- (jint)getUnicodeEquivalentWithInt:(jint)c;
 
 - (jint)getWidthWithInt:(jint)char1;
 
 - (jint)getWidthWithNSString:(NSString *)text;
 
-- (jint)getRawWidthWithInt:(jint)c
-              withNSString:(NSString *)name;
+- (jboolean)hasKernPairs;
 
-- (jint)getKerningWithInt:(jint)char1
-                  withInt:(jint)char2;
++ (jboolean)isCJKFontWithNSString:(NSString *)fontName
+                     withNSString:(NSString *)enc;
 
-- (ComItextpdfTextPdfPdfDictionary *)getFontDescriptor;
+- (jboolean)isIdentity;
 
-- (ComItextpdfTextPdfPdfDictionary *)getCIDFontWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontDescriptor
-                                                       withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)cjkTag;
+- (jboolean)setCharAdvanceWithInt:(jint)c
+                          withInt:(jint)advance;
 
-- (ComItextpdfTextPdfPdfDictionary *)getFontBaseTypeWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)CIDFont;
+- (jboolean)setKerningWithInt:(jint)char1
+                      withInt:(jint)char2
+                      withInt:(jint)kern;
 
-- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
-                               withNSObjectArray:(IOSObjectArray *)params;
+- (void)setPostscriptFontNameWithNSString:(NSString *)name;
 
-- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
+#pragma mark Protected
 
-- (jfloat)getDescNumberWithNSString:(NSString *)name;
+- (IOSIntArray *)getRawCharBBoxWithInt:(jint)c
+                          withNSString:(NSString *)name;
 
-- (jfloat)getBBoxWithInt:(jint)idx;
+#pragma mark Package-Private
 
-- (jfloat)getFontDescriptorWithInt:(jint)key
-                         withFloat:(jfloat)fontSize;
+- (instancetype)initWithNSString:(NSString *)fontName
+                    withNSString:(NSString *)enc
+                     withBoolean:(jboolean)emb;
 
-- (NSString *)getPostscriptFontName;
-
-- (IOSObjectArray *)getFullFontName;
-
-- (IOSObjectArray *)getAllNameEntries;
-
-- (IOSObjectArray *)getFamilyFontName;
-
-+ (ComItextpdfTextPdfIntHashtable *)createMetricWithNSString:(NSString *)s;
+- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
 
 + (NSString *)convertToHCIDMetricsWithIntArray:(IOSIntArray *)keys
             withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)h;
@@ -107,64 +90,23 @@
             withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)v
             withComItextpdfTextPdfIntHashtable:(ComItextpdfTextPdfIntHashtable *)h;
 
-+ (JavaUtilHashMap *)readFontPropertiesWithNSString:(NSString *)name;
++ (ComItextpdfTextPdfIntHashtable *)createMetricWithNSString:(NSString *)s;
 
-- (jint)getUnicodeEquivalentWithInt:(jint)c;
+- (jint)getRawWidthWithInt:(jint)c
+              withNSString:(NSString *)name;
 
-- (jint)getCidCodeWithInt:(jint)c;
+- (NSString *)getUniMap;
 
-- (jboolean)hasKernPairs;
-
-- (jboolean)charExistsWithInt:(jint)c;
-
-- (jboolean)setCharAdvanceWithInt:(jint)c
-                          withInt:(jint)advance;
-
-- (void)setPostscriptFontNameWithNSString:(NSString *)name;
-
-- (jboolean)setKerningWithInt:(jint)char1
-                      withInt:(jint)char2
-                      withInt:(jint)kern;
-
-- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
-
-- (IOSIntArray *)getRawCharBBoxWithInt:(jint)c
-                          withNSString:(NSString *)name;
-
-- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
-
-- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
-
-- (jboolean)isIdentity;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCJKFont *)other;
+- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
+                               withNSObjectArray:(IOSObjectArray *)params;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCJKFont_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCJKFont)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, cidByte_, ComItextpdfTextPdfFontsCmapsCMapCidByte *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, uniCid_, ComItextpdfTextPdfFontsCmapsCMapUniCid *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, cidUni_, ComItextpdfTextPdfFontsCmapsCMapCidUni *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, uniMap_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, fontName_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, style_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, CMap_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, vMetrics_, ComItextpdfTextPdfIntHashtable *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, hMetrics_, ComItextpdfTextPdfIntHashtable *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, fontDesc_, JavaUtilHashMap *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfCJKFont_CJK_ENCODING_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, CJK_ENCODING_, NSString *)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, FIRST, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, BRACKET, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, SERIAL, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, V1Y, jint)
 
 FOUNDATION_EXPORT JavaUtilProperties *ComItextpdfTextPdfCJKFont_cjkFonts_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, cjkFonts_, JavaUtilProperties *)
@@ -174,17 +116,23 @@ FOUNDATION_EXPORT JavaUtilProperties *ComItextpdfTextPdfCJKFont_cjkEncodings_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, cjkEncodings_, JavaUtilProperties *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCJKFont, cjkEncodings_, JavaUtilProperties *)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfCJKFont_allFonts_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, allFonts_, JavaUtilHashMap *)
-
-FOUNDATION_EXPORT jboolean ComItextpdfTextPdfCJKFont_propertiesLoaded_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, propertiesLoaded_, jboolean)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextPdfCJKFont, propertiesLoaded_, jboolean)
-
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfCJKFont_RESOURCE_PATH_CMAP_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, RESOURCE_PATH_CMAP_, NSString *)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfCJKFont_registryNames_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCJKFont, registryNames_, JavaUtilHashMap *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCJKFont_initWithNSString_withNSString_withBoolean_(ComItextpdfTextPdfCJKFont *self, NSString *fontName, NSString *enc, jboolean emb);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCJKFont *new_ComItextpdfTextPdfCJKFont_initWithNSString_withNSString_withBoolean_(NSString *fontName, NSString *enc, jboolean emb) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfCJKFont_GetCompatibleFontWithNSString_(NSString *enc);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfCJKFont_isCJKFontWithNSString_withNSString_(NSString *fontName, NSString *enc);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *ComItextpdfTextPdfCJKFont_createMetricWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfCJKFont_convertToHCIDMetricsWithIntArray_withComItextpdfTextPdfIntHashtable_(IOSIntArray *keys, ComItextpdfTextPdfIntHashtable *h);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfCJKFont_convertToVCIDMetricsWithIntArray_withComItextpdfTextPdfIntHashtable_withComItextpdfTextPdfIntHashtable_(IOSIntArray *keys, ComItextpdfTextPdfIntHashtable *v, ComItextpdfTextPdfIntHashtable *h);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCJKFont)
 
 #endif // _ComItextpdfTextPdfCJKFont_H_

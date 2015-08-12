@@ -6,23 +6,26 @@
 #ifndef _ComItextpdfTextPdfSecurityVerificationException_H_
 #define _ComItextpdfTextPdfSecurityVerificationException_H_
 
-@class JavaSecurityCertCertificate;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/security/GeneralSecurityException.h"
 
-#define ComItextpdfTextPdfSecurityVerificationException_serialVersionUID 2978604513926438256LL
+@class JavaSecurityCertCertificate;
 
-@interface ComItextpdfTextPdfSecurityVerificationException : JavaSecurityGeneralSecurityException {
-}
+@interface ComItextpdfTextPdfSecurityVerificationException : JavaSecurityGeneralSecurityException
+
+#pragma mark Public
 
 - (instancetype)initWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)cert
                                        withNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityVerificationException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityVerificationException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityVerificationException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityVerificationException_initWithJavaSecurityCertCertificate_withNSString_(ComItextpdfTextPdfSecurityVerificationException *self, JavaSecurityCertCertificate *cert, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityVerificationException *new_ComItextpdfTextPdfSecurityVerificationException_initWithJavaSecurityCertCertificate_withNSString_(JavaSecurityCertCertificate *cert, NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityVerificationException)
 
 #endif // _ComItextpdfTextPdfSecurityVerificationException_H_

@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfPdfPageEvent_H_
 #define _ComItextpdfTextPdfPdfPageEvent_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextParagraph;
 @class ComItextpdfTextPdfPdfWriter;
 @class ComItextpdfTextRectangle;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfPdfPageEvent < NSObject, JavaObject >
 
@@ -61,6 +61,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPageEvent_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPageEvent)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPageEvent)
 
 #endif // _ComItextpdfTextPdfPdfPageEvent_H_

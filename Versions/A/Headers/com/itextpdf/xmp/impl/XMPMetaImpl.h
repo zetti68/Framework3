@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfXmpImplXMPMetaImpl_H_
 #define _ComItextpdfXmpImplXMPMetaImpl_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/xmp/XMPConst.h"
+#include "com/itextpdf/xmp/XMPMeta.h"
+
 @class ComItextpdfXmpImplXMPNode;
 @class ComItextpdfXmpOptionsIteratorOptions;
 @class ComItextpdfXmpOptionsParseOptions;
@@ -16,28 +20,13 @@
 @class JavaLangInteger;
 @class JavaLangLong;
 @class JavaUtilCalendar;
+@protocol ComItextpdfXmpPropertiesXMPProperty;
 @protocol ComItextpdfXmpXMPDateTime;
 @protocol ComItextpdfXmpXMPIterator;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/xmp/XMPConst.h"
-#include "com/itextpdf/xmp/XMPMeta.h"
-#include "com/itextpdf/xmp/properties/XMPProperty.h"
+@interface ComItextpdfXmpImplXMPMetaImpl : NSObject < ComItextpdfXmpXMPMeta, ComItextpdfXmpXMPConst >
 
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_BASE64 7
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_BOOLEAN 1
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_CALENDAR 6
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_DATE 5
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_DOUBLE 4
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_INTEGER 2
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_LONG 3
-#define ComItextpdfXmpImplXMPMetaImpl_VALUE_STRING 0
-
-@interface ComItextpdfXmpImplXMPMetaImpl : NSObject < ComItextpdfXmpXMPMeta, ComItextpdfXmpXMPConst > {
- @public
-  ComItextpdfXmpImplXMPNode *tree_;
-  NSString *packetHeader_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -52,6 +41,8 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
 - (void)appendArrayItemWithNSString:(NSString *)schemaNS
                        withNSString:(NSString *)arrayName
                        withNSString:(NSString *)itemValue;
+
+- (id)clone;
 
 - (jint)countArrayItemsWithNSString:(NSString *)schemaNS
                        withNSString:(NSString *)arrayName;
@@ -73,22 +64,24 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
                          withNSString:(NSString *)fieldNS
                          withNSString:(NSString *)fieldName;
 
-- (jboolean)doesPropertyExistWithNSString:(NSString *)schemaNS
-                             withNSString:(NSString *)propName;
-
 - (jboolean)doesArrayItemExistWithNSString:(NSString *)schemaNS
                               withNSString:(NSString *)arrayName
                                    withInt:(jint)itemIndex;
+
+- (jboolean)doesPropertyExistWithNSString:(NSString *)schemaNS
+                             withNSString:(NSString *)propName;
+
+- (jboolean)doesQualifierExistWithNSString:(NSString *)schemaNS
+                              withNSString:(NSString *)propName
+                              withNSString:(NSString *)qualNS
+                              withNSString:(NSString *)qualName;
 
 - (jboolean)doesStructFieldExistWithNSString:(NSString *)schemaNS
                                 withNSString:(NSString *)structName
                                 withNSString:(NSString *)fieldNS
                                 withNSString:(NSString *)fieldName;
 
-- (jboolean)doesQualifierExistWithNSString:(NSString *)schemaNS
-                              withNSString:(NSString *)propName
-                              withNSString:(NSString *)qualNS
-                              withNSString:(NSString *)qualName;
+- (NSString *)dumpObject;
 
 - (id<ComItextpdfXmpPropertiesXMPProperty>)getArrayItemWithNSString:(NSString *)schemaNS
                                                        withNSString:(NSString *)arrayName
@@ -99,126 +92,59 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
                                                            withNSString:(NSString *)genericLang
                                                            withNSString:(NSString *)specificLang;
 
-- (void)setLocalizedTextWithNSString:(NSString *)schemaNS
-                        withNSString:(NSString *)altTextName
-                        withNSString:(NSString *)genericLang
-                        withNSString:(NSString *)specificLang
-                        withNSString:(NSString *)itemValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+- (NSString *)getObjectName;
 
-- (void)setLocalizedTextWithNSString:(NSString *)schemaNS
-                        withNSString:(NSString *)altTextName
-                        withNSString:(NSString *)genericLang
-                        withNSString:(NSString *)specificLang
-                        withNSString:(NSString *)itemValue;
+- (NSString *)getPacketHeader;
 
 - (id<ComItextpdfXmpPropertiesXMPProperty>)getPropertyWithNSString:(NSString *)schemaNS
                                                       withNSString:(NSString *)propName;
 
-- (id<ComItextpdfXmpPropertiesXMPProperty>)getPropertyWithNSString:(NSString *)schemaNS
-                                                      withNSString:(NSString *)propName
-                                                           withInt:(jint)valueType;
-
-- (id)getPropertyObjectWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)propName
-                            withInt:(jint)valueType;
+- (IOSByteArray *)getPropertyBase64WithNSString:(NSString *)schemaNS
+                                   withNSString:(NSString *)propName;
 
 - (JavaLangBoolean *)getPropertyBooleanWithNSString:(NSString *)schemaNS
                                        withNSString:(NSString *)propName;
 
-- (void)setPropertyBooleanWithNSString:(NSString *)schemaNS
-                          withNSString:(NSString *)propName
-                           withBoolean:(jboolean)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyBooleanWithNSString:(NSString *)schemaNS
-                          withNSString:(NSString *)propName
-                           withBoolean:(jboolean)propValue;
-
-- (JavaLangInteger *)getPropertyIntegerWithNSString:(NSString *)schemaNS
-                                       withNSString:(NSString *)propName;
-
-- (void)setPropertyIntegerWithNSString:(NSString *)schemaNS
-                          withNSString:(NSString *)propName
-                               withInt:(jint)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyIntegerWithNSString:(NSString *)schemaNS
-                          withNSString:(NSString *)propName
-                               withInt:(jint)propValue;
-
-- (JavaLangLong *)getPropertyLongWithNSString:(NSString *)schemaNS
-                                 withNSString:(NSString *)propName;
-
-- (void)setPropertyLongWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)propName
-                           withLong:(jlong)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyLongWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)propName
-                           withLong:(jlong)propValue;
-
-- (JavaLangDouble *)getPropertyDoubleWithNSString:(NSString *)schemaNS
-                                     withNSString:(NSString *)propName;
-
-- (void)setPropertyDoubleWithNSString:(NSString *)schemaNS
-                         withNSString:(NSString *)propName
-                           withDouble:(jdouble)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyDoubleWithNSString:(NSString *)schemaNS
-                         withNSString:(NSString *)propName
-                           withDouble:(jdouble)propValue;
+- (JavaUtilCalendar *)getPropertyCalendarWithNSString:(NSString *)schemaNS
+                                         withNSString:(NSString *)propName;
 
 - (id<ComItextpdfXmpXMPDateTime>)getPropertyDateWithNSString:(NSString *)schemaNS
                                                 withNSString:(NSString *)propName;
 
-- (void)setPropertyDateWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)propName
-      withComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+- (JavaLangDouble *)getPropertyDoubleWithNSString:(NSString *)schemaNS
+                                     withNSString:(NSString *)propName;
 
-- (void)setPropertyDateWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)propName
-      withComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)propValue;
+- (JavaLangInteger *)getPropertyIntegerWithNSString:(NSString *)schemaNS
+                                       withNSString:(NSString *)propName;
 
-- (JavaUtilCalendar *)getPropertyCalendarWithNSString:(NSString *)schemaNS
-                                         withNSString:(NSString *)propName;
-
-- (void)setPropertyCalendarWithNSString:(NSString *)schemaNS
-                           withNSString:(NSString *)propName
-                   withJavaUtilCalendar:(JavaUtilCalendar *)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyCalendarWithNSString:(NSString *)schemaNS
-                           withNSString:(NSString *)propName
-                   withJavaUtilCalendar:(JavaUtilCalendar *)propValue;
-
-- (IOSByteArray *)getPropertyBase64WithNSString:(NSString *)schemaNS
-                                   withNSString:(NSString *)propName;
+- (JavaLangLong *)getPropertyLongWithNSString:(NSString *)schemaNS
+                                 withNSString:(NSString *)propName;
 
 - (NSString *)getPropertyStringWithNSString:(NSString *)schemaNS
                                withNSString:(NSString *)propName;
-
-- (void)setPropertyBase64WithNSString:(NSString *)schemaNS
-                         withNSString:(NSString *)propName
-                        withByteArray:(IOSByteArray *)propValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)setPropertyBase64WithNSString:(NSString *)schemaNS
-                         withNSString:(NSString *)propName
-                        withByteArray:(IOSByteArray *)propValue;
 
 - (id<ComItextpdfXmpPropertiesXMPProperty>)getQualifierWithNSString:(NSString *)schemaNS
                                                        withNSString:(NSString *)propName
                                                        withNSString:(NSString *)qualNS
                                                        withNSString:(NSString *)qualName;
 
+- (ComItextpdfXmpImplXMPNode *)getRoot;
+
 - (id<ComItextpdfXmpPropertiesXMPProperty>)getStructFieldWithNSString:(NSString *)schemaNS
                                                          withNSString:(NSString *)structName
                                                          withNSString:(NSString *)fieldNS
                                                          withNSString:(NSString *)fieldName;
+
+- (void)insertArrayItemWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)arrayName
+                            withInt:(jint)itemIndex
+                       withNSString:(NSString *)itemValue;
+
+- (void)insertArrayItemWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)arrayName
+                            withInt:(jint)itemIndex
+                       withNSString:(NSString *)itemValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
 - (id<ComItextpdfXmpXMPIterator>)iterator;
 
@@ -228,42 +154,106 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
                                          withNSString:(NSString *)propName
              withComItextpdfXmpOptionsIteratorOptions:(ComItextpdfXmpOptionsIteratorOptions *)options;
 
-- (void)setArrayItemWithNSString:(NSString *)schemaNS
-                    withNSString:(NSString *)arrayName
-                         withInt:(jint)itemIndex
-                    withNSString:(NSString *)itemValue
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+- (void)normalizeWithComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
 
 - (void)setArrayItemWithNSString:(NSString *)schemaNS
                     withNSString:(NSString *)arrayName
                          withInt:(jint)itemIndex
                     withNSString:(NSString *)itemValue;
 
-- (void)insertArrayItemWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)arrayName
-                            withInt:(jint)itemIndex
-                       withNSString:(NSString *)itemValue
+- (void)setArrayItemWithNSString:(NSString *)schemaNS
+                    withNSString:(NSString *)arrayName
+                         withInt:(jint)itemIndex
+                    withNSString:(NSString *)itemValue
 withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
-- (void)insertArrayItemWithNSString:(NSString *)schemaNS
-                       withNSString:(NSString *)arrayName
-                            withInt:(jint)itemIndex
-                       withNSString:(NSString *)itemValue;
+- (void)setLocalizedTextWithNSString:(NSString *)schemaNS
+                        withNSString:(NSString *)altTextName
+                        withNSString:(NSString *)genericLang
+                        withNSString:(NSString *)specificLang
+                        withNSString:(NSString *)itemValue;
+
+- (void)setLocalizedTextWithNSString:(NSString *)schemaNS
+                        withNSString:(NSString *)altTextName
+                        withNSString:(NSString *)genericLang
+                        withNSString:(NSString *)specificLang
+                        withNSString:(NSString *)itemValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setObjectNameWithNSString:(NSString *)name;
+
+- (void)setPacketHeaderWithNSString:(NSString *)packetHeader;
+
+- (void)setPropertyWithNSString:(NSString *)schemaNS
+                   withNSString:(NSString *)propName
+                         withId:(id)propValue;
 
 - (void)setPropertyWithNSString:(NSString *)schemaNS
                    withNSString:(NSString *)propName
                          withId:(id)propValue
 withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
-- (void)setPropertyWithNSString:(NSString *)schemaNS
-                   withNSString:(NSString *)propName
-                         withId:(id)propValue;
+- (void)setPropertyBase64WithNSString:(NSString *)schemaNS
+                         withNSString:(NSString *)propName
+                        withByteArray:(IOSByteArray *)propValue;
 
-- (void)setQualifierWithNSString:(NSString *)schemaNS
-                    withNSString:(NSString *)propName
-                    withNSString:(NSString *)qualNS
-                    withNSString:(NSString *)qualName
-                    withNSString:(NSString *)qualValue
+- (void)setPropertyBase64WithNSString:(NSString *)schemaNS
+                         withNSString:(NSString *)propName
+                        withByteArray:(IOSByteArray *)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyBooleanWithNSString:(NSString *)schemaNS
+                          withNSString:(NSString *)propName
+                           withBoolean:(jboolean)propValue;
+
+- (void)setPropertyBooleanWithNSString:(NSString *)schemaNS
+                          withNSString:(NSString *)propName
+                           withBoolean:(jboolean)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyCalendarWithNSString:(NSString *)schemaNS
+                           withNSString:(NSString *)propName
+                   withJavaUtilCalendar:(JavaUtilCalendar *)propValue;
+
+- (void)setPropertyCalendarWithNSString:(NSString *)schemaNS
+                           withNSString:(NSString *)propName
+                   withJavaUtilCalendar:(JavaUtilCalendar *)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyDateWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)propName
+      withComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)propValue;
+
+- (void)setPropertyDateWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)propName
+      withComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyDoubleWithNSString:(NSString *)schemaNS
+                         withNSString:(NSString *)propName
+                           withDouble:(jdouble)propValue;
+
+- (void)setPropertyDoubleWithNSString:(NSString *)schemaNS
+                         withNSString:(NSString *)propName
+                           withDouble:(jdouble)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyIntegerWithNSString:(NSString *)schemaNS
+                          withNSString:(NSString *)propName
+                               withInt:(jint)propValue;
+
+- (void)setPropertyIntegerWithNSString:(NSString *)schemaNS
+                          withNSString:(NSString *)propName
+                               withInt:(jint)propValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setPropertyLongWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)propName
+                           withLong:(jlong)propValue;
+
+- (void)setPropertyLongWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)propName
+                           withLong:(jlong)propValue
 withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
 - (void)setQualifierWithNSString:(NSString *)schemaNS
@@ -272,11 +262,11 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
                     withNSString:(NSString *)qualName
                     withNSString:(NSString *)qualValue;
 
-- (void)setStructFieldWithNSString:(NSString *)schemaNS
-                      withNSString:(NSString *)structName
-                      withNSString:(NSString *)fieldNS
-                      withNSString:(NSString *)fieldName
-                      withNSString:(NSString *)fieldValue
+- (void)setQualifierWithNSString:(NSString *)schemaNS
+                    withNSString:(NSString *)propName
+                    withNSString:(NSString *)qualNS
+                    withNSString:(NSString *)qualName
+                    withNSString:(NSString *)qualValue
 withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
 - (void)setStructFieldWithNSString:(NSString *)schemaNS
@@ -285,108 +275,44 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
                       withNSString:(NSString *)fieldName
                       withNSString:(NSString *)fieldValue;
 
-- (NSString *)getObjectName;
-
-- (void)setObjectNameWithNSString:(NSString *)name;
-
-- (NSString *)getPacketHeader;
-
-- (void)setPacketHeaderWithNSString:(NSString *)packetHeader;
-
-- (id)clone;
-
-- (NSString *)dumpObject;
+- (void)setStructFieldWithNSString:(NSString *)schemaNS
+                      withNSString:(NSString *)structName
+                      withNSString:(NSString *)fieldNS
+                      withNSString:(NSString *)fieldName
+                      withNSString:(NSString *)fieldValue
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
 - (void)sort;
 
-- (void)normalizeWithComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
+#pragma mark Protected
 
-- (ComItextpdfXmpImplXMPNode *)getRoot;
+- (id<ComItextpdfXmpPropertiesXMPProperty>)getPropertyWithNSString:(NSString *)schemaNS
+                                                      withNSString:(NSString *)propName
+                                                           withInt:(jint)valueType;
 
-- (void)doSetArrayItemWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)arrayNode
-                                            withInt:(jint)itemIndex
-                                       withNSString:(NSString *)itemValue
-           withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)itemOptions
-                                        withBoolean:(jboolean)insert;
+- (id)getPropertyObjectWithNSString:(NSString *)schemaNS
+                       withNSString:(NSString *)propName
+                            withInt:(jint)valueType;
+
+#pragma mark Package-Private
 
 - (void)setNodeWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
                                       withId:(id)value
     withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)newOptions
                                  withBoolean:(jboolean)deleteExisting;
 
-- (id)evaluateNodeValueWithInt:(jint)valueType
- withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)propNode;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPMetaImpl *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPMetaImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPMetaImpl)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPMetaImpl, tree_, ComItextpdfXmpImplXMPNode *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPMetaImpl, packetHeader_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPMetaImpl_init(ComItextpdfXmpImplXMPMetaImpl *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_STRING, jint)
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPMetaImpl *new_ComItextpdfXmpImplXMPMetaImpl_init() NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_BOOLEAN, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPMetaImpl_initWithComItextpdfXmpImplXMPNode_(ComItextpdfXmpImplXMPMetaImpl *self, ComItextpdfXmpImplXMPNode *tree);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_INTEGER, jint)
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPMetaImpl *new_ComItextpdfXmpImplXMPMetaImpl_initWithComItextpdfXmpImplXMPNode_(ComItextpdfXmpImplXMPNode *tree) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_LONG, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_DOUBLE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_DATE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_CALENDAR, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPMetaImpl, VALUE_BASE64, jint)
-
-@interface ComItextpdfXmpImplXMPMetaImpl_$1 : NSObject < ComItextpdfXmpPropertiesXMPProperty > {
- @public
-  ComItextpdfXmpImplXMPNode *val$itemNode_;
-}
-
-- (NSString *)getValue;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)getOptions;
-
-- (NSString *)getLanguage;
-
-- (NSString *)description;
-
-- (instancetype)initWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)capture$0;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPMetaImpl_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPMetaImpl_$1, val$itemNode_, ComItextpdfXmpImplXMPNode *)
-
-@interface ComItextpdfXmpImplXMPMetaImpl_$2 : NSObject < ComItextpdfXmpPropertiesXMPProperty > {
- @public
-  id val$value_;
-  ComItextpdfXmpImplXMPNode *val$propNode_;
-}
-
-- (NSString *)getValue;
-
-- (ComItextpdfXmpOptionsPropertyOptions *)getOptions;
-
-- (NSString *)getLanguage;
-
-- (NSString *)description;
-
-- (instancetype)initWithId:(id)capture$0
-withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)capture$1;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPMetaImpl_$2_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPMetaImpl_$2, val$value_, id)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPMetaImpl_$2, val$propNode_, ComItextpdfXmpImplXMPNode *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPMetaImpl)
 
 #endif // _ComItextpdfXmpImplXMPMetaImpl_H_

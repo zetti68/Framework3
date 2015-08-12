@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfSecurityXmlLocator_H_
 #define _ComItextpdfTextPdfSecurityXmlLocator_H_
 
-@protocol OrgW3cDomDocument;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@protocol OrgW3cDomDocument;
 
 @protocol ComItextpdfTextPdfSecurityXmlLocator < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityXmlLocator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityXmlLocator)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityXmlLocator)
 
 #endif // _ComItextpdfTextPdfSecurityXmlLocator_H_

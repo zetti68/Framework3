@@ -6,19 +6,19 @@
 #ifndef _ComItextpdfTextLogSysoCounter_H_
 #define _ComItextpdfTextLogSysoCounter_H_
 
-@class IOSClass;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/log/Counter.h"
+
+@class IOSClass;
 
 @interface ComItextpdfTextLogSysoCounter : NSObject < ComItextpdfTextLogCounter > {
  @public
   NSString *name_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithIOSClass:(IOSClass *)klass;
+- (instancetype)init;
 
 - (id<ComItextpdfTextLogCounter>)getCounterWithIOSClass:(IOSClass *)klass;
 
@@ -26,12 +26,24 @@
 
 - (void)writtenWithLong:(jlong)l;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextLogSysoCounter *)other;
+#pragma mark Protected
+
+- (instancetype)initWithIOSClass:(IOSClass *)klass;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogSysoCounter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogSysoCounter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextLogSysoCounter, name_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextLogSysoCounter_init(ComItextpdfTextLogSysoCounter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextLogSysoCounter *new_ComItextpdfTextLogSysoCounter_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextLogSysoCounter_initWithIOSClass_(ComItextpdfTextLogSysoCounter *self, IOSClass *klass);
+
+FOUNDATION_EXPORT ComItextpdfTextLogSysoCounter *new_ComItextpdfTextLogSysoCounter_initWithIOSClass_(IOSClass *klass) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogSysoCounter)
 
 #endif // _ComItextpdfTextLogSysoCounter_H_

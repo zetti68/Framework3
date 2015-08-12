@@ -6,30 +6,27 @@
 #ifndef _ComItextpdfAwtGeomAffineTransform_H_
 #define _ComItextpdfAwtGeomAffineTransform_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/Serializable.h"
+
 @class ComItextpdfAwtGeomPoint2D;
 @class IOSDoubleArray;
 @class IOSFloatArray;
 @class IOSObjectArray;
-@class JavaIoObjectInputStream;
-@class JavaIoObjectOutputStream;
 @protocol ComItextpdfAwtGeomShape;
 
-#import "JreEmulation.h"
-#include "java/io/Serializable.h"
-
-#define ComItextpdfAwtGeomAffineTransform_TYPE_FLIP 64
-#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_ROTATION 16
-#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_SCALE 4
-#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_TRANSFORM 32
 #define ComItextpdfAwtGeomAffineTransform_TYPE_IDENTITY 0
-#define ComItextpdfAwtGeomAffineTransform_TYPE_MASK_ROTATION 24
-#define ComItextpdfAwtGeomAffineTransform_TYPE_MASK_SCALE 6
-#define ComItextpdfAwtGeomAffineTransform_TYPE_QUADRANT_ROTATION 8
 #define ComItextpdfAwtGeomAffineTransform_TYPE_TRANSLATION 1
 #define ComItextpdfAwtGeomAffineTransform_TYPE_UNIFORM_SCALE 2
+#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_SCALE 4
+#define ComItextpdfAwtGeomAffineTransform_TYPE_QUADRANT_ROTATION 8
+#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_ROTATION 16
+#define ComItextpdfAwtGeomAffineTransform_TYPE_GENERAL_TRANSFORM 32
+#define ComItextpdfAwtGeomAffineTransform_TYPE_FLIP 64
+#define ComItextpdfAwtGeomAffineTransform_TYPE_MASK_SCALE 6
+#define ComItextpdfAwtGeomAffineTransform_TYPE_MASK_ROTATION 24
 #define ComItextpdfAwtGeomAffineTransform_TYPE_UNKNOWN -1
 #define ComItextpdfAwtGeomAffineTransform_ZERO 1.0E-10
-#define ComItextpdfAwtGeomAffineTransform_serialVersionUID 1330973210523860834LL
 
 @interface ComItextpdfAwtGeomAffineTransform : NSObject < NSCopying, JavaIoSerializable > {
  @public
@@ -42,16 +39,11 @@
   jint type_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
-
-- (instancetype)initWithFloat:(jfloat)m00
-                    withFloat:(jfloat)m10
-                    withFloat:(jfloat)m01
-                    withFloat:(jfloat)m11
-                    withFloat:(jfloat)m02
-                    withFloat:(jfloat)m12;
 
 - (instancetype)initWithDouble:(jdouble)m00
                     withDouble:(jdouble)m10
@@ -60,130 +52,24 @@
                     withDouble:(jdouble)m02
                     withDouble:(jdouble)m12;
 
-- (instancetype)initWithFloatArray:(IOSFloatArray *)matrix;
-
 - (instancetype)initWithDoubleArray:(IOSDoubleArray *)matrix;
 
-- (jint)getType;
+- (instancetype)initWithFloat:(jfloat)m00
+                    withFloat:(jfloat)m10
+                    withFloat:(jfloat)m01
+                    withFloat:(jfloat)m11
+                    withFloat:(jfloat)m02
+                    withFloat:(jfloat)m12;
 
-- (jdouble)getScaleX;
+- (instancetype)initWithFloatArray:(IOSFloatArray *)matrix;
 
-- (jdouble)getScaleY;
-
-- (jdouble)getShearX;
-
-- (jdouble)getShearY;
-
-- (jdouble)getTranslateX;
-
-- (jdouble)getTranslateY;
-
-- (jboolean)isIdentity;
-
-- (void)getMatrixWithDoubleArray:(IOSDoubleArray *)matrix;
-
-- (jdouble)getDeterminant;
-
-- (void)setTransformWithDouble:(jdouble)m00
-                    withDouble:(jdouble)m10
-                    withDouble:(jdouble)m01
-                    withDouble:(jdouble)m11
-                    withDouble:(jdouble)m02
-                    withDouble:(jdouble)m12;
-
-- (void)setTransformWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
-
-- (void)setToIdentity;
-
-- (void)setToTranslationWithDouble:(jdouble)mx
-                        withDouble:(jdouble)my;
-
-- (void)setToScaleWithDouble:(jdouble)scx
-                  withDouble:(jdouble)scy;
-
-- (void)setToShearWithDouble:(jdouble)shx
-                  withDouble:(jdouble)shy;
-
-- (void)setToRotationWithDouble:(jdouble)angle;
-
-- (void)setToRotationWithDouble:(jdouble)angle
-                     withDouble:(jdouble)px
-                     withDouble:(jdouble)py;
-
-+ (ComItextpdfAwtGeomAffineTransform *)getTranslateInstanceWithDouble:(jdouble)mx
-                                                           withDouble:(jdouble)my;
-
-+ (ComItextpdfAwtGeomAffineTransform *)getScaleInstanceWithDouble:(jdouble)scx
-                                                       withDouble:(jdouble)scY;
-
-+ (ComItextpdfAwtGeomAffineTransform *)getShearInstanceWithDouble:(jdouble)shx
-                                                       withDouble:(jdouble)shy;
-
-+ (ComItextpdfAwtGeomAffineTransform *)getRotateInstanceWithDouble:(jdouble)angle;
-
-+ (ComItextpdfAwtGeomAffineTransform *)getRotateInstanceWithDouble:(jdouble)angle
-                                                        withDouble:(jdouble)x
-                                                        withDouble:(jdouble)y;
-
-- (void)translateWithDouble:(jdouble)mx
-                 withDouble:(jdouble)my;
-
-- (void)scale__WithDouble:(jdouble)scx
-               withDouble:(jdouble)scy;
-
-- (void)shearWithDouble:(jdouble)shx
-             withDouble:(jdouble)shy;
-
-- (void)rotateWithDouble:(jdouble)angle;
-
-- (void)rotateWithDouble:(jdouble)angle
-              withDouble:(jdouble)px
-              withDouble:(jdouble)py;
-
-- (ComItextpdfAwtGeomAffineTransform *)multiplyWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t1
-                                               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t2;
+- (id)clone;
 
 - (void)concatenateWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
 
-- (void)preConcatenateWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
-
 - (ComItextpdfAwtGeomAffineTransform *)createInverse;
 
-- (ComItextpdfAwtGeomPoint2D *)transformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
-                                        withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
-
-- (void)transformWithComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)src
-                                            withInt:(jint)srcOff
-                 withComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)dst
-                                            withInt:(jint)dstOff
-                                            withInt:(jint)length;
-
-- (void)transformWithDoubleArray:(IOSDoubleArray *)src
-                         withInt:(jint)srcOff
-                 withDoubleArray:(IOSDoubleArray *)dst
-                         withInt:(jint)dstOff
-                         withInt:(jint)length;
-
-- (void)transformWithFloatArray:(IOSFloatArray *)src
-                        withInt:(jint)srcOff
-                 withFloatArray:(IOSFloatArray *)dst
-                        withInt:(jint)dstOff
-                        withInt:(jint)length;
-
-- (void)transformWithFloatArray:(IOSFloatArray *)src
-                        withInt:(jint)srcOff
-                withDoubleArray:(IOSDoubleArray *)dst
-                        withInt:(jint)dstOff
-                        withInt:(jint)length;
-
-- (void)transformWithDoubleArray:(IOSDoubleArray *)src
-                         withInt:(jint)srcOff
-                  withFloatArray:(IOSFloatArray *)dst
-                         withInt:(jint)dstOff
-                         withInt:(jint)length;
-
-- (ComItextpdfAwtGeomPoint2D *)deltaTransformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
-                                             withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
+- (id<ComItextpdfAwtGeomShape>)createTransformedShapeWithComItextpdfAwtGeomShape:(id<ComItextpdfAwtGeomShape>)src;
 
 - (void)deltaTransformWithDoubleArray:(IOSDoubleArray *)src
                               withInt:(jint)srcOff
@@ -191,8 +77,45 @@
                               withInt:(jint)dstOff
                               withInt:(jint)length;
 
-- (ComItextpdfAwtGeomPoint2D *)inverseTransformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
-                                               withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
+- (ComItextpdfAwtGeomPoint2D *)deltaTransformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
+                                             withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
+
+- (jboolean)isEqual:(id)obj;
+
+- (jdouble)getDeterminant;
+
+- (void)getMatrixWithDoubleArray:(IOSDoubleArray *)matrix;
+
++ (ComItextpdfAwtGeomAffineTransform *)getRotateInstanceWithDouble:(jdouble)angle;
+
++ (ComItextpdfAwtGeomAffineTransform *)getRotateInstanceWithDouble:(jdouble)angle
+                                                        withDouble:(jdouble)x
+                                                        withDouble:(jdouble)y;
+
++ (ComItextpdfAwtGeomAffineTransform *)getScaleInstanceWithDouble:(jdouble)scx
+                                                       withDouble:(jdouble)scY;
+
+- (jdouble)getScaleX;
+
+- (jdouble)getScaleY;
+
++ (ComItextpdfAwtGeomAffineTransform *)getShearInstanceWithDouble:(jdouble)shx
+                                                       withDouble:(jdouble)shy;
+
+- (jdouble)getShearX;
+
+- (jdouble)getShearY;
+
++ (ComItextpdfAwtGeomAffineTransform *)getTranslateInstanceWithDouble:(jdouble)mx
+                                                           withDouble:(jdouble)my;
+
+- (jdouble)getTranslateX;
+
+- (jdouble)getTranslateY;
+
+- (jint)getType;
+
+- (NSUInteger)hash;
 
 - (void)inverseTransformWithDoubleArray:(IOSDoubleArray *)src
                                 withInt:(jint)srcOff
@@ -206,29 +129,97 @@
                                withInt:(jint)dstOff
                                withInt:(jint)length;
 
-- (id<ComItextpdfAwtGeomShape>)createTransformedShapeWithComItextpdfAwtGeomShape:(id<ComItextpdfAwtGeomShape>)src;
+- (ComItextpdfAwtGeomPoint2D *)inverseTransformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
+                                               withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
+
+- (jboolean)isIdentity;
+
+- (void)preConcatenateWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
+
+- (void)rotateWithDouble:(jdouble)angle;
+
+- (void)rotateWithDouble:(jdouble)angle
+              withDouble:(jdouble)px
+              withDouble:(jdouble)py;
+
+- (void)scale__WithDouble:(jdouble)scx
+               withDouble:(jdouble)scy;
+
+- (void)setToIdentity;
+
+- (void)setToRotationWithDouble:(jdouble)angle;
+
+- (void)setToRotationWithDouble:(jdouble)angle
+                     withDouble:(jdouble)px
+                     withDouble:(jdouble)py;
+
+- (void)setToScaleWithDouble:(jdouble)scx
+                  withDouble:(jdouble)scy;
+
+- (void)setToShearWithDouble:(jdouble)shx
+                  withDouble:(jdouble)shy;
+
+- (void)setToTranslationWithDouble:(jdouble)mx
+                        withDouble:(jdouble)my;
+
+- (void)setTransformWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
+
+- (void)setTransformWithDouble:(jdouble)m00
+                    withDouble:(jdouble)m10
+                    withDouble:(jdouble)m01
+                    withDouble:(jdouble)m11
+                    withDouble:(jdouble)m02
+                    withDouble:(jdouble)m12;
+
+- (void)shearWithDouble:(jdouble)shx
+             withDouble:(jdouble)shy;
 
 - (NSString *)description;
 
-- (id)clone;
+- (void)transformWithDoubleArray:(IOSDoubleArray *)src
+                         withInt:(jint)srcOff
+                 withDoubleArray:(IOSDoubleArray *)dst
+                         withInt:(jint)dstOff
+                         withInt:(jint)length;
 
-- (NSUInteger)hash;
+- (void)transformWithDoubleArray:(IOSDoubleArray *)src
+                         withInt:(jint)srcOff
+                  withFloatArray:(IOSFloatArray *)dst
+                         withInt:(jint)dstOff
+                         withInt:(jint)length;
 
-- (jboolean)isEqual:(id)obj;
+- (void)transformWithFloatArray:(IOSFloatArray *)src
+                        withInt:(jint)srcOff
+                withDoubleArray:(IOSDoubleArray *)dst
+                        withInt:(jint)dstOff
+                        withInt:(jint)length;
 
-- (void)writeObjectWithJavaIoObjectOutputStream:(JavaIoObjectOutputStream *)stream;
+- (void)transformWithFloatArray:(IOSFloatArray *)src
+                        withInt:(jint)srcOff
+                 withFloatArray:(IOSFloatArray *)dst
+                        withInt:(jint)dstOff
+                        withInt:(jint)length;
 
-- (void)readObjectWithJavaIoObjectInputStream:(JavaIoObjectInputStream *)stream;
+- (ComItextpdfAwtGeomPoint2D *)transformWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)src
+                                        withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)dst;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomAffineTransform *)other;
+- (void)transformWithComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)src
+                                            withInt:(jint)srcOff
+                 withComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)dst
+                                            withInt:(jint)dstOff
+                                            withInt:(jint)length;
 
-- (id)copyWithZone:(NSZone *)zone;
+- (void)translateWithDouble:(jdouble)mx
+                 withDouble:(jdouble)my;
+
+#pragma mark Package-Private
+
+- (ComItextpdfAwtGeomAffineTransform *)multiplyWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t1
+                                               withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t2;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomAffineTransform_init() {}
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomAffineTransform, serialVersionUID, jlong)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomAffineTransform)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomAffineTransform, TYPE_IDENTITY, jint)
 
@@ -253,5 +244,41 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomAffineTransform, TYPE_MASK_ROTATION
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomAffineTransform, TYPE_UNKNOWN, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomAffineTransform, ZERO, jdouble)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_init(ComItextpdfAwtGeomAffineTransform *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_initWithComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomAffineTransform *self, ComItextpdfAwtGeomAffineTransform *t);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_initWithComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomAffineTransform *t) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(ComItextpdfAwtGeomAffineTransform *self, jfloat m00, jfloat m10, jfloat m01, jfloat m11, jfloat m02, jfloat m12);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(jfloat m00, jfloat m10, jfloat m01, jfloat m11, jfloat m02, jfloat m12) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomAffineTransform *self, jdouble m00, jdouble m10, jdouble m01, jdouble m11, jdouble m02, jdouble m12);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble m00, jdouble m10, jdouble m01, jdouble m11, jdouble m02, jdouble m12) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_initWithFloatArray_(ComItextpdfAwtGeomAffineTransform *self, IOSFloatArray *matrix);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_initWithFloatArray_(IOSFloatArray *matrix) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomAffineTransform_initWithDoubleArray_(ComItextpdfAwtGeomAffineTransform *self, IOSDoubleArray *matrix);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *new_ComItextpdfAwtGeomAffineTransform_initWithDoubleArray_(IOSDoubleArray *matrix) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *ComItextpdfAwtGeomAffineTransform_getTranslateInstanceWithDouble_withDouble_(jdouble mx, jdouble my);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *ComItextpdfAwtGeomAffineTransform_getScaleInstanceWithDouble_withDouble_(jdouble scx, jdouble scY);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *ComItextpdfAwtGeomAffineTransform_getShearInstanceWithDouble_withDouble_(jdouble shx, jdouble shy);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *ComItextpdfAwtGeomAffineTransform_getRotateInstanceWithDouble_(jdouble angle);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomAffineTransform *ComItextpdfAwtGeomAffineTransform_getRotateInstanceWithDouble_withDouble_withDouble_(jdouble angle, jdouble x, jdouble y);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomAffineTransform)
 
 #endif // _ComItextpdfAwtGeomAffineTransform_H_

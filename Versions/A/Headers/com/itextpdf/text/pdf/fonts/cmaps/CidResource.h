@@ -6,20 +6,27 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCidResource_H_
 #define _ComItextpdfTextPdfFontsCmapsCidResource_H_
 
-@class ComItextpdfTextPdfPRTokeniser;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/fonts/cmaps/CidLocation.h"
 
-@interface ComItextpdfTextPdfFontsCmapsCidResource : NSObject < ComItextpdfTextPdfFontsCmapsCidLocation > {
-}
+@class ComItextpdfTextPdfPRTokeniser;
 
-- (ComItextpdfTextPdfPRTokeniser *)getLocationWithNSString:(NSString *)location;
+@interface ComItextpdfTextPdfFontsCmapsCidResource : NSObject < ComItextpdfTextPdfFontsCmapsCidLocation >
+
+#pragma mark Public
 
 - (instancetype)init;
 
+- (ComItextpdfTextPdfPRTokeniser *)getLocationWithNSString:(NSString *)location;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCidResource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCidResource)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCidResource_init(ComItextpdfTextPdfFontsCmapsCidResource *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCidResource *new_ComItextpdfTextPdfFontsCmapsCidResource_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCidResource)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCidResource_H_

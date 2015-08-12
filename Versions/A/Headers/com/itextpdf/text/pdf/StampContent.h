@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextPdfStampContent_H_
 #define _ComItextpdfTextPdfStampContent_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfContentByte.h"
+
 @class ComItextpdfTextPdfPageResources;
 @class ComItextpdfTextPdfPdfAction;
 @class ComItextpdfTextPdfPdfAnnotation;
 @class ComItextpdfTextPdfPdfStamperImp;
 @class ComItextpdfTextPdfPdfStamperImp_PageStamp;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfContentByte.h"
 
 @interface ComItextpdfTextPdfStampContent : ComItextpdfTextPdfPdfContentByte {
  @public
@@ -21,8 +21,9 @@
   ComItextpdfTextPdfPageResources *pageResources_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)stamper
-          withComItextpdfTextPdfPdfStamperImp_PageStamp:(ComItextpdfTextPdfPdfStamperImp_PageStamp *)ps;
+#pragma mark Public
+
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
 
 - (void)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action
                                        withFloat:(jfloat)llx
@@ -30,19 +31,26 @@
                                        withFloat:(jfloat)urx
                                        withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+#pragma mark Package-Private
 
-- (ComItextpdfTextPdfPageResources *)getPageResources;
+- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)stamper
+          withComItextpdfTextPdfPdfStamperImp_PageStamp:(ComItextpdfTextPdfPdfStamperImp_PageStamp *)ps;
 
 - (void)addAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annot;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfStampContent *)other;
+- (ComItextpdfTextPdfPageResources *)getPageResources;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfStampContent_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfStampContent)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfStampContent, ps_, ComItextpdfTextPdfPdfStamperImp_PageStamp *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfStampContent, pageResources_, ComItextpdfTextPdfPageResources *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfStampContent_initWithComItextpdfTextPdfPdfStamperImp_withComItextpdfTextPdfPdfStamperImp_PageStamp_(ComItextpdfTextPdfStampContent *self, ComItextpdfTextPdfPdfStamperImp *stamper, ComItextpdfTextPdfPdfStamperImp_PageStamp *ps);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfStampContent *new_ComItextpdfTextPdfStampContent_initWithComItextpdfTextPdfPdfStamperImp_withComItextpdfTextPdfPdfStamperImp_PageStamp_(ComItextpdfTextPdfPdfStamperImp *stamper, ComItextpdfTextPdfPdfStamperImp_PageStamp *ps) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfStampContent)
 
 #endif // _ComItextpdfTextPdfStampContent_H_

@@ -6,29 +6,21 @@
 #ifndef _ComItextpdfTextIoMappedChannelRandomAccessSource_H_
 #define _ComItextpdfTextIoMappedChannelRandomAccessSource_H_
 
-@class ComItextpdfTextIoByteBufferRandomAccessSource;
-@class IOSByteArray;
-@class JavaIoIOException;
-@class JavaNioChannelsFileChannel;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/io/RandomAccessSource.h"
 
-@interface ComItextpdfTextIoMappedChannelRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource > {
- @public
-  JavaNioChannelsFileChannel *channel_;
-  jlong offset_;
-  jlong length__;
-  ComItextpdfTextIoByteBufferRandomAccessSource *source_;
-}
+@class IOSByteArray;
+@class JavaNioChannelsFileChannel;
+
+@interface ComItextpdfTextIoMappedChannelRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource >
+
+#pragma mark Public
 
 - (instancetype)initWithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel
                                           withLong:(jlong)offset
                                           withLong:(jlong)length;
 
-- (void)open;
-
-+ (jboolean)exceptionIsMapFailureExceptionWithJavaIoIOException:(JavaIoIOException *)e;
+- (void)close;
 
 - (jint)getWithLong:(jlong)position;
 
@@ -39,17 +31,20 @@
 
 - (jlong)length;
 
-- (void)close;
-
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextIoMappedChannelRandomAccessSource *)other;
+#pragma mark Package-Private
+
+- (void)open;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoMappedChannelRandomAccessSource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoMappedChannelRandomAccessSource)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoMappedChannelRandomAccessSource, channel_, JavaNioChannelsFileChannel *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoMappedChannelRandomAccessSource, source_, ComItextpdfTextIoByteBufferRandomAccessSource *)
+FOUNDATION_EXPORT void ComItextpdfTextIoMappedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_withLong_withLong_(ComItextpdfTextIoMappedChannelRandomAccessSource *self, JavaNioChannelsFileChannel *channel, jlong offset, jlong length);
+
+FOUNDATION_EXPORT ComItextpdfTextIoMappedChannelRandomAccessSource *new_ComItextpdfTextIoMappedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_withLong_withLong_(JavaNioChannelsFileChannel *channel, jlong offset, jlong length) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoMappedChannelRandomAccessSource)
 
 #endif // _ComItextpdfTextIoMappedChannelRandomAccessSource_H_

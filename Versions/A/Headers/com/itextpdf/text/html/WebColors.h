@@ -6,30 +6,32 @@
 #ifndef _ComItextpdfTextHtmlWebColors_H_
 #define _ComItextpdfTextHtmlWebColors_H_
 
-@class ComItextpdfTextBaseColor;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/util/HashMap.h"
 
-#define ComItextpdfTextHtmlWebColors_serialVersionUID 3542523100813372896LL
+@class ComItextpdfTextBaseColor;
 
-@interface ComItextpdfTextHtmlWebColors : JavaUtilHashMap {
-}
+@interface ComItextpdfTextHtmlWebColors : JavaUtilHashMap
 
-+ (jboolean)missingHashColorFormatWithNSString:(NSString *)colStr;
-
-+ (ComItextpdfTextBaseColor *)getRGBColorWithNSString:(NSString *)name;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (ComItextpdfTextBaseColor *)getRGBColorWithNSString:(NSString *)name;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextHtmlWebColors_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextHtmlWebColors)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlWebColors, serialVersionUID, jlong)
 
 FOUNDATION_EXPORT ComItextpdfTextHtmlWebColors *ComItextpdfTextHtmlWebColors_NAMES_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlWebColors, NAMES_, ComItextpdfTextHtmlWebColors *)
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *ComItextpdfTextHtmlWebColors_getRGBColorWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlWebColors_init(ComItextpdfTextHtmlWebColors *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlWebColors *new_ComItextpdfTextHtmlWebColors_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlWebColors)
 
 #endif // _ComItextpdfTextHtmlWebColors_H_

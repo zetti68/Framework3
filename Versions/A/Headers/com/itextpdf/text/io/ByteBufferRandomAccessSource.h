@@ -6,20 +6,19 @@
 #ifndef _ComItextpdfTextIoByteBufferRandomAccessSource_H_
 #define _ComItextpdfTextIoByteBufferRandomAccessSource_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/io/RandomAccessSource.h"
+
 @class IOSByteArray;
-@class JavaLangBoolean;
 @class JavaNioByteBuffer;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/io/RandomAccessSource.h"
-#include "java/security/PrivilegedAction.h"
+@interface ComItextpdfTextIoByteBufferRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource >
 
-@interface ComItextpdfTextIoByteBufferRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource > {
- @public
-  JavaNioByteBuffer *byteBuffer_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaNioByteBuffer:(JavaNioByteBuffer *)byteBuffer;
+
+- (void)close;
 
 - (jint)getWithLong:(jlong)position;
 
@@ -30,31 +29,14 @@
 
 - (jlong)length;
 
-- (void)close;
-
-+ (jboolean)cleanWithJavaNioByteBuffer:(JavaNioByteBuffer *)buffer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoByteBufferRandomAccessSource *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoByteBufferRandomAccessSource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoByteBufferRandomAccessSource)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoByteBufferRandomAccessSource, byteBuffer_, JavaNioByteBuffer *)
+FOUNDATION_EXPORT void ComItextpdfTextIoByteBufferRandomAccessSource_initWithJavaNioByteBuffer_(ComItextpdfTextIoByteBufferRandomAccessSource *self, JavaNioByteBuffer *byteBuffer);
 
-@interface ComItextpdfTextIoByteBufferRandomAccessSource_$1 : NSObject < JavaSecurityPrivilegedAction > {
- @public
-  JavaNioByteBuffer *val$buffer_;
-}
+FOUNDATION_EXPORT ComItextpdfTextIoByteBufferRandomAccessSource *new_ComItextpdfTextIoByteBufferRandomAccessSource_initWithJavaNioByteBuffer_(JavaNioByteBuffer *byteBuffer) NS_RETURNS_RETAINED;
 
-- (JavaLangBoolean *)run;
-
-- (instancetype)initWithJavaNioByteBuffer:(JavaNioByteBuffer *)capture$0;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextIoByteBufferRandomAccessSource_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoByteBufferRandomAccessSource_$1, val$buffer_, JavaNioByteBuffer *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoByteBufferRandomAccessSource)
 
 #endif // _ComItextpdfTextIoByteBufferRandomAccessSource_H_

@@ -6,35 +6,37 @@
 #ifndef _ComItextpdfXmpImplCountOutputStream_H_
 #define _ComItextpdfXmpImplCountOutputStream_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/OutputStream.h"
 
-@interface ComItextpdfXmpImplCountOutputStream : JavaIoOutputStream {
- @public
-  JavaIoOutputStream *out_;
-  jint bytesWritten_;
-}
+@class IOSByteArray;
 
-- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg;
+@interface ComItextpdfXmpImplCountOutputStream : JavaIoOutputStream
+
+#pragma mark Public
+
+- (jint)getBytesWritten;
+
+- (void)writeWithByteArray:(IOSByteArray *)buf;
 
 - (void)writeWithByteArray:(IOSByteArray *)buf
                    withInt:(jint)off
                    withInt:(jint)len;
 
-- (void)writeWithByteArray:(IOSByteArray *)buf;
-
 - (void)writeWithInt:(jint)b;
 
-- (jint)getBytesWritten;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplCountOutputStream *)other;
+- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplCountOutputStream_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplCountOutputStream)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplCountOutputStream, out_, JavaIoOutputStream *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplCountOutputStream_initWithJavaIoOutputStream_(ComItextpdfXmpImplCountOutputStream *self, JavaIoOutputStream *outArg);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplCountOutputStream *new_ComItextpdfXmpImplCountOutputStream_initWithJavaIoOutputStream_(JavaIoOutputStream *outArg) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplCountOutputStream)
 
 #endif // _ComItextpdfXmpImplCountOutputStream_H_

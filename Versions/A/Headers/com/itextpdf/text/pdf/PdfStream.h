@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfStream_H_
 #define _ComItextpdfTextPdfPdfStream_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
@@ -13,13 +16,10 @@
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-
-#define ComItextpdfTextPdfPdfStream_BEST_COMPRESSION 9
-#define ComItextpdfTextPdfPdfStream_BEST_SPEED 1
 #define ComItextpdfTextPdfPdfStream_DEFAULT_COMPRESSION -1
 #define ComItextpdfTextPdfPdfStream_NO_COMPRESSION 0
+#define ComItextpdfTextPdfPdfStream_BEST_SPEED 1
+#define ComItextpdfTextPdfPdfStream_BEST_COMPRESSION 9
 
 @interface ComItextpdfTextPdfPdfStream : ComItextpdfTextPdfPdfDictionary {
  @public
@@ -33,36 +33,37 @@
   jint rawLength_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithByteArray:(IOSByteArray *)bytes;
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inputStream
           withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (instancetype)init;
-
-- (void)writeLength;
-
-- (jint)getRawLength;
-
 - (void)flateCompress;
 
 - (void)flateCompressWithInt:(jint)compressionLevel;
 
-- (void)superToPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                           withJavaIoOutputStream:(JavaIoOutputStream *)os;
+- (jint)getRawLength;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)writeContentWithJavaIoOutputStream:(JavaIoOutputStream *)os;
-
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfStream *)other;
+- (void)writeContentWithJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (void)writeLength;
+
+#pragma mark Protected
+
+- (instancetype)init;
+
+- (void)superToPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                           withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfStream_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfStream)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStream, streamBytes_, JavaIoByteArrayOutputStream *)
@@ -86,5 +87,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStream, ENDSTREAM_, IOSByteArray
 
 FOUNDATION_EXPORT jint ComItextpdfTextPdfPdfStream_SIZESTREAM_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStream, SIZESTREAM_, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStream_initWithByteArray_(ComItextpdfTextPdfPdfStream *self, IOSByteArray *bytes);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStream *new_ComItextpdfTextPdfPdfStream_initWithByteArray_(IOSByteArray *bytes) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStream_initWithJavaIoInputStream_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfStream *self, JavaIoInputStream *inputStream, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStream *new_ComItextpdfTextPdfPdfStream_initWithJavaIoInputStream_withComItextpdfTextPdfPdfWriter_(JavaIoInputStream *inputStream, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStream_init(ComItextpdfTextPdfPdfStream *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStream *new_ComItextpdfTextPdfPdfStream_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfStream)
 
 #endif // _ComItextpdfTextPdfPdfStream_H_

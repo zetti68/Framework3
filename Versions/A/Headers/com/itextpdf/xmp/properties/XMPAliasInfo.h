@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfXmpPropertiesXMPAliasInfo_H_
 #define _ComItextpdfXmpPropertiesXMPAliasInfo_H_
 
-@class ComItextpdfXmpOptionsAliasOptions;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfXmpOptionsAliasOptions;
 
 @protocol ComItextpdfXmpPropertiesXMPAliasInfo < NSObject, JavaObject >
 
@@ -22,6 +22,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpPropertiesXMPAliasInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpPropertiesXMPAliasInfo)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpPropertiesXMPAliasInfo)
 
 #endif // _ComItextpdfXmpPropertiesXMPAliasInfo_H_

@@ -6,23 +6,23 @@
 #ifndef _ComItextpdfTextPdfBarcodePostnet_H_
 #define _ComItextpdfTextPdfBarcodePostnet_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
+@interface ComItextpdfTextPdfBarcodePostnet : ComItextpdfTextPdfBarcode
 
-@interface ComItextpdfTextPdfBarcodePostnet : ComItextpdfTextPdfBarcode {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-+ (IOSByteArray *)getBarsPostnetWithNSString:(NSString *)text;
-
 - (ComItextpdfTextRectangle *)getBarcodeSize;
+
++ (IOSByteArray *)getBarsPostnetWithNSString:(NSString *)text;
 
 - (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
@@ -30,10 +30,14 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodePostnet_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodePostnet)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodePostnet_BARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodePostnet, BARS_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodePostnet_init(ComItextpdfTextPdfBarcodePostnet *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodePostnet *new_ComItextpdfTextPdfBarcodePostnet_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodePostnet_getBarsPostnetWithNSString_(NSString *text);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodePostnet)
 
 #endif // _ComItextpdfTextPdfBarcodePostnet_H_

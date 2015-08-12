@@ -6,16 +6,19 @@
 #ifndef _ComItextpdfXmpXMPIterator_H_
 #define _ComItextpdfXmpXMPIterator_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/util/Iterator.h"
 
 @protocol ComItextpdfXmpXMPIterator < JavaUtilIterator, NSObject, JavaObject >
+
 - (void)skipSubtree;
 
 - (void)skipSiblings;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPIterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPIterator)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPIterator)
 
 #endif // _ComItextpdfXmpXMPIterator_H_

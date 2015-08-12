@@ -6,33 +6,33 @@
 #ifndef _ComItextpdfTextPdfCodecWmfMetaFont_H_
 #define _ComItextpdfTextPdfCodecWmfMetaFont_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
+
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfCodecWmfInputMeta;
 @class ComItextpdfTextPdfCodecWmfMetaState;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
-
-#define ComItextpdfTextPdfCodecWmfMetaFont_BOLDTHRESHOLD 600
-#define ComItextpdfTextPdfCodecWmfMetaFont_DEFAULT_PITCH 0
-#define ComItextpdfTextPdfCodecWmfMetaFont_ETO_CLIPPED 4
-#define ComItextpdfTextPdfCodecWmfMetaFont_ETO_OPAQUE 2
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_DECORATIVE 5
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_DONTCARE 0
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_MODERN 3
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_ROMAN 1
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_SCRIPT 4
-#define ComItextpdfTextPdfCodecWmfMetaFont_FF_SWISS 2
-#define ComItextpdfTextPdfCodecWmfMetaFont_FIXED_PITCH 1
 #define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_BOLD 1
+#define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_ITALIC 2
 #define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_COURIER 0
 #define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_HELVETICA 4
-#define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_ITALIC 2
-#define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_SYMBOL 12
 #define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_TIMES 8
+#define ComItextpdfTextPdfCodecWmfMetaFont_MARKER_SYMBOL 12
+#define ComItextpdfTextPdfCodecWmfMetaFont_DEFAULT_PITCH 0
+#define ComItextpdfTextPdfCodecWmfMetaFont_FIXED_PITCH 1
 #define ComItextpdfTextPdfCodecWmfMetaFont_VARIABLE_PITCH 2
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_DONTCARE 0
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_ROMAN 1
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_SWISS 2
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_MODERN 3
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_SCRIPT 4
+#define ComItextpdfTextPdfCodecWmfMetaFont_FF_DECORATIVE 5
+#define ComItextpdfTextPdfCodecWmfMetaFont_BOLDTHRESHOLD 600
 #define ComItextpdfTextPdfCodecWmfMetaFont_nameSize 32
+#define ComItextpdfTextPdfCodecWmfMetaFont_ETO_OPAQUE 2
+#define ComItextpdfTextPdfCodecWmfMetaFont_ETO_CLIPPED 4
 
 @interface ComItextpdfTextPdfCodecWmfMetaFont : ComItextpdfTextPdfCodecWmfMetaObject {
  @public
@@ -48,25 +48,24 @@
   ComItextpdfTextPdfBaseFont *font_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
-
-- (ComItextpdfTextPdfBaseFont *)getFont;
 
 - (jfloat)getAngle;
 
-- (jboolean)isUnderline;
-
-- (jboolean)isStrikeout;
+- (ComItextpdfTextPdfBaseFont *)getFont;
 
 - (jfloat)getFontSizeWithComItextpdfTextPdfCodecWmfMetaState:(ComItextpdfTextPdfCodecWmfMetaState *)state;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfMetaFont *)other;
+- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
+
+- (jboolean)isStrikeout;
+
+- (jboolean)isUnderline;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecWmfMetaFont_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecWmfMetaFont)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaFont, faceName_, NSString *)
@@ -112,5 +111,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaFont, nameSize, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaFont, ETO_OPAQUE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaFont, ETO_CLIPPED, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaFont_init(ComItextpdfTextPdfCodecWmfMetaFont *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaFont *new_ComItextpdfTextPdfCodecWmfMetaFont_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfMetaFont)
 
 #endif // _ComItextpdfTextPdfCodecWmfMetaFont_H_

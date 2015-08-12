@@ -6,13 +6,12 @@
 #ifndef _ComItextpdfTextPdfPdfBoolean_H_
 #define _ComItextpdfTextPdfPdfBoolean_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfObject.h"
 
-@interface ComItextpdfTextPdfPdfBoolean : ComItextpdfTextPdfPdfObject {
- @public
-  jboolean value_;
-}
+@interface ComItextpdfTextPdfPdfBoolean : ComItextpdfTextPdfPdfObject
+
+#pragma mark Public
 
 - (instancetype)initWithBoolean:(jboolean)value;
 
@@ -22,11 +21,8 @@
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfBoolean *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfBoolean_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfBoolean)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfBoolean *ComItextpdfTextPdfPdfBoolean_PDFTRUE_;
@@ -40,5 +36,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBoolean, TRUE__, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfBoolean_FALSE__;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBoolean, FALSE__, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBoolean_initWithBoolean_(ComItextpdfTextPdfPdfBoolean *self, jboolean value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBoolean *new_ComItextpdfTextPdfPdfBoolean_initWithBoolean_(jboolean value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBoolean_initWithNSString_(ComItextpdfTextPdfPdfBoolean *self, NSString *value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBoolean *new_ComItextpdfTextPdfPdfBoolean_initWithNSString_(NSString *value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfBoolean)
 
 #endif // _ComItextpdfTextPdfPdfBoolean_H_

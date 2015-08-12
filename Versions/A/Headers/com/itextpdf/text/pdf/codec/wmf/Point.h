@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfCodecWmfPoint_H_
 #define _ComItextpdfTextPdfCodecWmfPoint_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @interface ComItextpdfTextPdfCodecWmfPoint : NSObject {
  @public
@@ -14,15 +14,25 @@
   jint y_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)x
                     withInt:(jint)y;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfPoint *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfPoint_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfPoint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfPoint_init(ComItextpdfTextPdfCodecWmfPoint *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfPoint *new_ComItextpdfTextPdfCodecWmfPoint_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfPoint_initWithInt_withInt_(ComItextpdfTextPdfCodecWmfPoint *self, jint x, jint y);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfPoint *new_ComItextpdfTextPdfCodecWmfPoint_initWithInt_withInt_(jint x, jint y) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfPoint)
 
 #endif // _ComItextpdfTextPdfCodecWmfPoint_H_

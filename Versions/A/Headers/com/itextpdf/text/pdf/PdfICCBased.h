@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfICCBased_H_
 #define _ComItextpdfTextPdfPdfICCBased_H_
 
-@class ComItextpdfTextPdfICC_Profile;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfStream.h"
 
-@interface ComItextpdfTextPdfPdfICCBased : ComItextpdfTextPdfPdfStream {
-}
+@class ComItextpdfTextPdfICC_Profile;
+
+@interface ComItextpdfTextPdfPdfICCBased : ComItextpdfTextPdfPdfStream
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfICC_Profile:(ComItextpdfTextPdfICC_Profile *)profile;
 
@@ -21,6 +22,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfICCBased_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfICCBased)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfICCBased_initWithComItextpdfTextPdfICC_Profile_(ComItextpdfTextPdfPdfICCBased *self, ComItextpdfTextPdfICC_Profile *profile);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfICCBased *new_ComItextpdfTextPdfPdfICCBased_initWithComItextpdfTextPdfICC_Profile_(ComItextpdfTextPdfICC_Profile *profile) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfICCBased_initWithComItextpdfTextPdfICC_Profile_withInt_(ComItextpdfTextPdfPdfICCBased *self, ComItextpdfTextPdfICC_Profile *profile, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfICCBased *new_ComItextpdfTextPdfPdfICCBased_initWithComItextpdfTextPdfICC_Profile_withInt_(ComItextpdfTextPdfICC_Profile *profile, jint compressionLevel) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfICCBased)
 
 #endif // _ComItextpdfTextPdfPdfICCBased_H_

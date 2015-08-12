@@ -6,12 +6,15 @@
 #ifndef _ComItextpdfTextXmlXmpPdfProperties_H_
 #define _ComItextpdfTextXmlXmpPdfProperties_H_
 
+#include "J2ObjC_header.h"
+
 @protocol ComItextpdfXmpXMPMeta;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlXmpPdfProperties : NSObject
 
-@interface ComItextpdfTextXmlXmpPdfProperties : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (void)setKeywordsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                                 withNSString:(NSString *)keywords;
@@ -22,11 +25,9 @@
 + (void)setVersionWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                                withNSString:(NSString *)version_;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpPdfProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpPdfProperties)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpPdfProperties_KEYWORDS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfProperties, KEYWORDS_, NSString *)
@@ -39,5 +40,17 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfProperties, PRODUCER_, NSStri
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpPdfProperties_PART_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfProperties, PART_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpPdfProperties_setKeywordsWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *keywords);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpPdfProperties_setProducerWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *producer);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpPdfProperties_setVersionWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *version_);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpPdfProperties_init(ComItextpdfTextXmlXmpPdfProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpPdfProperties *new_ComItextpdfTextXmlXmpPdfProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpPdfProperties)
 
 #endif // _ComItextpdfTextXmlXmpPdfProperties_H_

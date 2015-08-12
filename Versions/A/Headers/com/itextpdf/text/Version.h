@@ -6,17 +6,17 @@
 #ifndef _ComItextpdfTextVersion_H_
 #define _ComItextpdfTextVersion_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextVersion : NSObject {
- @public
-  NSString *iText_;
-  NSString *release__;
-  NSString *key_;
-  NSString *iTextVersion_;
-}
+@interface ComItextpdfTextVersion : NSObject
+
+#pragma mark Public
+
+- (instancetype)init;
 
 + (ComItextpdfTextVersion *)getInstance;
+
+- (NSString *)getKey;
 
 - (NSString *)getProduct;
 
@@ -24,23 +24,16 @@
 
 - (NSString *)getVersion;
 
-- (NSString *)getKey;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextVersion *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextVersion_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextVersion)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextVersion, iText_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextVersion, release__, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextVersion, key_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextVersion, iTextVersion_, NSString *)
+FOUNDATION_EXPORT ComItextpdfTextVersion *ComItextpdfTextVersion_getInstance();
 
-FOUNDATION_EXPORT ComItextpdfTextVersion *ComItextpdfTextVersion_version__;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextVersion, version__, ComItextpdfTextVersion *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextVersion, version__, ComItextpdfTextVersion *)
+FOUNDATION_EXPORT void ComItextpdfTextVersion_init(ComItextpdfTextVersion *self);
+
+FOUNDATION_EXPORT ComItextpdfTextVersion *new_ComItextpdfTextVersion_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextVersion)
 
 #endif // _ComItextpdfTextVersion_H_

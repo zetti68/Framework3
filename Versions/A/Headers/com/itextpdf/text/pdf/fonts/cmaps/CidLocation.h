@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCidLocation_H_
 #define _ComItextpdfTextPdfFontsCmapsCidLocation_H_
 
-@class ComItextpdfTextPdfPRTokeniser;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfPRTokeniser;
 
 @protocol ComItextpdfTextPdfFontsCmapsCidLocation < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCidLocation_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCidLocation)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCidLocation)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCidLocation_H_

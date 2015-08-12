@@ -6,35 +6,31 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsAbstractCMap_H_
 #define _ComItextpdfTextPdfFontsCmapsAbstractCMap_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfString;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfFontsCmapsAbstractCMap : NSObject
 
-@interface ComItextpdfTextPdfFontsCmapsAbstractCMap : NSObject {
- @public
-  NSString *cmapName_;
-  NSString *registry_;
-  NSString *ordering_;
-  jint supplement_;
-}
+#pragma mark Public
+
+- (instancetype)init;
+
++ (IOSByteArray *)decodeStringToByteWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)s;
+
+- (NSString *)decodeStringToUnicodeWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)ps;
 
 - (NSString *)getName;
 
-- (void)setNameWithNSString:(NSString *)cmapName;
-
 - (NSString *)getOrdering;
-
-- (void)setOrderingWithNSString:(NSString *)ordering;
 
 - (NSString *)getRegistry;
 
-- (void)setRegistryWithNSString:(NSString *)registry;
-
 - (jint)getSupplement;
 
-- (void)setSupplementWithInt:(jint)supplement;
+#pragma mark Package-Private
 
 - (void)addCharWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)mark
                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)code;
@@ -43,20 +39,22 @@
                 withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)to
                 withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)code;
 
-+ (IOSByteArray *)decodeStringToByteWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)s;
+- (void)setNameWithNSString:(NSString *)cmapName;
 
-- (NSString *)decodeStringToUnicodeWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)ps;
+- (void)setOrderingWithNSString:(NSString *)ordering;
 
-- (instancetype)init;
+- (void)setRegistryWithNSString:(NSString *)registry;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsCmapsAbstractCMap *)other;
+- (void)setSupplementWithInt:(jint)supplement;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsAbstractCMap_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsAbstractCMap)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsAbstractCMap, cmapName_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsAbstractCMap, registry_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsAbstractCMap, ordering_, NSString *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfFontsCmapsAbstractCMap_decodeStringToByteWithComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfString *s);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsAbstractCMap_init(ComItextpdfTextPdfFontsCmapsAbstractCMap *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsAbstractCMap)
 
 #endif // _ComItextpdfTextPdfFontsCmapsAbstractCMap_H_

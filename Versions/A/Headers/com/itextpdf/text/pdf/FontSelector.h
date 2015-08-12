@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfFontSelector_H_
 #define _ComItextpdfTextPdfFontSelector_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextPhrase;
@@ -13,31 +15,37 @@
 @class JavaLangStringBuffer;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfFontSelector : NSObject {
  @public
   JavaUtilArrayList *fonts_;
   ComItextpdfTextFont *currentFont_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (void)addFontWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (ComItextpdfTextPhrase *)processWithNSString:(NSString *)text;
+
+#pragma mark Protected
 
 - (ComItextpdfTextChunk *)processCharWithCharArray:(IOSCharArray *)cc
                                            withInt:(jint)k
                           withJavaLangStringBuffer:(JavaLangStringBuffer *)sb;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontSelector *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontSelector_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontSelector)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontSelector, fonts_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontSelector, currentFont_, ComItextpdfTextFont *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontSelector_init(ComItextpdfTextPdfFontSelector *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontSelector *new_ComItextpdfTextPdfFontSelector_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontSelector)
 
 #endif // _ComItextpdfTextPdfFontSelector_H_

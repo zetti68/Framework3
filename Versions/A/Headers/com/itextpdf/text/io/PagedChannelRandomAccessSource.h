@@ -6,24 +6,18 @@
 #ifndef _ComItextpdfTextIoPagedChannelRandomAccessSource_H_
 #define _ComItextpdfTextIoPagedChannelRandomAccessSource_H_
 
-@class ComItextpdfTextIoPagedChannelRandomAccessSource_MRU;
-@class IOSObjectArray;
-@class JavaNioChannelsFileChannel;
-@class JavaUtilLinkedList;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/io/GroupedRandomAccessSource.h"
 #include "com/itextpdf/text/io/RandomAccessSource.h"
 
-#define ComItextpdfTextIoPagedChannelRandomAccessSource_DEFAULT_MAX_OPEN_BUFFERS 16
-#define ComItextpdfTextIoPagedChannelRandomAccessSource_DEFAULT_TOTAL_BUFSIZE 67108864
+@class JavaNioChannelsFileChannel;
 
-@interface ComItextpdfTextIoPagedChannelRandomAccessSource : ComItextpdfTextIoGroupedRandomAccessSource < ComItextpdfTextIoRandomAccessSource > {
- @public
-  jint bufferSize_;
-  JavaNioChannelsFileChannel *channel_;
-  ComItextpdfTextIoPagedChannelRandomAccessSource_MRU *mru_;
-}
+#define ComItextpdfTextIoPagedChannelRandomAccessSource_DEFAULT_TOTAL_BUFSIZE 67108864
+#define ComItextpdfTextIoPagedChannelRandomAccessSource_DEFAULT_MAX_OPEN_BUFFERS 16
+
+@interface ComItextpdfTextIoPagedChannelRandomAccessSource : ComItextpdfTextIoGroupedRandomAccessSource < ComItextpdfTextIoRandomAccessSource >
+
+#pragma mark Public
 
 - (instancetype)initWithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel;
 
@@ -31,46 +25,32 @@
                                            withInt:(jint)totalBufferSize
                                            withInt:(jint)maxOpenBuffers;
 
-+ (IOSObjectArray *)buildSourcesWithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel
-                                                       withInt:(jint)bufferSize;
+- (void)close;
+
+#pragma mark Protected
 
 - (jint)getStartingSourceIndexWithLong:(jlong)offset;
 
-- (void)sourceReleasedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
-
 - (void)sourceInUseWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
 
-- (void)close;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoPagedChannelRandomAccessSource *)other;
+- (void)sourceReleasedWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoPagedChannelRandomAccessSource_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoPagedChannelRandomAccessSource, channel_, JavaNioChannelsFileChannel *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoPagedChannelRandomAccessSource, mru_, ComItextpdfTextIoPagedChannelRandomAccessSource_MRU *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoPagedChannelRandomAccessSource)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextIoPagedChannelRandomAccessSource, DEFAULT_TOTAL_BUFSIZE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextIoPagedChannelRandomAccessSource, DEFAULT_MAX_OPEN_BUFFERS, jint)
 
-@interface ComItextpdfTextIoPagedChannelRandomAccessSource_MRU : NSObject {
- @public
-  jint limit_;
-  JavaUtilLinkedList *queue_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextIoPagedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_(ComItextpdfTextIoPagedChannelRandomAccessSource *self, JavaNioChannelsFileChannel *channel);
 
-- (instancetype)initWithInt:(jint)limit;
+FOUNDATION_EXPORT ComItextpdfTextIoPagedChannelRandomAccessSource *new_ComItextpdfTextIoPagedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_(JavaNioChannelsFileChannel *channel) NS_RETURNS_RETAINED;
 
-- (id)enqueueWithId:(id)newElement;
+FOUNDATION_EXPORT void ComItextpdfTextIoPagedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_withInt_withInt_(ComItextpdfTextIoPagedChannelRandomAccessSource *self, JavaNioChannelsFileChannel *channel, jint totalBufferSize, jint maxOpenBuffers);
 
-- (void)copyAllFieldsTo:(ComItextpdfTextIoPagedChannelRandomAccessSource_MRU *)other;
+FOUNDATION_EXPORT ComItextpdfTextIoPagedChannelRandomAccessSource *new_ComItextpdfTextIoPagedChannelRandomAccessSource_initWithJavaNioChannelsFileChannel_withInt_withInt_(JavaNioChannelsFileChannel *channel, jint totalBufferSize, jint maxOpenBuffers) NS_RETURNS_RETAINED;
 
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextIoPagedChannelRandomAccessSource_MRU_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoPagedChannelRandomAccessSource_MRU, queue_, JavaUtilLinkedList *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoPagedChannelRandomAccessSource)
 
 #endif // _ComItextpdfTextIoPagedChannelRandomAccessSource_H_

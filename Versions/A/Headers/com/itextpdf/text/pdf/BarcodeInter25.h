@@ -6,27 +6,27 @@
 #ifndef _ComItextpdfTextPdfBarcodeInter25_H_
 #define _ComItextpdfTextPdfBarcodeInter25_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
+@interface ComItextpdfTextPdfBarcodeInter25 : ComItextpdfTextPdfBarcode
 
-@interface ComItextpdfTextPdfBarcodeInter25 : ComItextpdfTextPdfBarcode {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-+ (NSString *)keepNumbersWithNSString:(NSString *)text;
-
-+ (jchar)getChecksumWithNSString:(NSString *)text;
+- (ComItextpdfTextRectangle *)getBarcodeSize;
 
 + (IOSByteArray *)getBarsInter25WithNSString:(NSString *)text;
 
-- (ComItextpdfTextRectangle *)getBarcodeSize;
++ (jchar)getChecksumWithNSString:(NSString *)text;
+
++ (NSString *)keepNumbersWithNSString:(NSString *)text;
 
 - (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
@@ -34,10 +34,18 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeInter25_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeInter25)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeInter25_BARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeInter25, BARS_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeInter25_init(ComItextpdfTextPdfBarcodeInter25 *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeInter25 *new_ComItextpdfTextPdfBarcodeInter25_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcodeInter25_keepNumbersWithNSString_(NSString *text);
+
+FOUNDATION_EXPORT jchar ComItextpdfTextPdfBarcodeInter25_getChecksumWithNSString_(NSString *text);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeInter25_getBarsInter25WithNSString_(NSString *text);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeInter25)
 
 #endif // _ComItextpdfTextPdfBarcodeInter25_H_

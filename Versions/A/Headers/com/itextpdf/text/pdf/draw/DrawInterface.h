@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfDrawDrawInterface_H_
 #define _ComItextpdfTextPdfDrawDrawInterface_H_
 
-@class ComItextpdfTextPdfPdfContentByte;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfPdfContentByte;
 
 @protocol ComItextpdfTextPdfDrawDrawInterface < NSObject, JavaObject >
 
@@ -21,6 +21,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfDrawDrawInterface_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfDrawDrawInterface)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfDrawDrawInterface)
 
 #endif // _ComItextpdfTextPdfDrawDrawInterface_H_

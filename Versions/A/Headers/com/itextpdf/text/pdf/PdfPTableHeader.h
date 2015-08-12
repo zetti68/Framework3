@@ -6,15 +6,17 @@
 #ifndef _ComItextpdfTextPdfPdfPTableHeader_H_
 #define _ComItextpdfTextPdfPdfPTableHeader_H_
 
-@class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfPTableBody.h"
+
+@class ComItextpdfTextPdfPdfName;
 
 @interface ComItextpdfTextPdfPdfPTableHeader : ComItextpdfTextPdfPdfPTableBody {
  @public
   ComItextpdfTextPdfPdfName *role_PdfPTableHeader_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -22,12 +24,16 @@
 
 - (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPTableHeader *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTableHeader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTableHeader)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTableHeader, role_PdfPTableHeader_, ComItextpdfTextPdfPdfName *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTableHeader_init(ComItextpdfTextPdfPdfPTableHeader *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTableHeader *new_ComItextpdfTextPdfPdfPTableHeader_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTableHeader)
 
 #endif // _ComItextpdfTextPdfPdfPTableHeader_H_

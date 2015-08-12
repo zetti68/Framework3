@@ -6,7 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfCopyFields_H_
 #define _ComItextpdfTextPdfPdfCopyFields_H_
 
-@class ComItextpdfTextPdfPdfCopyFieldsImp;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/interfaces/PdfEncryptionSettings.h"
+#include "com/itextpdf/text/pdf/interfaces/PdfViewerPreferences.h"
+
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
@@ -17,14 +20,9 @@
 @class JavaIoOutputStream;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/interfaces/PdfEncryptionSettings.h"
-#include "com/itextpdf/text/pdf/interfaces/PdfViewerPreferences.h"
+@interface ComItextpdfTextPdfPdfCopyFields : NSObject < ComItextpdfTextPdfInterfacesPdfViewerPreferences, ComItextpdfTextPdfInterfacesPdfEncryptionSettings >
 
-@interface ComItextpdfTextPdfPdfCopyFields : NSObject < ComItextpdfTextPdfInterfacesPdfViewerPreferences, ComItextpdfTextPdfInterfacesPdfEncryptionSettings > {
- @public
-  ComItextpdfTextPdfPdfCopyFieldsImp *fc_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
 
@@ -39,50 +37,56 @@
 - (void)addDocumentWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                                       withNSString:(NSString *)ranges;
 
-- (void)setEncryptionWithByteArray:(IOSByteArray *)userPassword
-                     withByteArray:(IOSByteArray *)ownerPassword
-                           withInt:(jint)permissions
-                       withBoolean:(jboolean)strength128Bits;
+- (void)addJavaScriptWithNSString:(NSString *)js;
+
+- (void)addViewerPreferenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                         withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)close;
+
+- (ComItextpdfTextPdfPdfWriter *)getWriter;
+
+- (jboolean)isFullCompression;
+
+- (void)open;
 
 - (void)setEncryptionWithBoolean:(jboolean)strength
                     withNSString:(NSString *)userPassword
                     withNSString:(NSString *)ownerPassword
                          withInt:(jint)permissions;
 
-- (void)close;
-
-- (void)open;
-
-- (void)addJavaScriptWithNSString:(NSString *)js;
-
-- (void)setOutlinesWithJavaUtilList:(id<JavaUtilList>)outlines;
-
-- (ComItextpdfTextPdfPdfWriter *)getWriter;
-
-- (jboolean)isFullCompression;
-
-- (void)setFullCompression;
+- (void)setEncryptionWithByteArray:(IOSByteArray *)userPassword
+                     withByteArray:(IOSByteArray *)ownerPassword
+                           withInt:(jint)permissions
+                       withBoolean:(jboolean)strength128Bits;
 
 - (void)setEncryptionWithByteArray:(IOSByteArray *)userPassword
                      withByteArray:(IOSByteArray *)ownerPassword
                            withInt:(jint)permissions
                            withInt:(jint)encryptionType;
 
-- (void)addViewerPreferenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                         withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (void)setViewerPreferencesWithInt:(jint)preferences;
-
 - (void)setEncryptionWithJavaSecurityCertCertificateArray:(IOSObjectArray *)certs
                                              withIntArray:(IOSIntArray *)permissions
                                                   withInt:(jint)encryptionType;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfCopyFields *)other;
+- (void)setFullCompression;
+
+- (void)setOutlinesWithJavaUtilList:(id<JavaUtilList>)outlines;
+
+- (void)setViewerPreferencesWithInt:(jint)preferences;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfCopyFields_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfCopyFields)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFields, fc_, ComItextpdfTextPdfPdfCopyFieldsImp *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfCopyFields_initWithJavaIoOutputStream_(ComItextpdfTextPdfPdfCopyFields *self, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfCopyFields *new_ComItextpdfTextPdfPdfCopyFields_initWithJavaIoOutputStream_(JavaIoOutputStream *os) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfCopyFields_initWithJavaIoOutputStream_withChar_(ComItextpdfTextPdfPdfCopyFields *self, JavaIoOutputStream *os, jchar pdfVersion);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfCopyFields *new_ComItextpdfTextPdfPdfCopyFields_initWithJavaIoOutputStream_withChar_(JavaIoOutputStream *os, jchar pdfVersion) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfCopyFields)
 
 #endif // _ComItextpdfTextPdfPdfCopyFields_H_

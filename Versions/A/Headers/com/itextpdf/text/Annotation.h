@@ -6,22 +6,22 @@
 #ifndef _ComItextpdfTextAnnotation_H_
 #define _ComItextpdfTextAnnotation_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+
 @class JavaNetURL;
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
-
+#define ComItextpdfTextAnnotation_TEXT 0
+#define ComItextpdfTextAnnotation_URL_NET 1
+#define ComItextpdfTextAnnotation_URL_AS_STRING 2
 #define ComItextpdfTextAnnotation_FILE_DEST 3
 #define ComItextpdfTextAnnotation_FILE_PAGE 4
-#define ComItextpdfTextAnnotation_LAUNCH 6
 #define ComItextpdfTextAnnotation_NAMED_DEST 5
+#define ComItextpdfTextAnnotation_LAUNCH 6
 #define ComItextpdfTextAnnotation_SCREEN 7
-#define ComItextpdfTextAnnotation_TEXT 0
-#define ComItextpdfTextAnnotation_URL_AS_STRING 2
-#define ComItextpdfTextAnnotation_URL_NET 1
 
 @interface ComItextpdfTextAnnotation : NSObject < ComItextpdfTextElement > {
  @public
@@ -33,34 +33,28 @@
   jfloat ury__;
 }
 
-- (instancetype)initWithFloat:(jfloat)llx
-                    withFloat:(jfloat)lly
-                    withFloat:(jfloat)urx
-                    withFloat:(jfloat)ury;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextAnnotation:(ComItextpdfTextAnnotation *)an;
-
-- (instancetype)initWithNSString:(NSString *)title
-                    withNSString:(NSString *)text;
-
-- (instancetype)initWithNSString:(NSString *)title
-                    withNSString:(NSString *)text
-                       withFloat:(jfloat)llx
-                       withFloat:(jfloat)lly
-                       withFloat:(jfloat)urx
-                       withFloat:(jfloat)ury;
 
 - (instancetype)initWithFloat:(jfloat)llx
                     withFloat:(jfloat)lly
                     withFloat:(jfloat)urx
                     withFloat:(jfloat)ury
-               withJavaNetURL:(JavaNetURL *)url;
+                      withInt:(jint)named;
 
 - (instancetype)initWithFloat:(jfloat)llx
                     withFloat:(jfloat)lly
                     withFloat:(jfloat)urx
                     withFloat:(jfloat)ury
                  withNSString:(NSString *)url;
+
+- (instancetype)initWithFloat:(jfloat)llx
+                    withFloat:(jfloat)lly
+                    withFloat:(jfloat)urx
+                    withFloat:(jfloat)ury
+                 withNSString:(NSString *)file
+                      withInt:(jint)page;
 
 - (instancetype)initWithFloat:(jfloat)llx
                     withFloat:(jfloat)lly
@@ -81,68 +75,69 @@
                     withFloat:(jfloat)lly
                     withFloat:(jfloat)urx
                     withFloat:(jfloat)ury
-                 withNSString:(NSString *)file
-                      withInt:(jint)page;
-
-- (instancetype)initWithFloat:(jfloat)llx
-                    withFloat:(jfloat)lly
-                    withFloat:(jfloat)urx
-                    withFloat:(jfloat)ury
-                      withInt:(jint)named;
-
-- (instancetype)initWithFloat:(jfloat)llx
-                    withFloat:(jfloat)lly
-                    withFloat:(jfloat)urx
-                    withFloat:(jfloat)ury
                  withNSString:(NSString *)application
                  withNSString:(NSString *)parameters
                  withNSString:(NSString *)operation
                  withNSString:(NSString *)defaultdir;
 
-- (jint)type;
+- (instancetype)initWithFloat:(jfloat)llx
+                    withFloat:(jfloat)lly
+                    withFloat:(jfloat)urx
+                    withFloat:(jfloat)ury
+               withJavaNetURL:(JavaNetURL *)url;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (instancetype)initWithNSString:(NSString *)title
+                    withNSString:(NSString *)text;
+
+- (instancetype)initWithNSString:(NSString *)title
+                    withNSString:(NSString *)text
+                       withFloat:(jfloat)llx
+                       withFloat:(jfloat)lly
+                       withFloat:(jfloat)urx
+                       withFloat:(jfloat)ury;
+
+- (jint)annotationType;
+
+- (JavaUtilHashMap *)attributes;
+
+- (NSString *)content;
 
 - (id<JavaUtilList>)getChunks;
+
+- (jboolean)isContent;
+
+- (jboolean)isNestable;
+
+- (jfloat)llx;
+
+- (jfloat)llxWithFloat:(jfloat)def;
+
+- (jfloat)lly;
+
+- (jfloat)llyWithFloat:(jfloat)def;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (void)setDimensionsWithFloat:(jfloat)llx
                      withFloat:(jfloat)lly
                      withFloat:(jfloat)urx
                      withFloat:(jfloat)ury;
 
-- (jfloat)llx;
+- (NSString *)title;
 
-- (jfloat)lly;
+- (jint)type;
 
 - (jfloat)urx;
 
-- (jfloat)ury;
-
-- (jfloat)llxWithFloat:(jfloat)def;
-
-- (jfloat)llyWithFloat:(jfloat)def;
-
 - (jfloat)urxWithFloat:(jfloat)def;
+
+- (jfloat)ury;
 
 - (jfloat)uryWithFloat:(jfloat)def;
 
-- (jint)annotationType;
-
-- (NSString *)title;
-
-- (NSString *)content;
-
-- (JavaUtilHashMap *)attributes;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextAnnotation *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextAnnotation_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextAnnotation)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextAnnotation, annotationAttributes_, JavaUtilHashMap *)
 
@@ -209,5 +204,47 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextAnnotation, URY_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextAnnotation_MIMETYPE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextAnnotation, MIMETYPE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithComItextpdfTextAnnotation_(ComItextpdfTextAnnotation *self, ComItextpdfTextAnnotation *an);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithComItextpdfTextAnnotation_(ComItextpdfTextAnnotation *an) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithNSString_withNSString_(ComItextpdfTextAnnotation *self, NSString *title, NSString *text);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithNSString_withNSString_(NSString *title, NSString *text) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithNSString_withNSString_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextAnnotation *self, NSString *title, NSString *text, jfloat llx, jfloat lly, jfloat urx, jfloat ury);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithNSString_withNSString_withFloat_withFloat_withFloat_withFloat_(NSString *title, NSString *text, jfloat llx, jfloat lly, jfloat urx, jfloat ury) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withJavaNetURL_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withJavaNetURL_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *url);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *file, NSString *dest);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *file, NSString *dest) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_withBoolean_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *moviePath, NSString *mimeType, jboolean showOnDisplay);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_withBoolean_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *moviePath, NSString *mimeType, jboolean showOnDisplay) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withInt_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *file, jint page);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withInt_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *file, jint page) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withInt_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint named);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withInt_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint named) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_withNSString_withNSString_(ComItextpdfTextAnnotation *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *application, NSString *parameters, NSString *operation, NSString *defaultdir);
+
+FOUNDATION_EXPORT ComItextpdfTextAnnotation *new_ComItextpdfTextAnnotation_initWithFloat_withFloat_withFloat_withFloat_withNSString_withNSString_withNSString_withNSString_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, NSString *application, NSString *parameters, NSString *operation, NSString *defaultdir) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextAnnotation)
 
 #endif // _ComItextpdfTextAnnotation_H_

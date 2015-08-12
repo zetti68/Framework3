@@ -6,15 +6,14 @@
 #ifndef _ComItextpdfXmpXMPException_H_
 #define _ComItextpdfXmpXMPException_H_
 
-@class JavaLangThrowable;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-@interface ComItextpdfXmpXMPException : JavaLangException {
- @public
-  jint errorCode_;
-}
+@class JavaLangThrowable;
+
+@interface ComItextpdfXmpXMPException : JavaLangException
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message
                          withInt:(jint)errorCode;
@@ -25,10 +24,18 @@
 
 - (jint)getErrorCode;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpXMPException *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPException)
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPException_initWithNSString_withInt_(ComItextpdfXmpXMPException *self, NSString *message, jint errorCode);
+
+FOUNDATION_EXPORT ComItextpdfXmpXMPException *new_ComItextpdfXmpXMPException_initWithNSString_withInt_(NSString *message, jint errorCode) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPException_initWithNSString_withInt_withJavaLangThrowable_(ComItextpdfXmpXMPException *self, NSString *message, jint errorCode, JavaLangThrowable *t);
+
+FOUNDATION_EXPORT ComItextpdfXmpXMPException *new_ComItextpdfXmpXMPException_initWithNSString_withInt_withJavaLangThrowable_(NSString *message, jint errorCode, JavaLangThrowable *t) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPException)
 
 #endif // _ComItextpdfXmpXMPException_H_

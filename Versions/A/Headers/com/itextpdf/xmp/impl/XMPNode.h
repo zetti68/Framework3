@@ -6,173 +6,126 @@
 #ifndef _ComItextpdfXmpImplXMPNode_H_
 #define _ComItextpdfXmpImplXMPNode_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Comparable.h"
+
 @class ComItextpdfXmpOptionsPropertyOptions;
-@class JavaLangStringBuffer;
+@protocol JavaUtilIterator;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "java/lang/Comparable.h"
-#include "java/util/Iterator.h"
+@interface ComItextpdfXmpImplXMPNode : NSObject < JavaLangComparable >
 
-@interface ComItextpdfXmpImplXMPNode : NSObject < JavaLangComparable > {
- @public
-  NSString *name_;
-  NSString *value_;
-  ComItextpdfXmpImplXMPNode *parent_;
-  id<JavaUtilList> children_;
-  id<JavaUtilList> qualifier_;
-  ComItextpdfXmpOptionsPropertyOptions *options_;
-  jboolean implicit_;
-  jboolean hasAliases_;
-  jboolean alias_;
-  jboolean hasValueChild_;
-}
+#pragma mark Public
+
+- (instancetype)initWithNSString:(NSString *)name
+withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
 - (instancetype)initWithNSString:(NSString *)name
                     withNSString:(NSString *)value
 withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
 
-- (instancetype)initWithNSString:(NSString *)name
-withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (void)clear;
-
-- (ComItextpdfXmpImplXMPNode *)getParent;
-
-- (ComItextpdfXmpImplXMPNode *)getChildWithInt:(jint)index;
-
-- (void)addChildWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
 - (void)addChildWithInt:(jint)index
 withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
 
-- (void)replaceChildWithInt:(jint)index
-withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
-- (void)removeChildWithInt:(jint)itemIndex;
-
-- (void)removeChildWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
-- (void)cleanupChildren;
-
-- (void)removeChildren;
-
-- (jint)getChildrenLength;
-
-- (ComItextpdfXmpImplXMPNode *)findChildByNameWithNSString:(NSString *)expr;
-
-- (ComItextpdfXmpImplXMPNode *)getQualifierWithInt:(jint)index;
-
-- (jint)getQualifierLength;
+- (void)addChildWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
 
 - (void)addQualifierWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)qualNode;
 
-- (void)removeQualifierWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)qualNode;
-
-- (void)removeQualifiers;
-
-- (ComItextpdfXmpImplXMPNode *)findQualifierByNameWithNSString:(NSString *)expr;
-
-- (jboolean)hasChildren;
-
-- (id<JavaUtilIterator>)iterateChildren;
-
-- (jboolean)hasQualifier;
-
-- (id<JavaUtilIterator>)iterateQualifier;
+- (void)clear;
 
 - (id)clone;
 
 - (void)cloneSubtreeWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)destination;
 
-- (NSString *)dumpNodeWithBoolean:(jboolean)recursive;
-
 - (jint)compareToWithId:(id)xmpNode;
 
-- (NSString *)getName;
+- (NSString *)dumpNodeWithBoolean:(jboolean)recursive;
 
-- (void)setNameWithNSString:(NSString *)name;
+- (ComItextpdfXmpImplXMPNode *)findChildByNameWithNSString:(NSString *)expr;
 
-- (NSString *)getValue;
+- (ComItextpdfXmpImplXMPNode *)findQualifierByNameWithNSString:(NSString *)expr;
 
-- (void)setValueWithNSString:(NSString *)value;
+- (ComItextpdfXmpImplXMPNode *)getChildWithInt:(jint)index;
 
-- (ComItextpdfXmpOptionsPropertyOptions *)getOptions;
-
-- (void)setOptionsWithComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
-
-- (jboolean)isImplicit;
-
-- (void)setImplicitWithBoolean:(jboolean)implicit;
+- (jint)getChildrenLength;
 
 - (jboolean)getHasAliases;
 
-- (void)setHasAliasesWithBoolean:(jboolean)hasAliases;
-
-- (jboolean)isAlias;
-
-- (void)setAliasWithBoolean:(jboolean)alias;
-
 - (jboolean)getHasValueChild;
 
-- (void)setHasValueChildWithBoolean:(jboolean)hasValueChild;
+- (NSString *)getName;
 
-- (void)sort;
+- (ComItextpdfXmpOptionsPropertyOptions *)getOptions;
 
-- (void)dumpNodeWithJavaLangStringBuffer:(JavaLangStringBuffer *)result
-                             withBoolean:(jboolean)recursive
-                                 withInt:(jint)indent
-                                 withInt:(jint)index;
+- (ComItextpdfXmpImplXMPNode *)getParent;
 
-- (jboolean)isLanguageNode;
+- (ComItextpdfXmpImplXMPNode *)getQualifierWithInt:(jint)index;
 
-- (jboolean)isTypeNode;
-
-- (id<JavaUtilList>)getChildren;
+- (jint)getQualifierLength;
 
 - (id<JavaUtilList>)getUnmodifiableChildren;
 
-- (id<JavaUtilList>)getQualifier;
+- (NSString *)getValue;
+
+- (jboolean)hasChildren;
+
+- (jboolean)hasQualifier;
+
+- (jboolean)isAlias;
+
+- (jboolean)isImplicit;
+
+- (id<JavaUtilIterator>)iterateChildren;
+
+- (id<JavaUtilIterator>)iterateQualifier;
+
+- (void)removeChildWithInt:(jint)itemIndex;
+
+- (void)removeChildWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
+
+- (void)removeChildren;
+
+- (void)removeQualifierWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)qualNode;
+
+- (void)removeQualifiers;
+
+- (void)replaceChildWithInt:(jint)index
+withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
+
+- (void)setAliasWithBoolean:(jboolean)alias;
+
+- (void)setHasAliasesWithBoolean:(jboolean)hasAliases;
+
+- (void)setHasValueChildWithBoolean:(jboolean)hasValueChild;
+
+- (void)setImplicitWithBoolean:(jboolean)implicit;
+
+- (void)setNameWithNSString:(NSString *)name;
+
+- (void)setOptionsWithComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)options;
+
+- (void)setValueWithNSString:(NSString *)value;
+
+- (void)sort;
+
+#pragma mark Protected
+
+- (void)cleanupChildren;
 
 - (void)setParentWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)parent;
 
-- (ComItextpdfXmpImplXMPNode *)findWithJavaUtilList:(id<JavaUtilList>)list
-                                       withNSString:(NSString *)expr;
-
-- (void)assertChildNotExistingWithNSString:(NSString *)childName;
-
-- (void)assertQualifierNotExistingWithNSString:(NSString *)qualifierName;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPNode *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPNode_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPNode)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, name_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, value_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, parent_, ComItextpdfXmpImplXMPNode *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, children_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, qualifier_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode, options_, ComItextpdfXmpOptionsPropertyOptions *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPNode_initWithNSString_withNSString_withComItextpdfXmpOptionsPropertyOptions_(ComItextpdfXmpImplXMPNode *self, NSString *name, NSString *value, ComItextpdfXmpOptionsPropertyOptions *options);
 
-@interface ComItextpdfXmpImplXMPNode_$1 : NSObject < JavaUtilIterator > {
- @public
-  id<JavaUtilIterator> val$it_;
-}
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPNode *new_ComItextpdfXmpImplXMPNode_initWithNSString_withNSString_withComItextpdfXmpOptionsPropertyOptions_(NSString *name, NSString *value, ComItextpdfXmpOptionsPropertyOptions *options) NS_RETURNS_RETAINED;
 
-- (jboolean)hasNext;
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPNode_initWithNSString_withComItextpdfXmpOptionsPropertyOptions_(ComItextpdfXmpImplXMPNode *self, NSString *name, ComItextpdfXmpOptionsPropertyOptions *options);
 
-- (id)next;
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPNode *new_ComItextpdfXmpImplXMPNode_initWithNSString_withComItextpdfXmpOptionsPropertyOptions_(NSString *name, ComItextpdfXmpOptionsPropertyOptions *options) NS_RETURNS_RETAINED;
 
-- (void)remove;
-
-- (instancetype)initWithJavaUtilIterator:(id<JavaUtilIterator>)capture$0;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPNode_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPNode_$1, val$it_, id<JavaUtilIterator>)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPNode)
 
 #endif // _ComItextpdfXmpImplXMPNode_H_

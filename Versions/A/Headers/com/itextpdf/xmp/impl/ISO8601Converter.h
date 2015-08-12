@@ -6,14 +6,13 @@
 #ifndef _ComItextpdfXmpImplISO8601Converter_H_
 #define _ComItextpdfXmpImplISO8601Converter_H_
 
+#include "J2ObjC_header.h"
+
 @protocol ComItextpdfXmpXMPDateTime;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplISO8601Converter : NSObject
 
-@interface ComItextpdfXmpImplISO8601Converter : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (id<ComItextpdfXmpXMPDateTime>)parseWithNSString:(NSString *)iso8601String;
 
@@ -24,37 +23,45 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplISO8601Converter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplISO8601Converter)
 
-@interface ComItextpdfXmpImplParseState : NSObject {
- @public
-  NSString *str_;
-  jint pos__;
-}
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpImplISO8601Converter_parseWithNSString_(NSString *iso8601String);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpImplISO8601Converter_parseWithNSString_withComItextpdfXmpXMPDateTime_(NSString *iso8601String, id<ComItextpdfXmpXMPDateTime> binValue);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplISO8601Converter_renderWithComItextpdfXmpXMPDateTime_(id<ComItextpdfXmpXMPDateTime> dateTime);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplISO8601Converter)
+
+@interface ComItextpdfXmpImplParseState : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)str;
 
-- (jint)length;
-
-- (jboolean)hasNext;
-
-- (jchar)chWithInt:(jint)index;
-
 - (jchar)ch;
 
-- (void)skip;
-
-- (jint)pos;
+- (jchar)chWithInt:(jint)index;
 
 - (jint)gatherIntWithNSString:(NSString *)errorMsg
                       withInt:(jint)maxValue;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplParseState *)other;
+- (jboolean)hasNext;
+
+- (jint)length;
+
+- (jint)pos;
+
+- (void)skip;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplParseState_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplParseState)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplParseState, str_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplParseState_initWithNSString_(ComItextpdfXmpImplParseState *self, NSString *str);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplParseState *new_ComItextpdfXmpImplParseState_initWithNSString_(NSString *str) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplParseState)
 
 #endif // _ComItextpdfXmpImplISO8601Converter_H_

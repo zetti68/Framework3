@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfXfaForm_H_
 #define _ComItextpdfTextPdfXfaForm_H_
 
+#include "J2ObjC_header.h"
+#include "java/util/ArrayList.h"
+
 @class ComItextpdfTextPdfAcroFields;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
@@ -23,125 +26,114 @@
 @protocol OrgW3cDomDocument;
 @protocol OrgW3cDomNode;
 
-#import "JreEmulation.h"
-#include "java/util/ArrayList.h"
+@interface ComItextpdfTextPdfXfaForm : NSObject
 
-@interface ComItextpdfTextPdfXfaForm : NSObject {
- @public
-  ComItextpdfTextPdfXfaForm_Xml2SomTemplate *templateSom_;
-  id<OrgW3cDomNode> templateNode_;
-  ComItextpdfTextPdfXfaForm_Xml2SomDatasets *datasetsSom_;
-  id<OrgW3cDomNode> datasetsNode_;
-  ComItextpdfTextPdfXfaForm_AcroFieldsSearch *acroFieldsSom_;
-  ComItextpdfTextPdfPdfReader *reader_;
-  jboolean xfaPresent_;
-  id<OrgW3cDomDocument> domDocument_;
-  jboolean changed_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-+ (ComItextpdfTextPdfPdfObject *)getXfaObjectWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
-- (void)extractNodes;
-
 + (id<JavaUtilMap>)extractXFANodesWithOrgW3cDomDocument:(id<OrgW3cDomDocument>)domDocument;
-
-- (void)createDatasetsNodeWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
-+ (void)setXfaWithComItextpdfTextPdfXfaForm:(ComItextpdfTextPdfXfaForm *)form
-            withComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-            withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (void)setXfaWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-+ (IOSByteArray *)serializeDocWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
-- (jboolean)isXfaPresent;
-
-- (id<OrgW3cDomDocument>)getDomDocument;
-
-- (NSString *)findFieldNameWithNSString:(NSString *)name
-       withComItextpdfTextPdfAcroFields:(ComItextpdfTextPdfAcroFields *)af;
-
-- (NSString *)findDatasetsNameWithNSString:(NSString *)name;
-
-- (id<OrgW3cDomNode>)findDatasetsNodeWithNSString:(NSString *)name;
-
-+ (NSString *)getNodeTextWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
-+ (NSString *)getNodeTextWithOrgW3cDomNode:(id<OrgW3cDomNode>)n
-                              withNSString:(NSString *)name;
-
-- (void)setNodeTextWithOrgW3cDomNode:(id<OrgW3cDomNode>)n
-                        withNSString:(NSString *)text;
-
-- (void)setXfaPresentWithBoolean:(jboolean)xfaPresent;
-
-- (void)setDomDocumentWithOrgW3cDomDocument:(id<OrgW3cDomDocument>)domDocument;
-
-- (ComItextpdfTextPdfPdfReader *)getReader;
-
-- (void)setReaderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-- (jboolean)isChanged;
-
-- (void)setChangedWithBoolean:(jboolean)changed;
-
-- (ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)getTemplateSom;
-
-- (void)setTemplateSomWithComItextpdfTextPdfXfaForm_Xml2SomTemplate:(ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)templateSom;
-
-- (ComItextpdfTextPdfXfaForm_Xml2SomDatasets *)getDatasetsSom;
-
-- (void)setDatasetsSomWithComItextpdfTextPdfXfaForm_Xml2SomDatasets:(ComItextpdfTextPdfXfaForm_Xml2SomDatasets *)datasetsSom;
-
-- (ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)getAcroFieldsSom;
-
-- (void)setAcroFieldsSomWithComItextpdfTextPdfXfaForm_AcroFieldsSearch:(ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)acroFieldsSom;
-
-- (id<OrgW3cDomNode>)getDatasetsNode;
 
 - (void)fillXfaFormWithJavaIoFile:(JavaIoFile *)file;
 
 - (void)fillXfaFormWithJavaIoFile:(JavaIoFile *)file
                       withBoolean:(jboolean)readOnly;
 
-- (void)fillXfaFormWithJavaIoInputStream:(JavaIoInputStream *)is;
-
-- (void)fillXfaFormWithJavaIoInputStream:(JavaIoInputStream *)is
-                             withBoolean:(jboolean)readOnly;
-
 - (void)fillXfaFormWithOrgXmlSaxInputSource:(OrgXmlSaxInputSource *)is;
 
 - (void)fillXfaFormWithOrgXmlSaxInputSource:(OrgXmlSaxInputSource *)is
                                 withBoolean:(jboolean)readOnly;
+
+- (void)fillXfaFormWithJavaIoInputStream:(JavaIoInputStream *)is;
+
+- (void)fillXfaFormWithJavaIoInputStream:(JavaIoInputStream *)is
+                             withBoolean:(jboolean)readOnly;
 
 - (void)fillXfaFormWithOrgW3cDomNode:(id<OrgW3cDomNode>)node;
 
 - (void)fillXfaFormWithOrgW3cDomNode:(id<OrgW3cDomNode>)node
                          withBoolean:(jboolean)readOnly;
 
-- (id<OrgW3cDomNode>)getFirstElementNodeWithOrgW3cDomNode:(id<OrgW3cDomNode>)src;
+- (NSString *)findDatasetsNameWithNSString:(NSString *)name;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaForm *)other;
+- (id<OrgW3cDomNode>)findDatasetsNodeWithNSString:(NSString *)name;
+
+- (NSString *)findFieldNameWithNSString:(NSString *)name
+       withComItextpdfTextPdfAcroFields:(ComItextpdfTextPdfAcroFields *)af;
+
+- (ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)getAcroFieldsSom;
+
+- (id<OrgW3cDomNode>)getDatasetsNode;
+
+- (ComItextpdfTextPdfXfaForm_Xml2SomDatasets *)getDatasetsSom;
+
+- (id<OrgW3cDomDocument>)getDomDocument;
+
++ (NSString *)getNodeTextWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
+
+- (ComItextpdfTextPdfPdfReader *)getReader;
+
+- (ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)getTemplateSom;
+
++ (ComItextpdfTextPdfPdfObject *)getXfaObjectWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+- (jboolean)isChanged;
+
+- (jboolean)isXfaPresent;
+
++ (IOSByteArray *)serializeDocWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
+
+- (void)setAcroFieldsSomWithComItextpdfTextPdfXfaForm_AcroFieldsSearch:(ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)acroFieldsSom;
+
+- (void)setChangedWithBoolean:(jboolean)changed;
+
+- (void)setDatasetsSomWithComItextpdfTextPdfXfaForm_Xml2SomDatasets:(ComItextpdfTextPdfXfaForm_Xml2SomDatasets *)datasetsSom;
+
+- (void)setDomDocumentWithOrgW3cDomDocument:(id<OrgW3cDomDocument>)domDocument;
+
+- (void)setNodeTextWithOrgW3cDomNode:(id<OrgW3cDomNode>)n
+                        withNSString:(NSString *)text;
+
+- (void)setReaderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+- (void)setTemplateSomWithComItextpdfTextPdfXfaForm_Xml2SomTemplate:(ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)templateSom;
+
+- (void)setXfaWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
++ (void)setXfaWithComItextpdfTextPdfXfaForm:(ComItextpdfTextPdfXfaForm *)form
+            withComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+            withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+- (void)setXfaPresentWithBoolean:(jboolean)xfaPresent;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, templateSom_, ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, templateNode_, id<OrgW3cDomNode>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, datasetsSom_, ComItextpdfTextPdfXfaForm_Xml2SomDatasets *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, datasetsNode_, id<OrgW3cDomNode>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, acroFieldsSom_, ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, reader_, ComItextpdfTextPdfPdfReader *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm, domDocument_, id<OrgW3cDomDocument>)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfXfaForm_XFA_DATA_SCHEMA_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaForm, XFA_DATA_SCHEMA_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_init(ComItextpdfTextPdfXfaForm *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm *new_ComItextpdfTextPdfXfaForm_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfObject *ComItextpdfTextPdfXfaForm_getXfaObjectWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfXfaForm *self, ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm *new_ComItextpdfTextPdfXfaForm_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfXfaForm_extractXFANodesWithOrgW3cDomDocument_(id<OrgW3cDomDocument> domDocument);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_setXfaWithComItextpdfTextPdfXfaForm_withComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfXfaForm *form, ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfXfaForm_serializeDocWithOrgW3cDomNode_(id<OrgW3cDomNode> n);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfXfaForm_getNodeTextWithOrgW3cDomNode_(id<OrgW3cDomNode> n);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm)
 
 @interface ComItextpdfTextPdfXfaForm_InverseStore : NSObject {
  @public
@@ -149,25 +141,34 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaForm, XFA_DATA_SCHEMA_, NSString
   JavaUtilArrayList *follow_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (NSString *)getDefaultName;
 
 - (jboolean)isSimilarWithNSString:(NSString *)name;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaForm_InverseStore *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_InverseStore_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_InverseStore)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_InverseStore, part_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_InverseStore, follow_, JavaUtilArrayList *)
 
-#define ComItextpdfTextPdfXfaForm_Stack2_serialVersionUID -7451476576174095212LL
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_InverseStore_init(ComItextpdfTextPdfXfaForm_InverseStore *self);
 
-@interface ComItextpdfTextPdfXfaForm_Stack2 : JavaUtilArrayList {
-}
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_InverseStore *new_ComItextpdfTextPdfXfaForm_InverseStore_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_InverseStore)
+
+@interface ComItextpdfTextPdfXfaForm_Stack2 : JavaUtilArrayList
+
+#pragma mark Public
+
+- (instancetype)init;
+
+- (jboolean)empty;
 
 - (id)peek;
 
@@ -175,16 +176,18 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_InverseStore, follow_, JavaUtilArr
 
 - (id)pushWithId:(id)item;
 
-- (jboolean)empty;
-
-- (instancetype)init;
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_Stack2_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_Stack2)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaForm_Stack2, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_Stack2_init(ComItextpdfTextPdfXfaForm_Stack2 *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_Stack2 *new_ComItextpdfTextPdfXfaForm_Stack2_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_Stack2)
 
 @interface ComItextpdfTextPdfXfaForm_Xml2Som : NSObject {
  @public
@@ -195,69 +198,89 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaForm_Stack2, serialVersionUID, j
   jint anform_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 + (NSString *)escapeSomWithNSString:(NSString *)s;
 
-+ (NSString *)unescapeSomWithNSString:(NSString *)s;
+- (JavaUtilHashMap *)getInverseSearch;
 
-- (NSString *)printStack;
+- (JavaUtilHashMap *)getName2Node;
+
+- (JavaUtilArrayList *)getOrder;
 
 + (NSString *)getShortNameWithNSString:(NSString *)s;
-
-- (void)inverseSearchAddWithNSString:(NSString *)unstack;
 
 + (void)inverseSearchAddWithJavaUtilHashMap:(JavaUtilHashMap *)inverseSearch
        withComItextpdfTextPdfXfaForm_Stack2:(ComItextpdfTextPdfXfaForm_Stack2 *)stack
                                withNSString:(NSString *)unstack;
 
+- (void)inverseSearchAddWithNSString:(NSString *)unstack;
+
 - (NSString *)inverseSearchGlobalWithJavaUtilArrayList:(JavaUtilArrayList *)parts;
-
-+ (ComItextpdfTextPdfXfaForm_Stack2 *)splitPartsWithNSString:(NSString *)name;
-
-- (JavaUtilArrayList *)getOrder;
-
-- (void)setOrderWithJavaUtilArrayList:(JavaUtilArrayList *)order;
-
-- (JavaUtilHashMap *)getName2Node;
-
-- (void)setName2NodeWithJavaUtilHashMap:(JavaUtilHashMap *)name2Node;
-
-- (JavaUtilHashMap *)getInverseSearch;
 
 - (void)setInverseSearchWithJavaUtilHashMap:(JavaUtilHashMap *)inverseSearch;
 
-- (instancetype)init;
+- (void)setName2NodeWithJavaUtilHashMap:(JavaUtilHashMap *)name2Node;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaForm_Xml2Som *)other;
+- (void)setOrderWithJavaUtilArrayList:(JavaUtilArrayList *)order;
+
++ (ComItextpdfTextPdfXfaForm_Stack2 *)splitPartsWithNSString:(NSString *)name;
+
++ (NSString *)unescapeSomWithNSString:(NSString *)s;
+
+#pragma mark Protected
+
+- (NSString *)printStack;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_Xml2Som_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_Xml2Som)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_Xml2Som, order_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_Xml2Som, name2Node_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_Xml2Som, inverseSearch_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_Xml2Som, stack_, ComItextpdfTextPdfXfaForm_Stack2 *)
 
-@interface ComItextpdfTextPdfXfaForm_Xml2SomDatasets : ComItextpdfTextPdfXfaForm_Xml2Som {
-}
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfXfaForm_Xml2Som_escapeSomWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfXfaForm_Xml2Som_unescapeSomWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfXfaForm_Xml2Som_getShortNameWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_Xml2Som_inverseSearchAddWithJavaUtilHashMap_withComItextpdfTextPdfXfaForm_Stack2_withNSString_(JavaUtilHashMap *inverseSearch, ComItextpdfTextPdfXfaForm_Stack2 *stack, NSString *unstack);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_Stack2 *ComItextpdfTextPdfXfaForm_Xml2Som_splitPartsWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_Xml2Som_init(ComItextpdfTextPdfXfaForm_Xml2Som *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_Xml2Som *new_ComItextpdfTextPdfXfaForm_Xml2Som_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_Xml2Som)
+
+@interface ComItextpdfTextPdfXfaForm_Xml2SomDatasets : ComItextpdfTextPdfXfaForm_Xml2Som
+
+#pragma mark Public
 
 - (instancetype)initWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
 
 - (id<OrgW3cDomNode>)insertNodeWithOrgW3cDomNode:(id<OrgW3cDomNode>)n
                                     withNSString:(NSString *)shortName;
 
-+ (jboolean)hasChildrenWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
-- (void)processDatasetsInternalWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_Xml2SomDatasets_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_Xml2SomDatasets)
 
-@interface ComItextpdfTextPdfXfaForm_AcroFieldsSearch : ComItextpdfTextPdfXfaForm_Xml2Som {
- @public
-  JavaUtilHashMap *acroShort2LongName_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_Xml2SomDatasets_initWithOrgW3cDomNode_(ComItextpdfTextPdfXfaForm_Xml2SomDatasets *self, id<OrgW3cDomNode> n);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_Xml2SomDatasets *new_ComItextpdfTextPdfXfaForm_Xml2SomDatasets_initWithOrgW3cDomNode_(id<OrgW3cDomNode> n) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_Xml2SomDatasets)
+
+@interface ComItextpdfTextPdfXfaForm_AcroFieldsSearch : ComItextpdfTextPdfXfaForm_Xml2Som
+
+#pragma mark Public
 
 - (instancetype)initWithJavaUtilCollection:(id<JavaUtilCollection>)items;
 
@@ -265,35 +288,36 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_Xml2SomData
 
 - (void)setAcroShort2LongNameWithJavaUtilHashMap:(JavaUtilHashMap *)acroShort2LongName;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaForm_AcroFieldsSearch *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_AcroFieldsSearch_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_AcroFieldsSearch)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaForm_AcroFieldsSearch, acroShort2LongName_, JavaUtilHashMap *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_AcroFieldsSearch_initWithJavaUtilCollection_(ComItextpdfTextPdfXfaForm_AcroFieldsSearch *self, id<JavaUtilCollection> items);
 
-@interface ComItextpdfTextPdfXfaForm_Xml2SomTemplate : ComItextpdfTextPdfXfaForm_Xml2Som {
- @public
-  jboolean dynamicForm_;
-  jint templateLevel_;
-}
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_AcroFieldsSearch *new_ComItextpdfTextPdfXfaForm_AcroFieldsSearch_initWithJavaUtilCollection_(id<JavaUtilCollection> items) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_AcroFieldsSearch)
+
+@interface ComItextpdfTextPdfXfaForm_Xml2SomTemplate : ComItextpdfTextPdfXfaForm_Xml2Som
+
+#pragma mark Public
 
 - (instancetype)initWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
 
 - (NSString *)getFieldTypeWithNSString:(NSString *)s;
 
-- (void)processTemplateWithOrgW3cDomNode:(id<OrgW3cDomNode>)n
-                     withJavaUtilHashMap:(JavaUtilHashMap *)ff;
-
 - (jboolean)isDynamicForm;
 
 - (void)setDynamicFormWithBoolean:(jboolean)dynamicForm;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaForm_Xml2SomTemplate *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaForm_Xml2SomTemplate_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaForm_Xml2SomTemplate)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaForm_Xml2SomTemplate_initWithOrgW3cDomNode_(ComItextpdfTextPdfXfaForm_Xml2SomTemplate *self, id<OrgW3cDomNode> n);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaForm_Xml2SomTemplate *new_ComItextpdfTextPdfXfaForm_Xml2SomTemplate_initWithOrgW3cDomNode_(id<OrgW3cDomNode> n) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaForm_Xml2SomTemplate)
 
 #endif // _ComItextpdfTextPdfXfaForm_H_

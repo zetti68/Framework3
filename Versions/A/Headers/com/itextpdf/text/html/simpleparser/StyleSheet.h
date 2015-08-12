@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserStyleSheet_H_
 #define _ComItextpdfTextHtmlSimpleparserStyleSheet_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextHtmlSimpleparserChainedProperties;
 @class JavaUtilHashMap;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextHtmlSimpleparserStyleSheet : NSObject {
  @public
@@ -18,14 +18,12 @@
   id<JavaUtilMap> classMap_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
-- (void)loadTagStyleWithNSString:(NSString *)tag
-                 withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)loadTagStyleWithNSString:(NSString *)tag
-                    withNSString:(NSString *)key
-                    withNSString:(NSString *)value;
+- (void)applyStyleWithNSString:(NSString *)tag
+               withJavaUtilMap:(id<JavaUtilMap>)attrs;
 
 - (void)loadStyleWithNSString:(NSString *)className_
           withJavaUtilHashMap:(JavaUtilHashMap *)attrs;
@@ -34,19 +32,29 @@
                  withNSString:(NSString *)key
                  withNSString:(NSString *)value;
 
-- (void)applyStyleWithNSString:(NSString *)tag
-               withJavaUtilMap:(id<JavaUtilMap>)attrs;
+- (void)loadTagStyleWithNSString:(NSString *)tag
+                 withJavaUtilMap:(id<JavaUtilMap>)attrs;
+
+- (void)loadTagStyleWithNSString:(NSString *)tag
+                    withNSString:(NSString *)key
+                    withNSString:(NSString *)value;
 
 + (void)resolveStyleAttributeWithJavaUtilMap:(id<JavaUtilMap>)h
 withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserStyleSheet *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserStyleSheet_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserStyleSheet)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserStyleSheet, tagMap_, id<JavaUtilMap>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserStyleSheet, classMap_, id<JavaUtilMap>)
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserStyleSheet_init(ComItextpdfTextHtmlSimpleparserStyleSheet *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserStyleSheet *new_ComItextpdfTextHtmlSimpleparserStyleSheet_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserStyleSheet_resolveStyleAttributeWithJavaUtilMap_withComItextpdfTextHtmlSimpleparserChainedProperties_(id<JavaUtilMap> h, ComItextpdfTextHtmlSimpleparserChainedProperties *chain);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserStyleSheet)
 
 #endif // _ComItextpdfTextHtmlSimpleparserStyleSheet_H_

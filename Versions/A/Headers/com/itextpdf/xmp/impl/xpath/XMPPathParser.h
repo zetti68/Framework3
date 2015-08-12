@@ -6,41 +6,24 @@
 #ifndef _ComItextpdfXmpImplXpathXMPPathParser_H_
 #define _ComItextpdfXmpImplXpathXMPPathParser_H_
 
-@class ComItextpdfXmpImplXpathPathPosition;
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpImplXpathXMPPath;
-@class ComItextpdfXmpImplXpathXMPPathSegment;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplXpathXMPPathParser : NSObject
 
-@interface ComItextpdfXmpImplXpathXMPPathParser : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (ComItextpdfXmpImplXpathXMPPath *)expandXPathWithNSString:(NSString *)schemaNS
                                                withNSString:(NSString *)path;
 
-+ (void)skipPathDelimiterWithNSString:(NSString *)path
-withComItextpdfXmpImplXpathPathPosition:(ComItextpdfXmpImplXpathPathPosition *)pos;
-
-+ (ComItextpdfXmpImplXpathXMPPathSegment *)parseStructSegmentWithComItextpdfXmpImplXpathPathPosition:(ComItextpdfXmpImplXpathPathPosition *)pos;
-
-+ (ComItextpdfXmpImplXpathXMPPathSegment *)parseIndexSegmentWithComItextpdfXmpImplXpathPathPosition:(ComItextpdfXmpImplXpathPathPosition *)pos;
-
-+ (void)parseRootNodeWithNSString:(NSString *)schemaNS
-withComItextpdfXmpImplXpathPathPosition:(ComItextpdfXmpImplXpathPathPosition *)pos
-withComItextpdfXmpImplXpathXMPPath:(ComItextpdfXmpImplXpathXMPPath *)expandedXPath;
-
-+ (void)verifyQualNameWithNSString:(NSString *)qualName;
-
-+ (void)verifySimpleXMLNameWithNSString:(NSString *)name;
-
-+ (NSString *)verifyXPathRootWithNSString:(NSString *)schemaNS
-                             withNSString:(NSString *)rootProp;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXpathXMPPathParser_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXpathXMPPathParser)
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXpathXMPPath *ComItextpdfXmpImplXpathXMPPathParser_expandXPathWithNSString_withNSString_(NSString *schemaNS, NSString *path);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXpathXMPPathParser)
 
 @interface ComItextpdfXmpImplXpathPathPosition : NSObject {
  @public
@@ -51,14 +34,20 @@ __attribute__((always_inline)) inline void ComItextpdfXmpImplXpathXMPPathParser_
   jint stepEnd_;
 }
 
-- (instancetype)init;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXpathPathPosition *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXpathPathPosition_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXpathPathPosition)
 
 J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXpathPathPosition, path_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXpathPathPosition_init(ComItextpdfXmpImplXpathPathPosition *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXpathPathPosition *new_ComItextpdfXmpImplXpathPathPosition_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXpathPathPosition)
 
 #endif // _ComItextpdfXmpImplXpathXMPPathParser_H_

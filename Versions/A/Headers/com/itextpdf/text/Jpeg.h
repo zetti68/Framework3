@@ -6,32 +6,25 @@
 #ifndef _ComItextpdfTextJpeg_H_
 #define _ComItextpdfTextJpeg_H_
 
-@class IOSByteArray;
-@class IOSIntArray;
-@class IOSObjectArray;
-@class JavaIoInputStream;
-@class JavaNetURL;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Image.h"
 
+@class IOSByteArray;
+@class IOSIntArray;
+@class JavaNetURL;
+
+#define ComItextpdfTextJpeg_NOT_A_MARKER -1
+#define ComItextpdfTextJpeg_VALID_MARKER 0
+#define ComItextpdfTextJpeg_UNSUPPORTED_MARKER 1
+#define ComItextpdfTextJpeg_NOPARAM_MARKER 2
 #define ComItextpdfTextJpeg_M_APP0 224
 #define ComItextpdfTextJpeg_M_APP2 226
-#define ComItextpdfTextJpeg_M_APPD 237
 #define ComItextpdfTextJpeg_M_APPE 238
-#define ComItextpdfTextJpeg_NOPARAM_MARKER 2
-#define ComItextpdfTextJpeg_NOT_A_MARKER -1
-#define ComItextpdfTextJpeg_UNSUPPORTED_MARKER 1
-#define ComItextpdfTextJpeg_VALID_MARKER 0
+#define ComItextpdfTextJpeg_M_APPD 237
 
-@interface ComItextpdfTextJpeg : ComItextpdfTextImage {
- @public
-  IOSObjectArray *icc_;
-}
+@interface ComItextpdfTextJpeg : ComItextpdfTextImage
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)img;
 
@@ -39,20 +32,15 @@
                         withFloat:(jfloat)width
                         withFloat:(jfloat)height;
 
-+ (jint)getShortWithJavaIoInputStream:(JavaIoInputStream *)is;
+- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
 
-+ (jint)markerWithInt:(jint)marker;
+#pragma mark Package-Private
 
-- (void)processParameters;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextJpeg *)other;
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextJpeg_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextJpeg)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextJpeg, icc_, IOSObjectArray *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextJpeg, NOT_A_MARKER, jint)
 
@@ -84,5 +72,23 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextJpeg, JFIF_ID_, IOSByteArray *)
 
 FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextJpeg_PS_8BIM_RESO_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextJpeg, PS_8BIM_RESO_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg_initWithComItextpdfTextImage_(ComItextpdfTextJpeg *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg *new_ComItextpdfTextJpeg_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg_initWithJavaNetURL_(ComItextpdfTextJpeg *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg *new_ComItextpdfTextJpeg_initWithJavaNetURL_(JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg_initWithByteArray_(ComItextpdfTextJpeg *self, IOSByteArray *img);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg *new_ComItextpdfTextJpeg_initWithByteArray_(IOSByteArray *img) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg_initWithByteArray_withFloat_withFloat_(ComItextpdfTextJpeg *self, IOSByteArray *img, jfloat width, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg *new_ComItextpdfTextJpeg_initWithByteArray_withFloat_withFloat_(IOSByteArray *img, jfloat width, jfloat height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextJpeg)
 
 #endif // _ComItextpdfTextJpeg_H_

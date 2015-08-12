@@ -6,27 +6,22 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserTableWrapper_H_
 #define _ComItextpdfTextHtmlSimpleparserTableWrapper_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+
 @class ComItextpdfTextPdfPdfPTable;
 @class IOSFloatArray;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
+@interface ComItextpdfTextHtmlSimpleparserTableWrapper : NSObject < ComItextpdfTextElement >
 
-@interface ComItextpdfTextHtmlSimpleparserTableWrapper : NSObject < ComItextpdfTextElement > {
- @public
-  id<JavaUtilMap> styles_;
-  id<JavaUtilList> rows_;
-  IOSFloatArray *colWidths_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)attrs;
 
 - (void)addRowWithJavaUtilList:(id<JavaUtilList>)row;
-
-- (void)setColWidthsWithFloatArray:(IOSFloatArray *)colWidths;
 
 - (ComItextpdfTextPdfPdfPTable *)createTable;
 
@@ -38,16 +33,18 @@
 
 - (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
-- (jint)type;
+- (void)setColWidthsWithFloatArray:(IOSFloatArray *)colWidths;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserTableWrapper *)other;
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserTableWrapper_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserTableWrapper)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserTableWrapper, styles_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserTableWrapper, rows_, id<JavaUtilList>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserTableWrapper, colWidths_, IOSFloatArray *)
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserTableWrapper_initWithJavaUtilMap_(ComItextpdfTextHtmlSimpleparserTableWrapper *self, id<JavaUtilMap> attrs);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserTableWrapper *new_ComItextpdfTextHtmlSimpleparserTableWrapper_initWithJavaUtilMap_(id<JavaUtilMap> attrs) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserTableWrapper)
 
 #endif // _ComItextpdfTextHtmlSimpleparserTableWrapper_H_

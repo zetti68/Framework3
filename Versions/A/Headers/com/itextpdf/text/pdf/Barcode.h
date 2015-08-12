@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfBarcode_H_
 #define _ComItextpdfTextPdfBarcode_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfBaseFont;
@@ -13,20 +15,18 @@
 @class ComItextpdfTextPdfPdfTemplate;
 @class ComItextpdfTextRectangle;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfBarcode_CODABAR 12
-#define ComItextpdfTextPdfBarcode_CODE128 9
-#define ComItextpdfTextPdfBarcode_CODE128_RAW 11
-#define ComItextpdfTextPdfBarcode_CODE128_UCC 10
 #define ComItextpdfTextPdfBarcode_EAN13 1
 #define ComItextpdfTextPdfBarcode_EAN8 2
-#define ComItextpdfTextPdfBarcode_PLANET 8
-#define ComItextpdfTextPdfBarcode_POSTNET 7
-#define ComItextpdfTextPdfBarcode_SUPP2 5
-#define ComItextpdfTextPdfBarcode_SUPP5 6
 #define ComItextpdfTextPdfBarcode_UPCA 3
 #define ComItextpdfTextPdfBarcode_UPCE 4
+#define ComItextpdfTextPdfBarcode_SUPP2 5
+#define ComItextpdfTextPdfBarcode_SUPP5 6
+#define ComItextpdfTextPdfBarcode_POSTNET 7
+#define ComItextpdfTextPdfBarcode_PLANET 8
+#define ComItextpdfTextPdfBarcode_CODE128 9
+#define ComItextpdfTextPdfBarcode_CODE128_UCC 10
+#define ComItextpdfTextPdfBarcode_CODE128_RAW 11
+#define ComItextpdfTextPdfBarcode_CODABAR 12
 
 @interface ComItextpdfTextPdfBarcode : NSObject {
  @public
@@ -48,91 +48,91 @@
   NSString *altText_;
 }
 
-- (jfloat)getX;
+#pragma mark Public
 
-- (void)setXWithFloat:(jfloat)x;
-
-- (jfloat)getN;
-
-- (void)setNWithFloat:(jfloat)n;
-
-- (ComItextpdfTextPdfBaseFont *)getFont;
-
-- (void)setFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
-
-- (jfloat)getSize;
-
-- (void)setSizeWithFloat:(jfloat)size;
-
-- (jfloat)getBaseline;
-
-- (void)setBaselineWithFloat:(jfloat)baseline;
-
-- (jfloat)getBarHeight;
-
-- (void)setBarHeightWithFloat:(jfloat)barHeight;
-
-- (jint)getTextAlignment;
-
-- (void)setTextAlignmentWithInt:(jint)textAlignment;
-
-- (jboolean)isGenerateChecksum;
-
-- (void)setGenerateChecksumWithBoolean:(jboolean)generateChecksum;
-
-- (jboolean)isChecksumText;
-
-- (void)setChecksumTextWithBoolean:(jboolean)checksumText;
-
-- (jboolean)isStartStopText;
-
-- (void)setStartStopTextWithBoolean:(jboolean)startStopText;
-
-- (jboolean)isExtended;
-
-- (void)setExtendedWithBoolean:(jboolean)extended;
-
-- (NSString *)getCode;
-
-- (void)setCodeWithNSString:(NSString *)code;
-
-- (jboolean)isGuardBars;
-
-- (void)setGuardBarsWithBoolean:(jboolean)guardBars;
-
-- (jint)getCodeType;
-
-- (void)setCodeTypeWithInt:(jint)codeType;
-
-- (ComItextpdfTextRectangle *)getBarcodeSize;
-
-- (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
-                                                  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
-                                                  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
-
-- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
-                                                                    withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
-                                                                    withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
+- (instancetype)init;
 
 - (ComItextpdfTextImage *)createImageWithBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                         withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
                                                         withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
 
-- (jfloat)getInkSpreading;
-
-- (void)setInkSpreadingWithFloat:(jfloat)inkSpreading;
+- (ComItextpdfTextPdfPdfTemplate *)createTemplateWithBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
+                                                                    withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
+                                                                    withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
 
 - (NSString *)getAltText;
 
+- (ComItextpdfTextRectangle *)getBarcodeSize;
+
+- (jfloat)getBarHeight;
+
+- (jfloat)getBaseline;
+
+- (NSString *)getCode;
+
+- (jint)getCodeType;
+
+- (ComItextpdfTextPdfBaseFont *)getFont;
+
+- (jfloat)getInkSpreading;
+
+- (jfloat)getN;
+
+- (jfloat)getSize;
+
+- (jint)getTextAlignment;
+
+- (jfloat)getX;
+
+- (jboolean)isChecksumText;
+
+- (jboolean)isExtended;
+
+- (jboolean)isGenerateChecksum;
+
+- (jboolean)isGuardBars;
+
+- (jboolean)isStartStopText;
+
+- (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
+                                                  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
+                                                  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
+
 - (void)setAltTextWithNSString:(NSString *)altText;
 
-- (instancetype)init;
+- (void)setBarHeightWithFloat:(jfloat)barHeight;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBarcode *)other;
+- (void)setBaselineWithFloat:(jfloat)baseline;
+
+- (void)setChecksumTextWithBoolean:(jboolean)checksumText;
+
+- (void)setCodeWithNSString:(NSString *)code;
+
+- (void)setCodeTypeWithInt:(jint)codeType;
+
+- (void)setExtendedWithBoolean:(jboolean)extended;
+
+- (void)setFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
+
+- (void)setGenerateChecksumWithBoolean:(jboolean)generateChecksum;
+
+- (void)setGuardBarsWithBoolean:(jboolean)guardBars;
+
+- (void)setInkSpreadingWithFloat:(jfloat)inkSpreading;
+
+- (void)setNWithFloat:(jfloat)n;
+
+- (void)setSizeWithFloat:(jfloat)size;
+
+- (void)setStartStopTextWithBoolean:(jboolean)startStopText;
+
+- (void)setTextAlignmentWithInt:(jint)textAlignment;
+
+- (void)setXWithFloat:(jfloat)x;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfBarcode_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfBarcode)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcode, font_, ComItextpdfTextPdfBaseFont *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcode, code_, NSString *)
@@ -161,5 +161,9 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode, CODE128_UCC, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode, CODE128_RAW, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode, CODABAR, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcode_init(ComItextpdfTextPdfBarcode *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcode)
 
 #endif // _ComItextpdfTextPdfBarcode_H_

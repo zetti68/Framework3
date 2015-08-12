@@ -6,34 +6,34 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCMapCidByte_H_
 #define _ComItextpdfTextPdfFontsCmapsCMapCidByte_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfString;
 @class IOSByteArray;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+@interface ComItextpdfTextPdfFontsCmapsCMapCidByte : ComItextpdfTextPdfFontsCmapsAbstractCMap
 
-@interface ComItextpdfTextPdfFontsCmapsCMapCidByte : ComItextpdfTextPdfFontsCmapsAbstractCMap {
- @public
-  JavaUtilHashMap *map_;
-  IOSByteArray *EMPTY_;
-}
+#pragma mark Public
+
+- (instancetype)init;
+
+- (IOSByteArray *)lookupWithInt:(jint)cid;
+
+#pragma mark Package-Private
 
 - (void)addCharWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)mark
                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)code;
 
-- (IOSByteArray *)lookupWithInt:(jint)cid;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsCmapsCMapCidByte *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCMapCidByte_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCMapCidByte)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCMapCidByte, map_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCMapCidByte, EMPTY_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapCidByte_init(ComItextpdfTextPdfFontsCmapsCMapCidByte *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapCidByte *new_ComItextpdfTextPdfFontsCmapsCMapCidByte_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCMapCidByte)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCMapCidByte_H_

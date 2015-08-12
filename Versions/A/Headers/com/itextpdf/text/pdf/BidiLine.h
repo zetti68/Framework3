@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfBidiLine_H_
 #define _ComItextpdfTextPdfBidiLine_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfIntHashtable;
 @class ComItextpdfTextPdfPdfChunk;
 @class ComItextpdfTextPdfPdfLine;
@@ -14,8 +16,6 @@
 @class IOSIntArray;
 @class IOSObjectArray;
 @class JavaUtilArrayList;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfBidiLine : NSObject {
  @public
@@ -43,15 +43,11 @@
   jint arabicOptions_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfBidiLine:(ComItextpdfTextPdfBidiLine *)org;
-
-- (jboolean)isEmpty;
-
-- (void)clearChunks;
-
-- (jboolean)getParagraphWithInt:(jint)runDirection;
 
 - (void)addChunkWithComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)chunk;
 
@@ -60,13 +56,33 @@
 - (void)addPieceWithChar:(jchar)c
 withComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)chunk;
 
-- (void)save;
+- (void)clearChunks;
 
-- (void)restore;
+- (JavaUtilArrayList *)createArrayOfPdfChunksWithInt:(jint)startIdx
+                                             withInt:(jint)endIdx;
 
-- (void)mirrorGlyphs;
+- (JavaUtilArrayList *)createArrayOfPdfChunksWithInt:(jint)startIdx
+                                             withInt:(jint)endIdx
+                      withComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)extraPdfChunk;
 
 - (void)doArabicShapping;
+
+- (void)flipWithInt:(jint)start
+            withInt:(jint)end;
+
+- (jboolean)getParagraphWithInt:(jint)runDirection;
+
+- (jfloat)getWidthWithInt:(jint)startIdx
+                  withInt:(jint)lastIdx;
+
+- (IOSIntArray *)getWordWithInt:(jint)startIdx
+                        withInt:(jint)idx;
+
+- (jboolean)isEmpty;
+
++ (jboolean)isWSWithChar:(jchar)c;
+
+- (void)mirrorGlyphs;
 
 - (ComItextpdfTextPdfPdfLine *)processLineWithFloat:(jfloat)leftX
                                           withFloat:(jfloat)width
@@ -77,48 +93,31 @@ withComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)chunk;
                                           withFloat:(jfloat)yLine
                                           withFloat:(jfloat)descender;
 
-- (jfloat)getWidthWithInt:(jint)startIdx
-                  withInt:(jint)lastIdx;
-
-- (JavaUtilArrayList *)createArrayOfPdfChunksWithInt:(jint)startIdx
-                                             withInt:(jint)endIdx;
-
-- (JavaUtilArrayList *)createArrayOfPdfChunksWithInt:(jint)startIdx
-                                             withInt:(jint)endIdx
-                      withComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)extraPdfChunk;
-
-- (IOSIntArray *)getWordWithInt:(jint)startIdx
-                        withInt:(jint)idx;
-
-- (jint)trimRightWithInt:(jint)startIdx
-                 withInt:(jint)endIdx;
-
-- (jint)trimLeftWithInt:(jint)startIdx
-                withInt:(jint)endIdx;
-
-- (jint)trimRightExWithInt:(jint)startIdx
-                   withInt:(jint)endIdx;
-
-- (jint)trimLeftExWithInt:(jint)startIdx
-                  withInt:(jint)endIdx;
-
-- (void)reorderWithInt:(jint)start
-               withInt:(jint)end;
-
-- (void)flipWithInt:(jint)start
-            withInt:(jint)end;
-
-+ (jboolean)isWSWithChar:(jchar)c;
-
 + (NSString *)processLTRWithNSString:(NSString *)s
                              withInt:(jint)runDirection
                              withInt:(jint)arabicOptions;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBidiLine *)other;
+- (void)reorderWithInt:(jint)start
+               withInt:(jint)end;
+
+- (void)restore;
+
+- (void)save;
+
+- (jint)trimLeftWithInt:(jint)startIdx
+                withInt:(jint)endIdx;
+
+- (jint)trimLeftExWithInt:(jint)startIdx
+                  withInt:(jint)endIdx;
+
+- (jint)trimRightWithInt:(jint)startIdx
+                 withInt:(jint)endIdx;
+
+- (jint)trimRightExWithInt:(jint)startIdx
+                   withInt:(jint)endIdx;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBidiLine_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBidiLine)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiLine, text_, IOSCharArray *)
@@ -133,5 +132,19 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiLine, storedIndexChars_, IOSIntArray *
 
 FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *ComItextpdfTextPdfBidiLine_mirrorChars_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiLine, mirrorChars_, ComItextpdfTextPdfIntHashtable *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBidiLine_init(ComItextpdfTextPdfBidiLine *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBidiLine *new_ComItextpdfTextPdfBidiLine_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBidiLine_initWithComItextpdfTextPdfBidiLine_(ComItextpdfTextPdfBidiLine *self, ComItextpdfTextPdfBidiLine *org);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBidiLine *new_ComItextpdfTextPdfBidiLine_initWithComItextpdfTextPdfBidiLine_(ComItextpdfTextPdfBidiLine *org) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfBidiLine_isWSWithChar_(jchar c);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBidiLine_processLTRWithNSString_withInt_withInt_(NSString *s, jint runDirection, jint arabicOptions);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBidiLine)
 
 #endif // _ComItextpdfTextPdfBidiLine_H_

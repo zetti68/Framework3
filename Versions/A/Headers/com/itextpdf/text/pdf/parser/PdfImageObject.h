@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfParserPdfImageObject_H_
 #define _ComItextpdfTextPdfParserPdfImageObject_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextPdfPRStream;
 @class ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum;
 @class ComItextpdfTextPdfPdfDictionary;
@@ -13,131 +16,94 @@
 @class ComItextpdfTextPdfPdfObject;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/FilterHandlers.h"
-#include "java/lang/Enum.h"
+@interface ComItextpdfTextPdfParserPdfImageObject : NSObject
 
-@interface ComItextpdfTextPdfParserPdfImageObject : NSObject {
- @public
-  ComItextpdfTextPdfPdfDictionary *dictionary_;
-  IOSByteArray *imageBytes_;
-  ComItextpdfTextPdfPdfDictionary *colorSpaceDic_;
-  jint pngColorType_;
-  jint pngBitDepth_;
-  jint width_;
-  jint height_;
-  jint bpc_;
-  IOSByteArray *palette_;
-  IOSByteArray *icc_;
-  jint stride_;
-  ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *streamContentType_;
-}
-
-- (NSString *)getFileType;
-
-- (ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)getImageBytesType;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream;
 
 - (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream
                withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
 
-- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dictionary
-                                          withByteArray:(IOSByteArray *)samples
-                    withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
-
 - (ComItextpdfTextPdfPdfObject *)getWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
 - (ComItextpdfTextPdfPdfDictionary *)getDictionary;
 
-- (void)findColorspaceWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)colorspace
-                                          withBoolean:(jboolean)allowIndexed;
-
-- (void)decodeImageBytes;
+- (NSString *)getFileType;
 
 - (IOSByteArray *)getImageAsBytes;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserPdfImageObject *)other;
+- (ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)getImageBytesType;
+
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dictionary
+                                          withByteArray:(IOSByteArray *)samples
+                    withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDic;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserPdfImageObject_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserPdfImageObject)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, dictionary_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, imageBytes_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, colorSpaceDic_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, palette_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, icc_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject, streamContentType_, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPRStream_(ComItextpdfTextPdfParserPdfImageObject *self, ComItextpdfTextPdfPRStream *stream);
 
-typedef enum {
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject *new_ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPRStream_(ComItextpdfTextPdfPRStream *stream) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserPdfImageObject *self, ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *colorSpaceDic);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject *new_ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *colorSpaceDic) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPdfDictionary_withByteArray_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserPdfImageObject *self, ComItextpdfTextPdfPdfDictionary *dictionary, IOSByteArray *samples, ComItextpdfTextPdfPdfDictionary *colorSpaceDic);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject *new_ComItextpdfTextPdfParserPdfImageObject_initWithComItextpdfTextPdfPdfDictionary_withByteArray_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *dictionary, IOSByteArray *samples, ComItextpdfTextPdfPdfDictionary *colorSpaceDic) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserPdfImageObject)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfParserPdfImageObject_ImageBytesType) {
   ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_PNG = 0,
   ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JPG = 1,
   ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JP2 = 2,
   ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_CCITT = 3,
   ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JBIG2 = 4,
-} ComItextpdfTextPdfParserPdfImageObject_ImageBytesType;
+};
 
-@interface ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum : JavaLangEnum < NSCopying > {
- @public
-  NSString *fileExtension_;
-}
+@interface ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)fileExtension
-                    withNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Public
 
 - (NSString *)getFileExtension;
+
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values();
 
 + (ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[];
 
 #define ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_PNG ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_PNG]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, PNG, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, PNG)
 
 #define ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_JPG ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JPG]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JPG, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JPG)
 
 #define ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_JP2 ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JP2]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JP2, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JP2)
 
 #define ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_CCITT ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_CCITT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, CCITT, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, CCITT)
 
 #define ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_JBIG2 ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum_values_[ComItextpdfTextPdfParserPdfImageObject_ImageBytesType_JBIG2]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JBIG2, ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, JBIG2)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum, fileExtension_, NSString *)
-
-@interface ComItextpdfTextPdfParserPdfImageObject_TrackingFilter : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
- @public
-  ComItextpdfTextPdfPdfName *lastFilterName_;
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserPdfImageObject_TrackingFilter *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserPdfImageObject_TrackingFilter_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserPdfImageObject_TrackingFilter, lastFilterName_, ComItextpdfTextPdfPdfName *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserPdfImageObject_ImageBytesTypeEnum)
 
 #endif // _ComItextpdfTextPdfParserPdfImageObject_H_

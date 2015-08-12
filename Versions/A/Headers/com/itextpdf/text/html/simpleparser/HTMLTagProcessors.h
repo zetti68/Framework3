@@ -6,23 +6,19 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_H_
 #define _ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_H_
 
-@class ComItextpdfTextHtmlSimpleparserHTMLWorker;
-@protocol JavaUtilMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/html/simpleparser/HTMLTagProcessor.h"
+#include "J2ObjC_header.h"
 #include "java/util/HashMap.h"
 
-#define ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_serialVersionUID -959260811961222824LL
+@protocol ComItextpdfTextHtmlSimpleparserHTMLTagProcessor;
 
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors : JavaUtilHashMap {
-}
+@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors : JavaUtilHashMap
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors)
 
 FOUNDATION_EXPORT id<ComItextpdfTextHtmlSimpleparserHTMLTagProcessor> ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_EM_STRONG_STRIKE_SUP_SUP_;
@@ -67,232 +63,10 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors, TD_
 FOUNDATION_EXPORT id<ComItextpdfTextHtmlSimpleparserHTMLTagProcessor> ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_IMG_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors, IMG_, id<ComItextpdfTextHtmlSimpleparserHTMLTagProcessor>)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_init(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors *self);
 
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$1 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserHTMLTagProcessors *new_ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_init() NS_RETURNS_RETAINED;
 
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (NSString *)mapTagWithNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$1_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$2 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$2_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$3 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$3_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$4 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$4_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$5 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$5_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$6 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$6_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$7 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$7_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$8 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$8_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$9 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$9_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$10 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$10_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$11 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$11_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$12 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$12_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$13 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$13_init() {}
-
-@interface ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$14 : NSObject < ComItextpdfTextHtmlSimpleparserHTMLTagProcessor > {
-}
-
-- (void)startElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                     withNSString:(NSString *)tag
-                                                  withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)endElementWithComItextpdfTextHtmlSimpleparserHTMLWorker:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)worker
-                                                   withNSString:(NSString *)tag;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_$14_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserHTMLTagProcessors)
 
 #endif // _ComItextpdfTextHtmlSimpleparserHTMLTagProcessors_H_

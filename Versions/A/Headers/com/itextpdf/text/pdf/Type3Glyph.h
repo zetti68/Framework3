@@ -6,31 +6,16 @@
 #ifndef _ComItextpdfTextPdfType3Glyph_H_
 #define _ComItextpdfTextPdfType3Glyph_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfContentByte.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfPageResources;
 @class ComItextpdfTextPdfPdfWriter;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfContentByte.h"
+@interface ComItextpdfTextPdfType3Glyph : ComItextpdfTextPdfPdfContentByte
 
-@interface ComItextpdfTextPdfType3Glyph : ComItextpdfTextPdfPdfContentByte {
- @public
-  ComItextpdfTextPdfPageResources *pageResources_;
-  jboolean colorized_;
-}
-
-- (instancetype)init;
-
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                withComItextpdfTextPdfPageResources:(ComItextpdfTextPdfPageResources *)pageResources
-                                          withFloat:(jfloat)wx
-                                          withFloat:(jfloat)llx
-                                          withFloat:(jfloat)lly
-                                          withFloat:(jfloat)urx
-                                          withFloat:(jfloat)ury
-                                        withBoolean:(jboolean)colorized;
-
-- (ComItextpdfTextPdfPageResources *)getPageResources;
+#pragma mark Public
 
 - (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                withFloat:(jfloat)a
@@ -43,12 +28,27 @@
 
 - (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfType3Glyph *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                withComItextpdfTextPdfPageResources:(ComItextpdfTextPdfPageResources *)pageResources
+                                          withFloat:(jfloat)wx
+                                          withFloat:(jfloat)llx
+                                          withFloat:(jfloat)lly
+                                          withFloat:(jfloat)urx
+                                          withFloat:(jfloat)ury
+                                        withBoolean:(jboolean)colorized;
+
+- (ComItextpdfTextPdfPageResources *)getPageResources;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfType3Glyph_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfType3Glyph)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfType3Glyph, pageResources_, ComItextpdfTextPdfPageResources *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfType3Glyph_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPageResources_withFloat_withFloat_withFloat_withFloat_withFloat_withBoolean_(ComItextpdfTextPdfType3Glyph *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPageResources *pageResources, jfloat wx, jfloat llx, jfloat lly, jfloat urx, jfloat ury, jboolean colorized);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfType3Glyph *new_ComItextpdfTextPdfType3Glyph_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextPdfPageResources_withFloat_withFloat_withFloat_withFloat_withFloat_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextPdfPageResources *pageResources, jfloat wx, jfloat llx, jfloat lly, jfloat urx, jfloat ury, jboolean colorized) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfType3Glyph)
 
 #endif // _ComItextpdfTextPdfType3Glyph_H_

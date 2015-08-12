@@ -6,36 +6,44 @@
 #ifndef _ComItextpdfTextChapterAutoNumber_H_
 #define _ComItextpdfTextChapterAutoNumber_H_
 
-@class ComItextpdfTextParagraph;
-@class ComItextpdfTextSection;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Chapter.h"
 
-#define ComItextpdfTextChapterAutoNumber_serialVersionUID -9217457637987854167LL
+@class ComItextpdfTextParagraph;
+@class ComItextpdfTextSection;
 
 @interface ComItextpdfTextChapterAutoNumber : ComItextpdfTextChapter {
  @public
   jboolean numberSet_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)para;
 
 - (instancetype)initWithNSString:(NSString *)title;
 
-- (ComItextpdfTextSection *)addSectionWithNSString:(NSString *)title;
-
 - (ComItextpdfTextSection *)addSectionWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+
+- (ComItextpdfTextSection *)addSectionWithNSString:(NSString *)title;
 
 - (jint)setAutomaticNumberWithInt:(jint)number;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextChapterAutoNumber *)other;
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextChapterAutoNumber_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextChapterAutoNumber)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextChapterAutoNumber, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextChapterAutoNumber_initWithComItextpdfTextParagraph_(ComItextpdfTextChapterAutoNumber *self, ComItextpdfTextParagraph *para);
+
+FOUNDATION_EXPORT ComItextpdfTextChapterAutoNumber *new_ComItextpdfTextChapterAutoNumber_initWithComItextpdfTextParagraph_(ComItextpdfTextParagraph *para) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChapterAutoNumber_initWithNSString_(ComItextpdfTextChapterAutoNumber *self, NSString *title);
+
+FOUNDATION_EXPORT ComItextpdfTextChapterAutoNumber *new_ComItextpdfTextChapterAutoNumber_initWithNSString_(NSString *title) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextChapterAutoNumber)
 
 #endif // _ComItextpdfTextChapterAutoNumber_H_

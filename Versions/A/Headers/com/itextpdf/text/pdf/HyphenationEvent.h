@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfHyphenationEvent_H_
 #define _ComItextpdfTextPdfHyphenationEvent_H_
 
-@class ComItextpdfTextPdfBaseFont;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfBaseFont;
 
 @protocol ComItextpdfTextPdfHyphenationEvent < NSObject, JavaObject >
 
@@ -23,6 +23,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationEvent_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationEvent)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationEvent)
 
 #endif // _ComItextpdfTextPdfHyphenationEvent_H_

@@ -6,18 +6,17 @@
 #ifndef _ComItextpdfTextPdfVerticalText_H_
 #define _ComItextpdfTextPdfVerticalText_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextPdfPdfChunk;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfLine;
 @class ComItextpdfTextPhrase;
-@class JavaLangFloat;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfVerticalText_NO_MORE_COLUMN 2
 #define ComItextpdfTextPdfVerticalText_NO_MORE_TEXT 1
+#define ComItextpdfTextPdfVerticalText_NO_MORE_COLUMN 2
 
 @interface ComItextpdfTextPdfVerticalText : NSObject {
  @public
@@ -32,14 +31,42 @@
   jfloat startY_;
   jint maxLines_;
   jfloat height_;
-  JavaLangFloat *curCharSpace_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)text;
 
+- (void)addTextWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
+
 - (void)addTextWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (void)addTextWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
+- (jint)getAlignment;
+
+- (jfloat)getHeight;
+
+- (jfloat)getLeading;
+
+- (jint)getMaxLines;
+
+- (jfloat)getOriginX;
+
+- (jfloat)getOriginY;
+
+- (jint)go;
+
+- (jint)goWithBoolean:(jboolean)simulate;
+
+- (void)setAlignmentWithInt:(jint)alignment;
+
+- (void)setHeightWithFloat:(jfloat)height;
+
+- (void)setLeadingWithFloat:(jfloat)leading;
+
+- (void)setMaxLinesWithInt:(jint)maxLines;
+
+- (void)setOriginWithFloat:(jfloat)startX
+                 withFloat:(jfloat)startY;
 
 - (void)setVerticalLayoutWithFloat:(jfloat)startX
                          withFloat:(jfloat)startY
@@ -47,55 +74,35 @@
                            withInt:(jint)maxLines
                          withFloat:(jfloat)leading;
 
-- (void)setLeadingWithFloat:(jfloat)leading;
-
-- (jfloat)getLeading;
+#pragma mark Protected
 
 - (ComItextpdfTextPdfPdfLine *)createLineWithFloat:(jfloat)width;
 
 - (void)shortenChunkArray;
 
-- (jint)go;
-
-- (jint)goWithBoolean:(jboolean)simulate;
+#pragma mark Package-Private
 
 - (void)writeLineWithComItextpdfTextPdfPdfLine:(ComItextpdfTextPdfPdfLine *)line
           withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)text
           withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)graphics;
 
-- (void)setOriginWithFloat:(jfloat)startX
-                 withFloat:(jfloat)startY;
-
-- (jfloat)getOriginX;
-
-- (jfloat)getOriginY;
-
-- (jint)getMaxLines;
-
-- (void)setMaxLinesWithInt:(jint)maxLines;
-
-- (jfloat)getHeight;
-
-- (void)setHeightWithFloat:(jfloat)height;
-
-- (void)setAlignmentWithInt:(jint)alignment;
-
-- (jint)getAlignment;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfVerticalText *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfVerticalText_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfVerticalText)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfVerticalText, chunks_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfVerticalText, text_, ComItextpdfTextPdfPdfContentByte *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfVerticalText, currentStandbyChunk_, ComItextpdfTextPdfPdfChunk *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfVerticalText, splittedChunkText_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfVerticalText, curCharSpace_, JavaLangFloat *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfVerticalText, NO_MORE_TEXT, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfVerticalText, NO_MORE_COLUMN, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfVerticalText_initWithComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfVerticalText *self, ComItextpdfTextPdfPdfContentByte *text);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfVerticalText *new_ComItextpdfTextPdfVerticalText_initWithComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfPdfContentByte *text) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfVerticalText)
 
 #endif // _ComItextpdfTextPdfVerticalText_H_

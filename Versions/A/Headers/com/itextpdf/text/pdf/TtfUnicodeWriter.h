@@ -6,18 +6,20 @@
 #ifndef _ComItextpdfTextPdfTtfUnicodeWriter_H_
 #define _ComItextpdfTextPdfTtfUnicodeWriter_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
 @class ComItextpdfTextPdfTrueTypeFontUnicode;
 @class IOSByteArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfTtfUnicodeWriter : NSObject {
  @public
   ComItextpdfTextPdfPdfWriter *writer_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
@@ -26,12 +28,16 @@
                                          withNSObjectArray:(IOSObjectArray *)params
                                              withByteArray:(IOSByteArray *)rotbits;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTtfUnicodeWriter *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfTtfUnicodeWriter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfTtfUnicodeWriter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTtfUnicodeWriter, writer_, ComItextpdfTextPdfPdfWriter *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTtfUnicodeWriter_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfTtfUnicodeWriter *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTtfUnicodeWriter *new_ComItextpdfTextPdfTtfUnicodeWriter_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTtfUnicodeWriter)
 
 #endif // _ComItextpdfTextPdfTtfUnicodeWriter_H_

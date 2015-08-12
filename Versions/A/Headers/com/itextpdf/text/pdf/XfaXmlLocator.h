@@ -6,40 +6,38 @@
 #ifndef _ComItextpdfTextPdfXfaXmlLocator_H_
 #define _ComItextpdfTextPdfXfaXmlLocator_H_
 
-@class ComItextpdfTextPdfPdfStamper;
-@class ComItextpdfTextPdfXfaForm;
-@protocol OrgW3cDomDocument;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/security/XmlLocator.h"
 
-@interface ComItextpdfTextPdfXfaXmlLocator : NSObject < ComItextpdfTextPdfSecurityXmlLocator > {
- @public
-  ComItextpdfTextPdfPdfStamper *stamper_;
-  ComItextpdfTextPdfXfaForm *xfaForm_;
-  NSString *encoding_;
-}
+@class ComItextpdfTextPdfPdfStamper;
+@protocol OrgW3cDomDocument;
+
+@interface ComItextpdfTextPdfXfaXmlLocator : NSObject < ComItextpdfTextPdfSecurityXmlLocator >
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfStamper:(ComItextpdfTextPdfPdfStamper *)stamper;
 
-- (void)createXfaForm;
-
 - (id<OrgW3cDomDocument>)getDocument;
-
-- (void)setDocumentWithOrgW3cDomDocument:(id<OrgW3cDomDocument>)document;
 
 - (NSString *)getEncoding;
 
+- (void)setDocumentWithOrgW3cDomDocument:(id<OrgW3cDomDocument>)document;
+
 - (void)setEncodingWithNSString:(NSString *)encoding;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaXmlLocator *)other;
+#pragma mark Protected
+
+- (void)createXfaForm;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaXmlLocator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaXmlLocator)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXmlLocator, stamper_, ComItextpdfTextPdfPdfStamper *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXmlLocator, xfaForm_, ComItextpdfTextPdfXfaForm *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXmlLocator, encoding_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaXmlLocator_initWithComItextpdfTextPdfPdfStamper_(ComItextpdfTextPdfXfaXmlLocator *self, ComItextpdfTextPdfPdfStamper *stamper);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaXmlLocator *new_ComItextpdfTextPdfXfaXmlLocator_initWithComItextpdfTextPdfPdfStamper_(ComItextpdfTextPdfPdfStamper *stamper) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaXmlLocator)
 
 #endif // _ComItextpdfTextPdfXfaXmlLocator_H_

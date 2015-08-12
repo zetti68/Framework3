@@ -6,16 +6,18 @@
 #ifndef _ComItextpdfTextZapfDingbatsList_H_
 #define _ComItextpdfTextZapfDingbatsList_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/List.h"
+
 @class ComItextpdfTextBaseColor;
 @protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/List.h"
 
 @interface ComItextpdfTextZapfDingbatsList : ComItextpdfTextList {
  @public
   jint zn_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)zn;
 
@@ -26,18 +28,30 @@
                     withInt:(jint)symbolIndent
 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)zapfDingbatColor;
 
-- (void)setDingbatColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)zapfDingbatColor;
-
-- (void)setCharNumberWithInt:(jint)zn;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 - (jint)getCharNumber;
 
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
+- (void)setCharNumberWithInt:(jint)zn;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextZapfDingbatsList *)other;
+- (void)setDingbatColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)zapfDingbatColor;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextZapfDingbatsList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextZapfDingbatsList)
+
+FOUNDATION_EXPORT void ComItextpdfTextZapfDingbatsList_initWithInt_(ComItextpdfTextZapfDingbatsList *self, jint zn);
+
+FOUNDATION_EXPORT ComItextpdfTextZapfDingbatsList *new_ComItextpdfTextZapfDingbatsList_initWithInt_(jint zn) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextZapfDingbatsList_initWithInt_withInt_(ComItextpdfTextZapfDingbatsList *self, jint zn, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextZapfDingbatsList *new_ComItextpdfTextZapfDingbatsList_initWithInt_withInt_(jint zn, jint symbolIndent) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextZapfDingbatsList_initWithInt_withInt_withComItextpdfTextBaseColor_(ComItextpdfTextZapfDingbatsList *self, jint zn, jint symbolIndent, ComItextpdfTextBaseColor *zapfDingbatColor);
+
+FOUNDATION_EXPORT ComItextpdfTextZapfDingbatsList *new_ComItextpdfTextZapfDingbatsList_initWithInt_withInt_withComItextpdfTextBaseColor_(jint zn, jint symbolIndent, ComItextpdfTextBaseColor *zapfDingbatColor) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextZapfDingbatsList)
 
 #endif // _ComItextpdfTextZapfDingbatsList_H_

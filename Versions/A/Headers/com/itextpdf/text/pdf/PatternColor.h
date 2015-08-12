@@ -6,34 +6,36 @@
 #ifndef _ComItextpdfTextPdfPatternColor_H_
 #define _ComItextpdfTextPdfPatternColor_H_
 
-@class ComItextpdfTextPdfPdfPatternPainter;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/ExtendedColor.h"
 
-#define ComItextpdfTextPdfPatternColor_serialVersionUID -1185448552860615964LL
+@class ComItextpdfTextPdfPdfPatternPainter;
 
 @interface ComItextpdfTextPdfPatternColor : ComItextpdfTextPdfExtendedColor {
  @public
   ComItextpdfTextPdfPdfPatternPainter *painter_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)painter;
+#pragma mark Public
 
-- (ComItextpdfTextPdfPdfPatternPainter *)getPainter;
+- (instancetype)initWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)painter;
 
 - (jboolean)isEqual:(id)obj;
 
-- (NSUInteger)hash;
+- (ComItextpdfTextPdfPdfPatternPainter *)getPainter;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPatternColor *)other;
+- (NSUInteger)hash;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPatternColor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPatternColor)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPatternColor, painter_, ComItextpdfTextPdfPdfPatternPainter *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPatternColor, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPatternColor_initWithComItextpdfTextPdfPdfPatternPainter_(ComItextpdfTextPdfPatternColor *self, ComItextpdfTextPdfPdfPatternPainter *painter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPatternColor *new_ComItextpdfTextPdfPatternColor_initWithComItextpdfTextPdfPdfPatternPainter_(ComItextpdfTextPdfPdfPatternPainter *painter) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPatternColor)
 
 #endif // _ComItextpdfTextPdfPatternColor_H_

@@ -6,27 +6,38 @@
 #ifndef _ComItextpdfTextPdfPdfEFStream_H_
 #define _ComItextpdfTextPdfPdfEFStream_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfStream.h"
+
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfStream.h"
+@interface ComItextpdfTextPdfPdfEFStream : ComItextpdfTextPdfPdfStream
 
-@interface ComItextpdfTextPdfPdfEFStream : ComItextpdfTextPdfPdfStream {
-}
+#pragma mark Public
+
+- (instancetype)initWithByteArray:(IOSByteArray *)fileStore;
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inArg
           withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (instancetype)initWithByteArray:(IOSByteArray *)fileStore;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfEFStream_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfEFStream)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEFStream_initWithJavaIoInputStream_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfEFStream *self, JavaIoInputStream *inArg, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfEFStream *new_ComItextpdfTextPdfPdfEFStream_initWithJavaIoInputStream_withComItextpdfTextPdfPdfWriter_(JavaIoInputStream *inArg, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEFStream_initWithByteArray_(ComItextpdfTextPdfPdfEFStream *self, IOSByteArray *fileStore);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfEFStream *new_ComItextpdfTextPdfPdfEFStream_initWithByteArray_(IOSByteArray *fileStore) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfEFStream)
 
 #endif // _ComItextpdfTextPdfPdfEFStream_H_

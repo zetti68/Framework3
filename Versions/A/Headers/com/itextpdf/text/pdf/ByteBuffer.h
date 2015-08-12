@@ -6,13 +6,10 @@
 #ifndef _ComItextpdfTextPdfByteBuffer_H_
 #define _ComItextpdfTextPdfByteBuffer_H_
 
-@class IOSByteArray;
-@class IOSCharArray;
-@class IOSObjectArray;
-@class JavaTextDecimalFormatSymbols;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/OutputStream.h"
+
+@class IOSByteArray;
 
 #define ComItextpdfTextPdfByteBuffer_ZERO 48
 
@@ -22,99 +19,97 @@
   IOSByteArray *buf_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)size;
 
-+ (void)setCacheSizeWithInt:(jint)size;
+- (ComItextpdfTextPdfByteBuffer *)appendWithByte:(jbyte)b;
 
-+ (void)fillCacheWithInt:(jint)decimals;
-
-+ (IOSByteArray *)convertToBytesWithInt:(jint)i;
-
-- (ComItextpdfTextPdfByteBuffer *)append_iWithInt:(jint)b;
+- (ComItextpdfTextPdfByteBuffer *)appendWithByteArray:(IOSByteArray *)b;
 
 - (ComItextpdfTextPdfByteBuffer *)appendWithByteArray:(IOSByteArray *)b
                                               withInt:(jint)off
                                               withInt:(jint)len;
 
-- (ComItextpdfTextPdfByteBuffer *)appendWithByteArray:(IOSByteArray *)b;
-
-- (ComItextpdfTextPdfByteBuffer *)appendWithNSString:(NSString *)str;
+- (ComItextpdfTextPdfByteBuffer *)appendWithComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)buf;
 
 - (ComItextpdfTextPdfByteBuffer *)appendWithChar:(jchar)c;
 
-- (ComItextpdfTextPdfByteBuffer *)appendWithComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)buf;
+- (ComItextpdfTextPdfByteBuffer *)appendWithDouble:(jdouble)d;
+
+- (ComItextpdfTextPdfByteBuffer *)appendWithFloat:(jfloat)i;
 
 - (ComItextpdfTextPdfByteBuffer *)appendWithInt:(jint)i;
 
 - (ComItextpdfTextPdfByteBuffer *)appendWithLong:(jlong)i;
 
-- (ComItextpdfTextPdfByteBuffer *)appendWithByte:(jbyte)b;
+- (ComItextpdfTextPdfByteBuffer *)appendWithNSString:(NSString *)str;
+
+- (ComItextpdfTextPdfByteBuffer *)append_iWithInt:(jint)b;
 
 - (ComItextpdfTextPdfByteBuffer *)appendHexWithByte:(jbyte)b;
 
-- (ComItextpdfTextPdfByteBuffer *)appendWithFloat:(jfloat)i;
-
-- (ComItextpdfTextPdfByteBuffer *)appendWithDouble:(jdouble)d;
++ (void)fillCacheWithInt:(jint)decimals;
 
 + (NSString *)formatDoubleWithDouble:(jdouble)d;
 
 + (NSString *)formatDoubleWithDouble:(jdouble)d
     withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)buf;
 
+- (IOSByteArray *)getBuffer;
+
 - (void)reset;
 
-- (IOSByteArray *)toByteArray;
++ (void)setCacheSizeWithInt:(jint)size;
+
+- (void)setSizeWithInt:(jint)size;
 
 - (jint)size;
 
-- (void)setSizeWithInt:(jint)size;
+- (IOSByteArray *)toByteArray;
 
 - (NSString *)description;
 
 - (NSString *)toStringWithNSString:(NSString *)enc;
 
-- (void)writeToWithJavaIoOutputStream:(JavaIoOutputStream *)outArg;
-
-- (void)writeWithInt:(jint)b;
-
 - (void)writeWithByteArray:(IOSByteArray *)b
                    withInt:(jint)off
                    withInt:(jint)len;
 
-- (IOSByteArray *)getBuffer;
+- (void)writeWithInt:(jint)b;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfByteBuffer *)other;
+- (void)writeToWithJavaIoOutputStream:(JavaIoOutputStream *)outArg;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfByteBuffer_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfByteBuffer)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfByteBuffer, buf_, IOSByteArray *)
 
-FOUNDATION_EXPORT jint ComItextpdfTextPdfByteBuffer_byteCacheSize_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, byteCacheSize_, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextPdfByteBuffer, byteCacheSize_, jint)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfByteBuffer_byteCache_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, byteCache_, IOSObjectArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfByteBuffer, byteCache_, IOSObjectArray *)
-
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, ZERO, jbyte)
-
-FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfByteBuffer_chars_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, chars_, IOSCharArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfByteBuffer_bytes_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, bytes_, IOSByteArray *)
 
 FOUNDATION_EXPORT jboolean ComItextpdfTextPdfByteBuffer_HIGH_PRECISION_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, HIGH_PRECISION_, jboolean)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextPdfByteBuffer, HIGH_PRECISION_, jboolean)
 
-FOUNDATION_EXPORT JavaTextDecimalFormatSymbols *ComItextpdfTextPdfByteBuffer_dfs_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfByteBuffer, dfs_, JavaTextDecimalFormatSymbols *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfByteBuffer_init(ComItextpdfTextPdfByteBuffer *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfByteBuffer *new_ComItextpdfTextPdfByteBuffer_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfByteBuffer_initWithInt_(ComItextpdfTextPdfByteBuffer *self, jint size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfByteBuffer *new_ComItextpdfTextPdfByteBuffer_initWithInt_(jint size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfByteBuffer_setCacheSizeWithInt_(jint size);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfByteBuffer_fillCacheWithInt_(jint decimals);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfByteBuffer_formatDoubleWithDouble_(jdouble d);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfByteBuffer_formatDoubleWithDouble_withComItextpdfTextPdfByteBuffer_(jdouble d, ComItextpdfTextPdfByteBuffer *buf);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfByteBuffer)
 
 #endif // _ComItextpdfTextPdfByteBuffer_H_

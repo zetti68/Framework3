@@ -6,25 +6,25 @@
 #ifndef _ComItextpdfXmpImplXpathXMPPath_H_
 #define _ComItextpdfXmpImplXpathXMPPath_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpImplXpathXMPPathSegment;
-@protocol JavaUtilList;
 
-#import "JreEmulation.h"
-
+#define ComItextpdfXmpImplXpathXMPPath_STRUCT_FIELD_STEP 1
+#define ComItextpdfXmpImplXpathXMPPath_QUALIFIER_STEP 2
 #define ComItextpdfXmpImplXpathXMPPath_ARRAY_INDEX_STEP 3
 #define ComItextpdfXmpImplXpathXMPPath_ARRAY_LAST_STEP 4
-#define ComItextpdfXmpImplXpathXMPPath_FIELD_SELECTOR_STEP 6
-#define ComItextpdfXmpImplXpathXMPPath_QUALIFIER_STEP 2
 #define ComItextpdfXmpImplXpathXMPPath_QUAL_SELECTOR_STEP 5
+#define ComItextpdfXmpImplXpathXMPPath_FIELD_SELECTOR_STEP 6
 #define ComItextpdfXmpImplXpathXMPPath_SCHEMA_NODE ((jint) 0x80000000)
-#define ComItextpdfXmpImplXpathXMPPath_STEP_ROOT_PROP 1
 #define ComItextpdfXmpImplXpathXMPPath_STEP_SCHEMA 0
-#define ComItextpdfXmpImplXpathXMPPath_STRUCT_FIELD_STEP 1
+#define ComItextpdfXmpImplXpathXMPPath_STEP_ROOT_PROP 1
 
-@interface ComItextpdfXmpImplXpathXMPPath : NSObject {
- @public
-  id<JavaUtilList> segments_;
-}
+@interface ComItextpdfXmpImplXpathXMPPath : NSObject
+
+#pragma mark Public
+
+- (instancetype)init;
 
 - (void)addWithComItextpdfXmpImplXpathXMPPathSegment:(ComItextpdfXmpImplXpathXMPPathSegment *)segment;
 
@@ -34,15 +34,9 @@
 
 - (NSString *)description;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXpathXMPPath *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXpathXMPPath_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXpathXMPPath, segments_, id<JavaUtilList>)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXpathXMPPath)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXpathXMPPath, STRUCT_FIELD_STEP, jint)
 
@@ -61,5 +55,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXpathXMPPath, SCHEMA_NODE, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXpathXMPPath, STEP_SCHEMA, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXpathXMPPath, STEP_ROOT_PROP, jint)
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXpathXMPPath_init(ComItextpdfXmpImplXpathXMPPath *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXpathXMPPath *new_ComItextpdfXmpImplXpathXMPPath_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXpathXMPPath)
 
 #endif // _ComItextpdfXmpImplXpathXMPPath_H_

@@ -6,63 +6,71 @@
 #ifndef _ComItextpdfTextPdfXfdfReader_H_
 #define _ComItextpdfTextPdfXfdfReader_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaUtilHashMap;
-@class JavaUtilStack;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
-
 @interface ComItextpdfTextPdfXfdfReader : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler > {
  @public
-  jboolean foundRoot_;
-  JavaUtilStack *fieldNames_;
-  JavaUtilStack *fieldValues_;
   JavaUtilHashMap *fields_;
   JavaUtilHashMap *listFields_;
   NSString *fileSpec_;
 }
 
-- (instancetype)initWithNSString:(NSString *)filename;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)xfdfIn;
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is;
 
-- (JavaUtilHashMap *)getFields;
+- (instancetype)initWithNSString:(NSString *)filename;
+
+- (void)endDocument;
+
+- (void)endElementWithNSString:(NSString *)tag;
 
 - (NSString *)getFieldWithNSString:(NSString *)name;
 
+- (JavaUtilHashMap *)getFields;
+
 - (NSString *)getFieldValueWithNSString:(NSString *)name;
+
+- (NSString *)getFileSpec;
 
 - (id<JavaUtilList>)getListValuesWithNSString:(NSString *)name;
 
-- (NSString *)getFileSpec;
+- (void)startDocument;
 
 - (void)startElementWithNSString:(NSString *)tag
                  withJavaUtilMap:(id<JavaUtilMap>)h;
 
-- (void)endElementWithNSString:(NSString *)tag;
-
-- (void)startDocument;
-
-- (void)endDocument;
-
 - (void)textWithNSString:(NSString *)str;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfdfReader *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfdfReader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfdfReader)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfdfReader, fieldNames_, JavaUtilStack *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfdfReader, fieldValues_, JavaUtilStack *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfdfReader, fields_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfdfReader, listFields_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfdfReader, fileSpec_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfdfReader_initWithNSString_(ComItextpdfTextPdfXfdfReader *self, NSString *filename);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfdfReader *new_ComItextpdfTextPdfXfdfReader_initWithNSString_(NSString *filename) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfdfReader_initWithByteArray_(ComItextpdfTextPdfXfdfReader *self, IOSByteArray *xfdfIn);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfdfReader *new_ComItextpdfTextPdfXfdfReader_initWithByteArray_(IOSByteArray *xfdfIn) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfdfReader_initWithJavaIoInputStream_(ComItextpdfTextPdfXfdfReader *self, JavaIoInputStream *is);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfdfReader *new_ComItextpdfTextPdfXfdfReader_initWithJavaIoInputStream_(JavaIoInputStream *is) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfdfReader)
 
 #endif // _ComItextpdfTextPdfXfdfReader_H_

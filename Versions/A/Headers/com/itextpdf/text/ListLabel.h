@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextListLabel_H_
 #define _ComItextpdfTextListLabel_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/ListBody.h"
+
 @class ComItextpdfTextListItem;
 @class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/ListBody.h"
 
 @interface ComItextpdfTextListLabel : ComItextpdfTextListBody {
  @public
@@ -18,28 +18,36 @@
   jfloat indentation_;
 }
 
-- (instancetype)initWithComItextpdfTextListItem:(ComItextpdfTextListItem *)parentItem;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
-
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+#pragma mark Public
 
 - (jfloat)getIndentation;
 
-- (void)setIndentationWithFloat:(jfloat)indentation;
+- (ComItextpdfTextPdfPdfName *)getRole;
 
 - (jboolean)getTagLabelContent;
 
-- (void)setTagLabelContentWithBoolean:(jboolean)tagLabelContent;
-
 - (jboolean)isInline;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextListLabel *)other;
+- (void)setIndentationWithFloat:(jfloat)indentation;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setTagLabelContentWithBoolean:(jboolean)tagLabelContent;
+
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextListItem:(ComItextpdfTextListItem *)parentItem;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextListLabel_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextListLabel)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextListLabel, role_ListLabel_, ComItextpdfTextPdfPdfName *)
+
+FOUNDATION_EXPORT void ComItextpdfTextListLabel_initWithComItextpdfTextListItem_(ComItextpdfTextListLabel *self, ComItextpdfTextListItem *parentItem);
+
+FOUNDATION_EXPORT ComItextpdfTextListLabel *new_ComItextpdfTextListLabel_initWithComItextpdfTextListItem_(ComItextpdfTextListItem *parentItem) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextListLabel)
 
 #endif // _ComItextpdfTextListLabel_H_

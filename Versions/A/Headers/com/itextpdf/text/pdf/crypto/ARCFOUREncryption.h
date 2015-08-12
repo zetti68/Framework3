@@ -6,24 +6,24 @@
 #ifndef _ComItextpdfTextPdfCryptoARCFOUREncryption_H_
 #define _ComItextpdfTextPdfCryptoARCFOUREncryption_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCryptoARCFOUREncryption : NSObject
 
-@interface ComItextpdfTextPdfCryptoARCFOUREncryption : NSObject {
- @public
-  IOSByteArray *state_;
-  jint x_;
-  jint y_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)prepareARCFOURKeyWithByteArray:(IOSByteArray *)key;
+- (void)encryptARCFOURWithByteArray:(IOSByteArray *)data;
 
-- (void)prepareARCFOURKeyWithByteArray:(IOSByteArray *)key
-                               withInt:(jint)off
-                               withInt:(jint)len;
+- (void)encryptARCFOURWithByteArray:(IOSByteArray *)dataIn
+                      withByteArray:(IOSByteArray *)dataOut;
+
+- (void)encryptARCFOURWithByteArray:(IOSByteArray *)data
+                            withInt:(jint)off
+                            withInt:(jint)len;
 
 - (void)encryptARCFOURWithByteArray:(IOSByteArray *)dataIn
                             withInt:(jint)off
@@ -31,21 +31,20 @@
                       withByteArray:(IOSByteArray *)dataOut
                             withInt:(jint)offOut;
 
-- (void)encryptARCFOURWithByteArray:(IOSByteArray *)data
-                            withInt:(jint)off
-                            withInt:(jint)len;
+- (void)prepareARCFOURKeyWithByteArray:(IOSByteArray *)key;
 
-- (void)encryptARCFOURWithByteArray:(IOSByteArray *)dataIn
-                      withByteArray:(IOSByteArray *)dataOut;
-
-- (void)encryptARCFOURWithByteArray:(IOSByteArray *)data;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCryptoARCFOUREncryption *)other;
+- (void)prepareARCFOURKeyWithByteArray:(IOSByteArray *)key
+                               withInt:(jint)off
+                               withInt:(jint)len;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCryptoARCFOUREncryption_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCryptoARCFOUREncryption)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCryptoARCFOUREncryption, state_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCryptoARCFOUREncryption_init(ComItextpdfTextPdfCryptoARCFOUREncryption *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCryptoARCFOUREncryption *new_ComItextpdfTextPdfCryptoARCFOUREncryption_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCryptoARCFOUREncryption)
 
 #endif // _ComItextpdfTextPdfCryptoARCFOUREncryption_H_

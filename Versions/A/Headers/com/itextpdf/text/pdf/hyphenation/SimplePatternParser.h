@@ -6,20 +6,20 @@
 #ifndef _ComItextpdfTextPdfHyphenationSimplePatternParser_H_
 #define _ComItextpdfTextPdfHyphenationSimplePatternParser_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/hyphenation/PatternConsumer.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class ComItextpdfTextXmlSimpleparserSimpleXMLParser;
 @class JavaIoInputStream;
 @class JavaLangStringBuffer;
 @class JavaUtilArrayList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/hyphenation/PatternConsumer.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
-
 #define ComItextpdfTextPdfHyphenationSimplePatternParser_ELEM_CLASSES 1
 #define ComItextpdfTextPdfHyphenationSimplePatternParser_ELEM_EXCEPTIONS 2
-#define ComItextpdfTextPdfHyphenationSimplePatternParser_ELEM_HYPHEN 4
 #define ComItextpdfTextPdfHyphenationSimplePatternParser_ELEM_PATTERNS 3
+#define ComItextpdfTextPdfHyphenationSimplePatternParser_ELEM_HYPHEN 4
 
 @interface ComItextpdfTextPdfHyphenationSimplePatternParser : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler, ComItextpdfTextPdfHyphenationPatternConsumer > {
  @public
@@ -31,29 +31,9 @@
   ComItextpdfTextXmlSimpleparserSimpleXMLParser *parser_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (void)parseWithJavaIoInputStream:(JavaIoInputStream *)stream
-withComItextpdfTextPdfHyphenationPatternConsumer:(id<ComItextpdfTextPdfHyphenationPatternConsumer>)consumer;
-
-+ (NSString *)getPatternWithNSString:(NSString *)word;
-
-- (JavaUtilArrayList *)normalizeExceptionWithJavaUtilArrayList:(JavaUtilArrayList *)ex;
-
-- (NSString *)getExceptionWordWithJavaUtilArrayList:(JavaUtilArrayList *)ex;
-
-+ (NSString *)getInterletterValuesWithNSString:(NSString *)pat;
-
-- (void)endDocument;
-
-- (void)endElementWithNSString:(NSString *)tag;
-
-- (void)startDocument;
-
-- (void)startElementWithNSString:(NSString *)tag
-                 withJavaUtilMap:(id<JavaUtilMap>)h;
-
-- (void)textWithNSString:(NSString *)str;
 
 - (void)addClassWithNSString:(NSString *)c;
 
@@ -63,11 +43,33 @@ withComItextpdfTextPdfHyphenationPatternConsumer:(id<ComItextpdfTextPdfHyphenati
 - (void)addPatternWithNSString:(NSString *)p
                   withNSString:(NSString *)v;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationSimplePatternParser *)other;
+- (void)endDocument;
+
+- (void)endElementWithNSString:(NSString *)tag;
+
+- (void)parseWithJavaIoInputStream:(JavaIoInputStream *)stream
+withComItextpdfTextPdfHyphenationPatternConsumer:(id<ComItextpdfTextPdfHyphenationPatternConsumer>)consumer;
+
+- (void)startDocument;
+
+- (void)startElementWithNSString:(NSString *)tag
+                 withJavaUtilMap:(id<JavaUtilMap>)h;
+
+- (void)textWithNSString:(NSString *)str;
+
+#pragma mark Protected
+
+- (NSString *)getExceptionWordWithJavaUtilArrayList:(JavaUtilArrayList *)ex;
+
++ (NSString *)getInterletterValuesWithNSString:(NSString *)pat;
+
++ (NSString *)getPatternWithNSString:(NSString *)word;
+
+- (JavaUtilArrayList *)normalizeExceptionWithJavaUtilArrayList:(JavaUtilArrayList *)ex;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationSimplePatternParser_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationSimplePatternParser)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationSimplePatternParser, consumer_, id<ComItextpdfTextPdfHyphenationPatternConsumer>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationSimplePatternParser, token_, JavaLangStringBuffer *)
@@ -81,5 +83,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationSimplePatternParser, ELE
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationSimplePatternParser, ELEM_PATTERNS, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationSimplePatternParser, ELEM_HYPHEN, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationSimplePatternParser_init(ComItextpdfTextPdfHyphenationSimplePatternParser *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationSimplePatternParser *new_ComItextpdfTextPdfHyphenationSimplePatternParser_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfHyphenationSimplePatternParser_getPatternWithNSString_(NSString *word);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfHyphenationSimplePatternParser_getInterletterValuesWithNSString_(NSString *pat);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationSimplePatternParser)
 
 #endif // _ComItextpdfTextPdfHyphenationSimplePatternParser_H_

@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextDocWriter_H_
 #define _ComItextpdfTextDocWriter_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/DocListener.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfOutputStreamCounter;
 @class ComItextpdfTextRectangle;
@@ -14,17 +17,14 @@
 @class JavaUtilProperties;
 @protocol ComItextpdfTextElement;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/DocListener.h"
-
-#define ComItextpdfTextDocWriter_EQUALS 61
-#define ComItextpdfTextDocWriter_FORWARD 47
-#define ComItextpdfTextDocWriter_GT 62
-#define ComItextpdfTextDocWriter_LT 60
 #define ComItextpdfTextDocWriter_NEWLINE 10
-#define ComItextpdfTextDocWriter_QUOTE 34
-#define ComItextpdfTextDocWriter_SPACE 32
 #define ComItextpdfTextDocWriter_TAB 9
+#define ComItextpdfTextDocWriter_LT 60
+#define ComItextpdfTextDocWriter_SPACE 32
+#define ComItextpdfTextDocWriter_EQUALS 61
+#define ComItextpdfTextDocWriter_QUOTE 34
+#define ComItextpdfTextDocWriter_GT 62
+#define ComItextpdfTextDocWriter_FORWARD 47
 
 @interface ComItextpdfTextDocWriter : NSObject < ComItextpdfTextDocListener > {
  @public
@@ -36,56 +36,29 @@
   jboolean closeStream_;
 }
 
-- (instancetype)init;
-
-- (instancetype)initWithComItextpdfTextDocument:(ComItextpdfTextDocument *)document
-                         withJavaIoOutputStream:(JavaIoOutputStream *)os;
+#pragma mark Public
 
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
-- (void)open;
-
-- (jboolean)setPageSizeWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
-
-- (jboolean)setMarginsWithFloat:(jfloat)marginLeft
-                      withFloat:(jfloat)marginRight
-                      withFloat:(jfloat)marginTop
-                      withFloat:(jfloat)marginBottom;
-
-- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
-
-- (void)resetPageCount;
-
-- (void)setPageCountWithInt:(jint)pageN;
-
 - (void)close;
-
-+ (IOSByteArray *)getISOBytesWithNSString:(NSString *)text;
-
-- (void)pause;
-
-- (jboolean)isPaused;
-
-- (void)resume;
 
 - (void)flush;
 
-- (void)writeWithNSString:(NSString *)string;
-
-- (void)addTabsWithInt:(jint)indent;
-
-- (void)writeWithNSString:(NSString *)key
-             withNSString:(NSString *)value;
-
-- (void)writeStartWithNSString:(NSString *)tag;
-
-- (void)writeEndWithNSString:(NSString *)tag;
-
-- (void)writeEnd;
-
-- (jboolean)writeMarkupAttributesWithJavaUtilProperties:(JavaUtilProperties *)markup;
++ (IOSByteArray *)getISOBytesWithNSString:(NSString *)text;
 
 - (jboolean)isCloseStream;
+
+- (jboolean)isPaused;
+
+- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
+
+- (void)open;
+
+- (void)pause;
+
+- (void)resetPageCount;
+
+- (void)resume;
 
 - (void)setCloseStreamWithBoolean:(jboolean)closeStream;
 
@@ -93,11 +66,40 @@
 
 - (jboolean)setMarginMirroringTopBottomWithBoolean:(jboolean)MarginMirroring;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextDocWriter *)other;
+- (jboolean)setMarginsWithFloat:(jfloat)marginLeft
+                      withFloat:(jfloat)marginRight
+                      withFloat:(jfloat)marginTop
+                      withFloat:(jfloat)marginBottom;
+
+- (void)setPageCountWithInt:(jint)pageN;
+
+- (jboolean)setPageSizeWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
+
+#pragma mark Protected
+
+- (instancetype)init;
+
+- (instancetype)initWithComItextpdfTextDocument:(ComItextpdfTextDocument *)document
+                         withJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (void)addTabsWithInt:(jint)indent;
+
+- (void)writeWithNSString:(NSString *)string;
+
+- (void)writeWithNSString:(NSString *)key
+             withNSString:(NSString *)value;
+
+- (void)writeEnd;
+
+- (void)writeEndWithNSString:(NSString *)tag;
+
+- (jboolean)writeMarkupAttributesWithJavaUtilProperties:(JavaUtilProperties *)markup;
+
+- (void)writeStartWithNSString:(NSString *)tag;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextDocWriter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextDocWriter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextDocWriter, pageSize_, ComItextpdfTextRectangle *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextDocWriter, document_, ComItextpdfTextDocument *)
@@ -118,5 +120,13 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextDocWriter, QUOTE, jbyte)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextDocWriter, GT, jbyte)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextDocWriter, FORWARD, jbyte)
+
+FOUNDATION_EXPORT void ComItextpdfTextDocWriter_init(ComItextpdfTextDocWriter *self);
+
+FOUNDATION_EXPORT void ComItextpdfTextDocWriter_initWithComItextpdfTextDocument_withJavaIoOutputStream_(ComItextpdfTextDocWriter *self, ComItextpdfTextDocument *document, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextDocWriter_getISOBytesWithNSString_(NSString *text);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextDocWriter)
 
 #endif // _ComItextpdfTextDocWriter_H_

@@ -6,53 +6,54 @@
 #ifndef _ComItextpdfTextXmlXmpDublinCoreProperties_H_
 #define _ComItextpdfTextXmlXmpDublinCoreProperties_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
 @protocol ComItextpdfXmpXMPMeta;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlXmpDublinCoreProperties : NSObject
 
-@interface ComItextpdfTextXmlXmpDublinCoreProperties : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
+
++ (void)addAuthorWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                              withNSString:(NSString *)author;
+
++ (void)addDescriptionWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                                   withNSString:(NSString *)desc;
+
++ (void)addPublisherWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                                 withNSString:(NSString *)publisher;
+
++ (void)addSubjectWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                               withNSString:(NSString *)subject;
 
 + (void)addTitleWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                              withNSString:(NSString *)title;
 
-+ (void)setTitleWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                             withNSString:(NSString *)title
-                             withNSString:(NSString *)genericLang
-                             withNSString:(NSString *)specificLang;
-
-+ (void)addDescriptionWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                                   withNSString:(NSString *)desc;
++ (void)setAuthorWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                         withNSStringArray:(IOSObjectArray *)author;
 
 + (void)setDescriptionWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                                    withNSString:(NSString *)desc
                                    withNSString:(NSString *)genericLang
                                    withNSString:(NSString *)specificLang;
 
-+ (void)addSubjectWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                               withNSString:(NSString *)subject;
++ (void)setPublisherWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                            withNSStringArray:(IOSObjectArray *)publisher;
 
 + (void)setSubjectWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                           withNSStringArray:(IOSObjectArray *)subject;
 
-+ (void)addAuthorWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                              withNSString:(NSString *)author;
-
-+ (void)setAuthorWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                         withNSStringArray:(IOSObjectArray *)author;
-
-+ (void)addPublisherWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                                 withNSString:(NSString *)publisher;
-
-+ (void)setPublisherWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                            withNSStringArray:(IOSObjectArray *)publisher;
-
-- (instancetype)init;
++ (void)setTitleWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                             withNSString:(NSString *)title
+                             withNSString:(NSString *)genericLang
+                             withNSString:(NSString *)specificLang;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpDublinCoreProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpDublinCoreProperties)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpDublinCoreProperties_CONTRIBUTOR_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreProperties, CONTRIBUTOR_, NSString *)
@@ -98,5 +99,31 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreProperties, TITLE_, NS
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpDublinCoreProperties_TYPE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpDublinCoreProperties, TYPE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_addTitleWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *title);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_setTitleWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *title, NSString *genericLang, NSString *specificLang);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_addDescriptionWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *desc);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_setDescriptionWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *desc, NSString *genericLang, NSString *specificLang);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_addSubjectWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *subject);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_setSubjectWithComItextpdfXmpXMPMeta_withNSStringArray_(id<ComItextpdfXmpXMPMeta> xmpMeta, IOSObjectArray *subject);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_addAuthorWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *author);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_setAuthorWithComItextpdfXmpXMPMeta_withNSStringArray_(id<ComItextpdfXmpXMPMeta> xmpMeta, IOSObjectArray *author);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_addPublisherWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *publisher);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_setPublisherWithComItextpdfXmpXMPMeta_withNSStringArray_(id<ComItextpdfXmpXMPMeta> xmpMeta, IOSObjectArray *publisher);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpDublinCoreProperties_init(ComItextpdfTextXmlXmpDublinCoreProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpDublinCoreProperties *new_ComItextpdfTextXmlXmpDublinCoreProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpDublinCoreProperties)
 
 #endif // _ComItextpdfTextXmlXmpDublinCoreProperties_H_

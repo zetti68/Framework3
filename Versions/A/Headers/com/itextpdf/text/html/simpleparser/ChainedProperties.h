@@ -6,53 +6,43 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserChainedProperties_H_
 #define _ComItextpdfTextHtmlSimpleparserChainedProperties_H_
 
+#include "J2ObjC_header.h"
+
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextHtmlSimpleparserChainedProperties : NSObject {
  @public
   id<JavaUtilList> chain_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
+
+- (void)addToChainWithNSString:(NSString *)tag
+               withJavaUtilMap:(id<JavaUtilMap>)props;
 
 - (NSString *)getPropertyWithNSString:(NSString *)key;
 
 - (jboolean)hasPropertyWithNSString:(NSString *)key;
 
-- (void)addToChainWithNSString:(NSString *)tag
-               withJavaUtilMap:(id<JavaUtilMap>)props;
-
 - (void)removeChainWithNSString:(NSString *)tag;
+
+#pragma mark Protected
 
 - (void)adjustFontSizeWithJavaUtilMap:(id<JavaUtilMap>)attrs;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserChainedProperties *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserChainedProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserChainedProperties)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserChainedProperties, chain_, id<JavaUtilList>)
 
-@interface ComItextpdfTextHtmlSimpleparserChainedProperties_TagAttributes : NSObject {
- @public
-  NSString *tag_;
-  id<JavaUtilMap> attrs_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserChainedProperties_init(ComItextpdfTextHtmlSimpleparserChainedProperties *self);
 
-- (instancetype)initWithNSString:(NSString *)tag
-                 withJavaUtilMap:(id<JavaUtilMap>)attrs;
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserChainedProperties *new_ComItextpdfTextHtmlSimpleparserChainedProperties_init() NS_RETURNS_RETAINED;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserChainedProperties_TagAttributes *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserChainedProperties_TagAttributes_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserChainedProperties_TagAttributes, tag_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserChainedProperties_TagAttributes, attrs_, id<JavaUtilMap>)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserChainedProperties)
 
 #endif // _ComItextpdfTextHtmlSimpleparserChainedProperties_H_

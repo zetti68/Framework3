@@ -6,62 +6,67 @@
 #ifndef _ComItextpdfXmpImplUtils_H_
 #define _ComItextpdfXmpImplUtils_H_
 
-@class IOSBooleanArray;
-@class IOSObjectArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/XMPConst.h"
 
-#define ComItextpdfXmpImplUtils_UUID_LENGTH 36
+@class IOSObjectArray;
+
 #define ComItextpdfXmpImplUtils_UUID_SEGMENT_COUNT 4
+#define ComItextpdfXmpImplUtils_UUID_LENGTH 36
 
-@interface ComItextpdfXmpImplUtils : NSObject < ComItextpdfXmpXMPConst > {
-}
+@interface ComItextpdfXmpImplUtils : NSObject < ComItextpdfXmpXMPConst >
 
-- (instancetype)init;
-
-+ (NSString *)normalizeLangValueWithNSString:(NSString *)value;
-
-+ (IOSObjectArray *)splitNameAndValueWithNSString:(NSString *)selector;
-
-+ (jboolean)isInternalPropertyWithNSString:(NSString *)schema
-                              withNSString:(NSString *)prop;
-
-+ (jboolean)checkUUIDFormatWithNSString:(NSString *)uuid;
-
-+ (jboolean)isXMLNameWithNSString:(NSString *)name;
-
-+ (jboolean)isXMLNameNSWithNSString:(NSString *)name;
-
-+ (jboolean)isControlCharWithChar:(jchar)c;
+#pragma mark Public
 
 + (NSString *)escapeXMLWithNSString:(NSString *)value
                         withBoolean:(jboolean)forAttribute
                         withBoolean:(jboolean)escapeWhitespaces;
 
++ (jboolean)isXMLNameWithNSString:(NSString *)name;
+
++ (jboolean)isXMLNameNSWithNSString:(NSString *)name;
+
++ (NSString *)normalizeLangValueWithNSString:(NSString *)value;
+
+#pragma mark Package-Private
+
++ (jboolean)checkUUIDFormatWithNSString:(NSString *)uuid;
+
++ (jboolean)isControlCharWithChar:(jchar)c;
+
++ (jboolean)isInternalPropertyWithNSString:(NSString *)schema
+                              withNSString:(NSString *)prop;
+
 + (NSString *)removeControlCharsWithNSString:(NSString *)value;
 
-+ (jboolean)isNameStartCharWithChar:(jchar)ch;
-
-+ (jboolean)isNameCharWithChar:(jchar)ch;
-
-+ (void)initCharTables OBJC_METHOD_FAMILY_NONE;
++ (IOSObjectArray *)splitNameAndValueWithNSString:(NSString *)selector;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfXmpImplUtils_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfXmpImplUtils)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplUtils, UUID_SEGMENT_COUNT, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplUtils, UUID_LENGTH, jint)
 
-FOUNDATION_EXPORT IOSBooleanArray *ComItextpdfXmpImplUtils_xmlNameStartChars_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplUtils, xmlNameStartChars_, IOSBooleanArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpImplUtils, xmlNameStartChars_, IOSBooleanArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplUtils_normalizeLangValueWithNSString_(NSString *value);
 
-FOUNDATION_EXPORT IOSBooleanArray *ComItextpdfXmpImplUtils_xmlNameChars_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplUtils, xmlNameChars_, IOSBooleanArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpImplUtils, xmlNameChars_, IOSBooleanArray *)
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfXmpImplUtils_splitNameAndValueWithNSString_(NSString *selector);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpImplUtils_isInternalPropertyWithNSString_withNSString_(NSString *schema, NSString *prop);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpImplUtils_checkUUIDFormatWithNSString_(NSString *uuid);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpImplUtils_isXMLNameWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpImplUtils_isXMLNameNSWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpImplUtils_isControlCharWithChar_(jchar c);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplUtils_escapeXMLWithNSString_withBoolean_withBoolean_(NSString *value, jboolean forAttribute, jboolean escapeWhitespaces);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplUtils_removeControlCharsWithNSString_(NSString *value);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplUtils)
 
 #endif // _ComItextpdfXmpImplUtils_H_

@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfXmpXMPConst_H_
 #define _ComItextpdfXmpXMPConst_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 #define ComItextpdfXmpXMPConst_ARRAY_LAST_ITEM -1
 
@@ -14,7 +14,7 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPConst_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPConst)
 
 FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPConst_NS_XML_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPConst, NS_XML_, NSString *)
@@ -218,5 +218,7 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPConst, TAG_XMPMETA_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPConst_TAG_XAPMETA_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPConst, TAG_XAPMETA_, NSString *)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPConst)
 
 #endif // _ComItextpdfXmpXMPConst_H_

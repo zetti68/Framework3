@@ -6,34 +6,27 @@
 #ifndef _ComItextpdfTextListItem_H_
 #define _ComItextpdfTextListItem_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Paragraph.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextListBody;
 @class ComItextpdfTextListLabel;
 @class ComItextpdfTextPhrase;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Paragraph.h"
-
-#define ComItextpdfTextListItem_serialVersionUID 1970670787169329006LL
-
 @interface ComItextpdfTextListItem : ComItextpdfTextParagraph {
  @public
   ComItextpdfTextChunk *symbol_;
-  ComItextpdfTextListBody *listBody_;
-  ComItextpdfTextListLabel *listLabel_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (instancetype)initWithFloat:(jfloat)leading;
-
 - (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
 
-- (instancetype)initWithNSString:(NSString *)string;
-
-- (instancetype)initWithNSString:(NSString *)string
-         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
+- (instancetype)initWithFloat:(jfloat)leading;
 
 - (instancetype)initWithFloat:(jfloat)leading
      withComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
@@ -47,32 +40,71 @@
 
 - (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (jint)type;
+- (instancetype)initWithNSString:(NSString *)string;
 
-- (void)setListSymbolWithComItextpdfTextChunk:(ComItextpdfTextChunk *)symbol;
-
-- (void)setIndentationLeftWithFloat:(jfloat)indentation
-                        withBoolean:(jboolean)autoindent;
+- (instancetype)initWithNSString:(NSString *)string
+         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (void)adjustListSymbolFont;
-
-- (ComItextpdfTextChunk *)getListSymbol;
 
 - (ComItextpdfTextListBody *)getListBody;
 
 - (ComItextpdfTextListLabel *)getListLabel;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextListItem *)other;
+- (ComItextpdfTextChunk *)getListSymbol;
+
+- (void)setIndentationLeftWithFloat:(jfloat)indentation
+                        withBoolean:(jboolean)autoindent;
+
+- (void)setListSymbolWithComItextpdfTextChunk:(ComItextpdfTextChunk *)symbol;
+
+- (jint)type;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextListItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextListItem)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextListItem, symbol_, ComItextpdfTextChunk *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextListItem, listBody_, ComItextpdfTextListBody *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextListItem, listLabel_, ComItextpdfTextListLabel *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextListItem, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextListItem_init(ComItextpdfTextListItem *self);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithFloat_(ComItextpdfTextListItem *self, jfloat leading);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithFloat_(jfloat leading) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithComItextpdfTextChunk_(ComItextpdfTextListItem *self, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithNSString_(ComItextpdfTextListItem *self, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithNSString_(NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithNSString_withComItextpdfTextFont_(ComItextpdfTextListItem *self, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithNSString_withComItextpdfTextFont_(NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithFloat_withComItextpdfTextChunk_(ComItextpdfTextListItem *self, jfloat leading, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithFloat_withComItextpdfTextChunk_(jfloat leading, ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithFloat_withNSString_(ComItextpdfTextListItem *self, jfloat leading, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithFloat_withNSString_(jfloat leading, NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithFloat_withNSString_withComItextpdfTextFont_(ComItextpdfTextListItem *self, jfloat leading, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithFloat_withNSString_withComItextpdfTextFont_(jfloat leading, NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextListItem_initWithComItextpdfTextPhrase_(ComItextpdfTextListItem *self, ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT ComItextpdfTextListItem *new_ComItextpdfTextListItem_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextListItem)
 
 #endif // _ComItextpdfTextListItem_H_

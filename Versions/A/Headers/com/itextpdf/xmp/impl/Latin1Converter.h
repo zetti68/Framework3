@@ -6,29 +6,22 @@
 #ifndef _ComItextpdfXmpImplLatin1Converter_H_
 #define _ComItextpdfXmpImplLatin1Converter_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpImplByteBuffer;
-@class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplLatin1Converter : NSObject
 
-#define ComItextpdfXmpImplLatin1Converter_STATE_START 0
-#define ComItextpdfXmpImplLatin1Converter_STATE_UTF8CHAR 11
-
-@interface ComItextpdfXmpImplLatin1Converter : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (ComItextpdfXmpImplByteBuffer *)convertWithComItextpdfXmpImplByteBuffer:(ComItextpdfXmpImplByteBuffer *)buffer;
 
-+ (IOSByteArray *)convertToUTF8WithByte:(jbyte)ch;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplLatin1Converter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplLatin1Converter)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplLatin1Converter, STATE_START, jint)
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *ComItextpdfXmpImplLatin1Converter_convertWithComItextpdfXmpImplByteBuffer_(ComItextpdfXmpImplByteBuffer *buffer);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplLatin1Converter, STATE_UTF8CHAR, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplLatin1Converter)
 
 #endif // _ComItextpdfXmpImplLatin1Converter_H_

@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfXmpXMPMetaFactory_H_
 #define _ComItextpdfXmpXMPMetaFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpOptionsParseOptions;
 @class ComItextpdfXmpOptionsSerializeOptions;
 @class IOSByteArray;
@@ -13,33 +15,34 @@
 @class JavaIoOutputStream;
 @protocol ComItextpdfXmpXMPMeta;
 @protocol ComItextpdfXmpXMPSchemaRegistry;
+@protocol ComItextpdfXmpXMPVersionInfo;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/xmp/XMPVersionInfo.h"
+@interface ComItextpdfXmpXMPMetaFactory : NSObject
 
-@interface ComItextpdfXmpXMPMetaFactory : NSObject {
-}
+#pragma mark Public
 
-- (instancetype)init;
++ (id<ComItextpdfXmpXMPMeta>)create;
 
 + (id<ComItextpdfXmpXMPSchemaRegistry>)getSchemaRegistry;
 
-+ (id<ComItextpdfXmpXMPMeta>)create;
++ (id<ComItextpdfXmpXMPVersionInfo>)getVersionInfo;
 
 + (id<ComItextpdfXmpXMPMeta>)parseWithJavaIoInputStream:(JavaIoInputStream *)inArg;
 
 + (id<ComItextpdfXmpXMPMeta>)parseWithJavaIoInputStream:(JavaIoInputStream *)inArg
                   withComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
 
++ (id<ComItextpdfXmpXMPMeta>)parseFromBufferWithByteArray:(IOSByteArray *)buffer;
+
++ (id<ComItextpdfXmpXMPMeta>)parseFromBufferWithByteArray:(IOSByteArray *)buffer
+                    withComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
+
 + (id<ComItextpdfXmpXMPMeta>)parseFromStringWithNSString:(NSString *)packet;
 
 + (id<ComItextpdfXmpXMPMeta>)parseFromStringWithNSString:(NSString *)packet
                    withComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
 
-+ (id<ComItextpdfXmpXMPMeta>)parseFromBufferWithByteArray:(IOSByteArray *)buffer;
-
-+ (id<ComItextpdfXmpXMPMeta>)parseFromBufferWithByteArray:(IOSByteArray *)buffer
-                    withComItextpdfXmpOptionsParseOptions:(ComItextpdfXmpOptionsParseOptions *)options;
++ (void)reset;
 
 + (void)serializeWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
                     withJavaIoOutputStream:(JavaIoOutputStream *)outArg;
@@ -54,46 +57,38 @@
 + (NSString *)serializeToStringWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
                withComItextpdfXmpOptionsSerializeOptions:(ComItextpdfXmpOptionsSerializeOptions *)options;
 
-+ (void)assertImplementationWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp;
-
-+ (void)reset;
-
-+ (id<ComItextpdfXmpXMPVersionInfo>)getVersionInfo;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfXmpXMPMetaFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfXmpXMPMetaFactory)
 
-FOUNDATION_EXPORT id<ComItextpdfXmpXMPSchemaRegistry> ComItextpdfXmpXMPMetaFactory_schema_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPMetaFactory, schema_, id<ComItextpdfXmpXMPSchemaRegistry>)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpXMPMetaFactory, schema_, id<ComItextpdfXmpXMPSchemaRegistry>)
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPSchemaRegistry> ComItextpdfXmpXMPMetaFactory_getSchemaRegistry();
 
-FOUNDATION_EXPORT id<ComItextpdfXmpXMPVersionInfo> ComItextpdfXmpXMPMetaFactory_versionInfo_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPMetaFactory, versionInfo_, id<ComItextpdfXmpXMPVersionInfo>)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpXMPMetaFactory, versionInfo_, id<ComItextpdfXmpXMPVersionInfo>)
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_create();
 
-@interface ComItextpdfXmpXMPMetaFactory_$1 : NSObject < ComItextpdfXmpXMPVersionInfo > {
-}
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseWithJavaIoInputStream_(JavaIoInputStream *inArg);
 
-- (jint)getMajor;
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseWithJavaIoInputStream_withComItextpdfXmpOptionsParseOptions_(JavaIoInputStream *inArg, ComItextpdfXmpOptionsParseOptions *options);
 
-- (jint)getMinor;
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseFromStringWithNSString_(NSString *packet);
 
-- (jint)getMicro;
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseFromStringWithNSString_withComItextpdfXmpOptionsParseOptions_(NSString *packet, ComItextpdfXmpOptionsParseOptions *options);
 
-- (jboolean)isDebug;
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseFromBufferWithByteArray_(IOSByteArray *buffer);
 
-- (jint)getBuild;
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPMeta> ComItextpdfXmpXMPMetaFactory_parseFromBufferWithByteArray_withComItextpdfXmpOptionsParseOptions_(IOSByteArray *buffer, ComItextpdfXmpOptionsParseOptions *options);
 
-- (NSString *)getMessage;
+FOUNDATION_EXPORT void ComItextpdfXmpXMPMetaFactory_serializeWithComItextpdfXmpXMPMeta_withJavaIoOutputStream_(id<ComItextpdfXmpXMPMeta> xmp, JavaIoOutputStream *outArg);
 
-- (NSString *)description;
+FOUNDATION_EXPORT void ComItextpdfXmpXMPMetaFactory_serializeWithComItextpdfXmpXMPMeta_withJavaIoOutputStream_withComItextpdfXmpOptionsSerializeOptions_(id<ComItextpdfXmpXMPMeta> xmp, JavaIoOutputStream *outArg, ComItextpdfXmpOptionsSerializeOptions *options);
 
-- (instancetype)init;
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpXMPMetaFactory_serializeToBufferWithComItextpdfXmpXMPMeta_withComItextpdfXmpOptionsSerializeOptions_(id<ComItextpdfXmpXMPMeta> xmp, ComItextpdfXmpOptionsSerializeOptions *options);
 
-@end
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPMetaFactory_serializeToStringWithComItextpdfXmpXMPMeta_withComItextpdfXmpOptionsSerializeOptions_(id<ComItextpdfXmpXMPMeta> xmp, ComItextpdfXmpOptionsSerializeOptions *options);
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPMetaFactory_$1_init() {}
+FOUNDATION_EXPORT void ComItextpdfXmpXMPMetaFactory_reset();
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPVersionInfo> ComItextpdfXmpXMPMetaFactory_getVersionInfo();
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPMetaFactory)
 
 #endif // _ComItextpdfXmpXMPMetaFactory_H_

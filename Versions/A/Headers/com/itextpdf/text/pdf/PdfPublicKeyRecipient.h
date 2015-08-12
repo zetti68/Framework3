@@ -6,17 +6,17 @@
 #ifndef _ComItextpdfTextPdfPdfPublicKeyRecipient_H_
 #define _ComItextpdfTextPdfPdfPublicKeyRecipient_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class JavaSecurityCertCertificate;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfPdfPublicKeyRecipient : NSObject {
  @public
-  JavaSecurityCertCertificate *certificate_;
-  jint permission_;
   IOSByteArray *cms_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)certificate
                                             withInt:(jint)permission;
@@ -25,17 +25,22 @@
 
 - (jint)getPermission;
 
-- (void)setCmsWithByteArray:(IOSByteArray *)cms;
+#pragma mark Protected
 
 - (IOSByteArray *)getCms;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPublicKeyRecipient *)other;
+- (void)setCmsWithByteArray:(IOSByteArray *)cms;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPublicKeyRecipient_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPublicKeyRecipient)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPublicKeyRecipient, certificate_, JavaSecurityCertCertificate *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPublicKeyRecipient, cms_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPublicKeyRecipient_initWithJavaSecurityCertCertificate_withInt_(ComItextpdfTextPdfPdfPublicKeyRecipient *self, JavaSecurityCertCertificate *certificate, jint permission);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPublicKeyRecipient *new_ComItextpdfTextPdfPdfPublicKeyRecipient_initWithJavaSecurityCertCertificate_withInt_(JavaSecurityCertCertificate *certificate, jint permission) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPublicKeyRecipient)
 
 #endif // _ComItextpdfTextPdfPdfPublicKeyRecipient_H_

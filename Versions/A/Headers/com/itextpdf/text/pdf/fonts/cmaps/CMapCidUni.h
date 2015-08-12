@@ -6,31 +6,33 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCMapCidUni_H_
 #define _ComItextpdfTextPdfFontsCmapsCMapCidUni_H_
 
-@class ComItextpdfTextPdfIntHashtable;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfString;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+@interface ComItextpdfTextPdfFontsCmapsCMapCidUni : ComItextpdfTextPdfFontsCmapsAbstractCMap
 
-@interface ComItextpdfTextPdfFontsCmapsCMapCidUni : ComItextpdfTextPdfFontsCmapsAbstractCMap {
- @public
-  ComItextpdfTextPdfIntHashtable *map_;
-}
+#pragma mark Public
+
+- (instancetype)init;
+
+- (jint)lookupWithInt:(jint)character;
+
+#pragma mark Package-Private
 
 - (void)addCharWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)mark
                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)code;
 
-- (jint)lookupWithInt:(jint)character;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsCmapsCMapCidUni *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCMapCidUni_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCMapCidUni)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCMapCidUni, map_, ComItextpdfTextPdfIntHashtable *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapCidUni_init(ComItextpdfTextPdfFontsCmapsCMapCidUni *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapCidUni *new_ComItextpdfTextPdfFontsCmapsCMapCidUni_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCMapCidUni)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCMapCidUni_H_

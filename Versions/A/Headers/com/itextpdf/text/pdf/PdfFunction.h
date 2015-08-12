@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPdfFunction_H_
 #define _ComItextpdfTextPdfPdfFunction_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
@@ -14,8 +16,6 @@
 @class IOSIntArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfPdfFunction : NSObject {
  @public
   ComItextpdfTextPdfPdfWriter *writer_;
@@ -23,9 +23,7 @@
   ComItextpdfTextPdfPdfDictionary *dictionary_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getReference;
+#pragma mark Public
 
 + (ComItextpdfTextPdfPdfFunction *)type0WithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                          withFloatArray:(IOSFloatArray *)domain
@@ -56,14 +54,34 @@
                                                          withFloatArray:(IOSFloatArray *)range
                                                            withNSString:(NSString *)postscript;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfFunction *)other;
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+#pragma mark Package-Private
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getReference;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfFunction_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfFunction)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFunction, writer_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFunction, reference_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFunction, dictionary_, ComItextpdfTextPdfPdfDictionary *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFunction_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfFunction *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFunction *new_ComItextpdfTextPdfPdfFunction_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFunction *ComItextpdfTextPdfPdfFunction_type0WithComItextpdfTextPdfPdfWriter_withFloatArray_withFloatArray_withIntArray_withInt_withInt_withFloatArray_withFloatArray_withByteArray_(ComItextpdfTextPdfPdfWriter *writer, IOSFloatArray *domain, IOSFloatArray *range, IOSIntArray *size, jint bitsPerSample, jint order, IOSFloatArray *encode, IOSFloatArray *decode, IOSByteArray *stream);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFunction *ComItextpdfTextPdfPdfFunction_type2WithComItextpdfTextPdfPdfWriter_withFloatArray_withFloatArray_withFloatArray_withFloatArray_withFloat_(ComItextpdfTextPdfPdfWriter *writer, IOSFloatArray *domain, IOSFloatArray *range, IOSFloatArray *c0, IOSFloatArray *c1, jfloat n);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFunction *ComItextpdfTextPdfPdfFunction_type3WithComItextpdfTextPdfPdfWriter_withFloatArray_withFloatArray_withComItextpdfTextPdfPdfFunctionArray_withFloatArray_withFloatArray_(ComItextpdfTextPdfPdfWriter *writer, IOSFloatArray *domain, IOSFloatArray *range, IOSObjectArray *functions, IOSFloatArray *bounds, IOSFloatArray *encode);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFunction *ComItextpdfTextPdfPdfFunction_type4WithComItextpdfTextPdfPdfWriter_withFloatArray_withFloatArray_withNSString_(ComItextpdfTextPdfPdfWriter *writer, IOSFloatArray *domain, IOSFloatArray *range, NSString *postscript);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfFunction)
 
 #endif // _ComItextpdfTextPdfPdfFunction_H_

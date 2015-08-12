@@ -6,19 +6,26 @@
 #ifndef _ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_H_
 #define _ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/util/Comparator.h"
 
-@interface ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator : NSObject < JavaUtilComparator > {
-}
+@interface ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator : NSObject < JavaUtilComparator >
+
+#pragma mark Public
+
+- (instancetype)init;
 
 - (jint)compareWithId:(NSString *)o1
                withId:(NSString *)o2;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_init(ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator *new_ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator)
 
 #endif // _ComItextpdfTextPdfLanguagesIndicCompositeCharacterComparator_H_

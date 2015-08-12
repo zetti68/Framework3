@@ -6,30 +6,31 @@
 #ifndef _ComItextpdfTextPdfPdfBorderDictionary_H_
 #define _ComItextpdfTextPdfPdfBorderDictionary_H_
 
-@class ComItextpdfTextPdfPdfDashPattern;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_BEVELED 2
-#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_DASHED 1
-#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_INSET 3
+@class ComItextpdfTextPdfPdfDashPattern;
+
 #define ComItextpdfTextPdfPdfBorderDictionary_STYLE_SOLID 0
+#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_DASHED 1
+#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_BEVELED 2
+#define ComItextpdfTextPdfPdfBorderDictionary_STYLE_INSET 3
 #define ComItextpdfTextPdfPdfBorderDictionary_STYLE_UNDERLINE 4
 
-@interface ComItextpdfTextPdfPdfBorderDictionary : ComItextpdfTextPdfPdfDictionary {
-}
+@interface ComItextpdfTextPdfPdfBorderDictionary : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
+
+- (instancetype)initWithFloat:(jfloat)borderWidth
+                      withInt:(jint)borderStyle;
 
 - (instancetype)initWithFloat:(jfloat)borderWidth
                       withInt:(jint)borderStyle
 withComItextpdfTextPdfPdfDashPattern:(ComItextpdfTextPdfPdfDashPattern *)dashes;
 
-- (instancetype)initWithFloat:(jfloat)borderWidth
-                      withInt:(jint)borderStyle;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfBorderDictionary_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfBorderDictionary)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBorderDictionary, STYLE_SOLID, jint)
 
@@ -40,5 +41,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBorderDictionary, STYLE_BEVELED,
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBorderDictionary, STYLE_INSET, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfBorderDictionary, STYLE_UNDERLINE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBorderDictionary_initWithFloat_withInt_withComItextpdfTextPdfPdfDashPattern_(ComItextpdfTextPdfPdfBorderDictionary *self, jfloat borderWidth, jint borderStyle, ComItextpdfTextPdfPdfDashPattern *dashes);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBorderDictionary *new_ComItextpdfTextPdfPdfBorderDictionary_initWithFloat_withInt_withComItextpdfTextPdfPdfDashPattern_(jfloat borderWidth, jint borderStyle, ComItextpdfTextPdfPdfDashPattern *dashes) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBorderDictionary_initWithFloat_withInt_(ComItextpdfTextPdfPdfBorderDictionary *self, jfloat borderWidth, jint borderStyle);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBorderDictionary *new_ComItextpdfTextPdfPdfBorderDictionary_initWithFloat_withInt_(jfloat borderWidth, jint borderStyle) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfBorderDictionary)
 
 #endif // _ComItextpdfTextPdfPdfBorderDictionary_H_

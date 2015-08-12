@@ -6,53 +6,61 @@
 #ifndef _ComItextpdfTextLogSysoLogger_H_
 #define _ComItextpdfTextLogSysoLogger_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/log/Logger.h"
+
 @class ComItextpdfTextLogLevelEnum;
 @class IOSClass;
 @class JavaLangException;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/log/Logger.h"
+@interface ComItextpdfTextLogSysoLogger : NSObject < ComItextpdfTextLogLogger >
 
-@interface ComItextpdfTextLogSysoLogger : NSObject < ComItextpdfTextLogLogger > {
- @public
-  NSString *name_;
-  jint shorten__;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)packageReduce;
 
-- (instancetype)initWithNSString:(NSString *)klass
-                         withInt:(jint)shorten;
-
-- (id<ComItextpdfTextLogLogger>)getLoggerWithIOSClass:(IOSClass *)klass;
-
-- (id<ComItextpdfTextLogLogger>)getLoggerWithNSString:(NSString *)name;
-
-- (jboolean)isLoggingWithComItextpdfTextLogLevelEnum:(ComItextpdfTextLogLevelEnum *)level;
-
-- (void)warnWithNSString:(NSString *)message;
-
-- (NSString *)shortenWithNSString:(NSString *)className_;
-
-- (void)traceWithNSString:(NSString *)message;
-
 - (void)debugWithNSString:(NSString *)message;
-
-- (void)infoWithNSString:(NSString *)message;
 
 - (void)errorWithNSString:(NSString *)message;
 
 - (void)errorWithNSString:(NSString *)message
     withJavaLangException:(JavaLangException *)e;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextLogSysoLogger *)other;
+- (id<ComItextpdfTextLogLogger>)getLoggerWithIOSClass:(IOSClass *)klass;
+
+- (id<ComItextpdfTextLogLogger>)getLoggerWithNSString:(NSString *)name;
+
+- (void)infoWithNSString:(NSString *)message;
+
+- (jboolean)isLoggingWithComItextpdfTextLogLevelEnum:(ComItextpdfTextLogLevelEnum *)level;
+
+- (void)traceWithNSString:(NSString *)message;
+
+- (void)warnWithNSString:(NSString *)message;
+
+#pragma mark Protected
+
+- (instancetype)initWithNSString:(NSString *)klass
+                         withInt:(jint)shorten;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogSysoLogger_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogSysoLogger)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextLogSysoLogger, name_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextLogSysoLogger_init(ComItextpdfTextLogSysoLogger *self);
+
+FOUNDATION_EXPORT ComItextpdfTextLogSysoLogger *new_ComItextpdfTextLogSysoLogger_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextLogSysoLogger_initWithInt_(ComItextpdfTextLogSysoLogger *self, jint packageReduce);
+
+FOUNDATION_EXPORT ComItextpdfTextLogSysoLogger *new_ComItextpdfTextLogSysoLogger_initWithInt_(jint packageReduce) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextLogSysoLogger_initWithNSString_withInt_(ComItextpdfTextLogSysoLogger *self, NSString *klass, jint shorten);
+
+FOUNDATION_EXPORT ComItextpdfTextLogSysoLogger *new_ComItextpdfTextLogSysoLogger_initWithNSString_withInt_(NSString *klass, jint shorten) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogSysoLogger)
 
 #endif // _ComItextpdfTextLogSysoLogger_H_

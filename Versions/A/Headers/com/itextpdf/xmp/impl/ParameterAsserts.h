@@ -6,34 +6,51 @@
 #ifndef _ComItextpdfXmpImplParameterAsserts_H_
 #define _ComItextpdfXmpImplParameterAsserts_H_
 
-@protocol ComItextpdfXmpXMPMeta;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/XMPConst.h"
 
-@interface ComItextpdfXmpImplParameterAsserts : NSObject < ComItextpdfXmpXMPConst > {
-}
+@protocol ComItextpdfXmpXMPMeta;
 
-- (instancetype)init;
+@interface ComItextpdfXmpImplParameterAsserts : NSObject < ComItextpdfXmpXMPConst >
+
+#pragma mark Public
 
 + (void)assertArrayNameWithNSString:(NSString *)arrayName;
+
++ (void)assertImplementationWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp;
+
++ (void)assertNotNullWithId:(id)param;
+
++ (void)assertPrefixWithNSString:(NSString *)prefix;
 
 + (void)assertPropNameWithNSString:(NSString *)propName;
 
 + (void)assertSchemaNSWithNSString:(NSString *)schemaNS;
 
-+ (void)assertPrefixWithNSString:(NSString *)prefix;
-
 + (void)assertSpecificLangWithNSString:(NSString *)specificLang;
 
 + (void)assertStructNameWithNSString:(NSString *)structName;
 
-+ (void)assertNotNullWithId:(id)param;
-
-+ (void)assertImplementationWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplParameterAsserts_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplParameterAsserts)
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertArrayNameWithNSString_(NSString *arrayName);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertPropNameWithNSString_(NSString *propName);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertSchemaNSWithNSString_(NSString *schemaNS);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertPrefixWithNSString_(NSString *prefix);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertSpecificLangWithNSString_(NSString *specificLang);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertStructNameWithNSString_(NSString *structName);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertNotNullWithId_(id param);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParameterAsserts_assertImplementationWithComItextpdfXmpXMPMeta_(id<ComItextpdfXmpXMPMeta> xmp);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplParameterAsserts)
 
 #endif // _ComItextpdfXmpImplParameterAsserts_H_

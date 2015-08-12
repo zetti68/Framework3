@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfCodecWmfMetaState_H_
 #define _ComItextpdfTextPdfCodecWmfMetaState_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfCodecWmfMetaBrush;
 @class ComItextpdfTextPdfCodecWmfMetaFont;
@@ -16,19 +18,17 @@
 @class JavaUtilArrayList;
 @class JavaUtilStack;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfCodecWmfMetaState_ALTERNATE 1
-#define ComItextpdfTextPdfCodecWmfMetaState_OPAQUE 2
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_BASELINE 24
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_BOTTOM 8
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_CENTER 6
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_LEFT 0
 #define ComItextpdfTextPdfCodecWmfMetaState_TA_NOUPDATECP 0
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_RIGHT 2
-#define ComItextpdfTextPdfCodecWmfMetaState_TA_TOP 0
 #define ComItextpdfTextPdfCodecWmfMetaState_TA_UPDATECP 1
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_LEFT 0
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_RIGHT 2
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_CENTER 6
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_TOP 0
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_BOTTOM 8
+#define ComItextpdfTextPdfCodecWmfMetaState_TA_BASELINE 24
 #define ComItextpdfTextPdfCodecWmfMetaState_TRANSPARENT 1
+#define ComItextpdfTextPdfCodecWmfMetaState_OPAQUE 2
+#define ComItextpdfTextPdfCodecWmfMetaState_ALTERNATE 1
 #define ComItextpdfTextPdfCodecWmfMetaState_WINDING 2
 
 @interface ComItextpdfTextPdfCodecWmfMetaState : NSObject {
@@ -53,85 +53,85 @@
   jfloat scalingY_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfCodecWmfMetaState:(ComItextpdfTextPdfCodecWmfMetaState *)state;
 
-- (void)setMetaStateWithComItextpdfTextPdfCodecWmfMetaState:(ComItextpdfTextPdfCodecWmfMetaState *)state;
-
 - (void)addMetaObjectWithComItextpdfTextPdfCodecWmfMetaObject:(ComItextpdfTextPdfCodecWmfMetaObject *)object;
 
-- (void)selectMetaObjectWithInt:(jint)index
-withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
+- (void)cleanupWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
 - (void)deleteMetaObjectWithInt:(jint)index;
 
-- (void)saveStateWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
+- (jint)getBackgroundMode;
+
+- (ComItextpdfTextBaseColor *)getCurrentBackgroundColor;
+
+- (ComItextpdfTextPdfCodecWmfMetaBrush *)getCurrentBrush;
+
+- (ComItextpdfTextPdfCodecWmfMetaFont *)getCurrentFont;
+
+- (ComItextpdfTextPdfCodecWmfMetaPen *)getCurrentPen;
+
+- (ComItextpdfTextPdfCodecWmfPoint *)getCurrentPoint;
+
+- (ComItextpdfTextBaseColor *)getCurrentTextColor;
+
+- (jboolean)getLineNeutral;
+
+- (jint)getPolyFillMode;
+
+- (jint)getTextAlign;
 
 - (void)restoreStateWithInt:(jint)index
 withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (void)cleanupWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
+- (void)saveStateWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (jfloat)transformXWithInt:(jint)x;
+- (void)selectMetaObjectWithInt:(jint)index
+withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (jfloat)transformYWithInt:(jint)y;
+- (void)setBackgroundModeWithInt:(jint)backgroundMode;
 
-- (void)setScalingXWithFloat:(jfloat)scalingX;
+- (void)setCurrentBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)currentBackgroundColor;
 
-- (void)setScalingYWithFloat:(jfloat)scalingY;
+- (void)setCurrentPointWithComItextpdfTextPdfCodecWmfPoint:(ComItextpdfTextPdfCodecWmfPoint *)p;
 
-- (void)setOffsetWxWithInt:(jint)offsetWx;
-
-- (void)setOffsetWyWithInt:(jint)offsetWy;
+- (void)setCurrentTextColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)currentTextColor;
 
 - (void)setExtentWxWithInt:(jint)extentWx;
 
 - (void)setExtentWyWithInt:(jint)extentWy;
 
-- (jfloat)transformAngleWithFloat:(jfloat)angle;
-
-- (void)setCurrentPointWithComItextpdfTextPdfCodecWmfPoint:(ComItextpdfTextPdfCodecWmfPoint *)p;
-
-- (ComItextpdfTextPdfCodecWmfPoint *)getCurrentPoint;
-
-- (ComItextpdfTextPdfCodecWmfMetaBrush *)getCurrentBrush;
-
-- (ComItextpdfTextPdfCodecWmfMetaPen *)getCurrentPen;
-
-- (ComItextpdfTextPdfCodecWmfMetaFont *)getCurrentFont;
-
-- (ComItextpdfTextBaseColor *)getCurrentBackgroundColor;
-
-- (void)setCurrentBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)currentBackgroundColor;
-
-- (ComItextpdfTextBaseColor *)getCurrentTextColor;
-
-- (void)setCurrentTextColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)currentTextColor;
-
-- (jint)getBackgroundMode;
-
-- (void)setBackgroundModeWithInt:(jint)backgroundMode;
-
-- (jint)getTextAlign;
-
-- (void)setTextAlignWithInt:(jint)textAlign;
-
-- (jint)getPolyFillMode;
-
-- (void)setPolyFillModeWithInt:(jint)polyFillMode;
+- (void)setLineJoinPolygonWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
 - (void)setLineJoinRectangleWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (void)setLineJoinPolygonWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
+- (void)setMetaStateWithComItextpdfTextPdfCodecWmfMetaState:(ComItextpdfTextPdfCodecWmfMetaState *)state;
 
-- (jboolean)getLineNeutral;
+- (void)setOffsetWxWithInt:(jint)offsetWx;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfMetaState *)other;
+- (void)setOffsetWyWithInt:(jint)offsetWy;
+
+- (void)setPolyFillModeWithInt:(jint)polyFillMode;
+
+- (void)setScalingXWithFloat:(jfloat)scalingX;
+
+- (void)setScalingYWithFloat:(jfloat)scalingY;
+
+- (void)setTextAlignWithInt:(jint)textAlign;
+
+- (jfloat)transformAngleWithFloat:(jfloat)angle;
+
+- (jfloat)transformXWithInt:(jint)x;
+
+- (jfloat)transformYWithInt:(jint)y;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfMetaState_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfMetaState)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaState, savedStates_, JavaUtilStack *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaState, MetaObjects_, JavaUtilArrayList *)
@@ -165,5 +165,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaState, OPAQUE, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaState, ALTERNATE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaState, WINDING, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaState_init(ComItextpdfTextPdfCodecWmfMetaState *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaState *new_ComItextpdfTextPdfCodecWmfMetaState_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaState_initWithComItextpdfTextPdfCodecWmfMetaState_(ComItextpdfTextPdfCodecWmfMetaState *self, ComItextpdfTextPdfCodecWmfMetaState *state);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaState *new_ComItextpdfTextPdfCodecWmfMetaState_initWithComItextpdfTextPdfCodecWmfMetaState_(ComItextpdfTextPdfCodecWmfMetaState *state) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfMetaState)
 
 #endif // _ComItextpdfTextPdfCodecWmfMetaState_H_

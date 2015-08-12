@@ -6,60 +6,60 @@
 #ifndef _ComItextpdfTextPdfParserVector_H_
 #define _ComItextpdfTextPdfParserVector_H_
 
-@class ComItextpdfTextPdfParserMatrix;
-@class IOSFloatArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class ComItextpdfTextPdfParserMatrix;
 
 #define ComItextpdfTextPdfParserVector_I1 0
 #define ComItextpdfTextPdfParserVector_I2 1
 #define ComItextpdfTextPdfParserVector_I3 2
 
-@interface ComItextpdfTextPdfParserVector : NSObject {
- @public
-  IOSFloatArray *vals_;
-}
+@interface ComItextpdfTextPdfParserVector : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithFloat:(jfloat)x
                     withFloat:(jfloat)y
                     withFloat:(jfloat)z;
 
-- (jfloat)getWithInt:(jint)index;
-
 - (ComItextpdfTextPdfParserVector *)crossWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)by;
-
-- (ComItextpdfTextPdfParserVector *)subtractWithComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)v;
 
 - (ComItextpdfTextPdfParserVector *)crossWithComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)with;
 
-- (ComItextpdfTextPdfParserVector *)normalize;
-
-- (ComItextpdfTextPdfParserVector *)multiplyWithFloat:(jfloat)by;
-
 - (jfloat)dotWithComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)with;
+
+- (jboolean)isEqual:(id)obj;
+
+- (jfloat)getWithInt:(jint)index;
+
+- (NSUInteger)hash;
 
 - (jfloat)length;
 
 - (jfloat)lengthSquared;
 
+- (ComItextpdfTextPdfParserVector *)multiplyWithFloat:(jfloat)by;
+
+- (ComItextpdfTextPdfParserVector *)normalize;
+
+- (ComItextpdfTextPdfParserVector *)subtractWithComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)v;
+
 - (NSString *)description;
-
-- (NSUInteger)hash;
-
-- (jboolean)isEqual:(id)obj;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserVector *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserVector_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserVector, vals_, IOSFloatArray *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserVector)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserVector, I1, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserVector, I2, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserVector, I3, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserVector_initWithFloat_withFloat_withFloat_(ComItextpdfTextPdfParserVector *self, jfloat x, jfloat y, jfloat z);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserVector *new_ComItextpdfTextPdfParserVector_initWithFloat_withFloat_withFloat_(jfloat x, jfloat y, jfloat z) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserVector)
 
 #endif // _ComItextpdfTextPdfParserVector_H_

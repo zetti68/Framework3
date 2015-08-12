@@ -6,13 +6,13 @@
 #ifndef _ComItextpdfTextPdfCFFFont_H_
 #define _ComItextpdfTextPdfCFFFont_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfCFFFont_RangeItem;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfCFFFont : NSObject {
  @public
@@ -32,45 +32,48 @@
   IOSObjectArray *fonts_;
 }
 
+#pragma mark Public
+
+- (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)inputbuffer;
+
+- (jboolean)existsWithNSString:(NSString *)fontName;
+
+- (IOSByteArray *)getCIDWithNSString:(NSString *)fontName;
+
+- (IOSObjectArray *)getNames;
+
 - (NSString *)getStringWithChar:(jchar)sid;
 
-- (jchar)getCard8;
+- (jboolean)isCIDWithNSString:(NSString *)fontName;
 
-- (jchar)getCard16;
-
-- (jint)getOffsetWithInt:(jint)offSize;
-
-- (void)seekWithInt:(jint)offset;
-
-- (jshort)getShort;
-
-- (jint)getInt;
-
-- (jint)getPosition;
-
-- (IOSIntArray *)getIndexWithInt:(jint)nextIndexOffset;
+#pragma mark Protected
 
 - (void)getDictItem;
 
 - (ComItextpdfTextPdfCFFFont_RangeItem *)getEntireIndexRangeWithInt:(jint)indexOffset;
 
-- (IOSByteArray *)getCIDWithNSString:(NSString *)fontName;
+#pragma mark Package-Private
 
-- (jboolean)isCIDWithNSString:(NSString *)fontName;
+- (jchar)getCard16;
 
-- (jboolean)existsWithNSString:(NSString *)fontName;
+- (jchar)getCard8;
 
-- (IOSObjectArray *)getNames;
+- (IOSIntArray *)getIndexWithInt:(jint)nextIndexOffset;
 
-- (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)inputbuffer;
+- (jint)getInt;
+
+- (jint)getOffsetWithInt:(jint)offSize;
+
+- (jint)getPosition;
+
+- (jshort)getShort;
 
 - (void)ReadEncodingWithInt:(jint)nextIndexOffset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont *)other;
+- (void)seekWithInt:(jint)offset;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCFFFont_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCFFFont)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont, key_, NSString *)
@@ -88,234 +91,306 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCFFFont, operatorNames_, IOSObjectA
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfCFFFont_standardStrings_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCFFFont, standardStrings_, IOSObjectArray *)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfCFFFont *self, ComItextpdfTextPdfRandomAccessFileOrArray *inputbuffer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont *new_ComItextpdfTextPdfCFFFont_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *inputbuffer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont)
+
 @interface ComItextpdfTextPdfCFFFont_Item : NSObject {
  @public
   jint myOffset_;
 }
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+#pragma mark Public
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
+
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 - (void)xref;
 
+#pragma mark Protected
+
 - (instancetype)init;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_Item *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_Item)
 
-@interface ComItextpdfTextPdfCFFFont_RangeItem : ComItextpdfTextPdfCFFFont_Item {
- @public
-  jint offset_, length_;
-  ComItextpdfTextPdfRandomAccessFileOrArray *buf_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_Item_init(ComItextpdfTextPdfCFFFont_Item *self);
 
-- (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)buf
-                                                          withInt:(jint)offset
-                                                          withInt:(jint)length;
-
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
-
-- (void)emitWithByteArray:(IOSByteArray *)buffer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_RangeItem *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_RangeItem_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_RangeItem, buf_, ComItextpdfTextPdfRandomAccessFileOrArray *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_Item)
 
 @interface ComItextpdfTextPdfCFFFont_OffsetItem : ComItextpdfTextPdfCFFFont_Item {
  @public
   jint value_;
 }
 
+#pragma mark Public
+
 - (void)setWithInt:(jint)offset;
+
+#pragma mark Protected
 
 - (instancetype)init;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_OffsetItem *)other;
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_OffsetItem)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_OffsetItem_init(ComItextpdfTextPdfCFFFont_OffsetItem *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_OffsetItem)
+
+@interface ComItextpdfTextPdfCFFFont_RangeItem : ComItextpdfTextPdfCFFFont_Item {
+ @public
+  jint offset_, length_;
+}
+
+#pragma mark Public
+
+- (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)buf
+                                                          withInt:(jint)offset
+                                                          withInt:(jint)length;
+
+- (void)emitWithByteArray:(IOSByteArray *)buffer;
+
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_OffsetItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_RangeItem)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_RangeItem_initWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_withInt_(ComItextpdfTextPdfCFFFont_RangeItem *self, ComItextpdfTextPdfRandomAccessFileOrArray *buf, jint offset, jint length);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_RangeItem *new_ComItextpdfTextPdfCFFFont_RangeItem_initWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *buf, jint offset, jint length) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_RangeItem)
 
 @interface ComItextpdfTextPdfCFFFont_IndexOffsetItem : ComItextpdfTextPdfCFFFont_OffsetItem {
  @public
   jint size_;
 }
 
-- (instancetype)initWithInt:(jint)size
-                    withInt:(jint)value;
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)size;
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithInt:(jint)size
+                    withInt:(jint)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_IndexOffsetItem *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_IndexOffsetItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_IndexOffsetItem)
 
-@interface ComItextpdfTextPdfCFFFont_IndexBaseItem : ComItextpdfTextPdfCFFFont_Item {
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_IndexOffsetItem_initWithInt_withInt_(ComItextpdfTextPdfCFFFont_IndexOffsetItem *self, jint size, jint value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_IndexOffsetItem *new_ComItextpdfTextPdfCFFFont_IndexOffsetItem_initWithInt_withInt_(jint size, jint value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_IndexOffsetItem_initWithInt_(ComItextpdfTextPdfCFFFont_IndexOffsetItem *self, jint size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_IndexOffsetItem *new_ComItextpdfTextPdfCFFFont_IndexOffsetItem_initWithInt_(jint size) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_IndexOffsetItem)
+
+@interface ComItextpdfTextPdfCFFFont_IndexBaseItem : ComItextpdfTextPdfCFFFont_Item
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_IndexBaseItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_IndexBaseItem)
 
-@interface ComItextpdfTextPdfCFFFont_IndexMarkerItem : ComItextpdfTextPdfCFFFont_Item {
- @public
-  ComItextpdfTextPdfCFFFont_OffsetItem *offItem_;
-  ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_IndexBaseItem_init(ComItextpdfTextPdfCFFFont_IndexBaseItem *self);
 
-- (instancetype)initWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)offItem
-                 withComItextpdfTextPdfCFFFont_IndexBaseItem:(ComItextpdfTextPdfCFFFont_IndexBaseItem *)indexBase;
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_IndexBaseItem *new_ComItextpdfTextPdfCFFFont_IndexBaseItem_init() NS_RETURNS_RETAINED;
 
-- (void)xref;
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_IndexBaseItem)
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_IndexMarkerItem *)other;
+@interface ComItextpdfTextPdfCFFFont_IndexMarkerItem : ComItextpdfTextPdfCFFFont_Item
 
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_IndexMarkerItem_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_IndexMarkerItem, offItem_, ComItextpdfTextPdfCFFFont_OffsetItem *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_IndexMarkerItem, indexBase_, ComItextpdfTextPdfCFFFont_IndexBaseItem *)
-
-@interface ComItextpdfTextPdfCFFFont_SubrMarkerItem : ComItextpdfTextPdfCFFFont_Item {
- @public
-  ComItextpdfTextPdfCFFFont_OffsetItem *offItem_;
-  ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)offItem
                  withComItextpdfTextPdfCFFFont_IndexBaseItem:(ComItextpdfTextPdfCFFFont_IndexBaseItem *)indexBase;
 
 - (void)xref;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_SubrMarkerItem *)other;
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_IndexMarkerItem)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_IndexMarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_withComItextpdfTextPdfCFFFont_IndexBaseItem_(ComItextpdfTextPdfCFFFont_IndexMarkerItem *self, ComItextpdfTextPdfCFFFont_OffsetItem *offItem, ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_IndexMarkerItem *new_ComItextpdfTextPdfCFFFont_IndexMarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_withComItextpdfTextPdfCFFFont_IndexBaseItem_(ComItextpdfTextPdfCFFFont_OffsetItem *offItem, ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_IndexMarkerItem)
+
+@interface ComItextpdfTextPdfCFFFont_SubrMarkerItem : ComItextpdfTextPdfCFFFont_Item
+
+#pragma mark Public
+
+- (instancetype)initWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)offItem
+                 withComItextpdfTextPdfCFFFont_IndexBaseItem:(ComItextpdfTextPdfCFFFont_IndexBaseItem *)indexBase;
+
+- (void)xref;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_SubrMarkerItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_SubrMarkerItem)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_SubrMarkerItem, offItem_, ComItextpdfTextPdfCFFFont_OffsetItem *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_SubrMarkerItem, indexBase_, ComItextpdfTextPdfCFFFont_IndexBaseItem *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_SubrMarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_withComItextpdfTextPdfCFFFont_IndexBaseItem_(ComItextpdfTextPdfCFFFont_SubrMarkerItem *self, ComItextpdfTextPdfCFFFont_OffsetItem *offItem, ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_SubrMarkerItem *new_ComItextpdfTextPdfCFFFont_SubrMarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_withComItextpdfTextPdfCFFFont_IndexBaseItem_(ComItextpdfTextPdfCFFFont_OffsetItem *offItem, ComItextpdfTextPdfCFFFont_IndexBaseItem *indexBase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_SubrMarkerItem)
 
 @interface ComItextpdfTextPdfCFFFont_DictOffsetItem : ComItextpdfTextPdfCFFFont_OffsetItem {
  @public
   jint size_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)init;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_DictOffsetItem *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_DictOffsetItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_DictOffsetItem)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_DictOffsetItem_init(ComItextpdfTextPdfCFFFont_DictOffsetItem *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_DictOffsetItem *new_ComItextpdfTextPdfCFFFont_DictOffsetItem_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_DictOffsetItem)
 
 @interface ComItextpdfTextPdfCFFFont_UInt24Item : ComItextpdfTextPdfCFFFont_Item {
  @public
   jint value_;
 }
 
-- (instancetype)initWithInt:(jint)value;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithInt:(jint)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_UInt24Item *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_UInt24Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_UInt24Item)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_UInt24Item_initWithInt_(ComItextpdfTextPdfCFFFont_UInt24Item *self, jint value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_UInt24Item *new_ComItextpdfTextPdfCFFFont_UInt24Item_initWithInt_(jint value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_UInt24Item)
 
 @interface ComItextpdfTextPdfCFFFont_UInt32Item : ComItextpdfTextPdfCFFFont_Item {
  @public
   jint value_;
 }
 
-- (instancetype)initWithInt:(jint)value;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithInt:(jint)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_UInt32Item *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_UInt32Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_UInt32Item)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_UInt32Item_initWithInt_(ComItextpdfTextPdfCFFFont_UInt32Item *self, jint value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_UInt32Item *new_ComItextpdfTextPdfCFFFont_UInt32Item_initWithInt_(jint value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_UInt32Item)
 
 @interface ComItextpdfTextPdfCFFFont_UInt16Item : ComItextpdfTextPdfCFFFont_Item {
  @public
   jchar value_;
 }
 
-- (instancetype)initWithChar:(jchar)value;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithChar:(jchar)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_UInt16Item *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_UInt16Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_UInt16Item)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_UInt16Item_initWithChar_(ComItextpdfTextPdfCFFFont_UInt16Item *self, jchar value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_UInt16Item *new_ComItextpdfTextPdfCFFFont_UInt16Item_initWithChar_(jchar value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_UInt16Item)
 
 @interface ComItextpdfTextPdfCFFFont_UInt8Item : ComItextpdfTextPdfCFFFont_Item {
  @public
   jchar value_;
 }
 
-- (instancetype)initWithChar:(jchar)value;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithChar:(jchar)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_UInt8Item *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_UInt8Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_UInt8Item)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_UInt8Item_initWithChar_(ComItextpdfTextPdfCFFFont_UInt8Item *self, jchar value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_UInt8Item *new_ComItextpdfTextPdfCFFFont_UInt8Item_initWithChar_(jchar value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_UInt8Item)
 
 @interface ComItextpdfTextPdfCFFFont_StringItem : ComItextpdfTextPdfCFFFont_Item {
  @public
   NSString *s_;
 }
 
-- (instancetype)initWithNSString:(NSString *)s;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithNSString:(NSString *)s;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_StringItem *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_StringItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_StringItem)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_StringItem, s_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_StringItem_initWithNSString_(ComItextpdfTextPdfCFFFont_StringItem *self, NSString *s);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_StringItem *new_ComItextpdfTextPdfCFFFont_StringItem_initWithNSString_(NSString *s) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_StringItem)
 
 @interface ComItextpdfTextPdfCFFFont_DictNumberItem : ComItextpdfTextPdfCFFFont_Item {
  @public
@@ -323,34 +398,46 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_StringItem, s_, NSString *)
   jint size_;
 }
 
-- (instancetype)initWithInt:(jint)value;
+#pragma mark Public
 
-- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
+- (instancetype)initWithInt:(jint)value;
 
 - (void)emitWithByteArray:(IOSByteArray *)buffer;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_DictNumberItem *)other;
+- (void)incrementWithIntArray:(IOSIntArray *)currentOffset;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_DictNumberItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_DictNumberItem)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_DictNumberItem_initWithInt_(ComItextpdfTextPdfCFFFont_DictNumberItem *self, jint value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_DictNumberItem *new_ComItextpdfTextPdfCFFFont_DictNumberItem_initWithInt_(jint value) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_DictNumberItem)
 
 @interface ComItextpdfTextPdfCFFFont_MarkerItem : ComItextpdfTextPdfCFFFont_Item {
  @public
   ComItextpdfTextPdfCFFFont_OffsetItem *p_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)pointerToMarker;
 
 - (void)xref;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_MarkerItem *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_MarkerItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_MarkerItem)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_MarkerItem, p_, ComItextpdfTextPdfCFFFont_OffsetItem *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_MarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_(ComItextpdfTextPdfCFFFont_MarkerItem *self, ComItextpdfTextPdfCFFFont_OffsetItem *pointerToMarker);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_MarkerItem *new_ComItextpdfTextPdfCFFFont_MarkerItem_initWithComItextpdfTextPdfCFFFont_OffsetItem_(ComItextpdfTextPdfCFFFont_OffsetItem *pointerToMarker) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_MarkerItem)
 
 @interface ComItextpdfTextPdfCFFFont_Font : NSObject {
  @public
@@ -385,13 +472,13 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_MarkerItem, p_, ComItextpdfTextPdf
   IOSIntArray *SubrsOffsets_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfCFFFont:(ComItextpdfTextPdfCFFFont *)outer$;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFont_Font *)other;
+- (instancetype)initWithComItextpdfTextPdfCFFFont:(ComItextpdfTextPdfCFFFont *)outer$;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCFFFont_Font_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCFFFont_Font)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, name_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, fullName_, NSString *)
@@ -405,5 +492,11 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, FDArrayOffsets_, IOSIntArray
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, PrivateSubrsOffset_, IOSIntArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, PrivateSubrsOffsetsArray_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFont_Font, SubrsOffsets_, IOSIntArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFont_Font_initWithComItextpdfTextPdfCFFFont_(ComItextpdfTextPdfCFFFont_Font *self, ComItextpdfTextPdfCFFFont *outer$);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFont_Font *new_ComItextpdfTextPdfCFFFont_Font_initWithComItextpdfTextPdfCFFFont_(ComItextpdfTextPdfCFFFont *outer$) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFont_Font)
 
 #endif // _ComItextpdfTextPdfCFFFont_H_

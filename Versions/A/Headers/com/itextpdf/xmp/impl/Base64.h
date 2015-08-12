@@ -6,16 +6,19 @@
 #ifndef _ComItextpdfXmpImplBase64_H_
 #define _ComItextpdfXmpImplBase64_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplBase64 : NSObject
 
-#define ComItextpdfXmpImplBase64_EQUAL -3
-#define ComItextpdfXmpImplBase64_INVALID -1
-#define ComItextpdfXmpImplBase64_WHITESPACE -2
+#pragma mark Public
 
-@interface ComItextpdfXmpImplBase64 : NSObject {
-}
+- (instancetype)init;
+
++ (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)src;
+
++ (NSString *)decodeWithNSString:(NSString *)src;
 
 + (IOSByteArray *)encodeWithByteArray:(IOSByteArray *)src;
 
@@ -24,29 +27,24 @@
 
 + (NSString *)encodeWithNSString:(NSString *)src;
 
-+ (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)src;
-
-+ (NSString *)decodeWithNSString:(NSString *)src;
-
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfXmpImplBase64_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfXmpImplBase64)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplBase64, INVALID, jbyte)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpImplBase64_encodeWithByteArray_(IOSByteArray *src);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplBase64, WHITESPACE, jbyte)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpImplBase64_encodeWithByteArray_withInt_(IOSByteArray *src, jint lineFeed);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplBase64, EQUAL, jbyte)
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplBase64_encodeWithNSString_(NSString *src);
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpImplBase64_base64_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplBase64, base64_, IOSByteArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpImplBase64, base64_, IOSByteArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpImplBase64_decodeWithByteArray_(IOSByteArray *src);
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpImplBase64_ascii_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplBase64, ascii_, IOSByteArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfXmpImplBase64, ascii_, IOSByteArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplBase64_decodeWithNSString_(NSString *src);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplBase64_init(ComItextpdfXmpImplBase64 *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplBase64 *new_ComItextpdfXmpImplBase64_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplBase64)
 
 #endif // _ComItextpdfXmpImplBase64_H_

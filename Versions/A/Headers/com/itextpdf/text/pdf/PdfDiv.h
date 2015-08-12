@@ -6,9 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfDiv_H_
 #define _ComItextpdfTextPdfPdfDiv_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+#include "com/itextpdf/text/api/Spaceable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextBaseColor;
-@class ComItextpdfTextPdfFloatLayout;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfDiv_FloatTypeEnum;
 @class ComItextpdfTextPdfPdfDiv_PositionTypeEnum;
@@ -20,145 +25,84 @@
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
-#include "com/itextpdf/text/api/Spaceable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-#include "java/lang/Enum.h"
-
 @interface ComItextpdfTextPdfPdfDiv : NSObject < ComItextpdfTextElement, ComItextpdfTextApiSpaceable, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
-  JavaUtilArrayList *content_;
-  JavaLangFloat *left_;
-  JavaLangFloat *top_;
-  JavaLangFloat *right_;
-  JavaLangFloat *bottom_;
-  JavaLangFloat *width_;
-  JavaLangFloat *height_;
-  JavaLangFloat *percentageHeight_;
-  JavaLangFloat *percentageWidth_;
-  jfloat contentWidth_;
-  jfloat contentHeight_;
-  jint textAlignment_;
-  jfloat paddingLeft_;
-  jfloat paddingRight_;
-  jfloat paddingTop_;
-  jfloat paddingBottom_;
-  ComItextpdfTextPdfPdfDiv_FloatTypeEnum *floatType_;
-  ComItextpdfTextPdfPdfDiv_PositionTypeEnum *position_;
-  ComItextpdfTextPdfFloatLayout *floatLayout_;
-  jfloat yLine_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
   ComItextpdfTextAccessibleElementId *id__;
-  ComItextpdfTextBaseColor *backgroundColor_;
   jfloat spacingBefore_;
   jfloat spacingAfter_;
 }
 
-- (jfloat)getContentWidth;
+#pragma mark Public
 
-- (void)setContentWidthWithFloat:(jfloat)contentWidth;
+- (instancetype)init;
 
-- (jfloat)getContentHeight;
+- (void)addElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
-- (void)setContentHeightWithFloat:(jfloat)contentHeight;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
 - (jfloat)getActualHeight;
 
 - (jfloat)getActualWidth;
 
-- (JavaLangFloat *)getPercentageHeight;
-
-- (void)setPercentageHeightWithJavaLangFloat:(JavaLangFloat *)percentageHeight;
-
-- (JavaLangFloat *)getPercentageWidth;
-
-- (void)setPercentageWidthWithJavaLangFloat:(JavaLangFloat *)percentageWidth;
-
 - (ComItextpdfTextBaseColor *)getBackgroundColor;
-
-- (void)setBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)backgroundColor;
-
-- (jfloat)getYLine;
-
-- (instancetype)init;
-
-- (id<JavaUtilList>)getChunks;
-
-- (jint)type;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
-
-- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
-
-- (void)setSpacingAfterWithFloat:(jfloat)spacing;
-
-- (jfloat)getSpacingBefore;
-
-- (jfloat)getSpacingAfter;
-
-- (jint)getTextAlignment;
-
-- (void)setTextAlignmentWithInt:(jint)textAlignment;
-
-- (void)addElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
-
-- (JavaLangFloat *)getLeft;
-
-- (void)setLeftWithJavaLangFloat:(JavaLangFloat *)left;
-
-- (JavaLangFloat *)getRight;
-
-- (void)setRightWithJavaLangFloat:(JavaLangFloat *)right;
-
-- (JavaLangFloat *)getTop;
-
-- (void)setTopWithJavaLangFloat:(JavaLangFloat *)top;
 
 - (JavaLangFloat *)getBottom;
 
-- (void)setBottomWithJavaLangFloat:(JavaLangFloat *)bottom;
-
-- (JavaLangFloat *)getWidth;
-
-- (void)setWidthWithJavaLangFloat:(JavaLangFloat *)width;
-
-- (JavaLangFloat *)getHeight;
-
-- (void)setHeightWithJavaLangFloat:(JavaLangFloat *)height;
-
-- (jfloat)getPaddingLeft;
-
-- (void)setPaddingLeftWithFloat:(jfloat)paddingLeft;
-
-- (jfloat)getPaddingRight;
-
-- (void)setPaddingRightWithFloat:(jfloat)paddingRight;
-
-- (jfloat)getPaddingTop;
-
-- (void)setPaddingTopWithFloat:(jfloat)paddingTop;
-
-- (jfloat)getPaddingBottom;
-
-- (void)setPaddingBottomWithFloat:(jfloat)paddingBottom;
-
-- (ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)getFloatType;
-
-- (void)setFloatTypeWithComItextpdfTextPdfPdfDiv_FloatTypeEnum:(ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)floatType;
-
-- (ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)getPosition;
-
-- (void)setPositionWithComItextpdfTextPdfPdfDiv_PositionTypeEnum:(ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)position;
+- (id<JavaUtilList>)getChunks;
 
 - (JavaUtilArrayList *)getContent;
 
-- (void)setContentWithJavaUtilArrayList:(JavaUtilArrayList *)content;
+- (jfloat)getContentHeight;
+
+- (jfloat)getContentWidth;
+
+- (ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)getFloatType;
+
+- (JavaLangFloat *)getHeight;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (JavaLangFloat *)getLeft;
+
+- (jfloat)getPaddingBottom;
+
+- (jfloat)getPaddingLeft;
+
+- (jfloat)getPaddingRight;
+
+- (jfloat)getPaddingTop;
+
+- (JavaLangFloat *)getPercentageHeight;
+
+- (JavaLangFloat *)getPercentageWidth;
+
+- (ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)getPosition;
+
+- (JavaLangFloat *)getRight;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jfloat)getSpacingAfter;
+
+- (jfloat)getSpacingBefore;
+
+- (jint)getTextAlignment;
+
+- (JavaLangFloat *)getTop;
+
+- (JavaLangFloat *)getWidth;
+
+- (jfloat)getYLine;
+
+- (jboolean)isContent;
+
+- (jboolean)isInline;
+
+- (jboolean)isNestable;
 
 - (jint)layoutWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
                                        withBoolean:(jboolean)useAscender
@@ -168,118 +112,145 @@
                                          withFloat:(jfloat)urx
                                          withFloat:(jfloat)ury;
 
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
                             withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
+- (void)setBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)backgroundColor;
 
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (void)setBottomWithJavaLangFloat:(JavaLangFloat *)bottom;
 
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+- (void)setContentWithJavaUtilArrayList:(JavaUtilArrayList *)content;
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (void)setContentHeightWithFloat:(jfloat)contentHeight;
+
+- (void)setContentWidthWithFloat:(jfloat)contentWidth;
+
+- (void)setFloatTypeWithComItextpdfTextPdfPdfDiv_FloatTypeEnum:(ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)floatType;
+
+- (void)setHeightWithJavaLangFloat:(JavaLangFloat *)height;
 
 - (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
 
-- (jboolean)isInline;
+- (void)setLeftWithJavaLangFloat:(JavaLangFloat *)left;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfDiv *)other;
+- (void)setPaddingBottomWithFloat:(jfloat)paddingBottom;
+
+- (void)setPaddingLeftWithFloat:(jfloat)paddingLeft;
+
+- (void)setPaddingRightWithFloat:(jfloat)paddingRight;
+
+- (void)setPaddingTopWithFloat:(jfloat)paddingTop;
+
+- (void)setPercentageHeightWithJavaLangFloat:(JavaLangFloat *)percentageHeight;
+
+- (void)setPercentageWidthWithJavaLangFloat:(JavaLangFloat *)percentageWidth;
+
+- (void)setPositionWithComItextpdfTextPdfPdfDiv_PositionTypeEnum:(ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)position;
+
+- (void)setRightWithJavaLangFloat:(JavaLangFloat *)right;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setSpacingAfterWithFloat:(jfloat)spacing;
+
+- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
+
+- (void)setTextAlignmentWithInt:(jint)textAlignment;
+
+- (void)setTopWithJavaLangFloat:(JavaLangFloat *)top;
+
+- (void)setWidthWithJavaLangFloat:(JavaLangFloat *)width;
+
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfDiv_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfDiv)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, content_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, left_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, top_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, right_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, bottom_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, width_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, height_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, percentageHeight_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, percentageWidth_, JavaLangFloat *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, floatType_, ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, position_, ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, floatLayout_, ComItextpdfTextPdfFloatLayout *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, accessibleAttributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, id__, ComItextpdfTextAccessibleElementId *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDiv, backgroundColor_, ComItextpdfTextBaseColor *)
 
-typedef enum {
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDiv_init(ComItextpdfTextPdfPdfDiv *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv *new_ComItextpdfTextPdfPdfDiv_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDiv)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfDiv_FloatType) {
   ComItextpdfTextPdfPdfDiv_FloatType_NONE = 0,
   ComItextpdfTextPdfPdfDiv_FloatType_LEFT = 1,
   ComItextpdfTextPdfPdfDiv_FloatType_RIGHT = 2,
-} ComItextpdfTextPdfPdfDiv_FloatType;
+};
 
-@interface ComItextpdfTextPdfPdfDiv_FloatTypeEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfPdfDiv_FloatTypeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfDiv_FloatTypeEnum_values();
 
 + (ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_FloatTypeEnum *ComItextpdfTextPdfPdfDiv_FloatTypeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_FloatTypeEnum *ComItextpdfTextPdfPdfDiv_FloatTypeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfDiv_FloatTypeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfDiv_FloatTypeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_FloatTypeEnum *ComItextpdfTextPdfPdfDiv_FloatTypeEnum_values_[];
 
 #define ComItextpdfTextPdfPdfDiv_FloatTypeEnum_NONE ComItextpdfTextPdfPdfDiv_FloatTypeEnum_values_[ComItextpdfTextPdfPdfDiv_FloatType_NONE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, NONE, ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, NONE)
 
 #define ComItextpdfTextPdfPdfDiv_FloatTypeEnum_LEFT ComItextpdfTextPdfPdfDiv_FloatTypeEnum_values_[ComItextpdfTextPdfPdfDiv_FloatType_LEFT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, LEFT, ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, LEFT)
 
 #define ComItextpdfTextPdfPdfDiv_FloatTypeEnum_RIGHT ComItextpdfTextPdfPdfDiv_FloatTypeEnum_values_[ComItextpdfTextPdfPdfDiv_FloatType_RIGHT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, RIGHT, ComItextpdfTextPdfPdfDiv_FloatTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum, RIGHT)
 
-typedef enum {
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDiv_FloatTypeEnum)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfDiv_PositionType) {
   ComItextpdfTextPdfPdfDiv_PositionType_STATIC = 0,
   ComItextpdfTextPdfPdfDiv_PositionType_ABSOLUTE = 1,
   ComItextpdfTextPdfPdfDiv_PositionType_FIXED = 2,
   ComItextpdfTextPdfPdfDiv_PositionType_RELATIVE = 3,
-} ComItextpdfTextPdfPdfDiv_PositionType;
+};
 
-@interface ComItextpdfTextPdfPdfDiv_PositionTypeEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfPdfDiv_PositionTypeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values();
 
 + (ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_PositionTypeEnum *ComItextpdfTextPdfPdfDiv_PositionTypeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_PositionTypeEnum *ComItextpdfTextPdfPdfDiv_PositionTypeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfDiv_PositionTypeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfDiv_PositionTypeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfDiv_PositionTypeEnum *ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values_[];
 
 #define ComItextpdfTextPdfPdfDiv_PositionTypeEnum_STATIC ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values_[ComItextpdfTextPdfPdfDiv_PositionType_STATIC]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, STATIC, ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, STATIC)
 
 #define ComItextpdfTextPdfPdfDiv_PositionTypeEnum_ABSOLUTE ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values_[ComItextpdfTextPdfPdfDiv_PositionType_ABSOLUTE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, ABSOLUTE, ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, ABSOLUTE)
 
 #define ComItextpdfTextPdfPdfDiv_PositionTypeEnum_FIXED ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values_[ComItextpdfTextPdfPdfDiv_PositionType_FIXED]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, FIXED, ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, FIXED)
 
 #define ComItextpdfTextPdfPdfDiv_PositionTypeEnum_RELATIVE ComItextpdfTextPdfPdfDiv_PositionTypeEnum_values_[ComItextpdfTextPdfPdfDiv_PositionType_RELATIVE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, RELATIVE, ComItextpdfTextPdfPdfDiv_PositionTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum, RELATIVE)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDiv_PositionTypeEnum)
 
 #endif // _ComItextpdfTextPdfPdfDiv_H_

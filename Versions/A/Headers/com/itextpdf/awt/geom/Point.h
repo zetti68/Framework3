@@ -6,11 +6,9 @@
 #ifndef _ComItextpdfAwtGeomPoint_H_
 #define _ComItextpdfAwtGeomPoint_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/awt/geom/Point2D.h"
 #include "java/io/Serializable.h"
-
-#define ComItextpdfAwtGeomPoint_serialVersionUID -5276940640259749850LL
 
 @interface ComItextpdfAwtGeomPoint : ComItextpdfAwtGeomPoint2D < JavaIoSerializable > {
  @public
@@ -18,52 +16,68 @@
   jdouble y_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithInt:(jint)x
-                    withInt:(jint)y;
+- (instancetype)init;
 
 - (instancetype)initWithDouble:(jdouble)x
                     withDouble:(jdouble)y;
+
+- (instancetype)initWithInt:(jint)x
+                    withInt:(jint)y;
 
 - (instancetype)initWithComItextpdfAwtGeomPoint:(ComItextpdfAwtGeomPoint *)p;
 
 - (jboolean)isEqual:(id)obj;
 
-- (NSString *)description;
+- (ComItextpdfAwtGeomPoint *)getLocation;
 
 - (jdouble)getX;
 
 - (jdouble)getY;
 
-- (ComItextpdfAwtGeomPoint *)getLocation;
-
-- (void)setLocationWithComItextpdfAwtGeomPoint:(ComItextpdfAwtGeomPoint *)p;
-
-- (void)setLocationWithInt:(jint)x
-                   withInt:(jint)y;
-
-- (void)setLocationWithDouble:(jdouble)x
-                   withDouble:(jdouble)y;
+- (void)moveWithDouble:(jdouble)x
+            withDouble:(jdouble)y;
 
 - (void)moveWithInt:(jint)x
             withInt:(jint)y;
 
-- (void)moveWithDouble:(jdouble)x
-            withDouble:(jdouble)y;
+- (void)setLocationWithDouble:(jdouble)x
+                   withDouble:(jdouble)y;
 
-- (void)translateWithInt:(jint)dx
-                 withInt:(jint)dy;
+- (void)setLocationWithInt:(jint)x
+                   withInt:(jint)y;
+
+- (void)setLocationWithComItextpdfAwtGeomPoint:(ComItextpdfAwtGeomPoint *)p;
+
+- (NSString *)description;
 
 - (void)translateWithDouble:(jdouble)dx
                  withDouble:(jdouble)dy;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomPoint *)other;
+- (void)translateWithInt:(jint)dx
+                 withInt:(jint)dy;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomPoint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomPoint, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint_init(ComItextpdfAwtGeomPoint *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint *new_ComItextpdfAwtGeomPoint_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint_initWithInt_withInt_(ComItextpdfAwtGeomPoint *self, jint x, jint y);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint *new_ComItextpdfAwtGeomPoint_initWithInt_withInt_(jint x, jint y) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint_initWithDouble_withDouble_(ComItextpdfAwtGeomPoint *self, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint *new_ComItextpdfAwtGeomPoint_initWithDouble_withDouble_(jdouble x, jdouble y) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint_initWithComItextpdfAwtGeomPoint_(ComItextpdfAwtGeomPoint *self, ComItextpdfAwtGeomPoint *p);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint *new_ComItextpdfAwtGeomPoint_initWithComItextpdfAwtGeomPoint_(ComItextpdfAwtGeomPoint *p) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomPoint)
 
 #endif // _ComItextpdfAwtGeomPoint_H_

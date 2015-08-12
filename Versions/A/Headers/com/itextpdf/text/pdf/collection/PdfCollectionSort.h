@@ -6,14 +6,15 @@
 #ifndef _ComItextpdfTextPdfCollectionPdfCollectionSort_H_
 #define _ComItextpdfTextPdfCollectionPdfCollectionSort_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class IOSBooleanArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
+@interface ComItextpdfTextPdfCollectionPdfCollectionSort : ComItextpdfTextPdfPdfDictionary
 
-@interface ComItextpdfTextPdfCollectionPdfCollectionSort : ComItextpdfTextPdfPdfDictionary {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)key;
 
@@ -25,6 +26,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCollectionPdfCollectionSort_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCollectionPdfCollectionSort)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfCollectionSort_initWithNSString_(ComItextpdfTextPdfCollectionPdfCollectionSort *self, NSString *key);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfCollectionSort *new_ComItextpdfTextPdfCollectionPdfCollectionSort_initWithNSString_(NSString *key) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfCollectionSort_initWithNSStringArray_(ComItextpdfTextPdfCollectionPdfCollectionSort *self, IOSObjectArray *keys);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfCollectionSort *new_ComItextpdfTextPdfCollectionPdfCollectionSort_initWithNSStringArray_(IOSObjectArray *keys) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCollectionPdfCollectionSort)
 
 #endif // _ComItextpdfTextPdfCollectionPdfCollectionSort_H_

@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfSignatureAppearance_H_
 #define _ComItextpdfTextPdfPdfSignatureAppearance_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextFont;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfByteBuffer;
@@ -16,133 +19,134 @@
 @class ComItextpdfTextPdfPdfStamperImp;
 @class ComItextpdfTextPdfPdfTemplate;
 @class ComItextpdfTextRectangle;
-@class IOSByteArray;
-@class IOSLongArray;
-@class IOSObjectArray;
 @class JavaIoFile;
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
-@class JavaIoRandomAccessFile;
 @class JavaSecurityCertCertificate;
 @class JavaUtilCalendar;
 @class JavaUtilHashMap;
-@protocol ComItextpdfTextIoRandomAccessSource;
 @protocol ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent;
 
-#import "JreEmulation.h"
-#include "java/lang/Enum.h"
-
+#define ComItextpdfTextPdfPdfSignatureAppearance_NOT_CERTIFIED 0
+#define ComItextpdfTextPdfPdfSignatureAppearance_CERTIFIED_NO_CHANGES_ALLOWED 1
 #define ComItextpdfTextPdfPdfSignatureAppearance_CERTIFIED_FORM_FILLING 2
 #define ComItextpdfTextPdfPdfSignatureAppearance_CERTIFIED_FORM_FILLING_AND_ANNOTATIONS 3
-#define ComItextpdfTextPdfPdfSignatureAppearance_CERTIFIED_NO_CHANGES_ALLOWED 1
-#define ComItextpdfTextPdfPdfSignatureAppearance_MARGIN 2.0f
-#define ComItextpdfTextPdfPdfSignatureAppearance_NOT_CERTIFIED 0
-#define ComItextpdfTextPdfPdfSignatureAppearance_TOP_SECTION 0.3f
 
-@interface ComItextpdfTextPdfPdfSignatureAppearance : NSObject {
- @public
-  jint certificationLevel_;
-  NSString *reasonCaption_;
-  NSString *locationCaption_;
-  NSString *reason_;
-  NSString *location_;
-  JavaUtilCalendar *signDate_;
-  NSString *signatureCreator_;
-  NSString *contact_;
-  JavaIoRandomAccessFile *raf_;
-  IOSByteArray *bout_;
-  IOSLongArray *range_;
-  JavaSecurityCertCertificate *signCertificate_;
-  ComItextpdfTextPdfPdfDictionary *cryptoDictionary_;
-  id<ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent> signatureEvent_;
-  NSString *fieldName_;
-  jboolean newField_;
-  jint page_;
-  ComItextpdfTextRectangle *rect_;
-  ComItextpdfTextRectangle *pageRect_;
-  ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *renderingMode_;
-  ComItextpdfTextImage *signatureGraphic_;
-  jboolean acro6Layers_;
-  IOSObjectArray *app_;
-  jboolean reuseAppearance_;
-  ComItextpdfTextImage *image_;
-  jfloat imageScale_;
-  NSString *layer2Text_;
-  ComItextpdfTextFont *layer2Font_;
-  jint runDirection_;
-  NSString *layer4Text_;
-  ComItextpdfTextPdfPdfTemplate *frm_;
-  ComItextpdfTextPdfPdfStamper *stamper_;
-  ComItextpdfTextPdfPdfStamperImp *writer_;
-  ComItextpdfTextPdfByteBuffer *sigout_;
-  JavaIoOutputStream *originalout_;
-  JavaIoFile *tempFile_;
-  JavaUtilHashMap *exclusionLocations_;
-  jint boutLen_;
-  jboolean preClosed_;
-}
+@interface ComItextpdfTextPdfPdfSignatureAppearance : NSObject
 
-- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
+#pragma mark Public
 
-- (void)setCertificationLevelWithInt:(jint)certificationLevel;
+- (void)addDeveloperExtensionWithComItextpdfTextPdfPdfDeveloperExtension:(ComItextpdfTextPdfPdfDeveloperExtension *)de;
+
+- (void)closeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)update;
+
+- (ComItextpdfTextPdfPdfTemplate *)getAppearance;
+
+- (JavaSecurityCertCertificate *)getCertificate;
 
 - (jint)getCertificationLevel;
 
-- (NSString *)getReason;
+- (NSString *)getContact;
 
-- (void)setReasonWithNSString:(NSString *)reason;
+- (ComItextpdfTextPdfPdfDictionary *)getCryptoDictionary;
 
-- (void)setReasonCaptionWithNSString:(NSString *)reasonCaption;
+- (NSString *)getFieldName;
+
+- (ComItextpdfTextImage *)getImage;
+
+- (jfloat)getImageScale;
+
+- (ComItextpdfTextPdfPdfTemplate *)getLayerWithInt:(jint)layer;
+
+- (ComItextpdfTextFont *)getLayer2Font;
+
+- (NSString *)getLayer2Text;
+
+- (NSString *)getLayer4Text;
 
 - (NSString *)getLocation;
+
+- (NSString *)getNewSigName;
+
+- (jint)getPage;
+
+- (ComItextpdfTextRectangle *)getPageRect;
+
+- (JavaIoInputStream *)getRangeStream;
+
+- (NSString *)getReason;
+
+- (ComItextpdfTextRectangle *)getRect;
+
+- (ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)getRenderingMode;
+
+- (jint)getRunDirection;
+
+- (NSString *)getSignatureCreator;
+
+- (id<ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent>)getSignatureEvent;
+
+- (ComItextpdfTextImage *)getSignatureGraphic;
+
+- (JavaUtilCalendar *)getSignDate;
+
+- (ComItextpdfTextPdfPdfStamper *)getStamper;
+
+- (JavaIoFile *)getTempFile;
+
+- (ComItextpdfTextPdfPdfTemplate *)getTopLayer;
+
+- (jboolean)isAcro6Layers;
+
+- (jboolean)isInvisible;
+
+- (jboolean)isNewField;
+
+- (jboolean)isPreClosed;
+
+- (void)preCloseWithJavaUtilHashMap:(JavaUtilHashMap *)exclusionSizes;
+
+- (void)setAcro6LayersWithBoolean:(jboolean)acro6Layers;
+
+- (void)setCertificateWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)signCertificate;
+
+- (void)setCertificationLevelWithInt:(jint)certificationLevel;
+
+- (void)setContactWithNSString:(NSString *)contact;
+
+- (void)setCryptoDictionaryWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)cryptoDictionary;
+
+- (void)setImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
+- (void)setImageScaleWithFloat:(jfloat)imageScale;
+
+- (void)setLayer2FontWithComItextpdfTextFont:(ComItextpdfTextFont *)layer2Font;
+
+- (void)setLayer2TextWithNSString:(NSString *)text;
+
+- (void)setLayer4TextWithNSString:(NSString *)text;
 
 - (void)setLocationWithNSString:(NSString *)location;
 
 - (void)setLocationCaptionWithNSString:(NSString *)locationCaption;
 
-- (NSString *)getSignatureCreator;
+- (void)setReasonWithNSString:(NSString *)reason;
+
+- (void)setReasonCaptionWithNSString:(NSString *)reasonCaption;
+
+- (void)setRenderingModeWithComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum:(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)renderingMode;
+
+- (void)setReuseAppearanceWithBoolean:(jboolean)reuseAppearance;
+
+- (void)setRunDirectionWithInt:(jint)runDirection;
 
 - (void)setSignatureCreatorWithNSString:(NSString *)signatureCreator;
 
-- (NSString *)getContact;
-
-- (void)setContactWithNSString:(NSString *)contact;
-
-- (JavaUtilCalendar *)getSignDate;
-
-- (void)setSignDateWithJavaUtilCalendar:(JavaUtilCalendar *)signDate;
-
-- (JavaIoInputStream *)getRangeStream;
-
-- (id<ComItextpdfTextIoRandomAccessSource>)getUnderlyingSource;
-
-- (void)addDeveloperExtensionWithComItextpdfTextPdfPdfDeveloperExtension:(ComItextpdfTextPdfPdfDeveloperExtension *)de;
-
-- (ComItextpdfTextPdfPdfDictionary *)getCryptoDictionary;
-
-- (void)setCryptoDictionaryWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)cryptoDictionary;
-
-- (void)setCertificateWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)signCertificate;
-
-- (JavaSecurityCertCertificate *)getCertificate;
-
-- (id<ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent>)getSignatureEvent;
-
 - (void)setSignatureEventWithComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent:(id<ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent>)signatureEvent;
 
-- (NSString *)getFieldName;
+- (void)setSignatureGraphicWithComItextpdfTextImage:(ComItextpdfTextImage *)signatureGraphic;
 
-- (NSString *)getNewSigName;
-
-- (jboolean)isNewField;
-
-- (jint)getPage;
-
-- (ComItextpdfTextRectangle *)getRect;
-
-- (ComItextpdfTextRectangle *)getPageRect;
-
-- (jboolean)isInvisible;
+- (void)setSignDateWithJavaUtilCalendar:(JavaUtilCalendar *)signDate;
 
 - (void)setVisibleSignatureWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageRect
                                                 withInt:(jint)page
@@ -150,115 +154,25 @@
 
 - (void)setVisibleSignatureWithNSString:(NSString *)fieldName;
 
-- (ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)getRenderingMode;
+#pragma mark Package-Private
 
-- (void)setRenderingModeWithComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum:(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)renderingMode;
-
-- (ComItextpdfTextImage *)getSignatureGraphic;
-
-- (void)setSignatureGraphicWithComItextpdfTextImage:(ComItextpdfTextImage *)signatureGraphic;
-
-- (jboolean)isAcro6Layers;
-
-- (void)setAcro6LayersWithBoolean:(jboolean)acro6Layers;
-
-- (ComItextpdfTextPdfPdfTemplate *)getLayerWithInt:(jint)layer;
-
-- (void)setReuseAppearanceWithBoolean:(jboolean)reuseAppearance;
-
-- (ComItextpdfTextImage *)getImage;
-
-- (void)setImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (jfloat)getImageScale;
-
-- (void)setImageScaleWithFloat:(jfloat)imageScale;
-
-- (void)setLayer2TextWithNSString:(NSString *)text;
-
-- (NSString *)getLayer2Text;
-
-- (ComItextpdfTextFont *)getLayer2Font;
-
-- (void)setLayer2FontWithComItextpdfTextFont:(ComItextpdfTextFont *)layer2Font;
-
-- (void)setRunDirectionWithInt:(jint)runDirection;
-
-- (jint)getRunDirection;
-
-- (void)setLayer4TextWithNSString:(NSString *)text;
-
-- (NSString *)getLayer4Text;
-
-- (ComItextpdfTextPdfPdfTemplate *)getTopLayer;
-
-- (ComItextpdfTextPdfPdfTemplate *)getAppearance;
-
-- (void)createBlankN0;
-
-- (ComItextpdfTextPdfPdfStamper *)getStamper;
-
-- (void)setStamperWithComItextpdfTextPdfPdfStamper:(ComItextpdfTextPdfPdfStamper *)stamper;
-
-- (ComItextpdfTextPdfByteBuffer *)getSigout;
-
-- (void)setSigoutWithComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)sigout;
+- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
 
 - (JavaIoOutputStream *)getOriginalout;
 
+- (ComItextpdfTextPdfByteBuffer *)getSigout;
+
 - (void)setOriginaloutWithJavaIoOutputStream:(JavaIoOutputStream *)originalout;
 
-- (JavaIoFile *)getTempFile;
+- (void)setSigoutWithComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)sigout;
+
+- (void)setStamperWithComItextpdfTextPdfPdfStamper:(ComItextpdfTextPdfPdfStamper *)stamper;
 
 - (void)setTempFileWithJavaIoFile:(JavaIoFile *)tempFile;
 
-- (jboolean)isPreClosed;
-
-- (void)preCloseWithJavaUtilHashMap:(JavaUtilHashMap *)exclusionSizes;
-
-- (void)addDocMDPWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)crypto;
-
-- (void)addFieldMDPWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)crypto
-                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)fieldLock;
-
-- (void)closeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)update;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfSignatureAppearance *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSignatureAppearance_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, reasonCaption_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, locationCaption_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, reason_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, location_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, signDate_, JavaUtilCalendar *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, signatureCreator_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, contact_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, raf_, JavaIoRandomAccessFile *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, bout_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, range_, IOSLongArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, signCertificate_, JavaSecurityCertCertificate *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, cryptoDictionary_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, signatureEvent_, id<ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, fieldName_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, rect_, ComItextpdfTextRectangle *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, pageRect_, ComItextpdfTextRectangle *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, renderingMode_, ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, signatureGraphic_, ComItextpdfTextImage *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, app_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, image_, ComItextpdfTextImage *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, layer2Text_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, layer2Font_, ComItextpdfTextFont *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, layer4Text_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, frm_, ComItextpdfTextPdfPdfTemplate *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, stamper_, ComItextpdfTextPdfPdfStamper *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, writer_, ComItextpdfTextPdfPdfStamperImp *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, sigout_, ComItextpdfTextPdfByteBuffer *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, originalout_, JavaIoOutputStream *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, tempFile_, JavaIoFile *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSignatureAppearance, exclusionLocations_, JavaUtilHashMap *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSignatureAppearance)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, NOT_CERTIFIED, jint)
 
@@ -271,9 +185,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, CERTIFIED_F
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfSignatureAppearance_questionMark_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, questionMark_, NSString *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, TOP_SECTION, jfloat)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSignatureAppearance_initWithComItextpdfTextPdfPdfStamperImp_(ComItextpdfTextPdfPdfSignatureAppearance *self, ComItextpdfTextPdfPdfStamperImp *writer);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, MARGIN, jfloat)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSignatureAppearance *new_ComItextpdfTextPdfPdfSignatureAppearance_initWithComItextpdfTextPdfPdfStamperImp_(ComItextpdfTextPdfPdfStamperImp *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSignatureAppearance)
 
 @protocol ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent < NSObject, JavaObject >
 
@@ -281,45 +197,47 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance, MARGIN, jfl
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent)
 
-typedef enum {
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSignatureAppearance_SignatureEvent)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode) {
   ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_DESCRIPTION = 0,
   ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_NAME_AND_DESCRIPTION = 1,
   ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_GRAPHIC_AND_DESCRIPTION = 2,
   ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_GRAPHIC = 3,
-} ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode;
+};
 
-@interface ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values();
 
 + (ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values_[];
 
 #define ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_DESCRIPTION ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values_[ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_DESCRIPTION]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, DESCRIPTION, ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, DESCRIPTION)
 
 #define ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_NAME_AND_DESCRIPTION ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values_[ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_NAME_AND_DESCRIPTION]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, NAME_AND_DESCRIPTION, ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, NAME_AND_DESCRIPTION)
 
 #define ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_GRAPHIC_AND_DESCRIPTION ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values_[ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_GRAPHIC_AND_DESCRIPTION]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, GRAPHIC_AND_DESCRIPTION, ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, GRAPHIC_AND_DESCRIPTION)
 
 #define ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_GRAPHIC ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum_values_[ComItextpdfTextPdfPdfSignatureAppearance_RenderingMode_GRAPHIC]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, GRAPHIC, ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum, GRAPHIC)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSignatureAppearance_RenderingModeEnum)
 
 #endif // _ComItextpdfTextPdfPdfSignatureAppearance_H_

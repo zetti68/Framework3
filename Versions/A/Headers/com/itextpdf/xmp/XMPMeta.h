@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfXmpXMPMeta_H_
 #define _ComItextpdfXmpXMPMeta_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpOptionsIteratorOptions;
 @class ComItextpdfXmpOptionsParseOptions;
 @class ComItextpdfXmpOptionsPropertyOptions;
@@ -19,9 +21,8 @@
 @protocol ComItextpdfXmpXMPDateTime;
 @protocol ComItextpdfXmpXMPIterator;
 
-#import "JreEmulation.h"
-
 @protocol ComItextpdfXmpXMPMeta < NSCopying, NSObject, JavaObject >
+
 - (id<ComItextpdfXmpPropertiesXMPProperty>)getPropertyWithNSString:(NSString *)schemaNS
                                                       withNSString:(NSString *)propName;
 
@@ -270,10 +271,10 @@ withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *
 
 - (NSString *)dumpObject;
 
-- (id)copyWithZone:(NSZone *)zone;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPMeta_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPMeta)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPMeta)
 
 #endif // _ComItextpdfXmpXMPMeta_H_

@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfRendition_H_
 #define _ComItextpdfTextPdfPdfRendition_H_
 
-@class ComItextpdfTextPdfPdfFileSpecification;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfPdfRendition : ComItextpdfTextPdfPdfDictionary {
-}
+@class ComItextpdfTextPdfPdfFileSpecification;
+
+@interface ComItextpdfTextPdfPdfRendition : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Package-Private
 
 - (instancetype)initWithNSString:(NSString *)file
 withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecification *)fs
@@ -20,6 +21,12 @@ withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecificati
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfRendition_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfRendition)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRendition_initWithNSString_withComItextpdfTextPdfPdfFileSpecification_withNSString_(ComItextpdfTextPdfPdfRendition *self, NSString *file, ComItextpdfTextPdfPdfFileSpecification *fs, NSString *mimeType);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRendition *new_ComItextpdfTextPdfPdfRendition_initWithNSString_withComItextpdfTextPdfPdfFileSpecification_withNSString_(NSString *file, ComItextpdfTextPdfPdfFileSpecification *fs, NSString *mimeType) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfRendition)
 
 #endif // _ComItextpdfTextPdfPdfRendition_H_

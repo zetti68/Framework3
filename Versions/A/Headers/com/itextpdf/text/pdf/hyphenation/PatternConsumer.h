@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfHyphenationPatternConsumer_H_
 #define _ComItextpdfTextPdfHyphenationPatternConsumer_H_
 
-@class JavaUtilArrayList;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class JavaUtilArrayList;
 
 @protocol ComItextpdfTextPdfHyphenationPatternConsumer < NSObject, JavaObject >
 
@@ -22,6 +22,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationPatternConsumer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationPatternConsumer)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationPatternConsumer)
 
 #endif // _ComItextpdfTextPdfHyphenationPatternConsumer_H_

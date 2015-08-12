@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextIoStreamUtil_H_
 #define _ComItextpdfTextIoStreamUtil_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaIoOutputStream;
@@ -13,16 +15,9 @@
 @protocol ComItextpdfTextIoRandomAccessSource;
 @protocol ComItextpdfTextIoResourceProvider;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextIoStreamUtil : NSObject
 
-@interface ComItextpdfTextIoStreamUtil : NSObject {
-}
-
-+ (void)setResourceProviderWithComItextpdfTextIoResourceProvider:(id<ComItextpdfTextIoResourceProvider>)pResourceProvider;
-
-- (instancetype)init;
-
-+ (IOSByteArray *)inputStreamToArrayWithJavaIoInputStream:(JavaIoInputStream *)is;
+#pragma mark Public
 
 + (void)CopyBytesWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
                                                 withLong:(jlong)start
@@ -34,12 +29,24 @@
 + (JavaIoInputStream *)getResourceStreamWithNSString:(NSString *)key
                              withJavaLangClassLoader:(JavaLangClassLoader *)loader;
 
++ (IOSByteArray *)inputStreamToArrayWithJavaIoInputStream:(JavaIoInputStream *)is;
+
++ (void)setResourceProviderWithComItextpdfTextIoResourceProvider:(id<ComItextpdfTextIoResourceProvider>)pResourceProvider;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoStreamUtil_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoStreamUtil)
 
-FOUNDATION_EXPORT id<ComItextpdfTextIoResourceProvider> ComItextpdfTextIoStreamUtil_sResourceProvider_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextIoStreamUtil, sResourceProvider_, id<ComItextpdfTextIoResourceProvider>)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextIoStreamUtil, sResourceProvider_, id<ComItextpdfTextIoResourceProvider>)
+FOUNDATION_EXPORT void ComItextpdfTextIoStreamUtil_setResourceProviderWithComItextpdfTextIoResourceProvider_(id<ComItextpdfTextIoResourceProvider> pResourceProvider);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextIoStreamUtil_inputStreamToArrayWithJavaIoInputStream_(JavaIoInputStream *is);
+
+FOUNDATION_EXPORT void ComItextpdfTextIoStreamUtil_CopyBytesWithComItextpdfTextIoRandomAccessSource_withLong_withLong_withJavaIoOutputStream_(id<ComItextpdfTextIoRandomAccessSource> source, jlong start, jlong length, JavaIoOutputStream *outs);
+
+FOUNDATION_EXPORT JavaIoInputStream *ComItextpdfTextIoStreamUtil_getResourceStreamWithNSString_(NSString *key);
+
+FOUNDATION_EXPORT JavaIoInputStream *ComItextpdfTextIoStreamUtil_getResourceStreamWithNSString_withJavaLangClassLoader_(NSString *key, JavaLangClassLoader *loader);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoStreamUtil)
 
 #endif // _ComItextpdfTextIoStreamUtil_H_

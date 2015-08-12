@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfCodecWmfInputMeta_H_
 #define _ComItextpdfTextPdfCodecWmfInputMeta_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class JavaIoInputStream;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfCodecWmfInputMeta : NSObject {
  @public
@@ -17,28 +17,34 @@
   jint length_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inArg;
-
-- (jint)readWord;
-
-- (jint)readShort;
-
-- (jint)readInt;
-
-- (jint)readByte;
-
-- (void)skipWithInt:(jint)len;
 
 - (jint)getLength;
 
+- (jint)readByte;
+
 - (ComItextpdfTextBaseColor *)readColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfInputMeta *)other;
+- (jint)readInt;
+
+- (jint)readShort;
+
+- (jint)readWord;
+
+- (void)skipWithInt:(jint)len;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfInputMeta_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfInputMeta)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfInputMeta, in_, JavaIoInputStream *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfInputMeta_initWithJavaIoInputStream_(ComItextpdfTextPdfCodecWmfInputMeta *self, JavaIoInputStream *inArg);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfInputMeta *new_ComItextpdfTextPdfCodecWmfInputMeta_initWithJavaIoInputStream_(JavaIoInputStream *inArg) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfInputMeta)
 
 #endif // _ComItextpdfTextPdfCodecWmfInputMeta_H_

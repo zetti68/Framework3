@@ -6,25 +6,26 @@
 #ifndef _ComItextpdfTextPdfParserGlyphTextRenderListener_H_
 #define _ComItextpdfTextPdfParserGlyphTextRenderListener_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/parser/GlyphRenderListener.h"
 #include "com/itextpdf/text/pdf/parser/TextExtractionStrategy.h"
 
-@interface ComItextpdfTextPdfParserGlyphTextRenderListener : ComItextpdfTextPdfParserGlyphRenderListener < ComItextpdfTextPdfParserTextExtractionStrategy > {
- @public
-  id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate_GlyphTextRenderListener_;
-}
+@interface ComItextpdfTextPdfParserGlyphTextRenderListener : ComItextpdfTextPdfParserGlyphRenderListener < ComItextpdfTextPdfParserTextExtractionStrategy >
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfParserTextExtractionStrategy:(id<ComItextpdfTextPdfParserTextExtractionStrategy>)delegate;
 
 - (NSString *)getResultantText;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserGlyphTextRenderListener *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserGlyphTextRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserGlyphTextRenderListener)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserGlyphTextRenderListener, delegate_GlyphTextRenderListener_, id<ComItextpdfTextPdfParserTextExtractionStrategy>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserGlyphTextRenderListener_initWithComItextpdfTextPdfParserTextExtractionStrategy_(ComItextpdfTextPdfParserGlyphTextRenderListener *self, id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserGlyphTextRenderListener *new_ComItextpdfTextPdfParserGlyphTextRenderListener_initWithComItextpdfTextPdfParserTextExtractionStrategy_(id<ComItextpdfTextPdfParserTextExtractionStrategy> delegate) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserGlyphTextRenderListener)
 
 #endif // _ComItextpdfTextPdfParserGlyphTextRenderListener_H_

@@ -6,70 +6,76 @@
 #ifndef _ComItextpdfTextMarkedSection_H_
 #define _ComItextpdfTextMarkedSection_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/MarkedObject.h"
+#include "com/itextpdf/text/api/Indentable.h"
+
 @class ComItextpdfTextSection;
 @protocol ComItextpdfTextElement;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilCollection;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/MarkedObject.h"
-#include "com/itextpdf/text/api/Indentable.h"
 
 @interface ComItextpdfTextMarkedSection : ComItextpdfTextMarkedObject < ComItextpdfTextApiIndentable > {
  @public
   ComItextpdfTextMarkedObject *title_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextSection:(ComItextpdfTextSection *)section;
+
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 - (void)addWithInt:(jint)index
 withComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
-
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
-
 - (jboolean)addAllWithJavaUtilCollection:(id<JavaUtilCollection>)collection;
+
+- (ComItextpdfTextMarkedSection *)addSection;
+
+- (ComItextpdfTextMarkedSection *)addSectionWithFloat:(jfloat)indentation;
 
 - (ComItextpdfTextMarkedSection *)addSectionWithFloat:(jfloat)indentation
                                               withInt:(jint)numberDepth;
 
-- (ComItextpdfTextMarkedSection *)addSectionWithFloat:(jfloat)indentation;
-
 - (ComItextpdfTextMarkedSection *)addSectionWithInt:(jint)numberDepth;
-
-- (ComItextpdfTextMarkedSection *)addSection;
-
-- (void)setTitleWithComItextpdfTextMarkedObject:(ComItextpdfTextMarkedObject *)title;
-
-- (ComItextpdfTextMarkedObject *)getTitle;
-
-- (void)setNumberDepthWithInt:(jint)numberDepth;
-
-- (void)setIndentationLeftWithFloat:(jfloat)indentation;
-
-- (void)setIndentationRightWithFloat:(jfloat)indentation;
-
-- (void)setIndentationWithFloat:(jfloat)indentation;
-
-- (void)setBookmarkOpenWithBoolean:(jboolean)bookmarkOpen;
-
-- (void)setTriggerNewPageWithBoolean:(jboolean)triggerNewPage;
-
-- (void)setBookmarkTitleWithNSString:(NSString *)bookmarkTitle;
-
-- (void)newPage OBJC_METHOD_FAMILY_NONE;
 
 - (jfloat)getIndentationLeft;
 
 - (jfloat)getIndentationRight;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextMarkedSection *)other;
+- (ComItextpdfTextMarkedObject *)getTitle;
+
+- (void)newPage OBJC_METHOD_FAMILY_NONE;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)setBookmarkOpenWithBoolean:(jboolean)bookmarkOpen;
+
+- (void)setBookmarkTitleWithNSString:(NSString *)bookmarkTitle;
+
+- (void)setIndentationWithFloat:(jfloat)indentation;
+
+- (void)setIndentationLeftWithFloat:(jfloat)indentation;
+
+- (void)setIndentationRightWithFloat:(jfloat)indentation;
+
+- (void)setNumberDepthWithInt:(jint)numberDepth;
+
+- (void)setTitleWithComItextpdfTextMarkedObject:(ComItextpdfTextMarkedObject *)title;
+
+- (void)setTriggerNewPageWithBoolean:(jboolean)triggerNewPage;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextMarkedSection_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextMarkedSection)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextMarkedSection, title_, ComItextpdfTextMarkedObject *)
+
+FOUNDATION_EXPORT void ComItextpdfTextMarkedSection_initWithComItextpdfTextSection_(ComItextpdfTextMarkedSection *self, ComItextpdfTextSection *section);
+
+FOUNDATION_EXPORT ComItextpdfTextMarkedSection *new_ComItextpdfTextMarkedSection_initWithComItextpdfTextSection_(ComItextpdfTextSection *section) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextMarkedSection)
 
 #endif // _ComItextpdfTextMarkedSection_H_

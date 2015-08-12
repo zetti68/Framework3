@@ -6,24 +6,35 @@
 #ifndef _ComItextpdfTextDocumentException_H_
 #define _ComItextpdfTextDocumentException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-#define ComItextpdfTextDocumentException_serialVersionUID -2191131489390840739LL
+@interface ComItextpdfTextDocumentException : JavaLangException
 
-@interface ComItextpdfTextDocumentException : JavaLangException {
-}
-
-- (instancetype)initWithJavaLangException:(JavaLangException *)ex;
+#pragma mark Public
 
 - (instancetype)init;
+
+- (instancetype)initWithJavaLangException:(JavaLangException *)ex;
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextDocumentException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextDocumentException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextDocumentException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextDocumentException_initWithJavaLangException_(ComItextpdfTextDocumentException *self, JavaLangException *ex);
+
+FOUNDATION_EXPORT ComItextpdfTextDocumentException *new_ComItextpdfTextDocumentException_initWithJavaLangException_(JavaLangException *ex) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextDocumentException_init(ComItextpdfTextDocumentException *self);
+
+FOUNDATION_EXPORT ComItextpdfTextDocumentException *new_ComItextpdfTextDocumentException_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextDocumentException_initWithNSString_(ComItextpdfTextDocumentException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextDocumentException *new_ComItextpdfTextDocumentException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextDocumentException)
 
 #endif // _ComItextpdfTextDocumentException_H_

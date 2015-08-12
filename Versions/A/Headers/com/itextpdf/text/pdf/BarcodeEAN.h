@@ -6,27 +6,17 @@
 #ifndef _ComItextpdfTextPdfBarcodeEAN_H_
 #define _ComItextpdfTextPdfBarcodeEAN_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
-@class IOSFloatArray;
-@class IOSIntArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
+@interface ComItextpdfTextPdfBarcodeEAN : ComItextpdfTextPdfBarcode
 
-#define ComItextpdfTextPdfBarcodeEAN_EVEN 1
-#define ComItextpdfTextPdfBarcodeEAN_ODD 0
-#define ComItextpdfTextPdfBarcodeEAN_TOTALBARS_EAN13 59
-#define ComItextpdfTextPdfBarcodeEAN_TOTALBARS_EAN8 43
-#define ComItextpdfTextPdfBarcodeEAN_TOTALBARS_SUPP2 13
-#define ComItextpdfTextPdfBarcodeEAN_TOTALBARS_SUPP5 31
-#define ComItextpdfTextPdfBarcodeEAN_TOTALBARS_UPCE 33
-
-@interface ComItextpdfTextPdfBarcodeEAN : ComItextpdfTextPdfBarcode {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -34,17 +24,17 @@
 
 + (NSString *)convertUPCAtoUPCEWithNSString:(NSString *)text;
 
+- (ComItextpdfTextRectangle *)getBarcodeSize;
+
 + (IOSByteArray *)getBarsEAN13WithNSString:(NSString *)_code;
 
 + (IOSByteArray *)getBarsEAN8WithNSString:(NSString *)_code;
-
-+ (IOSByteArray *)getBarsUPCEWithNSString:(NSString *)_code;
 
 + (IOSByteArray *)getBarsSupplemental2WithNSString:(NSString *)_code;
 
 + (IOSByteArray *)getBarsSupplemental5WithNSString:(NSString *)_code;
 
-- (ComItextpdfTextRectangle *)getBarcodeSize;
++ (IOSByteArray *)getBarsUPCEWithNSString:(NSString *)_code;
 
 - (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
@@ -52,57 +42,26 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeEAN_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeEAN)
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeEAN_GUARD_EMPTY_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, GUARD_EMPTY_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeEAN_init(ComItextpdfTextPdfBarcodeEAN *self);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeEAN_GUARD_UPCA_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, GUARD_UPCA_, IOSIntArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeEAN *new_ComItextpdfTextPdfBarcodeEAN_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeEAN_GUARD_EAN13_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, GUARD_EAN13_, IOSIntArray *)
+FOUNDATION_EXPORT jint ComItextpdfTextPdfBarcodeEAN_calculateEANParityWithNSString_(NSString *code);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeEAN_GUARD_EAN8_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, GUARD_EAN8_, IOSIntArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcodeEAN_convertUPCAtoUPCEWithNSString_(NSString *text);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeEAN_GUARD_UPCE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, GUARD_UPCE_, IOSIntArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeEAN_getBarsEAN13WithNSString_(NSString *_code);
 
-FOUNDATION_EXPORT IOSFloatArray *ComItextpdfTextPdfBarcodeEAN_TEXTPOS_EAN13_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TEXTPOS_EAN13_, IOSFloatArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeEAN_getBarsEAN8WithNSString_(NSString *_code);
 
-FOUNDATION_EXPORT IOSFloatArray *ComItextpdfTextPdfBarcodeEAN_TEXTPOS_EAN8_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TEXTPOS_EAN8_, IOSFloatArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeEAN_getBarsUPCEWithNSString_(NSString *_code);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeEAN_BARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, BARS_, IOSObjectArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeEAN_getBarsSupplemental2WithNSString_(NSString *_code);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TOTALBARS_EAN13, jint)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcodeEAN_getBarsSupplemental5WithNSString_(NSString *_code);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TOTALBARS_EAN8, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TOTALBARS_UPCE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TOTALBARS_SUPP2, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, TOTALBARS_SUPP5, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, ODD, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, EVEN, jint)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeEAN_PARITY13_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, PARITY13_, IOSObjectArray *)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeEAN_PARITY2_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, PARITY2_, IOSObjectArray *)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeEAN_PARITY5_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, PARITY5_, IOSObjectArray *)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeEAN_PARITYE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeEAN, PARITYE_, IOSObjectArray *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeEAN)
 
 #endif // _ComItextpdfTextPdfBarcodeEAN_H_

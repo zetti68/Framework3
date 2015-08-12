@@ -6,22 +6,22 @@
 #ifndef _ComItextpdfTextPdfPdfFormXObject_H_
 #define _ComItextpdfTextPdfPdfFormXObject_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfStream.h"
+
 @class ComItextpdfTextPdfPdfLiteral;
 @class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfTemplate;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfStream.h"
+@interface ComItextpdfTextPdfPdfFormXObject : ComItextpdfTextPdfPdfStream
 
-@interface ComItextpdfTextPdfPdfFormXObject : ComItextpdfTextPdfPdfStream {
-}
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_
                                               withInt:(jint)compressionLevel;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfFormXObject_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfFormXObject)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *ComItextpdfTextPdfPdfFormXObject_ZERO_;
@@ -32,5 +32,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfFormXObject, ONE_, ComItextpdfTe
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *ComItextpdfTextPdfPdfFormXObject_MATRIX_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfFormXObject, MATRIX_, ComItextpdfTextPdfPdfLiteral *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFormXObject_initWithComItextpdfTextPdfPdfTemplate_withInt_(ComItextpdfTextPdfPdfFormXObject *self, ComItextpdfTextPdfPdfTemplate *template_, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFormXObject *new_ComItextpdfTextPdfPdfFormXObject_initWithComItextpdfTextPdfPdfTemplate_withInt_(ComItextpdfTextPdfPdfTemplate *template_, jint compressionLevel) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfFormXObject)
 
 #endif // _ComItextpdfTextPdfPdfFormXObject_H_

@@ -6,54 +6,38 @@
 #ifndef _ComItextpdfTextPdfQrcodeFormatInformation_H_
 #define _ComItextpdfTextPdfQrcodeFormatInformation_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeErrorCorrectionLevel;
-@class IOSIntArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeFormatInformation : NSObject
 
-#define ComItextpdfTextPdfQrcodeFormatInformation_FORMAT_INFO_MASK_QR 21522
+#pragma mark Public
 
-@interface ComItextpdfTextPdfQrcodeFormatInformation : NSObject {
- @public
-  ComItextpdfTextPdfQrcodeErrorCorrectionLevel *errorCorrectionLevel_;
-  jbyte dataMask_;
-}
+- (jboolean)isEqual:(id)o;
 
-- (instancetype)initWithInt:(jint)formatInfo;
+- (NSUInteger)hash;
 
-+ (jint)numBitsDifferingWithInt:(jint)a
-                        withInt:(jint)b;
+#pragma mark Package-Private
 
 + (ComItextpdfTextPdfQrcodeFormatInformation *)decodeFormatInformationWithInt:(jint)maskedFormatInfo1
                                                                       withInt:(jint)maskedFormatInfo2;
 
-+ (ComItextpdfTextPdfQrcodeFormatInformation *)doDecodeFormatInformationWithInt:(jint)maskedFormatInfo1
-                                                                        withInt:(jint)maskedFormatInfo2;
+- (jbyte)getDataMask;
 
 - (ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)getErrorCorrectionLevel;
 
-- (jbyte)getDataMask;
-
-- (NSUInteger)hash;
-
-- (jboolean)isEqual:(id)o;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeFormatInformation *)other;
++ (jint)numBitsDifferingWithInt:(jint)a
+                        withInt:(jint)b;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeFormatInformation_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeFormatInformation)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeFormatInformation, errorCorrectionLevel_, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeFormatInformation_numBitsDifferingWithInt_withInt_(jint a, jint b);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeFormatInformation, FORMAT_INFO_MASK_QR, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeFormatInformation *ComItextpdfTextPdfQrcodeFormatInformation_decodeFormatInformationWithInt_withInt_(jint maskedFormatInfo1, jint maskedFormatInfo2);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeFormatInformation_FORMAT_INFO_DECODE_LOOKUP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeFormatInformation, FORMAT_INFO_DECODE_LOOKUP_, IOSObjectArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfQrcodeFormatInformation_BITS_SET_IN_HALF_BYTE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeFormatInformation, BITS_SET_IN_HALF_BYTE_, IOSIntArray *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeFormatInformation)
 
 #endif // _ComItextpdfTextPdfQrcodeFormatInformation_H_

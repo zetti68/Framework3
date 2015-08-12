@@ -6,34 +6,36 @@
 #ifndef _ComItextpdfTextPdfShadingColor_H_
 #define _ComItextpdfTextPdfShadingColor_H_
 
-@class ComItextpdfTextPdfPdfShadingPattern;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/ExtendedColor.h"
 
-#define ComItextpdfTextPdfShadingColor_serialVersionUID 4817929454941328671LL
+@class ComItextpdfTextPdfPdfShadingPattern;
 
 @interface ComItextpdfTextPdfShadingColor : ComItextpdfTextPdfExtendedColor {
  @public
   ComItextpdfTextPdfPdfShadingPattern *shadingPattern_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shadingPattern;
+#pragma mark Public
 
-- (ComItextpdfTextPdfPdfShadingPattern *)getPdfShadingPattern;
+- (instancetype)initWithComItextpdfTextPdfPdfShadingPattern:(ComItextpdfTextPdfPdfShadingPattern *)shadingPattern;
 
 - (jboolean)isEqual:(id)obj;
 
-- (NSUInteger)hash;
+- (ComItextpdfTextPdfPdfShadingPattern *)getPdfShadingPattern;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfShadingColor *)other;
+- (NSUInteger)hash;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfShadingColor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfShadingColor)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfShadingColor, shadingPattern_, ComItextpdfTextPdfPdfShadingPattern *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfShadingColor, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfShadingColor_initWithComItextpdfTextPdfPdfShadingPattern_(ComItextpdfTextPdfShadingColor *self, ComItextpdfTextPdfPdfShadingPattern *shadingPattern);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfShadingColor *new_ComItextpdfTextPdfShadingColor_initWithComItextpdfTextPdfPdfShadingPattern_(ComItextpdfTextPdfPdfShadingPattern *shadingPattern) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfShadingColor)
 
 #endif // _ComItextpdfTextPdfShadingColor_H_

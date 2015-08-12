@@ -6,16 +6,19 @@
 #ifndef _ComItextpdfTextElementListener_H_
 #define _ComItextpdfTextElementListener_H_
 
-@protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/util/EventListener.h"
 
+@protocol ComItextpdfTextElement;
+
 @protocol ComItextpdfTextElementListener < JavaUtilEventListener, NSObject, JavaObject >
+
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextElementListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextElementListener)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextElementListener)
 
 #endif // _ComItextpdfTextElementListener_H_

@@ -6,52 +6,51 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserCellWrapper_H_
 #define _ComItextpdfTextHtmlSimpleparserCellWrapper_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/TextElementArray.h"
+
 @class ComItextpdfTextHtmlSimpleparserChainedProperties;
 @class ComItextpdfTextPdfPdfPCell;
 @protocol ComItextpdfTextElement;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/TextElementArray.h"
+@interface ComItextpdfTextHtmlSimpleparserCellWrapper : NSObject < ComItextpdfTextTextElementArray >
 
-@interface ComItextpdfTextHtmlSimpleparserCellWrapper : NSObject < ComItextpdfTextTextElementArray > {
- @public
-  ComItextpdfTextPdfPdfPCell *cell_;
-  jfloat width_;
-  jboolean percentage_;
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)tag
 withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
+
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 - (ComItextpdfTextPdfPdfPCell *)createPdfPCellWithNSString:(NSString *)tag
       withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
 
 - (ComItextpdfTextPdfPdfPCell *)getCell;
 
-- (jfloat)getWidth;
-
-- (jboolean)isPercentage;
-
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
-
 - (id<JavaUtilList>)getChunks;
+
+- (jfloat)getWidth;
 
 - (jboolean)isContent;
 
 - (jboolean)isNestable;
 
+- (jboolean)isPercentage;
+
 - (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (jint)type;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserCellWrapper *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserCellWrapper_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserCellWrapper)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserCellWrapper, cell_, ComItextpdfTextPdfPdfPCell *)
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserCellWrapper_initWithNSString_withComItextpdfTextHtmlSimpleparserChainedProperties_(ComItextpdfTextHtmlSimpleparserCellWrapper *self, NSString *tag, ComItextpdfTextHtmlSimpleparserChainedProperties *chain);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserCellWrapper *new_ComItextpdfTextHtmlSimpleparserCellWrapper_initWithNSString_withComItextpdfTextHtmlSimpleparserChainedProperties_(NSString *tag, ComItextpdfTextHtmlSimpleparserChainedProperties *chain) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserCellWrapper)
 
 #endif // _ComItextpdfTextHtmlSimpleparserCellWrapper_H_

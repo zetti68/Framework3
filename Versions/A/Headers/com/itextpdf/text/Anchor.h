@@ -6,16 +6,14 @@
 #ifndef _ComItextpdfTextAnchor_H_
 #define _ComItextpdfTextAnchor_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Phrase.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class JavaNetURL;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Phrase.h"
-
-#define ComItextpdfTextAnchor_serialVersionUID -852278536049236911LL
 
 @interface ComItextpdfTextAnchor : ComItextpdfTextPhrase {
  @public
@@ -23,16 +21,13 @@
   NSString *reference_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithFloat:(jfloat)leading;
+- (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
 
-- (instancetype)initWithNSString:(NSString *)string;
-
-- (instancetype)initWithNSString:(NSString *)string
-         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
+- (instancetype)initWithFloat:(jfloat)leading;
 
 - (instancetype)initWithFloat:(jfloat)leading
      withComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
@@ -46,19 +41,12 @@
 
 - (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (instancetype)initWithNSString:(NSString *)string;
+
+- (instancetype)initWithNSString:(NSString *)string
+         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (id<JavaUtilList>)getChunks;
-
-- (jboolean)applyAnchorWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk
-                                    withBoolean:(jboolean)notGotoOK
-                                    withBoolean:(jboolean)localDestination;
-
-- (jint)type;
-
-- (void)setNameWithNSString:(NSString *)name;
-
-- (void)setReferenceWithNSString:(NSString *)reference;
 
 - (NSString *)getName;
 
@@ -66,16 +54,66 @@
 
 - (JavaNetURL *)getUrl;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextAnchor *)other;
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)setNameWithNSString:(NSString *)name;
+
+- (void)setReferenceWithNSString:(NSString *)reference;
+
+- (jint)type;
+
+#pragma mark Protected
+
+- (jboolean)applyAnchorWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk
+                                    withBoolean:(jboolean)notGotoOK
+                                    withBoolean:(jboolean)localDestination;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextAnchor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextAnchor)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextAnchor, name_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextAnchor, reference_, NSString *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextAnchor, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_init(ComItextpdfTextAnchor *self);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithFloat_(ComItextpdfTextAnchor *self, jfloat leading);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithFloat_(jfloat leading) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithComItextpdfTextChunk_(ComItextpdfTextAnchor *self, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithNSString_(ComItextpdfTextAnchor *self, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithNSString_(NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithNSString_withComItextpdfTextFont_(ComItextpdfTextAnchor *self, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithNSString_withComItextpdfTextFont_(NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithFloat_withComItextpdfTextChunk_(ComItextpdfTextAnchor *self, jfloat leading, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithFloat_withComItextpdfTextChunk_(jfloat leading, ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithFloat_withNSString_(ComItextpdfTextAnchor *self, jfloat leading, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithFloat_withNSString_(jfloat leading, NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithFloat_withNSString_withComItextpdfTextFont_(ComItextpdfTextAnchor *self, jfloat leading, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithFloat_withNSString_withComItextpdfTextFont_(jfloat leading, NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextAnchor_initWithComItextpdfTextPhrase_(ComItextpdfTextAnchor *self, ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT ComItextpdfTextAnchor *new_ComItextpdfTextAnchor_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextAnchor)
 
 #endif // _ComItextpdfTextAnchor_H_

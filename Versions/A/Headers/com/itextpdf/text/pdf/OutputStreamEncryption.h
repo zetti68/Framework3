@@ -6,21 +6,21 @@
 #ifndef _ComItextpdfTextPdfOutputStreamEncryption_H_
 #define _ComItextpdfTextPdfOutputStreamEncryption_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/OutputStream.h"
 
-#define ComItextpdfTextPdfOutputStreamEncryption_AES_128 4
-#define ComItextpdfTextPdfOutputStreamEncryption_AES_256 5
+@class IOSByteArray;
 
 @interface ComItextpdfTextPdfOutputStreamEncryption : JavaIoOutputStream {
  @public
   JavaIoOutputStream *out_;
-  IOSByteArray *sb_;
-  jboolean aes_;
-  jboolean finished_;
 }
+
+#pragma mark Public
+
+- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg
+                             withByteArray:(IOSByteArray *)key
+                                   withInt:(jint)revision;
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg
                              withByteArray:(IOSByteArray *)key
@@ -28,35 +28,34 @@
                                    withInt:(jint)len
                                    withInt:(jint)revision;
 
-- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg
-                             withByteArray:(IOSByteArray *)key
-                                   withInt:(jint)revision;
-
 - (void)close;
+
+- (void)finish;
 
 - (void)flush;
 
 - (void)writeWithByteArray:(IOSByteArray *)b;
 
-- (void)writeWithInt:(jint)b;
-
 - (void)writeWithByteArray:(IOSByteArray *)b
                    withInt:(jint)off
                    withInt:(jint)len;
 
-- (void)finish;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfOutputStreamEncryption *)other;
+- (void)writeWithInt:(jint)b;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfOutputStreamEncryption_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfOutputStreamEncryption)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfOutputStreamEncryption, out_, JavaIoOutputStream *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfOutputStreamEncryption, sb_, IOSByteArray *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfOutputStreamEncryption, AES_128, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfOutputStreamEncryption_initWithJavaIoOutputStream_withByteArray_withInt_withInt_withInt_(ComItextpdfTextPdfOutputStreamEncryption *self, JavaIoOutputStream *outArg, IOSByteArray *key, jint off, jint len, jint revision);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfOutputStreamEncryption, AES_256, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfOutputStreamEncryption *new_ComItextpdfTextPdfOutputStreamEncryption_initWithJavaIoOutputStream_withByteArray_withInt_withInt_withInt_(JavaIoOutputStream *outArg, IOSByteArray *key, jint off, jint len, jint revision) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfOutputStreamEncryption_initWithJavaIoOutputStream_withByteArray_withInt_(ComItextpdfTextPdfOutputStreamEncryption *self, JavaIoOutputStream *outArg, IOSByteArray *key, jint revision);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfOutputStreamEncryption *new_ComItextpdfTextPdfOutputStreamEncryption_initWithJavaIoOutputStream_withByteArray_withInt_(JavaIoOutputStream *outArg, IOSByteArray *key, jint revision) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfOutputStreamEncryption)
 
 #endif // _ComItextpdfTextPdfOutputStreamEncryption_H_

@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextXmlXmpXmpWriter_H_
 #define _ComItextpdfTextXmlXmpXmpWriter_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextXmlXmpXmpSchema;
 @class ComItextpdfXmpOptionsSerializeOptions;
 @class JavaIoOutputStream;
 @protocol ComItextpdfXmpXMPMeta;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextXmlXmpXmpWriter : NSObject {
  @public
@@ -22,32 +22,31 @@
   ComItextpdfXmpOptionsSerializeOptions *serializeOptions_;
 }
 
-- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os
-                              withNSString:(NSString *)utfEncoding
-                                   withInt:(jint)extraSpace;
+#pragma mark Public
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os
+                           withJavaUtilMap:(id<JavaUtilMap>)info;
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os
        withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)info;
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os
-                           withJavaUtilMap:(id<JavaUtilMap>)info;
+                              withNSString:(NSString *)utfEncoding
+                                   withInt:(jint)extraSpace;
 
-- (id<ComItextpdfXmpXMPMeta>)getXmpMeta;
-
-- (void)setReadOnly;
-
-- (void)setAboutWithNSString:(NSString *)about;
+- (void)addDocInfoPropertyWithId:(id)key
+                    withNSString:(NSString *)value;
 
 - (void)addRdfDescriptionWithNSString:(NSString *)xmlns
                          withNSString:(NSString *)content;
 
 - (void)addRdfDescriptionWithComItextpdfTextXmlXmpXmpSchema:(ComItextpdfTextXmlXmpXmpSchema *)s;
 
-- (void)setPropertyWithNSString:(NSString *)schemaNS
-                   withNSString:(NSString *)propName
-                         withId:(id)value;
+- (void)appendAlternateArrayItemWithNSString:(NSString *)schemaNS
+                                withNSString:(NSString *)arrayName
+                                withNSString:(NSString *)value;
 
 - (void)appendArrayItemWithNSString:(NSString *)schemaNS
                        withNSString:(NSString *)arrayName
@@ -57,22 +56,23 @@
                               withNSString:(NSString *)arrayName
                               withNSString:(NSString *)value;
 
-- (void)appendAlternateArrayItemWithNSString:(NSString *)schemaNS
-                                withNSString:(NSString *)arrayName
-                                withNSString:(NSString *)value;
+- (void)close;
+
+- (id<ComItextpdfXmpXMPMeta>)getXmpMeta;
 
 - (void)serializeWithJavaIoOutputStream:(JavaIoOutputStream *)externalOutputStream;
 
-- (void)close;
+- (void)setAboutWithNSString:(NSString *)about;
 
-- (void)addDocInfoPropertyWithId:(id)key
-                    withNSString:(NSString *)value;
+- (void)setPropertyWithNSString:(NSString *)schemaNS
+                   withNSString:(NSString *)propName
+                         withId:(id)value;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextXmlXmpXmpWriter *)other;
+- (void)setReadOnly;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpXmpWriter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpXmpWriter)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextXmlXmpXmpWriter, xmpMeta_, id<ComItextpdfXmpXMPMeta>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextXmlXmpXmpWriter, outputStream_, JavaIoOutputStream *)
@@ -89,5 +89,23 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpWriter, UTF16BE_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpWriter_UTF16LE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpWriter, UTF16LE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withNSString_withInt_(ComItextpdfTextXmlXmpXmpWriter *self, JavaIoOutputStream *os, NSString *utfEncoding, jint extraSpace);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpWriter *new_ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withNSString_withInt_(JavaIoOutputStream *os, NSString *utfEncoding, jint extraSpace) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_(ComItextpdfTextXmlXmpXmpWriter *self, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpWriter *new_ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_(JavaIoOutputStream *os) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextXmlXmpXmpWriter *self, JavaIoOutputStream *os, ComItextpdfTextPdfPdfDictionary *info);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpWriter *new_ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withComItextpdfTextPdfPdfDictionary_(JavaIoOutputStream *os, ComItextpdfTextPdfPdfDictionary *info) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withJavaUtilMap_(ComItextpdfTextXmlXmpXmpWriter *self, JavaIoOutputStream *os, id<JavaUtilMap> info);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpWriter *new_ComItextpdfTextXmlXmpXmpWriter_initWithJavaIoOutputStream_withJavaUtilMap_(JavaIoOutputStream *os, id<JavaUtilMap> info) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpXmpWriter)
 
 #endif // _ComItextpdfTextXmlXmpXmpWriter_H_

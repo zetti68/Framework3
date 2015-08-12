@@ -6,10 +6,8 @@
 #ifndef _ComItextpdfTextPdfCMYKColor_H_
 #define _ComItextpdfTextPdfCMYKColor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/ExtendedColor.h"
-
-#define ComItextpdfTextPdfCMYKColor_serialVersionUID 5940378778276468452LL
 
 @interface ComItextpdfTextPdfCMYKColor : ComItextpdfTextPdfExtendedColor {
  @public
@@ -19,15 +17,21 @@
   jfloat black_;
 }
 
-- (instancetype)initWithInt:(jint)intCyan
-                    withInt:(jint)intMagenta
-                    withInt:(jint)intYellow
-                    withInt:(jint)intBlack;
+#pragma mark Public
 
 - (instancetype)initWithFloat:(jfloat)floatCyan
                     withFloat:(jfloat)floatMagenta
                     withFloat:(jfloat)floatYellow
                     withFloat:(jfloat)floatBlack;
+
+- (instancetype)initWithInt:(jint)intCyan
+                    withInt:(jint)intMagenta
+                    withInt:(jint)intYellow
+                    withInt:(jint)intBlack;
+
+- (jboolean)isEqual:(id)obj;
+
+- (jfloat)getBlack;
 
 - (jfloat)getCyan;
 
@@ -35,18 +39,20 @@
 
 - (jfloat)getYellow;
 
-- (jfloat)getBlack;
-
-- (jboolean)isEqual:(id)obj;
-
 - (NSUInteger)hash;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCMYKColor *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCMYKColor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCMYKColor)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCMYKColor, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCMYKColor_initWithInt_withInt_withInt_withInt_(ComItextpdfTextPdfCMYKColor *self, jint intCyan, jint intMagenta, jint intYellow, jint intBlack);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCMYKColor *new_ComItextpdfTextPdfCMYKColor_initWithInt_withInt_withInt_withInt_(jint intCyan, jint intMagenta, jint intYellow, jint intBlack) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCMYKColor_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfCMYKColor *self, jfloat floatCyan, jfloat floatMagenta, jfloat floatYellow, jfloat floatBlack);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCMYKColor *new_ComItextpdfTextPdfCMYKColor_initWithFloat_withFloat_withFloat_withFloat_(jfloat floatCyan, jfloat floatMagenta, jfloat floatYellow, jfloat floatBlack) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCMYKColor)
 
 #endif // _ComItextpdfTextPdfCMYKColor_H_

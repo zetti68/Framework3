@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserHTMLTagProcessor_H_
 #define _ComItextpdfTextHtmlSimpleparserHTMLTagProcessor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextHtmlSimpleparserHTMLWorker;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextHtmlSimpleparserHTMLTagProcessor < NSObject, JavaObject >
 
@@ -22,6 +22,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserHTMLTagProcessor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserHTMLTagProcessor)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserHTMLTagProcessor)
 
 #endif // _ComItextpdfTextHtmlSimpleparserHTMLTagProcessor_H_

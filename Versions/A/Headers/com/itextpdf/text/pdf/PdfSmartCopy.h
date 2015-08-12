@@ -6,94 +6,80 @@
 #ifndef _ComItextpdfTextPdfPdfSmartCopy_H_
 #define _ComItextpdfTextPdfPdfSmartCopy_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfCopy.h"
+
 @class ComItextpdfTextDocument;
-@class ComItextpdfTextPdfByteBuffer;
 @class ComItextpdfTextPdfPRIndirectReference;
 @class ComItextpdfTextPdfPRStream;
-@class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfImportedPage;
 @class ComItextpdfTextPdfPdfIndirectReference;
-@class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
-@class IOSByteArray;
 @class JavaIoOutputStream;
-@class JavaSecurityMessageDigest;
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextLogCounter;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfCopy.h"
-
 @interface ComItextpdfTextPdfPdfSmartCopy : ComItextpdfTextPdfPdfCopy {
  @public
-  JavaUtilHashMap *streamMap_;
-  JavaUtilHashMap *serialized_;
   id<ComItextpdfTextLogCounter> COUNTER_;
 }
 
-- (id<ComItextpdfTextLogCounter>)getCounter;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextDocument:(ComItextpdfTextDocument *)document
                          withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)copyIndirectWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)inArg OBJC_METHOD_FAMILY_NONE;
+- (void)addPageWithComItextpdfTextPdfPdfImportedPage:(ComItextpdfTextPdfPdfImportedPage *)iPage;
 
 - (void)freeReaderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
-- (void)addPageWithComItextpdfTextPdfPdfImportedPage:(ComItextpdfTextPdfPdfImportedPage *)iPage;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfSmartCopy *)other;
+- (ComItextpdfTextPdfPdfIndirectReference *)copyIndirectWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)inArg OBJC_METHOD_FAMILY_NONE;
+
+- (id<ComItextpdfTextLogCounter>)getCounter;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSmartCopy_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSmartCopy)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSmartCopy, streamMap_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSmartCopy, serialized_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSmartCopy, COUNTER_, id<ComItextpdfTextLogCounter>)
 
-@interface ComItextpdfTextPdfPdfSmartCopy_ByteStore : NSObject {
- @public
-  IOSByteArray *b_;
-  jint hash__;
-  JavaSecurityMessageDigest *md5_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSmartCopy_initWithComItextpdfTextDocument_withJavaIoOutputStream_(ComItextpdfTextPdfPdfSmartCopy *self, ComItextpdfTextDocument *document, JavaIoOutputStream *os);
 
-- (void)serObjectWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj
-                                         withInt:(jint)level
-                withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)bb
-                             withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSmartCopy *new_ComItextpdfTextPdfPdfSmartCopy_initWithComItextpdfTextDocument_withJavaIoOutputStream_(ComItextpdfTextDocument *document, JavaIoOutputStream *os) NS_RETURNS_RETAINED;
 
-- (void)serDicWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic
-                                          withInt:(jint)level
-                 withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)bb
-                              withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSmartCopy)
 
-- (void)serArrayWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)array
-                                       withInt:(jint)level
-              withComItextpdfTextPdfByteBuffer:(ComItextpdfTextPdfByteBuffer *)bb
-                           withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
+@interface ComItextpdfTextPdfPdfSmartCopy_ByteStore : NSObject
 
-- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)str
-                               withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
-
-- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dict
-                                    withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
-
-+ (jint)calculateHashWithByteArray:(IOSByteArray *)b;
+#pragma mark Public
 
 - (jboolean)isEqual:(id)obj;
 
 - (NSUInteger)hash;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfSmartCopy_ByteStore *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dict
+                                    withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
+
+- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)str
+                               withJavaUtilHashMap:(JavaUtilHashMap *)serialized;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSmartCopy_ByteStore_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSmartCopy_ByteStore)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSmartCopy_ByteStore, b_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSmartCopy_ByteStore, md5_, JavaSecurityMessageDigest *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSmartCopy_ByteStore_initWithComItextpdfTextPdfPRStream_withJavaUtilHashMap_(ComItextpdfTextPdfPdfSmartCopy_ByteStore *self, ComItextpdfTextPdfPRStream *str, JavaUtilHashMap *serialized);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSmartCopy_ByteStore *new_ComItextpdfTextPdfPdfSmartCopy_ByteStore_initWithComItextpdfTextPdfPRStream_withJavaUtilHashMap_(ComItextpdfTextPdfPRStream *str, JavaUtilHashMap *serialized) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSmartCopy_ByteStore_initWithComItextpdfTextPdfPdfDictionary_withJavaUtilHashMap_(ComItextpdfTextPdfPdfSmartCopy_ByteStore *self, ComItextpdfTextPdfPdfDictionary *dict, JavaUtilHashMap *serialized);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSmartCopy_ByteStore *new_ComItextpdfTextPdfPdfSmartCopy_ByteStore_initWithComItextpdfTextPdfPdfDictionary_withJavaUtilHashMap_(ComItextpdfTextPdfPdfDictionary *dict, JavaUtilHashMap *serialized) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSmartCopy_ByteStore)
 
 #endif // _ComItextpdfTextPdfPdfSmartCopy_H_

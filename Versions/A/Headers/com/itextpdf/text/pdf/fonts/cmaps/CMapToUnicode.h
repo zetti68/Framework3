@@ -6,21 +6,23 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCMapToUnicode_H_
 #define _ComItextpdfTextPdfFontsCmapsCMapToUnicode_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfString;
 @class IOSByteArray;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/fonts/cmaps/AbstractCMap.h"
+@interface ComItextpdfTextPdfFontsCmapsCMapToUnicode : ComItextpdfTextPdfFontsCmapsAbstractCMap
 
-@interface ComItextpdfTextPdfFontsCmapsCMapToUnicode : ComItextpdfTextPdfFontsCmapsAbstractCMap {
- @public
-  id<JavaUtilMap> singleByteMappings_;
-  id<JavaUtilMap> doubleByteMappings_;
-}
+#pragma mark Public
 
 - (instancetype)init;
+
+- (id<JavaUtilMap>)createDirectMapping;
+
+- (id<JavaUtilMap>)createReverseMapping;
 
 - (jboolean)hasOneByteMappings;
 
@@ -30,11 +32,7 @@
                           withInt:(jint)offset
                           withInt:(jint)length;
 
-- (id<JavaUtilMap>)createReverseMapping;
-
-- (id<JavaUtilMap>)createDirectMapping;
-
-- (jint)convertToIntWithNSString:(NSString *)s;
+#pragma mark Package-Private
 
 - (void)addCharWithInt:(jint)cid
           withNSString:(NSString *)uni;
@@ -42,15 +40,14 @@
 - (void)addCharWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)mark
                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)code;
 
-- (NSString *)createStringFromBytesWithByteArray:(IOSByteArray *)bytes;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsCmapsCMapToUnicode *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCMapToUnicode_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCMapToUnicode)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCMapToUnicode, singleByteMappings_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCMapToUnicode, doubleByteMappings_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapToUnicode_init(ComItextpdfTextPdfFontsCmapsCMapToUnicode *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapToUnicode *new_ComItextpdfTextPdfFontsCmapsCMapToUnicode_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCMapToUnicode)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCMapToUnicode_H_

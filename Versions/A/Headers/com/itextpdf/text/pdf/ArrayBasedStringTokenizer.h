@@ -6,28 +6,26 @@
 #ifndef _ComItextpdfTextPdfArrayBasedStringTokenizer_H_
 #define _ComItextpdfTextPdfArrayBasedStringTokenizer_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
-@class JavaUtilRegexPattern;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfArrayBasedStringTokenizer : NSObject
 
-@interface ComItextpdfTextPdfArrayBasedStringTokenizer : NSObject {
- @public
-  JavaUtilRegexPattern *regex_;
-}
+#pragma mark Public
 
 - (instancetype)initWithNSStringArray:(IOSObjectArray *)tokens;
 
 - (IOSObjectArray *)tokenizeWithNSString:(NSString *)text;
 
-- (NSString *)getRegexFromTokensWithNSStringArray:(IOSObjectArray *)tokens;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfArrayBasedStringTokenizer *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfArrayBasedStringTokenizer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfArrayBasedStringTokenizer)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfArrayBasedStringTokenizer, regex_, JavaUtilRegexPattern *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfArrayBasedStringTokenizer_initWithNSStringArray_(ComItextpdfTextPdfArrayBasedStringTokenizer *self, IOSObjectArray *tokens);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfArrayBasedStringTokenizer *new_ComItextpdfTextPdfArrayBasedStringTokenizer_initWithNSStringArray_(IOSObjectArray *tokens) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfArrayBasedStringTokenizer)
 
 #endif // _ComItextpdfTextPdfArrayBasedStringTokenizer_H_

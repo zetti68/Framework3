@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfInterfacesPdfEncryptionSettings_H_
 #define _ComItextpdfTextPdfInterfacesPdfEncryptionSettings_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfInterfacesPdfEncryptionSettings < NSObject, JavaObject >
 
@@ -25,6 +25,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesPdfEncryptionSettings_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesPdfEncryptionSettings)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesPdfEncryptionSettings)
 
 #endif // _ComItextpdfTextPdfInterfacesPdfEncryptionSettings_H_

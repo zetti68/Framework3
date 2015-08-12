@@ -6,28 +6,33 @@
 #ifndef _ComItextpdfTextPdfFilterHandlers_H_
 #define _ComItextpdfTextPdfFilterHandlers_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class IOSByteArray;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfFilterHandlers : NSObject
 
-@interface ComItextpdfTextPdfFilterHandlers : NSObject {
-}
-
-+ (id<JavaUtilMap>)getDefaultFilterHandlers;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (id<JavaUtilMap>)getDefaultFilterHandlers;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfFilterHandlers_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfFilterHandlers)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfFilterHandlers_defaults_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFilterHandlers, defaults_, id<JavaUtilMap>)
+FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfFilterHandlers_getDefaultFilterHandlers();
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFilterHandlers_init(ComItextpdfTextPdfFilterHandlers *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFilterHandlers *new_ComItextpdfTextPdfFilterHandlers_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFilterHandlers)
 
 @protocol ComItextpdfTextPdfFilterHandlers_FilterHandler < NSObject, JavaObject >
 
@@ -38,104 +43,8 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFilterHandlers, defaults_, id<JavaU
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_FilterHandler_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFilterHandlers_FilterHandler)
 
-@interface ComItextpdfTextPdfFilterHandlers_Filter_FLATEDECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_FLATEDECODE_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_ASCIIHEXDECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_ASCIIHEXDECODE_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_ASCII85DECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_ASCII85DECODE_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_LZWDECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_LZWDECODE_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_CCITTFAXDECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_CCITTFAXDECODE_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_DoNothing : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_DoNothing_init() {}
-
-@interface ComItextpdfTextPdfFilterHandlers_Filter_RUNLENGTHDECODE : NSObject < ComItextpdfTextPdfFilterHandlers_FilterHandler > {
-}
-
-- (IOSByteArray *)decodeWithByteArray:(IOSByteArray *)b
-        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filterName
-      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)decodeParams
-  withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)streamDictionary;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFilterHandlers_Filter_RUNLENGTHDECODE_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFilterHandlers_FilterHandler)
 
 #endif // _ComItextpdfTextPdfFilterHandlers_H_

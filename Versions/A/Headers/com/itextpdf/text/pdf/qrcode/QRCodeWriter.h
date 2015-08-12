@@ -6,17 +6,16 @@
 #ifndef _ComItextpdfTextPdfQrcodeQRCodeWriter_H_
 #define _ComItextpdfTextPdfQrcodeQRCodeWriter_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeByteMatrix;
-@class ComItextpdfTextPdfQrcodeQRCode;
-@class IOSByteArray;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeQRCodeWriter : NSObject
 
-#define ComItextpdfTextPdfQrcodeQRCodeWriter_QUIET_ZONE_SIZE 4
+#pragma mark Public
 
-@interface ComItextpdfTextPdfQrcodeQRCodeWriter : NSObject {
-}
+- (instancetype)init;
 
 - (ComItextpdfTextPdfQrcodeByteMatrix *)encodeWithNSString:(NSString *)contents
                                                    withInt:(jint)width
@@ -27,19 +26,14 @@
                                                    withInt:(jint)height
                                            withJavaUtilMap:(id<JavaUtilMap>)hints;
 
-+ (ComItextpdfTextPdfQrcodeByteMatrix *)renderResultWithComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)code
-                                                                               withInt:(jint)width
-                                                                               withInt:(jint)height;
-
-+ (void)setRowColorWithByteArray:(IOSByteArray *)row
-                        withByte:(jbyte)value;
-
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeQRCodeWriter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeQRCodeWriter)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeQRCodeWriter, QUIET_ZONE_SIZE, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeQRCodeWriter_init(ComItextpdfTextPdfQrcodeQRCodeWriter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeQRCodeWriter *new_ComItextpdfTextPdfQrcodeQRCodeWriter_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeQRCodeWriter)
 
 #endif // _ComItextpdfTextPdfQrcodeQRCodeWriter_H_

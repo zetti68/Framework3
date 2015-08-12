@@ -6,15 +6,13 @@
 #ifndef _ComItextpdfTextPdfCryptoIVGenerator_H_
 #define _ComItextpdfTextPdfCryptoIVGenerator_H_
 
-@class ComItextpdfTextPdfCryptoARCFOUREncryption;
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCryptoIVGenerator : NSObject
 
-@interface ComItextpdfTextPdfCryptoIVGenerator : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (IOSByteArray *)getIV;
 
@@ -22,11 +20,12 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCryptoIVGenerator_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCryptoIVGenerator)
 
-FOUNDATION_EXPORT ComItextpdfTextPdfCryptoARCFOUREncryption *ComItextpdfTextPdfCryptoIVGenerator_arcfour_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCryptoIVGenerator, arcfour_, ComItextpdfTextPdfCryptoARCFOUREncryption *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCryptoIVGenerator, arcfour_, ComItextpdfTextPdfCryptoARCFOUREncryption *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCryptoIVGenerator_getIV();
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCryptoIVGenerator_getIVWithInt_(jint len);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCryptoIVGenerator)
 
 #endif // _ComItextpdfTextPdfCryptoIVGenerator_H_

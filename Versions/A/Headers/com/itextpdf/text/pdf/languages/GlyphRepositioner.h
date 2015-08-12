@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfLanguagesGlyphRepositioner_H_
 #define _ComItextpdfTextPdfLanguagesGlyphRepositioner_H_
 
-@protocol JavaUtilList;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@protocol JavaUtilList;
 
 @protocol ComItextpdfTextPdfLanguagesGlyphRepositioner < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesGlyphRepositioner_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesGlyphRepositioner)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesGlyphRepositioner)
 
 #endif // _ComItextpdfTextPdfLanguagesGlyphRepositioner_H_

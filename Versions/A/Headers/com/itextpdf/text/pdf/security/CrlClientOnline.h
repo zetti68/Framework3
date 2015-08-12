@@ -6,46 +6,61 @@
 #ifndef _ComItextpdfTextPdfSecurityCrlClientOnline_H_
 #define _ComItextpdfTextPdfSecurityCrlClientOnline_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/CrlClient.h"
+
 @class IOSObjectArray;
 @class JavaNetURL;
 @class JavaSecurityCertX509Certificate;
-@protocol ComItextpdfTextLogLogger;
 @protocol JavaUtilCollection;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/CrlClient.h"
 
 @interface ComItextpdfTextPdfSecurityCrlClientOnline : NSObject < ComItextpdfTextPdfSecurityCrlClient > {
  @public
   id<JavaUtilList> urls_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
+
+- (instancetype)initWithJavaSecurityCertCertificateArray:(IOSObjectArray *)chain;
 
 - (instancetype)initWithNSStringArray:(IOSObjectArray *)crls;
 
 - (instancetype)initWithJavaNetURLArray:(IOSObjectArray *)crls;
 
-- (instancetype)initWithJavaSecurityCertCertificateArray:(IOSObjectArray *)chain;
+- (id<JavaUtilCollection>)getEncodedWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)checkCert
+                                                           withNSString:(NSString *)url;
+
+#pragma mark Protected
 
 - (void)addUrlWithNSString:(NSString *)url;
 
 - (void)addUrlWithJavaNetURL:(JavaNetURL *)url;
 
-- (id<JavaUtilCollection>)getEncodedWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)checkCert
-                                                           withNSString:(NSString *)url;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityCrlClientOnline *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityCrlClientOnline_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityCrlClientOnline)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityCrlClientOnline, urls_, id<JavaUtilList>)
 
-FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextPdfSecurityCrlClientOnline_LOGGER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityCrlClientOnline, LOGGER_, id<ComItextpdfTextLogLogger>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOnline_init(ComItextpdfTextPdfSecurityCrlClientOnline *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOnline *new_ComItextpdfTextPdfSecurityCrlClientOnline_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOnline_initWithNSStringArray_(ComItextpdfTextPdfSecurityCrlClientOnline *self, IOSObjectArray *crls);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOnline *new_ComItextpdfTextPdfSecurityCrlClientOnline_initWithNSStringArray_(IOSObjectArray *crls) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOnline_initWithJavaNetURLArray_(ComItextpdfTextPdfSecurityCrlClientOnline *self, IOSObjectArray *crls);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOnline *new_ComItextpdfTextPdfSecurityCrlClientOnline_initWithJavaNetURLArray_(IOSObjectArray *crls) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOnline_initWithJavaSecurityCertCertificateArray_(ComItextpdfTextPdfSecurityCrlClientOnline *self, IOSObjectArray *chain);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOnline *new_ComItextpdfTextPdfSecurityCrlClientOnline_initWithJavaSecurityCertCertificateArray_(IOSObjectArray *chain) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityCrlClientOnline)
 
 #endif // _ComItextpdfTextPdfSecurityCrlClientOnline_H_

@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfAwtGeomRectangularShape_H_
 #define _ComItextpdfAwtGeomRectangularShape_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/awt/geom/Shape.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfAwtGeomDimension2D;
 @class ComItextpdfAwtGeomPoint2D;
@@ -13,21 +16,44 @@
 @class ComItextpdfAwtGeomRectangle;
 @protocol ComItextpdfAwtGeomPathIterator;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/awt/geom/Shape.h"
+@interface ComItextpdfAwtGeomRectangularShape : NSObject < ComItextpdfAwtGeomShape, NSCopying >
 
-@interface ComItextpdfAwtGeomRectangularShape : NSObject < ComItextpdfAwtGeomShape, NSCopying > {
-}
+#pragma mark Public
 
-- (instancetype)init;
+- (id)clone;
+
+- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)point;
+
+- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)rect;
+
+- (ComItextpdfAwtGeomRectangle *)getBounds;
+
+- (jdouble)getCenterX;
+
+- (jdouble)getCenterY;
+
+- (ComItextpdfAwtGeomRectangle2D *)getFrame;
+
+- (jdouble)getHeight;
+
+- (jdouble)getMaxX;
+
+- (jdouble)getMaxY;
+
+- (jdouble)getMinX;
+
+- (jdouble)getMinY;
+
+- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t
+                                                                                withDouble:(jdouble)flatness;
+
+- (jdouble)getWidth;
 
 - (jdouble)getX;
 
 - (jdouble)getY;
 
-- (jdouble)getWidth;
-
-- (jdouble)getHeight;
+- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)rect;
 
 - (jboolean)isEmpty;
 
@@ -36,32 +62,10 @@
                 withDouble:(jdouble)w
                 withDouble:(jdouble)h;
 
-- (jdouble)getMinX;
-
-- (jdouble)getMinY;
-
-- (jdouble)getMaxX;
-
-- (jdouble)getMaxY;
-
-- (jdouble)getCenterX;
-
-- (jdouble)getCenterY;
-
-- (ComItextpdfAwtGeomRectangle2D *)getFrame;
-
 - (void)setFrameWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)loc
             withComItextpdfAwtGeomDimension2D:(ComItextpdfAwtGeomDimension2D *)size;
 
 - (void)setFrameWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (void)setFrameFromDiagonalWithDouble:(jdouble)x1
-                            withDouble:(jdouble)y1
-                            withDouble:(jdouble)x2
-                            withDouble:(jdouble)y2;
-
-- (void)setFrameFromDiagonalWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
-                            withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
 
 - (void)setFrameFromCenterWithDouble:(jdouble)centerX
                           withDouble:(jdouble)centerY
@@ -71,23 +75,24 @@
 - (void)setFrameFromCenterWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)center
                           withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)corner;
 
-- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)point;
+- (void)setFrameFromDiagonalWithDouble:(jdouble)x1
+                            withDouble:(jdouble)y1
+                            withDouble:(jdouble)x2
+                            withDouble:(jdouble)y2;
 
-- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)rect;
+- (void)setFrameFromDiagonalWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
+                            withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
 
-- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)rect;
+#pragma mark Protected
 
-- (ComItextpdfAwtGeomRectangle *)getBounds;
-
-- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t
-                                                                                withDouble:(jdouble)flatness;
-
-- (id)clone;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangularShape_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomRectangularShape)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangularShape_init(ComItextpdfAwtGeomRectangularShape *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomRectangularShape)
 
 #endif // _ComItextpdfAwtGeomRectangularShape_H_

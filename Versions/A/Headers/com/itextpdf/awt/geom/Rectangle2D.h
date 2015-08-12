@@ -6,76 +6,24 @@
 #ifndef _ComItextpdfAwtGeomRectangle2D_H_
 #define _ComItextpdfAwtGeomRectangle2D_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/awt/geom/PathIterator.h"
+#include "com/itextpdf/awt/geom/RectangularShape.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfAwtGeomLine2D;
 @class ComItextpdfAwtGeomPoint2D;
 @class IOSDoubleArray;
 @class IOSFloatArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/awt/geom/PathIterator.h"
-#include "com/itextpdf/awt/geom/RectangularShape.h"
-
-#define ComItextpdfAwtGeomRectangle2D_OUT_BOTTOM 8
 #define ComItextpdfAwtGeomRectangle2D_OUT_LEFT 1
-#define ComItextpdfAwtGeomRectangle2D_OUT_RIGHT 4
 #define ComItextpdfAwtGeomRectangle2D_OUT_TOP 2
+#define ComItextpdfAwtGeomRectangle2D_OUT_RIGHT 4
+#define ComItextpdfAwtGeomRectangle2D_OUT_BOTTOM 8
 
-@interface ComItextpdfAwtGeomRectangle2D : ComItextpdfAwtGeomRectangularShape {
-}
+@interface ComItextpdfAwtGeomRectangle2D : ComItextpdfAwtGeomRectangularShape
 
-- (instancetype)init;
-
-- (void)setRectWithDouble:(jdouble)x
-               withDouble:(jdouble)y
-               withDouble:(jdouble)width
-               withDouble:(jdouble)height;
-
-- (jint)outcodeWithDouble:(jdouble)x
-               withDouble:(jdouble)y;
-
-- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (void)setRectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (void)setFrameWithDouble:(jdouble)x
-                withDouble:(jdouble)y
-                withDouble:(jdouble)width
-                withDouble:(jdouble)height;
-
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (jboolean)intersectsLineWithDouble:(jdouble)x1
-                          withDouble:(jdouble)y1
-                          withDouble:(jdouble)x2
-                          withDouble:(jdouble)y2;
-
-- (jboolean)intersectsLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l;
-
-- (jint)outcodeWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-- (jboolean)containsWithDouble:(jdouble)x
-                    withDouble:(jdouble)y;
-
-- (jboolean)intersectsWithDouble:(jdouble)x
-                      withDouble:(jdouble)y
-                      withDouble:(jdouble)width
-                      withDouble:(jdouble)height;
-
-- (jboolean)containsWithDouble:(jdouble)x
-                    withDouble:(jdouble)y
-                    withDouble:(jdouble)width
-                    withDouble:(jdouble)height;
-
-+ (void)intersectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src1
-                 withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src2
-                 withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)dst;
-
-+ (void)union__WithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src1
-               withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src2
-               withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)dst;
+#pragma mark Public
 
 - (void)addWithDouble:(jdouble)x
            withDouble:(jdouble)y;
@@ -84,6 +32,22 @@
 
 - (void)addWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
 
+- (jboolean)containsWithDouble:(jdouble)x
+                    withDouble:(jdouble)y;
+
+- (jboolean)containsWithDouble:(jdouble)x
+                    withDouble:(jdouble)y
+                    withDouble:(jdouble)width
+                    withDouble:(jdouble)height;
+
+- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (jboolean)isEqual:(id)obj;
+
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
+
 - (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
 
 - (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t
@@ -91,11 +55,50 @@
 
 - (NSUInteger)hash;
 
-- (jboolean)isEqual:(id)obj;
++ (void)intersectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src1
+                 withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src2
+                 withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)dst;
+
+- (jboolean)intersectsWithDouble:(jdouble)x
+                      withDouble:(jdouble)y
+                      withDouble:(jdouble)width
+                      withDouble:(jdouble)height;
+
+- (jboolean)intersectsLineWithDouble:(jdouble)x1
+                          withDouble:(jdouble)y1
+                          withDouble:(jdouble)x2
+                          withDouble:(jdouble)y2;
+
+- (jboolean)intersectsLineWithComItextpdfAwtGeomLine2D:(ComItextpdfAwtGeomLine2D *)l;
+
+- (jint)outcodeWithDouble:(jdouble)x
+               withDouble:(jdouble)y;
+
+- (jint)outcodeWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+
+- (void)setFrameWithDouble:(jdouble)x
+                withDouble:(jdouble)y
+                withDouble:(jdouble)width
+                withDouble:(jdouble)height;
+
+- (void)setRectWithDouble:(jdouble)x
+               withDouble:(jdouble)y
+               withDouble:(jdouble)width
+               withDouble:(jdouble)height;
+
+- (void)setRectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
++ (void)union__WithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src1
+               withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)src2
+               withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)dst;
+
+#pragma mark Protected
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomRectangle2D)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomRectangle2D, OUT_LEFT, jint)
 
@@ -105,6 +108,14 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomRectangle2D, OUT_RIGHT, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomRectangle2D, OUT_BOTTOM, jint)
 
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_init(ComItextpdfAwtGeomRectangle2D *self);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_intersectWithComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_(ComItextpdfAwtGeomRectangle2D *src1, ComItextpdfAwtGeomRectangle2D *src2, ComItextpdfAwtGeomRectangle2D *dst);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_union__WithComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_(ComItextpdfAwtGeomRectangle2D *src1, ComItextpdfAwtGeomRectangle2D *src2, ComItextpdfAwtGeomRectangle2D *dst);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomRectangle2D)
+
 @interface ComItextpdfAwtGeomRectangle2D_Float : ComItextpdfAwtGeomRectangle2D {
  @public
   jfloat x_;
@@ -113,6 +124,8 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomRectangle2D, OUT_BOTTOM, jint)
   jfloat height_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithFloat:(jfloat)x
@@ -120,44 +133,52 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomRectangle2D, OUT_BOTTOM, jint)
                     withFloat:(jfloat)width
                     withFloat:(jfloat)height;
 
+- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
+
+- (jdouble)getHeight;
+
+- (jdouble)getWidth;
+
 - (jdouble)getX;
 
 - (jdouble)getY;
 
-- (jdouble)getWidth;
-
-- (jdouble)getHeight;
-
 - (jboolean)isEmpty;
 
-- (void)setRectWithFloat:(jfloat)x
-               withFloat:(jfloat)y
-               withFloat:(jfloat)width
-               withFloat:(jfloat)height;
+- (jint)outcodeWithDouble:(jdouble)px
+               withDouble:(jdouble)py;
 
 - (void)setRectWithDouble:(jdouble)x
                withDouble:(jdouble)y
                withDouble:(jdouble)width
                withDouble:(jdouble)height;
 
+- (void)setRectWithFloat:(jfloat)x
+               withFloat:(jfloat)y
+               withFloat:(jfloat)width
+               withFloat:(jfloat)height;
+
 - (void)setRectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (jint)outcodeWithDouble:(jdouble)px
-               withDouble:(jdouble)py;
-
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomRectangle2D_Float *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Float_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomRectangle2D_Float)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_Float_init(ComItextpdfAwtGeomRectangle2D_Float *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomRectangle2D_Float *new_ComItextpdfAwtGeomRectangle2D_Float_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_Float_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfAwtGeomRectangle2D_Float *self, jfloat x, jfloat y, jfloat width, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomRectangle2D_Float *new_ComItextpdfAwtGeomRectangle2D_Float_initWithFloat_withFloat_withFloat_withFloat_(jfloat x, jfloat y, jfloat width, jfloat height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomRectangle2D_Float)
 
 @interface ComItextpdfAwtGeomRectangle2D_Double : ComItextpdfAwtGeomRectangle2D {
  @public
@@ -167,6 +188,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Float_i
   jdouble height_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithDouble:(jdouble)x
@@ -174,15 +197,24 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Float_i
                     withDouble:(jdouble)width
                     withDouble:(jdouble)height;
 
+- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
+
+- (jdouble)getHeight;
+
+- (jdouble)getWidth;
+
 - (jdouble)getX;
 
 - (jdouble)getY;
 
-- (jdouble)getWidth;
-
-- (jdouble)getHeight;
-
 - (jboolean)isEmpty;
+
+- (jint)outcodeWithDouble:(jdouble)px
+               withDouble:(jdouble)py;
 
 - (void)setRectWithDouble:(jdouble)x
                withDouble:(jdouble)y
@@ -191,22 +223,21 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Float_i
 
 - (void)setRectWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
 
-- (jint)outcodeWithDouble:(jdouble)px
-               withDouble:(jdouble)py;
-
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (ComItextpdfAwtGeomRectangle2D *)createIntersectionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (ComItextpdfAwtGeomRectangle2D *)createUnionWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
 - (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomRectangle2D_Double *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Double_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomRectangle2D_Double)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_Double_init(ComItextpdfAwtGeomRectangle2D_Double *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomRectangle2D_Double *new_ComItextpdfAwtGeomRectangle2D_Double_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_Double_initWithDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomRectangle2D_Double *self, jdouble x, jdouble y, jdouble width, jdouble height);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomRectangle2D_Double *new_ComItextpdfAwtGeomRectangle2D_Double_initWithDouble_withDouble_withDouble_withDouble_(jdouble x, jdouble y, jdouble width, jdouble height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomRectangle2D_Double)
 
 @interface ComItextpdfAwtGeomRectangle2D_Iterator : NSObject < ComItextpdfAwtGeomPathIterator > {
  @public
@@ -218,9 +249,11 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Double_
   jint index_;
 }
 
-- (instancetype)initWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)outer$
-                    withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r
-                withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
+#pragma mark Public
+
+- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+
+- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
 
 - (jint)getWindingRule;
 
@@ -228,16 +261,22 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Double_
 
 - (void)next;
 
-- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+#pragma mark Package-Private
 
-- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomRectangle2D_Iterator *)other;
+- (instancetype)initWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)outer$
+                    withComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r
+                withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)at;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomRectangle2D_Iterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomRectangle2D_Iterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomRectangle2D_Iterator, t_, ComItextpdfAwtGeomAffineTransform *)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomRectangle2D_Iterator_initWithComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomRectangle2D_Iterator *self, ComItextpdfAwtGeomRectangle2D *outer$, ComItextpdfAwtGeomRectangle2D *r, ComItextpdfAwtGeomAffineTransform *at);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomRectangle2D_Iterator *new_ComItextpdfAwtGeomRectangle2D_Iterator_initWithComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomRectangle2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomRectangle2D *outer$, ComItextpdfAwtGeomRectangle2D *r, ComItextpdfAwtGeomAffineTransform *at) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomRectangle2D_Iterator)
 
 #endif // _ComItextpdfAwtGeomRectangle2D_H_

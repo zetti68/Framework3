@@ -6,43 +6,24 @@
 #ifndef _ComItextpdfTextPdfCodecTIFFFaxDecoder_H_
 #define _ComItextpdfTextPdfCodecTIFFFaxDecoder_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSShortArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCodecTIFFFaxDecoder : NSObject
 
-@interface ComItextpdfTextPdfCodecTIFFFaxDecoder : NSObject {
- @public
-  jint bitPointer_, bytePointer_;
-  IOSByteArray *data_;
-  jint w_, h_;
-  jint fillOrder_;
-  jint changingElemSize_;
-  IOSIntArray *prevChangingElems_;
-  IOSIntArray *currChangingElems_;
-  jint lastChangingElement_;
-  jint compression_;
-  jint uncompressedMode_;
-  jint fillBits_;
-  jint oneD_;
-  jboolean recoverFromImageError_;
-}
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)fillOrder
                     withInt:(jint)w
                     withInt:(jint)h;
 
-+ (void)reverseBitsWithByteArray:(IOSByteArray *)b;
-
 - (void)decode1DWithByteArray:(IOSByteArray *)buffer
                 withByteArray:(IOSByteArray *)compData
                       withInt:(jint)startX
                       withInt:(jint)height;
-
-- (void)decodeNextScanlineWithByteArray:(IOSByteArray *)buffer
-                                withInt:(jint)lineOffset
-                                withInt:(jint)bitOffset;
 
 - (void)decode2DWithByteArray:(IOSByteArray *)buffer
                 withByteArray:(IOSByteArray *)compData
@@ -50,47 +31,23 @@
                       withInt:(jint)height
                      withLong:(jlong)tiffT4Options;
 
+- (void)decodeNextScanlineWithByteArray:(IOSByteArray *)buffer
+                                withInt:(jint)lineOffset
+                                withInt:(jint)bitOffset;
+
 - (void)decodeT6WithByteArray:(IOSByteArray *)buffer
                 withByteArray:(IOSByteArray *)compData
                       withInt:(jint)startX
                       withInt:(jint)height
                      withLong:(jlong)tiffT6Options;
 
-- (void)setToBlackWithByteArray:(IOSByteArray *)buffer
-                        withInt:(jint)lineOffset
-                        withInt:(jint)bitOffset
-                        withInt:(jint)numBits;
-
-- (jint)decodeWhiteCodeWord;
-
-- (jint)decodeBlackCodeWord;
-
-- (jint)readEOLWithBoolean:(jboolean)isFirstEOL;
-
-- (void)getNextChangingElementWithInt:(jint)a0
-                          withBoolean:(jboolean)isWhite
-                         withIntArray:(IOSIntArray *)ret;
-
-- (jint)nextNBitsWithInt:(jint)bitsToGet;
-
-- (jint)nextLesserThan8BitsWithInt:(jint)bitsToGet;
-
-- (void)updatePointerWithInt:(jint)bitsToMoveBack;
-
-- (jboolean)advancePointer;
++ (void)reverseBitsWithByteArray:(IOSByteArray *)b;
 
 - (void)setRecoverFromImageErrorWithBoolean:(jboolean)recoverFromImageError;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecTIFFFaxDecoder *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecTIFFFaxDecoder_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecTIFFFaxDecoder)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, data_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, prevChangingElems_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, currChangingElems_, IOSIntArray *)
 
 FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfCodecTIFFFaxDecoder_table1_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, table1_, IOSIntArray *)
@@ -127,5 +84,13 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, black_, IOSSho
 FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecTIFFFaxDecoder_twoDCodes_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, twoDCodes_, IOSByteArray *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecoder, twoDCodes_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFFaxDecoder_initWithInt_withInt_withInt_(ComItextpdfTextPdfCodecTIFFFaxDecoder *self, jint fillOrder, jint w, jint h);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFFaxDecoder *new_ComItextpdfTextPdfCodecTIFFFaxDecoder_initWithInt_withInt_withInt_(jint fillOrder, jint w, jint h) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFFaxDecoder_reverseBitsWithByteArray_(IOSByteArray *b);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecTIFFFaxDecoder)
 
 #endif // _ComItextpdfTextPdfCodecTIFFFaxDecoder_H_

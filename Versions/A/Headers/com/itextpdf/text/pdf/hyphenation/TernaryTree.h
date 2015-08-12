@@ -6,18 +6,17 @@
 #ifndef _ComItextpdfTextPdfHyphenationTernaryTree_H_
 #define _ComItextpdfTextPdfHyphenationTernaryTree_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/Serializable.h"
+#include "java/util/Enumeration.h"
+
 @class ComItextpdfTextPdfHyphenationCharVector;
 @class IOSCharArray;
 @class IOSObjectArray;
 @class JavaLangStringBuffer;
 @class JavaUtilStack;
 
-#import "JreEmulation.h"
-#include "java/io/Serializable.h"
-#include "java/util/Enumeration.h"
-
 #define ComItextpdfTextPdfHyphenationTernaryTree_BLOCK_SIZE 2048
-#define ComItextpdfTextPdfHyphenationTernaryTree_serialVersionUID 5313366505322983510LL
 
 @interface ComItextpdfTextPdfHyphenationTernaryTree : NSObject < NSCopying, JavaIoSerializable > {
  @public
@@ -31,21 +30,31 @@
   jint length_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (void)init__ OBJC_METHOD_FAMILY_NONE;
+- (void)balance;
 
-- (void)insertWithNSString:(NSString *)key
-                  withChar:(jchar)val;
+- (id)clone;
+
+- (jint)findWithCharArray:(IOSCharArray *)key
+                  withInt:(jint)start;
+
+- (jint)findWithNSString:(NSString *)key;
 
 - (void)insertWithCharArray:(IOSCharArray *)key
                     withInt:(jint)start
                    withChar:(jchar)val;
 
-- (jchar)insertWithChar:(jchar)p
-          withCharArray:(IOSCharArray *)key
-                withInt:(jint)start
-               withChar:(jchar)val;
+- (void)insertWithNSString:(NSString *)key
+                  withChar:(jchar)val;
+
+- (id<JavaUtilEnumeration>)keys;
+
+- (jboolean)knowsWithNSString:(NSString *)key;
+
+- (void)printStats;
+
+- (jint)size;
 
 + (jint)strcmpWithCharArray:(IOSCharArray *)a
                     withInt:(jint)startA
@@ -61,48 +70,29 @@
               withCharArray:(IOSCharArray *)src
                     withInt:(jint)si;
 
++ (jint)strlenWithCharArray:(IOSCharArray *)a;
+
 + (jint)strlenWithCharArray:(IOSCharArray *)a
                     withInt:(jint)start;
 
-+ (jint)strlenWithCharArray:(IOSCharArray *)a;
+- (void)trimToSize;
 
-- (jint)findWithNSString:(NSString *)key;
+#pragma mark Protected
 
-- (jint)findWithCharArray:(IOSCharArray *)key
-                  withInt:(jint)start;
-
-- (jboolean)knowsWithNSString:(NSString *)key;
-
-- (void)redimNodeArraysWithInt:(jint)newsize;
-
-- (jint)size;
-
-- (id)clone;
+- (void)init__ OBJC_METHOD_FAMILY_NONE;
 
 - (void)insertBalancedWithNSStringArray:(IOSObjectArray *)k
                           withCharArray:(IOSCharArray *)v
                                 withInt:(jint)offset
                                 withInt:(jint)n;
 
-- (void)balance;
+#pragma mark Package-Private
 
-- (void)trimToSize;
-
-- (void)compactWithComItextpdfTextPdfHyphenationCharVector:(ComItextpdfTextPdfHyphenationCharVector *)kx
-              withComItextpdfTextPdfHyphenationTernaryTree:(ComItextpdfTextPdfHyphenationTernaryTree *)map
-                                                  withChar:(jchar)p;
-
-- (id<JavaUtilEnumeration>)keys;
-
-- (void)printStats;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationTernaryTree *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationTernaryTree_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationTernaryTree)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree, lo_, IOSCharArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree, hi_, IOSCharArray *)
@@ -110,67 +100,56 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree, eq_, IOSCharArray 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree, sc_, IOSCharArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree, kv_, ComItextpdfTextPdfHyphenationCharVector *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationTernaryTree, serialVersionUID, jlong)
-
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationTernaryTree, BLOCK_SIZE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationTernaryTree_init(ComItextpdfTextPdfHyphenationTernaryTree *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationTernaryTree *new_ComItextpdfTextPdfHyphenationTernaryTree_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfHyphenationTernaryTree_strcmpWithCharArray_withInt_withCharArray_withInt_(IOSCharArray *a, jint startA, IOSCharArray *b, jint startB);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfHyphenationTernaryTree_strcmpWithNSString_withCharArray_withInt_(NSString *str, IOSCharArray *a, jint start);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationTernaryTree_strcpyWithCharArray_withInt_withCharArray_withInt_(IOSCharArray *dst, jint di, IOSCharArray *src, jint si);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfHyphenationTernaryTree_strlenWithCharArray_withInt_(IOSCharArray *a, jint start);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfHyphenationTernaryTree_strlenWithCharArray_(IOSCharArray *a);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationTernaryTree)
 
 @interface ComItextpdfTextPdfHyphenationTernaryTree_Iterator : NSObject < JavaUtilEnumeration > {
  @public
-  ComItextpdfTextPdfHyphenationTernaryTree *this$0_;
   jint cur_;
   NSString *curkey_;
   JavaUtilStack *ns_;
   JavaLangStringBuffer *ks_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfHyphenationTernaryTree:(ComItextpdfTextPdfHyphenationTernaryTree *)outer$;
-
-- (void)rewind;
-
-- (NSString *)nextElement;
 
 - (jchar)getValue;
 
 - (jboolean)hasMoreElements;
 
-- (jint)up;
+- (NSString *)nextElement;
 
-- (jint)run;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationTernaryTree_Iterator *)other;
+- (void)rewind;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationTernaryTree_Iterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationTernaryTree_Iterator)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator, this$0_, ComItextpdfTextPdfHyphenationTernaryTree *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator, curkey_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator, ns_, JavaUtilStack *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator, ks_, JavaLangStringBuffer *)
 
-@interface ComItextpdfTextPdfHyphenationTernaryTree_Iterator_Item : NSObject < NSCopying > {
- @public
-  ComItextpdfTextPdfHyphenationTernaryTree_Iterator *this$0_;
-  jchar parent_;
-  jchar child_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationTernaryTree_Iterator_initWithComItextpdfTextPdfHyphenationTernaryTree_(ComItextpdfTextPdfHyphenationTernaryTree_Iterator *self, ComItextpdfTextPdfHyphenationTernaryTree *outer$);
 
-- (instancetype)initWithComItextpdfTextPdfHyphenationTernaryTree_Iterator:(ComItextpdfTextPdfHyphenationTernaryTree_Iterator *)outer$;
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationTernaryTree_Iterator *new_ComItextpdfTextPdfHyphenationTernaryTree_Iterator_initWithComItextpdfTextPdfHyphenationTernaryTree_(ComItextpdfTextPdfHyphenationTernaryTree *outer$) NS_RETURNS_RETAINED;
 
-- (instancetype)initWithComItextpdfTextPdfHyphenationTernaryTree_Iterator:(ComItextpdfTextPdfHyphenationTernaryTree_Iterator *)outer$
-                                                                 withChar:(jchar)p
-                                                                 withChar:(jchar)c;
-
-- (ComItextpdfTextPdfHyphenationTernaryTree_Iterator_Item *)clone;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationTernaryTree_Iterator_Item *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationTernaryTree_Iterator_Item_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator_Item, this$0_, ComItextpdfTextPdfHyphenationTernaryTree_Iterator *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationTernaryTree_Iterator)
 
 #endif // _ComItextpdfTextPdfHyphenationTernaryTree_H_

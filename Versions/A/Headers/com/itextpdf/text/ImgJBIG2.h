@@ -6,18 +6,14 @@
 #ifndef _ComItextpdfTextImgJBIG2_H_
 #define _ComItextpdfTextImgJBIG2_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Image.h"
 
-@interface ComItextpdfTextImgJBIG2 : ComItextpdfTextImage {
- @public
-  IOSByteArray *global_;
-  IOSByteArray *globalHash_;
-}
+@class IOSByteArray;
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+@interface ComItextpdfTextImgJBIG2 : ComItextpdfTextImage
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -30,13 +26,26 @@
 
 - (IOSByteArray *)getGlobalHash;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextImgJBIG2 *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImgJBIG2_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImgJBIG2)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextImgJBIG2, global_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextImgJBIG2, globalHash_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextImgJBIG2_initWithComItextpdfTextImage_(ComItextpdfTextImgJBIG2 *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImgJBIG2 *new_ComItextpdfTextImgJBIG2_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgJBIG2_init(ComItextpdfTextImgJBIG2 *self);
+
+FOUNDATION_EXPORT ComItextpdfTextImgJBIG2 *new_ComItextpdfTextImgJBIG2_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgJBIG2_initWithInt_withInt_withByteArray_withByteArray_(ComItextpdfTextImgJBIG2 *self, jint width, jint height, IOSByteArray *data, IOSByteArray *globals);
+
+FOUNDATION_EXPORT ComItextpdfTextImgJBIG2 *new_ComItextpdfTextImgJBIG2_initWithInt_withInt_withByteArray_withByteArray_(jint width, jint height, IOSByteArray *data, IOSByteArray *globals) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImgJBIG2)
 
 #endif // _ComItextpdfTextImgJBIG2_H_

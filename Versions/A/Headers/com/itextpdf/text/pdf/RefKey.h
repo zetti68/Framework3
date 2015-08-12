@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfRefKey_H_
 #define _ComItextpdfTextPdfRefKey_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPRIndirectReference;
 @class ComItextpdfTextPdfPdfIndirectReference;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfRefKey : NSObject {
  @public
@@ -17,23 +17,39 @@
   jint gen_;
 }
 
-- (instancetype)initWithInt:(jint)num
-                    withInt:(jint)gen;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref;
 
-- (instancetype)initWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
+- (jboolean)isEqual:(id)o;
 
 - (NSUInteger)hash;
 
-- (jboolean)isEqual:(id)o;
-
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfRefKey *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithInt:(jint)num
+                    withInt:(jint)gen;
+
+- (instancetype)initWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfRefKey_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfRefKey)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRefKey_initWithInt_withInt_(ComItextpdfTextPdfRefKey *self, jint num, jint gen);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRefKey *new_ComItextpdfTextPdfRefKey_initWithInt_withInt_(jint num, jint gen) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRefKey_initWithComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextPdfRefKey *self, ComItextpdfTextPdfPdfIndirectReference *ref);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRefKey *new_ComItextpdfTextPdfRefKey_initWithComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextPdfPdfIndirectReference *ref) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRefKey_initWithComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfRefKey *self, ComItextpdfTextPdfPRIndirectReference *ref);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRefKey *new_ComItextpdfTextPdfRefKey_initWithComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfPRIndirectReference *ref) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfRefKey)
 
 #endif // _ComItextpdfTextPdfRefKey_H_

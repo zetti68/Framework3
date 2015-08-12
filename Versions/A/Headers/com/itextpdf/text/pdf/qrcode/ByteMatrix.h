@@ -6,28 +6,27 @@
 #ifndef _ComItextpdfTextPdfQrcodeByteMatrix_H_
 #define _ComItextpdfTextPdfQrcodeByteMatrix_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeByteMatrix : NSObject
 
-@interface ComItextpdfTextPdfQrcodeByteMatrix : NSObject {
- @public
-  IOSObjectArray *bytes_;
-  jint width_;
-  jint height_;
-}
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)width
                     withInt:(jint)height;
 
-- (jint)getHeight;
-
-- (jint)getWidth;
+- (void)clearWithByte:(jbyte)value;
 
 - (jbyte)getWithInt:(jint)x
             withInt:(jint)y;
 
 - (IOSObjectArray *)getArray;
+
+- (jint)getHeight;
+
+- (jint)getWidth;
 
 - (void)setWithInt:(jint)x
            withInt:(jint)y
@@ -37,16 +36,16 @@
            withInt:(jint)y
            withInt:(jint)value;
 
-- (void)clearWithByte:(jbyte)value;
-
 - (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeByteMatrix *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeByteMatrix_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeByteMatrix)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeByteMatrix, bytes_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeByteMatrix_initWithInt_withInt_(ComItextpdfTextPdfQrcodeByteMatrix *self, jint width, jint height);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeByteMatrix *new_ComItextpdfTextPdfQrcodeByteMatrix_initWithInt_withInt_(jint width, jint height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeByteMatrix)
 
 #endif // _ComItextpdfTextPdfQrcodeByteMatrix_H_

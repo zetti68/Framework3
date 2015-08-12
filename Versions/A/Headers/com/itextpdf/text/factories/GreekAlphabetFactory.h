@@ -6,24 +6,39 @@
 #ifndef _ComItextpdfTextFactoriesGreekAlphabetFactory_H_
 #define _ComItextpdfTextFactoriesGreekAlphabetFactory_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextFactoriesGreekAlphabetFactory : NSObject {
-}
+@interface ComItextpdfTextFactoriesGreekAlphabetFactory : NSObject
 
-+ (NSString *)getStringWithInt:(jint)index;
+#pragma mark Public
+
+- (instancetype)init;
 
 + (NSString *)getLowerCaseStringWithInt:(jint)index;
 
-+ (NSString *)getUpperCaseStringWithInt:(jint)index;
++ (NSString *)getStringWithInt:(jint)index;
 
 + (NSString *)getStringWithInt:(jint)index
                    withBoolean:(jboolean)lowercase;
 
-- (instancetype)init;
++ (NSString *)getUpperCaseStringWithInt:(jint)index;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextFactoriesGreekAlphabetFactory_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextFactoriesGreekAlphabetFactory)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesGreekAlphabetFactory_getStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesGreekAlphabetFactory_getLowerCaseStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesGreekAlphabetFactory_getUpperCaseStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesGreekAlphabetFactory_getStringWithInt_withBoolean_(jint index, jboolean lowercase);
+
+FOUNDATION_EXPORT void ComItextpdfTextFactoriesGreekAlphabetFactory_init(ComItextpdfTextFactoriesGreekAlphabetFactory *self);
+
+FOUNDATION_EXPORT ComItextpdfTextFactoriesGreekAlphabetFactory *new_ComItextpdfTextFactoriesGreekAlphabetFactory_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFactoriesGreekAlphabetFactory)
 
 #endif // _ComItextpdfTextFactoriesGreekAlphabetFactory_H_

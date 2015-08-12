@@ -6,32 +6,35 @@
 #ifndef _ComItextpdfXmpImplQName_H_
 #define _ComItextpdfXmpImplQName_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfXmpImplQName : NSObject {
- @public
-  NSString *prefix_;
-  NSString *localName_;
-}
+@interface ComItextpdfXmpImplQName : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)qname;
 
 - (instancetype)initWithNSString:(NSString *)prefix
                     withNSString:(NSString *)localName;
 
-- (jboolean)hasPrefix;
-
 - (NSString *)getLocalName;
 
 - (NSString *)getPrefix;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplQName *)other;
+- (jboolean)hasPrefix;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplQName_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplQName)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplQName, prefix_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplQName, localName_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplQName_initWithNSString_(ComItextpdfXmpImplQName *self, NSString *qname);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplQName *new_ComItextpdfXmpImplQName_initWithNSString_(NSString *qname) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplQName_initWithNSString_withNSString_(ComItextpdfXmpImplQName *self, NSString *prefix, NSString *localName);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplQName *new_ComItextpdfXmpImplQName_initWithNSString_withNSString_(NSString *prefix, NSString *localName) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplQName)
 
 #endif // _ComItextpdfXmpImplQName_H_

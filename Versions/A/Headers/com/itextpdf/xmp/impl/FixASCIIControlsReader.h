@@ -6,26 +6,15 @@
 #ifndef _ComItextpdfXmpImplFixASCIIControlsReader_H_
 #define _ComItextpdfXmpImplFixASCIIControlsReader_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/PushbackReader.h"
+
 @class IOSCharArray;
 @class JavaIoReader;
 
-#import "JreEmulation.h"
-#include "java/io/PushbackReader.h"
+@interface ComItextpdfXmpImplFixASCIIControlsReader : JavaIoPushbackReader
 
-#define ComItextpdfXmpImplFixASCIIControlsReader_BUFFER_SIZE 8
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_AMP 1
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_DIG1 4
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_ERROR 5
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_HASH 2
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_HEX 3
-#define ComItextpdfXmpImplFixASCIIControlsReader_STATE_START 0
-
-@interface ComItextpdfXmpImplFixASCIIControlsReader : JavaIoPushbackReader {
- @public
-  jint state_;
-  jint control_;
-  jint digits_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaIoReader:(JavaIoReader *)inArg;
 
@@ -33,26 +22,14 @@
                   withInt:(jint)off
                   withInt:(jint)len;
 
-- (jchar)processCharWithChar:(jchar)ch;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplFixASCIIControlsReader *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplFixASCIIControlsReader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplFixASCIIControlsReader)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_START, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpImplFixASCIIControlsReader_initWithJavaIoReader_(ComItextpdfXmpImplFixASCIIControlsReader *self, JavaIoReader *inArg);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_AMP, jint)
+FOUNDATION_EXPORT ComItextpdfXmpImplFixASCIIControlsReader *new_ComItextpdfXmpImplFixASCIIControlsReader_initWithJavaIoReader_(JavaIoReader *inArg) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_HASH, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_HEX, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_DIG1, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, STATE_ERROR, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplFixASCIIControlsReader, BUFFER_SIZE, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplFixASCIIControlsReader)
 
 #endif // _ComItextpdfXmpImplFixASCIIControlsReader_H_

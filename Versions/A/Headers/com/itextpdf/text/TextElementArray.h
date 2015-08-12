@@ -6,14 +6,17 @@
 #ifndef _ComItextpdfTextTextElementArray_H_
 #define _ComItextpdfTextTextElementArray_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Element.h"
 
 @protocol ComItextpdfTextTextElementArray < ComItextpdfTextElement, NSObject, JavaObject >
+
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextTextElementArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextTextElementArray)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextTextElementArray)
 
 #endif // _ComItextpdfTextTextElementArray_H_

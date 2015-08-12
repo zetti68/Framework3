@@ -6,47 +6,39 @@
 #ifndef _ComItextpdfTextFactoriesRomanNumberFactory_H_
 #define _ComItextpdfTextFactoriesRomanNumberFactory_H_
 
-@class IOSObjectArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextFactoriesRomanNumberFactory : NSObject
 
-@interface ComItextpdfTextFactoriesRomanNumberFactory : NSObject {
-}
+#pragma mark Public
 
-+ (NSString *)getStringWithInt:(jint)index;
+- (instancetype)init;
 
 + (NSString *)getLowerCaseStringWithInt:(jint)index;
 
-+ (NSString *)getUpperCaseStringWithInt:(jint)index;
++ (NSString *)getStringWithInt:(jint)index;
 
 + (NSString *)getStringWithInt:(jint)index
                    withBoolean:(jboolean)lowercase;
 
-- (instancetype)init;
++ (NSString *)getUpperCaseStringWithInt:(jint)index;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextFactoriesRomanNumberFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextFactoriesRomanNumberFactory)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextFactoriesRomanNumberFactory_roman_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFactoriesRomanNumberFactory, roman_, IOSObjectArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanNumberFactory_getStringWithInt_(jint index);
 
-@interface ComItextpdfTextFactoriesRomanNumberFactory_RomanDigit : NSObject {
- @public
-  jchar digit_;
-  jint value_;
-  jboolean pre_;
-}
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanNumberFactory_getLowerCaseStringWithInt_(jint index);
 
-- (instancetype)initWithChar:(jchar)digit
-                     withInt:(jint)value
-                 withBoolean:(jboolean)pre;
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanNumberFactory_getUpperCaseStringWithInt_(jint index);
 
-- (void)copyAllFieldsTo:(ComItextpdfTextFactoriesRomanNumberFactory_RomanDigit *)other;
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanNumberFactory_getStringWithInt_withBoolean_(jint index, jboolean lowercase);
 
-@end
+FOUNDATION_EXPORT void ComItextpdfTextFactoriesRomanNumberFactory_init(ComItextpdfTextFactoriesRomanNumberFactory *self);
 
-__attribute__((always_inline)) inline void ComItextpdfTextFactoriesRomanNumberFactory_RomanDigit_init() {}
+FOUNDATION_EXPORT ComItextpdfTextFactoriesRomanNumberFactory *new_ComItextpdfTextFactoriesRomanNumberFactory_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFactoriesRomanNumberFactory)
 
 #endif // _ComItextpdfTextFactoriesRomanNumberFactory_H_

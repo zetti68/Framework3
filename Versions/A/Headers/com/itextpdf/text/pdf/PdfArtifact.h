@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfArtifact_H_
 #define _ComItextpdfTextPdfPdfArtifact_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfString;
 @class JavaUtilHashMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
 
 @interface ComItextpdfTextPdfPdfArtifact : NSObject < ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
@@ -23,45 +23,51 @@
   ComItextpdfTextAccessibleElementId *id__;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+
+- (JavaUtilHashMap *)getAccessibleAttributes;
+
+- (ComItextpdfTextPdfPdfArray *)getAttached;
+
+- (ComItextpdfTextPdfPdfArray *)getBBox;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (ComItextpdfTextPdfPdfString *)getType;
+
+- (jboolean)isInline;
 
 - (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
                             withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
-
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
-
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-- (jboolean)isInline;
-
-- (ComItextpdfTextPdfPdfString *)getType;
-
-- (void)setTypeWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)type;
-
-- (ComItextpdfTextPdfPdfArray *)getBBox;
+- (void)setAttachedWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)attached;
 
 - (void)setBBoxWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)bbox;
 
-- (ComItextpdfTextPdfPdfArray *)getAttached;
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
 
-- (void)setAttachedWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)attached;
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfArtifact *)other;
+- (void)setTypeWithComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfArtifact_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfArtifact)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfArtifact, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfArtifact, accessibleAttributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfArtifact, id__, ComItextpdfTextAccessibleElementId *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArtifact_init(ComItextpdfTextPdfPdfArtifact *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArtifact *new_ComItextpdfTextPdfPdfArtifact_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfArtifact)
 
 #endif // _ComItextpdfTextPdfPdfArtifact_H_

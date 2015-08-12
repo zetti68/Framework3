@@ -6,14 +6,17 @@
 #ifndef _ComItextpdfTextTabSplitCharacter_H_
 #define _ComItextpdfTextTabSplitCharacter_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/SplitCharacter.h"
+
 @class IOSCharArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/SplitCharacter.h"
+@interface ComItextpdfTextTabSplitCharacter : NSObject < ComItextpdfTextSplitCharacter >
 
-@interface ComItextpdfTextTabSplitCharacter : NSObject < ComItextpdfTextSplitCharacter > {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 - (jboolean)isSplitCharacterWithInt:(jint)start
                             withInt:(jint)current
@@ -21,14 +24,17 @@
                       withCharArray:(IOSCharArray *)cc
 withComItextpdfTextPdfPdfChunkArray:(IOSObjectArray *)ck;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextTabSplitCharacter_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextTabSplitCharacter)
 
 FOUNDATION_EXPORT id<ComItextpdfTextSplitCharacter> ComItextpdfTextTabSplitCharacter_TAB_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabSplitCharacter, TAB_, id<ComItextpdfTextSplitCharacter>)
+
+FOUNDATION_EXPORT void ComItextpdfTextTabSplitCharacter_init(ComItextpdfTextTabSplitCharacter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextTabSplitCharacter *new_ComItextpdfTextTabSplitCharacter_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextTabSplitCharacter)
 
 #endif // _ComItextpdfTextTabSplitCharacter_H_

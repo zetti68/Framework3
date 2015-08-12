@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserImageProcessor_H_
 #define _ComItextpdfTextHtmlSimpleparserImageProcessor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextHtmlSimpleparserChainedProperties;
 @class ComItextpdfTextImage;
 @protocol ComItextpdfTextDocListener;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextHtmlSimpleparserImageProcessor < NSObject, JavaObject >
 
@@ -22,6 +22,8 @@ withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimplep
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserImageProcessor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserImageProcessor)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserImageProcessor)
 
 #endif // _ComItextpdfTextHtmlSimpleparserImageProcessor_H_

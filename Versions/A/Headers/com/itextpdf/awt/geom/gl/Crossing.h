@@ -6,44 +6,22 @@
 #ifndef _ComItextpdfAwtGeomGlCrossing_H_
 #define _ComItextpdfAwtGeomGlCrossing_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSDoubleArray;
 @protocol ComItextpdfAwtGeomPathIterator;
 @protocol ComItextpdfAwtGeomShape;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfAwtGeomGlCrossing_CROSSING 255
 #define ComItextpdfAwtGeomGlCrossing_DELTA 1.0E-5
 #define ComItextpdfAwtGeomGlCrossing_ROOT_DELTA 1.0E-10
+#define ComItextpdfAwtGeomGlCrossing_CROSSING 255
 #define ComItextpdfAwtGeomGlCrossing_UNKNOWN 254
 
-@interface ComItextpdfAwtGeomGlCrossing : NSObject {
-}
+@interface ComItextpdfAwtGeomGlCrossing : NSObject
 
-+ (jint)solveQuadWithDoubleArray:(IOSDoubleArray *)eqn
-                 withDoubleArray:(IOSDoubleArray *)res;
+#pragma mark Public
 
-+ (jint)solveCubicWithDoubleArray:(IOSDoubleArray *)eqn
-                  withDoubleArray:(IOSDoubleArray *)res;
-
-+ (jint)fixRootsWithDoubleArray:(IOSDoubleArray *)res
-                        withInt:(jint)rc;
-
-+ (jint)crossLineWithDouble:(jdouble)x1
-                 withDouble:(jdouble)y1
-                 withDouble:(jdouble)x2
-                 withDouble:(jdouble)y2
-                 withDouble:(jdouble)x
-                 withDouble:(jdouble)y;
-
-+ (jint)crossQuadWithDouble:(jdouble)x1
-                 withDouble:(jdouble)y1
-                 withDouble:(jdouble)cx
-                 withDouble:(jdouble)cy
-                 withDouble:(jdouble)x2
-                 withDouble:(jdouble)y2
-                 withDouble:(jdouble)x
-                 withDouble:(jdouble)y;
+- (instancetype)init;
 
 + (jint)crossCubicWithDouble:(jdouble)x1
                   withDouble:(jdouble)y1
@@ -56,43 +34,29 @@
                   withDouble:(jdouble)x
                   withDouble:(jdouble)y;
 
++ (jint)crossLineWithDouble:(jdouble)x1
+                 withDouble:(jdouble)y1
+                 withDouble:(jdouble)x2
+                 withDouble:(jdouble)y2
+                 withDouble:(jdouble)x
+                 withDouble:(jdouble)y;
+
 + (jint)crossPathWithComItextpdfAwtGeomPathIterator:(id<ComItextpdfAwtGeomPathIterator>)p
                                          withDouble:(jdouble)x
                                          withDouble:(jdouble)y;
 
++ (jint)crossQuadWithDouble:(jdouble)x1
+                 withDouble:(jdouble)y1
+                 withDouble:(jdouble)cx
+                 withDouble:(jdouble)cy
+                 withDouble:(jdouble)x2
+                 withDouble:(jdouble)y2
+                 withDouble:(jdouble)x
+                 withDouble:(jdouble)y;
+
 + (jint)crossShapeWithComItextpdfAwtGeomShape:(id<ComItextpdfAwtGeomShape>)s
                                    withDouble:(jdouble)x
                                    withDouble:(jdouble)y;
-
-+ (jboolean)isZeroWithDouble:(jdouble)val;
-
-+ (void)sortBoundWithDoubleArray:(IOSDoubleArray *)bound
-                         withInt:(jint)bc;
-
-+ (jint)crossBoundWithDoubleArray:(IOSDoubleArray *)bound
-                          withInt:(jint)bc
-                       withDouble:(jdouble)py1
-                       withDouble:(jdouble)py2;
-
-+ (jint)intersectLineWithDouble:(jdouble)x1
-                     withDouble:(jdouble)y1
-                     withDouble:(jdouble)x2
-                     withDouble:(jdouble)y2
-                     withDouble:(jdouble)rx1
-                     withDouble:(jdouble)ry1
-                     withDouble:(jdouble)rx2
-                     withDouble:(jdouble)ry2;
-
-+ (jint)intersectQuadWithDouble:(jdouble)x1
-                     withDouble:(jdouble)y1
-                     withDouble:(jdouble)cx
-                     withDouble:(jdouble)cy
-                     withDouble:(jdouble)x2
-                     withDouble:(jdouble)y2
-                     withDouble:(jdouble)rx1
-                     withDouble:(jdouble)ry1
-                     withDouble:(jdouble)rx2
-                     withDouble:(jdouble)ry2;
 
 + (jint)intersectCubicWithDouble:(jdouble)x1
                       withDouble:(jdouble)y1
@@ -107,11 +71,31 @@
                       withDouble:(jdouble)rx2
                       withDouble:(jdouble)ry2;
 
++ (jint)intersectLineWithDouble:(jdouble)x1
+                     withDouble:(jdouble)y1
+                     withDouble:(jdouble)x2
+                     withDouble:(jdouble)y2
+                     withDouble:(jdouble)rx1
+                     withDouble:(jdouble)ry1
+                     withDouble:(jdouble)rx2
+                     withDouble:(jdouble)ry2;
+
 + (jint)intersectPathWithComItextpdfAwtGeomPathIterator:(id<ComItextpdfAwtGeomPathIterator>)p
                                              withDouble:(jdouble)x
                                              withDouble:(jdouble)y
                                              withDouble:(jdouble)w
                                              withDouble:(jdouble)h;
+
++ (jint)intersectQuadWithDouble:(jdouble)x1
+                     withDouble:(jdouble)y1
+                     withDouble:(jdouble)cx
+                     withDouble:(jdouble)cy
+                     withDouble:(jdouble)x2
+                     withDouble:(jdouble)y2
+                     withDouble:(jdouble)rx1
+                     withDouble:(jdouble)ry1
+                     withDouble:(jdouble)rx2
+                     withDouble:(jdouble)ry2;
 
 + (jint)intersectShapeWithComItextpdfAwtGeomShape:(id<ComItextpdfAwtGeomShape>)s
                                        withDouble:(jdouble)x
@@ -119,15 +103,34 @@
                                        withDouble:(jdouble)w
                                        withDouble:(jdouble)h;
 
-+ (jboolean)isInsideNonZeroWithInt:(jint)cross;
-
 + (jboolean)isInsideEvenOddWithInt:(jint)cross;
 
-- (instancetype)init;
++ (jboolean)isInsideNonZeroWithInt:(jint)cross;
+
++ (jboolean)isZeroWithDouble:(jdouble)val;
+
++ (jint)solveCubicWithDoubleArray:(IOSDoubleArray *)eqn
+                  withDoubleArray:(IOSDoubleArray *)res;
+
++ (jint)solveQuadWithDoubleArray:(IOSDoubleArray *)eqn
+                 withDoubleArray:(IOSDoubleArray *)res;
+
+#pragma mark Package-Private
+
++ (jint)crossBoundWithDoubleArray:(IOSDoubleArray *)bound
+                          withInt:(jint)bc
+                       withDouble:(jdouble)py1
+                       withDouble:(jdouble)py2;
+
++ (jint)fixRootsWithDoubleArray:(IOSDoubleArray *)res
+                        withInt:(jint)rc;
+
++ (void)sortBoundWithDoubleArray:(IOSDoubleArray *)bound
+                         withInt:(jint)bc;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomGlCrossing)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomGlCrossing, DELTA, jdouble)
 
@@ -137,11 +140,55 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomGlCrossing, CROSSING, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomGlCrossing, UNKNOWN, jint)
 
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_solveQuadWithDoubleArray_withDoubleArray_(IOSDoubleArray *eqn, IOSDoubleArray *res);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_solveCubicWithDoubleArray_withDoubleArray_(IOSDoubleArray *eqn, IOSDoubleArray *res);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_fixRootsWithDoubleArray_withInt_(IOSDoubleArray *res, jint rc);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossLineWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossQuadWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx, jdouble cy, jdouble x2, jdouble y2, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossCubicWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx1, jdouble cy1, jdouble cx2, jdouble cy2, jdouble x2, jdouble y2, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossPathWithComItextpdfAwtGeomPathIterator_withDouble_withDouble_(id<ComItextpdfAwtGeomPathIterator> p, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossShapeWithComItextpdfAwtGeomShape_withDouble_withDouble_(id<ComItextpdfAwtGeomShape> s, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT jboolean ComItextpdfAwtGeomGlCrossing_isZeroWithDouble_(jdouble val);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomGlCrossing_sortBoundWithDoubleArray_withInt_(IOSDoubleArray *bound, jint bc);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_crossBoundWithDoubleArray_withInt_withDouble_withDouble_(IOSDoubleArray *bound, jint bc, jdouble py1, jdouble py2);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_intersectLineWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2, jdouble rx1, jdouble ry1, jdouble rx2, jdouble ry2);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_intersectQuadWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx, jdouble cy, jdouble x2, jdouble y2, jdouble rx1, jdouble ry1, jdouble rx2, jdouble ry2);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_intersectCubicWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx1, jdouble cy1, jdouble cx2, jdouble cy2, jdouble x2, jdouble y2, jdouble rx1, jdouble ry1, jdouble rx2, jdouble ry2);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_intersectPathWithComItextpdfAwtGeomPathIterator_withDouble_withDouble_withDouble_withDouble_(id<ComItextpdfAwtGeomPathIterator> p, jdouble x, jdouble y, jdouble w, jdouble h);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomGlCrossing_intersectShapeWithComItextpdfAwtGeomShape_withDouble_withDouble_withDouble_withDouble_(id<ComItextpdfAwtGeomShape> s, jdouble x, jdouble y, jdouble w, jdouble h);
+
+FOUNDATION_EXPORT jboolean ComItextpdfAwtGeomGlCrossing_isInsideNonZeroWithInt_(jint cross);
+
+FOUNDATION_EXPORT jboolean ComItextpdfAwtGeomGlCrossing_isInsideEvenOddWithInt_(jint cross);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomGlCrossing_init(ComItextpdfAwtGeomGlCrossing *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomGlCrossing *new_ComItextpdfAwtGeomGlCrossing_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomGlCrossing)
+
 @interface ComItextpdfAwtGeomGlCrossing_QuadCurve : NSObject {
  @public
   jdouble ax_, ay_, bx_, by_;
   jdouble Ax_, Ay_, Bx_, By_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithDouble:(jdouble)x1
                     withDouble:(jdouble)y1
@@ -150,15 +197,7 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomGlCrossing, UNKNOWN, jint)
                     withDouble:(jdouble)x2
                     withDouble:(jdouble)y2;
 
-- (jint)crossWithDoubleArray:(IOSDoubleArray *)res
-                     withInt:(jint)rc
-                  withDouble:(jdouble)py1
-                  withDouble:(jdouble)py2;
-
-- (jint)solvePointWithDoubleArray:(IOSDoubleArray *)res
-                       withDouble:(jdouble)px;
-
-- (jint)solveExtremWithDoubleArray:(IOSDoubleArray *)res;
+#pragma mark Package-Private
 
 - (jint)addBoundWithDoubleArray:(IOSDoubleArray *)bound
                         withInt:(jint)bc
@@ -169,11 +208,25 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomGlCrossing, UNKNOWN, jint)
                     withBoolean:(jboolean)changeId
                         withInt:(jint)id_;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomGlCrossing_QuadCurve *)other;
+- (jint)crossWithDoubleArray:(IOSDoubleArray *)res
+                     withInt:(jint)rc
+                  withDouble:(jdouble)py1
+                  withDouble:(jdouble)py2;
+
+- (jint)solveExtremWithDoubleArray:(IOSDoubleArray *)res;
+
+- (jint)solvePointWithDoubleArray:(IOSDoubleArray *)res
+                       withDouble:(jdouble)px;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_QuadCurve_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomGlCrossing_QuadCurve)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomGlCrossing_QuadCurve_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomGlCrossing_QuadCurve *self, jdouble x1, jdouble y1, jdouble cx, jdouble cy, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomGlCrossing_QuadCurve *new_ComItextpdfAwtGeomGlCrossing_QuadCurve_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx, jdouble cy, jdouble x2, jdouble y2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomGlCrossing_QuadCurve)
 
 @interface ComItextpdfAwtGeomGlCrossing_CubicCurve : NSObject {
  @public
@@ -181,6 +234,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_QuadCurv
   jdouble Ax_, Ay_, Bx_, By_, Cx_, Cy_;
   jdouble Ax3_, Bx2_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithDouble:(jdouble)x1
                     withDouble:(jdouble)y1
@@ -191,17 +246,7 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_QuadCurv
                     withDouble:(jdouble)x2
                     withDouble:(jdouble)y2;
 
-- (jint)crossWithDoubleArray:(IOSDoubleArray *)res
-                     withInt:(jint)rc
-                  withDouble:(jdouble)py1
-                  withDouble:(jdouble)py2;
-
-- (jint)solvePointWithDoubleArray:(IOSDoubleArray *)res
-                       withDouble:(jdouble)px;
-
-- (jint)solveExtremXWithDoubleArray:(IOSDoubleArray *)res;
-
-- (jint)solveExtremYWithDoubleArray:(IOSDoubleArray *)res;
+#pragma mark Package-Private
 
 - (jint)addBoundWithDoubleArray:(IOSDoubleArray *)bound
                         withInt:(jint)bc
@@ -212,10 +257,26 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_QuadCurv
                     withBoolean:(jboolean)changeId
                         withInt:(jint)id_;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomGlCrossing_CubicCurve *)other;
+- (jint)crossWithDoubleArray:(IOSDoubleArray *)res
+                     withInt:(jint)rc
+                  withDouble:(jdouble)py1
+                  withDouble:(jdouble)py2;
+
+- (jint)solveExtremXWithDoubleArray:(IOSDoubleArray *)res;
+
+- (jint)solveExtremYWithDoubleArray:(IOSDoubleArray *)res;
+
+- (jint)solvePointWithDoubleArray:(IOSDoubleArray *)res
+                       withDouble:(jdouble)px;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomGlCrossing_CubicCurve_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomGlCrossing_CubicCurve)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomGlCrossing_CubicCurve_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomGlCrossing_CubicCurve *self, jdouble x1, jdouble y1, jdouble cx1, jdouble cy1, jdouble cx2, jdouble cy2, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomGlCrossing_CubicCurve *new_ComItextpdfAwtGeomGlCrossing_CubicCurve_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble cx1, jdouble cy1, jdouble cx2, jdouble cy2, jdouble x2, jdouble y2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomGlCrossing_CubicCurve)
 
 #endif // _ComItextpdfAwtGeomGlCrossing_H_

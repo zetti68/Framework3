@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfCopyFieldsImp_H_
 #define _ComItextpdfTextPdfPdfCopyFieldsImp_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfWriter.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfAcroFields_Item;
 @class ComItextpdfTextPdfPRIndirectReference;
@@ -13,21 +16,15 @@
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
-@class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class JavaIoOutputStream;
-@class JavaLangInteger;
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
-@class JavaUtilHashSet;
 @protocol ComItextpdfTextLogCounter;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfWriter.h"
 
 @interface ComItextpdfTextPdfPdfCopyFieldsImp : ComItextpdfTextPdfPdfWriter {
  @public
@@ -44,51 +41,62 @@
   ComItextpdfTextPdfPdfDictionary *form_;
   jboolean closing_;
   ComItextpdfTextDocument *nd_;
-  JavaUtilHashMap *tabOrder_;
-  JavaUtilArrayList *calculationOrder_;
-  JavaUtilArrayList *calculationOrderRefs_;
-  jboolean hasSignature_;
-  jboolean needAppearances_;
-  JavaUtilHashSet *mergedRadioButtons_;
   id<ComItextpdfTextLogCounter> COUNTER_;
 }
 
+#pragma mark Public
+
+- (void)close;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getPageReferenceWithInt:(jint)page;
+
+- (void)openDoc;
+
+#pragma mark Protected
+
+- (ComItextpdfTextPdfPdfArray *)branchFormWithJavaUtilHashMap:(JavaUtilHashMap *)level
+                   withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)parent
+                                                 withNSString:(NSString *)fname;
+
+- (void)closeIt;
+
+- (void)createAcroForms;
+
+- (ComItextpdfTextPdfPdfDictionary *)getCatalogWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)rootObj;
+
 - (id<ComItextpdfTextLogCounter>)getCounter;
+
+- (jint)getNewObjectNumberWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                                  withInt:(jint)number
+                                                  withInt:(jint)generation;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getNewReferenceWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
+
+- (ComItextpdfTextPdfPdfName *)getOffStateNameWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)widget;
+
+- (jboolean)isPageWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
+
+- (jboolean)isVisitedWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                             withInt:(jint)number
+                                             withInt:(jint)generation;
+
+- (jboolean)isVisitedWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
+
+- (jboolean)setVisitedWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
+
+- (void)updateCalculationOrderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os
                                   withChar:(jchar)pdfVersion;
 
-- (void)addDocumentWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                  withJavaUtilList:(id<JavaUtilList>)pagesToKeep;
-
 - (void)addDocumentWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
-+ (NSString *)getCONameWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-             withComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
-
-- (void)updateCalculationOrderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-- (void)propagateWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj
-      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)refo
-                                     withBoolean:(jboolean)restricted;
-
-- (void)adjustTabOrderWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)annots
-          withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ind
-                     withComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)nn;
-
-- (ComItextpdfTextPdfPdfArray *)branchFormWithJavaUtilHashMap:(JavaUtilHashMap *)level
-                   withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)parent
-                                                 withNSString:(NSString *)fname;
-
-- (ComItextpdfTextPdfPdfName *)getOffStateNameWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)widget;
-
-- (void)createAcroForms;
-
-- (void)close;
-
-- (void)closeIt;
+- (void)addDocumentWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                  withJavaUtilList:(id<JavaUtilList>)pagesToKeep;
 
 - (void)addPageOffsetToFieldWithJavaUtilMap:(id<JavaUtilMap>)fd
                                     withInt:(jint)pageOffset;
@@ -96,42 +104,21 @@
 - (void)createWidgetsWithJavaUtilArrayList:(JavaUtilArrayList *)list
      withComItextpdfTextPdfAcroFields_Item:(ComItextpdfTextPdfAcroFields_Item *)item;
 
+- (ComItextpdfTextPdfRandomAccessFileOrArray *)getReaderFileWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
 - (void)mergeFieldWithNSString:(NSString *)name
 withComItextpdfTextPdfAcroFields_Item:(ComItextpdfTextPdfAcroFields_Item *)item;
 
-- (void)mergeWithMasterWithJavaUtilMap:(id<JavaUtilMap>)fd;
-
 - (void)mergeFields;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)getPageReferenceWithInt:(jint)page;
+- (void)mergeWithMasterWithJavaUtilMap:(id<JavaUtilMap>)fd;
 
-- (ComItextpdfTextPdfPdfDictionary *)getCatalogWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)rootObj;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getNewReferenceWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
-
-- (jint)getNewObjectNumberWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                                  withInt:(jint)number
-                                                  withInt:(jint)generation;
-
-- (jboolean)setVisitedWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
-
-- (jboolean)isVisitedWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
-
-- (jboolean)isVisitedWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                             withInt:(jint)number
-                                             withInt:(jint)generation;
-
-- (jboolean)isPageWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
-
-- (ComItextpdfTextPdfRandomAccessFileOrArray *)getReaderFileWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-- (void)openDoc;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfCopyFieldsImp *)other;
+- (void)propagateWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj
+      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)refo
+                                     withBoolean:(jboolean)restricted;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfCopyFieldsImp_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfCopyFieldsImp)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, readers_, JavaUtilArrayList *)
@@ -146,22 +133,22 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, pageDics_, JavaUtilArray
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, resources_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, form_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, nd_, ComItextpdfTextDocument *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, tabOrder_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, calculationOrder_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, calculationOrderRefs_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, mergedRadioButtons_, JavaUtilHashSet *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfCopyFieldsImp, COUNTER_, id<ComItextpdfTextLogCounter>)
-
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfPdfCopyFieldsImp_iTextTag_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfCopyFieldsImp, iTextTag_, ComItextpdfTextPdfPdfName *)
-
-FOUNDATION_EXPORT JavaLangInteger *ComItextpdfTextPdfPdfCopyFieldsImp_zero_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfCopyFieldsImp, zero_, JavaLangInteger *)
 
 FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfCopyFieldsImp_widgetKeys_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfCopyFieldsImp, widgetKeys_, JavaUtilHashMap *)
 
 FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfCopyFieldsImp_fieldKeys_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfCopyFieldsImp, fieldKeys_, JavaUtilHashMap *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfCopyFieldsImp_initWithJavaIoOutputStream_(ComItextpdfTextPdfPdfCopyFieldsImp *self, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfCopyFieldsImp *new_ComItextpdfTextPdfPdfCopyFieldsImp_initWithJavaIoOutputStream_(JavaIoOutputStream *os) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfCopyFieldsImp_initWithJavaIoOutputStream_withChar_(ComItextpdfTextPdfPdfCopyFieldsImp *self, JavaIoOutputStream *os, jchar pdfVersion);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfCopyFieldsImp *new_ComItextpdfTextPdfPdfCopyFieldsImp_initWithJavaIoOutputStream_withChar_(JavaIoOutputStream *os, jchar pdfVersion) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfCopyFieldsImp)
 
 #endif // _ComItextpdfTextPdfPdfCopyFieldsImp_H_

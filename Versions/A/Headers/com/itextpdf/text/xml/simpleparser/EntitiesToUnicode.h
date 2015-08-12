@@ -6,25 +6,30 @@
 #ifndef _ComItextpdfTextXmlSimpleparserEntitiesToUnicode_H_
 #define _ComItextpdfTextXmlSimpleparserEntitiesToUnicode_H_
 
-@protocol JavaUtilMap;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlSimpleparserEntitiesToUnicode : NSObject
 
-@interface ComItextpdfTextXmlSimpleparserEntitiesToUnicode : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (jchar)decodeEntityWithNSString:(NSString *)name;
 
 + (NSString *)decodeStringWithNSString:(NSString *)s;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextXmlSimpleparserEntitiesToUnicode_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextXmlSimpleparserEntitiesToUnicode)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextXmlSimpleparserEntitiesToUnicode_MAP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlSimpleparserEntitiesToUnicode, MAP_, id<JavaUtilMap>)
+FOUNDATION_EXPORT jchar ComItextpdfTextXmlSimpleparserEntitiesToUnicode_decodeEntityWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlSimpleparserEntitiesToUnicode_decodeStringWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlSimpleparserEntitiesToUnicode_init(ComItextpdfTextXmlSimpleparserEntitiesToUnicode *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlSimpleparserEntitiesToUnicode *new_ComItextpdfTextXmlSimpleparserEntitiesToUnicode_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserEntitiesToUnicode)
 
 #endif // _ComItextpdfTextXmlSimpleparserEntitiesToUnicode_H_

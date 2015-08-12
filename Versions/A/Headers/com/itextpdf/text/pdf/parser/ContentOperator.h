@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfParserContentOperator_H_
 #define _ComItextpdfTextPdfParserContentOperator_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfParserPdfContentStreamProcessor;
 @class ComItextpdfTextPdfPdfLiteral;
 @class JavaUtilArrayList;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfParserContentOperator < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserContentOperator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserContentOperator)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserContentOperator)
 
 #endif // _ComItextpdfTextPdfParserContentOperator_H_

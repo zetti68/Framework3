@@ -6,28 +6,33 @@
 #ifndef _ComItextpdfAwtGeomDimension2D_H_
 #define _ComItextpdfAwtGeomDimension2D_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfAwtGeomDimension2D : NSObject < NSCopying > {
-}
+@interface ComItextpdfAwtGeomDimension2D : NSObject < NSCopying >
 
-- (instancetype)init;
+#pragma mark Public
+
+- (id)clone;
+
+- (jdouble)getHeight;
 
 - (jdouble)getWidth;
 
-- (jdouble)getHeight;
+- (void)setSizeWithComItextpdfAwtGeomDimension2D:(ComItextpdfAwtGeomDimension2D *)d;
 
 - (void)setSizeWithDouble:(jdouble)width
                withDouble:(jdouble)height;
 
-- (void)setSizeWithComItextpdfAwtGeomDimension2D:(ComItextpdfAwtGeomDimension2D *)d;
+#pragma mark Protected
 
-- (id)clone;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomDimension2D_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomDimension2D)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomDimension2D_init(ComItextpdfAwtGeomDimension2D *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomDimension2D)
 
 #endif // _ComItextpdfAwtGeomDimension2D_H_

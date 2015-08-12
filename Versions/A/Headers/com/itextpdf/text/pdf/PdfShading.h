@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPdfShading_H_
 #define _ComItextpdfTextPdfPdfShading_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfColorDetails;
 @class ComItextpdfTextPdfPdfDictionary;
@@ -16,8 +18,6 @@
 @class IOSBooleanArray;
 @class IOSFloatArray;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfPdfShading : NSObject {
  @public
   ComItextpdfTextPdfPdfDictionary *shading_;
@@ -26,23 +26,70 @@
   ComItextpdfTextPdfColorDetails *colorDetails_;
   ComItextpdfTextPdfPdfName *shadingName_;
   ComItextpdfTextPdfPdfIndirectReference *shadingReference_;
-  ComItextpdfTextBaseColor *cspace_;
   IOSFloatArray *bBox_;
   jboolean antiAlias_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
-- (void)setColorSpaceWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (ComItextpdfTextBaseColor *)getColorSpace;
-
-+ (void)throwColorSpaceError;
+- (void)addToBody;
 
 + (void)checkCompatibleColorsWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)c1
                              withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)c2;
 
+- (IOSFloatArray *)getBBox;
+
 + (IOSFloatArray *)getColorArrayWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (ComItextpdfTextBaseColor *)getColorSpace;
+
+- (jboolean)isAntiAlias;
+
+- (void)setAntiAliasWithBoolean:(jboolean)antiAlias;
+
+- (void)setBBoxWithFloatArray:(IOSFloatArray *)bBox;
+
++ (ComItextpdfTextPdfPdfShading *)simpleAxialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                   withFloat:(jfloat)x0
+                                                                   withFloat:(jfloat)y0
+                                                                   withFloat:(jfloat)x1
+                                                                   withFloat:(jfloat)y1
+                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
+                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor;
+
++ (ComItextpdfTextPdfPdfShading *)simpleAxialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                   withFloat:(jfloat)x0
+                                                                   withFloat:(jfloat)y0
+                                                                   withFloat:(jfloat)x1
+                                                                   withFloat:(jfloat)y1
+                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
+                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor
+                                                                 withBoolean:(jboolean)extendStart
+                                                                 withBoolean:(jboolean)extendEnd;
+
++ (ComItextpdfTextPdfPdfShading *)simpleRadialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                    withFloat:(jfloat)x0
+                                                                    withFloat:(jfloat)y0
+                                                                    withFloat:(jfloat)r0
+                                                                    withFloat:(jfloat)x1
+                                                                    withFloat:(jfloat)y1
+                                                                    withFloat:(jfloat)r1
+                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
+                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor;
+
++ (ComItextpdfTextPdfPdfShading *)simpleRadialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                    withFloat:(jfloat)x0
+                                                                    withFloat:(jfloat)y0
+                                                                    withFloat:(jfloat)r0
+                                                                    withFloat:(jfloat)x1
+                                                                    withFloat:(jfloat)y1
+                                                                    withFloat:(jfloat)r1
+                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
+                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor
+                                                                  withBoolean:(jboolean)extendStart
+                                                                  withBoolean:(jboolean)extendEnd;
+
++ (void)throwColorSpaceError;
 
 + (ComItextpdfTextPdfPdfShading *)type1WithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                           withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)colorSpace
@@ -64,78 +111,59 @@
                                      withComItextpdfTextPdfPdfFunction:(ComItextpdfTextPdfPdfFunction *)function
                                                       withBooleanArray:(IOSBooleanArray *)extend;
 
-+ (ComItextpdfTextPdfPdfShading *)simpleAxialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                   withFloat:(jfloat)x0
-                                                                   withFloat:(jfloat)y0
-                                                                   withFloat:(jfloat)x1
-                                                                   withFloat:(jfloat)y1
-                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
-                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor
-                                                                 withBoolean:(jboolean)extendStart
-                                                                 withBoolean:(jboolean)extendEnd;
+#pragma mark Protected
 
-+ (ComItextpdfTextPdfPdfShading *)simpleAxialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                   withFloat:(jfloat)x0
-                                                                   withFloat:(jfloat)y0
-                                                                   withFloat:(jfloat)x1
-                                                                   withFloat:(jfloat)y1
-                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
-                                                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor;
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-+ (ComItextpdfTextPdfPdfShading *)simpleRadialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                    withFloat:(jfloat)x0
-                                                                    withFloat:(jfloat)y0
-                                                                    withFloat:(jfloat)r0
-                                                                    withFloat:(jfloat)x1
-                                                                    withFloat:(jfloat)y1
-                                                                    withFloat:(jfloat)r1
-                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
-                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor
-                                                                  withBoolean:(jboolean)extendStart
-                                                                  withBoolean:(jboolean)extendEnd;
+- (void)setColorSpaceWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-+ (ComItextpdfTextPdfPdfShading *)simpleRadialWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                    withFloat:(jfloat)x0
-                                                                    withFloat:(jfloat)y0
-                                                                    withFloat:(jfloat)r0
-                                                                    withFloat:(jfloat)x1
-                                                                    withFloat:(jfloat)y1
-                                                                    withFloat:(jfloat)r1
-                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)startColor
-                                                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)endColor;
+#pragma mark Package-Private
+
+- (ComItextpdfTextPdfColorDetails *)getColorDetails;
 
 - (ComItextpdfTextPdfPdfName *)getShadingName;
 
 - (ComItextpdfTextPdfPdfIndirectReference *)getShadingReference;
 
-- (void)setNameWithInt:(jint)number;
-
-- (void)addToBody;
-
 - (ComItextpdfTextPdfPdfWriter *)getWriter;
 
-- (ComItextpdfTextPdfColorDetails *)getColorDetails;
-
-- (IOSFloatArray *)getBBox;
-
-- (void)setBBoxWithFloatArray:(IOSFloatArray *)bBox;
-
-- (jboolean)isAntiAlias;
-
-- (void)setAntiAliasWithBoolean:(jboolean)antiAlias;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfShading *)other;
+- (void)setNameWithInt:(jint)number;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfShading_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfShading)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, shading_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, writer_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, colorDetails_, ComItextpdfTextPdfColorDetails *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, shadingName_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, shadingReference_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, cspace_, ComItextpdfTextBaseColor *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfShading, bBox_, IOSFloatArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfShading_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfShading *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *new_ComItextpdfTextPdfPdfShading_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfShading_throwColorSpaceError();
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfShading_checkCompatibleColorsWithComItextpdfTextBaseColor_withComItextpdfTextBaseColor_(ComItextpdfTextBaseColor *c1, ComItextpdfTextBaseColor *c2);
+
+FOUNDATION_EXPORT IOSFloatArray *ComItextpdfTextPdfPdfShading_getColorArrayWithComItextpdfTextBaseColor_(ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_type1WithComItextpdfTextPdfPdfWriter_withComItextpdfTextBaseColor_withFloatArray_withFloatArray_withComItextpdfTextPdfPdfFunction_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextBaseColor *colorSpace, IOSFloatArray *domain, IOSFloatArray *tMatrix, ComItextpdfTextPdfPdfFunction *function);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_type2WithComItextpdfTextPdfPdfWriter_withComItextpdfTextBaseColor_withFloatArray_withFloatArray_withComItextpdfTextPdfPdfFunction_withBooleanArray_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextBaseColor *colorSpace, IOSFloatArray *coords, IOSFloatArray *domain, ComItextpdfTextPdfPdfFunction *function, IOSBooleanArray *extend);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_type3WithComItextpdfTextPdfPdfWriter_withComItextpdfTextBaseColor_withFloatArray_withFloatArray_withComItextpdfTextPdfPdfFunction_withBooleanArray_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextBaseColor *colorSpace, IOSFloatArray *coords, IOSFloatArray *domain, ComItextpdfTextPdfPdfFunction *function, IOSBooleanArray *extend);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_simpleAxialWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextBaseColor_withComItextpdfTextBaseColor_withBoolean_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, jfloat x0, jfloat y0, jfloat x1, jfloat y1, ComItextpdfTextBaseColor *startColor, ComItextpdfTextBaseColor *endColor, jboolean extendStart, jboolean extendEnd);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_simpleAxialWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextBaseColor_withComItextpdfTextBaseColor_(ComItextpdfTextPdfPdfWriter *writer, jfloat x0, jfloat y0, jfloat x1, jfloat y1, ComItextpdfTextBaseColor *startColor, ComItextpdfTextBaseColor *endColor);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_simpleRadialWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextBaseColor_withComItextpdfTextBaseColor_withBoolean_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, jfloat x0, jfloat y0, jfloat r0, jfloat x1, jfloat y1, jfloat r1, ComItextpdfTextBaseColor *startColor, ComItextpdfTextBaseColor *endColor, jboolean extendStart, jboolean extendEnd);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfShading *ComItextpdfTextPdfPdfShading_simpleRadialWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextBaseColor_withComItextpdfTextBaseColor_(ComItextpdfTextPdfPdfWriter *writer, jfloat x0, jfloat y0, jfloat r0, jfloat x1, jfloat y1, jfloat r1, ComItextpdfTextBaseColor *startColor, ComItextpdfTextBaseColor *endColor);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfShading)
 
 #endif // _ComItextpdfTextPdfPdfShading_H_

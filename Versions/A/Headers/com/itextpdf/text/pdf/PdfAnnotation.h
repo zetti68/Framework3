@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfAnnotation_H_
 #define _ComItextpdfTextPdfPdfAnnotation_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfAction;
@@ -25,27 +28,23 @@
 @class IOSFloatArray;
 @class IOSObjectArray;
 @class JavaIoOutputStream;
-@class JavaLangStringBuffer;
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
 @protocol ComItextpdfTextPdfPdfOCG;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-
-#define ComItextpdfTextPdfPdfAnnotation_FLAGS_HIDDEN 2
 #define ComItextpdfTextPdfPdfAnnotation_FLAGS_INVISIBLE 1
-#define ComItextpdfTextPdfPdfAnnotation_FLAGS_LOCKED 128
+#define ComItextpdfTextPdfPdfAnnotation_FLAGS_HIDDEN 2
+#define ComItextpdfTextPdfPdfAnnotation_FLAGS_PRINT 4
+#define ComItextpdfTextPdfPdfAnnotation_FLAGS_NOZOOM 8
 #define ComItextpdfTextPdfPdfAnnotation_FLAGS_NOROTATE 16
 #define ComItextpdfTextPdfPdfAnnotation_FLAGS_NOVIEW 32
-#define ComItextpdfTextPdfPdfAnnotation_FLAGS_NOZOOM 8
-#define ComItextpdfTextPdfPdfAnnotation_FLAGS_PRINT 4
 #define ComItextpdfTextPdfPdfAnnotation_FLAGS_READONLY 64
+#define ComItextpdfTextPdfPdfAnnotation_FLAGS_LOCKED 128
 #define ComItextpdfTextPdfPdfAnnotation_FLAGS_TOGGLENOVIEW 256
 #define ComItextpdfTextPdfPdfAnnotation_MARKUP_HIGHLIGHT 0
-#define ComItextpdfTextPdfPdfAnnotation_MARKUP_SQUIGGLY 3
-#define ComItextpdfTextPdfPdfAnnotation_MARKUP_STRIKEOUT 2
 #define ComItextpdfTextPdfPdfAnnotation_MARKUP_UNDERLINE 1
+#define ComItextpdfTextPdfPdfAnnotation_MARKUP_STRIKEOUT 2
+#define ComItextpdfTextPdfPdfAnnotation_MARKUP_SQUIGGLY 3
 
 @interface ComItextpdfTextPdfPdfAnnotation : ComItextpdfTextPdfPdfDictionary {
  @public
@@ -55,11 +54,16 @@
   jboolean form_;
   jboolean annotation_;
   jboolean used_;
-  jint placeInPage_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
+                                          withFloat:(jfloat)llx
+                                          withFloat:(jfloat)lly
+                                          withFloat:(jfloat)urx
+                                          withFloat:(jfloat)ury
+                    withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                           withFloat:(jfloat)llx
@@ -70,81 +74,9 @@
                     withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)content;
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                          withFloat:(jfloat)llx
-                                          withFloat:(jfloat)lly
-                                          withFloat:(jfloat)urx
-                                          withFloat:(jfloat)ury
-                    withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
+                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
 
-+ (ComItextpdfTextPdfPdfAnnotation *)createScreenWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                    withNSString:(NSString *)clipTitle
-                                      withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecification *)fs
-                                                                    withNSString:(NSString *)mimeType
-                                                                     withBoolean:(jboolean)playOnDisplay;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createTextWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                  withNSString:(NSString *)title
-                                                                  withNSString:(NSString *)contents
-                                                                   withBoolean:(jboolean)open
-                                                                  withNSString:(NSString *)icon;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
-                                               withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
-                                                                  withNSString:(NSString *)namedDestination;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
-                                                                       withInt:(jint)page
-                                          withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)dest;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createFreeTextWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                      withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                      withNSString:(NSString *)contents
-                                              withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)defaultAppearance;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createLineWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                  withNSString:(NSString *)contents
-                                                                     withFloat:(jfloat)x1
-                                                                     withFloat:(jfloat)y1
-                                                                     withFloat:(jfloat)x2
-                                                                     withFloat:(jfloat)y2;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createSquareCircleWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                          withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                          withNSString:(NSString *)contents
-                                                                           withBoolean:(jboolean)square;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createMarkupWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                    withNSString:(NSString *)contents
-                                                                         withInt:(jint)type
-                                                                  withFloatArray:(IOSFloatArray *)quadPoints;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createStampWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                   withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                   withNSString:(NSString *)contents
-                                                                   withNSString:(NSString *)name;
-
-+ (ComItextpdfTextPdfPdfAnnotation *)createInkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                 withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                 withNSString:(NSString *)contents
-                                                              withFloatArray2:(IOSObjectArray *)inkList;
+- (void)applyCTMWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)ctm;
 
 + (ComItextpdfTextPdfPdfAnnotation *)createFileAttachmentWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                             withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
@@ -158,10 +90,45 @@
                                                                             withNSString:(NSString *)contents
                                               withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecification *)fs;
 
-+ (ComItextpdfTextPdfPdfAnnotation *)createPopupWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                   withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                                                   withNSString:(NSString *)contents
-                                                                    withBoolean:(jboolean)open;
++ (ComItextpdfTextPdfPdfAnnotation *)createFreeTextWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                      withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                      withNSString:(NSString *)contents
+                                              withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)defaultAppearance;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createInkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                 withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                 withNSString:(NSString *)contents
+                                                              withFloatArray2:(IOSObjectArray *)inkList;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createLineWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                  withNSString:(NSString *)contents
+                                                                     withFloat:(jfloat)x1
+                                                                     withFloat:(jfloat)y1
+                                                                     withFloat:(jfloat)x2
+                                                                     withFloat:(jfloat)y2;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
+                                                                       withInt:(jint)page
+                                          withComItextpdfTextPdfPdfDestination:(ComItextpdfTextPdfPdfDestination *)dest;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
+                                               withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight
+                                                                  withNSString:(NSString *)namedDestination;
+
++ (ComItextpdfTextPdfPdfAnnotation *)createMarkupWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                    withNSString:(NSString *)contents
+                                                                         withInt:(jint)type
+                                                                  withFloatArray:(IOSFloatArray *)quadPoints;
 
 + (ComItextpdfTextPdfPdfAnnotation *)createPolygonPolylineWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                              withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
@@ -169,15 +136,53 @@
                                                                               withBoolean:(jboolean)polygon
                                                            withComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)vertices;
 
-- (void)setDefaultAppearanceStringWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
++ (ComItextpdfTextPdfPdfAnnotation *)createPopupWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                   withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                   withNSString:(NSString *)contents
+                                                                    withBoolean:(jboolean)open;
 
-- (void)setFlagsWithInt:(jint)flags;
++ (ComItextpdfTextPdfPdfAnnotation *)createScreenWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                    withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                    withNSString:(NSString *)clipTitle
+                                      withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecification *)fs
+                                                                    withNSString:(NSString *)mimeType
+                                                                     withBoolean:(jboolean)playOnDisplay;
 
-- (void)setBorderWithComItextpdfTextPdfPdfBorderArray:(ComItextpdfTextPdfPdfBorderArray *)border;
++ (ComItextpdfTextPdfPdfAnnotation *)createSquareCircleWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                          withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                          withNSString:(NSString *)contents
+                                                                           withBoolean:(jboolean)square;
 
-- (void)setBorderStyleWithComItextpdfTextPdfPdfBorderDictionary:(ComItextpdfTextPdfPdfBorderDictionary *)border;
++ (ComItextpdfTextPdfPdfAnnotation *)createStampWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                   withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                   withNSString:(NSString *)contents
+                                                                   withNSString:(NSString *)name;
 
-- (void)setHighlightingWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
++ (ComItextpdfTextPdfPdfAnnotation *)createTextWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                                  withNSString:(NSString *)title
+                                                                  withNSString:(NSString *)contents
+                                                                   withBoolean:(jboolean)open
+                                                                  withNSString:(NSString *)icon;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
+
++ (ComItextpdfTextPdfPdfArray *)getMKColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (jint)getPlaceInPage;
+
+- (JavaUtilHashSet *)getTemplates;
+
+- (jboolean)isAnnotation;
+
+- (jboolean)isForm;
+
+- (jboolean)isUsed;
+
+- (void)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
+
+- (void)setAdditionalActionsWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                          withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
 
 - (void)setAppearanceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)ap
                  withComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
@@ -188,58 +193,27 @@
 
 - (void)setAppearanceStateWithNSString:(NSString *)state;
 
+- (void)setBorderWithComItextpdfTextPdfPdfBorderArray:(ComItextpdfTextPdfPdfBorderArray *)border;
+
+- (void)setBorderStyleWithComItextpdfTextPdfPdfBorderDictionary:(ComItextpdfTextPdfPdfBorderDictionary *)border;
+
 - (void)setColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-- (void)setTitleWithNSString:(NSString *)title;
+- (void)setDefaultAppearanceStringWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb;
 
-- (void)setPopupWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)popup;
+- (void)setFlagsWithInt:(jint)flags;
 
-- (void)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
+- (void)setHighlightingWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
 
-- (void)setAdditionalActionsWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                          withComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
-
-- (jboolean)isUsed;
-
-- (void)setUsed;
-
-- (JavaUtilHashSet *)getTemplates;
-
-- (jboolean)isForm;
-
-- (jboolean)isAnnotation;
-
-- (void)setPageWithInt:(jint)page;
-
-- (void)setPage;
-
-- (jint)getPlaceInPage;
-
-- (void)setPlaceInPageWithInt:(jint)placeInPage;
-
-- (void)setRotateWithInt:(jint)v;
-
-- (ComItextpdfTextPdfPdfDictionary *)getMK;
-
-- (void)setMKRotationWithInt:(jint)rotation;
-
-+ (ComItextpdfTextPdfPdfArray *)getMKColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setMKBorderColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setMKBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-- (void)setMKNormalCaptionWithNSString:(NSString *)caption;
-
-- (void)setMKRolloverCaptionWithNSString:(NSString *)caption;
+- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
 
 - (void)setMKAlternateCaptionWithNSString:(NSString *)caption;
 
-- (void)setMKNormalIconWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
-
-- (void)setMKRolloverIconWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
-
 - (void)setMKAlternateIconWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
+
+- (void)setMKBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (void)setMKBorderColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
 - (void)setMKIconFitWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)scale_
                     withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)scalingType
@@ -247,22 +221,49 @@
                                         withFloat:(jfloat)leftoverBottom
                                       withBoolean:(jboolean)fitInBounds;
 
-- (void)setMKTextPositionWithInt:(jint)tp;
+- (void)setMKNormalCaptionWithNSString:(NSString *)caption;
 
-- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
+- (void)setMKNormalIconWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
+
+- (void)setMKRolloverCaptionWithNSString:(NSString *)caption;
+
+- (void)setMKRolloverIconWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
+
+- (void)setMKRotationWithInt:(jint)rotation;
+
+- (void)setMKTextPositionWithInt:(jint)tp;
 
 - (void)setNameWithNSString:(NSString *)name;
 
-- (void)applyCTMWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)ctm;
+- (void)setPage;
+
+- (void)setPageWithInt:(jint)page;
+
+- (void)setPlaceInPageWithInt:(jint)placeInPage;
+
+- (void)setPopupWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)popup;
+
+- (void)setRotateWithInt:(jint)v;
+
+- (void)setTitleWithNSString:(NSString *)title;
+
+- (void)setUsed;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfAnnotation *)other;
+#pragma mark Protected
+
++ (ComItextpdfTextPdfPdfAnnotation *)createLinkWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                  withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)highlight;
+
+#pragma mark Package-Private
+
+- (ComItextpdfTextPdfPdfDictionary *)getMK;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfAnnotation_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfAnnotation)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAnnotation, writer_, ComItextpdfTextPdfPdfWriter *)
@@ -349,6 +350,54 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfAnnotation, MARKUP_STRIKEOUT, ji
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfAnnotation, MARKUP_SQUIGGLY, jint)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_(ComItextpdfTextPdfPdfAnnotation *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *new_ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfString_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfAnnotation *self, ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfString *title, ComItextpdfTextPdfPdfString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *new_ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfString_withComItextpdfTextPdfPdfString_(ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfString *title, ComItextpdfTextPdfPdfString *content) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfAction_(ComItextpdfTextPdfPdfAnnotation *self, ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfAction *action);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *new_ComItextpdfTextPdfPdfAnnotation_initWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withFloat_withFloat_withComItextpdfTextPdfPdfAction_(ComItextpdfTextPdfPdfWriter *writer, jfloat llx, jfloat lly, jfloat urx, jfloat ury, ComItextpdfTextPdfPdfAction *action) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createScreenWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withComItextpdfTextPdfPdfFileSpecification_withNSString_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *clipTitle, ComItextpdfTextPdfPdfFileSpecification *fs, NSString *mimeType, jboolean playOnDisplay);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createTextWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withNSString_withBoolean_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *title, NSString *contents, jboolean open, NSString *icon);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createLinkWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, ComItextpdfTextPdfPdfName *highlight);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createLinkWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfAction_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, ComItextpdfTextPdfPdfName *highlight, ComItextpdfTextPdfPdfAction *action);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createLinkWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withComItextpdfTextPdfPdfName_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, ComItextpdfTextPdfPdfName *highlight, NSString *namedDestination);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createLinkWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withComItextpdfTextPdfPdfName_withInt_withComItextpdfTextPdfPdfDestination_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, ComItextpdfTextPdfPdfName *highlight, jint page, ComItextpdfTextPdfPdfDestination *dest);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createFreeTextWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, ComItextpdfTextPdfPdfContentByte *defaultAppearance);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createLineWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, jfloat x1, jfloat y1, jfloat x2, jfloat y2);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createSquareCircleWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, jboolean square);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createMarkupWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withInt_withFloatArray_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, jint type, IOSFloatArray *quadPoints);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createStampWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, NSString *name);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createInkWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withFloatArray2_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, IOSObjectArray *inkList);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createFileAttachmentWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withByteArray_withNSString_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, IOSByteArray *fileStore, NSString *file, NSString *fileDisplay);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createFileAttachmentWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withComItextpdfTextPdfPdfFileSpecification_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, ComItextpdfTextPdfPdfFileSpecification *fs);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createPopupWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, jboolean open);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation *ComItextpdfTextPdfPdfAnnotation_createPolygonPolylineWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withBoolean_withComItextpdfTextPdfPdfArray_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *rect, NSString *contents, jboolean polygon, ComItextpdfTextPdfPdfArray *vertices);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *ComItextpdfTextPdfPdfAnnotation_getMKColorWithComItextpdfTextBaseColor_(ComItextpdfTextBaseColor *color);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfAnnotation)
+
 @interface ComItextpdfTextPdfPdfAnnotation_PdfImportedLink : NSObject {
  @public
   jfloat llx_, lly_, urx_, ury_;
@@ -357,13 +406,17 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfAnnotation, MARKUP_SQUIGGLY, jin
   jint newPage_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)annotation;
+#pragma mark Public
 
-- (jboolean)isInternal;
+- (ComItextpdfTextPdfPdfAnnotation *)createAnnotationWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 - (jint)getDestinationPage;
 
+- (jboolean)isInternal;
+
 - (void)setDestinationPageWithInt:(jint)newPage;
+
+- (NSString *)description;
 
 - (void)transformDestinationWithFloat:(jfloat)a
                             withFloat:(jfloat)b
@@ -379,20 +432,21 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfAnnotation, MARKUP_SQUIGGLY, jin
                      withFloat:(jfloat)e
                      withFloat:(jfloat)f;
 
-- (ComItextpdfTextPdfPdfAnnotation *)createAnnotationWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Package-Private
 
-- (NSString *)description;
-
-- (void)appendDictionaryWithJavaLangStringBuffer:(JavaLangStringBuffer *)buf
-                             withJavaUtilHashMap:(JavaUtilHashMap *)dict;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink *)other;
+- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)annotation;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfAnnotation_PdfImportedLink_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink, parameters_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink, destination_, ComItextpdfTextPdfPdfArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAnnotation_PdfImportedLink_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink *self, ComItextpdfTextPdfPdfDictionary *annotation);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAnnotation_PdfImportedLink *new_ComItextpdfTextPdfPdfAnnotation_PdfImportedLink_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *annotation) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfAnnotation_PdfImportedLink)
 
 #endif // _ComItextpdfTextPdfPdfAnnotation_H_

@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfDeveloperExtension_H_
 #define _ComItextpdfTextPdfPdfDeveloperExtension_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfPdfDeveloperExtension : NSObject {
  @public
@@ -18,23 +18,22 @@
   jint extensionLevel_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)prefix
                     withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)baseversion
                                           withInt:(jint)extensionLevel;
 
-- (ComItextpdfTextPdfPdfName *)getPrefix;
-
 - (ComItextpdfTextPdfPdfName *)getBaseversion;
-
-- (jint)getExtensionLevel;
 
 - (ComItextpdfTextPdfPdfDictionary *)getDeveloperExtensions;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfDeveloperExtension *)other;
+- (jint)getExtensionLevel;
+
+- (ComItextpdfTextPdfPdfName *)getPrefix;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfDeveloperExtension_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfDeveloperExtension)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfDeveloperExtension, prefix_, ComItextpdfTextPdfPdfName *)
@@ -48,5 +47,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDeveloperExtension, ESIC_1_7_EXT
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfDeveloperExtension *ComItextpdfTextPdfPdfDeveloperExtension_ESIC_1_7_EXTENSIONLEVEL5_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDeveloperExtension, ESIC_1_7_EXTENSIONLEVEL5_, ComItextpdfTextPdfPdfDeveloperExtension *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDeveloperExtension_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_withInt_(ComItextpdfTextPdfPdfDeveloperExtension *self, ComItextpdfTextPdfPdfName *prefix, ComItextpdfTextPdfPdfName *baseversion, jint extensionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDeveloperExtension *new_ComItextpdfTextPdfPdfDeveloperExtension_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_withInt_(ComItextpdfTextPdfPdfName *prefix, ComItextpdfTextPdfPdfName *baseversion, jint extensionLevel) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDeveloperExtension)
 
 #endif // _ComItextpdfTextPdfPdfDeveloperExtension_H_

@@ -6,25 +6,21 @@
 #ifndef _ComItextpdfXmpImplXMPUtilsImpl_H_
 #define _ComItextpdfXmpImplXMPUtilsImpl_H_
 
-@class ComItextpdfXmpImplXMPMetaImpl;
-@class ComItextpdfXmpImplXMPNode;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/xmp/XMPConst.h"
+
 @class ComItextpdfXmpOptionsPropertyOptions;
 @protocol ComItextpdfXmpXMPMeta;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/xmp/XMPConst.h"
+@interface ComItextpdfXmpImplXMPUtilsImpl : NSObject < ComItextpdfXmpXMPConst >
 
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_COMMA 2
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_CONTROL 5
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_NORMAL 0
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_QUOTE 4
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_SEMICOLON 3
-#define ComItextpdfXmpImplXMPUtilsImpl_UCK_SPACE 1
+#pragma mark Public
 
-@interface ComItextpdfXmpImplXMPUtilsImpl : NSObject < ComItextpdfXmpXMPConst > {
-}
-
-- (instancetype)init;
++ (void)appendPropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)source
+                        withComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)destination
+                                      withBoolean:(jboolean)doAllProperties
+                                      withBoolean:(jboolean)replaceOldValues
+                                      withBoolean:(jboolean)deleteEmptyValues;
 
 + (NSString *)catenateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
                                              withNSString:(NSString *)schemaNS
@@ -33,6 +29,12 @@
                                              withNSString:(NSString *)quotes
                                               withBoolean:(jboolean)allowCommas;
 
++ (void)removePropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
+                                     withNSString:(NSString *)schemaNS
+                                     withNSString:(NSString *)propName
+                                      withBoolean:(jboolean)doAllProperties
+                                      withBoolean:(jboolean)includeAliases;
+
 + (void)separateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
                                        withNSString:(NSString *)schemaNS
                                        withNSString:(NSString *)arrayName
@@ -40,86 +42,18 @@
            withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)arrayOptions
                                         withBoolean:(jboolean)preserveCommas;
 
-+ (ComItextpdfXmpImplXMPNode *)separateFindCreateArrayWithNSString:(NSString *)schemaNS
-                                                      withNSString:(NSString *)arrayName
-                          withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)arrayOptions
-                                 withComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp;
-
-+ (void)removePropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
-                                     withNSString:(NSString *)schemaNS
-                                     withNSString:(NSString *)propName
-                                      withBoolean:(jboolean)doAllProperties
-                                      withBoolean:(jboolean)includeAliases;
-
-+ (void)appendPropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)source
-                        withComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)destination
-                                      withBoolean:(jboolean)doAllProperties
-                                      withBoolean:(jboolean)replaceOldValues
-                                      withBoolean:(jboolean)deleteEmptyValues;
-
-+ (jboolean)removeSchemaChildrenWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)schemaNode
-                                                  withBoolean:(jboolean)doAllProperties;
-
-+ (void)appendSubtreeWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)destXMP
-                         withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)sourceNode
-                         withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)destParent
-                                           withBoolean:(jboolean)replaceOldValues
-                                           withBoolean:(jboolean)deleteEmptyValues;
-
-+ (jboolean)itemValuesMatchWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)leftNode
-                           withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)rightNode;
-
-+ (void)checkSeparatorWithNSString:(NSString *)separator;
-
-+ (jchar)checkQuotesWithNSString:(NSString *)quotes
-                        withChar:(jchar)openQuote;
-
-+ (jint)classifyCharacterWithChar:(jchar)ch;
-
-+ (jchar)getClosingQuoteWithChar:(jchar)openQuote;
-
-+ (NSString *)applyQuotesWithNSString:(NSString *)item
-                             withChar:(jchar)openQuote
-                             withChar:(jchar)closeQuote
-                          withBoolean:(jboolean)allowCommas;
-
-+ (jboolean)isSurroundingQuoteWithChar:(jchar)ch
-                              withChar:(jchar)openQuote
-                              withChar:(jchar)closeQuote;
-
-+ (jboolean)isClosingingQuoteWithChar:(jchar)ch
-                             withChar:(jchar)openQuote
-                             withChar:(jchar)closeQuote;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPUtilsImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPUtilsImpl)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_NORMAL, jint)
+FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_catenateArrayItemsWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_withNSString_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *arrayName, NSString *separator, NSString *quotes, jboolean allowCommas);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_SPACE, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPUtilsImpl_separateArrayItemsWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_withComItextpdfXmpOptionsPropertyOptions_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *arrayName, NSString *catedStr, ComItextpdfXmpOptionsPropertyOptions *arrayOptions, jboolean preserveCommas);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_COMMA, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPUtilsImpl_removePropertiesWithComItextpdfXmpXMPMeta_withNSString_withNSString_withBoolean_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *propName, jboolean doAllProperties, jboolean includeAliases);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_SEMICOLON, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPUtilsImpl_appendPropertiesWithComItextpdfXmpXMPMeta_withComItextpdfXmpXMPMeta_withBoolean_withBoolean_withBoolean_(id<ComItextpdfXmpXMPMeta> source, id<ComItextpdfXmpXMPMeta> destination, jboolean doAllProperties, jboolean replaceOldValues, jboolean deleteEmptyValues);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_QUOTE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, UCK_CONTROL, jint)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_SPACES_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, SPACES_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_COMMAS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, COMMAS_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_SEMICOLA_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, SEMICOLA_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_QUOTES_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, QUOTES_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPUtilsImpl_CONTROLS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPUtilsImpl, CONTROLS_, NSString *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPUtilsImpl)
 
 #endif // _ComItextpdfXmpImplXMPUtilsImpl_H_

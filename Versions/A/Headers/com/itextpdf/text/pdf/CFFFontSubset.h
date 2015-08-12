@@ -6,8 +6,9 @@
 #ifndef _ComItextpdfTextPdfCFFFontSubset_H_
 #define _ComItextpdfTextPdfCFFFontSubset_H_
 
-@class ComItextpdfTextPdfCFFFont_IndexBaseItem;
-@class ComItextpdfTextPdfCFFFont_OffsetItem;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/CFFFont.h"
+
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSByteArray;
 @class IOSIntArray;
@@ -16,9 +17,6 @@
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
 @class JavaUtilLinkedList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/CFFFont.h"
 
 #define ComItextpdfTextPdfCFFFontSubset_ENDCHAR_OP 14
 #define ComItextpdfTextPdfCFFFontSubset_RETURN_OP 11
@@ -43,32 +41,38 @@
   jint NumOfHints_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)rf
                                               withJavaUtilHashMap:(JavaUtilHashMap *)GlyphsUsed;
 
-- (jint)CountCharsetWithInt:(jint)Offset
-                    withInt:(jint)NumofGlyphs;
+- (IOSByteArray *)ProcessWithNSString:(NSString *)fontName;
 
-- (jint)CountRangeWithInt:(jint)NumofGlyphs
-                  withInt:(jint)Type;
+#pragma mark Protected
 
-- (void)readFDSelectWithInt:(jint)Font;
+- (IOSByteArray *)AssembleIndexWithIntArray:(IOSIntArray *)NewOffsets
+                              withByteArray:(IOSByteArray *)NewObjects;
 
 - (void)BuildFDArrayUsedWithInt:(jint)Font;
 
-- (void)ReadFDArrayWithInt:(jint)Font;
+- (void)BuildFDSubrsOffsetsWithInt:(jint)Font
+                           withInt:(jint)FD;
 
-- (IOSByteArray *)ProcessWithNSString:(NSString *)fontName;
+- (void)BuildGSubrsUsedWithInt:(jint)Font;
 
-- (jint)CalcBiasWithInt:(jint)Offset
-                withInt:(jint)Font;
+- (void)BuildIndexHeaderWithInt:(jint)Count
+                        withInt:(jint)Offsize
+                        withInt:(jint)First;
 
 - (void)BuildNewCharStringWithInt:(jint)FontIndex;
 
-- (void)BuildNewLGSubrsWithInt:(jint)Font;
+- (IOSByteArray *)BuildNewFileWithInt:(jint)Font;
 
-- (void)BuildFDSubrsOffsetsWithInt:(jint)Font
-                           withInt:(jint)FD;
+- (IOSByteArray *)BuildNewIndexWithIntArray:(IOSIntArray *)Offsets
+                        withJavaUtilHashMap:(JavaUtilHashMap *)Used
+                                   withByte:(jbyte)OperatorForUnusedEntries;
+
+- (void)BuildNewLGSubrsWithInt:(jint)Font;
 
 - (void)BuildSubrUsedWithInt:(jint)Font
                      withInt:(jint)FD
@@ -77,7 +81,43 @@
          withJavaUtilHashMap:(JavaUtilHashMap *)hSubr
        withJavaUtilArrayList:(JavaUtilArrayList *)lSubr;
 
-- (void)BuildGSubrsUsedWithInt:(jint)Font;
+- (jint)CalcBiasWithInt:(jint)Offset
+                withInt:(jint)Font;
+
+- (jint)CalcHintsWithInt:(jint)begin
+                 withInt:(jint)end
+                 withInt:(jint)LBias
+                 withInt:(jint)GBias
+            withIntArray:(IOSIntArray *)LSubrsOffsets;
+
+- (void)CopyHeader;
+
+- (jint)countEntireIndexRangeWithInt:(jint)indexOffset;
+
+- (void)CreateCharsetWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charsetRef
+                                                      withInt:(jint)nglyphs;
+
+- (void)CreateFDArrayWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdarrayRef
+                     withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)privateRef
+                                                      withInt:(jint)Font;
+
+- (void)CreateFDSelectWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdselectRef
+                                                       withInt:(jint)nglyphs;
+
+- (void)CreateKeysWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdarrayRef
+                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdselectRef
+                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charsetRef
+                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charstringsRef;
+
+- (void)CreateNewStringIndexWithInt:(jint)Font;
+
+- (void)EmptyStack;
+
+- (void)HandelStack;
+
+- (void)PopStack;
+
+- (void)PushStack;
 
 - (void)ReadASubrWithInt:(jint)begin
                  withInt:(jint)end
@@ -87,55 +127,31 @@
    withJavaUtilArrayList:(JavaUtilArrayList *)lSubr
             withIntArray:(IOSIntArray *)LSubrsOffsets;
 
-- (void)HandelStack;
+- (void)ReadCommand;
+
+- (void)ReadFDArrayWithInt:(jint)Font;
+
+- (void)readFDSelectWithInt:(jint)Font;
 
 - (jint)StackOpp;
 
-- (void)EmptyStack;
+#pragma mark Package-Private
 
-- (void)PopStack;
+- (jint)CalcSubrOffsetSizeWithInt:(jint)Offset
+                          withInt:(jint)Size;
 
-- (void)PushStack;
+- (jint)CountCharsetWithInt:(jint)Offset
+                    withInt:(jint)NumofGlyphs;
 
-- (void)ReadCommand;
+- (jint)CountRangeWithInt:(jint)NumofGlyphs
+                  withInt:(jint)Type;
 
-- (jint)CalcHintsWithInt:(jint)begin
-                 withInt:(jint)end
-                 withInt:(jint)LBias
-                 withInt:(jint)GBias
-            withIntArray:(IOSIntArray *)LSubrsOffsets;
+- (void)CreateNonCIDPrivateWithInt:(jint)Font
+withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)Subr;
 
-- (IOSByteArray *)BuildNewIndexWithIntArray:(IOSIntArray *)Offsets
-                        withJavaUtilHashMap:(JavaUtilHashMap *)Used
-                                   withByte:(jbyte)OperatorForUnusedEntries;
-
-- (IOSByteArray *)AssembleIndexWithIntArray:(IOSIntArray *)NewOffsets
-                              withByteArray:(IOSByteArray *)NewObjects;
-
-- (IOSByteArray *)BuildNewFileWithInt:(jint)Font;
-
-- (void)CopyHeader;
-
-- (void)BuildIndexHeaderWithInt:(jint)Count
-                        withInt:(jint)Offsize
-                        withInt:(jint)First;
-
-- (void)CreateKeysWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdarrayRef
-                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdselectRef
-                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charsetRef
-                  withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charstringsRef;
-
-- (void)CreateNewStringIndexWithInt:(jint)Font;
-
-- (void)CreateFDSelectWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdselectRef
-                                                       withInt:(jint)nglyphs;
-
-- (void)CreateCharsetWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)charsetRef
-                                                      withInt:(jint)nglyphs;
-
-- (void)CreateFDArrayWithComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)fdarrayRef
-                     withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)privateRef
-                                                      withInt:(jint)Font;
+- (void)CreateNonCIDSubrsWithInt:(jint)Font
+withComItextpdfTextPdfCFFFont_IndexBaseItem:(ComItextpdfTextPdfCFFFont_IndexBaseItem *)PrivateBase
+withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)Subrs;
 
 - (void)ReconstructWithInt:(jint)Font;
 
@@ -151,23 +167,8 @@ withComItextpdfTextPdfCFFFont_OffsetItemArray:(IOSObjectArray *)fdSubrs;
 withComItextpdfTextPdfCFFFont_IndexBaseItemArray:(IOSObjectArray *)fdPrivateBase
 withComItextpdfTextPdfCFFFont_OffsetItemArray:(IOSObjectArray *)fdSubrs;
 
-- (jint)CalcSubrOffsetSizeWithInt:(jint)Offset
-                          withInt:(jint)Size;
-
-- (jint)countEntireIndexRangeWithInt:(jint)indexOffset;
-
-- (void)CreateNonCIDPrivateWithInt:(jint)Font
-withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)Subr;
-
-- (void)CreateNonCIDSubrsWithInt:(jint)Font
-withComItextpdfTextPdfCFFFont_IndexBaseItem:(ComItextpdfTextPdfCFFFont_IndexBaseItem *)PrivateBase
-withComItextpdfTextPdfCFFFont_OffsetItem:(ComItextpdfTextPdfCFFFont_OffsetItem *)Subrs;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCFFFontSubset *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCFFFontSubset_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCFFFontSubset)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCFFFontSubset, GlyphsUsed_, JavaUtilHashMap *)
@@ -194,5 +195,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCFFFontSubset, SubrsEscapeFuncs_, I
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCFFFontSubset, ENDCHAR_OP, jbyte)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCFFFontSubset, RETURN_OP, jbyte)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCFFFontSubset_initWithComItextpdfTextPdfRandomAccessFileOrArray_withJavaUtilHashMap_(ComItextpdfTextPdfCFFFontSubset *self, ComItextpdfTextPdfRandomAccessFileOrArray *rf, JavaUtilHashMap *GlyphsUsed);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCFFFontSubset *new_ComItextpdfTextPdfCFFFontSubset_initWithComItextpdfTextPdfRandomAccessFileOrArray_withJavaUtilHashMap_(ComItextpdfTextPdfRandomAccessFileOrArray *rf, JavaUtilHashMap *GlyphsUsed) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCFFFontSubset)
 
 #endif // _ComItextpdfTextPdfCFFFontSubset_H_

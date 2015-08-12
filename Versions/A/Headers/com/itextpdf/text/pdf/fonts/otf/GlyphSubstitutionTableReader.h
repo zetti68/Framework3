@@ -6,52 +6,38 @@
 #ifndef _ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_H_
 #define _ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/fonts/otf/OpenTypeFontTableReader.h"
+
 @class IOSIntArray;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/fonts/otf/OpenTypeFontTableReader.h"
+@interface ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader : ComItextpdfTextPdfFontsOtfOpenTypeFontTableReader
 
-@interface ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader : ComItextpdfTextPdfFontsOtfOpenTypeFontTableReader {
- @public
-  IOSIntArray *glyphWidthsByIndex_;
-  id<JavaUtilMap> glyphToCharacterMap_;
-  id<JavaUtilMap> rawLigatureSubstitutionMap_;
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)fontFilePath
                          withInt:(jint)gsubTableLocation
                  withJavaUtilMap:(id<JavaUtilMap>)glyphToCharacterMap
                     withIntArray:(IOSIntArray *)glyphWidthsByIndex;
 
-- (void)read;
-
 - (id<JavaUtilMap>)getGlyphSubstitutionMap;
 
-- (NSString *)getTextFromGlyphWithInt:(jint)glyphId
-                      withJavaUtilMap:(id<JavaUtilMap>)glyphToCharacterMap;
+- (void)read;
+
+#pragma mark Protected
 
 - (void)readSubTableWithInt:(jint)lookupType
                     withInt:(jint)subTableLocation;
 
-- (void)readSingleSubstitutionSubtableWithInt:(jint)subTableLocation;
-
-- (void)readLigatureSubstitutionSubtableWithInt:(jint)ligatureSubstitutionSubtableLocation;
-
-- (void)readLigatureSetTableWithInt:(jint)ligatureSetTableLocation
-                            withInt:(jint)coverageGlyphId;
-
-- (void)readLigatureTableWithInt:(jint)ligatureTableLocation
-                         withInt:(jint)coverageGlyphId;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader, glyphWidthsByIndex_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader, glyphToCharacterMap_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader, rawLigatureSubstitutionMap_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_initWithNSString_withInt_withJavaUtilMap_withIntArray_(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader *self, NSString *fontFilePath, jint gsubTableLocation, id<JavaUtilMap> glyphToCharacterMap, IOSIntArray *glyphWidthsByIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader *new_ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_initWithNSString_withInt_withJavaUtilMap_withIntArray_(NSString *fontFilePath, jint gsubTableLocation, id<JavaUtilMap> glyphToCharacterMap, IOSIntArray *glyphWidthsByIndex) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader)
 
 #endif // _ComItextpdfTextPdfFontsOtfGlyphSubstitutionTableReader_H_

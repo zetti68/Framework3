@@ -6,25 +6,30 @@
 #ifndef _ComItextpdfTextPdfParserPdfTextExtractor_H_
 #define _ComItextpdfTextPdfParserPdfTextExtractor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @protocol ComItextpdfTextPdfParserTextExtractionStrategy;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserPdfTextExtractor : NSObject
 
-@interface ComItextpdfTextPdfParserPdfTextExtractor : NSObject {
-}
+#pragma mark Public
 
-- (instancetype)init;
++ (NSString *)getTextFromPageWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                                     withInt:(jint)pageNumber;
 
 + (NSString *)getTextFromPageWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                                                      withInt:(jint)pageNumber
           withComItextpdfTextPdfParserTextExtractionStrategy:(id<ComItextpdfTextPdfParserTextExtractionStrategy>)strategy;
 
-+ (NSString *)getTextFromPageWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                                     withInt:(jint)pageNumber;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserPdfTextExtractor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserPdfTextExtractor)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfParserPdfTextExtractor_getTextFromPageWithComItextpdfTextPdfPdfReader_withInt_withComItextpdfTextPdfParserTextExtractionStrategy_(ComItextpdfTextPdfPdfReader *reader, jint pageNumber, id<ComItextpdfTextPdfParserTextExtractionStrategy> strategy);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfParserPdfTextExtractor_getTextFromPageWithComItextpdfTextPdfPdfReader_withInt_(ComItextpdfTextPdfPdfReader *reader, jint pageNumber);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserPdfTextExtractor)
 
 #endif // _ComItextpdfTextPdfParserPdfTextExtractor_H_

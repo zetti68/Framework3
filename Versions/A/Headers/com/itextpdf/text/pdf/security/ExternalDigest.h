@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfSecurityExternalDigest_H_
 #define _ComItextpdfTextPdfSecurityExternalDigest_H_
 
-@class JavaSecurityMessageDigest;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class JavaSecurityMessageDigest;
 
 @protocol ComItextpdfTextPdfSecurityExternalDigest < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityExternalDigest_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityExternalDigest)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityExternalDigest)
 
 #endif // _ComItextpdfTextPdfSecurityExternalDigest_H_

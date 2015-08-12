@@ -6,26 +6,29 @@
 #ifndef _ComItextpdfTextPdfLanguagesIndicGlyphRepositioner_H_
 #define _ComItextpdfTextPdfLanguagesIndicGlyphRepositioner_H_
 
-@class ComItextpdfTextPdfGlyph;
-@protocol JavaUtilList;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/languages/GlyphRepositioner.h"
 
-@interface ComItextpdfTextPdfLanguagesIndicGlyphRepositioner : NSObject < ComItextpdfTextPdfLanguagesGlyphRepositioner > {
-}
+@protocol JavaUtilList;
+
+@interface ComItextpdfTextPdfLanguagesIndicGlyphRepositioner : NSObject < ComItextpdfTextPdfLanguagesGlyphRepositioner >
+
+#pragma mark Public
 
 - (void)repositionGlyphsWithJavaUtilList:(id<JavaUtilList>)glyphList;
 
-- (id<JavaUtilList>)getCharactersToBeShiftedLeftByOnePosition;
-
-- (ComItextpdfTextPdfGlyph *)getNextGlyphWithJavaUtilList:(id<JavaUtilList>)glyphs
-                                                  withInt:(jint)currentIndex;
+#pragma mark Package-Private
 
 - (instancetype)init;
 
+- (id<JavaUtilList>)getCharactersToBeShiftedLeftByOnePosition;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesIndicGlyphRepositioner_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesIndicGlyphRepositioner)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesIndicGlyphRepositioner_init(ComItextpdfTextPdfLanguagesIndicGlyphRepositioner *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesIndicGlyphRepositioner)
 
 #endif // _ComItextpdfTextPdfLanguagesIndicGlyphRepositioner_H_

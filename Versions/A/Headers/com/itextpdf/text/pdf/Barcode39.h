@@ -6,44 +6,48 @@
 #ifndef _ComItextpdfTextPdfBarcode39_H_
 #define _ComItextpdfTextPdfBarcode39_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/Barcode.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextRectangle;
 @class IOSByteArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/Barcode.h"
+@interface ComItextpdfTextPdfBarcode39 : ComItextpdfTextPdfBarcode
 
-@interface ComItextpdfTextPdfBarcode39 : ComItextpdfTextPdfBarcode {
-}
+#pragma mark Public
 
 - (instancetype)init;
+
+- (ComItextpdfTextRectangle *)getBarcodeSize;
 
 + (IOSByteArray *)getBarsCode39WithNSString:(NSString *)text;
 
 + (NSString *)getCode39ExWithNSString:(NSString *)text;
 
-+ (jchar)getChecksumWithNSString:(NSString *)text;
-
-- (ComItextpdfTextRectangle *)getBarcodeSize;
-
 - (ComItextpdfTextRectangle *)placeBarcodeWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)cb
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)barColor
                                                   withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)textColor;
 
+#pragma mark Package-Private
+
++ (jchar)getChecksumWithNSString:(NSString *)text;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcode39_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcode39)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcode39_BARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode39, BARS_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcode39_init(ComItextpdfTextPdfBarcode39 *self);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcode39_CHARS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode39, CHARS_, NSString *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcode39 *new_ComItextpdfTextPdfBarcode39_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcode39_EXTENDED_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcode39, EXTENDED_, NSString *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBarcode39_getBarsCode39WithNSString_(NSString *text);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcode39_getCode39ExWithNSString_(NSString *text);
+
+FOUNDATION_EXPORT jchar ComItextpdfTextPdfBarcode39_getChecksumWithNSString_(NSString *text);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcode39)
 
 #endif // _ComItextpdfTextPdfBarcode39_H_

@@ -6,24 +6,27 @@
 #ifndef _ComItextpdfTextPdfParserMarkedContentRenderFilter_H_
 #define _ComItextpdfTextPdfParserMarkedContentRenderFilter_H_
 
-@class ComItextpdfTextPdfParserTextRenderInfo;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/parser/RenderFilter.h"
 
-@interface ComItextpdfTextPdfParserMarkedContentRenderFilter : ComItextpdfTextPdfParserRenderFilter {
- @public
-  jint mcid_;
-}
+@class ComItextpdfTextPdfParserTextRenderInfo;
+
+@interface ComItextpdfTextPdfParserMarkedContentRenderFilter : ComItextpdfTextPdfParserRenderFilter
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)mcid;
 
 - (jboolean)allowTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserMarkedContentRenderFilter *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserMarkedContentRenderFilter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserMarkedContentRenderFilter)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMarkedContentRenderFilter_initWithInt_(ComItextpdfTextPdfParserMarkedContentRenderFilter *self, jint mcid);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMarkedContentRenderFilter *new_ComItextpdfTextPdfParserMarkedContentRenderFilter_initWithInt_(jint mcid) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserMarkedContentRenderFilter)
 
 #endif // _ComItextpdfTextPdfParserMarkedContentRenderFilter_H_

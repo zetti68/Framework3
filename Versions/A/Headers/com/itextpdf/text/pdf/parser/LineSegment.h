@@ -6,38 +6,37 @@
 #ifndef _ComItextpdfTextPdfParserLineSegment_H_
 #define _ComItextpdfTextPdfParserLineSegment_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfAwtGeomRectangle2D_Float;
 @class ComItextpdfTextPdfParserMatrix;
 @class ComItextpdfTextPdfParserVector;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserLineSegment : NSObject
 
-@interface ComItextpdfTextPdfParserLineSegment : NSObject {
- @public
-  ComItextpdfTextPdfParserVector *startPoint_;
-  ComItextpdfTextPdfParserVector *endPoint_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)startPoint
                     withComItextpdfTextPdfParserVector:(ComItextpdfTextPdfParserVector *)endPoint;
 
-- (ComItextpdfTextPdfParserVector *)getStartPoint;
+- (ComItextpdfAwtGeomRectangle2D_Float *)getBoundingRectange;
 
 - (ComItextpdfTextPdfParserVector *)getEndPoint;
 
 - (jfloat)getLength;
 
-- (ComItextpdfAwtGeomRectangle2D_Float *)getBoundingRectange;
+- (ComItextpdfTextPdfParserVector *)getStartPoint;
 
 - (ComItextpdfTextPdfParserLineSegment *)transformByWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)m;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserLineSegment *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserLineSegment_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserLineSegment)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLineSegment, startPoint_, ComItextpdfTextPdfParserVector *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserLineSegment, endPoint_, ComItextpdfTextPdfParserVector *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserLineSegment_initWithComItextpdfTextPdfParserVector_withComItextpdfTextPdfParserVector_(ComItextpdfTextPdfParserLineSegment *self, ComItextpdfTextPdfParserVector *startPoint, ComItextpdfTextPdfParserVector *endPoint);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserLineSegment *new_ComItextpdfTextPdfParserLineSegment_initWithComItextpdfTextPdfParserVector_withComItextpdfTextPdfParserVector_(ComItextpdfTextPdfParserVector *startPoint, ComItextpdfTextPdfParserVector *endPoint) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserLineSegment)
 
 #endif // _ComItextpdfTextPdfParserLineSegment_H_

@@ -6,27 +6,15 @@
 #ifndef _ComItextpdfTextPdfXfaXpathConstructor_H_
 #define _ComItextpdfTextPdfXfaXpathConstructor_H_
 
-@class ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/security/XpathConstructor.h"
 #include "java/lang/Enum.h"
 
-@interface ComItextpdfTextPdfXfaXpathConstructor : NSObject < ComItextpdfTextPdfSecurityXpathConstructor > {
- @public
-  NSString *CONFIG_;
-  NSString *CONNECTIONSET_;
-  NSString *DATASETS_;
-  NSString *LOCALESET_;
-  NSString *PDF_;
-  NSString *SOURCESET_;
-  NSString *STYLESHEET_;
-  NSString *TEMPLATE_;
-  NSString *XDC_;
-  NSString *XFDF_;
-  NSString *XMPMETA_;
-  NSString *xpathExpression_;
-}
+@class ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum;
+
+@interface ComItextpdfTextPdfXfaXpathConstructor : NSObject < ComItextpdfTextPdfSecurityXpathConstructor >
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -34,26 +22,21 @@
 
 - (NSString *)getXpathExpression;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXfaXpathConstructor *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXfaXpathConstructor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXfaXpathConstructor)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, CONFIG_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, CONNECTIONSET_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, DATASETS_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, LOCALESET_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, PDF_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, SOURCESET_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, STYLESHEET_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, TEMPLATE_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, XDC_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, XFDF_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, XMPMETA_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXfaXpathConstructor, xpathExpression_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaXpathConstructor_init(ComItextpdfTextPdfXfaXpathConstructor *self);
 
-typedef enum {
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaXpathConstructor *new_ComItextpdfTextPdfXfaXpathConstructor_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfXfaXpathConstructor_initWithComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_(ComItextpdfTextPdfXfaXpathConstructor *self, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *xdpPackage);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaXpathConstructor *new_ComItextpdfTextPdfXfaXpathConstructor_initWithComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *xdpPackage) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaXpathConstructor)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfXfaXpathConstructor_XdpPackage) {
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Config = 0,
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_ConnectionSet = 1,
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Datasets = 2,
@@ -65,59 +48,59 @@ typedef enum {
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xdc = 8,
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xfdf = 9,
   ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xmpmeta = 10,
-} ComItextpdfTextPdfXfaXpathConstructor_XdpPackage;
+};
 
-@interface ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values();
 
 + (ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[];
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Config ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Config]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Config, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Config)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_ConnectionSet ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_ConnectionSet]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, ConnectionSet, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, ConnectionSet)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Datasets ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Datasets]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Datasets, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Datasets)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_LocaleSet ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_LocaleSet]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, LocaleSet, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, LocaleSet)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Pdf ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Pdf]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Pdf, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Pdf)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_SourceSet ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_SourceSet]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, SourceSet, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, SourceSet)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Stylesheet ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Stylesheet]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Stylesheet, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Stylesheet)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Template ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Template]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Template, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Template)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Xdc ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xdc]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xdc, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xdc)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Xfdf ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xfdf]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xfdf, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xfdf)
 
 #define ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_Xmpmeta ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum_values_[ComItextpdfTextPdfXfaXpathConstructor_XdpPackage_Xmpmeta]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xmpmeta, ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum, Xmpmeta)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXfaXpathConstructor_XdpPackageEnum)
 
 #endif // _ComItextpdfTextPdfXfaXpathConstructor_H_

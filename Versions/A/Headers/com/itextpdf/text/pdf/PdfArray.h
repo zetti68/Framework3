@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfArray_H_
 #define _ComItextpdfTextPdfPdfArray_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfObject.h"
+#include "java/lang/Iterable.h"
+
 @class ComItextpdfTextPdfPdfBoolean;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
@@ -23,18 +27,14 @@
 @protocol JavaUtilList;
 @protocol JavaUtilListIterator;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfObject.h"
-#include "java/lang/Iterable.h"
-
 @interface ComItextpdfTextPdfPdfArray : ComItextpdfTextPdfPdfObject < JavaLangIterable > {
  @public
   JavaUtilArrayList *arrayList_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+- (instancetype)init;
 
 - (instancetype)initWithFloatArray:(IOSFloatArray *)values;
 
@@ -44,68 +44,96 @@
 
 - (instancetype)initWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)array;
 
-- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
-
-- (NSString *)description;
-
-- (ComItextpdfTextPdfPdfObject *)setWithInt:(jint)idx
-            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
-
-- (ComItextpdfTextPdfPdfObject *)removeWithInt:(jint)idx;
-
-- (JavaUtilArrayList *)getArrayList;
-
-- (jint)size;
-
-- (jboolean)isEmpty;
-
-- (jboolean)addWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+- (instancetype)initWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
 
 - (jboolean)addWithFloatArray:(IOSFloatArray *)values;
-
-- (jboolean)addWithIntArray:(IOSIntArray *)values;
 
 - (void)addWithInt:(jint)index
 withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)element;
 
+- (jboolean)addWithIntArray:(IOSIntArray *)values;
+
+- (jboolean)addWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+
 - (void)addFirstWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+
+- (IOSLongArray *)asLongArray;
 
 - (jboolean)containsWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
 
-- (id<JavaUtilListIterator>)listIterator;
+- (JavaUtilArrayList *)getArrayList;
 
-- (ComItextpdfTextPdfPdfObject *)getPdfObjectWithInt:(jint)idx;
+- (ComItextpdfTextPdfPdfArray *)getAsArrayWithInt:(jint)idx;
 
-- (ComItextpdfTextPdfPdfObject *)getDirectObjectWithInt:(jint)idx;
+- (ComItextpdfTextPdfPdfBoolean *)getAsBooleanWithInt:(jint)idx;
 
 - (ComItextpdfTextPdfPdfDictionary *)getAsDictWithInt:(jint)idx;
 
-- (ComItextpdfTextPdfPdfArray *)getAsArrayWithInt:(jint)idx;
+- (ComItextpdfTextPdfPdfIndirectReference *)getAsIndirectObjectWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfName *)getAsNameWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfNumber *)getAsNumberWithInt:(jint)idx;
 
 - (ComItextpdfTextPdfPdfStream *)getAsStreamWithInt:(jint)idx;
 
 - (ComItextpdfTextPdfPdfString *)getAsStringWithInt:(jint)idx;
 
-- (ComItextpdfTextPdfPdfNumber *)getAsNumberWithInt:(jint)idx;
+- (ComItextpdfTextPdfPdfObject *)getDirectObjectWithInt:(jint)idx;
 
-- (ComItextpdfTextPdfPdfName *)getAsNameWithInt:(jint)idx;
+- (ComItextpdfTextPdfPdfObject *)getPdfObjectWithInt:(jint)idx;
 
-- (ComItextpdfTextPdfPdfBoolean *)getAsBooleanWithInt:(jint)idx;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getAsIndirectObjectWithInt:(jint)idx;
+- (jboolean)isEmpty;
 
 - (id<JavaUtilIterator>)iterator;
 
-- (IOSLongArray *)asLongArray;
+- (id<JavaUtilListIterator>)listIterator;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfArray *)other;
+- (ComItextpdfTextPdfPdfObject *)removeWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfObject *)setWithInt:(jint)idx
+            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
+
+- (jint)size;
+
+- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (NSString *)description;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfArray)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfArray, arrayList_, JavaUtilArrayList *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_init(ComItextpdfTextPdfPdfArray *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_initWithComItextpdfTextPdfPdfObject_(ComItextpdfTextPdfPdfArray *self, ComItextpdfTextPdfPdfObject *object);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_initWithComItextpdfTextPdfPdfObject_(ComItextpdfTextPdfPdfObject *object) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_initWithFloatArray_(ComItextpdfTextPdfPdfArray *self, IOSFloatArray *values);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_initWithFloatArray_(IOSFloatArray *values) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_initWithIntArray_(ComItextpdfTextPdfPdfArray *self, IOSIntArray *values);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_initWithIntArray_(IOSIntArray *values) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_initWithJavaUtilList_(ComItextpdfTextPdfPdfArray *self, id<JavaUtilList> l);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_initWithJavaUtilList_(id<JavaUtilList> l) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfArray_initWithComItextpdfTextPdfPdfArray_(ComItextpdfTextPdfPdfArray *self, ComItextpdfTextPdfPdfArray *array);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfArray *new_ComItextpdfTextPdfPdfArray_initWithComItextpdfTextPdfPdfArray_(ComItextpdfTextPdfPdfArray *array) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfArray)
 
 #endif // _ComItextpdfTextPdfPdfArray_H_

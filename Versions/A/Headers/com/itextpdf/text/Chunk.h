@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextChunk_H_
 #define _ComItextpdfTextChunk_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextFont;
@@ -14,7 +18,6 @@
 @class ComItextpdfTextPdfPdfAnnotation;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
-@class JavaLangFloat;
 @class JavaLangStringBuffer;
 @class JavaNetURL;
 @class JavaUtilHashMap;
@@ -24,10 +27,6 @@
 @protocol ComItextpdfTextSplitCharacter;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
 @interface ComItextpdfTextChunk : NSObject < ComItextpdfTextElement, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
   JavaLangStringBuffer *content_;
@@ -35,27 +34,18 @@
   JavaUtilHashMap *attributes_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
-  ComItextpdfTextAccessibleElementId *id__;
-  NSString *contentWithNoTabs_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)ck;
-
-- (instancetype)initWithNSString:(NSString *)content
-         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
-
-- (instancetype)initWithNSString:(NSString *)content;
+- (instancetype)initWithChar:(jchar)c;
 
 - (instancetype)initWithChar:(jchar)c
      withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
-- (instancetype)initWithChar:(jchar)c;
-
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image
-                                   withFloat:(jfloat)offsetX
-                                   withFloat:(jfloat)offsetY;
+- (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)ck;
 
 - (instancetype)initWithComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)separator;
 
@@ -69,63 +59,91 @@
                                                   withFloat:(jfloat)tabPosition
                                                 withBoolean:(jboolean)newline;
 
-- (instancetype)initWithJavaLangFloat:(JavaLangFloat *)tabInterval
-                          withBoolean:(jboolean)isWhitespace;
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image
+                                   withFloat:(jfloat)offsetX
+                                   withFloat:(jfloat)offsetY;
 
 - (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                    withFloat:(jfloat)offsetX
                                    withFloat:(jfloat)offsetY
                                  withBoolean:(jboolean)changeLeading;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (instancetype)initWithNSString:(NSString *)content;
 
-- (jint)type;
-
-- (id<JavaUtilList>)getChunks;
+- (instancetype)initWithNSString:(NSString *)content
+         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (JavaLangStringBuffer *)appendWithNSString:(NSString *)string;
 
-- (void)setFontWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
++ (ComItextpdfTextChunk *)createTabspace;
 
-- (ComItextpdfTextFont *)getFont;
++ (ComItextpdfTextChunk *)createTabspaceWithFloat:(jfloat)spacing;
 
-- (NSString *)getContent;
++ (ComItextpdfTextChunk *)createWhitespaceWithNSString:(NSString *)content;
 
-- (NSString *)description;
++ (ComItextpdfTextChunk *)createWhitespaceWithNSString:(NSString *)content
+                                           withBoolean:(jboolean)preserve;
 
-- (jboolean)isEmpty;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (jfloat)getWidthPoint;
-
-- (jboolean)hasAttributes;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
 - (JavaUtilHashMap *)getAttributes;
 
-- (void)setAttributesWithJavaUtilHashMap:(JavaUtilHashMap *)attributes;
+- (jfloat)getCharacterSpacing;
 
-- (ComItextpdfTextChunk *)setAttributeWithNSString:(NSString *)name
-                                            withId:(id)obj;
+- (id<JavaUtilList>)getChunks;
 
-- (ComItextpdfTextChunk *)setHorizontalScalingWithFloat:(jfloat)scale_;
+- (NSString *)getContent;
+
+- (ComItextpdfTextFont *)getFont;
 
 - (jfloat)getHorizontalScaling;
 
-- (ComItextpdfTextChunk *)setUnderlineWithFloat:(jfloat)thickness
-                                      withFloat:(jfloat)yPosition;
+- (id<ComItextpdfTextPdfHyphenationEvent>)getHyphenation;
 
-- (ComItextpdfTextChunk *)setUnderlineWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
-                                                         withFloat:(jfloat)thickness
-                                                         withFloat:(jfloat)thicknessMul
-                                                         withFloat:(jfloat)yPosition
-                                                         withFloat:(jfloat)yPositionMul
-                                                           withInt:(jint)cap;
+- (ComItextpdfTextAccessibleElementId *)getId;
 
-- (ComItextpdfTextChunk *)setTextRiseWithFloat:(jfloat)rise;
+- (ComItextpdfTextImage *)getImage;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (NSString *)getTextExpansion;
 
 - (jfloat)getTextRise;
 
-- (ComItextpdfTextChunk *)setSkewWithFloat:(jfloat)alpha
-                                 withFloat:(jfloat)beta;
+- (jfloat)getWidthPoint;
+
+- (jfloat)getWordSpacing;
+
+- (jboolean)hasAttributes;
+
+- (jboolean)isContent;
+
+- (jboolean)isEmpty;
+
+- (jboolean)isInline;
+
+- (jboolean)isNestable;
+
+- (jboolean)isTabspace;
+
+- (jboolean)isWhitespace;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (ComItextpdfTextChunk *)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
+
+- (ComItextpdfTextChunk *)setAnchorWithNSString:(NSString *)url;
+
+- (ComItextpdfTextChunk *)setAnchorWithJavaNetURL:(JavaNetURL *)url;
+
+- (ComItextpdfTextChunk *)setAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annotation;
+
+- (void)setAttributesWithJavaUtilHashMap:(JavaUtilHashMap *)attributes;
 
 - (ComItextpdfTextChunk *)setBackgroundWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
@@ -135,93 +153,65 @@
                                                           withFloat:(jfloat)extraRight
                                                           withFloat:(jfloat)extraTop;
 
-- (ComItextpdfTextChunk *)setTextRenderModeWithInt:(jint)mode
-                                         withFloat:(jfloat)strokeWidth
-                      withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)strokeColor;
+- (ComItextpdfTextChunk *)setCharacterSpacingWithFloat:(jfloat)charSpace;
 
-- (ComItextpdfTextChunk *)setSplitCharacterWithComItextpdfTextSplitCharacter:(id<ComItextpdfTextSplitCharacter>)splitCharacter;
+- (void)setFontWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
+
+- (ComItextpdfTextChunk *)setGenericTagWithNSString:(NSString *)text;
+
+- (ComItextpdfTextChunk *)setHorizontalScalingWithFloat:(jfloat)scale_;
 
 - (ComItextpdfTextChunk *)setHyphenationWithComItextpdfTextPdfHyphenationEvent:(id<ComItextpdfTextPdfHyphenationEvent>)hyphenation;
 
-- (ComItextpdfTextChunk *)setRemoteGotoWithNSString:(NSString *)filename
-                                       withNSString:(NSString *)name;
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (ComItextpdfTextChunk *)setLineHeightWithFloat:(jfloat)lineheight;
+
+- (ComItextpdfTextChunk *)setLocalDestinationWithNSString:(NSString *)name;
+
+- (ComItextpdfTextChunk *)setLocalGotoWithNSString:(NSString *)name;
+
+- (ComItextpdfTextChunk *)setNewPage;
 
 - (ComItextpdfTextChunk *)setRemoteGotoWithNSString:(NSString *)filename
                                             withInt:(jint)page;
 
-- (ComItextpdfTextChunk *)setLocalGotoWithNSString:(NSString *)name;
-
-- (ComItextpdfTextChunk *)setLocalDestinationWithNSString:(NSString *)name;
-
-- (ComItextpdfTextChunk *)setGenericTagWithNSString:(NSString *)text;
-
-- (ComItextpdfTextChunk *)setLineHeightWithFloat:(jfloat)lineheight;
-
-- (ComItextpdfTextImage *)getImage;
-
-- (ComItextpdfTextChunk *)setActionWithComItextpdfTextPdfPdfAction:(ComItextpdfTextPdfPdfAction *)action;
-
-- (ComItextpdfTextChunk *)setAnchorWithJavaNetURL:(JavaNetURL *)url;
-
-- (ComItextpdfTextChunk *)setAnchorWithNSString:(NSString *)url;
-
-- (ComItextpdfTextChunk *)setNewPage;
-
-- (ComItextpdfTextChunk *)setAnnotationWithComItextpdfTextPdfPdfAnnotation:(ComItextpdfTextPdfPdfAnnotation *)annotation;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (id<ComItextpdfTextPdfHyphenationEvent>)getHyphenation;
-
-- (ComItextpdfTextChunk *)setCharacterSpacingWithFloat:(jfloat)charSpace;
-
-- (jfloat)getCharacterSpacing;
-
-- (ComItextpdfTextChunk *)setWordSpacingWithFloat:(jfloat)wordSpace;
-
-- (jfloat)getWordSpacing;
-
-+ (ComItextpdfTextChunk *)createWhitespaceWithNSString:(NSString *)content;
-
-+ (ComItextpdfTextChunk *)createWhitespaceWithNSString:(NSString *)content
-                                           withBoolean:(jboolean)preserve;
-
-- (jboolean)isWhitespace;
-
-+ (ComItextpdfTextChunk *)createTabspace;
-
-+ (ComItextpdfTextChunk *)createTabspaceWithFloat:(jfloat)spacing;
-
-- (jboolean)isTabspace;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (ComItextpdfTextChunk *)setRemoteGotoWithNSString:(NSString *)filename
+                                       withNSString:(NSString *)name;
 
 - (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (ComItextpdfTextChunk *)setSkewWithFloat:(jfloat)alpha
+                                 withFloat:(jfloat)beta;
 
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-- (jboolean)isInline;
-
-- (NSString *)getTextExpansion;
+- (ComItextpdfTextChunk *)setSplitCharacterWithComItextpdfTextSplitCharacter:(id<ComItextpdfTextSplitCharacter>)splitCharacter;
 
 - (void)setTextExpansionWithNSString:(NSString *)value;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextChunk *)other;
+- (ComItextpdfTextChunk *)setTextRenderModeWithInt:(jint)mode
+                                         withFloat:(jfloat)strokeWidth
+                      withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)strokeColor;
+
+- (ComItextpdfTextChunk *)setTextRiseWithFloat:(jfloat)rise;
+
+- (ComItextpdfTextChunk *)setUnderlineWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color
+                                                         withFloat:(jfloat)thickness
+                                                         withFloat:(jfloat)thicknessMul
+                                                         withFloat:(jfloat)yPosition
+                                                         withFloat:(jfloat)yPositionMul
+                                                           withInt:(jint)cap;
+
+- (ComItextpdfTextChunk *)setUnderlineWithFloat:(jfloat)thickness
+                                      withFloat:(jfloat)yPosition;
+
+- (ComItextpdfTextChunk *)setWordSpacingWithFloat:(jfloat)wordSpace;
+
+- (NSString *)description;
+
+- (jint)type;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextChunk_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextChunk)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, content_, JavaLangStringBuffer *)
@@ -229,8 +219,6 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, font_, ComItextpdfTextFont *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, attributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, accessibleAttributes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, id__, ComItextpdfTextAccessibleElementId *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextChunk, contentWithNoTabs_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextChunk_OBJECT_REPLACEMENT_CHARACTER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextChunk, OBJECT_REPLACEMENT_CHARACTER_, NSString *)
@@ -321,5 +309,63 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextChunk, WORD_SPACING_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextChunk_WHITESPACE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextChunk, WHITESPACE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_init(ComItextpdfTextChunk *self);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *self, ComItextpdfTextChunk *ck);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *ck) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithNSString_withComItextpdfTextFont_(ComItextpdfTextChunk *self, NSString *content, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithNSString_withComItextpdfTextFont_(NSString *content, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithNSString_(ComItextpdfTextChunk *self, NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithNSString_(NSString *content) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithChar_withComItextpdfTextFont_(ComItextpdfTextChunk *self, jchar c, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithChar_withComItextpdfTextFont_(jchar c, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithChar_(ComItextpdfTextChunk *self, jchar c);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithChar_(jchar c) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextImage_withFloat_withFloat_(ComItextpdfTextChunk *self, ComItextpdfTextImage *image, jfloat offsetX, jfloat offsetY);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextImage_withFloat_withFloat_(ComItextpdfTextImage *image, jfloat offsetX, jfloat offsetY) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_(ComItextpdfTextChunk *self, id<ComItextpdfTextPdfDrawDrawInterface> separator);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_(id<ComItextpdfTextPdfDrawDrawInterface> separator) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withBoolean_(ComItextpdfTextChunk *self, id<ComItextpdfTextPdfDrawDrawInterface> separator, jboolean vertical);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withBoolean_(id<ComItextpdfTextPdfDrawDrawInterface> separator, jboolean vertical) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_(ComItextpdfTextChunk *self, id<ComItextpdfTextPdfDrawDrawInterface> separator, jfloat tabPosition);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_(id<ComItextpdfTextPdfDrawDrawInterface> separator, jfloat tabPosition) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_withBoolean_(ComItextpdfTextChunk *self, id<ComItextpdfTextPdfDrawDrawInterface> separator, jfloat tabPosition, jboolean newline);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextPdfDrawDrawInterface_withFloat_withBoolean_(id<ComItextpdfTextPdfDrawDrawInterface> separator, jfloat tabPosition, jboolean newline) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChunk_initWithComItextpdfTextImage_withFloat_withFloat_withBoolean_(ComItextpdfTextChunk *self, ComItextpdfTextImage *image, jfloat offsetX, jfloat offsetY, jboolean changeLeading);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *new_ComItextpdfTextChunk_initWithComItextpdfTextImage_withFloat_withFloat_withBoolean_(ComItextpdfTextImage *image, jfloat offsetX, jfloat offsetY, jboolean changeLeading) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextChunk_createWhitespaceWithNSString_(NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextChunk_createWhitespaceWithNSString_withBoolean_(NSString *content, jboolean preserve);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextChunk_createTabspace();
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextChunk_createTabspaceWithFloat_(jfloat spacing);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextChunk)
 
 #endif // _ComItextpdfTextChunk_H_

@@ -6,10 +6,11 @@
 #ifndef _ComItextpdfTextPdfInterfacesPdfXConformance_H_
 #define _ComItextpdfTextPdfInterfacesPdfXConformance_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/interfaces/PdfIsoConformance.h"
 
 @protocol ComItextpdfTextPdfInterfacesPdfXConformance < ComItextpdfTextPdfInterfacesPdfIsoConformance, NSObject, JavaObject >
+
 - (void)setPDFXConformanceWithInt:(jint)pdfxConformance;
 
 - (jint)getPDFXConformance;
@@ -18,6 +19,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesPdfXConformance_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesPdfXConformance)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesPdfXConformance)
 
 #endif // _ComItextpdfTextPdfInterfacesPdfXConformance_H_

@@ -6,9 +6,7 @@
 #ifndef _ComItextpdfTextPdfParserMatrix_H_
 #define _ComItextpdfTextPdfParserMatrix_H_
 
-@class IOSFloatArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 #define ComItextpdfTextPdfParserMatrix_I11 0
 #define ComItextpdfTextPdfParserMatrix_I12 1
@@ -20,10 +18,9 @@
 #define ComItextpdfTextPdfParserMatrix_I32 7
 #define ComItextpdfTextPdfParserMatrix_I33 8
 
-@interface ComItextpdfTextPdfParserMatrix : NSObject {
- @public
-  IOSFloatArray *vals_;
-}
+@interface ComItextpdfTextPdfParserMatrix : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -37,27 +34,23 @@
                     withFloat:(jfloat)e
                     withFloat:(jfloat)f;
 
+- (jboolean)isEqual:(id)obj;
+
 - (jfloat)getWithInt:(jint)index;
+
+- (jfloat)getDeterminant;
+
+- (NSUInteger)hash;
 
 - (ComItextpdfTextPdfParserMatrix *)multiplyWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)by;
 
 - (ComItextpdfTextPdfParserMatrix *)subtractWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)arg;
 
-- (jfloat)getDeterminant;
-
-- (jboolean)isEqual:(id)obj;
-
-- (NSUInteger)hash;
-
 - (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserMatrix *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserMatrix_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserMatrix, vals_, IOSFloatArray *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserMatrix)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserMatrix, I11, jint)
 
@@ -76,5 +69,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserMatrix, I31, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserMatrix, I32, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfParserMatrix, I33, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMatrix_init(ComItextpdfTextPdfParserMatrix *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMatrix *new_ComItextpdfTextPdfParserMatrix_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMatrix_initWithFloat_withFloat_(ComItextpdfTextPdfParserMatrix *self, jfloat tx, jfloat ty);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMatrix *new_ComItextpdfTextPdfParserMatrix_initWithFloat_withFloat_(jfloat tx, jfloat ty) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMatrix_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfParserMatrix *self, jfloat a, jfloat b, jfloat c, jfloat d, jfloat e, jfloat f);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMatrix *new_ComItextpdfTextPdfParserMatrix_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(jfloat a, jfloat b, jfloat c, jfloat d, jfloat e, jfloat f) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserMatrix)
 
 #endif // _ComItextpdfTextPdfParserMatrix_H_

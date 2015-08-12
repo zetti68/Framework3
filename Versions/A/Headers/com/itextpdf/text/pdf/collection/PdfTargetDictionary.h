@@ -6,30 +6,41 @@
 #ifndef _ComItextpdfTextPdfCollectionPdfTargetDictionary_H_
 #define _ComItextpdfTextPdfCollectionPdfTargetDictionary_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfCollectionPdfTargetDictionary : ComItextpdfTextPdfPdfDictionary {
-}
+@interface ComItextpdfTextPdfCollectionPdfTargetDictionary : ComItextpdfTextPdfPdfDictionary
 
-- (instancetype)initWithComItextpdfTextPdfCollectionPdfTargetDictionary:(ComItextpdfTextPdfCollectionPdfTargetDictionary *)nested;
+#pragma mark Public
 
 - (instancetype)initWithBoolean:(jboolean)child;
 
-- (void)setEmbeddedFileNameWithNSString:(NSString *)target;
-
-- (void)setFileAttachmentPagenameWithNSString:(NSString *)name;
-
-- (void)setFileAttachmentPageWithInt:(jint)page;
-
-- (void)setFileAttachmentNameWithNSString:(NSString *)name;
-
-- (void)setFileAttachmentIndexWithInt:(jint)annotation;
+- (instancetype)initWithComItextpdfTextPdfCollectionPdfTargetDictionary:(ComItextpdfTextPdfCollectionPdfTargetDictionary *)nested;
 
 - (void)setAdditionalPathWithComItextpdfTextPdfCollectionPdfTargetDictionary:(ComItextpdfTextPdfCollectionPdfTargetDictionary *)nested;
 
+- (void)setEmbeddedFileNameWithNSString:(NSString *)target;
+
+- (void)setFileAttachmentIndexWithInt:(jint)annotation;
+
+- (void)setFileAttachmentNameWithNSString:(NSString *)name;
+
+- (void)setFileAttachmentPageWithInt:(jint)page;
+
+- (void)setFileAttachmentPagenameWithNSString:(NSString *)name;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCollectionPdfTargetDictionary_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCollectionPdfTargetDictionary)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfTargetDictionary_initWithComItextpdfTextPdfCollectionPdfTargetDictionary_(ComItextpdfTextPdfCollectionPdfTargetDictionary *self, ComItextpdfTextPdfCollectionPdfTargetDictionary *nested);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfTargetDictionary *new_ComItextpdfTextPdfCollectionPdfTargetDictionary_initWithComItextpdfTextPdfCollectionPdfTargetDictionary_(ComItextpdfTextPdfCollectionPdfTargetDictionary *nested) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfTargetDictionary_initWithBoolean_(ComItextpdfTextPdfCollectionPdfTargetDictionary *self, jboolean child);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfTargetDictionary *new_ComItextpdfTextPdfCollectionPdfTargetDictionary_initWithBoolean_(jboolean child) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCollectionPdfTargetDictionary)
 
 #endif // _ComItextpdfTextPdfCollectionPdfTargetDictionary_H_

@@ -6,45 +6,21 @@
 #ifndef _ComItextpdfTextPdfPdfStructureElement_H_
 #define _ComItextpdfTextPdfPdfStructureElement_H_
 
-@class ComItextpdfTextBaseColor;
-@class ComItextpdfTextChunk;
-@class ComItextpdfTextDocument;
-@class ComItextpdfTextImage;
-@class ComItextpdfTextList;
-@class ComItextpdfTextListBody;
-@class ComItextpdfTextListItem;
-@class ComItextpdfTextListLabel;
-@class ComItextpdfTextParagraph;
-@class ComItextpdfTextPdfPdfArray;
-@class ComItextpdfTextPdfPdfDiv;
-@class ComItextpdfTextPdfPdfIndirectReference;
-@class ComItextpdfTextPdfPdfName;
-@class ComItextpdfTextPdfPdfObject;
-@class ComItextpdfTextPdfPdfPCell;
-@class ComItextpdfTextPdfPdfPHeaderCell;
-@class ComItextpdfTextPdfPdfPRow;
-@class ComItextpdfTextPdfPdfPTable;
-@class ComItextpdfTextPdfPdfPTableBody;
-@class ComItextpdfTextPdfPdfPTableFooter;
-@class ComItextpdfTextPdfPdfPTableHeader;
-@class ComItextpdfTextPdfPdfStructureTreeRoot;
-@class ComItextpdfTextPdfPdfTemplate;
-@class ComItextpdfTextPdfPdfWriter;
-@class IOSFloatArray;
-@class JavaIoOutputStream;
-@protocol ComItextpdfTextPdfInterfacesIAccessibleElement;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 #include "com/itextpdf/text/pdf/interfaces/IPdfStructureElement.h"
 
-@interface ComItextpdfTextPdfPdfStructureElement : ComItextpdfTextPdfPdfDictionary < ComItextpdfTextPdfInterfacesIPdfStructureElement > {
- @public
-  ComItextpdfTextPdfPdfStructureElement *parent_;
-  ComItextpdfTextPdfPdfStructureTreeRoot *top_;
-  ComItextpdfTextPdfPdfIndirectReference *reference_;
-  ComItextpdfTextPdfPdfName *structureType_;
-}
+@class ComItextpdfTextPdfPdfIndirectReference;
+@class ComItextpdfTextPdfPdfName;
+@class ComItextpdfTextPdfPdfObject;
+@class ComItextpdfTextPdfPdfStructureTreeRoot;
+@class ComItextpdfTextPdfPdfWriter;
+@class JavaIoOutputStream;
+@protocol ComItextpdfTextPdfInterfacesIAccessibleElement;
+
+@interface ComItextpdfTextPdfPdfStructureElement : ComItextpdfTextPdfPdfDictionary < ComItextpdfTextPdfInterfacesIPdfStructureElement >
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfStructureElement:(ComItextpdfTextPdfPdfStructureElement *)parent
                                 withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structureType;
@@ -52,85 +28,50 @@
 - (instancetype)initWithComItextpdfTextPdfPdfStructureTreeRoot:(ComItextpdfTextPdfPdfStructureTreeRoot *)parent
                                  withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structureType;
 
-- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)parent
-                          withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structureType;
-
-- (ComItextpdfTextPdfPdfName *)getStructureType;
-
-- (void)init__WithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)parent
-                    withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structureType OBJC_METHOD_FAMILY_NONE;
+- (ComItextpdfTextPdfPdfObject *)getAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
 
 - (ComItextpdfTextPdfPdfDictionary *)getParent;
 
 - (ComItextpdfTextPdfPdfDictionary *)getParentWithBoolean:(jboolean)includeStructTreeRoot;
 
-- (void)setPageMarkWithInt:(jint)page
-                   withInt:(jint)mark;
-
 - (ComItextpdfTextPdfPdfIndirectReference *)getReference;
 
-- (ComItextpdfTextPdfPdfObject *)getAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
+- (ComItextpdfTextPdfPdfName *)getStructureType;
 
 - (void)setAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
                   withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
 
-- (void)writeAttributesWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
-
-- (void)writeAttributesWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
-
-- (void)writeAttributesWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
-
-- (void)writeAttributesWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)paragraph;
-
-- (void)writeAttributesWithComItextpdfTextList:(ComItextpdfTextList *)list;
-
-- (void)writeAttributesWithComItextpdfTextListItem:(ComItextpdfTextListItem *)listItem;
-
-- (void)writeAttributesWithComItextpdfTextListBody:(ComItextpdfTextListBody *)listBody;
-
-- (void)writeAttributesWithComItextpdfTextListLabel:(ComItextpdfTextListLabel *)listLabel;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPRow:(ComItextpdfTextPdfPdfPRow *)row;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPHeaderCell:(ComItextpdfTextPdfPdfPHeaderCell *)headerCell;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPTableHeader:(ComItextpdfTextPdfPdfPTableHeader *)header;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPTableBody:(ComItextpdfTextPdfPdfPTableBody *)body;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfPTableFooter:(ComItextpdfTextPdfPdfPTableFooter *)footer;
-
-- (void)writeAttributesWithComItextpdfTextPdfPdfDiv:(ComItextpdfTextPdfPdfDiv *)div;
-
-- (void)writeAttributesWithComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
-
-- (jboolean)colorsEqualWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)parentColor
-                                       withFloatArray:(IOSFloatArray *)color;
-
-- (void)setColorAttributeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)newColor
-                      withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)oldColor
-                        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)attributeName;
-
-- (void)setTextAlignAttributeWithInt:(jint)elementAlign;
-
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfStructureElement *)other;
+- (void)writeAttributesWithComItextpdfTextPdfInterfacesIAccessibleElement:(id<ComItextpdfTextPdfInterfacesIAccessibleElement>)element;
+
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)parent
+                          withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structureType;
+
+#pragma mark Package-Private
+
+- (void)setPageMarkWithInt:(jint)page
+                   withInt:(jint)mark;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfStructureElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfStructureElement)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureElement, parent_, ComItextpdfTextPdfPdfStructureElement *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureElement, top_, ComItextpdfTextPdfPdfStructureTreeRoot *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureElement, reference_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureElement, structureType_, ComItextpdfTextPdfPdfName *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfStructureElement_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfStructureElement *self, ComItextpdfTextPdfPdfStructureElement *parent, ComItextpdfTextPdfPdfName *structureType);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructureElement *new_ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfStructureElement_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfStructureElement *parent, ComItextpdfTextPdfPdfName *structureType) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfStructureTreeRoot_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfStructureElement *self, ComItextpdfTextPdfPdfStructureTreeRoot *parent, ComItextpdfTextPdfPdfName *structureType);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructureElement *new_ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfStructureTreeRoot_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfStructureTreeRoot *parent, ComItextpdfTextPdfPdfName *structureType) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfStructureElement *self, ComItextpdfTextPdfPdfDictionary *parent, ComItextpdfTextPdfPdfName *structureType);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructureElement *new_ComItextpdfTextPdfPdfStructureElement_initWithComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfDictionary *parent, ComItextpdfTextPdfPdfName *structureType) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfStructureElement)
 
 #endif // _ComItextpdfTextPdfPdfStructureElement_H_

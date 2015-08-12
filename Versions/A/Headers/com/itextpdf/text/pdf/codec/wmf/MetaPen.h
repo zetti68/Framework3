@@ -6,19 +6,19 @@
 #ifndef _ComItextpdfTextPdfCodecWmfMetaPen_H_
 #define _ComItextpdfTextPdfCodecWmfMetaPen_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfCodecWmfInputMeta;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
-
+#define ComItextpdfTextPdfCodecWmfMetaPen_PS_SOLID 0
 #define ComItextpdfTextPdfCodecWmfMetaPen_PS_DASH 1
+#define ComItextpdfTextPdfCodecWmfMetaPen_PS_DOT 2
 #define ComItextpdfTextPdfCodecWmfMetaPen_PS_DASHDOT 3
 #define ComItextpdfTextPdfCodecWmfMetaPen_PS_DASHDOTDOT 4
-#define ComItextpdfTextPdfCodecWmfMetaPen_PS_DOT 2
-#define ComItextpdfTextPdfCodecWmfMetaPen_PS_INSIDEFRAME 6
 #define ComItextpdfTextPdfCodecWmfMetaPen_PS_NULL 5
-#define ComItextpdfTextPdfCodecWmfMetaPen_PS_SOLID 0
+#define ComItextpdfTextPdfCodecWmfMetaPen_PS_INSIDEFRAME 6
 
 @interface ComItextpdfTextPdfCodecWmfMetaPen : ComItextpdfTextPdfCodecWmfMetaObject {
  @public
@@ -27,21 +27,21 @@
   ComItextpdfTextBaseColor *color_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
-
-- (jint)getStyle;
-
-- (jint)getPenWidth;
 
 - (ComItextpdfTextBaseColor *)getColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfMetaPen *)other;
+- (jint)getPenWidth;
+
+- (jint)getStyle;
+
+- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfMetaPen_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfMetaPen)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaPen, color_, ComItextpdfTextBaseColor *)
 
@@ -58,5 +58,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaPen, PS_DASHDOTDOT, jin
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaPen, PS_NULL, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaPen, PS_INSIDEFRAME, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaPen_init(ComItextpdfTextPdfCodecWmfMetaPen *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaPen *new_ComItextpdfTextPdfCodecWmfMetaPen_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfMetaPen)
 
 #endif // _ComItextpdfTextPdfCodecWmfMetaPen_H_

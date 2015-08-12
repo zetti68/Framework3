@@ -6,44 +6,31 @@
 #ifndef _ComItextpdfTextBaseColor_H_
 #define _ComItextpdfTextBaseColor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-#define ComItextpdfTextBaseColor_FACTOR 0.7
+@interface ComItextpdfTextBaseColor : NSObject
 
-@interface ComItextpdfTextBaseColor : NSObject {
- @public
-  jint value_;
-}
+#pragma mark Public
 
-- (instancetype)initWithInt:(jint)red
-                    withInt:(jint)green
-                    withInt:(jint)blue
-                    withInt:(jint)alpha;
-
-- (instancetype)initWithInt:(jint)red
-                    withInt:(jint)green
-                    withInt:(jint)blue;
+- (instancetype)initWithFloat:(jfloat)red
+                    withFloat:(jfloat)green
+                    withFloat:(jfloat)blue;
 
 - (instancetype)initWithFloat:(jfloat)red
                     withFloat:(jfloat)green
                     withFloat:(jfloat)blue
                     withFloat:(jfloat)alpha;
 
-- (instancetype)initWithFloat:(jfloat)red
-                    withFloat:(jfloat)green
-                    withFloat:(jfloat)blue;
-
 - (instancetype)initWithInt:(jint)argb;
 
-- (jint)getRGB;
+- (instancetype)initWithInt:(jint)red
+                    withInt:(jint)green
+                    withInt:(jint)blue;
 
-- (jint)getRed;
-
-- (jint)getGreen;
-
-- (jint)getBlue;
-
-- (jint)getAlpha;
+- (instancetype)initWithInt:(jint)red
+                    withInt:(jint)green
+                    withInt:(jint)blue
+                    withInt:(jint)alpha;
 
 - (ComItextpdfTextBaseColor *)brighter;
 
@@ -51,17 +38,22 @@
 
 - (jboolean)isEqual:(id)obj;
 
-- (NSUInteger)hash;
+- (jint)getAlpha;
 
-+ (void)validateWithInt:(jint)value;
+- (jint)getBlue;
+
+- (jint)getGreen;
+
+- (jint)getRed;
+
+- (jint)getRGB;
+
+- (NSUInteger)hash;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextBaseColor *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextBaseColor_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextBaseColor)
 
 FOUNDATION_EXPORT ComItextpdfTextBaseColor *ComItextpdfTextBaseColor_WHITE_;
@@ -103,6 +95,26 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextBaseColor, CYAN_, ComItextpdfTextBaseC
 FOUNDATION_EXPORT ComItextpdfTextBaseColor *ComItextpdfTextBaseColor_BLUE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextBaseColor, BLUE_, ComItextpdfTextBaseColor *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextBaseColor, FACTOR, jdouble)
+FOUNDATION_EXPORT void ComItextpdfTextBaseColor_initWithInt_withInt_withInt_withInt_(ComItextpdfTextBaseColor *self, jint red, jint green, jint blue, jint alpha);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *new_ComItextpdfTextBaseColor_initWithInt_withInt_withInt_withInt_(jint red, jint green, jint blue, jint alpha) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBaseColor_initWithInt_withInt_withInt_(ComItextpdfTextBaseColor *self, jint red, jint green, jint blue);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *new_ComItextpdfTextBaseColor_initWithInt_withInt_withInt_(jint red, jint green, jint blue) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBaseColor_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfTextBaseColor *self, jfloat red, jfloat green, jfloat blue, jfloat alpha);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *new_ComItextpdfTextBaseColor_initWithFloat_withFloat_withFloat_withFloat_(jfloat red, jfloat green, jfloat blue, jfloat alpha) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBaseColor_initWithFloat_withFloat_withFloat_(ComItextpdfTextBaseColor *self, jfloat red, jfloat green, jfloat blue);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *new_ComItextpdfTextBaseColor_initWithFloat_withFloat_withFloat_(jfloat red, jfloat green, jfloat blue) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBaseColor_initWithInt_(ComItextpdfTextBaseColor *self, jint argb);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *new_ComItextpdfTextBaseColor_initWithInt_(jint argb) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextBaseColor)
 
 #endif // _ComItextpdfTextBaseColor_H_

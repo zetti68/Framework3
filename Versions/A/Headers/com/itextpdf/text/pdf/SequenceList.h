@@ -6,22 +6,18 @@
 #ifndef _ComItextpdfTextPdfSequenceList_H_
 #define _ComItextpdfTextPdfSequenceList_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSCharArray;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-
 #define ComItextpdfTextPdfSequenceList_COMMA 1
-#define ComItextpdfTextPdfSequenceList_DIGIT 1
-#define ComItextpdfTextPdfSequenceList_DIGIT2 3
-#define ComItextpdfTextPdfSequenceList_END 6
-#define ComItextpdfTextPdfSequenceList_EOT 0xffff
-#define ComItextpdfTextPdfSequenceList_FIRST 0
 #define ComItextpdfTextPdfSequenceList_MINUS 2
 #define ComItextpdfTextPdfSequenceList_NOT 3
-#define ComItextpdfTextPdfSequenceList_NUMBER 5
-#define ComItextpdfTextPdfSequenceList_OTHER 2
 #define ComItextpdfTextPdfSequenceList_TEXT 4
+#define ComItextpdfTextPdfSequenceList_NUMBER 5
+#define ComItextpdfTextPdfSequenceList_END 6
+#define ComItextpdfTextPdfSequenceList_EOT 0xffff
 
 @interface ComItextpdfTextPdfSequenceList : NSObject {
  @public
@@ -36,26 +32,26 @@
   jboolean inverse_;
 }
 
+#pragma mark Public
+
++ (id<JavaUtilList>)expandWithNSString:(NSString *)ranges
+                               withInt:(jint)maxNumber;
+
+#pragma mark Protected
+
 - (instancetype)initWithNSString:(NSString *)range;
+
+- (jboolean)getAttributes;
+
+- (jint)getType;
 
 - (jchar)nextChar;
 
 - (void)putBack;
 
-- (jint)getType;
-
-- (void)otherProc;
-
-- (jboolean)getAttributes;
-
-+ (id<JavaUtilList>)expandWithNSString:(NSString *)ranges
-                               withInt:(jint)maxNumber;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSequenceList *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSequenceList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSequenceList)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSequenceList, text_, IOSCharArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSequenceList, other_, NSString *)
@@ -74,15 +70,12 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, END, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, EOT, jchar)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, FIRST, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSequenceList_initWithNSString_(ComItextpdfTextPdfSequenceList *self, NSString *range);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, DIGIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfSequenceList *new_ComItextpdfTextPdfSequenceList_initWithNSString_(NSString *range) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, OTHER, jint)
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfSequenceList_expandWithNSString_withInt_(NSString *ranges, jint maxNumber);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, DIGIT2, jint)
-
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSequenceList_NOT_OTHER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSequenceList, NOT_OTHER_, NSString *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSequenceList)
 
 #endif // _ComItextpdfTextPdfSequenceList_H_

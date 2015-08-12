@@ -6,39 +6,27 @@
 #ifndef _ComItextpdfTextPdfCodecTIFFFaxDecompressor_H_
 #define _ComItextpdfTextPdfCodecTIFFFaxDecompressor_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSShortArray;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfCodecTIFFFaxDecompressor : NSObject {
  @public
   jint fillOrder_;
   jint compression_;
-  jint t4Options_;
-  jint t6Options_;
   jint fails_;
   jint uncompressedMode_;
   jint fillBits_;
   jint oneD_;
-  IOSByteArray *data_;
-  jint bitPointer_, bytePointer_;
-  IOSByteArray *buffer_;
-  jint w_, h_, bitsPerScanline_;
-  jint lineBitNum_;
-  jint changingElemSize_;
-  IOSIntArray *prevChangingElems_;
-  IOSIntArray *currChangingElems_;
-  jint lastChangingElement_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)SetOptionsWithInt:(jint)fillOrder
-                  withInt:(jint)compression
-                  withInt:(jint)t4Options
-                  withInt:(jint)t6Options;
+- (void)decodeNextScanline;
 
 - (void)decodeRawWithByteArray:(IOSByteArray *)buffer
                  withByteArray:(IOSByteArray *)compData
@@ -47,42 +35,18 @@
 
 - (void)decodeRLE;
 
-- (void)decodeNextScanline;
-
 - (void)decodeT4;
 
 - (void)decodeT6;
 
-- (void)setToBlackWithInt:(jint)bitNum
-                  withInt:(jint)numBits;
-
-- (jint)decodeWhiteCodeWord;
-
-- (jint)decodeBlackCodeWord;
-
-- (jint)findNextLine;
-
-- (void)getNextChangingElementWithInt:(jint)a0
-                          withBoolean:(jboolean)isWhite
-                         withIntArray:(IOSIntArray *)ret;
-
-- (jint)nextNBitsWithInt:(jint)bitsToGet;
-
-- (jint)nextLesserThan8BitsWithInt:(jint)bitsToGet;
-
-- (void)updatePointerWithInt:(jint)bitsToMoveBack;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecTIFFFaxDecompressor *)other;
+- (void)SetOptionsWithInt:(jint)fillOrder
+                  withInt:(jint)compression
+                  withInt:(jint)t4Options
+                  withInt:(jint)t6Options;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecTIFFFaxDecompressor_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecTIFFFaxDecompressor)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, data_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, buffer_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, prevChangingElems_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, currChangingElems_, IOSIntArray *)
 
 FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfCodecTIFFFaxDecompressor_table1_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, table1_, IOSIntArray *)
@@ -119,5 +83,11 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, black_, I
 FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecTIFFFaxDecompressor_twoDCodes_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, twoDCodes_, IOSByteArray *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecTIFFFaxDecompressor, twoDCodes_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecTIFFFaxDecompressor_init(ComItextpdfTextPdfCodecTIFFFaxDecompressor *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecTIFFFaxDecompressor *new_ComItextpdfTextPdfCodecTIFFFaxDecompressor_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecTIFFFaxDecompressor)
 
 #endif // _ComItextpdfTextPdfCodecTIFFFaxDecompressor_H_

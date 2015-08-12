@@ -6,43 +6,43 @@
 #ifndef _ComItextpdfTextPdfCollectionPdfCollectionField_H_
 #define _ComItextpdfTextPdfCollectionPdfCollectionField_H_
 
-@class ComItextpdfTextPdfPdfObject;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-#define ComItextpdfTextPdfCollectionPdfCollectionField_CREATIONDATE 6
-#define ComItextpdfTextPdfCollectionPdfCollectionField_DATE 1
-#define ComItextpdfTextPdfCollectionPdfCollectionField_DESC 4
-#define ComItextpdfTextPdfCollectionPdfCollectionField_FILENAME 3
-#define ComItextpdfTextPdfCollectionPdfCollectionField_MODDATE 5
-#define ComItextpdfTextPdfCollectionPdfCollectionField_NUMBER 2
-#define ComItextpdfTextPdfCollectionPdfCollectionField_SIZE 7
+@class ComItextpdfTextPdfPdfObject;
+
 #define ComItextpdfTextPdfCollectionPdfCollectionField_TEXT 0
+#define ComItextpdfTextPdfCollectionPdfCollectionField_DATE 1
+#define ComItextpdfTextPdfCollectionPdfCollectionField_NUMBER 2
+#define ComItextpdfTextPdfCollectionPdfCollectionField_FILENAME 3
+#define ComItextpdfTextPdfCollectionPdfCollectionField_DESC 4
+#define ComItextpdfTextPdfCollectionPdfCollectionField_MODDATE 5
+#define ComItextpdfTextPdfCollectionPdfCollectionField_CREATIONDATE 6
+#define ComItextpdfTextPdfCollectionPdfCollectionField_SIZE 7
 
 @interface ComItextpdfTextPdfCollectionPdfCollectionField : ComItextpdfTextPdfPdfDictionary {
  @public
   jint fieldType_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithNSString:(NSString *)name
                          withInt:(jint)type;
+
+- (ComItextpdfTextPdfPdfObject *)getValueWithNSString:(NSString *)v;
+
+- (jboolean)isCollectionItem;
+
+- (void)setEditableWithBoolean:(jboolean)editable;
 
 - (void)setOrderWithInt:(jint)i;
 
 - (void)setVisibleWithBoolean:(jboolean)visible;
 
-- (void)setEditableWithBoolean:(jboolean)editable;
-
-- (jboolean)isCollectionItem;
-
-- (ComItextpdfTextPdfPdfObject *)getValueWithNSString:(NSString *)v;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCollectionPdfCollectionField *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCollectionPdfCollectionField_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCollectionPdfCollectionField)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCollectionPdfCollectionField, TEXT, jint)
 
@@ -59,5 +59,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCollectionPdfCollectionField, MODDA
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCollectionPdfCollectionField, CREATIONDATE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCollectionPdfCollectionField, SIZE, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfCollectionField_initWithNSString_withInt_(ComItextpdfTextPdfCollectionPdfCollectionField *self, NSString *name, jint type);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfCollectionField *new_ComItextpdfTextPdfCollectionPdfCollectionField_initWithNSString_withInt_(NSString *name, jint type) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCollectionPdfCollectionField)
 
 #endif // _ComItextpdfTextPdfCollectionPdfCollectionField_H_

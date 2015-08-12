@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfCodecLZWCompressor_H_
 #define _ComItextpdfTextPdfCodecLZWCompressor_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfCodecBitFile;
 @class ComItextpdfTextPdfCodecLZWStringTable;
 @class IOSByteArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfCodecLZWCompressor : NSObject {
  @public
@@ -26,6 +26,8 @@
   jboolean tiffFudge__;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outArg
                                    withInt:(jint)codeSize
                                withBoolean:(jboolean)TIFF;
@@ -36,13 +38,17 @@
 
 - (void)flush;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecLZWCompressor *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecLZWCompressor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecLZWCompressor)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWCompressor, bf__, ComItextpdfTextPdfCodecBitFile *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecLZWCompressor, lzss__, ComItextpdfTextPdfCodecLZWStringTable *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecLZWCompressor_initWithJavaIoOutputStream_withInt_withBoolean_(ComItextpdfTextPdfCodecLZWCompressor *self, JavaIoOutputStream *outArg, jint codeSize, jboolean TIFF);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecLZWCompressor *new_ComItextpdfTextPdfCodecLZWCompressor_initWithJavaIoOutputStream_withInt_withBoolean_(JavaIoOutputStream *outArg, jint codeSize, jboolean TIFF) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecLZWCompressor)
 
 #endif // _ComItextpdfTextPdfCodecLZWCompressor_H_

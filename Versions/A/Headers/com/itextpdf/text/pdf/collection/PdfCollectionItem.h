@@ -6,27 +6,35 @@
 #ifndef _ComItextpdfTextPdfCollectionPdfCollectionItem_H_
 #define _ComItextpdfTextPdfCollectionPdfCollectionItem_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfCollectionPdfCollectionSchema;
 @class ComItextpdfTextPdfPdfDate;
 @class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfString;
 @class JavaUtilCalendar;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-
 @interface ComItextpdfTextPdfCollectionPdfCollectionItem : ComItextpdfTextPdfPdfDictionary {
  @public
   ComItextpdfTextPdfCollectionPdfCollectionSchema *schema_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfCollectionPdfCollectionSchema:(ComItextpdfTextPdfCollectionPdfCollectionSchema *)schema;
 
 - (void)addItemWithNSString:(NSString *)key
-               withNSString:(NSString *)value;
+       withJavaUtilCalendar:(JavaUtilCalendar *)c;
 
 - (void)addItemWithNSString:(NSString *)key
-withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)value;
+                 withDouble:(jdouble)d;
+
+- (void)addItemWithNSString:(NSString *)key
+                  withFloat:(jfloat)f;
+
+- (void)addItemWithNSString:(NSString *)key
+                    withInt:(jint)i;
 
 - (void)addItemWithNSString:(NSString *)key
 withComItextpdfTextPdfPdfDate:(ComItextpdfTextPdfPdfDate *)d;
@@ -35,26 +43,24 @@ withComItextpdfTextPdfPdfDate:(ComItextpdfTextPdfPdfDate *)d;
 withComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)n;
 
 - (void)addItemWithNSString:(NSString *)key
-       withJavaUtilCalendar:(JavaUtilCalendar *)c;
+withComItextpdfTextPdfPdfString:(ComItextpdfTextPdfPdfString *)value;
 
 - (void)addItemWithNSString:(NSString *)key
-                    withInt:(jint)i;
-
-- (void)addItemWithNSString:(NSString *)key
-                  withFloat:(jfloat)f;
-
-- (void)addItemWithNSString:(NSString *)key
-                 withDouble:(jdouble)d;
+               withNSString:(NSString *)value;
 
 - (void)setPrefixWithNSString:(NSString *)key
                  withNSString:(NSString *)prefix;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCollectionPdfCollectionItem *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCollectionPdfCollectionItem_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCollectionPdfCollectionItem)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCollectionPdfCollectionItem, schema_, ComItextpdfTextPdfCollectionPdfCollectionSchema *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCollectionPdfCollectionItem_initWithComItextpdfTextPdfCollectionPdfCollectionSchema_(ComItextpdfTextPdfCollectionPdfCollectionItem *self, ComItextpdfTextPdfCollectionPdfCollectionSchema *schema);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCollectionPdfCollectionItem *new_ComItextpdfTextPdfCollectionPdfCollectionItem_initWithComItextpdfTextPdfCollectionPdfCollectionSchema_(ComItextpdfTextPdfCollectionPdfCollectionSchema *schema) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCollectionPdfCollectionItem)
 
 #endif // _ComItextpdfTextPdfCollectionPdfCollectionItem_H_

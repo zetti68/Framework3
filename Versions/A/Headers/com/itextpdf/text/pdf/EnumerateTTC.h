@@ -6,31 +6,41 @@
 #ifndef _ComItextpdfTextPdfEnumerateTTC_H_
 #define _ComItextpdfTextPdfEnumerateTTC_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/TrueTypeFont.h"
+
 @class IOSByteArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/TrueTypeFont.h"
 
 @interface ComItextpdfTextPdfEnumerateTTC : ComItextpdfTextPdfTrueTypeFont {
  @public
   IOSObjectArray *names_;
 }
 
-- (instancetype)initWithNSString:(NSString *)ttcFile;
+#pragma mark Package-Private
 
 - (instancetype)initWithByteArray:(IOSByteArray *)ttcArray;
+
+- (instancetype)initWithNSString:(NSString *)ttcFile;
 
 - (void)findNames;
 
 - (IOSObjectArray *)getNames;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEnumerateTTC *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEnumerateTTC_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEnumerateTTC)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEnumerateTTC, names_, IOSObjectArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEnumerateTTC_initWithNSString_(ComItextpdfTextPdfEnumerateTTC *self, NSString *ttcFile);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEnumerateTTC *new_ComItextpdfTextPdfEnumerateTTC_initWithNSString_(NSString *ttcFile) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEnumerateTTC_initWithByteArray_(ComItextpdfTextPdfEnumerateTTC *self, IOSByteArray *ttcArray);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEnumerateTTC *new_ComItextpdfTextPdfEnumerateTTC_initWithByteArray_(IOSByteArray *ttcArray) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEnumerateTTC)
 
 #endif // _ComItextpdfTextPdfEnumerateTTC_H_

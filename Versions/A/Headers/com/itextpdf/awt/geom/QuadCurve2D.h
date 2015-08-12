@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfAwtGeomQuadCurve2D_H_
 #define _ComItextpdfAwtGeomQuadCurve2D_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/awt/geom/PathIterator.h"
+#include "com/itextpdf/awt/geom/Shape.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfAwtGeomPoint2D;
 @class ComItextpdfAwtGeomRectangle2D;
@@ -14,63 +18,31 @@
 @class IOSFloatArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/awt/geom/PathIterator.h"
-#include "com/itextpdf/awt/geom/Shape.h"
+@interface ComItextpdfAwtGeomQuadCurve2D : NSObject < ComItextpdfAwtGeomShape, NSCopying >
 
-@interface ComItextpdfAwtGeomQuadCurve2D : NSObject < ComItextpdfAwtGeomShape, NSCopying > {
-}
+#pragma mark Public
 
-- (instancetype)init;
+- (id)clone;
 
-- (jdouble)getX1;
+- (jboolean)containsWithDouble:(jdouble)px
+                    withDouble:(jdouble)py;
 
-- (jdouble)getY1;
+- (jboolean)containsWithDouble:(jdouble)rx
+                    withDouble:(jdouble)ry
+                    withDouble:(jdouble)rw
+                    withDouble:(jdouble)rh;
 
-- (ComItextpdfAwtGeomPoint2D *)getP1;
+- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+
+- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (ComItextpdfAwtGeomRectangle *)getBounds;
+
+- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
 
 - (jdouble)getCtrlX;
 
 - (jdouble)getCtrlY;
-
-- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
-
-- (jdouble)getX2;
-
-- (jdouble)getY2;
-
-- (ComItextpdfAwtGeomPoint2D *)getP2;
-
-- (void)setCurveWithDouble:(jdouble)x1
-                withDouble:(jdouble)y1
-                withDouble:(jdouble)ctrlx
-                withDouble:(jdouble)ctrly
-                withDouble:(jdouble)x2
-                withDouble:(jdouble)y2;
-
-- (void)setCurveWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
-                withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)cp
-                withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
-
-- (void)setCurveWithDoubleArray:(IOSDoubleArray *)coords
-                        withInt:(jint)offset;
-
-- (void)setCurveWithComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)points
-                                           withInt:(jint)offset;
-
-- (void)setCurveWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)curve;
-
-- (jdouble)getFlatnessSq;
-
-+ (jdouble)getFlatnessSqWithDouble:(jdouble)x1
-                        withDouble:(jdouble)y1
-                        withDouble:(jdouble)ctrlx
-                        withDouble:(jdouble)ctrly
-                        withDouble:(jdouble)x2
-                        withDouble:(jdouble)y2;
-
-+ (jdouble)getFlatnessSqWithDoubleArray:(IOSDoubleArray *)coords
-                                withInt:(jint)offset;
 
 - (jdouble)getFlatness;
 
@@ -84,12 +56,65 @@
 + (jdouble)getFlatnessWithDoubleArray:(IOSDoubleArray *)coords
                               withInt:(jint)offset;
 
-- (void)subdivideWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)left
-                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)right;
+- (jdouble)getFlatnessSq;
 
-+ (void)subdivideWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)src
-                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)left
-                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)right;
++ (jdouble)getFlatnessSqWithDouble:(jdouble)x1
+                        withDouble:(jdouble)y1
+                        withDouble:(jdouble)ctrlx
+                        withDouble:(jdouble)ctrly
+                        withDouble:(jdouble)x2
+                        withDouble:(jdouble)y2;
+
++ (jdouble)getFlatnessSqWithDoubleArray:(IOSDoubleArray *)coords
+                                withInt:(jint)offset;
+
+- (ComItextpdfAwtGeomPoint2D *)getP1;
+
+- (ComItextpdfAwtGeomPoint2D *)getP2;
+
+- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
+
+- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t
+                                                                                withDouble:(jdouble)flatness;
+
+- (jdouble)getX1;
+
+- (jdouble)getX2;
+
+- (jdouble)getY1;
+
+- (jdouble)getY2;
+
+- (jboolean)intersectsWithDouble:(jdouble)rx
+                      withDouble:(jdouble)ry
+                      withDouble:(jdouble)rw
+                      withDouble:(jdouble)rh;
+
+- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
+
+- (void)setCurveWithDouble:(jdouble)x1
+                withDouble:(jdouble)y1
+                withDouble:(jdouble)ctrlx
+                withDouble:(jdouble)ctrly
+                withDouble:(jdouble)x2
+                withDouble:(jdouble)y2;
+
+- (void)setCurveWithDoubleArray:(IOSDoubleArray *)coords
+                        withInt:(jint)offset;
+
+- (void)setCurveWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p1
+                withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)cp
+                withComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p2;
+
+- (void)setCurveWithComItextpdfAwtGeomPoint2DArray:(IOSObjectArray *)points
+                                           withInt:(jint)offset;
+
+- (void)setCurveWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)curve;
+
++ (jint)solveQuadraticWithDoubleArray:(IOSDoubleArray *)eqn;
+
++ (jint)solveQuadraticWithDoubleArray:(IOSDoubleArray *)eqn
+                      withDoubleArray:(IOSDoubleArray *)res;
 
 + (void)subdivideWithDoubleArray:(IOSDoubleArray *)src
                          withInt:(jint)srcoff
@@ -98,44 +123,40 @@
                  withDoubleArray:(IOSDoubleArray *)right
                          withInt:(jint)rightOff;
 
-+ (jint)solveQuadraticWithDoubleArray:(IOSDoubleArray *)eqn;
+- (void)subdivideWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)left
+                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)right;
 
-+ (jint)solveQuadraticWithDoubleArray:(IOSDoubleArray *)eqn
-                      withDoubleArray:(IOSDoubleArray *)res;
++ (void)subdivideWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)src
+                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)left
+                 withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)right;
 
-- (jboolean)containsWithDouble:(jdouble)px
-                    withDouble:(jdouble)py;
+#pragma mark Protected
 
-- (jboolean)containsWithDouble:(jdouble)rx
-                    withDouble:(jdouble)ry
-                    withDouble:(jdouble)rw
-                    withDouble:(jdouble)rh;
-
-- (jboolean)intersectsWithDouble:(jdouble)rx
-                      withDouble:(jdouble)ry
-                      withDouble:(jdouble)rw
-                      withDouble:(jdouble)rh;
-
-- (jboolean)containsWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-- (jboolean)intersectsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (jboolean)containsWithComItextpdfAwtGeomRectangle2D:(ComItextpdfAwtGeomRectangle2D *)r;
-
-- (ComItextpdfAwtGeomRectangle *)getBounds;
-
-- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
-
-- (id<ComItextpdfAwtGeomPathIterator>)getPathIteratorWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t
-                                                                                withDouble:(jdouble)flatness;
-
-- (id)clone;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomQuadCurve2D)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_init(ComItextpdfAwtGeomQuadCurve2D *self);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomQuadCurve2D_getFlatnessSqWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble ctrlx, jdouble ctrly, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomQuadCurve2D_getFlatnessSqWithDoubleArray_withInt_(IOSDoubleArray *coords, jint offset);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomQuadCurve2D_getFlatnessWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble ctrlx, jdouble ctrly, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomQuadCurve2D_getFlatnessWithDoubleArray_withInt_(IOSDoubleArray *coords, jint offset);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_subdivideWithComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomQuadCurve2D_(ComItextpdfAwtGeomQuadCurve2D *src, ComItextpdfAwtGeomQuadCurve2D *left, ComItextpdfAwtGeomQuadCurve2D *right);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_subdivideWithDoubleArray_withInt_withDoubleArray_withInt_withDoubleArray_withInt_(IOSDoubleArray *src, jint srcoff, IOSDoubleArray *left, jint leftOff, IOSDoubleArray *right, jint rightOff);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomQuadCurve2D_solveQuadraticWithDoubleArray_(IOSDoubleArray *eqn);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomQuadCurve2D_solveQuadraticWithDoubleArray_withDoubleArray_(IOSDoubleArray *eqn, IOSDoubleArray *res);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomQuadCurve2D)
 
 @interface ComItextpdfAwtGeomQuadCurve2D_Float : ComItextpdfAwtGeomQuadCurve2D {
  @public
@@ -147,6 +168,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_init() 
   jfloat y2_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithFloat:(jfloat)x1
@@ -156,23 +179,25 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_init() 
                     withFloat:(jfloat)x2
                     withFloat:(jfloat)y2;
 
-- (jdouble)getX1;
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
 
-- (jdouble)getY1;
+- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
 
 - (jdouble)getCtrlX;
 
 - (jdouble)getCtrlY;
 
-- (jdouble)getX2;
-
-- (jdouble)getY2;
-
 - (ComItextpdfAwtGeomPoint2D *)getP1;
 
-- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
-
 - (ComItextpdfAwtGeomPoint2D *)getP2;
+
+- (jdouble)getX1;
+
+- (jdouble)getX2;
+
+- (jdouble)getY1;
+
+- (jdouble)getY2;
 
 - (void)setCurveWithDouble:(jdouble)x1
                 withDouble:(jdouble)y1
@@ -188,13 +213,19 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_init() 
                 withFloat:(jfloat)x2
                 withFloat:(jfloat)y2;
 
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomQuadCurve2D_Float *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Float_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomQuadCurve2D_Float)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_Float_init(ComItextpdfAwtGeomQuadCurve2D_Float *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomQuadCurve2D_Float *new_ComItextpdfAwtGeomQuadCurve2D_Float_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_Float_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(ComItextpdfAwtGeomQuadCurve2D_Float *self, jfloat x1, jfloat y1, jfloat ctrlx, jfloat ctrly, jfloat x2, jfloat y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomQuadCurve2D_Float *new_ComItextpdfAwtGeomQuadCurve2D_Float_initWithFloat_withFloat_withFloat_withFloat_withFloat_withFloat_(jfloat x1, jfloat y1, jfloat ctrlx, jfloat ctrly, jfloat x2, jfloat y2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomQuadCurve2D_Float)
 
 @interface ComItextpdfAwtGeomQuadCurve2D_Double : ComItextpdfAwtGeomQuadCurve2D {
  @public
@@ -206,6 +237,8 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Float_i
   jdouble y2_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
 - (instancetype)initWithDouble:(jdouble)x1
@@ -215,23 +248,25 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Float_i
                     withDouble:(jdouble)x2
                     withDouble:(jdouble)y2;
 
-- (jdouble)getX1;
+- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
 
-- (jdouble)getY1;
+- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
 
 - (jdouble)getCtrlX;
 
 - (jdouble)getCtrlY;
 
-- (jdouble)getX2;
-
-- (jdouble)getY2;
-
 - (ComItextpdfAwtGeomPoint2D *)getP1;
 
-- (ComItextpdfAwtGeomPoint2D *)getCtrlPt;
-
 - (ComItextpdfAwtGeomPoint2D *)getP2;
+
+- (jdouble)getX1;
+
+- (jdouble)getX2;
+
+- (jdouble)getY1;
+
+- (jdouble)getY2;
 
 - (void)setCurveWithDouble:(jdouble)x1
                 withDouble:(jdouble)y1
@@ -240,13 +275,19 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Float_i
                 withDouble:(jdouble)x2
                 withDouble:(jdouble)y2;
 
-- (ComItextpdfAwtGeomRectangle2D *)getBounds2D;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomQuadCurve2D_Double *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Double_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomQuadCurve2D_Double)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_Double_init(ComItextpdfAwtGeomQuadCurve2D_Double *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomQuadCurve2D_Double *new_ComItextpdfAwtGeomQuadCurve2D_Double_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_Double_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(ComItextpdfAwtGeomQuadCurve2D_Double *self, jdouble x1, jdouble y1, jdouble ctrlx, jdouble ctrly, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomQuadCurve2D_Double *new_ComItextpdfAwtGeomQuadCurve2D_Double_initWithDouble_withDouble_withDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble ctrlx, jdouble ctrly, jdouble x2, jdouble y2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomQuadCurve2D_Double)
 
 @interface ComItextpdfAwtGeomQuadCurve2D_Iterator : NSObject < ComItextpdfAwtGeomPathIterator > {
  @public
@@ -255,9 +296,11 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Double_
   jint index_;
 }
 
-- (instancetype)initWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)outer$
-                    withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)q
-                withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
+#pragma mark Public
+
+- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+
+- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
 
 - (jint)getWindingRule;
 
@@ -265,17 +308,23 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Double_
 
 - (void)next;
 
-- (jint)currentSegmentWithDoubleArray:(IOSDoubleArray *)coords;
+#pragma mark Package-Private
 
-- (jint)currentSegmentWithFloatArray:(IOSFloatArray *)coords;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomQuadCurve2D_Iterator *)other;
+- (instancetype)initWithComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)outer$
+                    withComItextpdfAwtGeomQuadCurve2D:(ComItextpdfAwtGeomQuadCurve2D *)q
+                withComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)t;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomQuadCurve2D_Iterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomQuadCurve2D_Iterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomQuadCurve2D_Iterator, c_, ComItextpdfAwtGeomQuadCurve2D *)
 J2OBJC_FIELD_SETTER(ComItextpdfAwtGeomQuadCurve2D_Iterator, t_, ComItextpdfAwtGeomAffineTransform *)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomQuadCurve2D_Iterator_initWithComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomQuadCurve2D_Iterator *self, ComItextpdfAwtGeomQuadCurve2D *outer$, ComItextpdfAwtGeomQuadCurve2D *q, ComItextpdfAwtGeomAffineTransform *t);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomQuadCurve2D_Iterator *new_ComItextpdfAwtGeomQuadCurve2D_Iterator_initWithComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomQuadCurve2D_withComItextpdfAwtGeomAffineTransform_(ComItextpdfAwtGeomQuadCurve2D *outer$, ComItextpdfAwtGeomQuadCurve2D *q, ComItextpdfAwtGeomAffineTransform *t) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomQuadCurve2D_Iterator)
 
 #endif // _ComItextpdfAwtGeomQuadCurve2D_H_

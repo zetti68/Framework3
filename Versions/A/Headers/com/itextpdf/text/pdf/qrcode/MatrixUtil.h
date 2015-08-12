@@ -6,23 +6,15 @@
 #ifndef _ComItextpdfTextPdfQrcodeMatrixUtil_H_
 #define _ComItextpdfTextPdfQrcodeMatrixUtil_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeBitVector;
 @class ComItextpdfTextPdfQrcodeByteMatrix;
 @class ComItextpdfTextPdfQrcodeErrorCorrectionLevel;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeMatrixUtil : NSObject
 
-#define ComItextpdfTextPdfQrcodeMatrixUtil_TYPE_INFO_MASK_PATTERN 21522
-#define ComItextpdfTextPdfQrcodeMatrixUtil_TYPE_INFO_POLY 1335
-#define ComItextpdfTextPdfQrcodeMatrixUtil_VERSION_INFO_POLY 7973
-
-@interface ComItextpdfTextPdfQrcodeMatrixUtil : NSObject {
-}
-
-- (instancetype)init;
-
-+ (void)clearMatrixWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
+#pragma mark Public
 
 + (void)buildMatrixWithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)dataBits
         withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
@@ -30,24 +22,23 @@
                                                  withInt:(jint)maskPattern
                   withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
++ (jint)calculateBCHCodeWithInt:(jint)value
+                        withInt:(jint)poly;
+
++ (void)clearMatrixWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
+
 + (void)embedBasicPatternsWithInt:(jint)version_
-withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedTypeInfoWithComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
-                                                              withInt:(jint)maskPattern
-                               withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)maybeEmbedVersionInfoWithInt:(jint)version_
 withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
 + (void)embedDataBitsWithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)dataBits
                                                    withInt:(jint)maskPattern
                     withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
-+ (jint)findMSBSetWithInt:(jint)value;
++ (void)embedTypeInfoWithComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
+                                                              withInt:(jint)maskPattern
+                               withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
-+ (jint)calculateBCHCodeWithInt:(jint)value
-                        withInt:(jint)poly;
++ (jint)findMSBSetWithInt:(jint)value;
 
 + (void)makeTypeInfoBitsWithComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
                                                                  withInt:(jint)maskPattern
@@ -56,62 +47,33 @@ withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)mat
 + (void)makeVersionInfoBitsWithInt:(jint)version_
 withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
 
-+ (jboolean)isEmptyWithInt:(jint)value;
-
-+ (jboolean)isValidValueWithInt:(jint)value;
-
-+ (void)embedTimingPatternsWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedDarkDotAtLeftBottomCornerWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedHorizontalSeparationPatternWithInt:(jint)xStart
-                                        withInt:(jint)yStart
-         withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedVerticalSeparationPatternWithInt:(jint)xStart
-                                      withInt:(jint)yStart
-       withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedPositionAdjustmentPatternWithInt:(jint)xStart
-                                      withInt:(jint)yStart
-       withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedPositionDetectionPatternWithInt:(jint)xStart
-                                     withInt:(jint)yStart
-      withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)embedPositionDetectionPatternsAndSeparatorsWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)maybeEmbedPositionAdjustmentPatternsWithInt:(jint)version_
-             withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
++ (void)maybeEmbedVersionInfoWithInt:(jint)version_
+withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeMatrixUtil_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeMatrixUtil)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_POSITION_DETECTION_PATTERN_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, POSITION_DETECTION_PATTERN_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_clearMatrixWithComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_HORIZONTAL_SEPARATION_PATTERN_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, HORIZONTAL_SEPARATION_PATTERN_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_buildMatrixWithComItextpdfTextPdfQrcodeBitVector_withComItextpdfTextPdfQrcodeErrorCorrectionLevel_withInt_withInt_withComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeBitVector *dataBits, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel, jint version_, jint maskPattern, ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_VERTICAL_SEPARATION_PATTERN_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, VERTICAL_SEPARATION_PATTERN_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_embedBasicPatternsWithInt_withComItextpdfTextPdfQrcodeByteMatrix_(jint version_, ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_POSITION_ADJUSTMENT_PATTERN_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, POSITION_ADJUSTMENT_PATTERN_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_embedTypeInfoWithComItextpdfTextPdfQrcodeErrorCorrectionLevel_withInt_withComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel, jint maskPattern, ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_POSITION_ADJUSTMENT_PATTERN_COORDINATE_TABLE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, POSITION_ADJUSTMENT_PATTERN_COORDINATE_TABLE_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_maybeEmbedVersionInfoWithInt_withComItextpdfTextPdfQrcodeByteMatrix_(jint version_, ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeMatrixUtil_TYPE_INFO_COORDINATES_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, TYPE_INFO_COORDINATES_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_embedDataBitsWithComItextpdfTextPdfQrcodeBitVector_withInt_withComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeBitVector *dataBits, jint maskPattern, ComItextpdfTextPdfQrcodeByteMatrix *matrix);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, VERSION_INFO_POLY, jint)
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMatrixUtil_findMSBSetWithInt_(jint value);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, TYPE_INFO_POLY, jint)
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMatrixUtil_calculateBCHCodeWithInt_withInt_(jint value, jint poly);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMatrixUtil, TYPE_INFO_MASK_PATTERN, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_makeTypeInfoBitsWithComItextpdfTextPdfQrcodeErrorCorrectionLevel_withInt_withComItextpdfTextPdfQrcodeBitVector_(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel, jint maskPattern, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeMatrixUtil_makeVersionInfoBitsWithInt_withComItextpdfTextPdfQrcodeBitVector_(jint version_, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeMatrixUtil)
 
 #endif // _ComItextpdfTextPdfQrcodeMatrixUtil_H_

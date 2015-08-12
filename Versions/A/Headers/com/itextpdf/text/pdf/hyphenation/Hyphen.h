@@ -6,10 +6,8 @@
 #ifndef _ComItextpdfTextPdfHyphenationHyphen_H_
 #define _ComItextpdfTextPdfHyphenationHyphen_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/Serializable.h"
-
-#define ComItextpdfTextPdfHyphenationHyphen_serialVersionUID -7666138517324763063LL
 
 @interface ComItextpdfTextPdfHyphenationHyphen : NSObject < JavaIoSerializable > {
  @public
@@ -18,24 +16,34 @@
   NSString *postBreak_;
 }
 
+#pragma mark Public
+
+- (NSString *)description;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithNSString:(NSString *)pre;
+
 - (instancetype)initWithNSString:(NSString *)pre
                     withNSString:(NSString *)no
                     withNSString:(NSString *)post;
 
-- (instancetype)initWithNSString:(NSString *)pre;
-
-- (NSString *)description;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationHyphen *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationHyphen_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationHyphen)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphen, preBreak_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphen, noBreak_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationHyphen, postBreak_, NSString *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationHyphen, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationHyphen_initWithNSString_withNSString_withNSString_(ComItextpdfTextPdfHyphenationHyphen *self, NSString *pre, NSString *no, NSString *post);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationHyphen *new_ComItextpdfTextPdfHyphenationHyphen_initWithNSString_withNSString_withNSString_(NSString *pre, NSString *no, NSString *post) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationHyphen_initWithNSString_(ComItextpdfTextPdfHyphenationHyphen *self, NSString *pre);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationHyphen *new_ComItextpdfTextPdfHyphenationHyphen_initWithNSString_(NSString *pre) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationHyphen)
 
 #endif // _ComItextpdfTextPdfHyphenationHyphen_H_

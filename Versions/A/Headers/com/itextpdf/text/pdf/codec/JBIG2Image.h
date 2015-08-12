@@ -6,14 +6,17 @@
 #ifndef _ComItextpdfTextPdfCodecJBIG2Image_H_
 #define _ComItextpdfTextPdfCodecJBIG2Image_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCodecJBIG2Image : NSObject
 
-@interface ComItextpdfTextPdfCodecJBIG2Image : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (IOSByteArray *)getGlobalSegmentWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)ra;
 
@@ -22,10 +25,20 @@
 
 + (jint)getNumberOfPagesWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)ra;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecJBIG2Image_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecJBIG2Image)
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecJBIG2Image_getGlobalSegmentWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *ra);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecJBIG2Image_getJbig2ImageWithComItextpdfTextPdfRandomAccessFileOrArray_withInt_(ComItextpdfTextPdfRandomAccessFileOrArray *ra, jint page);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecJBIG2Image_getNumberOfPagesWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *ra);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecJBIG2Image_init(ComItextpdfTextPdfCodecJBIG2Image *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecJBIG2Image *new_ComItextpdfTextPdfCodecJBIG2Image_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecJBIG2Image)
 
 #endif // _ComItextpdfTextPdfCodecJBIG2Image_H_

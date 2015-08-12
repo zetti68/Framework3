@@ -6,60 +6,72 @@
 #ifndef _ComItextpdfXmpImplByteBuffer_H_
 #define _ComItextpdfXmpImplByteBuffer_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplByteBuffer : NSObject
 
-@interface ComItextpdfXmpImplByteBuffer : NSObject {
- @public
-  IOSByteArray *buffer_;
-  jint length__;
-  NSString *encoding_;
-}
-
-- (instancetype)initWithInt:(jint)initialCapacity;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)buffer;
 
 - (instancetype)initWithByteArray:(IOSByteArray *)buffer
                           withInt:(jint)length;
 
-- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inArg;
-
 - (instancetype)initWithByteArray:(IOSByteArray *)buffer
                           withInt:(jint)offset
                           withInt:(jint)length;
 
-- (JavaIoInputStream *)getByteStream;
+- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)inArg;
 
-- (jint)length;
-
-- (jbyte)byteAtWithInt:(jint)index;
-
-- (jint)charAtWithInt:(jint)index;
+- (instancetype)initWithInt:(jint)initialCapacity;
 
 - (void)appendWithByte:(jbyte)b;
+
+- (void)appendWithByteArray:(IOSByteArray *)bytes;
 
 - (void)appendWithByteArray:(IOSByteArray *)bytes
                     withInt:(jint)offset
                     withInt:(jint)len;
 
-- (void)appendWithByteArray:(IOSByteArray *)bytes;
-
 - (void)appendWithComItextpdfXmpImplByteBuffer:(ComItextpdfXmpImplByteBuffer *)anotherBuffer;
+
+- (jbyte)byteAtWithInt:(jint)index;
+
+- (jint)charAtWithInt:(jint)index;
+
+- (JavaIoInputStream *)getByteStream;
 
 - (NSString *)getEncoding;
 
-- (void)ensureCapacityWithInt:(jint)requestedLength;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplByteBuffer *)other;
+- (jint)length;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplByteBuffer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplByteBuffer)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplByteBuffer, buffer_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplByteBuffer, encoding_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplByteBuffer_initWithInt_(ComItextpdfXmpImplByteBuffer *self, jint initialCapacity);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *new_ComItextpdfXmpImplByteBuffer_initWithInt_(jint initialCapacity) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplByteBuffer_initWithByteArray_(ComItextpdfXmpImplByteBuffer *self, IOSByteArray *buffer);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *new_ComItextpdfXmpImplByteBuffer_initWithByteArray_(IOSByteArray *buffer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplByteBuffer_initWithByteArray_withInt_(ComItextpdfXmpImplByteBuffer *self, IOSByteArray *buffer, jint length);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *new_ComItextpdfXmpImplByteBuffer_initWithByteArray_withInt_(IOSByteArray *buffer, jint length) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplByteBuffer_initWithJavaIoInputStream_(ComItextpdfXmpImplByteBuffer *self, JavaIoInputStream *inArg);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *new_ComItextpdfXmpImplByteBuffer_initWithJavaIoInputStream_(JavaIoInputStream *inArg) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplByteBuffer_initWithByteArray_withInt_withInt_(ComItextpdfXmpImplByteBuffer *self, IOSByteArray *buffer, jint offset, jint length);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplByteBuffer *new_ComItextpdfXmpImplByteBuffer_initWithByteArray_withInt_withInt_(IOSByteArray *buffer, jint offset, jint length) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplByteBuffer)
 
 #endif // _ComItextpdfXmpImplByteBuffer_H_

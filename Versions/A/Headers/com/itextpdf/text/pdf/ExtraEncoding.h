@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfExtraEncoding_H_
 #define _ComItextpdfTextPdfExtraEncoding_H_
 
-@class IOSByteArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class IOSByteArray;
 
 @protocol ComItextpdfTextPdfExtraEncoding < NSObject, JavaObject >
 
@@ -23,6 +23,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfExtraEncoding_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfExtraEncoding)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfExtraEncoding)
 
 #endif // _ComItextpdfTextPdfExtraEncoding_H_

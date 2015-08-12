@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextFontProvider_H_
 #define _ComItextpdfTextFontProvider_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextFont;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextFontProvider < NSObject, JavaObject >
 
@@ -24,6 +24,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextFontProvider_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextFontProvider)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFontProvider)
 
 #endif // _ComItextpdfTextFontProvider_H_

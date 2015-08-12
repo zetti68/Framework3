@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfGlyph_H_
 #define _ComItextpdfTextPdfGlyph_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @interface ComItextpdfTextPdfGlyph : NSObject {
  @public
@@ -15,22 +15,28 @@
   NSString *chars_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)code
                     withInt:(jint)width
                withNSString:(NSString *)chars;
 
-- (NSUInteger)hash;
-
 - (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfGlyph *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfGlyph_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfGlyph)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfGlyph, chars_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfGlyph_initWithInt_withInt_withNSString_(ComItextpdfTextPdfGlyph *self, jint code, jint width, NSString *chars);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfGlyph *new_ComItextpdfTextPdfGlyph_initWithInt_withInt_withNSString_(jint code, jint width, NSString *chars) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfGlyph)
 
 #endif // _ComItextpdfTextPdfGlyph_H_

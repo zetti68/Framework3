@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfPdfPTableEvent_H_
 #define _ComItextpdfTextPdfPdfPTableEvent_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfPTable;
 @class IOSFloatArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfPdfPTableEvent < NSObject, JavaObject >
 
@@ -23,6 +23,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTableEvent_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTableEvent)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTableEvent)
 
 #endif // _ComItextpdfTextPdfPdfPTableEvent_H_

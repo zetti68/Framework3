@@ -6,14 +6,13 @@
 #ifndef _ComItextpdfTextPdfQrcodeMaskUtil_H_
 #define _ComItextpdfTextPdfQrcodeMaskUtil_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeByteMatrix;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeMaskUtil : NSObject
 
-@interface ComItextpdfTextPdfQrcodeMaskUtil : NSObject {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 + (jint)applyMaskPenaltyRule1WithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
 
@@ -27,11 +26,20 @@
                           withInt:(jint)x
                           withInt:(jint)y;
 
-+ (jint)applyMaskPenaltyRule1InternalWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix
-                                                                withBoolean:(jboolean)isHorizontal;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeMaskUtil_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeMaskUtil)
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMaskUtil_applyMaskPenaltyRule1WithComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeByteMatrix *matrix);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMaskUtil_applyMaskPenaltyRule2WithComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeByteMatrix *matrix);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMaskUtil_applyMaskPenaltyRule3WithComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeByteMatrix *matrix);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeMaskUtil_applyMaskPenaltyRule4WithComItextpdfTextPdfQrcodeByteMatrix_(ComItextpdfTextPdfQrcodeByteMatrix *matrix);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfQrcodeMaskUtil_getDataMaskBitWithInt_withInt_withInt_(jint maskPattern, jint x, jint y);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeMaskUtil)
 
 #endif // _ComItextpdfTextPdfQrcodeMaskUtil_H_

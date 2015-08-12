@@ -6,119 +6,49 @@
 #ifndef _ComItextpdfXmpImplParseRDF_H_
 #define _ComItextpdfXmpImplParseRDF_H_
 
-@class ComItextpdfXmpImplXMPMetaImpl;
-@class ComItextpdfXmpImplXMPNode;
-@protocol OrgW3cDomNode;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/XMPConst.h"
 #include "com/itextpdf/xmp/XMPError.h"
 
+@class ComItextpdfXmpImplXMPMetaImpl;
+@protocol OrgW3cDomNode;
+
+#define ComItextpdfXmpImplParseRDF_RDFTERM_OTHER 0
+#define ComItextpdfXmpImplParseRDF_RDFTERM_RDF 1
+#define ComItextpdfXmpImplParseRDF_RDFTERM_ID 2
 #define ComItextpdfXmpImplParseRDF_RDFTERM_ABOUT 3
+#define ComItextpdfXmpImplParseRDF_RDFTERM_PARSE_TYPE 4
+#define ComItextpdfXmpImplParseRDF_RDFTERM_RESOURCE 5
+#define ComItextpdfXmpImplParseRDF_RDFTERM_NODE_ID 6
+#define ComItextpdfXmpImplParseRDF_RDFTERM_DATATYPE 7
+#define ComItextpdfXmpImplParseRDF_RDFTERM_DESCRIPTION 8
+#define ComItextpdfXmpImplParseRDF_RDFTERM_LI 9
 #define ComItextpdfXmpImplParseRDF_RDFTERM_ABOUT_EACH 10
 #define ComItextpdfXmpImplParseRDF_RDFTERM_ABOUT_EACH_PREFIX 11
 #define ComItextpdfXmpImplParseRDF_RDFTERM_BAG_ID 12
-#define ComItextpdfXmpImplParseRDF_RDFTERM_DATATYPE 7
-#define ComItextpdfXmpImplParseRDF_RDFTERM_DESCRIPTION 8
 #define ComItextpdfXmpImplParseRDF_RDFTERM_FIRST_CORE 1
-#define ComItextpdfXmpImplParseRDF_RDFTERM_FIRST_OLD 10
-#define ComItextpdfXmpImplParseRDF_RDFTERM_FIRST_SYNTAX 1
-#define ComItextpdfXmpImplParseRDF_RDFTERM_ID 2
 #define ComItextpdfXmpImplParseRDF_RDFTERM_LAST_CORE 7
-#define ComItextpdfXmpImplParseRDF_RDFTERM_LAST_OLD 12
+#define ComItextpdfXmpImplParseRDF_RDFTERM_FIRST_SYNTAX 1
 #define ComItextpdfXmpImplParseRDF_RDFTERM_LAST_SYNTAX 9
-#define ComItextpdfXmpImplParseRDF_RDFTERM_LI 9
-#define ComItextpdfXmpImplParseRDF_RDFTERM_NODE_ID 6
-#define ComItextpdfXmpImplParseRDF_RDFTERM_OTHER 0
-#define ComItextpdfXmpImplParseRDF_RDFTERM_PARSE_TYPE 4
-#define ComItextpdfXmpImplParseRDF_RDFTERM_RDF 1
-#define ComItextpdfXmpImplParseRDF_RDFTERM_RESOURCE 5
+#define ComItextpdfXmpImplParseRDF_RDFTERM_FIRST_OLD 10
+#define ComItextpdfXmpImplParseRDF_RDFTERM_LAST_OLD 12
 
-@interface ComItextpdfXmpImplParseRDF : NSObject < ComItextpdfXmpXMPError, ComItextpdfXmpXMPConst > {
-}
+@interface ComItextpdfXmpImplParseRDF : NSObject < ComItextpdfXmpXMPError, ComItextpdfXmpXMPConst >
+
+#pragma mark Public
+
+- (instancetype)init;
+
+#pragma mark Package-Private
 
 + (ComItextpdfXmpImplXMPMetaImpl *)parseWithOrgW3cDomNode:(id<OrgW3cDomNode>)xmlRoot;
 
 + (void)rdf_RDFWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
                                withOrgW3cDomNode:(id<OrgW3cDomNode>)rdfRdfNode;
 
-+ (void)rdf_NodeElementListWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                               withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                           withOrgW3cDomNode:(id<OrgW3cDomNode>)rdfRdfNode;
-
-+ (void)rdf_NodeElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                           withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                       withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                             withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_NodeElementAttrsWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                            withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                  withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_PropertyElementListWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                   withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                               withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlParent
-                                                     withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_PropertyElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                               withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                           withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                 withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_ResourcePropertyElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                       withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                   withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                         withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_LiteralPropertyElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                      withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                  withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                        withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_ParseTypeLiteralPropertyElement;
-
-+ (void)rdf_ParseTypeResourcePropertyElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                                withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                            withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                                  withBoolean:(jboolean)isTopLevel;
-
-+ (void)rdf_ParseTypeCollectionPropertyElement;
-
-+ (void)rdf_ParseTypeOtherPropertyElement;
-
-+ (void)rdf_EmptyPropertyElementWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                    withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                      withBoolean:(jboolean)isTopLevel;
-
-+ (ComItextpdfXmpImplXMPNode *)addChildNodeWithComItextpdfXmpImplXMPMetaImpl:(ComItextpdfXmpImplXMPMetaImpl *)xmp
-                                               withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                           withOrgW3cDomNode:(id<OrgW3cDomNode>)xmlNode
-                                                                withNSString:(NSString *)value
-                                                                 withBoolean:(jboolean)isTopLevel;
-
-+ (ComItextpdfXmpImplXMPNode *)addQualifierNodeWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent
-                                                                withNSString:(NSString *)name
-                                                                withNSString:(NSString *)value;
-
-+ (void)fixupQualifiedNodeWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)xmpParent;
-
-+ (jboolean)isWhitespaceNodeWithOrgW3cDomNode:(id<OrgW3cDomNode>)node;
-
-+ (jboolean)isPropertyElementNameWithInt:(jint)term;
-
-+ (jboolean)isOldTermWithInt:(jint)term;
-
-+ (jboolean)isCoreSyntaxTermWithInt:(jint)term;
-
-+ (jint)getRDFTermKindWithOrgW3cDomNode:(id<OrgW3cDomNode>)node;
-
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplParseRDF_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplParseRDF)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplParseRDF, RDFTERM_OTHER, jint)
 
@@ -160,5 +90,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplParseRDF, RDFTERM_LAST_OLD, jint)
 
 FOUNDATION_EXPORT NSString *ComItextpdfXmpImplParseRDF_DEFAULT_PREFIX_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplParseRDF, DEFAULT_PREFIX_, NSString *)
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPMetaImpl *ComItextpdfXmpImplParseRDF_parseWithOrgW3cDomNode_(id<OrgW3cDomNode> xmlRoot);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParseRDF_rdf_RDFWithComItextpdfXmpImplXMPMetaImpl_withOrgW3cDomNode_(ComItextpdfXmpImplXMPMetaImpl *xmp, id<OrgW3cDomNode> rdfRdfNode);
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplParseRDF_init(ComItextpdfXmpImplParseRDF *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplParseRDF *new_ComItextpdfXmpImplParseRDF_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplParseRDF)
 
 #endif // _ComItextpdfXmpImplParseRDF_H_

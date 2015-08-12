@@ -6,31 +6,32 @@
 #ifndef _ComItextpdfTextPdfGlyphList_H_
 #define _ComItextpdfTextPdfGlyphList_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSIntArray;
-@class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfGlyphList : NSObject
 
-@interface ComItextpdfTextPdfGlyphList : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (IOSIntArray *)nameToUnicodeWithNSString:(NSString *)name;
 
 + (NSString *)unicodeToNameWithInt:(jint)num;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfGlyphList_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfGlyphList)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfGlyphList_unicode2names_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfGlyphList, unicode2names_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfGlyphList, unicode2names_, JavaUtilHashMap *)
+FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfGlyphList_nameToUnicodeWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfGlyphList_names2unicode_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfGlyphList, names2unicode_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfGlyphList, names2unicode_, JavaUtilHashMap *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfGlyphList_unicodeToNameWithInt_(jint num);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfGlyphList_init(ComItextpdfTextPdfGlyphList *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfGlyphList *new_ComItextpdfTextPdfGlyphList_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfGlyphList)
 
 #endif // _ComItextpdfTextPdfGlyphList_H_

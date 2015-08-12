@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextSplitCharacter_H_
 #define _ComItextpdfTextSplitCharacter_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSCharArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextSplitCharacter < NSObject, JavaObject >
 
@@ -21,6 +21,8 @@ withComItextpdfTextPdfPdfChunkArray:(IOSObjectArray *)ck;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextSplitCharacter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextSplitCharacter)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextSplitCharacter)
 
 #endif // _ComItextpdfTextSplitCharacter_H_

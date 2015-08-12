@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPhrase_H_
 #define _ComItextpdfTextPhrase_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/TextElementArray.h"
+#include "java/util/ArrayList.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextTabSettings;
@@ -14,12 +18,6 @@
 @protocol ComItextpdfTextPdfHyphenationEvent;
 @protocol JavaUtilCollection;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/TextElementArray.h"
-#include "java/util/ArrayList.h"
-
-#define ComItextpdfTextPhrase_serialVersionUID 2643594602455068231LL
 
 @interface ComItextpdfTextPhrase : JavaUtilArrayList < ComItextpdfTextTextElementArray > {
  @public
@@ -30,21 +28,16 @@
   ComItextpdfTextTabSettings *tabSettings_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
-
-- (instancetype)initWithFloat:(jfloat)leading;
 
 - (instancetype)initWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
 
+- (instancetype)initWithFloat:(jfloat)leading;
+
 - (instancetype)initWithFloat:(jfloat)leading
      withComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
-
-- (instancetype)initWithNSString:(NSString *)string;
-
-- (instancetype)initWithNSString:(NSString *)string
-         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 - (instancetype)initWithFloat:(jfloat)leading
                  withNSString:(NSString *)string;
@@ -53,63 +46,31 @@
                  withNSString:(NSString *)string
       withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (jint)type;
+- (instancetype)initWithNSString:(NSString *)string;
 
-- (id<JavaUtilList>)getChunks;
+- (instancetype)initWithNSString:(NSString *)string
+         withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 - (void)addWithInt:(jint)index
             withId:(id<ComItextpdfTextElement>)element;
 
 - (jboolean)addWithNSString:(NSString *)s;
 
-- (jboolean)addWithId:(id<ComItextpdfTextElement>)element;
-
 - (jboolean)addAllWithJavaUtilCollection:(id<JavaUtilCollection>)collection;
 
-- (jboolean)addChunkWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
+- (jboolean)addWithId:(id<ComItextpdfTextElement>)element;
 
-- (void)addSpecialWithComItextpdfTextElement:(id<ComItextpdfTextElement>)object;
-
-- (void)setLeadingWithFloat:(jfloat)fixedLeading
-                  withFloat:(jfloat)multipliedLeading;
-
-- (void)setLeadingWithFloat:(jfloat)fixedLeading;
-
-- (void)setMultipliedLeadingWithFloat:(jfloat)multipliedLeading;
-
-- (void)setFontWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
-
-- (jfloat)getLeading;
-
-- (jfloat)getMultipliedLeading;
-
-- (jfloat)getTotalLeading;
-
-- (jboolean)hasLeading;
-
-- (ComItextpdfTextFont *)getFont;
+- (id<JavaUtilList>)getChunks;
 
 - (NSString *)getContent;
 
-- (jboolean)isEmpty;
+- (ComItextpdfTextFont *)getFont;
 
 - (id<ComItextpdfTextPdfHyphenationEvent>)getHyphenation;
-
-- (void)setHyphenationWithComItextpdfTextPdfHyphenationEvent:(id<ComItextpdfTextPdfHyphenationEvent>)hyphenation;
-
-- (ComItextpdfTextTabSettings *)getTabSettings;
-
-- (void)setTabSettingsWithComItextpdfTextTabSettings:(ComItextpdfTextTabSettings *)tabSettings;
-
-- (instancetype)initWithBoolean:(jboolean)dummy;
-
-+ (ComItextpdfTextPhrase *)getInstanceWithNSString:(NSString *)string;
 
 + (ComItextpdfTextPhrase *)getInstanceWithInt:(jint)leading
                                  withNSString:(NSString *)string;
@@ -118,19 +79,102 @@
                                  withNSString:(NSString *)string
                       withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
++ (ComItextpdfTextPhrase *)getInstanceWithNSString:(NSString *)string;
+
+- (jfloat)getLeading;
+
+- (jfloat)getMultipliedLeading;
+
+- (ComItextpdfTextTabSettings *)getTabSettings;
+
+- (jfloat)getTotalLeading;
+
+- (jboolean)hasLeading;
+
+- (jboolean)isContent;
+
+- (jboolean)isEmpty;
+
+- (jboolean)isNestable;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)setFontWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
+
+- (void)setHyphenationWithComItextpdfTextPdfHyphenationEvent:(id<ComItextpdfTextPdfHyphenationEvent>)hyphenation;
+
+- (void)setLeadingWithFloat:(jfloat)fixedLeading;
+
+- (void)setLeadingWithFloat:(jfloat)fixedLeading
+                  withFloat:(jfloat)multipliedLeading;
+
+- (void)setMultipliedLeadingWithFloat:(jfloat)multipliedLeading;
+
+- (void)setTabSettingsWithComItextpdfTextTabSettings:(ComItextpdfTextTabSettings *)tabSettings;
+
 - (jboolean)trim;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPhrase *)other;
+- (jint)type;
+
+#pragma mark Protected
+
+- (jboolean)addChunkWithComItextpdfTextChunk:(ComItextpdfTextChunk *)chunk;
+
+- (void)addSpecialWithComItextpdfTextElement:(id<ComItextpdfTextElement>)object;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPhrase_init() {}
+J2OBJC_STATIC_INIT(ComItextpdfTextPhrase)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPhrase, font_, ComItextpdfTextFont *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPhrase, hyphenation_, id<ComItextpdfTextPdfHyphenationEvent>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPhrase, tabSettings_, ComItextpdfTextTabSettings *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPhrase, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_init(ComItextpdfTextPhrase *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *self, ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithFloat_(ComItextpdfTextPhrase *self, jfloat leading);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithFloat_(jfloat leading) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithComItextpdfTextChunk_(ComItextpdfTextPhrase *self, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithComItextpdfTextChunk_(ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithFloat_withComItextpdfTextChunk_(ComItextpdfTextPhrase *self, jfloat leading, ComItextpdfTextChunk *chunk);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithFloat_withComItextpdfTextChunk_(jfloat leading, ComItextpdfTextChunk *chunk) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithNSString_(ComItextpdfTextPhrase *self, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithNSString_(NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithNSString_withComItextpdfTextFont_(ComItextpdfTextPhrase *self, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithNSString_withComItextpdfTextFont_(NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithFloat_withNSString_(ComItextpdfTextPhrase *self, jfloat leading, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithFloat_withNSString_(jfloat leading, NSString *string) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPhrase_initWithFloat_withNSString_withComItextpdfTextFont_(ComItextpdfTextPhrase *self, jfloat leading, NSString *string, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *new_ComItextpdfTextPhrase_initWithFloat_withNSString_withComItextpdfTextFont_(jfloat leading, NSString *string, ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *ComItextpdfTextPhrase_getInstanceWithNSString_(NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *ComItextpdfTextPhrase_getInstanceWithInt_withNSString_(jint leading, NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextPhrase *ComItextpdfTextPhrase_getInstanceWithInt_withNSString_withComItextpdfTextFont_(jint leading, NSString *string, ComItextpdfTextFont *font);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPhrase)
 
 #endif // _ComItextpdfTextPhrase_H_

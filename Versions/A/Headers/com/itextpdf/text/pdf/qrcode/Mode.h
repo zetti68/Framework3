@@ -6,41 +6,27 @@
 #ifndef _ComItextpdfTextPdfQrcodeMode_H_
 #define _ComItextpdfTextPdfQrcodeMode_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeVersion;
-@class IOSIntArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeMode : NSObject
 
-@interface ComItextpdfTextPdfQrcodeMode : NSObject {
- @public
-  IOSIntArray *characterCountBitsForVersions_;
-  jint bits_;
-  NSString *name_;
-}
-
-- (instancetype)initWithIntArray:(IOSIntArray *)characterCountBitsForVersions
-                         withInt:(jint)bits
-                    withNSString:(NSString *)name;
+#pragma mark Public
 
 + (ComItextpdfTextPdfQrcodeMode *)forBitsWithInt:(jint)bits;
 
-- (jint)getCharacterCountBitsWithComItextpdfTextPdfQrcodeVersion:(ComItextpdfTextPdfQrcodeVersion *)version_;
-
 - (jint)getBits;
+
+- (jint)getCharacterCountBitsWithComItextpdfTextPdfQrcodeVersion:(ComItextpdfTextPdfQrcodeVersion *)version_;
 
 - (NSString *)getName;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeMode *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeMode_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeMode)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeMode, characterCountBitsForVersions_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeMode, name_, NSString *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeMode *ComItextpdfTextPdfQrcodeMode_TERMINATOR_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMode, TERMINATOR_, ComItextpdfTextPdfQrcodeMode *)
@@ -68,5 +54,9 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMode, FNC1_FIRST_POSITION_, C
 
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeMode *ComItextpdfTextPdfQrcodeMode_FNC1_SECOND_POSITION_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeMode, FNC1_SECOND_POSITION_, ComItextpdfTextPdfQrcodeMode *)
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeMode *ComItextpdfTextPdfQrcodeMode_forBitsWithInt_(jint bits);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeMode)
 
 #endif // _ComItextpdfTextPdfQrcodeMode_H_

@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfXmlSignatureAppearance_H_
 #define _ComItextpdfTextPdfXmlSignatureAppearance_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfStamper;
 @class ComItextpdfTextPdfPdfStamperImp;
 @class JavaSecurityCertCertificate;
@@ -13,67 +15,54 @@
 @protocol ComItextpdfTextPdfSecurityXmlLocator;
 @protocol ComItextpdfTextPdfSecurityXpathConstructor;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfXmlSignatureAppearance : NSObject
 
-@interface ComItextpdfTextPdfXmlSignatureAppearance : NSObject {
- @public
-  ComItextpdfTextPdfPdfStamperImp *writer_;
-  ComItextpdfTextPdfPdfStamper *stamper_;
-  JavaSecurityCertCertificate *signCertificate_;
-  id<ComItextpdfTextPdfSecurityXmlLocator> xmlLocator_;
-  id<ComItextpdfTextPdfSecurityXpathConstructor> xpathConstructor_;
-  JavaUtilCalendar *signDate_;
-  NSString *description__;
-  NSString *mimeType_;
-}
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
-
-- (ComItextpdfTextPdfPdfStamperImp *)getWriter;
-
-- (ComItextpdfTextPdfPdfStamper *)getStamper;
-
-- (void)setStamperWithComItextpdfTextPdfPdfStamper:(ComItextpdfTextPdfPdfStamper *)stamper;
-
-- (void)setCertificateWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)signCertificate;
+- (void)close;
 
 - (JavaSecurityCertCertificate *)getCertificate;
-
-- (void)setDescriptionWithNSString:(NSString *)description_;
 
 - (NSString *)getDescription;
 
 - (NSString *)getMimeType;
 
-- (void)setMimeTypeWithNSString:(NSString *)mimeType;
-
 - (JavaUtilCalendar *)getSignDate;
 
-- (void)setSignDateWithJavaUtilCalendar:(JavaUtilCalendar *)signDate;
+- (ComItextpdfTextPdfPdfStamper *)getStamper;
+
+- (ComItextpdfTextPdfPdfStamperImp *)getWriter;
 
 - (id<ComItextpdfTextPdfSecurityXmlLocator>)getXmlLocator;
 
-- (void)setXmlLocatorWithComItextpdfTextPdfSecurityXmlLocator:(id<ComItextpdfTextPdfSecurityXmlLocator>)xmlLocator;
-
 - (id<ComItextpdfTextPdfSecurityXpathConstructor>)getXpathConstructor;
+
+- (void)setCertificateWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)signCertificate;
+
+- (void)setDescriptionWithNSString:(NSString *)description_;
+
+- (void)setMimeTypeWithNSString:(NSString *)mimeType;
+
+- (void)setSignDateWithJavaUtilCalendar:(JavaUtilCalendar *)signDate;
+
+- (void)setStamperWithComItextpdfTextPdfPdfStamper:(ComItextpdfTextPdfPdfStamper *)stamper;
+
+- (void)setXmlLocatorWithComItextpdfTextPdfSecurityXmlLocator:(id<ComItextpdfTextPdfSecurityXmlLocator>)xmlLocator;
 
 - (void)setXpathConstructorWithComItextpdfTextPdfSecurityXpathConstructor:(id<ComItextpdfTextPdfSecurityXpathConstructor>)xpathConstructor;
 
-- (void)close;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfXmlSignatureAppearance *)other;
+- (instancetype)initWithComItextpdfTextPdfPdfStamperImp:(ComItextpdfTextPdfPdfStamperImp *)writer;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfXmlSignatureAppearance_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfXmlSignatureAppearance)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, writer_, ComItextpdfTextPdfPdfStamperImp *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, stamper_, ComItextpdfTextPdfPdfStamper *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, signCertificate_, JavaSecurityCertCertificate *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, xmlLocator_, id<ComItextpdfTextPdfSecurityXmlLocator>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, xpathConstructor_, id<ComItextpdfTextPdfSecurityXpathConstructor>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, signDate_, JavaUtilCalendar *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, description__, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfXmlSignatureAppearance, mimeType_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfXmlSignatureAppearance_initWithComItextpdfTextPdfPdfStamperImp_(ComItextpdfTextPdfXmlSignatureAppearance *self, ComItextpdfTextPdfPdfStamperImp *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfXmlSignatureAppearance *new_ComItextpdfTextPdfXmlSignatureAppearance_initWithComItextpdfTextPdfPdfStamperImp_(ComItextpdfTextPdfPdfStamperImp *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfXmlSignatureAppearance)
 
 #endif // _ComItextpdfTextPdfXmlSignatureAppearance_H_

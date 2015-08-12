@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPdfReaderInstance_H_
 #define _ComItextpdfTextPdfPdfReaderInstance_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfImportedPage;
 @class ComItextpdfTextPdfPdfLiteral;
 @class ComItextpdfTextPdfPdfNumber;
@@ -19,8 +21,6 @@
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfPdfReaderInstance : NSObject {
  @public
   IOSIntArray *myXref_;
@@ -32,32 +32,33 @@
   JavaUtilArrayList *nextRound_;
 }
 
+#pragma mark Public
+
+- (void)writeAllPages;
+
+#pragma mark Package-Private
+
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                     withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-- (ComItextpdfTextPdfPdfReader *)getReader;
+- (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)pageNumber
+                                               withInt:(jint)compressionLevel;
 
 - (ComItextpdfTextPdfPdfImportedPage *)getImportedPageWithInt:(jint)pageNumber;
 
 - (jint)getNewObjectNumberWithInt:(jint)number
                           withInt:(jint)generation;
 
+- (ComItextpdfTextPdfPdfReader *)getReader;
+
 - (ComItextpdfTextPdfRandomAccessFileOrArray *)getReaderFile;
 
 - (ComItextpdfTextPdfPdfObject *)getResourcesWithInt:(jint)pageNumber;
 
-- (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)pageNumber
-                                               withInt:(jint)compressionLevel;
-
 - (void)writeAllVisited;
-
-- (void)writeAllPages;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfReaderInstance *)other;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfReaderInstance_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfReaderInstance)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfReaderInstance, myXref_, IOSIntArray *)
@@ -73,5 +74,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfReaderInstance, IDENTITYMATRIX_,
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumber *ComItextpdfTextPdfPdfReaderInstance_ONE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfReaderInstance, ONE_, ComItextpdfTextPdfPdfNumber *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfReaderInstance_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfReaderInstance *self, ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfReaderInstance *new_ComItextpdfTextPdfPdfReaderInstance_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfReaderInstance)
 
 #endif // _ComItextpdfTextPdfPdfReaderInstance_H_

@@ -6,11 +6,9 @@
 #ifndef _ComItextpdfAwtGeomDimension_H_
 #define _ComItextpdfAwtGeomDimension_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/awt/geom/Dimension2D.h"
 #include "java/io/Serializable.h"
-
-#define ComItextpdfAwtGeomDimension_serialVersionUID 4723952579491349524LL
 
 @interface ComItextpdfAwtGeomDimension : ComItextpdfAwtGeomDimension2D < JavaIoSerializable > {
  @public
@@ -18,9 +16,11 @@
   jdouble height_;
 }
 
-- (instancetype)initWithComItextpdfAwtGeomDimension:(ComItextpdfAwtGeomDimension *)d;
+#pragma mark Public
 
 - (instancetype)init;
+
+- (instancetype)initWithComItextpdfAwtGeomDimension:(ComItextpdfAwtGeomDimension *)d;
 
 - (instancetype)initWithDouble:(jdouble)width
                     withDouble:(jdouble)height;
@@ -28,32 +28,46 @@
 - (instancetype)initWithInt:(jint)width
                     withInt:(jint)height;
 
-- (NSUInteger)hash;
-
 - (jboolean)isEqual:(id)obj;
 
-- (NSString *)description;
+- (jdouble)getHeight;
 
-- (void)setSizeWithInt:(jint)width
-               withInt:(jint)height;
+- (ComItextpdfAwtGeomDimension *)getSize;
+
+- (jdouble)getWidth;
+
+- (NSUInteger)hash;
 
 - (void)setSizeWithComItextpdfAwtGeomDimension:(ComItextpdfAwtGeomDimension *)d;
 
 - (void)setSizeWithDouble:(jdouble)width
                withDouble:(jdouble)height;
 
-- (ComItextpdfAwtGeomDimension *)getSize;
+- (void)setSizeWithInt:(jint)width
+               withInt:(jint)height;
 
-- (jdouble)getHeight;
-
-- (jdouble)getWidth;
-
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomDimension *)other;
+- (NSString *)description;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomDimension_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomDimension)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomDimension, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomDimension_initWithComItextpdfAwtGeomDimension_(ComItextpdfAwtGeomDimension *self, ComItextpdfAwtGeomDimension *d);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomDimension *new_ComItextpdfAwtGeomDimension_initWithComItextpdfAwtGeomDimension_(ComItextpdfAwtGeomDimension *d) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomDimension_init(ComItextpdfAwtGeomDimension *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomDimension *new_ComItextpdfAwtGeomDimension_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomDimension_initWithDouble_withDouble_(ComItextpdfAwtGeomDimension *self, jdouble width, jdouble height);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomDimension *new_ComItextpdfAwtGeomDimension_initWithDouble_withDouble_(jdouble width, jdouble height) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomDimension_initWithInt_withInt_(ComItextpdfAwtGeomDimension *self, jint width, jint height);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomDimension *new_ComItextpdfAwtGeomDimension_initWithInt_withInt_(jint width, jint height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomDimension)
 
 #endif // _ComItextpdfAwtGeomDimension_H_

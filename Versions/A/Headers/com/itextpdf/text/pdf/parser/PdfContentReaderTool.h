@@ -6,16 +6,19 @@
 #ifndef _ComItextpdfTextPdfParserPdfContentReaderTool_H_
 #define _ComItextpdfTextPdfParserPdfContentReaderTool_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfReader;
 @class IOSObjectArray;
 @class JavaIoFile;
 @class JavaIoPrintWriter;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserPdfContentReaderTool : NSObject
 
-@interface ComItextpdfTextPdfParserPdfContentReaderTool : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (NSString *)getDictionaryDetailWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
 
@@ -24,23 +27,41 @@
 
 + (NSString *)getXObjectDetailWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)resourceDic;
 
-+ (void)listContentStreamForPageWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                                        withInt:(jint)pageNum
-                                          withJavaIoPrintWriter:(JavaIoPrintWriter *)outArg;
-
-+ (void)listContentStreamWithJavaIoFile:(JavaIoFile *)pdfFile
-                  withJavaIoPrintWriter:(JavaIoPrintWriter *)outArg;
-
 + (void)listContentStreamWithJavaIoFile:(JavaIoFile *)pdfFile
                                 withInt:(jint)pageNum
                   withJavaIoPrintWriter:(JavaIoPrintWriter *)outArg;
 
-+ (void)mainWithNSStringArray:(IOSObjectArray *)args;
++ (void)listContentStreamWithJavaIoFile:(JavaIoFile *)pdfFile
+                  withJavaIoPrintWriter:(JavaIoPrintWriter *)outArg;
 
-- (instancetype)init;
++ (void)listContentStreamForPageWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                                        withInt:(jint)pageNum
+                                          withJavaIoPrintWriter:(JavaIoPrintWriter *)outArg;
+
++ (void)mainWithNSStringArray:(IOSObjectArray *)args;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserPdfContentReaderTool_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserPdfContentReaderTool)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfParserPdfContentReaderTool_getDictionaryDetailWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *dic);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfParserPdfContentReaderTool_getDictionaryDetailWithComItextpdfTextPdfPdfDictionary_withInt_(ComItextpdfTextPdfPdfDictionary *dic, jint depth);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfParserPdfContentReaderTool_getXObjectDetailWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *resourceDic);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfContentReaderTool_listContentStreamForPageWithComItextpdfTextPdfPdfReader_withInt_withJavaIoPrintWriter_(ComItextpdfTextPdfPdfReader *reader, jint pageNum, JavaIoPrintWriter *outArg);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfContentReaderTool_listContentStreamWithJavaIoFile_withJavaIoPrintWriter_(JavaIoFile *pdfFile, JavaIoPrintWriter *outArg);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfContentReaderTool_listContentStreamWithJavaIoFile_withInt_withJavaIoPrintWriter_(JavaIoFile *pdfFile, jint pageNum, JavaIoPrintWriter *outArg);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfContentReaderTool_mainWithNSStringArray_(IOSObjectArray *args);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserPdfContentReaderTool_init(ComItextpdfTextPdfParserPdfContentReaderTool *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserPdfContentReaderTool *new_ComItextpdfTextPdfParserPdfContentReaderTool_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserPdfContentReaderTool)
 
 #endif // _ComItextpdfTextPdfParserPdfContentReaderTool_H_

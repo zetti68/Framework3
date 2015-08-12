@@ -6,28 +6,34 @@
 #ifndef _ComItextpdfTextXmlSimpleparserEntitiesToSymbol_H_
 #define _ComItextpdfTextXmlSimpleparserEntitiesToSymbol_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
-@protocol JavaUtilMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlSimpleparserEntitiesToSymbol : NSObject
 
-@interface ComItextpdfTextXmlSimpleparserEntitiesToSymbol : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (ComItextpdfTextChunk *)getWithNSString:(NSString *)e
                   withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 + (jchar)getCorrespondingSymbolWithNSString:(NSString *)name;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextXmlSimpleparserEntitiesToSymbol_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextXmlSimpleparserEntitiesToSymbol)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextXmlSimpleparserEntitiesToSymbol_MAP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlSimpleparserEntitiesToSymbol, MAP_, id<JavaUtilMap>)
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextXmlSimpleparserEntitiesToSymbol_getWithNSString_withComItextpdfTextFont_(NSString *e, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT jchar ComItextpdfTextXmlSimpleparserEntitiesToSymbol_getCorrespondingSymbolWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlSimpleparserEntitiesToSymbol_init(ComItextpdfTextXmlSimpleparserEntitiesToSymbol *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlSimpleparserEntitiesToSymbol *new_ComItextpdfTextXmlSimpleparserEntitiesToSymbol_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserEntitiesToSymbol)
 
 #endif // _ComItextpdfTextXmlSimpleparserEntitiesToSymbol_H_

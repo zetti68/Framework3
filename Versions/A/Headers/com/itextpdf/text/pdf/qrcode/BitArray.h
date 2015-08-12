@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextPdfQrcodeBitArray_H_
 #define _ComItextpdfTextPdfQrcodeBitArray_H_
 
-@class IOSIntArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class IOSIntArray;
 
 @interface ComItextpdfTextPdfQrcodeBitArray : NSObject {
  @public
@@ -16,39 +16,43 @@
   jint size_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)size;
 
-- (jint)getSize;
-
-- (jboolean)getWithInt:(jint)i;
-
-- (void)setWithInt:(jint)i;
+- (void)clear;
 
 - (void)flipWithInt:(jint)i;
 
-- (void)setBulkWithInt:(jint)i
-               withInt:(jint)newBits;
+- (jboolean)getWithInt:(jint)i;
 
-- (void)clear;
+- (IOSIntArray *)getBitArray;
+
+- (jint)getSize;
 
 - (jboolean)isRangeWithInt:(jint)start
                    withInt:(jint)end
                withBoolean:(jboolean)value;
 
-- (IOSIntArray *)getBitArray;
-
 - (void)reverse;
 
-+ (IOSIntArray *)makeArrayWithInt:(jint)size;
+- (void)setWithInt:(jint)i;
+
+- (void)setBulkWithInt:(jint)i
+               withInt:(jint)newBits;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeBitArray *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeBitArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeBitArray)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeBitArray, bits_, IOSIntArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeBitArray_initWithInt_(ComItextpdfTextPdfQrcodeBitArray *self, jint size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeBitArray *new_ComItextpdfTextPdfQrcodeBitArray_initWithInt_(jint size) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeBitArray)
 
 #endif // _ComItextpdfTextPdfQrcodeBitArray_H_

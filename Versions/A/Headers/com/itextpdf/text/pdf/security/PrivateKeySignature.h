@@ -6,39 +6,34 @@
 #ifndef _ComItextpdfTextPdfSecurityPrivateKeySignature_H_
 #define _ComItextpdfTextPdfSecurityPrivateKeySignature_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/ExternalSignature.h"
+
 @class IOSByteArray;
 @protocol JavaSecurityPrivateKey;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/ExternalSignature.h"
+@interface ComItextpdfTextPdfSecurityPrivateKeySignature : NSObject < ComItextpdfTextPdfSecurityExternalSignature >
 
-@interface ComItextpdfTextPdfSecurityPrivateKeySignature : NSObject < ComItextpdfTextPdfSecurityExternalSignature > {
- @public
-  id<JavaSecurityPrivateKey> pk_;
-  NSString *hashAlgorithm_;
-  NSString *encryptionAlgorithm_;
-  NSString *provider_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaSecurityPrivateKey:(id<JavaSecurityPrivateKey>)pk
                                   withNSString:(NSString *)hashAlgorithm
                                   withNSString:(NSString *)provider;
 
-- (NSString *)getHashAlgorithm;
-
 - (NSString *)getEncryptionAlgorithm;
+
+- (NSString *)getHashAlgorithm;
 
 - (IOSByteArray *)signWithByteArray:(IOSByteArray *)b;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityPrivateKeySignature *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityPrivateKeySignature_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityPrivateKeySignature)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, pk_, id<JavaSecurityPrivateKey>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, hashAlgorithm_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, encryptionAlgorithm_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityPrivateKeySignature, provider_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityPrivateKeySignature_initWithJavaSecurityPrivateKey_withNSString_withNSString_(ComItextpdfTextPdfSecurityPrivateKeySignature *self, id<JavaSecurityPrivateKey> pk, NSString *hashAlgorithm, NSString *provider);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityPrivateKeySignature *new_ComItextpdfTextPdfSecurityPrivateKeySignature_initWithJavaSecurityPrivateKey_withNSString_withNSString_(id<JavaSecurityPrivateKey> pk, NSString *hashAlgorithm, NSString *provider) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityPrivateKeySignature)
 
 #endif // _ComItextpdfTextPdfSecurityPrivateKeySignature_H_

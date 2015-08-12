@@ -6,37 +6,16 @@
 #ifndef _ComItextpdfXmpXMPUtils_H_
 #define _ComItextpdfXmpXMPUtils_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpOptionsPropertyOptions;
 @class IOSByteArray;
 @protocol ComItextpdfXmpXMPDateTime;
 @protocol ComItextpdfXmpXMPMeta;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpXMPUtils : NSObject
 
-@interface ComItextpdfXmpXMPUtils : NSObject {
-}
-
-- (instancetype)init;
-
-+ (NSString *)catenateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
-                                             withNSString:(NSString *)schemaNS
-                                             withNSString:(NSString *)arrayName
-                                             withNSString:(NSString *)separator
-                                             withNSString:(NSString *)quotes
-                                              withBoolean:(jboolean)allowCommas;
-
-+ (void)separateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
-                                       withNSString:(NSString *)schemaNS
-                                       withNSString:(NSString *)arrayName
-                                       withNSString:(NSString *)catedStr
-           withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)arrayOptions
-                                        withBoolean:(jboolean)preserveCommas;
-
-+ (void)removePropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
-                                     withNSString:(NSString *)schemaNS
-                                     withNSString:(NSString *)propName
-                                      withBoolean:(jboolean)doAllProperties
-                                      withBoolean:(jboolean)includeAliases;
+#pragma mark Public
 
 + (void)appendPropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)source
                         withComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)dest
@@ -49,32 +28,88 @@
                                       withBoolean:(jboolean)replaceOldValues
                                       withBoolean:(jboolean)deleteEmptyValues;
 
-+ (jboolean)convertToBooleanWithNSString:(NSString *)value;
++ (NSString *)catenateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
+                                             withNSString:(NSString *)schemaNS
+                                             withNSString:(NSString *)arrayName
+                                             withNSString:(NSString *)separator
+                                             withNSString:(NSString *)quotes
+                                              withBoolean:(jboolean)allowCommas;
 
 + (NSString *)convertFromBooleanWithBoolean:(jboolean)value;
 
-+ (jint)convertToIntegerWithNSString:(NSString *)rawValue;
-
-+ (NSString *)convertFromIntegerWithInt:(jint)value;
-
-+ (jlong)convertToLongWithNSString:(NSString *)rawValue;
-
-+ (NSString *)convertFromLongWithLong:(jlong)value;
-
-+ (jdouble)convertToDoubleWithNSString:(NSString *)rawValue;
++ (NSString *)convertFromDateWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)value;
 
 + (NSString *)convertFromDoubleWithDouble:(jdouble)value;
 
++ (NSString *)convertFromIntegerWithInt:(jint)value;
+
++ (NSString *)convertFromLongWithLong:(jlong)value;
+
++ (jboolean)convertToBooleanWithNSString:(NSString *)value;
+
 + (id<ComItextpdfXmpXMPDateTime>)convertToDateWithNSString:(NSString *)rawValue;
 
-+ (NSString *)convertFromDateWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)value;
++ (jdouble)convertToDoubleWithNSString:(NSString *)rawValue;
 
-+ (NSString *)encodeBase64WithByteArray:(IOSByteArray *)buffer;
++ (jint)convertToIntegerWithNSString:(NSString *)rawValue;
+
++ (jlong)convertToLongWithNSString:(NSString *)rawValue;
 
 + (IOSByteArray *)decodeBase64WithNSString:(NSString *)base64String;
 
++ (NSString *)encodeBase64WithByteArray:(IOSByteArray *)buffer;
+
++ (void)removePropertiesWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
+                                     withNSString:(NSString *)schemaNS
+                                     withNSString:(NSString *)propName
+                                      withBoolean:(jboolean)doAllProperties
+                                      withBoolean:(jboolean)includeAliases;
+
++ (void)separateArrayItemsWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
+                                       withNSString:(NSString *)schemaNS
+                                       withNSString:(NSString *)arrayName
+                                       withNSString:(NSString *)catedStr
+           withComItextpdfXmpOptionsPropertyOptions:(ComItextpdfXmpOptionsPropertyOptions *)arrayOptions
+                                        withBoolean:(jboolean)preserveCommas;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPUtils_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPUtils)
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_catenateArrayItemsWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_withNSString_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *arrayName, NSString *separator, NSString *quotes, jboolean allowCommas);
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPUtils_separateArrayItemsWithComItextpdfXmpXMPMeta_withNSString_withNSString_withNSString_withComItextpdfXmpOptionsPropertyOptions_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *arrayName, NSString *catedStr, ComItextpdfXmpOptionsPropertyOptions *arrayOptions, jboolean preserveCommas);
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPUtils_removePropertiesWithComItextpdfXmpXMPMeta_withNSString_withNSString_withBoolean_withBoolean_(id<ComItextpdfXmpXMPMeta> xmp, NSString *schemaNS, NSString *propName, jboolean doAllProperties, jboolean includeAliases);
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPUtils_appendPropertiesWithComItextpdfXmpXMPMeta_withComItextpdfXmpXMPMeta_withBoolean_withBoolean_(id<ComItextpdfXmpXMPMeta> source, id<ComItextpdfXmpXMPMeta> dest, jboolean doAllProperties, jboolean replaceOldValues);
+
+FOUNDATION_EXPORT void ComItextpdfXmpXMPUtils_appendPropertiesWithComItextpdfXmpXMPMeta_withComItextpdfXmpXMPMeta_withBoolean_withBoolean_withBoolean_(id<ComItextpdfXmpXMPMeta> source, id<ComItextpdfXmpXMPMeta> dest, jboolean doAllProperties, jboolean replaceOldValues, jboolean deleteEmptyValues);
+
+FOUNDATION_EXPORT jboolean ComItextpdfXmpXMPUtils_convertToBooleanWithNSString_(NSString *value);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_convertFromBooleanWithBoolean_(jboolean value);
+
+FOUNDATION_EXPORT jint ComItextpdfXmpXMPUtils_convertToIntegerWithNSString_(NSString *rawValue);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_convertFromIntegerWithInt_(jint value);
+
+FOUNDATION_EXPORT jlong ComItextpdfXmpXMPUtils_convertToLongWithNSString_(NSString *rawValue);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_convertFromLongWithLong_(jlong value);
+
+FOUNDATION_EXPORT jdouble ComItextpdfXmpXMPUtils_convertToDoubleWithNSString_(NSString *rawValue);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_convertFromDoubleWithDouble_(jdouble value);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPUtils_convertToDateWithNSString_(NSString *rawValue);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_convertFromDateWithComItextpdfXmpXMPDateTime_(id<ComItextpdfXmpXMPDateTime> value);
+
+FOUNDATION_EXPORT NSString *ComItextpdfXmpXMPUtils_encodeBase64WithByteArray_(IOSByteArray *buffer);
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfXmpXMPUtils_decodeBase64WithNSString_(NSString *base64String);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPUtils)
 
 #endif // _ComItextpdfXmpXMPUtils_H_

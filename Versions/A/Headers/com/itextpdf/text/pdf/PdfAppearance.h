@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfAppearance_H_
 #define _ComItextpdfTextPdfPdfAppearance_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfTemplate.h"
+
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfIndirectReference;
@@ -13,11 +16,20 @@
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfTemplate.h"
+@interface ComItextpdfTextPdfPdfAppearance : ComItextpdfTextPdfPdfTemplate
 
-@interface ComItextpdfTextPdfPdfAppearance : ComItextpdfTextPdfPdfTemplate {
-}
+#pragma mark Public
+
++ (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                           withFloat:(jfloat)width
+                                                                           withFloat:(jfloat)height;
+
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+
+- (void)setFontAndSizeWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
+                                           withFloat:(jfloat)size;
+
+#pragma mark Package-Private
 
 - (instancetype)init;
 
@@ -27,24 +39,32 @@
 
 + (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                            withFloat:(jfloat)width
-                                                                           withFloat:(jfloat)height;
-
-+ (ComItextpdfTextPdfPdfAppearance *)createAppearanceWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                           withFloat:(jfloat)width
                                                                            withFloat:(jfloat)height
                                                        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)forcedName;
 
-- (void)setFontAndSizeWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
-                                           withFloat:(jfloat)size;
-
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfAppearance_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfAppearance)
 
 FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfAppearance_stdFieldFontNames_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfAppearance, stdFieldFontNames_, JavaUtilHashMap *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAppearance_init(ComItextpdfTextPdfPdfAppearance *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAppearance *new_ComItextpdfTextPdfPdfAppearance_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAppearance_initWithComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextPdfPdfAppearance *self, ComItextpdfTextPdfPdfIndirectReference *iref);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAppearance *new_ComItextpdfTextPdfPdfAppearance_initWithComItextpdfTextPdfPdfIndirectReference_(ComItextpdfTextPdfPdfIndirectReference *iref) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfAppearance_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfAppearance *self, ComItextpdfTextPdfPdfWriter *wr);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAppearance *new_ComItextpdfTextPdfPdfAppearance_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *wr) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAppearance *ComItextpdfTextPdfPdfAppearance_createAppearanceWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_(ComItextpdfTextPdfPdfWriter *writer, jfloat width, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfAppearance *ComItextpdfTextPdfPdfAppearance_createAppearanceWithComItextpdfTextPdfPdfWriter_withFloat_withFloat_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfWriter *writer, jfloat width, jfloat height, ComItextpdfTextPdfPdfName *forcedName);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfAppearance)
 
 #endif // _ComItextpdfTextPdfPdfAppearance_H_

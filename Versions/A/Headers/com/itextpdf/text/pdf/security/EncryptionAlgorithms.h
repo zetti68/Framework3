@@ -6,23 +6,31 @@
 #ifndef _ComItextpdfTextPdfSecurityEncryptionAlgorithms_H_
 #define _ComItextpdfTextPdfSecurityEncryptionAlgorithms_H_
 
+#include "J2ObjC_header.h"
+
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfSecurityEncryptionAlgorithms : NSObject
 
-@interface ComItextpdfTextPdfSecurityEncryptionAlgorithms : NSObject {
-}
-
-+ (NSString *)getAlgorithmWithNSString:(NSString *)oid;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (NSString *)getAlgorithmWithNSString:(NSString *)oid;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityEncryptionAlgorithms_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityEncryptionAlgorithms)
 
 FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfSecurityEncryptionAlgorithms_algorithmNames_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityEncryptionAlgorithms, algorithmNames_, JavaUtilHashMap *)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityEncryptionAlgorithms_getAlgorithmWithNSString_(NSString *oid);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityEncryptionAlgorithms_init(ComItextpdfTextPdfSecurityEncryptionAlgorithms *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityEncryptionAlgorithms *new_ComItextpdfTextPdfSecurityEncryptionAlgorithms_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityEncryptionAlgorithms)
 
 #endif // _ComItextpdfTextPdfSecurityEncryptionAlgorithms_H_

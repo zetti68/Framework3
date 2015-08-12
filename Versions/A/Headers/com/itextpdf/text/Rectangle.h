@@ -6,21 +6,21 @@
 #ifndef _ComItextpdfTextRectangle_H_
 #define _ComItextpdfTextRectangle_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+
 @class ComItextpdfAwtGeomRectangle;
 @class ComItextpdfTextBaseColor;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
-
-#define ComItextpdfTextRectangle_BOTTOM 2
-#define ComItextpdfTextRectangle_BOX 15
-#define ComItextpdfTextRectangle_LEFT 4
-#define ComItextpdfTextRectangle_NO_BORDER 0
-#define ComItextpdfTextRectangle_RIGHT 8
-#define ComItextpdfTextRectangle_TOP 1
 #define ComItextpdfTextRectangle_UNDEFINED -1
+#define ComItextpdfTextRectangle_TOP 1
+#define ComItextpdfTextRectangle_BOTTOM 2
+#define ComItextpdfTextRectangle_LEFT 4
+#define ComItextpdfTextRectangle_RIGHT 8
+#define ComItextpdfTextRectangle_NO_BORDER 0
+#define ComItextpdfTextRectangle_BOX 15
 
 @interface ComItextpdfTextRectangle : NSObject < ComItextpdfTextElement > {
  @public
@@ -44,6 +44,11 @@
   ComItextpdfTextBaseColor *borderColorBottom_;
 }
 
+#pragma mark Public
+
+- (instancetype)initWithFloat:(jfloat)urx
+                    withFloat:(jfloat)ury;
+
 - (instancetype)initWithFloat:(jfloat)llx
                     withFloat:(jfloat)lly
                     withFloat:(jfloat)urx
@@ -54,9 +59,6 @@
                     withFloat:(jfloat)urx
                     withFloat:(jfloat)ury
                       withInt:(jint)rotation;
-
-- (instancetype)initWithFloat:(jfloat)urx
-                    withFloat:(jfloat)ury;
 
 - (instancetype)initWithFloat:(jfloat)urx
                     withFloat:(jfloat)ury
@@ -66,138 +68,130 @@
 
 - (instancetype)initWithComItextpdfAwtGeomRectangle:(ComItextpdfAwtGeomRectangle *)rect;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+- (void)cloneNonPositionParametersWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
 
-- (jint)type;
+- (void)disableBorderSideWithInt:(jint)side;
 
-- (id<JavaUtilList>)getChunks;
+- (void)enableBorderSideWithInt:(jint)side;
 
-- (jboolean)isContent;
+- (jboolean)isEqual:(id)obj;
 
-- (jboolean)isNestable;
+- (ComItextpdfTextBaseColor *)getBackgroundColor;
 
-- (void)setLeftWithFloat:(jfloat)llx;
+- (jint)getBorder;
 
-- (jfloat)getLeft;
+- (ComItextpdfTextBaseColor *)getBorderColor;
 
-- (jfloat)getLeftWithFloat:(jfloat)margin;
+- (ComItextpdfTextBaseColor *)getBorderColorBottom;
 
-- (void)setRightWithFloat:(jfloat)urx;
+- (ComItextpdfTextBaseColor *)getBorderColorLeft;
 
-- (jfloat)getRight;
+- (ComItextpdfTextBaseColor *)getBorderColorRight;
 
-- (jfloat)getRightWithFloat:(jfloat)margin;
+- (ComItextpdfTextBaseColor *)getBorderColorTop;
 
-- (jfloat)getWidth;
+- (jfloat)getBorderWidth;
 
-- (void)setTopWithFloat:(jfloat)ury;
+- (jfloat)getBorderWidthBottom;
 
-- (jfloat)getTop;
+- (jfloat)getBorderWidthLeft;
 
-- (jfloat)getTopWithFloat:(jfloat)margin;
+- (jfloat)getBorderWidthRight;
 
-- (void)setBottomWithFloat:(jfloat)lly;
+- (jfloat)getBorderWidthTop;
 
 - (jfloat)getBottom;
 
 - (jfloat)getBottomWithFloat:(jfloat)margin;
 
-- (jfloat)getHeight;
-
-- (void)normalize;
-
-- (jint)getRotation;
-
-- (void)setRotationWithInt:(jint)rotation;
-
-- (ComItextpdfTextRectangle *)rotate;
-
-- (ComItextpdfTextBaseColor *)getBackgroundColor;
-
-- (void)setBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)backgroundColor;
+- (id<JavaUtilList>)getChunks;
 
 - (jfloat)getGrayFill;
 
-- (void)setGrayFillWithFloat:(jfloat)value;
+- (jfloat)getHeight;
 
-- (jint)getBorder;
+- (jfloat)getLeft;
 
-- (jboolean)hasBorders;
+- (jfloat)getLeftWithFloat:(jfloat)margin;
+
+- (jfloat)getRight;
+
+- (jfloat)getRightWithFloat:(jfloat)margin;
+
+- (jint)getRotation;
+
+- (jfloat)getTop;
+
+- (jfloat)getTopWithFloat:(jfloat)margin;
+
+- (jfloat)getWidth;
 
 - (jboolean)hasBorderWithInt:(jint)type;
 
-- (void)setBorderWithInt:(jint)border;
+- (jboolean)hasBorders;
+
+- (jboolean)isContent;
+
+- (jboolean)isNestable;
 
 - (jboolean)isUseVariableBorders;
 
-- (void)setUseVariableBordersWithBoolean:(jboolean)useVariableBorders;
+- (void)normalize;
 
-- (void)enableBorderSideWithInt:(jint)side;
-
-- (void)disableBorderSideWithInt:(jint)side;
-
-- (jfloat)getBorderWidth;
-
-- (void)setBorderWidthWithFloat:(jfloat)borderWidth;
-
-- (jfloat)getVariableBorderWidthWithFloat:(jfloat)variableWidthValue
-                                  withInt:(jint)side;
-
-- (void)updateBorderBasedOnWidthWithFloat:(jfloat)width
-                                  withInt:(jint)side;
-
-- (jfloat)getBorderWidthLeft;
-
-- (void)setBorderWidthLeftWithFloat:(jfloat)borderWidthLeft;
-
-- (jfloat)getBorderWidthRight;
-
-- (void)setBorderWidthRightWithFloat:(jfloat)borderWidthRight;
-
-- (jfloat)getBorderWidthTop;
-
-- (void)setBorderWidthTopWithFloat:(jfloat)borderWidthTop;
-
-- (jfloat)getBorderWidthBottom;
-
-- (void)setBorderWidthBottomWithFloat:(jfloat)borderWidthBottom;
-
-- (ComItextpdfTextBaseColor *)getBorderColor;
-
-- (void)setBorderColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColor;
-
-- (ComItextpdfTextBaseColor *)getBorderColorLeft;
-
-- (void)setBorderColorLeftWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorLeft;
-
-- (ComItextpdfTextBaseColor *)getBorderColorRight;
-
-- (void)setBorderColorRightWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorRight;
-
-- (ComItextpdfTextBaseColor *)getBorderColorTop;
-
-- (void)setBorderColorTopWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorTop;
-
-- (ComItextpdfTextBaseColor *)getBorderColorBottom;
-
-- (void)setBorderColorBottomWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorBottom;
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
 - (ComItextpdfTextRectangle *)rectangleWithFloat:(jfloat)top
                                        withFloat:(jfloat)bottom;
 
-- (void)cloneNonPositionParametersWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
+- (ComItextpdfTextRectangle *)rotate;
+
+- (void)setBackgroundColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)backgroundColor;
+
+- (void)setBorderWithInt:(jint)border;
+
+- (void)setBorderColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColor;
+
+- (void)setBorderColorBottomWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorBottom;
+
+- (void)setBorderColorLeftWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorLeft;
+
+- (void)setBorderColorRightWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorRight;
+
+- (void)setBorderColorTopWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)borderColorTop;
+
+- (void)setBorderWidthWithFloat:(jfloat)borderWidth;
+
+- (void)setBorderWidthBottomWithFloat:(jfloat)borderWidthBottom;
+
+- (void)setBorderWidthLeftWithFloat:(jfloat)borderWidthLeft;
+
+- (void)setBorderWidthRightWithFloat:(jfloat)borderWidthRight;
+
+- (void)setBorderWidthTopWithFloat:(jfloat)borderWidthTop;
+
+- (void)setBottomWithFloat:(jfloat)lly;
+
+- (void)setGrayFillWithFloat:(jfloat)value;
+
+- (void)setLeftWithFloat:(jfloat)llx;
+
+- (void)setRightWithFloat:(jfloat)urx;
+
+- (void)setRotationWithInt:(jint)rotation;
+
+- (void)setTopWithFloat:(jfloat)ury;
+
+- (void)setUseVariableBordersWithBoolean:(jboolean)useVariableBorders;
 
 - (void)softCloneNonPositionParametersWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect;
 
 - (NSString *)description;
 
-- (jboolean)isEqual:(id)obj;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextRectangle *)other;
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextRectangle_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextRectangle)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextRectangle, backgroundColor_, ComItextpdfTextBaseColor *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextRectangle, borderColor_, ComItextpdfTextBaseColor *)
@@ -219,5 +213,31 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextRectangle, RIGHT, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextRectangle, NO_BORDER, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextRectangle, BOX, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfTextRectangle *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithFloat_withFloat_withFloat_withFloat_(jfloat llx, jfloat lly, jfloat urx, jfloat ury) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithFloat_withFloat_withFloat_withFloat_withInt_(ComItextpdfTextRectangle *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint rotation);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithFloat_withFloat_withFloat_withFloat_withInt_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint rotation) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithFloat_withFloat_(ComItextpdfTextRectangle *self, jfloat urx, jfloat ury);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithFloat_withFloat_(jfloat urx, jfloat ury) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithFloat_withFloat_withInt_(ComItextpdfTextRectangle *self, jfloat urx, jfloat ury, jint rotation);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithFloat_withFloat_withInt_(jfloat urx, jfloat ury, jint rotation) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithComItextpdfTextRectangle_(ComItextpdfTextRectangle *self, ComItextpdfTextRectangle *rect);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithComItextpdfTextRectangle_(ComItextpdfTextRectangle *rect) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRectangle_initWithComItextpdfAwtGeomRectangle_(ComItextpdfTextRectangle *self, ComItextpdfAwtGeomRectangle *rect);
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *new_ComItextpdfTextRectangle_initWithComItextpdfAwtGeomRectangle_(ComItextpdfAwtGeomRectangle *rect) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextRectangle)
 
 #endif // _ComItextpdfTextRectangle_H_

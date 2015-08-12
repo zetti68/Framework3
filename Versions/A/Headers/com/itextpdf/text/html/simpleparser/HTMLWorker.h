@@ -6,10 +6,12 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserHTMLWorker_H_
 #define _ComItextpdfTextHtmlSimpleparserHTMLWorker_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/DocListener.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextHtmlSimpleparserCellWrapper;
-@class ComItextpdfTextHtmlSimpleparserChainedProperties;
-@class ComItextpdfTextHtmlSimpleparserElementFactory;
 @class ComItextpdfTextHtmlSimpleparserStyleSheet;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextList;
@@ -21,32 +23,20 @@
 @class JavaUtilHashMap;
 @class JavaUtilStack;
 @protocol ComItextpdfTextElement;
-@protocol ComItextpdfTextLogLogger;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/DocListener.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
 
 @interface ComItextpdfTextHtmlSimpleparserHTMLWorker : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler, ComItextpdfTextDocListener > {
  @public
   id<ComItextpdfTextDocListener> document_;
   id<JavaUtilMap> tags_;
-  ComItextpdfTextHtmlSimpleparserStyleSheet *style_;
   JavaUtilStack *stack_;
   ComItextpdfTextParagraph *currentParagraph_;
-  ComItextpdfTextHtmlSimpleparserChainedProperties *chain_;
-  id<JavaUtilMap> providers_;
-  ComItextpdfTextHtmlSimpleparserElementFactory *factory_;
-  JavaUtilStack *tableState_;
-  jboolean pendingTR_;
-  jboolean pendingTD_;
-  jboolean pendingLI_;
-  jboolean insidePRE_;
   jboolean skipText_;
   id<JavaUtilList> objectList_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextDocListener:(id<ComItextpdfTextDocListener>)document;
 
@@ -54,88 +44,51 @@
                                    withJavaUtilMap:(id<JavaUtilMap>)tags
      withComItextpdfTextHtmlSimpleparserStyleSheet:(ComItextpdfTextHtmlSimpleparserStyleSheet *)style;
 
-- (void)setSupportedTagsWithJavaUtilMap:(id<JavaUtilMap>)tags;
-
-- (void)setStyleSheetWithComItextpdfTextHtmlSimpleparserStyleSheet:(ComItextpdfTextHtmlSimpleparserStyleSheet *)style;
-
-- (void)parseWithJavaIoReader:(JavaIoReader *)reader;
-
-- (void)startDocument;
-
-- (void)startElementWithNSString:(NSString *)tag
-                 withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)textWithNSString:(NSString *)content;
-
-- (void)endElementWithNSString:(NSString *)tag;
-
-- (void)endDocument;
-
-- (void)newLine OBJC_METHOD_FAMILY_NONE;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 - (void)carriageReturn;
 
-- (void)flushContent;
+- (void)close;
 
-- (void)pushToStackWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
-
-- (void)updateChainWithNSString:(NSString *)tag
-                withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)updateChainWithNSString:(NSString *)tag;
-
-- (void)setProvidersWithJavaUtilMap:(id<JavaUtilMap>)providers;
+- (ComItextpdfTextHtmlSimpleparserCellWrapper *)createCellWithNSString:(NSString *)tag;
 
 - (ComItextpdfTextChunk *)createChunkWithNSString:(NSString *)content;
 
-- (ComItextpdfTextParagraph *)createParagraph;
+- (ComItextpdfTextImage *)createImageWithJavaUtilMap:(id<JavaUtilMap>)attrs;
+
+- (ComItextpdfTextPdfDrawLineSeparator *)createLineSeparatorWithJavaUtilMap:(id<JavaUtilMap>)attrs;
 
 - (ComItextpdfTextList *)createListWithNSString:(NSString *)tag;
 
 - (ComItextpdfTextListItem *)createListItem;
 
-- (ComItextpdfTextPdfDrawLineSeparator *)createLineSeparatorWithJavaUtilMap:(id<JavaUtilMap>)attrs;
+- (ComItextpdfTextParagraph *)createParagraph;
 
-- (ComItextpdfTextImage *)createImageWithJavaUtilMap:(id<JavaUtilMap>)attrs;
+- (void)endDocument;
 
-- (ComItextpdfTextHtmlSimpleparserCellWrapper *)createCellWithNSString:(NSString *)tag;
+- (void)endElementWithNSString:(NSString *)tag;
 
-- (void)processLink;
+- (void)flushContent;
 
-- (void)processList;
-
-- (void)processListItem;
-
-- (void)processImageWithComItextpdfTextImage:(ComItextpdfTextImage *)img
-                             withJavaUtilMap:(id<JavaUtilMap>)attrs;
-
-- (void)processTable;
-
-- (void)processRow;
-
-- (void)pushTableState;
-
-- (void)popTableState;
-
-- (jboolean)isPendingTR;
-
-- (void)setPendingTRWithBoolean:(jboolean)pendingTR;
-
-- (jboolean)isPendingTD;
-
-- (void)setPendingTDWithBoolean:(jboolean)pendingTD;
-
-- (jboolean)isPendingLI;
-
-- (void)setPendingLIWithBoolean:(jboolean)pendingLI;
+- (id<JavaUtilMap>)getInterfaceProps;
 
 - (jboolean)isInsidePRE;
 
-- (void)setInsidePREWithBoolean:(jboolean)insidePRE;
+- (jboolean)isPendingLI;
+
+- (jboolean)isPendingTD;
+
+- (jboolean)isPendingTR;
 
 - (jboolean)isSkipText;
 
-- (void)setSkipTextWithBoolean:(jboolean)skipText;
+- (void)newLine OBJC_METHOD_FAMILY_NONE;
+
+- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
+
+- (void)open;
+
+- (void)parseWithJavaIoReader:(JavaIoReader *)reader;
 
 + (id<JavaUtilList>)parseToListWithJavaIoReader:(JavaIoReader *)reader
   withComItextpdfTextHtmlSimpleparserStyleSheet:(ComItextpdfTextHtmlSimpleparserStyleSheet *)style;
@@ -149,15 +102,30 @@
                                 withJavaUtilMap:(id<JavaUtilMap>)tags
                             withJavaUtilHashMap:(JavaUtilHashMap *)providers;
 
-- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
+- (void)popTableState;
 
-- (void)close;
+- (void)processImageWithComItextpdfTextImage:(ComItextpdfTextImage *)img
+                             withJavaUtilMap:(id<JavaUtilMap>)attrs;
 
-- (jboolean)newPage OBJC_METHOD_FAMILY_NONE;
+- (void)processLink;
 
-- (void)open;
+- (void)processList;
+
+- (void)processListItem;
+
+- (void)processRow;
+
+- (void)processTable;
+
+- (void)pushTableState;
+
+- (void)pushToStackWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 - (void)resetPageCount;
+
+- (void)setInsidePREWithBoolean:(jboolean)insidePRE;
+
+- (void)setInterfacePropsWithJavaUtilHashMap:(JavaUtilHashMap *)providers;
 
 - (jboolean)setMarginMirroringWithBoolean:(jboolean)marginMirroring;
 
@@ -172,31 +140,41 @@
 
 - (jboolean)setPageSizeWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
 
-- (void)setInterfacePropsWithJavaUtilHashMap:(JavaUtilHashMap *)providers;
+- (void)setPendingLIWithBoolean:(jboolean)pendingLI;
 
-- (id<JavaUtilMap>)getInterfaceProps;
+- (void)setPendingTDWithBoolean:(jboolean)pendingTD;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserHTMLWorker *)other;
+- (void)setPendingTRWithBoolean:(jboolean)pendingTR;
+
+- (void)setProvidersWithJavaUtilMap:(id<JavaUtilMap>)providers;
+
+- (void)setSkipTextWithBoolean:(jboolean)skipText;
+
+- (void)setStyleSheetWithComItextpdfTextHtmlSimpleparserStyleSheet:(ComItextpdfTextHtmlSimpleparserStyleSheet *)style;
+
+- (void)setSupportedTagsWithJavaUtilMap:(id<JavaUtilMap>)tags;
+
+- (void)startDocument;
+
+- (void)startElementWithNSString:(NSString *)tag
+                 withJavaUtilMap:(id<JavaUtilMap>)attrs;
+
+- (void)textWithNSString:(NSString *)content;
+
+- (void)updateChainWithNSString:(NSString *)tag;
+
+- (void)updateChainWithNSString:(NSString *)tag
+                withJavaUtilMap:(id<JavaUtilMap>)attrs;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextHtmlSimpleparserHTMLWorker_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextHtmlSimpleparserHTMLWorker)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, document_, id<ComItextpdfTextDocListener>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, tags_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, style_, ComItextpdfTextHtmlSimpleparserStyleSheet *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, stack_, JavaUtilStack *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, currentParagraph_, ComItextpdfTextParagraph *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, chain_, ComItextpdfTextHtmlSimpleparserChainedProperties *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, providers_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, factory_, ComItextpdfTextHtmlSimpleparserElementFactory *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, tableState_, JavaUtilStack *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, objectList_, id<JavaUtilList>)
-
-FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextHtmlSimpleparserHTMLWorker_LOGGER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, LOGGER_, id<ComItextpdfTextLogLogger>)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, LOGGER_, id<ComItextpdfTextLogLogger>)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlSimpleparserHTMLWorker_IMG_PROVIDER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, IMG_PROVIDER_, NSString *)
@@ -215,5 +193,21 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, FONT_PROVI
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlSimpleparserHTMLWorker_LINK_PROVIDER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlSimpleparserHTMLWorker, LINK_PROVIDER_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserHTMLWorker_initWithComItextpdfTextDocListener_(ComItextpdfTextHtmlSimpleparserHTMLWorker *self, id<ComItextpdfTextDocListener> document);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserHTMLWorker *new_ComItextpdfTextHtmlSimpleparserHTMLWorker_initWithComItextpdfTextDocListener_(id<ComItextpdfTextDocListener> document) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserHTMLWorker_initWithComItextpdfTextDocListener_withJavaUtilMap_withComItextpdfTextHtmlSimpleparserStyleSheet_(ComItextpdfTextHtmlSimpleparserHTMLWorker *self, id<ComItextpdfTextDocListener> document, id<JavaUtilMap> tags, ComItextpdfTextHtmlSimpleparserStyleSheet *style);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserHTMLWorker *new_ComItextpdfTextHtmlSimpleparserHTMLWorker_initWithComItextpdfTextDocListener_withJavaUtilMap_withComItextpdfTextHtmlSimpleparserStyleSheet_(id<ComItextpdfTextDocListener> document, id<JavaUtilMap> tags, ComItextpdfTextHtmlSimpleparserStyleSheet *style) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextHtmlSimpleparserHTMLWorker_parseToListWithJavaIoReader_withComItextpdfTextHtmlSimpleparserStyleSheet_(JavaIoReader *reader, ComItextpdfTextHtmlSimpleparserStyleSheet *style);
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextHtmlSimpleparserHTMLWorker_parseToListWithJavaIoReader_withComItextpdfTextHtmlSimpleparserStyleSheet_withJavaUtilHashMap_(JavaIoReader *reader, ComItextpdfTextHtmlSimpleparserStyleSheet *style, JavaUtilHashMap *providers);
+
+FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextHtmlSimpleparserHTMLWorker_parseToListWithJavaIoReader_withComItextpdfTextHtmlSimpleparserStyleSheet_withJavaUtilMap_withJavaUtilHashMap_(JavaIoReader *reader, ComItextpdfTextHtmlSimpleparserStyleSheet *style, id<JavaUtilMap> tags, JavaUtilHashMap *providers);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserHTMLWorker)
 
 #endif // _ComItextpdfTextHtmlSimpleparserHTMLWorker_H_

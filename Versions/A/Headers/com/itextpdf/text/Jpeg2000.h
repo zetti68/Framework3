@@ -6,27 +6,25 @@
 #ifndef _ComItextpdfTextJpeg2000_H_
 #define _ComItextpdfTextJpeg2000_H_
 
-@class ComItextpdfTextJpeg2000_ColorSpecBox;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Image.h"
+#include "java/util/ArrayList.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaNetURL;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Image.h"
-#include "java/io/IOException.h"
-#include "java/util/ArrayList.h"
-
-#define ComItextpdfTextJpeg2000_JP2_BPCC 1651532643
-#define ComItextpdfTextJpeg2000_JP2_COLR 1668246642
-#define ComItextpdfTextJpeg2000_JP2_DBTL 1685348972
-#define ComItextpdfTextJpeg2000_JP2_FTYP 1718909296
-#define ComItextpdfTextJpeg2000_JP2_IHDR 1768449138
 #define ComItextpdfTextJpeg2000_JP2_JP 1783636000
-#define ComItextpdfTextJpeg2000_JP2_JP2 1785737760
-#define ComItextpdfTextJpeg2000_JP2_JP2C 1785737827
-#define ComItextpdfTextJpeg2000_JP2_JP2H 1785737832
-#define ComItextpdfTextJpeg2000_JP2_URL 1970433056
+#define ComItextpdfTextJpeg2000_JP2_IHDR 1768449138
 #define ComItextpdfTextJpeg2000_JPIP_JPIP 1785751920
+#define ComItextpdfTextJpeg2000_JP2_FTYP 1718909296
+#define ComItextpdfTextJpeg2000_JP2_JP2H 1785737832
+#define ComItextpdfTextJpeg2000_JP2_COLR 1668246642
+#define ComItextpdfTextJpeg2000_JP2_JP2C 1785737827
+#define ComItextpdfTextJpeg2000_JP2_URL 1970433056
+#define ComItextpdfTextJpeg2000_JP2_DBTL 1685348972
+#define ComItextpdfTextJpeg2000_JP2_BPCC 1651532643
+#define ComItextpdfTextJpeg2000_JP2_JP2 1785737760
 
 @interface ComItextpdfTextJpeg2000 : ComItextpdfTextImage {
  @public
@@ -39,9 +37,7 @@
   IOSByteArray *bpcBoxData_;
 }
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)img;
 
@@ -49,27 +45,25 @@
                         withFloat:(jfloat)width
                         withFloat:(jfloat)height;
 
-- (jint)cio_readWithInt:(jint)n;
-
-- (void)jp2_read_boxhdr;
-
-- (void)processParameters;
-
-- (ComItextpdfTextJpeg2000_ColorSpecBox *)jp2_read_colr;
-
-- (jint)getNumOfComps;
+- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
 
 - (IOSByteArray *)getBpcBoxData;
 
 - (JavaUtilArrayList *)getColorSpecBoxes;
 
+- (jint)getNumOfComps;
+
 - (jboolean)isJp2;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextJpeg2000 *)other;
+- (void)jp2_read_boxhdr;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextJpeg2000_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextJpeg2000)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextJpeg2000, inp_, JavaIoInputStream *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextJpeg2000, colorSpecBoxes_, JavaUtilArrayList *)
@@ -97,44 +91,53 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextJpeg2000, JP2_BPCC, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextJpeg2000, JP2_JP2, jint)
 
-@interface ComItextpdfTextJpeg2000_ColorSpecBox : JavaUtilArrayList {
- @public
-  IOSByteArray *colorProfile_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextJpeg2000_initWithComItextpdfTextImage_(ComItextpdfTextJpeg2000 *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg2000 *new_ComItextpdfTextJpeg2000_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg2000_initWithJavaNetURL_(ComItextpdfTextJpeg2000 *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg2000 *new_ComItextpdfTextJpeg2000_initWithJavaNetURL_(JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg2000_initWithByteArray_(ComItextpdfTextJpeg2000 *self, IOSByteArray *img);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg2000 *new_ComItextpdfTextJpeg2000_initWithByteArray_(IOSByteArray *img) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextJpeg2000_initWithByteArray_withFloat_withFloat_(ComItextpdfTextJpeg2000 *self, IOSByteArray *img, jfloat width, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfTextJpeg2000 *new_ComItextpdfTextJpeg2000_initWithByteArray_withFloat_withFloat_(IOSByteArray *img, jfloat width, jfloat height) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextJpeg2000)
+
+@interface ComItextpdfTextJpeg2000_ColorSpecBox : JavaUtilArrayList
+
+#pragma mark Public
+
+- (instancetype)init;
+
+- (jint)getApprox;
+
+- (IOSByteArray *)getColorProfile;
+
+- (jint)getEnumCs;
 
 - (jint)getMeth;
 
 - (jint)getPrec;
 
-- (jint)getApprox;
-
-- (jint)getEnumCs;
-
-- (IOSByteArray *)getColorProfile;
+#pragma mark Package-Private
 
 - (void)setColorProfileWithByteArray:(IOSByteArray *)colorProfile;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextJpeg2000_ColorSpecBox *)other;
-
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextJpeg2000_ColorSpecBox_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextJpeg2000_ColorSpecBox)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextJpeg2000_ColorSpecBox, colorProfile_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextJpeg2000_ColorSpecBox_init(ComItextpdfTextJpeg2000_ColorSpecBox *self);
 
-@interface ComItextpdfTextJpeg2000_ZeroBoxSizeException : JavaIoIOException {
-}
+FOUNDATION_EXPORT ComItextpdfTextJpeg2000_ColorSpecBox *new_ComItextpdfTextJpeg2000_ColorSpecBox_init() NS_RETURNS_RETAINED;
 
-- (instancetype)initWithComItextpdfTextJpeg2000:(ComItextpdfTextJpeg2000 *)outer$;
-
-- (instancetype)initWithComItextpdfTextJpeg2000:(ComItextpdfTextJpeg2000 *)outer$
-                                   withNSString:(NSString *)s;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextJpeg2000_ZeroBoxSizeException_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextJpeg2000_ColorSpecBox)
 
 #endif // _ComItextpdfTextJpeg2000_H_

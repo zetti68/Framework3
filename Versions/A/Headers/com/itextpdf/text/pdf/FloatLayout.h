@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfFloatLayout_H_
 #define _ComItextpdfTextPdfFloatLayout_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfColumnText;
 @class ComItextpdfTextPdfPdfContentByte;
 @protocol JavaUtilList;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfFloatLayout : NSObject {
  @public
@@ -27,35 +27,38 @@
   jboolean useAscender_;
 }
 
-- (jfloat)getYLine;
-
-- (void)setYLineWithFloat:(jfloat)yLine;
-
-- (jfloat)getFilledWidth;
-
-- (void)setFilledWidthWithFloat:(jfloat)filledWidth;
+#pragma mark Public
 
 - (instancetype)initWithJavaUtilList:(id<JavaUtilList>)elements
                          withBoolean:(jboolean)useAscender;
+
+- (jfloat)getFilledWidth;
+
+- (jfloat)getYLine;
+
+- (jint)layoutWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
+                                       withBoolean:(jboolean)simulate;
+
+- (void)setFilledWidthWithFloat:(jfloat)filledWidth;
 
 - (void)setSimpleColumnWithFloat:(jfloat)llx
                        withFloat:(jfloat)lly
                        withFloat:(jfloat)urx
                        withFloat:(jfloat)ury;
 
-- (jint)layoutWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
-                                       withBoolean:(jboolean)simulate;
-
-- (jint)floatingLayoutWithJavaUtilList:(id<JavaUtilList>)floatingElements
-                           withBoolean:(jboolean)simulate;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFloatLayout *)other;
+- (void)setYLineWithFloat:(jfloat)yLine;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFloatLayout_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFloatLayout)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFloatLayout, compositeColumn_, ComItextpdfTextPdfColumnText *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFloatLayout, content_, id<JavaUtilList>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFloatLayout_initWithJavaUtilList_withBoolean_(ComItextpdfTextPdfFloatLayout *self, id<JavaUtilList> elements, jboolean useAscender);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFloatLayout *new_ComItextpdfTextPdfFloatLayout_initWithJavaUtilList_withBoolean_(id<JavaUtilList> elements, jboolean useAscender) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFloatLayout)
 
 #endif // _ComItextpdfTextPdfFloatLayout_H_

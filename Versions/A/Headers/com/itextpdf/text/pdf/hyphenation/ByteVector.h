@@ -6,55 +6,59 @@
 #ifndef _ComItextpdfTextPdfHyphenationByteVector_H_
 #define _ComItextpdfTextPdfHyphenationByteVector_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/Serializable.h"
 
-#define ComItextpdfTextPdfHyphenationByteVector_DEFAULT_BLOCK_SIZE 2048
-#define ComItextpdfTextPdfHyphenationByteVector_serialVersionUID -1096301185375029343LL
+@class IOSByteArray;
 
-@interface ComItextpdfTextPdfHyphenationByteVector : NSObject < JavaIoSerializable > {
- @public
-  jint blockSize_;
-  IOSByteArray *array_;
-  jint n_;
-}
+@interface ComItextpdfTextPdfHyphenationByteVector : NSObject < JavaIoSerializable >
+
+#pragma mark Public
 
 - (instancetype)init;
-
-- (instancetype)initWithInt:(jint)capacity;
 
 - (instancetype)initWithByteArray:(IOSByteArray *)a;
 
 - (instancetype)initWithByteArray:(IOSByteArray *)a
                           withInt:(jint)capacity;
 
+- (instancetype)initWithInt:(jint)capacity;
+
+- (jint)alloc__WithInt:(jint)size OBJC_METHOD_FAMILY_NONE;
+
+- (jint)capacity;
+
+- (jbyte)getWithInt:(jint)index;
+
 - (IOSByteArray *)getArray;
 
 - (jint)length;
 
-- (jint)capacity;
-
 - (void)putWithInt:(jint)index
           withByte:(jbyte)val;
 
-- (jbyte)getWithInt:(jint)index;
-
-- (jint)alloc__WithInt:(jint)size OBJC_METHOD_FAMILY_NONE;
-
 - (void)trimToSize;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfHyphenationByteVector *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationByteVector_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationByteVector)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfHyphenationByteVector, array_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationByteVector_init(ComItextpdfTextPdfHyphenationByteVector *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationByteVector, serialVersionUID, jlong)
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationByteVector *new_ComItextpdfTextPdfHyphenationByteVector_init() NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationByteVector, DEFAULT_BLOCK_SIZE, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationByteVector_initWithInt_(ComItextpdfTextPdfHyphenationByteVector *self, jint capacity);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationByteVector *new_ComItextpdfTextPdfHyphenationByteVector_initWithInt_(jint capacity) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationByteVector_initWithByteArray_(ComItextpdfTextPdfHyphenationByteVector *self, IOSByteArray *a);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationByteVector *new_ComItextpdfTextPdfHyphenationByteVector_initWithByteArray_(IOSByteArray *a) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationByteVector_initWithByteArray_withInt_(ComItextpdfTextPdfHyphenationByteVector *self, IOSByteArray *a, jint capacity);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationByteVector *new_ComItextpdfTextPdfHyphenationByteVector_initWithByteArray_withInt_(IOSByteArray *a, jint capacity) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationByteVector)
 
 #endif // _ComItextpdfTextPdfHyphenationByteVector_H_

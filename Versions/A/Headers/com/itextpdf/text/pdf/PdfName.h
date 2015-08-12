@@ -6,40 +6,36 @@
 #ifndef _ComItextpdfTextPdfPdfName_H_
 #define _ComItextpdfTextPdfPdfName_H_
 
-@class IOSByteArray;
-@protocol JavaUtilMap;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfObject.h"
 #include "java/lang/Comparable.h"
 
-@interface ComItextpdfTextPdfPdfName : ComItextpdfTextPdfPdfObject < JavaLangComparable > {
- @public
-  jint hash__;
-}
+@class IOSByteArray;
+@protocol JavaUtilMap;
+
+@interface ComItextpdfTextPdfPdfName : ComItextpdfTextPdfPdfObject < JavaLangComparable >
+
+#pragma mark Public
+
+- (instancetype)initWithByteArray:(IOSByteArray *)bytes;
 
 - (instancetype)initWithNSString:(NSString *)name;
 
 - (instancetype)initWithNSString:(NSString *)name
                      withBoolean:(jboolean)lengthCheck;
 
-- (instancetype)initWithByteArray:(IOSByteArray *)bytes;
-
 - (jint)compareToWithId:(ComItextpdfTextPdfPdfName *)name;
+
++ (NSString *)decodeNameWithNSString:(NSString *)name;
+
++ (IOSByteArray *)encodeNameWithNSString:(NSString *)name;
 
 - (jboolean)isEqual:(id)obj;
 
 - (NSUInteger)hash;
 
-+ (IOSByteArray *)encodeNameWithNSString:(NSString *)name;
-
-+ (NSString *)decodeNameWithNSString:(NSString *)name;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfName *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfName_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfName)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfPdfName__3D_;
@@ -2352,5 +2348,23 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfName, ZOOM_, ComItextpdfTextPdfP
 FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextPdfPdfName_staticNames_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfName, staticNames_, id<JavaUtilMap>)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfName, staticNames_, id<JavaUtilMap>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfName_initWithNSString_(ComItextpdfTextPdfPdfName *self, NSString *name);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *new_ComItextpdfTextPdfPdfName_initWithNSString_(NSString *name) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfName_initWithNSString_withBoolean_(ComItextpdfTextPdfPdfName *self, NSString *name, jboolean lengthCheck);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *new_ComItextpdfTextPdfPdfName_initWithNSString_withBoolean_(NSString *name, jboolean lengthCheck) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfName_initWithByteArray_(ComItextpdfTextPdfPdfName *self, IOSByteArray *bytes);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *new_ComItextpdfTextPdfPdfName_initWithByteArray_(IOSByteArray *bytes) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfName_encodeNameWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfName_decodeNameWithNSString_(NSString *name);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfName)
 
 #endif // _ComItextpdfTextPdfPdfName_H_

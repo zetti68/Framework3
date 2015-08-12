@@ -6,33 +6,28 @@
 #ifndef _ComItextpdfTextPdfMappedRandomAccessFile_H_
 #define _ComItextpdfTextPdfMappedRandomAccessFile_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
-@class IOSObjectArray;
-@class JavaLangBoolean;
 @class JavaNioByteBuffer;
 @class JavaNioChannelsFileChannel;
-@class JavaNioChannelsFileChannel_MapMode;
 
-#import "JreEmulation.h"
-#include "java/security/PrivilegedAction.h"
+@interface ComItextpdfTextPdfMappedRandomAccessFile : NSObject
 
-#define ComItextpdfTextPdfMappedRandomAccessFile_BUFSIZE 1073741824
-
-@interface ComItextpdfTextPdfMappedRandomAccessFile : NSObject {
- @public
-  JavaNioChannelsFileChannel *channel_;
-  IOSObjectArray *mappedBuffers_;
-  jlong size_;
-  jlong pos_;
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)filename
                     withNSString:(NSString *)mode;
 
-- (void)init__WithJavaNioChannelsFileChannel:(JavaNioChannelsFileChannel *)channel
-      withJavaNioChannelsFileChannel_MapMode:(JavaNioChannelsFileChannel_MapMode *)mapMode OBJC_METHOD_FAMILY_NONE;
++ (jboolean)cleanWithJavaNioByteBuffer:(JavaNioByteBuffer *)buffer;
+
+- (void)close;
 
 - (JavaNioChannelsFileChannel *)getChannel;
+
+- (jlong)getFilePointer;
+
+- (jlong)length;
 
 - (jint)read;
 
@@ -40,42 +35,22 @@
                   withInt:(jint)off
                   withInt:(jint)len;
 
-- (jlong)getFilePointer;
-
 - (void)seekWithLong:(jlong)pos;
 
-- (jlong)length;
-
-- (void)close;
+#pragma mark Protected
 
 - (void)dealloc;
 
-+ (jboolean)cleanWithJavaNioByteBuffer:(JavaNioByteBuffer *)buffer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfMappedRandomAccessFile *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfMappedRandomAccessFile_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfMappedRandomAccessFile)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfMappedRandomAccessFile, channel_, JavaNioChannelsFileChannel *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfMappedRandomAccessFile, mappedBuffers_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfMappedRandomAccessFile_initWithNSString_withNSString_(ComItextpdfTextPdfMappedRandomAccessFile *self, NSString *filename, NSString *mode);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfMappedRandomAccessFile, BUFSIZE, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfMappedRandomAccessFile *new_ComItextpdfTextPdfMappedRandomAccessFile_initWithNSString_withNSString_(NSString *filename, NSString *mode) NS_RETURNS_RETAINED;
 
-@interface ComItextpdfTextPdfMappedRandomAccessFile_$1 : NSObject < JavaSecurityPrivilegedAction > {
- @public
-  JavaNioByteBuffer *val$buffer_;
-}
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfMappedRandomAccessFile_cleanWithJavaNioByteBuffer_(JavaNioByteBuffer *buffer);
 
-- (JavaLangBoolean *)run;
-
-- (instancetype)initWithJavaNioByteBuffer:(JavaNioByteBuffer *)capture$0;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfMappedRandomAccessFile_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfMappedRandomAccessFile_$1, val$buffer_, JavaNioByteBuffer *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfMappedRandomAccessFile)
 
 #endif // _ComItextpdfTextPdfMappedRandomAccessFile_H_

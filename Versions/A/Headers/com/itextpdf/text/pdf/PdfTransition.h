@@ -6,32 +6,34 @@
 #ifndef _ComItextpdfTextPdfPdfTransition_H_
 #define _ComItextpdfTextPdfPdfTransition_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfPdfTransition_BLINDH 6
-#define ComItextpdfTextPdfPdfTransition_BLINDV 5
-#define ComItextpdfTextPdfPdfTransition_BTWIPE 11
-#define ComItextpdfTextPdfPdfTransition_DGLITTER 16
-#define ComItextpdfTextPdfPdfTransition_DISSOLVE 13
-#define ComItextpdfTextPdfPdfTransition_INBOX 7
-#define ComItextpdfTextPdfPdfTransition_LRGLITTER 14
-#define ComItextpdfTextPdfPdfTransition_LRWIPE 9
-#define ComItextpdfTextPdfPdfTransition_OUTBOX 8
-#define ComItextpdfTextPdfPdfTransition_RLWIPE 10
-#define ComItextpdfTextPdfPdfTransition_SPLITHIN 4
+#define ComItextpdfTextPdfPdfTransition_SPLITVOUT 1
 #define ComItextpdfTextPdfPdfTransition_SPLITHOUT 2
 #define ComItextpdfTextPdfPdfTransition_SPLITVIN 3
-#define ComItextpdfTextPdfPdfTransition_SPLITVOUT 1
-#define ComItextpdfTextPdfPdfTransition_TBGLITTER 15
+#define ComItextpdfTextPdfPdfTransition_SPLITHIN 4
+#define ComItextpdfTextPdfPdfTransition_BLINDV 5
+#define ComItextpdfTextPdfPdfTransition_BLINDH 6
+#define ComItextpdfTextPdfPdfTransition_INBOX 7
+#define ComItextpdfTextPdfPdfTransition_OUTBOX 8
+#define ComItextpdfTextPdfPdfTransition_LRWIPE 9
+#define ComItextpdfTextPdfPdfTransition_RLWIPE 10
+#define ComItextpdfTextPdfPdfTransition_BTWIPE 11
 #define ComItextpdfTextPdfPdfTransition_TBWIPE 12
+#define ComItextpdfTextPdfPdfTransition_DISSOLVE 13
+#define ComItextpdfTextPdfPdfTransition_LRGLITTER 14
+#define ComItextpdfTextPdfPdfTransition_TBGLITTER 15
+#define ComItextpdfTextPdfPdfTransition_DGLITTER 16
 
 @interface ComItextpdfTextPdfPdfTransition : NSObject {
  @public
   jint duration_;
   jint type_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -42,15 +44,13 @@
 
 - (jint)getDuration;
 
-- (jint)getType;
-
 - (ComItextpdfTextPdfPdfDictionary *)getTransitionDictionary;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfTransition *)other;
+- (jint)getType;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfTransition_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfTransition)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTransition, SPLITVOUT, jint)
 
@@ -83,5 +83,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTransition, LRGLITTER, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTransition, TBGLITTER, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfTransition, DGLITTER, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTransition_init(ComItextpdfTextPdfPdfTransition *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTransition *new_ComItextpdfTextPdfPdfTransition_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTransition_initWithInt_(ComItextpdfTextPdfPdfTransition *self, jint type);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTransition *new_ComItextpdfTextPdfPdfTransition_initWithInt_(jint type) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTransition_initWithInt_withInt_(ComItextpdfTextPdfPdfTransition *self, jint type, jint duration);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTransition *new_ComItextpdfTextPdfPdfTransition_initWithInt_withInt_(jint type, jint duration) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfTransition)
 
 #endif // _ComItextpdfTextPdfPdfTransition_H_

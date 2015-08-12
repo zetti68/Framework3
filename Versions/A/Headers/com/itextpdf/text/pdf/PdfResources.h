@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfResources_H_
 #define _ComItextpdfTextPdfPdfResources_H_
 
-@class ComItextpdfTextPdfPdfName;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfPdfResources : ComItextpdfTextPdfPdfDictionary {
-}
+@class ComItextpdfTextPdfPdfName;
+
+@interface ComItextpdfTextPdfPdfResources : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Package-Private
 
 - (instancetype)init;
 
@@ -21,6 +22,12 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfResources_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfResources)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfResources_init(ComItextpdfTextPdfPdfResources *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfResources *new_ComItextpdfTextPdfPdfResources_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfResources)
 
 #endif // _ComItextpdfTextPdfPdfResources_H_

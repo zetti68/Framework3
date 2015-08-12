@@ -6,44 +6,38 @@
 #ifndef _ComItextpdfTextPdfFontsOtfLanguage_H_
 #define _ComItextpdfTextPdfFontsOtfLanguage_H_
 
-@class IOSObjectArray;
-@protocol JavaUtilList;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfFontsOtfLanguage) {
   ComItextpdfTextPdfFontsOtfLanguage_BENGALI = 0,
-} ComItextpdfTextPdfFontsOtfLanguage;
+};
 
-@interface ComItextpdfTextPdfFontsOtfLanguageEnum : JavaLangEnum < NSCopying > {
- @public
-  id<JavaUtilList> codes_;
-}
+@interface ComItextpdfTextPdfFontsOtfLanguageEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSStringArray:(IOSObjectArray *)codes
-                         withNSString:(NSString *)__name
-                              withInt:(jint)__ordinal;
+#pragma mark Public
 
 - (jboolean)isSupportedWithNSString:(NSString *)languageCode;
+
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfFontsOtfLanguageEnum_values();
 
 + (ComItextpdfTextPdfFontsOtfLanguageEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfLanguageEnum *ComItextpdfTextPdfFontsOtfLanguageEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfLanguageEnum *ComItextpdfTextPdfFontsOtfLanguageEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfFontsOtfLanguageEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfFontsOtfLanguageEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfLanguageEnum *ComItextpdfTextPdfFontsOtfLanguageEnum_values_[];
 
 #define ComItextpdfTextPdfFontsOtfLanguageEnum_BENGALI ComItextpdfTextPdfFontsOtfLanguageEnum_values_[ComItextpdfTextPdfFontsOtfLanguage_BENGALI]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsOtfLanguageEnum, BENGALI, ComItextpdfTextPdfFontsOtfLanguageEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfFontsOtfLanguageEnum, BENGALI)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsOtfLanguageEnum, codes_, id<JavaUtilList>)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfLanguageEnum)
 
 #endif // _ComItextpdfTextPdfFontsOtfLanguage_H_

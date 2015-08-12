@@ -6,11 +6,12 @@
 #ifndef _ComItextpdfTextPdfPdfNull_H_
 #define _ComItextpdfTextPdfPdfNull_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfObject.h"
 
-@interface ComItextpdfTextPdfPdfNull : ComItextpdfTextPdfPdfObject {
-}
+@interface ComItextpdfTextPdfPdfNull : ComItextpdfTextPdfPdfObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -18,13 +19,15 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfNull_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfNull)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfNull *ComItextpdfTextPdfPdfNull_PDFNULL_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfNull, PDFNULL_, ComItextpdfTextPdfPdfNull *)
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfNull_CONTENT_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfNull, CONTENT_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNull_init(ComItextpdfTextPdfPdfNull *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNull *new_ComItextpdfTextPdfPdfNull_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfNull)
 
 #endif // _ComItextpdfTextPdfPdfNull_H_

@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextPdfRadioCheckField_H_
 #define _ComItextpdfTextPdfRadioCheckField_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/BaseField.h"
+
 @class ComItextpdfTextPdfPdfAppearance;
 @class ComItextpdfTextPdfPdfFormField;
 @class ComItextpdfTextPdfPdfWriter;
 @class ComItextpdfTextRectangle;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/BaseField.h"
 
 #define ComItextpdfTextPdfRadioCheckField_TYPE_CHECK 1
 #define ComItextpdfTextPdfRadioCheckField_TYPE_CIRCLE 2
@@ -25,49 +25,46 @@
 @interface ComItextpdfTextPdfRadioCheckField : ComItextpdfTextPdfBaseField {
  @public
   jint checkType_;
-  NSString *onValue_;
-  jboolean checked_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                        withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)box
                                        withNSString:(NSString *)fieldName
                                        withNSString:(NSString *)onValue;
 
-- (jint)getCheckType;
-
-- (void)setCheckTypeWithInt:(jint)checkType;
-
-- (NSString *)getOnValue;
-
-- (void)setOnValueWithNSString:(NSString *)onValue;
-
-- (jboolean)isChecked;
-
-- (void)setCheckedWithBoolean:(jboolean)checked;
-
 - (ComItextpdfTextPdfPdfAppearance *)getAppearanceWithBoolean:(jboolean)isRadio
                                                   withBoolean:(jboolean)on;
 
 - (ComItextpdfTextPdfPdfAppearance *)getAppearanceRadioCircleWithBoolean:(jboolean)on;
 
-- (ComItextpdfTextPdfPdfFormField *)getRadioGroupWithBoolean:(jboolean)noToggleToOff
-                                                 withBoolean:(jboolean)radiosInUnison;
+- (ComItextpdfTextPdfPdfFormField *)getCheckField;
+
+- (jint)getCheckType;
+
+- (NSString *)getOnValue;
 
 - (ComItextpdfTextPdfPdfFormField *)getRadioField;
 
-- (ComItextpdfTextPdfPdfFormField *)getCheckField;
+- (ComItextpdfTextPdfPdfFormField *)getRadioGroupWithBoolean:(jboolean)noToggleToOff
+                                                 withBoolean:(jboolean)radiosInUnison;
+
+- (jboolean)isChecked;
+
+- (void)setCheckedWithBoolean:(jboolean)checked;
+
+- (void)setCheckTypeWithInt:(jint)checkType;
+
+- (void)setOnValueWithNSString:(NSString *)onValue;
+
+#pragma mark Protected
 
 - (ComItextpdfTextPdfPdfFormField *)getFieldWithBoolean:(jboolean)isRadio;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfRadioCheckField *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfRadioCheckField_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfRadioCheckField)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfRadioCheckField, onValue_, NSString *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfRadioCheckField, TYPE_CHECK, jint)
 
@@ -84,5 +81,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfRadioCheckField, TYPE_STAR, jint)
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfRadioCheckField_typeChars_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfRadioCheckField, typeChars_, IOSObjectArray *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfRadioCheckField, typeChars_, IOSObjectArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRadioCheckField_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withNSString_(ComItextpdfTextPdfRadioCheckField *self, ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *box, NSString *fieldName, NSString *onValue);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRadioCheckField *new_ComItextpdfTextPdfRadioCheckField_initWithComItextpdfTextPdfPdfWriter_withComItextpdfTextRectangle_withNSString_withNSString_(ComItextpdfTextPdfPdfWriter *writer, ComItextpdfTextRectangle *box, NSString *fieldName, NSString *onValue) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfRadioCheckField)
 
 #endif // _ComItextpdfTextPdfRadioCheckField_H_

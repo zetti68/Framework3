@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextApiWriterOperation_H_
 #define _ComItextpdfTextApiWriterOperation_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfPdfWriter;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextApiWriterOperation < NSObject, JavaObject >
 
@@ -18,6 +18,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextApiWriterOperation_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextApiWriterOperation)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextApiWriterOperation)
 
 #endif // _ComItextpdfTextApiWriterOperation_H_

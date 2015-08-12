@@ -6,46 +6,17 @@
 #ifndef _ComItextpdfTextPdfCodecCCITTG4Encoder_H_
 #define _ComItextpdfTextPdfCodecCCITTG4Encoder_H_
 
-@class ComItextpdfTextPdfByteBuffer;
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
-@class IOSIntArray;
-@class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCodecCCITTG4Encoder : NSObject
 
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_CODE 1
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_EOL 1
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_G3CODE_EOF -3
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_G3CODE_EOL -1
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_G3CODE_INCOMP -4
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_G3CODE_INVALID -2
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_LENGTH 0
-#define ComItextpdfTextPdfCodecCCITTG4Encoder_RUNLEN 2
-
-@interface ComItextpdfTextPdfCodecCCITTG4Encoder : NSObject {
- @public
-  jint rowbytes_;
-  jint rowpixels_;
-  jint bit_;
-  jint data_;
-  IOSByteArray *refline_;
-  ComItextpdfTextPdfByteBuffer *outBuf_;
-  IOSByteArray *dataBp_;
-  jint offsetData_;
-  jint sizeData_;
-  IOSObjectArray *TIFFFaxWhiteCodes_;
-  IOSObjectArray *TIFFFaxBlackCodes_;
-  IOSIntArray *horizcode_;
-  IOSIntArray *passcode_;
-  IOSObjectArray *vcodes_;
-  IOSIntArray *msbmask_;
-}
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)width;
 
-- (void)fax4EncodeWithByteArray:(IOSByteArray *)data
-                        withInt:(jint)offset
-                        withInt:(jint)size;
+- (IOSByteArray *)close;
 
 + (IOSByteArray *)compressWithByteArray:(IOSByteArray *)data
                                 withInt:(jint)width
@@ -54,85 +25,20 @@
 - (void)fax4EncodeWithByteArray:(IOSByteArray *)data
                         withInt:(jint)height;
 
-- (void)putcodeWithIntArray:(IOSIntArray *)table;
-
-- (void)putspanWithInt:(jint)span
-         withIntArray2:(IOSObjectArray *)tab;
-
-- (void)putBitsWithInt:(jint)bits
-               withInt:(jint)length;
-
-- (void)Fax3Encode2DRow;
-
-- (void)Fax4PostEncode;
-
-- (IOSByteArray *)close;
-
-- (jint)pixelWithByteArray:(IOSByteArray *)data
-                   withInt:(jint)offset
-                   withInt:(jint)bit;
-
-+ (jint)find1spanWithByteArray:(IOSByteArray *)bp
-                       withInt:(jint)offset
-                       withInt:(jint)bs
-                       withInt:(jint)be;
-
-+ (jint)find0spanWithByteArray:(IOSByteArray *)bp
-                       withInt:(jint)offset
-                       withInt:(jint)bs
-                       withInt:(jint)be;
-
-+ (jint)finddiffWithByteArray:(IOSByteArray *)bp
-                      withInt:(jint)offset
-                      withInt:(jint)bs
-                      withInt:(jint)be
-                      withInt:(jint)color;
-
-+ (jint)finddiff2WithByteArray:(IOSByteArray *)bp
-                       withInt:(jint)offset
-                       withInt:(jint)bs
-                       withInt:(jint)be
-                       withInt:(jint)color;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecCCITTG4Encoder *)other;
+- (void)fax4EncodeWithByteArray:(IOSByteArray *)data
+                        withInt:(jint)offset
+                        withInt:(jint)size;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecCCITTG4Encoder_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecCCITTG4Encoder)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, refline_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, outBuf_, ComItextpdfTextPdfByteBuffer *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, dataBp_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, TIFFFaxWhiteCodes_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, TIFFFaxBlackCodes_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, horizcode_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, passcode_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, vcodes_, IOSObjectArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, msbmask_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecCCITTG4Encoder_initWithInt_(ComItextpdfTextPdfCodecCCITTG4Encoder *self, jint width);
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecCCITTG4Encoder_zeroruns_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, zeroruns_, IOSByteArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, zeroruns_, IOSByteArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecCCITTG4Encoder *new_ComItextpdfTextPdfCodecCCITTG4Encoder_initWithInt_(jint width) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecCCITTG4Encoder_oneruns_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, oneruns_, IOSByteArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, oneruns_, IOSByteArray *)
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecCCITTG4Encoder_compressWithByteArray_withInt_withInt_(IOSByteArray *data, jint width, jint height);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, LENGTH, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, CODE, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, RUNLEN, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, EOL, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, G3CODE_EOL, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, G3CODE_INVALID, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, G3CODE_EOF, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecCCITTG4Encoder, G3CODE_INCOMP, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecCCITTG4Encoder)
 
 #endif // _ComItextpdfTextPdfCodecCCITTG4Encoder_H_

@@ -6,32 +6,37 @@
 #ifndef _ComItextpdfTextPdfLanguagesIndicLigaturizer_H_
 #define _ComItextpdfTextPdfLanguagesIndicLigaturizer_H_
 
-@class IOSCharArray;
-@class JavaLangStringBuilder;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/languages/LanguageProcessor.h"
 
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_HALANTA 10
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_A 6
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_AU 7
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_HA 9
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_KA 8
+@class IOSCharArray;
+
 #define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_AA 0
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_AI 3
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_I 1
 #define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_E 2
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_AI 3
 #define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_HLR 4
 #define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_HLRR 5
-#define ComItextpdfTextPdfLanguagesIndicLigaturizer_MATRA_I 1
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_A 6
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_AU 7
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_KA 8
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_LETTER_HA 9
+#define ComItextpdfTextPdfLanguagesIndicLigaturizer_HALANTA 10
 
 @interface ComItextpdfTextPdfLanguagesIndicLigaturizer : NSObject < ComItextpdfTextPdfLanguagesLanguageProcessor > {
  @public
   IOSCharArray *langTable_;
 }
 
-- (NSString *)processWithNSString:(NSString *)s;
+#pragma mark Public
+
+- (instancetype)init;
 
 - (jboolean)isRTL;
+
+- (NSString *)processWithNSString:(NSString *)s;
+
+#pragma mark Protected
 
 - (jboolean)IsSwaraLetterWithChar:(jchar)ch;
 
@@ -39,17 +44,9 @@
 
 - (jboolean)IsVyanjanaWithChar:(jchar)ch;
 
-+ (void)swapWithJavaLangStringBuilder:(JavaLangStringBuilder *)s
-                              withInt:(jint)i
-                              withInt:(jint)j;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLanguagesIndicLigaturizer *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesIndicLigaturizer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesIndicLigaturizer)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLanguagesIndicLigaturizer, langTable_, IOSCharArray *)
 
@@ -74,5 +71,9 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesIndicLigaturizer, LETTER_K
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesIndicLigaturizer, LETTER_HA, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesIndicLigaturizer, HALANTA, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesIndicLigaturizer_init(ComItextpdfTextPdfLanguagesIndicLigaturizer *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesIndicLigaturizer)
 
 #endif // _ComItextpdfTextPdfLanguagesIndicLigaturizer_H_

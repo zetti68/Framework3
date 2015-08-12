@@ -6,20 +6,20 @@
 #ifndef _ComItextpdfTextPageSize_H_
 #define _ComItextpdfTextPageSize_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextRectangle;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPageSize : NSObject
 
-@interface ComItextpdfTextPageSize : NSObject {
-}
-
-+ (ComItextpdfTextRectangle *)getRectangleWithNSString:(NSString *)name;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (ComItextpdfTextRectangle *)getRectangleWithNSString:(NSString *)name;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPageSize_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPageSize)
 
 FOUNDATION_EXPORT ComItextpdfTextRectangle *ComItextpdfTextPageSize_LETTER_;
@@ -186,5 +186,13 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPageSize, LEGAL_LANDSCAPE_, ComItextpd
 
 FOUNDATION_EXPORT ComItextpdfTextRectangle *ComItextpdfTextPageSize_A4_LANDSCAPE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPageSize, A4_LANDSCAPE_, ComItextpdfTextRectangle *)
+
+FOUNDATION_EXPORT ComItextpdfTextRectangle *ComItextpdfTextPageSize_getRectangleWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextPageSize_init(ComItextpdfTextPageSize *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPageSize *new_ComItextpdfTextPageSize_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPageSize)
 
 #endif // _ComItextpdfTextPageSize_H_

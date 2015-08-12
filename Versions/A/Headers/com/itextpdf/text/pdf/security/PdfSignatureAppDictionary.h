@@ -6,11 +6,12 @@
 #ifndef _ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_H_
 #define _ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfSecurityPdfSignatureAppDictionary : ComItextpdfTextPdfPdfDictionary {
-}
+@interface ComItextpdfTextPdfSecurityPdfSignatureAppDictionary : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -18,6 +19,12 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityPdfSignatureAppDictionary)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_init(ComItextpdfTextPdfSecurityPdfSignatureAppDictionary *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityPdfSignatureAppDictionary *new_ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityPdfSignatureAppDictionary)
 
 #endif // _ComItextpdfTextPdfSecurityPdfSignatureAppDictionary_H_

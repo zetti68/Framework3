@@ -6,17 +6,14 @@
 #ifndef _ComItextpdfTextExceptionsInvalidPdfException_H_
 #define _ComItextpdfTextExceptionsInvalidPdfException_H_
 
-@class JavaLangThrowable;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/io/IOException.h"
 
-#define ComItextpdfTextExceptionsInvalidPdfException_serialVersionUID -2319614911517026938LL
+@class JavaLangThrowable;
 
-@interface ComItextpdfTextExceptionsInvalidPdfException : JavaIoIOException {
- @public
-  JavaLangThrowable *cause_;
-}
+@interface ComItextpdfTextExceptionsInvalidPdfException : JavaIoIOException
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
@@ -25,14 +22,18 @@
 
 - (JavaLangThrowable *)getCause;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextExceptionsInvalidPdfException *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionsInvalidPdfException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionsInvalidPdfException)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextExceptionsInvalidPdfException, cause_, JavaLangThrowable *)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsInvalidPdfException_initWithNSString_(ComItextpdfTextExceptionsInvalidPdfException *self, NSString *message);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionsInvalidPdfException, serialVersionUID, jlong)
+FOUNDATION_EXPORT ComItextpdfTextExceptionsInvalidPdfException *new_ComItextpdfTextExceptionsInvalidPdfException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsInvalidPdfException_initWithNSString_withJavaLangThrowable_(ComItextpdfTextExceptionsInvalidPdfException *self, NSString *message, JavaLangThrowable *cause);
+
+FOUNDATION_EXPORT ComItextpdfTextExceptionsInvalidPdfException *new_ComItextpdfTextExceptionsInvalidPdfException_initWithNSString_withJavaLangThrowable_(NSString *message, JavaLangThrowable *cause) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionsInvalidPdfException)
 
 #endif // _ComItextpdfTextExceptionsInvalidPdfException_H_

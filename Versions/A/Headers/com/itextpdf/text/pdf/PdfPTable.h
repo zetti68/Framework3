@@ -6,6 +6,11 @@
 #ifndef _ComItextpdfTextPdfPdfPTable_H_
 #define _ComItextpdfTextPdfPdfPTable_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/LargeElement.h"
+#include "com/itextpdf/text/api/Spaceable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfPdfContentByte;
@@ -19,31 +24,23 @@
 @class ComItextpdfTextPdfPdfPTable_FittingRows;
 @class ComItextpdfTextPhrase;
 @class ComItextpdfTextRectangle;
-@class IOSBooleanArray;
 @class IOSFloatArray;
 @class IOSIntArray;
 @class IOSObjectArray;
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextElementListener;
-@protocol ComItextpdfTextLogLogger;
 @protocol ComItextpdfTextPdfPdfPTableEvent;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/LargeElement.h"
-#include "com/itextpdf/text/api/Spaceable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
-#define ComItextpdfTextPdfPdfPTable_BACKGROUNDCANVAS 1
 #define ComItextpdfTextPdfPdfPTable_BASECANVAS 0
+#define ComItextpdfTextPdfPdfPTable_BACKGROUNDCANVAS 1
 #define ComItextpdfTextPdfPdfPTable_LINECANVAS 2
 #define ComItextpdfTextPdfPdfPTable_TEXTCANVAS 3
 
 @interface ComItextpdfTextPdfPdfPTable : NSObject < ComItextpdfTextLargeElement, ComItextpdfTextApiSpaceable, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
-  id<ComItextpdfTextLogLogger> LOGGER_;
   JavaUtilArrayList *rows_;
   jfloat totalHeight_;
   IOSObjectArray *currentRow_;
@@ -55,33 +52,20 @@
   id<ComItextpdfTextPdfPdfPTableEvent> tableEvent_;
   jint headerRows_;
   jfloat widthPercentage_;
-  jint horizontalAlignment_;
-  jboolean skipFirstHeader_;
-  jboolean skipLastFooter_;
   jboolean isColspan_;
   jint runDirection_;
-  jboolean lockedWidth_;
-  jboolean splitRows_;
   jfloat spacingBefore__;
   jfloat spacingAfter__;
-  IOSBooleanArray *extendLastRow_;
-  jboolean headersInEvent_;
-  jboolean splitLate_;
-  jboolean keepTogether_;
   jboolean complete_;
-  jint footerRows_;
   jboolean rowCompleted_;
   jboolean loopCheck_;
   jboolean rowsNotChecked_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
   ComItextpdfTextAccessibleElementId *id__;
-  ComItextpdfTextPdfPdfPTableHeader *header_;
-  ComItextpdfTextPdfPdfPTableBody *body_;
-  ComItextpdfTextPdfPdfPTableFooter *footer_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
 - (instancetype)initWithFloatArray:(IOSFloatArray *)relativeWidths;
 
@@ -89,83 +73,221 @@
 
 - (instancetype)initWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
-+ (ComItextpdfTextPdfPdfPTable *)shallowCopyWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
+- (void)addCellWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
-- (void)copyFormatWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)sourceTable OBJC_METHOD_FAMILY_NONE;
+- (ComItextpdfTextPdfPdfPCell *)addCellWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell;
 
-- (void)setWidthsWithFloatArray:(IOSFloatArray *)relativeWidths;
+- (void)addCellWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
-- (void)setWidthsWithIntArray:(IOSIntArray *)relativeWidths;
+- (void)addCellWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
-- (void)calculateWidths;
+- (void)addCellWithNSString:(NSString *)text;
+
++ (IOSObjectArray *)beginWritingRowsWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
+
+- (jfloat)calculateHeights;
+
+- (void)completeRow;
+
+- (void)deleteBodyRows;
+
+- (jboolean)deleteLastRow;
+
+- (jboolean)deleteRowWithInt:(jint)rowNumber;
+
++ (void)endWritingRowsWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
+
+- (void)flushContent;
+
+- (IOSFloatArray *)getAbsoluteWidths;
+
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+
+- (JavaUtilHashMap *)getAccessibleAttributes;
+
+- (ComItextpdfTextPdfPdfPTableBody *)getBody;
+
+- (jint)getCellStartRowIndexWithInt:(jint)rowIdx
+                            withInt:(jint)colIdx;
+
+- (id<JavaUtilList>)getChunks;
+
+- (ComItextpdfTextPdfPdfPCell *)getDefaultCell;
+
+- (ComItextpdfTextPdfPdfPTable_FittingRows *)getFittingRowsWithFloat:(jfloat)availableHeight
+                                                             withInt:(jint)startIdx;
+
+- (ComItextpdfTextPdfPdfPTableFooter *)getFooter;
+
+- (jfloat)getFooterHeight;
+
+- (jint)getFooterRows;
+
+- (ComItextpdfTextPdfPdfPTableHeader *)getHeader;
+
+- (jfloat)getHeaderHeight;
+
+- (jint)getHeaderRows;
+
+- (jint)getHorizontalAlignment;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (jboolean)getKeepTogether;
+
+- (jint)getLastCompletedRowIndex;
+
+- (jint)getNumberOfColumns;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (ComItextpdfTextPdfPdfPRow *)getRowWithInt:(jint)idx;
+
+- (jfloat)getRowHeightWithInt:(jint)idx;
+
+- (JavaUtilArrayList *)getRows;
+
+- (JavaUtilArrayList *)getRowsWithInt:(jint)start
+                              withInt:(jint)end;
+
+- (jfloat)getRowspanHeightWithInt:(jint)rowIndex
+                          withInt:(jint)cellIndex;
+
+- (jint)getRunDirection;
+
+- (jfloat)getSpacingAfter;
+
+- (jfloat)getSpacingBefore;
+
+- (id<ComItextpdfTextPdfPdfPTableEvent>)getTableEvent;
+
+- (jfloat)getTotalHeight;
+
+- (jfloat)getTotalWidth;
+
+- (jfloat)getWidthPercentage;
+
+- (jboolean)hasRowspanWithInt:(jint)rowIdx;
+
+- (jboolean)isComplete;
+
+- (jboolean)isContent;
+
+- (jboolean)isExtendLastRow;
+
+- (jboolean)isExtendLastRowWithBoolean:(jboolean)newPageFollows;
+
+- (jboolean)isHeadersInEvent;
+
+- (jboolean)isInline;
+
+- (jboolean)isLockedWidth;
+
+- (jboolean)isLoopCheck;
+
+- (jboolean)isNestable;
+
+- (jboolean)isSkipFirstHeader;
+
+- (jboolean)isSkipLastFooter;
+
+- (jboolean)isSplitLate;
+
+- (jboolean)isSplitRows;
+
+- (void)keepRowsTogetherWithInt:(jint)start;
+
+- (void)keepRowsTogetherWithInt:(jint)start
+                        withInt:(jint)end;
+
+- (void)keepRowsTogetherWithIntArray:(IOSIntArray *)rows;
+
+- (void)normalizeHeadersFooters;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)resetColumnCountWithInt:(jint)newColCount;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)setBreakPointsWithIntArray:(IOSIntArray *)breakPoints;
+
+- (void)setCompleteWithBoolean:(jboolean)complete;
+
+- (void)setExtendLastRowWithBoolean:(jboolean)extendLastRows;
+
+- (void)setExtendLastRowWithBoolean:(jboolean)extendLastRows
+                        withBoolean:(jboolean)extendFinalRow;
+
+- (void)setFooterRowsWithInt:(jint)footerRows;
+
+- (void)setHeaderRowsWithInt:(jint)headerRows;
+
+- (void)setHeadersInEventWithBoolean:(jboolean)headersInEvent;
+
+- (void)setHorizontalAlignmentWithInt:(jint)horizontalAlignment;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setKeepTogetherWithBoolean:(jboolean)keepTogether;
+
+- (void)setLockedWidthWithBoolean:(jboolean)lockedWidth;
+
+- (void)setLoopCheckWithBoolean:(jboolean)loopCheck;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setRunDirectionWithInt:(jint)runDirection;
+
+- (void)setSkipFirstHeaderWithBoolean:(jboolean)skipFirstHeader;
+
+- (void)setSkipLastFooterWithBoolean:(jboolean)skipLastFooter;
+
+- (void)setSpacingAfterWithFloat:(jfloat)spacing;
+
+- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
+
+- (void)setSplitLateWithBoolean:(jboolean)splitLate;
+
+- (void)setSplitRowsWithBoolean:(jboolean)splitRows;
+
+- (void)setTableEventWithComItextpdfTextPdfPdfPTableEvent:(id<ComItextpdfTextPdfPdfPTableEvent>)event;
 
 - (void)setTotalWidthWithFloat:(jfloat)totalWidth;
 
 - (void)setTotalWidthWithFloatArray:(IOSFloatArray *)columnWidth;
 
+- (void)setWidthPercentageWithFloat:(jfloat)widthPercentage;
+
 - (void)setWidthPercentageWithFloatArray:(IOSFloatArray *)columnWidth
             withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)pageSize;
 
-- (jfloat)getTotalWidth;
+- (void)setWidthsWithFloatArray:(IOSFloatArray *)relativeWidths;
 
-- (jfloat)calculateHeights;
+- (void)setWidthsWithIntArray:(IOSIntArray *)relativeWidths;
 
-- (void)resetColumnCountWithInt:(jint)newColCount;
++ (ComItextpdfTextPdfPdfPTable *)shallowCopyWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
-- (ComItextpdfTextPdfPdfPCell *)getDefaultCell;
+- (jint)size;
 
-- (ComItextpdfTextPdfPdfPCell *)addCellWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell;
+- (jfloat)spacingAfter;
 
-- (void)skipColsWithRowspanAbove;
+- (jfloat)spacingBefore;
 
-- (ComItextpdfTextPdfPdfPCell *)cellAtWithInt:(jint)row
-                                      withInt:(jint)col;
-
-- (jboolean)rowSpanAboveWithInt:(jint)currRow
-                        withInt:(jint)currCol;
-
-- (void)addCellWithNSString:(NSString *)text;
-
-- (void)addCellWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
-
-- (void)addCellWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (void)addCellWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
-
-- (jfloat)writeSelectedRowsWithInt:(jint)rowStart
-                           withInt:(jint)rowEnd
-                         withFloat:(jfloat)xPos
-                         withFloat:(jfloat)yPos
-withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
-
-- (jfloat)writeSelectedRowsWithInt:(jint)colStart
-                           withInt:(jint)colEnd
-                           withInt:(jint)rowStart
-                           withInt:(jint)rowEnd
-                         withFloat:(jfloat)xPos
-                         withFloat:(jfloat)yPos
-withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
-
-- (jfloat)writeSelectedRowsWithInt:(jint)colStart
-                           withInt:(jint)colEnd
-                           withInt:(jint)rowStart
-                           withInt:(jint)rowEnd
-                         withFloat:(jfloat)xPos
-                         withFloat:(jfloat)yPos
-withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases
-                       withBoolean:(jboolean)reusable;
-
-- (ComItextpdfTextPdfPdfPTableBody *)openTableBlockWithComItextpdfTextPdfPdfPTableBody:(ComItextpdfTextPdfPdfPTableBody *)block
-                                                  withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
-
-- (ComItextpdfTextPdfPdfPTableBody *)closeTableBlockWithComItextpdfTextPdfPdfPTableBody:(ComItextpdfTextPdfPdfPTableBody *)block
-                                                   withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
+- (jint)type;
 
 - (jfloat)writeSelectedRowsWithInt:(jint)rowStart
                            withInt:(jint)rowEnd
                          withFloat:(jfloat)xPos
                          withFloat:(jfloat)yPos
 withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
+
+- (jfloat)writeSelectedRowsWithInt:(jint)rowStart
+                           withInt:(jint)rowEnd
+                         withFloat:(jfloat)xPos
+                         withFloat:(jfloat)yPos
+withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
 - (jfloat)writeSelectedRowsWithInt:(jint)colStart
                            withInt:(jint)colEnd
@@ -184,210 +306,63 @@ withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
 withComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
                        withBoolean:(jboolean)reusable;
 
-+ (IOSObjectArray *)beginWritingRowsWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas;
+- (jfloat)writeSelectedRowsWithInt:(jint)colStart
+                           withInt:(jint)colEnd
+                           withInt:(jint)rowStart
+                           withInt:(jint)rowEnd
+                         withFloat:(jfloat)xPos
+                         withFloat:(jfloat)yPos
+withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
-+ (void)endWritingRowsWithComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
+- (jfloat)writeSelectedRowsWithInt:(jint)colStart
+                           withInt:(jint)colEnd
+                           withInt:(jint)rowStart
+                           withInt:(jint)rowEnd
+                         withFloat:(jfloat)xPos
+                         withFloat:(jfloat)yPos
+withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases
+                       withBoolean:(jboolean)reusable;
 
-- (jint)size;
+#pragma mark Protected
 
-- (jfloat)getTotalHeight;
-
-- (jfloat)getRowHeightWithInt:(jint)idx;
-
-- (jfloat)getRowHeightWithInt:(jint)idx
-                  withBoolean:(jboolean)firsttime;
-
-- (jfloat)getRowspanHeightWithInt:(jint)rowIndex
-                          withInt:(jint)cellIndex;
-
-- (jboolean)hasRowspanWithInt:(jint)rowIdx;
-
-- (void)normalizeHeadersFooters;
-
-- (jfloat)getHeaderHeight;
-
-- (jfloat)getFooterHeight;
-
-- (jboolean)deleteRowWithInt:(jint)rowNumber;
-
-- (jboolean)deleteLastRow;
-
-- (void)deleteBodyRows;
-
-- (jint)getNumberOfColumns;
-
-- (jint)getHeaderRows;
-
-- (void)setHeaderRowsWithInt:(jint)headerRows;
-
-- (id<JavaUtilList>)getChunks;
-
-- (jint)type;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
-
-- (jfloat)getWidthPercentage;
-
-- (void)setWidthPercentageWithFloat:(jfloat)widthPercentage;
-
-- (jint)getHorizontalAlignment;
-
-- (void)setHorizontalAlignmentWithInt:(jint)horizontalAlignment;
-
-- (ComItextpdfTextPdfPdfPRow *)getRowWithInt:(jint)idx;
-
-- (JavaUtilArrayList *)getRows;
-
-- (jint)getLastCompletedRowIndex;
-
-- (void)setBreakPointsWithIntArray:(IOSIntArray *)breakPoints;
-
-- (void)keepRowsTogetherWithIntArray:(IOSIntArray *)rows;
-
-- (void)keepRowsTogetherWithInt:(jint)start
-                        withInt:(jint)end;
-
-- (void)keepRowsTogetherWithInt:(jint)start;
-
-- (JavaUtilArrayList *)getRowsWithInt:(jint)start
-                              withInt:(jint)end;
+- (instancetype)init;
 
 - (ComItextpdfTextPdfPdfPRow *)adjustCellsInRowWithInt:(jint)start
                                                withInt:(jint)end;
 
-- (void)setTableEventWithComItextpdfTextPdfPdfPTableEvent:(id<ComItextpdfTextPdfPdfPTableEvent>)event;
+- (void)calculateWidths;
 
-- (id<ComItextpdfTextPdfPdfPTableEvent>)getTableEvent;
+- (void)copyFormatWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)sourceTable OBJC_METHOD_FAMILY_NONE;
 
-- (IOSFloatArray *)getAbsoluteWidths;
+- (jfloat)getRowHeightWithInt:(jint)idx
+                  withBoolean:(jboolean)firsttime;
+
+#pragma mark Package-Private
+
+- (ComItextpdfTextPdfPdfPCell *)cellAtWithInt:(jint)row
+                                      withInt:(jint)col;
 
 - (IOSObjectArray *)getEventWidthsWithFloat:(jfloat)xPos
                                     withInt:(jint)firstRow
                                     withInt:(jint)lastRow
                                 withBoolean:(jboolean)includeHeaders;
 
-- (jboolean)isSkipFirstHeader;
-
-- (jboolean)isSkipLastFooter;
-
-- (void)setSkipFirstHeaderWithBoolean:(jboolean)skipFirstHeader;
-
-- (void)setSkipLastFooterWithBoolean:(jboolean)skipLastFooter;
-
-- (void)setRunDirectionWithInt:(jint)runDirection;
-
-- (jint)getRunDirection;
-
-- (jboolean)isLockedWidth;
-
-- (void)setLockedWidthWithBoolean:(jboolean)lockedWidth;
-
-- (jboolean)isSplitRows;
-
-- (void)setSplitRowsWithBoolean:(jboolean)splitRows;
-
-- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
-
-- (void)setSpacingAfterWithFloat:(jfloat)spacing;
-
-- (jfloat)spacingBefore;
-
-- (jfloat)spacingAfter;
-
-- (jboolean)isExtendLastRow;
-
-- (void)setExtendLastRowWithBoolean:(jboolean)extendLastRows;
-
-- (void)setExtendLastRowWithBoolean:(jboolean)extendLastRows
-                        withBoolean:(jboolean)extendFinalRow;
-
-- (jboolean)isExtendLastRowWithBoolean:(jboolean)newPageFollows;
-
-- (jboolean)isHeadersInEvent;
-
-- (void)setHeadersInEventWithBoolean:(jboolean)headersInEvent;
-
-- (jboolean)isSplitLate;
-
-- (void)setSplitLateWithBoolean:(jboolean)splitLate;
-
-- (void)setKeepTogetherWithBoolean:(jboolean)keepTogether;
-
-- (jboolean)getKeepTogether;
-
-- (jint)getFooterRows;
-
-- (void)setFooterRowsWithInt:(jint)footerRows;
-
-- (void)completeRow;
-
-- (void)flushContent;
-
-- (jboolean)isComplete;
-
-- (void)setCompleteWithBoolean:(jboolean)complete;
-
-- (jfloat)getSpacingBefore;
-
-- (jfloat)getSpacingAfter;
-
-- (jboolean)isLoopCheck;
-
-- (void)setLoopCheckWithBoolean:(jboolean)loopCheck;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
-
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
-
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-- (jboolean)isInline;
-
-- (ComItextpdfTextPdfPdfPTableHeader *)getHeader;
-
-- (ComItextpdfTextPdfPdfPTableBody *)getBody;
-
-- (ComItextpdfTextPdfPdfPTableFooter *)getFooter;
-
-- (jint)getCellStartRowIndexWithInt:(jint)rowIdx
-                            withInt:(jint)colIdx;
-
-- (ComItextpdfTextPdfPdfPTable_FittingRows *)getFittingRowsWithFloat:(jfloat)availableHeight
-                                                             withInt:(jint)startIdx;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPTable *)other;
+- (jboolean)rowSpanAboveWithInt:(jint)currRow
+                        withInt:(jint)currCol;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTable)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, LOGGER_, id<ComItextpdfTextLogLogger>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, rows_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, currentRow_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, defaultCell_, ComItextpdfTextPdfPdfPCell *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, relativeWidths_, IOSFloatArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, absoluteWidths_, IOSFloatArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, tableEvent_, id<ComItextpdfTextPdfPdfPTableEvent>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, extendLastRow_, IOSBooleanArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, accessibleAttributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, id__, ComItextpdfTextAccessibleElementId *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, header_, ComItextpdfTextPdfPdfPTableHeader *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, body_, ComItextpdfTextPdfPdfPTableBody *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable, footer_, ComItextpdfTextPdfPdfPTableFooter *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPTable, BASECANVAS, jint)
 
@@ -397,12 +372,37 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPTable, LINECANVAS, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPTable, TEXTCANVAS, jint)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_init(ComItextpdfTextPdfPdfPTable *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable *new_ComItextpdfTextPdfPdfPTable_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_initWithFloatArray_(ComItextpdfTextPdfPdfPTable *self, IOSFloatArray *relativeWidths);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable *new_ComItextpdfTextPdfPdfPTable_initWithFloatArray_(IOSFloatArray *relativeWidths) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_initWithInt_(ComItextpdfTextPdfPdfPTable *self, jint numColumns);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable *new_ComItextpdfTextPdfPdfPTable_initWithInt_(jint numColumns) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_initWithComItextpdfTextPdfPdfPTable_(ComItextpdfTextPdfPdfPTable *self, ComItextpdfTextPdfPdfPTable *table);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable *new_ComItextpdfTextPdfPdfPTable_initWithComItextpdfTextPdfPdfPTable_(ComItextpdfTextPdfPdfPTable *table) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable *ComItextpdfTextPdfPdfPTable_shallowCopyWithComItextpdfTextPdfPdfPTable_(ComItextpdfTextPdfPdfPTable *table);
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPTable_beginWritingRowsWithComItextpdfTextPdfPdfContentByte_(ComItextpdfTextPdfPdfContentByte *canvas);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_endWritingRowsWithComItextpdfTextPdfPdfContentByteArray_(IOSObjectArray *canvases);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTable)
+
 @interface ComItextpdfTextPdfPdfPTable_FittingRows : NSObject {
  @public
   jint firstRow_, lastRow_;
   jfloat height_, completedRowsHeight_;
-  id<JavaUtilMap> correctedHeightsForLastRow_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)firstRow
                     withInt:(jint)lastRow
@@ -413,13 +413,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPTable, TEXTCANVAS, jint)
 - (void)correctLastRowChosenWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
                                                     withInt:(jint)k;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPTable_FittingRows *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTable_FittingRows_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTable_FittingRows)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable_FittingRows, correctedHeightsForLastRow_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_FittingRows_initWithInt_withInt_withFloat_withFloat_withJavaUtilMap_(ComItextpdfTextPdfPdfPTable_FittingRows *self, jint firstRow, jint lastRow, jfloat height, jfloat completedRowsHeight, id<JavaUtilMap> correctedHeightsForLastRow);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable_FittingRows *new_ComItextpdfTextPdfPdfPTable_FittingRows_initWithInt_withInt_withFloat_withFloat_withJavaUtilMap_(jint firstRow, jint lastRow, jfloat height, jfloat completedRowsHeight, id<JavaUtilMap> correctedHeightsForLastRow) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTable_FittingRows)
 
 @interface ComItextpdfTextPdfPdfPTable_ColumnMeasurementState : NSObject {
  @public
@@ -427,21 +429,27 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPTable_FittingRows, correctedHeightsFor
   jint rowspan_, colspan_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (void)beginCellWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell
                                       withFloat:(jfloat)completedRowsHeight
                                       withFloat:(jfloat)rowHeight;
 
+- (jboolean)cellEnds;
+
 - (void)consumeRowspanWithFloat:(jfloat)completedRowsHeight
                       withFloat:(jfloat)rowHeight;
 
-- (jboolean)cellEnds;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPTable_ColumnMeasurementState *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTable_ColumnMeasurementState_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTable_ColumnMeasurementState)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPTable_ColumnMeasurementState_init(ComItextpdfTextPdfPdfPTable_ColumnMeasurementState *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPTable_ColumnMeasurementState *new_ComItextpdfTextPdfPdfPTable_ColumnMeasurementState_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTable_ColumnMeasurementState)
 
 #endif // _ComItextpdfTextPdfPdfPTable_H_

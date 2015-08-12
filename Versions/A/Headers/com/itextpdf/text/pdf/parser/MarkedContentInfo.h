@@ -6,33 +6,32 @@
 #ifndef _ComItextpdfTextPdfParserMarkedContentInfo_H_
 #define _ComItextpdfTextPdfParserMarkedContentInfo_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserMarkedContentInfo : NSObject
 
-@interface ComItextpdfTextPdfParserMarkedContentInfo : NSObject {
- @public
-  ComItextpdfTextPdfPdfName *tag_;
-  ComItextpdfTextPdfPdfDictionary *dictionary_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)tag
               withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dictionary;
+
+- (jint)getMcid;
 
 - (ComItextpdfTextPdfPdfName *)getTag;
 
 - (jboolean)hasMcid;
 
-- (jint)getMcid;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserMarkedContentInfo *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserMarkedContentInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserMarkedContentInfo)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserMarkedContentInfo, tag_, ComItextpdfTextPdfPdfName *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserMarkedContentInfo, dictionary_, ComItextpdfTextPdfPdfDictionary *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserMarkedContentInfo_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserMarkedContentInfo *self, ComItextpdfTextPdfPdfName *tag, ComItextpdfTextPdfPdfDictionary *dictionary);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserMarkedContentInfo *new_ComItextpdfTextPdfParserMarkedContentInfo_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfName *tag, ComItextpdfTextPdfPdfDictionary *dictionary) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserMarkedContentInfo)
 
 #endif // _ComItextpdfTextPdfParserMarkedContentInfo_H_

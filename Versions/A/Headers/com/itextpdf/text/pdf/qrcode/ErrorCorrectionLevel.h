@@ -6,39 +6,25 @@
 #ifndef _ComItextpdfTextPdfQrcodeErrorCorrectionLevel_H_
 #define _ComItextpdfTextPdfQrcodeErrorCorrectionLevel_H_
 
-@class IOSObjectArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeErrorCorrectionLevel : NSObject
 
-@interface ComItextpdfTextPdfQrcodeErrorCorrectionLevel : NSObject {
- @public
-  jint ordinal__;
-  jint bits_;
-  NSString *name_;
-}
+#pragma mark Public
 
-- (instancetype)initWithInt:(jint)ordinal
-                    withInt:(jint)bits
-               withNSString:(NSString *)name;
-
-- (jint)ordinal;
++ (ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)forBitsWithInt:(jint)bits;
 
 - (jint)getBits;
 
 - (NSString *)getName;
 
+- (jint)ordinal;
+
 - (NSString *)description;
-
-+ (ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)forBitsWithInt:(jint)bits;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)other;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeErrorCorrectionLevel_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeErrorCorrectionLevel)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel, name_, NSString *)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ComItextpdfTextPdfQrcodeErrorCorrectionLevel_L_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel, L_, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)
@@ -52,7 +38,8 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel, Q_, Com
 FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ComItextpdfTextPdfQrcodeErrorCorrectionLevel_H_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel, H_, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeErrorCorrectionLevel_FOR_BITS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel, FOR_BITS_, IOSObjectArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ComItextpdfTextPdfQrcodeErrorCorrectionLevel_forBitsWithInt_(jint bits);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeErrorCorrectionLevel)
 
 #endif // _ComItextpdfTextPdfQrcodeErrorCorrectionLevel_H_

@@ -6,15 +6,22 @@
 #ifndef _ComItextpdfTextPdfFontsFontsResourceAnchor_H_
 #define _ComItextpdfTextPdfFontsFontsResourceAnchor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextPdfFontsFontsResourceAnchor : NSObject {
-}
+@interface ComItextpdfTextPdfFontsFontsResourceAnchor : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsFontsResourceAnchor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsFontsResourceAnchor)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsFontsResourceAnchor_init(ComItextpdfTextPdfFontsFontsResourceAnchor *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsFontsResourceAnchor *new_ComItextpdfTextPdfFontsFontsResourceAnchor_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsFontsResourceAnchor)
 
 #endif // _ComItextpdfTextPdfFontsFontsResourceAnchor_H_

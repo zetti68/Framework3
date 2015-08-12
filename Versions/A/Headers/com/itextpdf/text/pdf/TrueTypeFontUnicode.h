@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfTrueTypeFontUnicode_H_
 #define _ComItextpdfTextPdfTrueTypeFontUnicode_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/TrueTypeFont.h"
+#include "java/util/Comparator.h"
+
 @class ComItextpdfTextPdfFontsOtfLanguageEnum;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
@@ -14,37 +18,20 @@
 @class IOSByteArray;
 @class IOSIntArray;
 @class IOSObjectArray;
-@protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/TrueTypeFont.h"
-#include "java/util/Comparator.h"
+@interface ComItextpdfTextPdfTrueTypeFontUnicode : ComItextpdfTextPdfTrueTypeFont < JavaUtilComparator >
 
-@interface ComItextpdfTextPdfTrueTypeFontUnicode : ComItextpdfTextPdfTrueTypeFont < JavaUtilComparator > {
- @public
-  id<JavaUtilMap> glyphSubstitutionMap_;
-  ComItextpdfTextPdfFontsOtfLanguageEnum *supportedLanguage_;
-}
+#pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)ttFile
-                    withNSString:(NSString *)enc
-                     withBoolean:(jboolean)emb
-                   withByteArray:(IOSByteArray *)ttfAfm
-                     withBoolean:(jboolean)forceRead;
+- (jboolean)charExistsWithInt:(jint)c;
 
-- (void)processWithByteArray:(IOSByteArray *)ttfAfm
-                 withBoolean:(jboolean)preload;
+- (jint)compareWithId:(IOSIntArray *)o1
+               withId:(IOSIntArray *)o2;
 
-- (jint)getWidthWithInt:(jint)char1;
+- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
 
-- (jint)getWidthWithNSString:(NSString *)text;
-
-- (ComItextpdfTextPdfPdfStream *)getToUnicodeWithNSObjectArray:(IOSObjectArray *)metrics;
-
-+ (NSString *)toHex4WithInt:(jint)n;
-
-+ (NSString *)toHexWithInt:(jint)n;
+- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
 
 - (ComItextpdfTextPdfPdfDictionary *)getCIDFontType2WithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontDescriptor
                                                                                   withNSString:(NSString *)subsetPrefix
@@ -54,48 +41,54 @@
                                                                                   withNSString:(NSString *)subsetPrefix
                                                     withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)toUnicode;
 
-- (jint)compareWithId:(IOSIntArray *)o1
-               withId:(IOSIntArray *)o2;
+- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
+
+- (IOSIntArray *)getMetricsTTWithInt:(jint)c;
+
+- (ComItextpdfTextPdfPdfStream *)getToUnicodeWithNSObjectArray:(IOSObjectArray *)metrics;
+
+- (jint)getWidthWithInt:(jint)char1;
+
+- (jint)getWidthWithNSString:(NSString *)text;
+
+- (jboolean)setCharAdvanceWithInt:(jint)c
+                          withInt:(jint)advance;
+
+#pragma mark Protected
+
+- (id<JavaUtilMap>)getGlyphSubstitutionMap;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithNSString:(NSString *)ttFile
+                    withNSString:(NSString *)enc
+                     withBoolean:(jboolean)emb
+                   withByteArray:(IOSByteArray *)ttfAfm
+                     withBoolean:(jboolean)forceRead;
+
+- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
+
+- (ComItextpdfTextPdfFontsOtfLanguageEnum *)getSupportedLanguage;
+
+- (void)processWithByteArray:(IOSByteArray *)ttfAfm
+                 withBoolean:(jboolean)preload;
+
++ (NSString *)toHexWithInt:(jint)n;
 
 - (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
       withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
                                withNSObjectArray:(IOSObjectArray *)params;
 
-- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
-
-- (IOSByteArray *)convertToBytesWithNSString:(NSString *)text;
-
-- (IOSByteArray *)convertToBytesWithInt:(jint)char1;
-
-- (IOSIntArray *)getMetricsTTWithInt:(jint)c;
-
-- (jboolean)charExistsWithInt:(jint)c;
-
-- (jboolean)setCharAdvanceWithInt:(jint)c
-                          withInt:(jint)advance;
-
-- (IOSIntArray *)getCharBBoxWithInt:(jint)c;
-
-- (id<JavaUtilMap>)getGlyphSubstitutionMap;
-
-- (ComItextpdfTextPdfFontsOtfLanguageEnum *)getSupportedLanguage;
-
-- (void)readGsubTable;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFontUnicode *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfTrueTypeFontUnicode_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfTrueTypeFontUnicode)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFontUnicode, glyphSubstitutionMap_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFontUnicode, supportedLanguage_, ComItextpdfTextPdfFontsOtfLanguageEnum *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFontUnicode_initWithNSString_withNSString_withBoolean_withByteArray_withBoolean_(ComItextpdfTextPdfTrueTypeFontUnicode *self, NSString *ttFile, NSString *enc, jboolean emb, IOSByteArray *ttfAfm, jboolean forceRead);
 
-FOUNDATION_EXPORT id<JavaUtilList> ComItextpdfTextPdfTrueTypeFontUnicode_SUPPORTED_LANGUAGES_FOR_OTF_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFontUnicode, SUPPORTED_LANGUAGES_FOR_OTF_, id<JavaUtilList>)
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFontUnicode *new_ComItextpdfTextPdfTrueTypeFontUnicode_initWithNSString_withNSString_withBoolean_withByteArray_withBoolean_(NSString *ttFile, NSString *enc, jboolean emb, IOSByteArray *ttfAfm, jboolean forceRead) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfTrueTypeFontUnicode_rotbits_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFontUnicode, rotbits_, IOSByteArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfTrueTypeFontUnicode_toHexWithInt_(jint n);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFontUnicode)
 
 #endif // _ComItextpdfTextPdfTrueTypeFontUnicode_H_

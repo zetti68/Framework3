@@ -6,71 +6,64 @@
 #ifndef _ComItextpdfTextPdfPdfStructureTreeRoot_H_
 #define _ComItextpdfTextPdfPdfStructureTreeRoot_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+#include "com/itextpdf/text/pdf/interfaces/IPdfStructureElement.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-#include "com/itextpdf/text/pdf/interfaces/IPdfStructureElement.h"
-
 @interface ComItextpdfTextPdfPdfStructureTreeRoot : ComItextpdfTextPdfPdfDictionary < ComItextpdfTextPdfInterfacesIPdfStructureElement > {
  @public
-  JavaUtilHashMap *parentTree_;
-  ComItextpdfTextPdfPdfIndirectReference *reference_;
-  ComItextpdfTextPdfPdfDictionary *classMap_;
   JavaUtilHashMap *classes_;
-  JavaUtilHashMap *numTree_;
-  ComItextpdfTextPdfPdfWriter *writer_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
-- (void)createNumTree;
-
-- (void)mapRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)used
-               withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)standard;
-
-- (void)mapClassWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-              withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+- (ComItextpdfTextPdfPdfObject *)getAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
 
 - (ComItextpdfTextPdfPdfObject *)getMappedClassWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
-
-- (ComItextpdfTextPdfPdfWriter *)getWriter;
 
 - (JavaUtilHashMap *)getNumTree;
 
 - (ComItextpdfTextPdfPdfIndirectReference *)getReference;
 
-- (void)setPageMarkWithInt:(jint)page
-withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)struc;
+- (ComItextpdfTextPdfPdfWriter *)getWriter;
 
-- (void)setAnnotationMarkWithInt:(jint)structParentIndex
-withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)struc;
+- (void)mapClassWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
+              withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
 
-- (void)nodeProcessWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)struc
-            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)reference;
-
-- (void)buildTree;
-
-- (ComItextpdfTextPdfPdfObject *)getAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
+- (void)mapRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)used
+               withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)standard;
 
 - (void)setAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
                   withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfStructureTreeRoot *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+- (void)buildTree;
+
+- (void)setAnnotationMarkWithInt:(jint)structParentIndex
+withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)struc;
+
+- (void)setPageMarkWithInt:(jint)page
+withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)struc;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfStructureTreeRoot_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfStructureTreeRoot)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, parentTree_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, reference_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, classMap_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, classes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, numTree_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructureTreeRoot, writer_, ComItextpdfTextPdfPdfWriter *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStructureTreeRoot_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfStructureTreeRoot *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructureTreeRoot *new_ComItextpdfTextPdfPdfStructureTreeRoot_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfStructureTreeRoot)
 
 #endif // _ComItextpdfTextPdfPdfStructureTreeRoot_H_

@@ -6,26 +6,39 @@
 #ifndef _ComItextpdfTextBadElementException_H_
 #define _ComItextpdfTextBadElementException_H_
 
-@class JavaLangException;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/DocumentException.h"
 
-#define ComItextpdfTextBadElementException_serialVersionUID -799006030723822254LL
+@class JavaLangException;
 
-@interface ComItextpdfTextBadElementException : ComItextpdfTextDocumentException {
-}
+@interface ComItextpdfTextBadElementException : ComItextpdfTextDocumentException
+
+#pragma mark Public
 
 - (instancetype)initWithJavaLangException:(JavaLangException *)ex;
 
-- (instancetype)init;
-
 - (instancetype)initWithNSString:(NSString *)message;
+
+#pragma mark Package-Private
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextBadElementException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextBadElementException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextBadElementException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextBadElementException_initWithJavaLangException_(ComItextpdfTextBadElementException *self, JavaLangException *ex);
+
+FOUNDATION_EXPORT ComItextpdfTextBadElementException *new_ComItextpdfTextBadElementException_initWithJavaLangException_(JavaLangException *ex) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBadElementException_init(ComItextpdfTextBadElementException *self);
+
+FOUNDATION_EXPORT ComItextpdfTextBadElementException *new_ComItextpdfTextBadElementException_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextBadElementException_initWithNSString_(ComItextpdfTextBadElementException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextBadElementException *new_ComItextpdfTextBadElementException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextBadElementException)
 
 #endif // _ComItextpdfTextBadElementException_H_

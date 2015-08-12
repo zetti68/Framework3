@@ -6,10 +6,11 @@
 #ifndef _ComItextpdfTextLargeElement_H_
 #define _ComItextpdfTextLargeElement_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Element.h"
 
 @protocol ComItextpdfTextLargeElement < ComItextpdfTextElement, NSObject, JavaObject >
+
 - (void)setCompleteWithBoolean:(jboolean)complete;
 
 - (jboolean)isComplete;
@@ -18,6 +19,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLargeElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLargeElement)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLargeElement)
 
 #endif // _ComItextpdfTextLargeElement_H_

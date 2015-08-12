@@ -6,24 +6,39 @@
 #ifndef _ComItextpdfTextFactoriesRomanAlphabetFactory_H_
 #define _ComItextpdfTextFactoriesRomanAlphabetFactory_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextFactoriesRomanAlphabetFactory : NSObject {
-}
+@interface ComItextpdfTextFactoriesRomanAlphabetFactory : NSObject
 
-+ (NSString *)getStringWithInt:(jint)index;
+#pragma mark Public
+
+- (instancetype)init;
 
 + (NSString *)getLowerCaseStringWithInt:(jint)index;
 
-+ (NSString *)getUpperCaseStringWithInt:(jint)index;
++ (NSString *)getStringWithInt:(jint)index;
 
 + (NSString *)getStringWithInt:(jint)index
                    withBoolean:(jboolean)lowercase;
 
-- (instancetype)init;
++ (NSString *)getUpperCaseStringWithInt:(jint)index;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextFactoriesRomanAlphabetFactory_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextFactoriesRomanAlphabetFactory)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanAlphabetFactory_getStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanAlphabetFactory_getLowerCaseStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanAlphabetFactory_getUpperCaseStringWithInt_(jint index);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextFactoriesRomanAlphabetFactory_getStringWithInt_withBoolean_(jint index, jboolean lowercase);
+
+FOUNDATION_EXPORT void ComItextpdfTextFactoriesRomanAlphabetFactory_init(ComItextpdfTextFactoriesRomanAlphabetFactory *self);
+
+FOUNDATION_EXPORT ComItextpdfTextFactoriesRomanAlphabetFactory *new_ComItextpdfTextFactoriesRomanAlphabetFactory_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFactoriesRomanAlphabetFactory)
 
 #endif // _ComItextpdfTextFactoriesRomanAlphabetFactory_H_

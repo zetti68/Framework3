@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextPdfHyphenationHyphenationException_H_
 #define _ComItextpdfTextPdfHyphenationHyphenationException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-#define ComItextpdfTextPdfHyphenationHyphenationException_serialVersionUID 4721513606846982325LL
+@interface ComItextpdfTextPdfHyphenationHyphenationException : JavaLangException
 
-@interface ComItextpdfTextPdfHyphenationHyphenationException : JavaLangException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)msg;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfHyphenationHyphenationException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfHyphenationHyphenationException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfHyphenationHyphenationException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfHyphenationHyphenationException_initWithNSString_(ComItextpdfTextPdfHyphenationHyphenationException *self, NSString *msg);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfHyphenationHyphenationException *new_ComItextpdfTextPdfHyphenationHyphenationException_initWithNSString_(NSString *msg) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfHyphenationHyphenationException)
 
 #endif // _ComItextpdfTextPdfHyphenationHyphenationException_H_

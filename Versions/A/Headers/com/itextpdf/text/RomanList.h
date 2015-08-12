@@ -6,25 +6,40 @@
 #ifndef _ComItextpdfTextRomanList_H_
 #define _ComItextpdfTextRomanList_H_
 
-@protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/List.h"
 
-@interface ComItextpdfTextRomanList : ComItextpdfTextList {
-}
+@protocol ComItextpdfTextElement;
+
+@interface ComItextpdfTextRomanList : ComItextpdfTextList
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (instancetype)initWithInt:(jint)symbolIndent;
-
 - (instancetype)initWithBoolean:(jboolean)lowercase
                         withInt:(jint)symbolIndent;
+
+- (instancetype)initWithInt:(jint)symbolIndent;
 
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextRomanList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextRomanList)
+
+FOUNDATION_EXPORT void ComItextpdfTextRomanList_init(ComItextpdfTextRomanList *self);
+
+FOUNDATION_EXPORT ComItextpdfTextRomanList *new_ComItextpdfTextRomanList_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRomanList_initWithInt_(ComItextpdfTextRomanList *self, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextRomanList *new_ComItextpdfTextRomanList_initWithInt_(jint symbolIndent) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextRomanList_initWithBoolean_withInt_(ComItextpdfTextRomanList *self, jboolean lowercase, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextRomanList *new_ComItextpdfTextRomanList_initWithBoolean_withInt_(jboolean lowercase, jint symbolIndent) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextRomanList)
 
 #endif // _ComItextpdfTextRomanList_H_

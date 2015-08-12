@@ -6,15 +6,14 @@
 #ifndef _ComItextpdfTextChapter_H_
 #define _ComItextpdfTextChapter_H_
 
-@class ComItextpdfTextParagraph;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Section.h"
 
-#define ComItextpdfTextChapter_serialVersionUID 1791000695779357361LL
+@class ComItextpdfTextParagraph;
 
-@interface ComItextpdfTextChapter : ComItextpdfTextSection {
-}
+@interface ComItextpdfTextChapter : ComItextpdfTextSection
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)number;
 
@@ -24,15 +23,29 @@
 - (instancetype)initWithNSString:(NSString *)title
                          withInt:(jint)number;
 
+- (jboolean)isNestable;
+
 - (jint)type;
 
-- (jboolean)isNestable;
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextChapter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextChapter)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextChapter, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextChapter_initWithInt_(ComItextpdfTextChapter *self, jint number);
+
+FOUNDATION_EXPORT ComItextpdfTextChapter *new_ComItextpdfTextChapter_initWithInt_(jint number) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChapter_initWithComItextpdfTextParagraph_withInt_(ComItextpdfTextChapter *self, ComItextpdfTextParagraph *title, jint number);
+
+FOUNDATION_EXPORT ComItextpdfTextChapter *new_ComItextpdfTextChapter_initWithComItextpdfTextParagraph_withInt_(ComItextpdfTextParagraph *title, jint number) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextChapter_initWithNSString_withInt_(ComItextpdfTextChapter *self, NSString *title, jint number);
+
+FOUNDATION_EXPORT ComItextpdfTextChapter *new_ComItextpdfTextChapter_initWithNSString_withInt_(NSString *title, jint number) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextChapter)
 
 #endif // _ComItextpdfTextChapter_H_

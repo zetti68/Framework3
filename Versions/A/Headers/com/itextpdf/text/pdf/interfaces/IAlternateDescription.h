@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfInterfacesIAlternateDescription_H_
 #define _ComItextpdfTextPdfInterfacesIAlternateDescription_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextPdfInterfacesIAlternateDescription < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesIAlternateDescription_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesIAlternateDescription)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesIAlternateDescription)
 
 #endif // _ComItextpdfTextPdfInterfacesIAlternateDescription_H_

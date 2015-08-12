@@ -6,116 +6,129 @@
 #ifndef _ComItextpdfTextPdfPdfSigLockDictionary_H_
 #define _ComItextpdfTextPdfPdfSigLockDictionary_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum;
 @class ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-#include "java/lang/Enum.h"
+@interface ComItextpdfTextPdfPdfSigLockDictionary : ComItextpdfTextPdfPdfDictionary
 
-@interface ComItextpdfTextPdfPdfSigLockDictionary : ComItextpdfTextPdfPdfDictionary {
-}
+#pragma mark Public
 
 - (instancetype)init;
-
-- (instancetype)initWithComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)p;
-
-- (instancetype)initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)action
-                                                            withNSStringArray:(IOSObjectArray *)fields;
 
 - (instancetype)initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)action
                withComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)p
                                                             withNSStringArray:(IOSObjectArray *)fields;
 
+- (instancetype)initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)action
+                                                            withNSStringArray:(IOSObjectArray *)fields;
+
+- (instancetype)initWithComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum:(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)p;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSigLockDictionary_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSigLockDictionary)
 
-typedef enum {
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSigLockDictionary_init(ComItextpdfTextPdfPdfSigLockDictionary *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary *new_ComItextpdfTextPdfPdfSigLockDictionary_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_(ComItextpdfTextPdfPdfSigLockDictionary *self, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *p);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary *new_ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *p) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_withNSStringArray_(ComItextpdfTextPdfPdfSigLockDictionary *self, ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *action, IOSObjectArray *fields);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary *new_ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_withNSStringArray_(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *action, IOSObjectArray *fields) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_withComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_withNSStringArray_(ComItextpdfTextPdfPdfSigLockDictionary *self, ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *action, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *p, IOSObjectArray *fields);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary *new_ComItextpdfTextPdfPdfSigLockDictionary_initWithComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_withComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_withNSStringArray_(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *action, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *p, IOSObjectArray *fields) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSigLockDictionary)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfSigLockDictionary_LockAction) {
   ComItextpdfTextPdfPdfSigLockDictionary_LockAction_ALL = 0,
   ComItextpdfTextPdfPdfSigLockDictionary_LockAction_INCLUDE = 1,
   ComItextpdfTextPdfPdfSigLockDictionary_LockAction_EXCLUDE = 2,
-} ComItextpdfTextPdfPdfSigLockDictionary_LockAction;
+};
 
-@interface ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum : JavaLangEnum < NSCopying > {
- @public
-  ComItextpdfTextPdfPdfName *name_LockAction_;
-}
+@interface ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name
-                                     withNSString:(NSString *)__name
-                                          withInt:(jint)__ordinal;
+#pragma mark Public
 
 - (ComItextpdfTextPdfPdfName *)getValue;
+
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_values();
 
 + (ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_values_[];
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_ALL ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockAction_ALL]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, ALL, ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, ALL)
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_INCLUDE ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockAction_INCLUDE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, INCLUDE, ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, INCLUDE)
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_EXCLUDE ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockAction_EXCLUDE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, EXCLUDE, ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, EXCLUDE)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum, name_LockAction_, ComItextpdfTextPdfPdfName *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSigLockDictionary_LockActionEnum)
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions) {
   ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_NO_CHANGES_ALLOWED = 0,
   ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_FORM_FILLING = 1,
   ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_FORM_FILLING_AND_ANNOTATION = 2,
-} ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions;
+};
 
-@interface ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum : JavaLangEnum < NSCopying > {
- @public
-  ComItextpdfTextPdfPdfNumber *number_;
-}
+@interface ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithInt:(jint)p
-               withNSString:(NSString *)__name
-                    withInt:(jint)__ordinal;
+#pragma mark Public
 
 - (ComItextpdfTextPdfPdfNumber *)getValue;
+
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_values();
 
 + (ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_values_[];
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_NO_CHANGES_ALLOWED ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_NO_CHANGES_ALLOWED]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, NO_CHANGES_ALLOWED, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, NO_CHANGES_ALLOWED)
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_FORM_FILLING ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_FORM_FILLING]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, FORM_FILLING, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, FORM_FILLING)
 
 #define ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_FORM_FILLING_AND_ANNOTATION ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum_values_[ComItextpdfTextPdfPdfSigLockDictionary_LockPermissions_FORM_FILLING_AND_ANNOTATION]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, FORM_FILLING_AND_ANNOTATION, ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, FORM_FILLING_AND_ANNOTATION)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum, number_, ComItextpdfTextPdfPdfNumber *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSigLockDictionary_LockPermissionsEnum)
 
 #endif // _ComItextpdfTextPdfPdfSigLockDictionary_H_

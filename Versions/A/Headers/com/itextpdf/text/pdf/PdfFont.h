@@ -6,22 +6,32 @@
 #ifndef _ComItextpdfTextPdfPdfFont_H_
 #define _ComItextpdfTextPdfPdfFont_H_
 
-@class ComItextpdfTextPdfBaseFont;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Comparable.h"
+
+@class ComItextpdfTextPdfBaseFont;
 
 @interface ComItextpdfTextPdfPdfFont : NSObject < JavaLangComparable > {
  @public
-  ComItextpdfTextPdfBaseFont *font_;
-  jfloat size__;
   jfloat hScale_;
 }
+
+#pragma mark Public
+
+- (jint)compareToWithId:(ComItextpdfTextPdfPdfFont *)pdfFont;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
                                          withFloat:(jfloat)size;
 
-- (jint)compareToWithId:(ComItextpdfTextPdfPdfFont *)pdfFont;
++ (ComItextpdfTextPdfPdfFont *)getDefaultFont;
+
+- (ComItextpdfTextPdfBaseFont *)getFont;
+
+- (jfloat)getHorizontalScaling;
+
+- (void)setHorizontalScalingWithFloat:(jfloat)hScale;
 
 - (jfloat)size;
 
@@ -31,20 +41,16 @@
 
 - (jfloat)widthWithNSString:(NSString *)s;
 
-- (ComItextpdfTextPdfBaseFont *)getFont;
-
-+ (ComItextpdfTextPdfPdfFont *)getDefaultFont;
-
-- (void)setHorizontalScalingWithFloat:(jfloat)hScale;
-
-- (jfloat)getHorizontalScaling;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfFont *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfFont_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfFont)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFont, font_, ComItextpdfTextPdfBaseFont *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFont_initWithComItextpdfTextPdfBaseFont_withFloat_(ComItextpdfTextPdfPdfFont *self, ComItextpdfTextPdfBaseFont *bf, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFont *new_ComItextpdfTextPdfPdfFont_initWithComItextpdfTextPdfBaseFont_withFloat_(ComItextpdfTextPdfBaseFont *bf, jfloat size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFont *ComItextpdfTextPdfPdfFont_getDefaultFont();
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfFont)
 
 #endif // _ComItextpdfTextPdfPdfFont_H_

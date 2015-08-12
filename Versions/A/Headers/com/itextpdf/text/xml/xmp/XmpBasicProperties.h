@@ -6,37 +6,38 @@
 #ifndef _ComItextpdfTextXmlXmpXmpBasicProperties_H_
 #define _ComItextpdfTextXmlXmpXmpBasicProperties_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSObjectArray;
 @protocol ComItextpdfXmpXMPMeta;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlXmpXmpBasicProperties : NSObject
 
-@interface ComItextpdfTextXmlXmpXmpBasicProperties : NSObject {
-}
+#pragma mark Public
 
-+ (void)setCreatorToolWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                                   withNSString:(NSString *)creator;
+- (instancetype)init;
 
 + (void)setCreateDateWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                                   withNSString:(NSString *)date;
 
-+ (void)setModDateWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                               withNSString:(NSString *)date;
-
-+ (void)setMetaDataDateWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
-                                    withNSString:(NSString *)date;
++ (void)setCreatorToolWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                                   withNSString:(NSString *)creator;
 
 + (void)setIdentifiersWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                               withNSStringArray:(IOSObjectArray *)id_;
 
++ (void)setMetaDataDateWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                                    withNSString:(NSString *)date;
+
++ (void)setModDateWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
+                               withNSString:(NSString *)date;
+
 + (void)setNicknameWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmpMeta
                                 withNSString:(NSString *)name;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpXmpBasicProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpXmpBasicProperties)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpBasicProperties_ADVISORY_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicProperties, ADVISORY_, NSString *)
@@ -64,5 +65,23 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicProperties, NICKNAME_, N
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpBasicProperties_THUMBNAILS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicProperties, THUMBNAILS_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setCreatorToolWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *creator);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setCreateDateWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *date);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setModDateWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *date);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setMetaDataDateWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *date);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setIdentifiersWithComItextpdfXmpXMPMeta_withNSStringArray_(id<ComItextpdfXmpXMPMeta> xmpMeta, IOSObjectArray *id_);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_setNicknameWithComItextpdfXmpXMPMeta_withNSString_(id<ComItextpdfXmpXMPMeta> xmpMeta, NSString *name);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicProperties_init(ComItextpdfTextXmlXmpXmpBasicProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpBasicProperties *new_ComItextpdfTextXmlXmpXmpBasicProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpXmpBasicProperties)
 
 #endif // _ComItextpdfTextXmlXmpXmpBasicProperties_H_

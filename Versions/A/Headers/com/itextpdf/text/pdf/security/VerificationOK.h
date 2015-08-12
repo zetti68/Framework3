@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfSecurityVerificationOK_H_
 #define _ComItextpdfTextPdfSecurityVerificationOK_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSClass;
 @class JavaSecurityCertX509Certificate;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfSecurityVerificationOK : NSObject {
  @public
@@ -18,20 +18,26 @@
   NSString *message_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)certificate
                                            withIOSClass:(IOSClass *)verifierClass
                                            withNSString:(NSString *)message;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityVerificationOK *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityVerificationOK_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityVerificationOK)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityVerificationOK, certificate_, JavaSecurityCertX509Certificate *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityVerificationOK, verifierClass_, IOSClass *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityVerificationOK, message_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityVerificationOK_initWithJavaSecurityCertX509Certificate_withIOSClass_withNSString_(ComItextpdfTextPdfSecurityVerificationOK *self, JavaSecurityCertX509Certificate *certificate, IOSClass *verifierClass, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityVerificationOK *new_ComItextpdfTextPdfSecurityVerificationOK_initWithJavaSecurityCertX509Certificate_withIOSClass_withNSString_(JavaSecurityCertX509Certificate *certificate, IOSClass *verifierClass, NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityVerificationOK)
 
 #endif // _ComItextpdfTextPdfSecurityVerificationOK_H_

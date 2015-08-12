@@ -6,22 +6,27 @@
 #ifndef _ComItextpdfTextPdfParserRenderFilter_H_
 #define _ComItextpdfTextPdfParserRenderFilter_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserRenderFilter : NSObject
 
-@interface ComItextpdfTextPdfParserRenderFilter : NSObject {
-}
-
-- (jboolean)allowTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
-
-- (jboolean)allowImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
+#pragma mark Public
 
 - (instancetype)init;
 
+- (jboolean)allowImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
+
+- (jboolean)allowTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserRenderFilter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserRenderFilter)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserRenderFilter_init(ComItextpdfTextPdfParserRenderFilter *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserRenderFilter)
 
 #endif // _ComItextpdfTextPdfParserRenderFilter_H_

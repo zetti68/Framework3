@@ -6,17 +6,18 @@
 #ifndef _ComItextpdfTextPdfPdfException_H_
 #define _ComItextpdfTextPdfPdfException_H_
 
-@class JavaLangException;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/DocumentException.h"
 
-#define ComItextpdfTextPdfPdfException_serialVersionUID 6767433960955483999LL
+@class JavaLangException;
 
-@interface ComItextpdfTextPdfPdfException : ComItextpdfTextDocumentException {
-}
+@interface ComItextpdfTextPdfPdfException : ComItextpdfTextDocumentException
+
+#pragma mark Public
 
 - (instancetype)initWithJavaLangException:(JavaLangException *)ex;
+
+#pragma mark Package-Private
 
 - (instancetype)init;
 
@@ -24,8 +25,20 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfException_initWithJavaLangException_(ComItextpdfTextPdfPdfException *self, JavaLangException *ex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfException *new_ComItextpdfTextPdfPdfException_initWithJavaLangException_(JavaLangException *ex) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfException_init(ComItextpdfTextPdfPdfException *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfException *new_ComItextpdfTextPdfPdfException_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfException_initWithNSString_(ComItextpdfTextPdfPdfException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfException *new_ComItextpdfTextPdfPdfException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfException)
 
 #endif // _ComItextpdfTextPdfPdfException_H_

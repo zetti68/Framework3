@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfInterfacesPdfIsoConformance_H_
 #define _ComItextpdfTextPdfInterfacesPdfIsoConformance_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextPdfInterfacesPdfIsoConformance < NSObject, JavaObject >
 
@@ -17,6 +17,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesPdfIsoConformance_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesPdfIsoConformance)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesPdfIsoConformance)
 
 #endif // _ComItextpdfTextPdfInterfacesPdfIsoConformance_H_

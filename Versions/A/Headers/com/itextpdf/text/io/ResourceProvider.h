@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextIoResourceProvider_H_
 #define _ComItextpdfTextIoResourceProvider_H_
 
-@class JavaIoInputStream;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class JavaIoInputStream;
 
 @protocol ComItextpdfTextIoResourceProvider < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoResourceProvider_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoResourceProvider)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoResourceProvider)
 
 #endif // _ComItextpdfTextIoResourceProvider_H_

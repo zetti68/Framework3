@@ -6,20 +6,33 @@
 #ifndef _ComItextpdfTextImgTemplate_H_
 #define _ComItextpdfTextImgTemplate_H_
 
-@class ComItextpdfTextPdfPdfTemplate;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Image.h"
 
-@interface ComItextpdfTextImgTemplate : ComItextpdfTextImage {
-}
+@class ComItextpdfTextPdfPdfTemplate;
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+@interface ComItextpdfTextImgTemplate : ComItextpdfTextImage
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImgTemplate_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImgTemplate)
+
+FOUNDATION_EXPORT void ComItextpdfTextImgTemplate_initWithComItextpdfTextImage_(ComItextpdfTextImgTemplate *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImgTemplate *new_ComItextpdfTextImgTemplate_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextImgTemplate_initWithComItextpdfTextPdfPdfTemplate_(ComItextpdfTextImgTemplate *self, ComItextpdfTextPdfPdfTemplate *template_);
+
+FOUNDATION_EXPORT ComItextpdfTextImgTemplate *new_ComItextpdfTextImgTemplate_initWithComItextpdfTextPdfPdfTemplate_(ComItextpdfTextPdfPdfTemplate *template_) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImgTemplate)
 
 #endif // _ComItextpdfTextImgTemplate_H_

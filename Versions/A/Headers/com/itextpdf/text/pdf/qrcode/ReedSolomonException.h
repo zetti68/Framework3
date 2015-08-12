@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextPdfQrcodeReedSolomonException_H_
 #define _ComItextpdfTextPdfQrcodeReedSolomonException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-#define ComItextpdfTextPdfQrcodeReedSolomonException_serialVersionUID 2168232776886684292LL
+@interface ComItextpdfTextPdfQrcodeReedSolomonException : JavaLangException
 
-@interface ComItextpdfTextPdfQrcodeReedSolomonException : JavaLangException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeReedSolomonException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeReedSolomonException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeReedSolomonException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeReedSolomonException_initWithNSString_(ComItextpdfTextPdfQrcodeReedSolomonException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeReedSolomonException *new_ComItextpdfTextPdfQrcodeReedSolomonException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeReedSolomonException)
 
 #endif // _ComItextpdfTextPdfQrcodeReedSolomonException_H_

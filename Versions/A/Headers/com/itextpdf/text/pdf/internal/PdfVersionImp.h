@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfInternalPdfVersionImp_H_
 #define _ComItextpdfTextPdfInternalPdfVersionImp_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/interfaces/PdfVersion.h"
+
 @class ComItextpdfTextPdfOutputStreamCounter;
 @class ComItextpdfTextPdfPdfDeveloperExtension;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 @class IOSByteArray;
 @class IOSObjectArray;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/interfaces/PdfVersion.h"
 
 @interface ComItextpdfTextPdfInternalPdfVersionImp : NSObject < ComItextpdfTextPdfInterfacesPdfVersion > {
  @public
@@ -26,33 +26,32 @@
   ComItextpdfTextPdfPdfDictionary *extensions_;
 }
 
-- (void)setPdfVersionWithChar:(jchar)version_;
-
-- (void)setAtLeastPdfVersionWithChar:(jchar)version_;
-
-- (void)setPdfVersionWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)version_;
-
-- (void)setAppendmodeWithBoolean:(jboolean)appendmode;
-
-- (void)writeHeaderWithComItextpdfTextPdfOutputStreamCounter:(ComItextpdfTextPdfOutputStreamCounter *)os;
-
-- (ComItextpdfTextPdfPdfName *)getVersionAsNameWithChar:(jchar)version_;
-
-- (IOSByteArray *)getVersionAsByteArrayWithChar:(jchar)version_;
-
-- (void)addToCatalogWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)catalog;
-
-- (void)addDeveloperExtensionWithComItextpdfTextPdfPdfDeveloperExtension:(ComItextpdfTextPdfPdfDeveloperExtension *)de;
-
-- (jchar)getVersion;
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfInternalPdfVersionImp *)other;
+- (void)addDeveloperExtensionWithComItextpdfTextPdfPdfDeveloperExtension:(ComItextpdfTextPdfPdfDeveloperExtension *)de;
+
+- (void)addToCatalogWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)catalog;
+
+- (jchar)getVersion;
+
+- (IOSByteArray *)getVersionAsByteArrayWithChar:(jchar)version_;
+
+- (ComItextpdfTextPdfPdfName *)getVersionAsNameWithChar:(jchar)version_;
+
+- (void)setAppendmodeWithBoolean:(jboolean)appendmode;
+
+- (void)setAtLeastPdfVersionWithChar:(jchar)version_;
+
+- (void)setPdfVersionWithChar:(jchar)version_;
+
+- (void)setPdfVersionWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)version_;
+
+- (void)writeHeaderWithComItextpdfTextPdfOutputStreamCounter:(ComItextpdfTextPdfOutputStreamCounter *)os;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfInternalPdfVersionImp_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfInternalPdfVersionImp)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfInternalPdfVersionImp, catalog_version_, ComItextpdfTextPdfPdfName *)
@@ -60,5 +59,11 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfInternalPdfVersionImp, extensions_, ComIte
 
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfInternalPdfVersionImp_HEADER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfInternalPdfVersionImp, HEADER_, IOSObjectArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfInternalPdfVersionImp_init(ComItextpdfTextPdfInternalPdfVersionImp *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfInternalPdfVersionImp *new_ComItextpdfTextPdfInternalPdfVersionImp_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInternalPdfVersionImp)
 
 #endif // _ComItextpdfTextPdfInternalPdfVersionImp_H_

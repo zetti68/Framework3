@@ -6,45 +6,16 @@
 #ifndef _ComItextpdfTextPdfCodecPngWriter_H_
 #define _ComItextpdfTextPdfCodecPngWriter_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
-@class IOSIntArray;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfCodecPngWriter : NSObject
 
-@interface ComItextpdfTextPdfCodecPngWriter : NSObject {
- @public
-  JavaIoOutputStream *outp_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)outp;
-
-- (void)writeHeaderWithInt:(jint)width
-                   withInt:(jint)height
-                   withInt:(jint)bitDepth
-                   withInt:(jint)colorType;
-
-- (void)writeEnd;
-
-- (void)writeDataWithByteArray:(IOSByteArray *)data
-                       withInt:(jint)stride;
-
-- (void)writePaletteWithByteArray:(IOSByteArray *)data;
-
-- (void)writeIccProfileWithByteArray:(IOSByteArray *)data;
-
-+ (void)make_crc_table;
-
-+ (jint)update_crcWithInt:(jint)crc
-            withByteArray:(IOSByteArray *)buf
-                  withInt:(jint)offset
-                  withInt:(jint)len;
-
-+ (jint)crcWithByteArray:(IOSByteArray *)buf
-                 withInt:(jint)offset
-                 withInt:(jint)len;
-
-+ (jint)crcWithByteArray:(IOSByteArray *)buf;
 
 - (void)outputIntWithInt:(jint)n;
 
@@ -54,35 +25,30 @@
 - (void)writeChunkWithByteArray:(IOSByteArray *)chunkType
                   withByteArray:(IOSByteArray *)data;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecPngWriter *)other;
+- (void)writeDataWithByteArray:(IOSByteArray *)data
+                       withInt:(jint)stride;
+
+- (void)writeEnd;
+
+- (void)writeHeaderWithInt:(jint)width
+                   withInt:(jint)height
+                   withInt:(jint)bitDepth
+                   withInt:(jint)colorType;
+
+- (void)writeIccProfileWithByteArray:(IOSByteArray *)data;
+
+- (void)writePaletteWithByteArray:(IOSByteArray *)data;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfCodecPngWriter_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfCodecPngWriter)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecPngWriter, outp_, JavaIoOutputStream *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecPngWriter_initWithJavaIoOutputStream_(ComItextpdfTextPdfCodecPngWriter *self, JavaIoOutputStream *outp);
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_PNG_SIGNTURE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, PNG_SIGNTURE_, IOSByteArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecPngWriter *new_ComItextpdfTextPdfCodecPngWriter_initWithJavaIoOutputStream_(JavaIoOutputStream *outp) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_IHDR_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, IHDR_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecPngWriter_outputIntWithInt_withJavaIoOutputStream_(jint n, JavaIoOutputStream *s);
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_PLTE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, PLTE_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_IDAT_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, IDAT_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_IEND_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, IEND_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfCodecPngWriter_iCCP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, iCCP_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfCodecPngWriter_crc_table_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecPngWriter, crc_table_, IOSIntArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfCodecPngWriter, crc_table_, IOSIntArray *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecPngWriter)
 
 #endif // _ComItextpdfTextPdfCodecPngWriter_H_

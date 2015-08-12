@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfLayerMembership_H_
 #define _ComItextpdfTextPdfPdfLayerMembership_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+#include "com/itextpdf/text/pdf/PdfOCG.h"
+
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfLayer;
@@ -16,10 +20,6 @@
 @class JavaUtilHashSet;
 @protocol JavaUtilCollection;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
-#include "com/itextpdf/text/pdf/PdfOCG.h"
-
 @interface ComItextpdfTextPdfPdfLayerMembership : ComItextpdfTextPdfPdfDictionary < ComItextpdfTextPdfPdfOCG > {
  @public
   ComItextpdfTextPdfPdfIndirectReference *ref_;
@@ -27,25 +27,24 @@
   JavaUtilHashSet *layers_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
-- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
+- (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 - (void)addMemberWithComItextpdfTextPdfPdfLayer:(ComItextpdfTextPdfPdfLayer *)layer;
 
 - (id<JavaUtilCollection>)getLayers;
 
-- (void)setVisibilityPolicyWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)type;
+- (ComItextpdfTextPdfPdfObject *)getPdfObject;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
 
 - (void)setVisibilityExpressionWithComItextpdfTextPdfPdfVisibilityExpression:(ComItextpdfTextPdfPdfVisibilityExpression *)ve;
 
-- (ComItextpdfTextPdfPdfObject *)getPdfObject;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfLayerMembership *)other;
+- (void)setVisibilityPolicyWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)type;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfLayerMembership_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfLayerMembership)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLayerMembership, ref_, ComItextpdfTextPdfPdfIndirectReference *)
@@ -63,5 +62,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfLayerMembership, ANYOFF_, ComIte
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfPdfLayerMembership_ALLOFF_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfLayerMembership, ALLOFF_, ComItextpdfTextPdfPdfName *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLayerMembership_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfLayerMembership *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLayerMembership *new_ComItextpdfTextPdfPdfLayerMembership_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfLayerMembership)
 
 #endif // _ComItextpdfTextPdfPdfLayerMembership_H_

@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfCodecGifImage_H_
 #define _ComItextpdfTextPdfCodecGifImage_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
 @class IOSByteArray;
 @class IOSIntArray;
@@ -14,8 +16,6 @@
 @class JavaIoInputStream;
 @class JavaNetURL;
 @class JavaUtilArrayList;
-
-#import "JreEmulation.h"
 
 #define ComItextpdfTextPdfCodecGifImage_MaxStackSize 4096
 
@@ -54,57 +54,61 @@
   JavaUtilArrayList *frames_;
 }
 
-- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
-
-- (instancetype)initWithNSString:(NSString *)file;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)data;
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is;
 
-- (jint)getFrameCount;
+- (instancetype)initWithNSString:(NSString *)file;
 
-- (ComItextpdfTextImage *)getImageWithInt:(jint)frame;
+- (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
+
+- (jint)getFrameCount;
 
 - (IOSIntArray *)getFramePositionWithInt:(jint)frame;
 
+- (ComItextpdfTextImage *)getImageWithInt:(jint)frame;
+
 - (IOSIntArray *)getLogicalScreen;
 
-- (void)processWithJavaIoInputStream:(JavaIoInputStream *)is;
+#pragma mark Protected
 
-- (void)readHeader;
+- (jboolean)decodeImageData;
 
-- (void)readLSD;
-
-- (jint)readShort;
++ (jint)newBpcWithInt:(jint)bpc OBJC_METHOD_FAMILY_NONE;
 
 - (jint)readBlock;
 
 - (IOSByteArray *)readColorTableWithInt:(jint)bpc;
 
-+ (jint)newBpcWithInt:(jint)bpc OBJC_METHOD_FAMILY_NONE;
-
 - (void)readContents;
+
+- (void)readGraphicControlExt;
+
+- (void)readHeader;
 
 - (void)readImage;
 
-- (jboolean)decodeImageData;
+- (void)readLSD;
+
+- (jint)readShort;
+
+- (void)resetFrame;
 
 - (void)setPixelWithInt:(jint)x
                 withInt:(jint)y
                 withInt:(jint)v;
 
-- (void)resetFrame;
-
-- (void)readGraphicControlExt;
-
 - (void)skip;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecGifImage *)other;
+#pragma mark Package-Private
+
+- (void)processWithJavaIoInputStream:(JavaIoInputStream *)is;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecGifImage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecGifImage)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecGifImage, in_, JavaIoDataInputStream *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecGifImage, block_, IOSByteArray *)
@@ -122,6 +126,26 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecGifImage, frames_, JavaUtilArrayList 
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecGifImage, MaxStackSize, jint)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecGifImage_initWithJavaNetURL_(ComItextpdfTextPdfCodecGifImage *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecGifImage *new_ComItextpdfTextPdfCodecGifImage_initWithJavaNetURL_(JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecGifImage_initWithNSString_(ComItextpdfTextPdfCodecGifImage *self, NSString *file);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecGifImage *new_ComItextpdfTextPdfCodecGifImage_initWithNSString_(NSString *file) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecGifImage_initWithByteArray_(ComItextpdfTextPdfCodecGifImage *self, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecGifImage *new_ComItextpdfTextPdfCodecGifImage_initWithByteArray_(IOSByteArray *data) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecGifImage_initWithJavaIoInputStream_(ComItextpdfTextPdfCodecGifImage *self, JavaIoInputStream *is);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecGifImage *new_ComItextpdfTextPdfCodecGifImage_initWithJavaIoInputStream_(JavaIoInputStream *is) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfCodecGifImage_newBpcWithInt_(jint bpc);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecGifImage)
+
 @interface ComItextpdfTextPdfCodecGifImage_GifFrame : NSObject {
  @public
   ComItextpdfTextImage *image_;
@@ -129,14 +153,20 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecGifImage, MaxStackSize, jint)
   jint iy_;
 }
 
-- (instancetype)init;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecGifImage_GifFrame *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecGifImage_GifFrame_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecGifImage_GifFrame)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecGifImage_GifFrame, image_, ComItextpdfTextImage *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecGifImage_GifFrame_init(ComItextpdfTextPdfCodecGifImage_GifFrame *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecGifImage_GifFrame *new_ComItextpdfTextPdfCodecGifImage_GifFrame_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecGifImage_GifFrame)
 
 #endif // _ComItextpdfTextPdfCodecGifImage_H_

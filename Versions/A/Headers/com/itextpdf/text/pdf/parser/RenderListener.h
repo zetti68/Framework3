@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfParserRenderListener_H_
 #define _ComItextpdfTextPdfParserRenderListener_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfParserImageRenderInfo;
 @class ComItextpdfTextPdfParserTextRenderInfo;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfParserRenderListener < NSObject, JavaObject >
 
@@ -23,6 +23,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserRenderListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserRenderListener)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserRenderListener)
 
 #endif // _ComItextpdfTextPdfParserRenderListener_H_

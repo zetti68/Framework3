@@ -6,13 +6,15 @@
 #ifndef _ComItextpdfTextPdfSecurityMakeSignature_H_
 #define _ComItextpdfTextPdfSecurityMakeSignature_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfPdfSignatureAppearance;
 @class ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum;
 @class IOSObjectArray;
 @class JavaIoOutputStream;
 @class JavaSecurityCertCertificate;
-@protocol ComItextpdfTextLogLogger;
 @protocol ComItextpdfTextPdfSecurityExternalDigest;
 @protocol ComItextpdfTextPdfSecurityExternalSignature;
 @protocol ComItextpdfTextPdfSecurityExternalSignatureContainer;
@@ -20,11 +22,19 @@
 @protocol ComItextpdfTextPdfSecurityTSAClient;
 @protocol JavaUtilCollection;
 
-#import "JreEmulation.h"
-#include "java/lang/Enum.h"
+@interface ComItextpdfTextPdfSecurityMakeSignature : NSObject
 
-@interface ComItextpdfTextPdfSecurityMakeSignature : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
+
++ (id<JavaUtilCollection>)processCrlWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)cert
+                                             withJavaUtilCollection:(id<JavaUtilCollection>)crlList;
+
++ (void)signDeferredWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                       withNSString:(NSString *)fieldName
+                             withJavaIoOutputStream:(JavaIoOutputStream *)outs
+withComItextpdfTextPdfSecurityExternalSignatureContainer:(id<ComItextpdfTextPdfSecurityExternalSignatureContainer>)externalSignatureContainer;
 
 + (void)signDetachedWithComItextpdfTextPdfPdfSignatureAppearance:(ComItextpdfTextPdfPdfSignatureAppearance *)sap
                     withComItextpdfTextPdfSecurityExternalDigest:(id<ComItextpdfTextPdfSecurityExternalDigest>)externalDigest
@@ -36,57 +46,57 @@
                                                          withInt:(jint)estimatedSize
   withComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum:(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *)sigtype;
 
-+ (id<JavaUtilCollection>)processCrlWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)cert
-                                             withJavaUtilCollection:(id<JavaUtilCollection>)crlList;
-
 + (void)signExternalContainerWithComItextpdfTextPdfPdfSignatureAppearance:(ComItextpdfTextPdfPdfSignatureAppearance *)sap
                  withComItextpdfTextPdfSecurityExternalSignatureContainer:(id<ComItextpdfTextPdfSecurityExternalSignatureContainer>)externalSignatureContainer
                                                                   withInt:(jint)estimatedSize;
 
-+ (void)signDeferredWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                       withNSString:(NSString *)fieldName
-                             withJavaIoOutputStream:(JavaIoOutputStream *)outs
-withComItextpdfTextPdfSecurityExternalSignatureContainer:(id<ComItextpdfTextPdfSecurityExternalSignatureContainer>)externalSignatureContainer;
-
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityMakeSignature_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityMakeSignature)
 
-FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextPdfSecurityMakeSignature_LOGGER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityMakeSignature, LOGGER_, id<ComItextpdfTextLogLogger>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityMakeSignature_signDetachedWithComItextpdfTextPdfPdfSignatureAppearance_withComItextpdfTextPdfSecurityExternalDigest_withComItextpdfTextPdfSecurityExternalSignature_withJavaSecurityCertCertificateArray_withJavaUtilCollection_withComItextpdfTextPdfSecurityOcspClient_withComItextpdfTextPdfSecurityTSAClient_withInt_withComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_(ComItextpdfTextPdfPdfSignatureAppearance *sap, id<ComItextpdfTextPdfSecurityExternalDigest> externalDigest, id<ComItextpdfTextPdfSecurityExternalSignature> externalSignature, IOSObjectArray *chain, id<JavaUtilCollection> crlList, id<ComItextpdfTextPdfSecurityOcspClient> ocspClient, id<ComItextpdfTextPdfSecurityTSAClient> tsaClient, jint estimatedSize, ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *sigtype);
 
-typedef enum {
+FOUNDATION_EXPORT id<JavaUtilCollection> ComItextpdfTextPdfSecurityMakeSignature_processCrlWithJavaSecurityCertCertificate_withJavaUtilCollection_(JavaSecurityCertCertificate *cert, id<JavaUtilCollection> crlList);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityMakeSignature_signExternalContainerWithComItextpdfTextPdfPdfSignatureAppearance_withComItextpdfTextPdfSecurityExternalSignatureContainer_withInt_(ComItextpdfTextPdfPdfSignatureAppearance *sap, id<ComItextpdfTextPdfSecurityExternalSignatureContainer> externalSignatureContainer, jint estimatedSize);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityMakeSignature_signDeferredWithComItextpdfTextPdfPdfReader_withNSString_withJavaIoOutputStream_withComItextpdfTextPdfSecurityExternalSignatureContainer_(ComItextpdfTextPdfPdfReader *reader, NSString *fieldName, JavaIoOutputStream *outs, id<ComItextpdfTextPdfSecurityExternalSignatureContainer> externalSignatureContainer);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityMakeSignature_init(ComItextpdfTextPdfSecurityMakeSignature *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityMakeSignature *new_ComItextpdfTextPdfSecurityMakeSignature_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityMakeSignature)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard) {
   ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard_CMS = 0,
   ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard_CADES = 1,
-} ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard;
+};
 
-@interface ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_values();
 
 + (ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_values_[];
 
 #define ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_CMS ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_values_[ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard_CMS]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum, CMS, ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum, CMS)
 
 #define ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_CADES ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum_values_[ComItextpdfTextPdfSecurityMakeSignature_CryptoStandard_CADES]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum, CADES, ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum, CADES)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityMakeSignature_CryptoStandardEnum)
 
 #endif // _ComItextpdfTextPdfSecurityMakeSignature_H_

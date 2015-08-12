@@ -6,39 +6,35 @@
 #ifndef _ComItextpdfTextLogLoggerFactory_H_
 #define _ComItextpdfTextLogLoggerFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSClass;
 @protocol ComItextpdfTextLogLogger;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextLogLoggerFactory : NSObject
 
-@interface ComItextpdfTextLogLoggerFactory : NSObject {
- @public
-  id<ComItextpdfTextLogLogger> logger__;
-}
+#pragma mark Public
+
++ (ComItextpdfTextLogLoggerFactory *)getInstance;
 
 + (id<ComItextpdfTextLogLogger>)getLoggerWithIOSClass:(IOSClass *)klass;
 
 + (id<ComItextpdfTextLogLogger>)getLoggerWithNSString:(NSString *)name;
 
-+ (ComItextpdfTextLogLoggerFactory *)getInstance;
-
-- (instancetype)init;
+- (id<ComItextpdfTextLogLogger>)logger;
 
 - (void)setLoggerWithComItextpdfTextLogLogger:(id<ComItextpdfTextLogLogger>)logger;
 
-- (id<ComItextpdfTextLogLogger>)logger;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextLogLoggerFactory *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextLogLoggerFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextLogLoggerFactory)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextLogLoggerFactory, logger__, id<ComItextpdfTextLogLogger>)
+FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextLogLoggerFactory_getLoggerWithIOSClass_(IOSClass *klass);
 
-FOUNDATION_EXPORT ComItextpdfTextLogLoggerFactory *ComItextpdfTextLogLoggerFactory_myself_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogLoggerFactory, myself_, ComItextpdfTextLogLoggerFactory *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextLogLoggerFactory, myself_, ComItextpdfTextLogLoggerFactory *)
+FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextLogLoggerFactory_getLoggerWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT ComItextpdfTextLogLoggerFactory *ComItextpdfTextLogLoggerFactory_getInstance();
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogLoggerFactory)
 
 #endif // _ComItextpdfTextLogLoggerFactory_H_

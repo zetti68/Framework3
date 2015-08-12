@@ -6,25 +6,15 @@
 #ifndef _ComItextpdfTextPdfQrcodeBitVector_H_
 #define _ComItextpdfTextPdfQrcodeBitVector_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeBitVector : NSObject
 
-#define ComItextpdfTextPdfQrcodeBitVector_DEFAULT_SIZE_IN_BYTES 32
-
-@interface ComItextpdfTextPdfQrcodeBitVector : NSObject {
- @public
-  jint sizeInBits_;
-  IOSByteArray *array_;
-}
+#pragma mark Public
 
 - (instancetype)init;
-
-- (jint)atWithInt:(jint)index;
-
-- (jint)size;
-
-- (jint)sizeInBytes;
 
 - (void)appendBitWithInt:(jint)bit;
 
@@ -33,22 +23,26 @@
 
 - (void)appendBitVectorWithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
 
-- (void)xor__WithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)other;
-
-- (NSString *)description;
+- (jint)atWithInt:(jint)index;
 
 - (IOSByteArray *)getArray;
 
-- (void)appendByteWithInt:(jint)value;
+- (jint)size;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeBitVector *)other;
+- (jint)sizeInBytes;
+
+- (NSString *)description;
+
+- (void)xor__WithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeBitVector_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeBitVector)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeBitVector, array_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeBitVector_init(ComItextpdfTextPdfQrcodeBitVector *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeBitVector, DEFAULT_SIZE_IN_BYTES, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeBitVector *new_ComItextpdfTextPdfQrcodeBitVector_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeBitVector)
 
 #endif // _ComItextpdfTextPdfQrcodeBitVector_H_

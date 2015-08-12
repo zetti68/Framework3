@@ -6,27 +6,16 @@
 #ifndef _ComItextpdfXmpImplXMPDateTimeImpl_H_
 #define _ComItextpdfXmpImplXMPDateTimeImpl_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/xmp/XMPDateTime.h"
+
 @class JavaUtilCalendar;
 @class JavaUtilDate;
 @class JavaUtilTimeZone;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/xmp/XMPDateTime.h"
+@interface ComItextpdfXmpImplXMPDateTimeImpl : NSObject < ComItextpdfXmpXMPDateTime >
 
-@interface ComItextpdfXmpImplXMPDateTimeImpl : NSObject < ComItextpdfXmpXMPDateTime > {
- @public
-  jint year_;
-  jint month_;
-  jint day_;
-  jint hour_;
-  jint minute_;
-  jint second_;
-  JavaUtilTimeZone *timeZone_;
-  jint nanoSeconds_;
-  jboolean hasDate__;
-  jboolean hasTime__;
-  jboolean hasTimeZone__;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -37,39 +26,27 @@
 
 - (instancetype)initWithNSString:(NSString *)strValue;
 
-- (jint)getYear;
+- (jint)compareToWithId:(id)dt;
 
-- (void)setYearWithInt:(jint)year;
-
-- (jint)getMonth;
-
-- (void)setMonthWithInt:(jint)month;
+- (JavaUtilCalendar *)getCalendar;
 
 - (jint)getDay;
 
-- (void)setDayWithInt:(jint)day;
-
 - (jint)getHour;
 
-- (void)setHourWithInt:(jint)hour;
+- (NSString *)getISO8601String;
 
 - (jint)getMinute;
 
-- (void)setMinuteWithInt:(jint)minute;
-
-- (jint)getSecond;
-
-- (void)setSecondWithInt:(jint)second;
+- (jint)getMonth;
 
 - (jint)getNanoSecond;
 
-- (void)setNanoSecondWithInt:(jint)nanoSecond;
-
-- (jint)compareToWithId:(id)dt;
+- (jint)getSecond;
 
 - (JavaUtilTimeZone *)getTimeZone;
 
-- (void)setTimeZoneWithJavaUtilTimeZone:(JavaUtilTimeZone *)timeZone;
+- (jint)getYear;
 
 - (jboolean)hasDate;
 
@@ -77,18 +54,44 @@
 
 - (jboolean)hasTimeZone;
 
-- (JavaUtilCalendar *)getCalendar;
+- (void)setDayWithInt:(jint)day;
 
-- (NSString *)getISO8601String;
+- (void)setHourWithInt:(jint)hour;
+
+- (void)setMinuteWithInt:(jint)minute;
+
+- (void)setMonthWithInt:(jint)month;
+
+- (void)setNanoSecondWithInt:(jint)nanoSecond;
+
+- (void)setSecondWithInt:(jint)second;
+
+- (void)setTimeZoneWithJavaUtilTimeZone:(JavaUtilTimeZone *)timeZone;
+
+- (void)setYearWithInt:(jint)year;
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPDateTimeImpl *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPDateTimeImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPDateTimeImpl)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPDateTimeImpl, timeZone_, JavaUtilTimeZone *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPDateTimeImpl_init(ComItextpdfXmpImplXMPDateTimeImpl *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPDateTimeImpl *new_ComItextpdfXmpImplXMPDateTimeImpl_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPDateTimeImpl_initWithJavaUtilCalendar_(ComItextpdfXmpImplXMPDateTimeImpl *self, JavaUtilCalendar *calendar);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPDateTimeImpl *new_ComItextpdfXmpImplXMPDateTimeImpl_initWithJavaUtilCalendar_(JavaUtilCalendar *calendar) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPDateTimeImpl_initWithJavaUtilDate_withJavaUtilTimeZone_(ComItextpdfXmpImplXMPDateTimeImpl *self, JavaUtilDate *date, JavaUtilTimeZone *timeZone);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPDateTimeImpl *new_ComItextpdfXmpImplXMPDateTimeImpl_initWithJavaUtilDate_withJavaUtilTimeZone_(JavaUtilDate *date, JavaUtilTimeZone *timeZone) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPDateTimeImpl_initWithNSString_(ComItextpdfXmpImplXMPDateTimeImpl *self, NSString *strValue);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPDateTimeImpl *new_ComItextpdfXmpImplXMPDateTimeImpl_initWithNSString_(NSString *strValue) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPDateTimeImpl)
 
 #endif // _ComItextpdfXmpImplXMPDateTimeImpl_H_

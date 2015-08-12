@@ -6,111 +6,100 @@
 #ifndef _ComItextpdfXmpOptionsSerializeOptions_H_
 #define _ComItextpdfXmpOptionsSerializeOptions_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/options/Options.h"
 
+#define ComItextpdfXmpOptionsSerializeOptions_OMIT_PACKET_WRAPPER 16
+#define ComItextpdfXmpOptionsSerializeOptions_READONLY_PACKET 32
+#define ComItextpdfXmpOptionsSerializeOptions_USE_COMPACT_FORMAT 64
+#define ComItextpdfXmpOptionsSerializeOptions_USE_CANONICAL_FORMAT 128
+#define ComItextpdfXmpOptionsSerializeOptions_INCLUDE_THUMBNAIL_PAD 256
+#define ComItextpdfXmpOptionsSerializeOptions_EXACT_PACKET_LENGTH 512
+#define ComItextpdfXmpOptionsSerializeOptions_OMIT_XMPMETA_ELEMENT 4096
+#define ComItextpdfXmpOptionsSerializeOptions_SORT 8192
+#define ComItextpdfXmpOptionsSerializeOptions_ENCODE_UTF8 0
 #define ComItextpdfXmpOptionsSerializeOptions_ENCODE_UTF16BE 2
 #define ComItextpdfXmpOptionsSerializeOptions_ENCODE_UTF16LE 3
-#define ComItextpdfXmpOptionsSerializeOptions_ENCODE_UTF8 0
-#define ComItextpdfXmpOptionsSerializeOptions_ENCODING_MASK 3
-#define ComItextpdfXmpOptionsSerializeOptions_EXACT_PACKET_LENGTH 512
-#define ComItextpdfXmpOptionsSerializeOptions_INCLUDE_THUMBNAIL_PAD 256
-#define ComItextpdfXmpOptionsSerializeOptions_LITTLEENDIAN_BIT 1
-#define ComItextpdfXmpOptionsSerializeOptions_OMIT_PACKET_WRAPPER 16
-#define ComItextpdfXmpOptionsSerializeOptions_OMIT_XMPMETA_ELEMENT 4096
-#define ComItextpdfXmpOptionsSerializeOptions_READONLY_PACKET 32
-#define ComItextpdfXmpOptionsSerializeOptions_SORT 8192
-#define ComItextpdfXmpOptionsSerializeOptions_USE_CANONICAL_FORMAT 128
-#define ComItextpdfXmpOptionsSerializeOptions_USE_COMPACT_FORMAT 64
-#define ComItextpdfXmpOptionsSerializeOptions_UTF16_BIT 2
 
-@interface ComItextpdfXmpOptionsSerializeOptions : ComItextpdfXmpOptionsOptions {
- @public
-  jint padding_;
-  NSString *newline_;
-  NSString *indent_;
-  jint baseIndent_;
-  jboolean omitVersionAttribute_;
-}
+@interface ComItextpdfXmpOptionsSerializeOptions : ComItextpdfXmpOptionsOptions
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)options;
 
-- (jboolean)getOmitPacketWrapper;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setOmitPacketWrapperWithBoolean:(jboolean)value;
-
-- (jboolean)getOmitXmpMetaElement;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setOmitXmpMetaElementWithBoolean:(jboolean)value;
-
-- (jboolean)getReadOnlyPacket;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setReadOnlyPacketWithBoolean:(jboolean)value;
-
-- (jboolean)getUseCompactFormat;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setUseCompactFormatWithBoolean:(jboolean)value;
-
-- (jboolean)getUseCanonicalFormat;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setUseCanonicalFormatWithBoolean:(jboolean)value;
-
-- (jboolean)getIncludeThumbnailPad;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setIncludeThumbnailPadWithBoolean:(jboolean)value;
-
-- (jboolean)getExactPacketLength;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setExactPacketLengthWithBoolean:(jboolean)value;
-
-- (jboolean)getSort;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setSortWithBoolean:(jboolean)value;
-
-- (jboolean)getEncodeUTF16BE;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setEncodeUTF16BEWithBoolean:(jboolean)value;
-
-- (jboolean)getEncodeUTF16LE;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setEncodeUTF16LEWithBoolean:(jboolean)value;
+- (id)clone;
 
 - (jint)getBaseIndent;
 
-- (ComItextpdfXmpOptionsSerializeOptions *)setBaseIndentWithInt:(jint)baseIndent;
+- (jboolean)getEncodeUTF16BE;
 
-- (NSString *)getIndent;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setIndentWithNSString:(NSString *)indent;
-
-- (NSString *)getNewline;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setNewlineWithNSString:(NSString *)newline;
-
-- (jint)getPadding;
-
-- (ComItextpdfXmpOptionsSerializeOptions *)setPaddingWithInt:(jint)padding;
-
-- (jboolean)getOmitVersionAttribute;
+- (jboolean)getEncodeUTF16LE;
 
 - (NSString *)getEncoding;
 
-- (id)clone;
+- (jboolean)getExactPacketLength;
+
+- (jboolean)getIncludeThumbnailPad;
+
+- (NSString *)getIndent;
+
+- (NSString *)getNewline;
+
+- (jboolean)getOmitPacketWrapper;
+
+- (jboolean)getOmitVersionAttribute;
+
+- (jboolean)getOmitXmpMetaElement;
+
+- (jint)getPadding;
+
+- (jboolean)getReadOnlyPacket;
+
+- (jboolean)getSort;
+
+- (jboolean)getUseCanonicalFormat;
+
+- (jboolean)getUseCompactFormat;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setBaseIndentWithInt:(jint)baseIndent;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setEncodeUTF16BEWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setEncodeUTF16LEWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setExactPacketLengthWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setIncludeThumbnailPadWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setIndentWithNSString:(NSString *)indent;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setNewlineWithNSString:(NSString *)newline;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setOmitPacketWrapperWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setOmitXmpMetaElementWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setPaddingWithInt:(jint)padding;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setReadOnlyPacketWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setSortWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setUseCanonicalFormatWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsSerializeOptions *)setUseCompactFormatWithBoolean:(jboolean)value;
+
+#pragma mark Protected
 
 - (NSString *)defineOptionNameWithInt:(jint)option;
 
 - (jint)getValidOptions;
 
-- (void)copyAllFieldsTo:(ComItextpdfXmpOptionsSerializeOptions *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpOptionsSerializeOptions_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpOptionsSerializeOptions, newline_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpOptionsSerializeOptions, indent_, NSString *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpOptionsSerializeOptions)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, OMIT_PACKET_WRAPPER, jint)
 
@@ -128,16 +117,20 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, OMIT_XMPMETA_E
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, SORT, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, LITTLEENDIAN_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, UTF16_BIT, jint)
-
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, ENCODE_UTF8, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, ENCODE_UTF16BE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, ENCODE_UTF16LE, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsSerializeOptions, ENCODING_MASK, jint)
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsSerializeOptions_init(ComItextpdfXmpOptionsSerializeOptions *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsSerializeOptions *new_ComItextpdfXmpOptionsSerializeOptions_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsSerializeOptions_initWithInt_(ComItextpdfXmpOptionsSerializeOptions *self, jint options);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsSerializeOptions *new_ComItextpdfXmpOptionsSerializeOptions_initWithInt_(jint options) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpOptionsSerializeOptions)
 
 #endif // _ComItextpdfXmpOptionsSerializeOptions_H_

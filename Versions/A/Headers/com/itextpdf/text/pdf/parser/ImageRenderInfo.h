@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfParserImageRenderInfo_H_
 #define _ComItextpdfTextPdfParserImageRenderInfo_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfParserInlineImageInfo;
 @class ComItextpdfTextPdfParserMatrix;
 @class ComItextpdfTextPdfParserPdfImageObject;
@@ -13,55 +15,38 @@
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfParserImageRenderInfo : NSObject
 
-@interface ComItextpdfTextPdfParserImageRenderInfo : NSObject {
- @public
-  ComItextpdfTextPdfParserMatrix *ctm_;
-  ComItextpdfTextPdfPdfIndirectReference *ref_;
-  ComItextpdfTextPdfParserInlineImageInfo *inlineImageInfo_;
-  ComItextpdfTextPdfPdfDictionary *colorSpaceDictionary_;
-  ComItextpdfTextPdfParserPdfImageObject *imageObject_;
-}
-
-- (instancetype)initWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)ctm
-            withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
-                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDictionary;
-
-- (instancetype)initWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)ctm
-           withComItextpdfTextPdfParserInlineImageInfo:(ComItextpdfTextPdfParserInlineImageInfo *)inlineImageInfo
-                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDictionary;
+#pragma mark Public
 
 + (ComItextpdfTextPdfParserImageRenderInfo *)createForXObjectWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)ctm
                                                      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
                                                             withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDictionary;
 
+- (jfloat)getArea;
+
+- (ComItextpdfTextPdfParserPdfImageObject *)getImage;
+
+- (ComItextpdfTextPdfParserMatrix *)getImageCTM;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
+
+- (ComItextpdfTextPdfParserVector *)getStartPoint;
+
+#pragma mark Protected
+
 + (ComItextpdfTextPdfParserImageRenderInfo *)createForEmbeddedImageWithComItextpdfTextPdfParserMatrix:(ComItextpdfTextPdfParserMatrix *)ctm
                                                           withComItextpdfTextPdfParserInlineImageInfo:(ComItextpdfTextPdfParserInlineImageInfo *)inlineImageInfo
                                                                   withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)colorSpaceDictionary;
 
-- (ComItextpdfTextPdfParserPdfImageObject *)getImage;
-
-- (void)prepareImageObject;
-
-- (ComItextpdfTextPdfParserVector *)getStartPoint;
-
-- (ComItextpdfTextPdfParserMatrix *)getImageCTM;
-
-- (jfloat)getArea;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getRef;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserImageRenderInfo *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserImageRenderInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserImageRenderInfo)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserImageRenderInfo, ctm_, ComItextpdfTextPdfParserMatrix *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserImageRenderInfo, ref_, ComItextpdfTextPdfPdfIndirectReference *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserImageRenderInfo, inlineImageInfo_, ComItextpdfTextPdfParserInlineImageInfo *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserImageRenderInfo, colorSpaceDictionary_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserImageRenderInfo, imageObject_, ComItextpdfTextPdfParserPdfImageObject *)
+FOUNDATION_EXPORT ComItextpdfTextPdfParserImageRenderInfo *ComItextpdfTextPdfParserImageRenderInfo_createForXObjectWithComItextpdfTextPdfParserMatrix_withComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserMatrix *ctm, ComItextpdfTextPdfPdfIndirectReference *ref, ComItextpdfTextPdfPdfDictionary *colorSpaceDictionary);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserImageRenderInfo *ComItextpdfTextPdfParserImageRenderInfo_createForEmbeddedImageWithComItextpdfTextPdfParserMatrix_withComItextpdfTextPdfParserInlineImageInfo_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfParserMatrix *ctm, ComItextpdfTextPdfParserInlineImageInfo *inlineImageInfo, ComItextpdfTextPdfPdfDictionary *colorSpaceDictionary);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserImageRenderInfo)
 
 #endif // _ComItextpdfTextPdfParserImageRenderInfo_H_

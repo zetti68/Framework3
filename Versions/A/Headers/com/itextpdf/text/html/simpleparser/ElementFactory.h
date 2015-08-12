@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextHtmlSimpleparserElementFactory_H_
 #define _ComItextpdfTextHtmlSimpleparserElementFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextHtmlSimpleparserChainedProperties;
@@ -21,38 +23,14 @@
 @protocol ComItextpdfTextPdfHyphenationEvent;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextHtmlSimpleparserElementFactory : NSObject
 
-@interface ComItextpdfTextHtmlSimpleparserElementFactory : NSObject {
- @public
-  id<ComItextpdfTextFontProvider> provider_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)setFontProviderWithComItextpdfTextFontProvider:(id<ComItextpdfTextFontProvider>)provider;
-
-- (id<ComItextpdfTextFontProvider>)getFontProvider;
-
-- (ComItextpdfTextFont *)getFontWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
 - (ComItextpdfTextChunk *)createChunkWithNSString:(NSString *)content
 withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
-- (ComItextpdfTextParagraph *)createParagraphWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
-- (ComItextpdfTextListItem *)createListItemWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
-- (void)updateElementWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)paragraph
-withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
-+ (void)setParagraphLeadingWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)paragraph
-                                           withNSString:(NSString *)leading;
-
-- (id<ComItextpdfTextPdfHyphenationEvent>)getHyphenationWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
-
-- (ComItextpdfTextPdfDrawLineSeparator *)createLineSeparatorWithJavaUtilMap:(id<JavaUtilMap>)attrs
-                                                                  withFloat:(jfloat)offset;
 
 - (ComItextpdfTextImage *)createImageWithNSString:(NSString *)src
                                   withJavaUtilMap:(id<JavaUtilMap>)attrs
@@ -62,15 +40,42 @@ withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimplep
                               withJavaUtilHashMap:(JavaUtilHashMap *)img_store
                                      withNSString:(NSString *)img_baseurl;
 
+- (ComItextpdfTextPdfDrawLineSeparator *)createLineSeparatorWithJavaUtilMap:(id<JavaUtilMap>)attrs
+                                                                  withFloat:(jfloat)offset;
+
 - (ComItextpdfTextList *)createListWithNSString:(NSString *)tag
 withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHtmlSimpleparserElementFactory *)other;
+- (ComItextpdfTextListItem *)createListItemWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
+
+- (ComItextpdfTextParagraph *)createParagraphWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
+
+- (ComItextpdfTextFont *)getFontWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
+
+- (id<ComItextpdfTextFontProvider>)getFontProvider;
+
+- (id<ComItextpdfTextPdfHyphenationEvent>)getHyphenationWithComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
+
+- (void)setFontProviderWithComItextpdfTextFontProvider:(id<ComItextpdfTextFontProvider>)provider;
+
+#pragma mark Protected
+
++ (void)setParagraphLeadingWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)paragraph
+                                           withNSString:(NSString *)leading;
+
+- (void)updateElementWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)paragraph
+withComItextpdfTextHtmlSimpleparserChainedProperties:(ComItextpdfTextHtmlSimpleparserChainedProperties *)chain;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlSimpleparserElementFactory_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlSimpleparserElementFactory)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextHtmlSimpleparserElementFactory, provider_, id<ComItextpdfTextFontProvider>)
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserElementFactory_init(ComItextpdfTextHtmlSimpleparserElementFactory *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlSimpleparserElementFactory *new_ComItextpdfTextHtmlSimpleparserElementFactory_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlSimpleparserElementFactory_setParagraphLeadingWithComItextpdfTextParagraph_withNSString_(ComItextpdfTextParagraph *paragraph, NSString *leading);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlSimpleparserElementFactory)
 
 #endif // _ComItextpdfTextHtmlSimpleparserElementFactory_H_

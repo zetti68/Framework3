@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextLogLogger_H_
 #define _ComItextpdfTextLogLogger_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextLogLevelEnum;
 @class IOSClass;
 @class JavaLangException;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextLogLogger < NSObject, JavaObject >
 
@@ -35,6 +35,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogLogger_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogLogger)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogLogger)
 
 #endif // _ComItextpdfTextLogLogger_H_

@@ -6,6 +6,6 @@
 #ifndef _ComItextpdfTextApipackage_info_H_
 #define _ComItextpdfTextApipackage_info_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 #endif // _ComItextpdfTextApipackage_info_H_

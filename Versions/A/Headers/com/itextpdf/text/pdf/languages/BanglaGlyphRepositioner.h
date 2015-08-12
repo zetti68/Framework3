@@ -6,45 +6,31 @@
 #ifndef _ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_H_
 #define _ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_H_
 
-@class ComItextpdfTextPdfGlyph;
-@class IOSObjectArray;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/languages/IndicGlyphRepositioner.h"
+
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/languages/IndicGlyphRepositioner.h"
+@interface ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner : ComItextpdfTextPdfLanguagesIndicGlyphRepositioner
 
-@interface ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner : ComItextpdfTextPdfLanguagesIndicGlyphRepositioner {
- @public
-  id<JavaUtilMap> cmap31_;
-  id<JavaUtilMap> glyphSubstitutionMap_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)cmap31
                     withJavaUtilMap:(id<JavaUtilMap>)glyphSubstitutionMap;
 
-- (void)repositionGlyphsWithJavaUtilList:(id<JavaUtilList>)glyphList;
-
 - (id<JavaUtilList>)getCharactersToBeShiftedLeftByOnePosition;
 
-- (void)handleOKaarAndOUKaarWithInt:(jint)currentIndex
-                   withJavaUtilList:(id<JavaUtilList>)glyphList
-                           withChar:(jchar)first
-                           withChar:(jchar)second;
-
-- (ComItextpdfTextPdfGlyph *)getGlyphWithChar:(jchar)c;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner *)other;
+- (void)repositionGlyphsWithJavaUtilList:(id<JavaUtilList>)glyphList;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner, cmap31_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner, glyphSubstitutionMap_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_initWithJavaUtilMap_withJavaUtilMap_(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner *self, id<JavaUtilMap> cmap31, id<JavaUtilMap> glyphSubstitutionMap);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_CHARCTERS_TO_BE_SHIFTED_LEFT_BY_1_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner, CHARCTERS_TO_BE_SHIFTED_LEFT_BY_1_, IOSObjectArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner *new_ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_initWithJavaUtilMap_withJavaUtilMap_(id<JavaUtilMap> cmap31, id<JavaUtilMap> glyphSubstitutionMap) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner)
 
 #endif // _ComItextpdfTextPdfLanguagesBanglaGlyphRepositioner_H_

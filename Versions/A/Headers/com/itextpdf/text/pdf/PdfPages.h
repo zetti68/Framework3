@@ -6,48 +6,41 @@
 #ifndef _ComItextpdfTextPdfPdfPages_H_
 #define _ComItextpdfTextPdfPdfPages_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSIntArray;
-@class JavaUtilArrayList;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfPdfPages : NSObject
 
-@interface ComItextpdfTextPdfPdfPages : NSObject {
- @public
-  JavaUtilArrayList *pages_;
-  JavaUtilArrayList *parents_;
-  jint leafSize_;
-  ComItextpdfTextPdfPdfWriter *writer_;
-  ComItextpdfTextPdfPdfIndirectReference *topParent_;
-}
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
 - (void)addPageWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)page;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)addPageRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)pageRef;
+- (void)addPageWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)page;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)writePageTree;
+- (ComItextpdfTextPdfPdfIndirectReference *)addPageRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)pageRef;
 
 - (ComItextpdfTextPdfPdfIndirectReference *)getTopParent;
 
-- (void)setLinearModeWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)topParent;
-
-- (void)addPageWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)page;
-
 - (jint)reorderPagesWithIntArray:(IOSIntArray *)order;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPages *)other;
+- (void)setLinearModeWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)topParent;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)writePageTree;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPages_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPages)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPages, pages_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPages, parents_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPages, writer_, ComItextpdfTextPdfPdfWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPages, topParent_, ComItextpdfTextPdfPdfIndirectReference *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPages_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfPages *self, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPages *new_ComItextpdfTextPdfPdfPages_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPages)
 
 #endif // _ComItextpdfTextPdfPdfPages_H_

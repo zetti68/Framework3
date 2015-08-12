@@ -6,63 +6,24 @@
 #ifndef _ComItextpdfTextPdfCodecBmpImage_H_
 #define _ComItextpdfTextPdfCodecBmpImage_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaNetURL;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfCodecBmpImage_BI_BITFIELDS 3
-#define ComItextpdfTextPdfCodecBmpImage_BI_RGB 0
-#define ComItextpdfTextPdfCodecBmpImage_BI_RLE4 2
-#define ComItextpdfTextPdfCodecBmpImage_BI_RLE8 1
-#define ComItextpdfTextPdfCodecBmpImage_LCS_CALIBRATED_RGB 0
-#define ComItextpdfTextPdfCodecBmpImage_LCS_CMYK 2
-#define ComItextpdfTextPdfCodecBmpImage_LCS_sRGB 1
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_2_1_BIT 0
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_2_24_BIT 3
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_2_4_BIT 1
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_2_8_BIT 2
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_1_BIT 4
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_24_BIT 7
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_4_BIT 5
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_8_BIT 6
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_NT_16_BIT 8
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_3_NT_32_BIT 9
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_16_BIT 13
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_1_BIT 10
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_24_BIT 14
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_32_BIT 15
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_4_BIT 11
-#define ComItextpdfTextPdfCodecBmpImage_VERSION_4_8_BIT 12
-
 @interface ComItextpdfTextPdfCodecBmpImage : NSObject {
  @public
-  JavaIoInputStream *inputStream_;
-  jlong bitmapFileSize_;
-  jlong bitmapOffset_;
-  jlong compression_;
-  jlong imageSize_;
-  IOSByteArray *palette_;
-  jint imageType_;
-  jint numBands_;
-  jboolean isBottomUp_;
-  jint bitsPerPixel_;
-  jint redMask_, greenMask_, blueMask_, alphaMask_;
   JavaUtilHashMap *properties_;
-  jlong xPelsPerMeter_;
-  jlong yPelsPerMeter_;
   jint width_;
   jint height_;
 }
 
-- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is
-                              withBoolean:(jboolean)noHeader
-                                  withInt:(jint)size;
+#pragma mark Public
 
-+ (ComItextpdfTextImage *)getImageWithJavaNetURL:(JavaNetURL *)url;
++ (ComItextpdfTextImage *)getImageWithByteArray:(IOSByteArray *)data;
 
 + (ComItextpdfTextImage *)getImageWithJavaIoInputStream:(JavaIoInputStream *)is;
 
@@ -72,112 +33,39 @@
 
 + (ComItextpdfTextImage *)getImageWithNSString:(NSString *)file;
 
-+ (ComItextpdfTextImage *)getImageWithByteArray:(IOSByteArray *)data;
++ (ComItextpdfTextImage *)getImageWithJavaNetURL:(JavaNetURL *)url;
+
+#pragma mark Protected
 
 - (void)processWithJavaIoInputStream:(JavaIoInputStream *)stream
                          withBoolean:(jboolean)noHeader;
 
-- (IOSByteArray *)getPaletteWithInt:(jint)group;
+#pragma mark Package-Private
 
-- (ComItextpdfTextImage *)getImage;
-
-- (ComItextpdfTextImage *)indexedModelWithByteArray:(IOSByteArray *)bdata
-                                            withInt:(jint)bpc
-                                            withInt:(jint)paletteEntries;
-
-- (void)readPaletteWithInt:(jint)sizeOfPalette;
-
-- (ComItextpdfTextImage *)read1BitWithInt:(jint)paletteEntries;
-
-- (ComItextpdfTextImage *)read4BitWithInt:(jint)paletteEntries;
-
-- (ComItextpdfTextImage *)read8BitWithInt:(jint)paletteEntries;
-
-- (void)read24BitWithByteArray:(IOSByteArray *)bdata;
-
-- (jint)findMaskWithInt:(jint)mask;
-
-- (jint)findShiftWithInt:(jint)mask;
-
-- (ComItextpdfTextImage *)read1632BitWithBoolean:(jboolean)is32;
-
-- (ComItextpdfTextImage *)readRLE8;
-
-- (ComItextpdfTextImage *)readRLE4;
-
-- (IOSByteArray *)decodeRLEWithBoolean:(jboolean)is8
-                         withByteArray:(IOSByteArray *)values;
-
-- (jint)readUnsignedByteWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jint)readUnsignedShortWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jint)readShortWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jint)readWordWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jlong)readUnsignedIntWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jint)readIntWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jlong)readDWordWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (jint)readLongWithJavaIoInputStream:(JavaIoInputStream *)stream;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecBmpImage *)other;
+- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is
+                              withBoolean:(jboolean)noHeader
+                                  withInt:(jint)size;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecBmpImage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecBmpImage)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecBmpImage, inputStream_, JavaIoInputStream *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecBmpImage, palette_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecBmpImage, properties_, JavaUtilHashMap *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_2_1_BIT, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecBmpImage_initWithJavaIoInputStream_withBoolean_withInt_(ComItextpdfTextPdfCodecBmpImage *self, JavaIoInputStream *is, jboolean noHeader, jint size);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_2_4_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecBmpImage *new_ComItextpdfTextPdfCodecBmpImage_initWithJavaIoInputStream_withBoolean_withInt_(JavaIoInputStream *is, jboolean noHeader, jint size) NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_2_8_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecBmpImage_getImageWithJavaNetURL_(JavaNetURL *url);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_2_24_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecBmpImage_getImageWithJavaIoInputStream_(JavaIoInputStream *is);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_1_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecBmpImage_getImageWithJavaIoInputStream_withBoolean_withInt_(JavaIoInputStream *is, jboolean noHeader, jint size);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_4_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecBmpImage_getImageWithNSString_(NSString *file);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_8_BIT, jint)
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextPdfCodecBmpImage_getImageWithByteArray_(IOSByteArray *data);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_24_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_NT_16_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_3_NT_32_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_1_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_4_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_8_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_16_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_24_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, VERSION_4_32_BIT, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, LCS_CALIBRATED_RGB, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, LCS_sRGB, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, LCS_CMYK, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, BI_RGB, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, BI_RLE8, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, BI_RLE4, jint)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecBmpImage, BI_BITFIELDS, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecBmpImage)
 
 #endif // _ComItextpdfTextPdfCodecBmpImage_H_

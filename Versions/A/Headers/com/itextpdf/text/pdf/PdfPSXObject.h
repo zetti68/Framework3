@@ -6,26 +6,39 @@
 #ifndef _ComItextpdfTextPdfPdfPSXObject_H_
 #define _ComItextpdfTextPdfPdfPSXObject_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfTemplate.h"
+
 @class ComItextpdfTextPdfPdfContentByte;
 @class ComItextpdfTextPdfPdfStream;
 @class ComItextpdfTextPdfPdfWriter;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfTemplate.h"
+@interface ComItextpdfTextPdfPdfPSXObject : ComItextpdfTextPdfPdfTemplate
 
-@interface ComItextpdfTextPdfPdfPSXObject : ComItextpdfTextPdfPdfTemplate {
-}
-
-- (instancetype)init;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)wr;
 
+- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+
 - (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)compressionLevel;
 
-- (ComItextpdfTextPdfPdfContentByte *)getDuplicate;
+#pragma mark Protected
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPSXObject_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPSXObject)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPSXObject_init(ComItextpdfTextPdfPdfPSXObject *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPSXObject *new_ComItextpdfTextPdfPdfPSXObject_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPSXObject_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfPSXObject *self, ComItextpdfTextPdfPdfWriter *wr);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPSXObject *new_ComItextpdfTextPdfPdfPSXObject_initWithComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfWriter *wr) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPSXObject)
 
 #endif // _ComItextpdfTextPdfPdfPSXObject_H_

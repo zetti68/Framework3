@@ -6,52 +6,69 @@
 #ifndef _ComItextpdfTextHtmlHtmlUtilities_H_
 #define _ComItextpdfTextHtmlHtmlUtilities_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class IOSIntArray;
-@class JavaUtilHashMap;
 @class JavaUtilProperties;
-
-#import "JreEmulation.h"
 
 #define ComItextpdfTextHtmlHtmlUtilities_DEFAULT_FONT_SIZE 12.0f
 
-@interface ComItextpdfTextHtmlHtmlUtilities : NSObject {
-}
+@interface ComItextpdfTextHtmlHtmlUtilities : NSObject
 
-+ (jfloat)parseLengthWithNSString:(NSString *)string;
+#pragma mark Public
 
-+ (jfloat)parseLengthWithNSString:(NSString *)string
-                        withFloat:(jfloat)actualFontSize;
+- (instancetype)init;
+
++ (jint)alignmentValueWithNSString:(NSString *)alignment;
 
 + (ComItextpdfTextBaseColor *)decodeColorWithNSString:(NSString *)s;
-
-+ (JavaUtilProperties *)parseAttributesWithNSString:(NSString *)string;
-
-+ (NSString *)removeCommentWithNSString:(NSString *)string
-                           withNSString:(NSString *)startComment
-                           withNSString:(NSString *)endComment;
 
 + (NSString *)eliminateWhiteSpaceWithNSString:(NSString *)content;
 
 + (jint)getIndexedFontSizeWithNSString:(NSString *)value
                           withNSString:(NSString *)previous;
 
-+ (jint)alignmentValueWithNSString:(NSString *)alignment;
++ (JavaUtilProperties *)parseAttributesWithNSString:(NSString *)string;
 
-- (instancetype)init;
++ (jfloat)parseLengthWithNSString:(NSString *)string;
+
++ (jfloat)parseLengthWithNSString:(NSString *)string
+                        withFloat:(jfloat)actualFontSize;
+
++ (NSString *)removeCommentWithNSString:(NSString *)string
+                           withNSString:(NSString *)startComment
+                           withNSString:(NSString *)endComment;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextHtmlHtmlUtilities_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextHtmlHtmlUtilities)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlUtilities, DEFAULT_FONT_SIZE, jfloat)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextHtmlHtmlUtilities_sizes_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlUtilities, sizes_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextHtmlHtmlUtilities, sizes_, JavaUtilHashMap *)
-
 FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextHtmlHtmlUtilities_FONTSIZES_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlUtilities, FONTSIZES_, IOSIntArray *)
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextHtmlHtmlUtilities_parseLengthWithNSString_(NSString *string);
+
+FOUNDATION_EXPORT jfloat ComItextpdfTextHtmlHtmlUtilities_parseLengthWithNSString_withFloat_(NSString *string, jfloat actualFontSize);
+
+FOUNDATION_EXPORT ComItextpdfTextBaseColor *ComItextpdfTextHtmlHtmlUtilities_decodeColorWithNSString_(NSString *s);
+
+FOUNDATION_EXPORT JavaUtilProperties *ComItextpdfTextHtmlHtmlUtilities_parseAttributesWithNSString_(NSString *string);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlUtilities_removeCommentWithNSString_withNSString_withNSString_(NSString *string, NSString *startComment, NSString *endComment);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlUtilities_eliminateWhiteSpaceWithNSString_(NSString *content);
+
+FOUNDATION_EXPORT jint ComItextpdfTextHtmlHtmlUtilities_getIndexedFontSizeWithNSString_withNSString_(NSString *value, NSString *previous);
+
+FOUNDATION_EXPORT jint ComItextpdfTextHtmlHtmlUtilities_alignmentValueWithNSString_(NSString *alignment);
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlHtmlUtilities_init(ComItextpdfTextHtmlHtmlUtilities *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlHtmlUtilities *new_ComItextpdfTextHtmlHtmlUtilities_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlHtmlUtilities)
 
 #endif // _ComItextpdfTextHtmlHtmlUtilities_H_

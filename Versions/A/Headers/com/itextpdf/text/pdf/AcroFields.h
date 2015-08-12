@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfAcroFields_H_
 #define _ComItextpdfTextPdfAcroFields_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfAcroFields_Item;
 @class ComItextpdfTextPdfBaseField;
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfFdfReader;
 @class ComItextpdfTextPdfFdfWriter;
-@class ComItextpdfTextPdfIntHashtable;
 @class ComItextpdfTextPdfPdfAppearance;
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
@@ -31,192 +32,104 @@
 @class JavaIoInputStream;
 @class JavaLangInteger;
 @class JavaUtilArrayList;
-@class JavaUtilHashMap;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 @protocol OrgW3cDomNode;
 
-#import "JreEmulation.h"
-#include "java/util/Comparator.h"
-
-#define ComItextpdfTextPdfAcroFields_DA_COLOR 2
 #define ComItextpdfTextPdfAcroFields_DA_FONT 0
 #define ComItextpdfTextPdfAcroFields_DA_SIZE 1
-#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_CHECKBOX 2
-#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_COMBO 6
-#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_LIST 5
+#define ComItextpdfTextPdfAcroFields_DA_COLOR 2
 #define ComItextpdfTextPdfAcroFields_FIELD_TYPE_NONE 0
 #define ComItextpdfTextPdfAcroFields_FIELD_TYPE_PUSHBUTTON 1
+#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_CHECKBOX 2
 #define ComItextpdfTextPdfAcroFields_FIELD_TYPE_RADIOBUTTON 3
-#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_SIGNATURE 7
 #define ComItextpdfTextPdfAcroFields_FIELD_TYPE_TEXT 4
+#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_LIST 5
+#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_COMBO 6
+#define ComItextpdfTextPdfAcroFields_FIELD_TYPE_SIGNATURE 7
 
 @interface ComItextpdfTextPdfAcroFields : NSObject {
  @public
   ComItextpdfTextPdfPdfReader *reader_;
   ComItextpdfTextPdfPdfWriter *writer_;
   id<JavaUtilMap> fields_;
-  jint topFirst_;
-  JavaUtilHashMap *sigNames_;
-  jboolean append_;
-  JavaUtilHashMap *extensionFonts_;
-  ComItextpdfTextPdfXfaForm *xfa_;
-  jboolean lastWasString_;
-  jboolean generateAppearances_;
-  JavaUtilHashMap *localFonts_;
-  jfloat extraMarginLeft_;
-  jfloat extraMarginTop_;
-  JavaUtilArrayList *substitutionFonts_;
-  JavaUtilArrayList *orderedSignatureNames_;
-  jint totalRevisions_;
-  id<JavaUtilMap> fieldCache_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                    withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+#pragma mark Public
 
-- (void)fill;
+- (void)addSubstitutionFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
 
-- (IOSObjectArray *)getAppearanceStatesWithNSString:(NSString *)fieldName;
-
-- (IOSObjectArray *)getListOptionWithNSString:(NSString *)fieldName
-                                      withInt:(jint)idx;
-
-- (IOSObjectArray *)getListOptionExportWithNSString:(NSString *)fieldName;
-
-- (IOSObjectArray *)getListOptionDisplayWithNSString:(NSString *)fieldName;
-
-- (jboolean)setListOptionWithNSString:(NSString *)fieldName
-                    withNSStringArray:(IOSObjectArray *)exportValues
-                    withNSStringArray:(IOSObjectArray *)displayValues;
-
-- (jint)getFieldTypeWithNSString:(NSString *)fieldName;
-
-- (void)exportAsFdfWithComItextpdfTextPdfFdfWriter:(ComItextpdfTextPdfFdfWriter *)writer;
-
-- (jboolean)renameFieldWithNSString:(NSString *)oldName
-                       withNSString:(NSString *)newName;
-
-+ (IOSObjectArray *)splitDAelementsWithNSString:(NSString *)da;
+- (jboolean)clearSignatureFieldWithNSString:(NSString *)name;
 
 - (void)decodeGenericDictionaryWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)merged
                                    withComItextpdfTextPdfBaseField:(ComItextpdfTextPdfBaseField *)tx;
 
-- (ComItextpdfTextPdfPdfAppearance *)getAppearanceWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)merged
-                                                                    withNSStringArray:(IOSObjectArray *)values
-                                                                         withNSString:(NSString *)fieldName;
-
-- (ComItextpdfTextPdfPdfAppearance *)getAppearanceWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)merged
-                                                                         withNSString:(NSString *)text
-                                                                         withNSString:(NSString *)fieldName;
-
-- (ComItextpdfTextBaseColor *)getMKColorWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)ar;
-
-- (NSString *)getFieldRichValueWithNSString:(NSString *)name;
-
-- (NSString *)getFieldWithNSString:(NSString *)name;
-
-- (IOSObjectArray *)getListSelectionWithNSString:(NSString *)name;
-
-- (jboolean)setFieldPropertyWithNSString:(NSString *)field
-                            withNSString:(NSString *)name
-                                  withId:(id)value
-                            withIntArray:(IOSIntArray *)inst;
-
-- (jboolean)setFieldPropertyWithNSString:(NSString *)field
-                            withNSString:(NSString *)name
-                                 withInt:(jint)value
-                            withIntArray:(IOSIntArray *)inst;
-
-- (void)mergeXfaDataWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
-
-- (void)setFieldsWithComItextpdfTextPdfFdfReader:(ComItextpdfTextPdfFdfReader *)fdf;
-
-- (void)setFieldsWithComItextpdfTextPdfXfdfReader:(ComItextpdfTextPdfXfdfReader *)xfdf;
-
-- (jboolean)regenerateFieldWithNSString:(NSString *)name;
-
-- (jboolean)setFieldWithNSString:(NSString *)name
-                    withNSString:(NSString *)value;
-
-- (jboolean)setFieldRichValueWithNSString:(NSString *)name
-                             withNSString:(NSString *)richValue;
-
-- (jboolean)setFieldWithNSString:(NSString *)name
-                    withNSString:(NSString *)value
-                    withNSString:(NSString *)display;
-
-- (jboolean)setListSelectionWithNSString:(NSString *)name
-                       withNSStringArray:(IOSObjectArray *)value;
-
-- (jboolean)isInAPWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic
-                        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)check;
-
-- (id<JavaUtilMap>)getFields;
-
-- (ComItextpdfTextPdfAcroFields_Item *)getFieldItemWithNSString:(NSString *)name;
-
-- (NSString *)getTranslatedFieldNameWithNSString:(NSString *)name;
-
-- (id<JavaUtilList>)getFieldPositionsWithNSString:(NSString *)name;
-
-- (jint)removeRefFromArrayWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)array
-                         withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)refo;
-
-- (jboolean)removeFieldsFromPageWithInt:(jint)page;
-
-- (jboolean)removeFieldWithNSString:(NSString *)name
-                            withInt:(jint)page;
-
-- (jboolean)removeFieldWithNSString:(NSString *)name;
-
-- (jboolean)isGenerateAppearances;
-
-- (void)setGenerateAppearancesWithBoolean:(jboolean)generateAppearances;
-
-- (jboolean)clearSignatureFieldWithNSString:(NSString *)name;
-
-+ (void)clearSigDicWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
-
-- (JavaUtilArrayList *)getSignatureNames;
-
-- (JavaUtilArrayList *)getBlankSignatureNames;
-
-- (ComItextpdfTextPdfPdfDictionary *)getSignatureDictionaryWithNSString:(NSString *)name;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getNormalAppearanceWithNSString:(NSString *)name;
-
-- (jboolean)signatureCoversWholeDocumentWithNSString:(NSString *)name;
-
-- (void)markUsedWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
-
-- (jint)getTotalRevisions;
-
-- (jint)getRevisionWithNSString:(NSString *)field;
+- (void)exportAsFdfWithComItextpdfTextPdfFdfWriter:(ComItextpdfTextPdfFdfWriter *)writer;
 
 - (JavaIoInputStream *)extractRevisionWithNSString:(NSString *)field;
 
+- (IOSObjectArray *)getAppearanceStatesWithNSString:(NSString *)fieldName;
+
+- (JavaUtilArrayList *)getBlankSignatureNames;
+
+- (NSString *)getFieldWithNSString:(NSString *)name;
+
 - (id<JavaUtilMap>)getFieldCache;
 
-- (void)setFieldCacheWithJavaUtilMap:(id<JavaUtilMap>)fieldCache;
+- (ComItextpdfTextPdfAcroFields_Item *)getFieldItemWithNSString:(NSString *)name;
 
-- (void)setExtraMarginWithFloat:(jfloat)extraMarginLeft
-                      withFloat:(jfloat)extraMarginTop;
+- (id<JavaUtilList>)getFieldPositionsWithNSString:(NSString *)name;
 
-- (void)addSubstitutionFontWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)font;
+- (NSString *)getFieldRichValueWithNSString:(NSString *)name;
 
-- (JavaUtilArrayList *)getSubstitutionFonts;
+- (id<JavaUtilMap>)getFields;
 
-- (void)setSubstitutionFontsWithJavaUtilArrayList:(JavaUtilArrayList *)substitutionFonts;
+- (jint)getFieldTypeWithNSString:(NSString *)fieldName;
 
-- (ComItextpdfTextPdfXfaForm *)getXfa;
+- (IOSObjectArray *)getListOptionDisplayWithNSString:(NSString *)fieldName;
 
-- (void)removeXfa;
+- (IOSObjectArray *)getListOptionExportWithNSString:(NSString *)fieldName;
+
+- (IOSObjectArray *)getListSelectionWithNSString:(NSString *)name;
 
 - (ComItextpdfTextPdfPushbuttonField *)getNewPushbuttonFromFieldWithNSString:(NSString *)field;
 
 - (ComItextpdfTextPdfPushbuttonField *)getNewPushbuttonFromFieldWithNSString:(NSString *)field
                                                                      withInt:(jint)order;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getNormalAppearanceWithNSString:(NSString *)name;
+
+- (jint)getRevisionWithNSString:(NSString *)field;
+
+- (ComItextpdfTextPdfPdfDictionary *)getSignatureDictionaryWithNSString:(NSString *)name;
+
+- (JavaUtilArrayList *)getSignatureNames;
+
+- (JavaUtilArrayList *)getSubstitutionFonts;
+
+- (jint)getTotalRevisions;
+
+- (NSString *)getTranslatedFieldNameWithNSString:(NSString *)name;
+
+- (ComItextpdfTextPdfXfaForm *)getXfa;
+
+- (jboolean)isGenerateAppearances;
+
+- (void)mergeXfaDataWithOrgW3cDomNode:(id<OrgW3cDomNode>)n;
+
+- (jboolean)regenerateFieldWithNSString:(NSString *)name;
+
+- (jboolean)removeFieldWithNSString:(NSString *)name;
+
+- (jboolean)removeFieldWithNSString:(NSString *)name
+                            withInt:(jint)page;
+
+- (jboolean)removeFieldsFromPageWithInt:(jint)page;
+
+- (void)removeXfa;
+
+- (jboolean)renameFieldWithNSString:(NSString *)oldName
+                       withNSString:(NSString *)newName;
 
 - (jboolean)replacePushbuttonFieldWithNSString:(NSString *)field
             withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button;
@@ -225,23 +138,77 @@
             withComItextpdfTextPdfPdfFormField:(ComItextpdfTextPdfPdfFormField *)button
                                        withInt:(jint)order;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfAcroFields *)other;
+- (void)setExtraMarginWithFloat:(jfloat)extraMarginLeft
+                      withFloat:(jfloat)extraMarginTop;
+
+- (jboolean)setFieldWithNSString:(NSString *)name
+                    withNSString:(NSString *)value;
+
+- (jboolean)setFieldWithNSString:(NSString *)name
+                    withNSString:(NSString *)value
+                    withNSString:(NSString *)display;
+
+- (void)setFieldCacheWithJavaUtilMap:(id<JavaUtilMap>)fieldCache;
+
+- (jboolean)setFieldPropertyWithNSString:(NSString *)field
+                            withNSString:(NSString *)name
+                                 withInt:(jint)value
+                            withIntArray:(IOSIntArray *)inst;
+
+- (jboolean)setFieldPropertyWithNSString:(NSString *)field
+                            withNSString:(NSString *)name
+                                  withId:(id)value
+                            withIntArray:(IOSIntArray *)inst;
+
+- (jboolean)setFieldRichValueWithNSString:(NSString *)name
+                             withNSString:(NSString *)richValue;
+
+- (void)setFieldsWithComItextpdfTextPdfFdfReader:(ComItextpdfTextPdfFdfReader *)fdf;
+
+- (void)setFieldsWithComItextpdfTextPdfXfdfReader:(ComItextpdfTextPdfXfdfReader *)xfdf;
+
+- (void)setGenerateAppearancesWithBoolean:(jboolean)generateAppearances;
+
+- (jboolean)setListOptionWithNSString:(NSString *)fieldName
+                    withNSStringArray:(IOSObjectArray *)exportValues
+                    withNSStringArray:(IOSObjectArray *)displayValues;
+
+- (jboolean)setListSelectionWithNSString:(NSString *)name
+                       withNSStringArray:(IOSObjectArray *)value;
+
+- (void)setSubstitutionFontsWithJavaUtilArrayList:(JavaUtilArrayList *)substitutionFonts;
+
+- (jboolean)signatureCoversWholeDocumentWithNSString:(NSString *)name;
+
++ (IOSObjectArray *)splitDAelementsWithNSString:(NSString *)da;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                    withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+- (void)fill;
+
+- (ComItextpdfTextPdfPdfAppearance *)getAppearanceWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)merged
+                                                                         withNSString:(NSString *)text
+                                                                         withNSString:(NSString *)fieldName;
+
+- (ComItextpdfTextPdfPdfAppearance *)getAppearanceWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)merged
+                                                                    withNSStringArray:(IOSObjectArray *)values
+                                                                         withNSString:(NSString *)fieldName;
+
+- (ComItextpdfTextBaseColor *)getMKColorWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)ar;
+
+- (jboolean)isInAPWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic
+                        withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)check;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfAcroFields_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfAcroFields)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, reader_, ComItextpdfTextPdfPdfReader *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, writer_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, fields_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, sigNames_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, extensionFonts_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, xfa_, ComItextpdfTextPdfXfaForm *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, localFonts_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, substitutionFonts_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, orderedSignatureNames_, JavaUtilArrayList *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields, fieldCache_, id<JavaUtilMap>)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, DA_FONT, jint)
 
@@ -265,15 +232,17 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, FIELD_TYPE_COMBO, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, FIELD_TYPE_SIGNATURE, jint)
 
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfAcroFields_stdFieldFontNames_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, stdFieldFontNames_, JavaUtilHashMap *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfAcroFields_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfAcroFields *self, ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfWriter *writer);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfAcroFields_buttonRemove_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, buttonRemove_, IOSObjectArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfAcroFields *new_ComItextpdfTextPdfAcroFields_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfWriter_(ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfWriter *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfAcroFields_splitDAelementsWithNSString_(NSString *da);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfAcroFields)
 
 #define ComItextpdfTextPdfAcroFields_Item_WRITE_MERGED 1
-#define ComItextpdfTextPdfAcroFields_Item_WRITE_VALUE 4
 #define ComItextpdfTextPdfAcroFields_Item_WRITE_WIDGET 2
+#define ComItextpdfTextPdfAcroFields_Item_WRITE_VALUE 4
 
 @interface ComItextpdfTextPdfAcroFields_Item : NSObject {
  @public
@@ -285,51 +254,53 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields, buttonRemove_, IOSObjec
   JavaUtilArrayList *tabOrder_;
 }
 
-- (void)writeToAllWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value
-                                        withInt:(jint)writeFlags;
+#pragma mark Public
+
+- (instancetype)init;
+
+- (ComItextpdfTextPdfPdfDictionary *)getMergedWithInt:(jint)idx;
+
+- (JavaLangInteger *)getPageWithInt:(jint)idx;
+
+- (JavaLangInteger *)getTabOrderWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfDictionary *)getValueWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfDictionary *)getWidgetWithInt:(jint)idx;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getWidgetRefWithInt:(jint)idx;
 
 - (void)markUsedWithComItextpdfTextPdfAcroFields:(ComItextpdfTextPdfAcroFields *)parentFields
                                          withInt:(jint)writeFlags;
 
 - (jint)size;
 
-- (void)removeWithInt:(jint)killIdx;
+- (void)writeToAllWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value
+                                        withInt:(jint)writeFlags;
 
-- (ComItextpdfTextPdfPdfDictionary *)getValueWithInt:(jint)idx;
-
-- (void)addValueWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)value;
-
-- (ComItextpdfTextPdfPdfDictionary *)getWidgetWithInt:(jint)idx;
-
-- (void)addWidgetWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)widget;
-
-- (ComItextpdfTextPdfPdfIndirectReference *)getWidgetRefWithInt:(jint)idx;
-
-- (void)addWidgetRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)widgRef;
-
-- (ComItextpdfTextPdfPdfDictionary *)getMergedWithInt:(jint)idx;
+#pragma mark Package-Private
 
 - (void)addMergedWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)mergeDict;
 
-- (JavaLangInteger *)getPageWithInt:(jint)idx;
-
 - (void)addPageWithInt:(jint)pg;
+
+- (void)addTabOrderWithInt:(jint)order;
+
+- (void)addValueWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)value;
+
+- (void)addWidgetWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)widget;
+
+- (void)addWidgetRefWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)widgRef;
 
 - (void)forcePageWithInt:(jint)idx
                  withInt:(jint)pg;
 
-- (JavaLangInteger *)getTabOrderWithInt:(jint)idx;
-
-- (void)addTabOrderWithInt:(jint)order;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfAcroFields_Item *)other;
+- (void)removeWithInt:(jint)killIdx;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfAcroFields_Item_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfAcroFields_Item)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields_Item, values_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields_Item, widgets_, JavaUtilArrayList *)
@@ -344,34 +315,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields_Item, WRITE_WIDGET, jint
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfAcroFields_Item, WRITE_VALUE, jint)
 
-@interface ComItextpdfTextPdfAcroFields_InstHit : NSObject {
- @public
-  ComItextpdfTextPdfIntHashtable *hits_;
-}
+FOUNDATION_EXPORT void ComItextpdfTextPdfAcroFields_Item_init(ComItextpdfTextPdfAcroFields_Item *self);
 
-- (instancetype)initWithIntArray:(IOSIntArray *)inst;
+FOUNDATION_EXPORT ComItextpdfTextPdfAcroFields_Item *new_ComItextpdfTextPdfAcroFields_Item_init() NS_RETURNS_RETAINED;
 
-- (jboolean)isHitWithInt:(jint)n;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfAcroFields_InstHit *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfAcroFields_InstHit_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields_InstHit, hits_, ComItextpdfTextPdfIntHashtable *)
-
-@interface ComItextpdfTextPdfAcroFields_SorterComparator : NSObject < JavaUtilComparator > {
-}
-
-- (jint)compareWithId:(IOSObjectArray *)o1
-               withId:(IOSObjectArray *)o2;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfAcroFields_SorterComparator_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfAcroFields_Item)
 
 @interface ComItextpdfTextPdfAcroFields_FieldPosition : NSObject {
  @public
@@ -379,14 +327,20 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfAcroFields_SorterCo
   ComItextpdfTextRectangle *position_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfAcroFields_FieldPosition *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfAcroFields_FieldPosition_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfAcroFields_FieldPosition)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfAcroFields_FieldPosition, position_, ComItextpdfTextRectangle *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfAcroFields_FieldPosition_init(ComItextpdfTextPdfAcroFields_FieldPosition *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfAcroFields_FieldPosition *new_ComItextpdfTextPdfAcroFields_FieldPosition_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfAcroFields_FieldPosition)
 
 #endif // _ComItextpdfTextPdfAcroFields_H_

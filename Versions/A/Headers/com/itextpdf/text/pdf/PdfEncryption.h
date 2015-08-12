@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPdfEncryption_H_
 #define _ComItextpdfTextPdfPdfEncryption_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfOutputStreamEncryption;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfObject;
@@ -16,16 +18,10 @@
 @class JavaSecurityCertCertificate;
 @class JavaSecurityMessageDigest;
 
-#import "JreEmulation.h"
-
+#define ComItextpdfTextPdfPdfEncryption_STANDARD_ENCRYPTION_40 2
+#define ComItextpdfTextPdfPdfEncryption_STANDARD_ENCRYPTION_128 3
 #define ComItextpdfTextPdfPdfEncryption_AES_128 4
 #define ComItextpdfTextPdfPdfEncryption_AES_256 5
-#define ComItextpdfTextPdfPdfEncryption_KEY_SALT_OFFSET 40
-#define ComItextpdfTextPdfPdfEncryption_OU_LENGHT 48
-#define ComItextpdfTextPdfPdfEncryption_SALT_LENGHT 8
-#define ComItextpdfTextPdfPdfEncryption_STANDARD_ENCRYPTION_128 3
-#define ComItextpdfTextPdfPdfEncryption_STANDARD_ENCRYPTION_40 2
-#define ComItextpdfTextPdfPdfEncryption_VALIDATION_SALT_OFFSET 32
 
 @interface ComItextpdfTextPdfPdfEncryption : NSObject {
  @public
@@ -41,64 +37,65 @@
   ComItextpdfTextPdfPdfPublicKeySecurityHandler *publicKeyHandler_;
   jint permissions_;
   IOSByteArray *documentID_;
-  jint revision_;
-  jint keyLength_;
-  jboolean encryptMetadata_;
-  jboolean embeddedFilesOnly_;
-  jint cryptoMode_;
 }
 
-+ (void)setMD5WithJavaSecurityMessageDigest:(JavaSecurityMessageDigest *)pMD5;
+#pragma mark Public
 
 - (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextPdfPdfEncryption:(ComItextpdfTextPdfPdfEncryption *)enc;
 
-- (void)setCryptoModeWithInt:(jint)mode
-                     withInt:(jint)kl;
+- (void)addRecipientWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)cert
+                                            withInt:(jint)permission;
+
+- (jint)calculateStreamSizeWithInt:(jint)n;
+
+- (IOSByteArray *)computeUserPasswordWithByteArray:(IOSByteArray *)ownerPassword;
+
++ (IOSByteArray *)createDocumentId;
+
++ (ComItextpdfTextPdfPdfObject *)createInfoIdWithByteArray:(IOSByteArray *)id_
+                                               withBoolean:(jboolean)modified;
+
+- (IOSByteArray *)decryptByteArrayWithByteArray:(IOSByteArray *)b;
+
+- (IOSByteArray *)encryptByteArrayWithByteArray:(IOSByteArray *)b;
 
 - (jint)getCryptoMode;
 
-- (jboolean)isMetadataEncrypted;
+- (ComItextpdfTextPdfStandardDecryption *)getDecryptor;
+
+- (ComItextpdfTextPdfPdfDictionary *)getEncryptionDictionary;
+
+- (ComItextpdfTextPdfOutputStreamEncryption *)getEncryptionStreamWithJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (ComItextpdfTextPdfPdfObject *)getFileIDWithBoolean:(jboolean)modified;
 
 - (jint)getPermissions;
 
 - (jboolean)isEmbeddedFilesOnly;
 
-- (IOSByteArray *)padPasswordWithByteArray:(IOSByteArray *)userPassword;
+- (jboolean)isMetadataEncrypted;
 
-- (IOSByteArray *)computeOwnerKeyWithByteArray:(IOSByteArray *)userPad
-                                 withByteArray:(IOSByteArray *)ownerPad;
+- (jboolean)readKeyWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)enc
+                                         withByteArray:(IOSByteArray *)password;
 
-- (void)setupGlobalEncryptionKeyWithByteArray:(IOSByteArray *)documentID
-                                withByteArray:(IOSByteArray *)userPad
-                                withByteArray:(IOSByteArray *)ownerKey
-                                      withInt:(jint)permissions;
+- (void)setCryptoModeWithInt:(jint)mode
+                     withInt:(jint)kl;
 
-- (void)setupUserKey;
+- (void)setHashKeyWithInt:(jint)number
+                  withInt:(jint)generation;
+
+- (void)setKeyWithByteArray:(IOSByteArray *)key;
+
++ (void)setMD5WithJavaSecurityMessageDigest:(JavaSecurityMessageDigest *)pMD5;
 
 - (void)setupAllKeysWithByteArray:(IOSByteArray *)userPassword
                     withByteArray:(IOSByteArray *)ownerPassword
                           withInt:(jint)permissions;
 
-- (jboolean)readKeyWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)enc
-                                         withByteArray:(IOSByteArray *)password;
-
-+ (jboolean)compareArrayWithByteArray:(IOSByteArray *)a
-                        withByteArray:(IOSByteArray *)b
-                              withInt:(jint)len;
-
-+ (IOSByteArray *)createDocumentId;
-
-- (void)setupByUserPasswordWithByteArray:(IOSByteArray *)documentID
-                           withByteArray:(IOSByteArray *)userPassword
-                           withByteArray:(IOSByteArray *)ownerKey
-                                 withInt:(jint)permissions;
-
-- (void)setupByUserPadWithByteArray:(IOSByteArray *)documentID
-                      withByteArray:(IOSByteArray *)userPad
-                      withByteArray:(IOSByteArray *)ownerKey
-                            withInt:(jint)permissions;
+- (void)setupByEncryptionKeyWithByteArray:(IOSByteArray *)key
+                                  withInt:(jint)keylength;
 
 - (void)setupByOwnerPasswordWithByteArray:(IOSByteArray *)documentID
                             withByteArray:(IOSByteArray *)ownerPassword
@@ -106,47 +103,13 @@
                             withByteArray:(IOSByteArray *)ownerKey
                                   withInt:(jint)permissions;
 
-- (void)setupByOwnerPadWithByteArray:(IOSByteArray *)documentID
-                       withByteArray:(IOSByteArray *)ownerPad
-                       withByteArray:(IOSByteArray *)userKey
-                       withByteArray:(IOSByteArray *)ownerKey
-                             withInt:(jint)permissions;
-
-- (void)setKeyWithByteArray:(IOSByteArray *)key;
-
-- (void)setupByEncryptionKeyWithByteArray:(IOSByteArray *)key
-                                  withInt:(jint)keylength;
-
-- (void)setHashKeyWithInt:(jint)number
-                  withInt:(jint)generation;
-
-+ (ComItextpdfTextPdfPdfObject *)createInfoIdWithByteArray:(IOSByteArray *)id_
-                                               withBoolean:(jboolean)modified;
-
-- (ComItextpdfTextPdfPdfDictionary *)getEncryptionDictionary;
-
-- (ComItextpdfTextPdfPdfObject *)getFileIDWithBoolean:(jboolean)modified;
-
-- (ComItextpdfTextPdfOutputStreamEncryption *)getEncryptionStreamWithJavaIoOutputStream:(JavaIoOutputStream *)os;
-
-- (jint)calculateStreamSizeWithInt:(jint)n;
-
-- (IOSByteArray *)encryptByteArrayWithByteArray:(IOSByteArray *)b;
-
-- (ComItextpdfTextPdfStandardDecryption *)getDecryptor;
-
-- (IOSByteArray *)decryptByteArrayWithByteArray:(IOSByteArray *)b;
-
-- (void)addRecipientWithJavaSecurityCertCertificate:(JavaSecurityCertCertificate *)cert
-                                            withInt:(jint)permission;
-
-- (IOSByteArray *)computeUserPasswordWithByteArray:(IOSByteArray *)ownerPassword;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfEncryption *)other;
+- (void)setupByUserPasswordWithByteArray:(IOSByteArray *)documentID
+                           withByteArray:(IOSByteArray *)userPassword
+                           withByteArray:(IOSByteArray *)ownerKey
+                                 withInt:(jint)permissions;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfEncryption_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfEncryption)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfEncryption, key_, IOSByteArray *)
@@ -168,29 +131,24 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, AES_128, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, AES_256, jint)
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncryption_pad_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, pad_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncryption_salt_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, salt_, IOSByteArray *)
-
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncryption_metadataPad_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, metadataPad_, IOSByteArray *)
-
-FOUNDATION_EXPORT JavaSecurityMessageDigest *ComItextpdfTextPdfPdfEncryption_sMD5_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, sMD5_, JavaSecurityMessageDigest *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfEncryption, sMD5_, JavaSecurityMessageDigest *)
-
 FOUNDATION_EXPORT jlong ComItextpdfTextPdfPdfEncryption_seq_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, seq_, jlong)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextPdfPdfEncryption, seq_, jlong)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, VALIDATION_SALT_OFFSET, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryption_setMD5WithJavaSecurityMessageDigest_(JavaSecurityMessageDigest *pMD5);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, KEY_SALT_OFFSET, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryption_init(ComItextpdfTextPdfPdfEncryption *self);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, SALT_LENGHT, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfEncryption *new_ComItextpdfTextPdfPdfEncryption_init() NS_RETURNS_RETAINED;
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncryption, OU_LENGHT, jint)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncryption_initWithComItextpdfTextPdfPdfEncryption_(ComItextpdfTextPdfPdfEncryption *self, ComItextpdfTextPdfPdfEncryption *enc);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfEncryption *new_ComItextpdfTextPdfPdfEncryption_initWithComItextpdfTextPdfPdfEncryption_(ComItextpdfTextPdfPdfEncryption *enc) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncryption_createDocumentId();
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfObject *ComItextpdfTextPdfPdfEncryption_createInfoIdWithByteArray_withBoolean_(IOSByteArray *id_, jboolean modified);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfEncryption)
 
 #endif // _ComItextpdfTextPdfPdfEncryption_H_

@@ -6,33 +6,29 @@
 #ifndef _ComItextpdfTextExceptionConverter_H_
 #define _ComItextpdfTextExceptionConverter_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/RuntimeException.h"
+
 @class JavaIoPrintStream;
 @class JavaIoPrintWriter;
 @class JavaLangException;
 @class JavaLangThrowable;
 
-#import "JreEmulation.h"
-#include "java/lang/RuntimeException.h"
+@interface ComItextpdfTextExceptionConverter : JavaLangRuntimeException
 
-#define ComItextpdfTextExceptionConverter_serialVersionUID 8657630363395849399LL
-
-@interface ComItextpdfTextExceptionConverter : JavaLangRuntimeException {
- @public
-  JavaLangException *ex_;
-  NSString *prefix_;
-}
+#pragma mark Public
 
 - (instancetype)initWithJavaLangException:(JavaLangException *)ex;
 
 + (JavaLangRuntimeException *)convertExceptionWithJavaLangException:(JavaLangException *)ex;
 
-- (JavaLangException *)getException;
+- (JavaLangThrowable *)fillInStackTrace;
 
-- (NSString *)getMessage;
+- (JavaLangException *)getException;
 
 - (NSString *)getLocalizedMessage;
 
-- (NSString *)description;
+- (NSString *)getMessage;
 
 - (void)printStackTrace;
 
@@ -40,17 +36,18 @@
 
 - (void)printStackTraceWithJavaIoPrintWriter:(JavaIoPrintWriter *)s;
 
-- (JavaLangThrowable *)fillInStackTrace;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextExceptionConverter *)other;
+- (NSString *)description;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionConverter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionConverter)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextExceptionConverter, ex_, JavaLangException *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextExceptionConverter, prefix_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionConverter_initWithJavaLangException_(ComItextpdfTextExceptionConverter *self, JavaLangException *ex);
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionConverter, serialVersionUID, jlong)
+FOUNDATION_EXPORT ComItextpdfTextExceptionConverter *new_ComItextpdfTextExceptionConverter_initWithJavaLangException_(JavaLangException *ex) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT JavaLangRuntimeException *ComItextpdfTextExceptionConverter_convertExceptionWithJavaLangException_(JavaLangException *ex);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionConverter)
 
 #endif // _ComItextpdfTextExceptionConverter_H_

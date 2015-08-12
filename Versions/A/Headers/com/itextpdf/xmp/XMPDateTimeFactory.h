@@ -6,18 +6,18 @@
 #ifndef _ComItextpdfXmpXMPDateTimeFactory_H_
 #define _ComItextpdfXmpXMPDateTimeFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class JavaUtilCalendar;
-@class JavaUtilTimeZone;
 @protocol ComItextpdfXmpXMPDateTime;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpXMPDateTimeFactory : NSObject
 
-@interface ComItextpdfXmpXMPDateTimeFactory : NSObject {
-}
+#pragma mark Public
 
-- (instancetype)init;
++ (id<ComItextpdfXmpXMPDateTime>)convertToLocalTimeWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)dateTime;
 
-+ (id<ComItextpdfXmpXMPDateTime>)createFromCalendarWithJavaUtilCalendar:(JavaUtilCalendar *)calendar;
++ (id<ComItextpdfXmpXMPDateTime>)convertToUTCTimeWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)dateTime;
 
 + (id<ComItextpdfXmpXMPDateTime>)create;
 
@@ -33,22 +33,36 @@
                                        withInt:(jint)second
                                        withInt:(jint)nanoSecond;
 
++ (id<ComItextpdfXmpXMPDateTime>)createFromCalendarWithJavaUtilCalendar:(JavaUtilCalendar *)calendar;
+
 + (id<ComItextpdfXmpXMPDateTime>)createFromISO8601WithNSString:(NSString *)strValue;
 
 + (id<ComItextpdfXmpXMPDateTime>)getCurrentDateTime;
 
 + (id<ComItextpdfXmpXMPDateTime>)setLocalTimeZoneWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)dateTime;
 
-+ (id<ComItextpdfXmpXMPDateTime>)convertToUTCTimeWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)dateTime;
-
-+ (id<ComItextpdfXmpXMPDateTime>)convertToLocalTimeWithComItextpdfXmpXMPDateTime:(id<ComItextpdfXmpXMPDateTime>)dateTime;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfXmpXMPDateTimeFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfXmpXMPDateTimeFactory)
 
-FOUNDATION_EXPORT JavaUtilTimeZone *ComItextpdfXmpXMPDateTimeFactory_UTC_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPDateTimeFactory, UTC_, JavaUtilTimeZone *)
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_createFromCalendarWithJavaUtilCalendar_(JavaUtilCalendar *calendar);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_create();
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_createWithInt_withInt_withInt_(jint year, jint month, jint day);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_createWithInt_withInt_withInt_withInt_withInt_withInt_withInt_(jint year, jint month, jint day, jint hour, jint minute, jint second, jint nanoSecond);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_createFromISO8601WithNSString_(NSString *strValue);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_getCurrentDateTime();
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_setLocalTimeZoneWithComItextpdfXmpXMPDateTime_(id<ComItextpdfXmpXMPDateTime> dateTime);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_convertToUTCTimeWithComItextpdfXmpXMPDateTime_(id<ComItextpdfXmpXMPDateTime> dateTime);
+
+FOUNDATION_EXPORT id<ComItextpdfXmpXMPDateTime> ComItextpdfXmpXMPDateTimeFactory_convertToLocalTimeWithComItextpdfXmpXMPDateTime_(id<ComItextpdfXmpXMPDateTime> dateTime);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPDateTimeFactory)
 
 #endif // _ComItextpdfXmpXMPDateTimeFactory_H_

@@ -6,42 +6,32 @@
 #ifndef _ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_H_
 #define _ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_H_
 
-@class ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/fonts/otf/OpenTypeFontTableReader.h"
 
-@interface ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader : ComItextpdfTextPdfFontsOtfOpenTypeFontTableReader {
-}
+@interface ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader : ComItextpdfTextPdfFontsOtfOpenTypeFontTableReader
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)fontFilePath
                          withInt:(jint)gposTableLocation;
 
 - (void)read;
 
+#pragma mark Protected
+
 - (void)readSubTableWithInt:(jint)lookupType
                     withInt:(jint)subTableLocation;
 
-- (void)readLookUpType_1WithInt:(jint)lookupTableLocation;
-
-- (void)readLookUpType_4WithInt:(jint)lookupTableLocation;
-
-- (void)readLookUpType_8WithInt:(jint)lookupTableLocation;
-
-- (void)readChainingContextPositioningFormat_3WithInt:(jint)lookupTableLocation;
-
-- (void)readMarkArrayTableWithInt:(jint)markArrayLocation;
-
-- (ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord *)readMarkRecord;
-
-- (void)readAnchorTableWithInt:(jint)anchorTableLocation;
-
-- (void)readBaseArrayTableWithInt:(jint)baseArrayTableLocation
-                          withInt:(jint)classCount;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_initWithNSString_withInt_(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader *self, NSString *fontFilePath, jint gposTableLocation);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader *new_ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_initWithNSString_withInt_(NSString *fontFilePath, jint gposTableLocation) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader)
 
 @interface ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord : NSObject {
  @public
@@ -49,14 +39,20 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphPositi
   jint markAnchorOffset_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)markClass
                     withInt:(jint)markAnchorOffset;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord_initWithInt_withInt_(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord *self, jint markClass, jint markAnchorOffset);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord *new_ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord_initWithInt_withInt_(jint markClass, jint markAnchorOffset) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_MarkRecord)
 
 @interface ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord : NSObject {
  @public
@@ -64,13 +60,19 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphPositi
   jint lookupListIndex_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)sequenceIndex
                     withInt:(jint)lookupListIndex;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord_initWithInt_withInt_(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord *self, jint sequenceIndex, jint lookupListIndex);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord *new_ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord_initWithInt_withInt_(jint sequenceIndex, jint lookupListIndex) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_PosLookupRecord)
 
 #endif // _ComItextpdfTextPdfFontsOtfGlyphPositioningTableReader_H_

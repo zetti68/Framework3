@@ -6,59 +6,70 @@
 #ifndef _ComItextpdfAwtGeomPoint2D_H_
 #define _ComItextpdfAwtGeomPoint2D_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfAwtGeomPoint2D : NSObject < NSCopying > {
-}
+@interface ComItextpdfAwtGeomPoint2D : NSObject < NSCopying >
 
-- (instancetype)init;
+#pragma mark Public
 
-- (jdouble)getX;
+- (id)clone;
 
-- (jdouble)getY;
-
-- (void)setLocationWithDouble:(jdouble)x
-                   withDouble:(jdouble)y;
-
-- (void)setLocationWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
-
-+ (jdouble)distanceSqWithDouble:(jdouble)x1
-                     withDouble:(jdouble)y1
-                     withDouble:(jdouble)x2
-                     withDouble:(jdouble)y2;
-
-- (jdouble)distanceSqWithDouble:(jdouble)px
-                     withDouble:(jdouble)py;
-
-- (jdouble)distanceSqWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+- (jdouble)distanceWithDouble:(jdouble)px
+                   withDouble:(jdouble)py;
 
 + (jdouble)distanceWithDouble:(jdouble)x1
                    withDouble:(jdouble)y1
                    withDouble:(jdouble)x2
                    withDouble:(jdouble)y2;
 
-- (jdouble)distanceWithDouble:(jdouble)px
-                   withDouble:(jdouble)py;
-
 - (jdouble)distanceWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
-- (id)clone;
+- (jdouble)distanceSqWithDouble:(jdouble)px
+                     withDouble:(jdouble)py;
 
-- (NSUInteger)hash;
++ (jdouble)distanceSqWithDouble:(jdouble)x1
+                     withDouble:(jdouble)y1
+                     withDouble:(jdouble)x2
+                     withDouble:(jdouble)y2;
+
+- (jdouble)distanceSqWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
 
 - (jboolean)isEqual:(id)obj;
 
-- (id)copyWithZone:(NSZone *)zone;
+- (jdouble)getX;
+
+- (jdouble)getY;
+
+- (NSUInteger)hash;
+
+- (void)setLocationWithDouble:(jdouble)x
+                   withDouble:(jdouble)y;
+
+- (void)setLocationWithComItextpdfAwtGeomPoint2D:(ComItextpdfAwtGeomPoint2D *)p;
+
+#pragma mark Protected
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint2D_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomPoint2D)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint2D_init(ComItextpdfAwtGeomPoint2D *self);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomPoint2D_distanceSqWithDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2);
+
+FOUNDATION_EXPORT jdouble ComItextpdfAwtGeomPoint2D_distanceWithDouble_withDouble_withDouble_withDouble_(jdouble x1, jdouble y1, jdouble x2, jdouble y2);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomPoint2D)
 
 @interface ComItextpdfAwtGeomPoint2D_Float : ComItextpdfAwtGeomPoint2D {
  @public
   jfloat x_;
   jfloat y_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -69,25 +80,35 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint2D_init() {}
 
 - (jdouble)getY;
 
-- (void)setLocationWithFloat:(jfloat)x
-                   withFloat:(jfloat)y;
-
 - (void)setLocationWithDouble:(jdouble)x
                    withDouble:(jdouble)y;
 
-- (NSString *)description;
+- (void)setLocationWithFloat:(jfloat)x
+                   withFloat:(jfloat)y;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomPoint2D_Float *)other;
+- (NSString *)description;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint2D_Float_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomPoint2D_Float)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint2D_Float_init(ComItextpdfAwtGeomPoint2D_Float *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint2D_Float *new_ComItextpdfAwtGeomPoint2D_Float_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint2D_Float_initWithFloat_withFloat_(ComItextpdfAwtGeomPoint2D_Float *self, jfloat x, jfloat y);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint2D_Float *new_ComItextpdfAwtGeomPoint2D_Float_initWithFloat_withFloat_(jfloat x, jfloat y) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomPoint2D_Float)
 
 @interface ComItextpdfAwtGeomPoint2D_Double : ComItextpdfAwtGeomPoint2D {
  @public
   jdouble x_;
   jdouble y_;
 }
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -103,10 +124,18 @@ __attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint2D_Float_init(
 
 - (NSString *)description;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomPoint2D_Double *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomPoint2D_Double_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomPoint2D_Double)
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint2D_Double_init(ComItextpdfAwtGeomPoint2D_Double *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint2D_Double *new_ComItextpdfAwtGeomPoint2D_Double_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomPoint2D_Double_initWithDouble_withDouble_(ComItextpdfAwtGeomPoint2D_Double *self, jdouble x, jdouble y);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomPoint2D_Double *new_ComItextpdfAwtGeomPoint2D_Double_initWithDouble_withDouble_(jdouble x, jdouble y) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomPoint2D_Double)
 
 #endif // _ComItextpdfAwtGeomPoint2D_H_

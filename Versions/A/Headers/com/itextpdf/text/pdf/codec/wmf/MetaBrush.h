@@ -6,23 +6,23 @@
 #ifndef _ComItextpdfTextPdfCodecWmfMetaBrush_H_
 #define _ComItextpdfTextPdfCodecWmfMetaBrush_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextPdfCodecWmfInputMeta;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/codec/wmf/MetaObject.h"
-
-#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_DIBPATTERN 5
-#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_HATCHED 2
-#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_NULL 1
-#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_PATTERN 3
 #define ComItextpdfTextPdfCodecWmfMetaBrush_BS_SOLID 0
+#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_NULL 1
+#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_HATCHED 2
+#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_PATTERN 3
+#define ComItextpdfTextPdfCodecWmfMetaBrush_BS_DIBPATTERN 5
+#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_HORIZONTAL 0
+#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_VERTICAL 1
+#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_FDIAGONAL 2
 #define ComItextpdfTextPdfCodecWmfMetaBrush_HS_BDIAGONAL 3
 #define ComItextpdfTextPdfCodecWmfMetaBrush_HS_CROSS 4
 #define ComItextpdfTextPdfCodecWmfMetaBrush_HS_DIAGCROSS 5
-#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_FDIAGONAL 2
-#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_HORIZONTAL 0
-#define ComItextpdfTextPdfCodecWmfMetaBrush_HS_VERTICAL 1
 
 @interface ComItextpdfTextPdfCodecWmfMetaBrush : ComItextpdfTextPdfCodecWmfMetaObject {
  @public
@@ -31,21 +31,21 @@
   ComItextpdfTextBaseColor *color_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
-
-- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
-
-- (jint)getStyle;
-
-- (jint)getHatch;
 
 - (ComItextpdfTextBaseColor *)getColor;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCodecWmfMetaBrush *)other;
+- (jint)getHatch;
+
+- (jint)getStyle;
+
+- (void)init__WithComItextpdfTextPdfCodecWmfInputMeta:(ComItextpdfTextPdfCodecWmfInputMeta *)inArg OBJC_METHOD_FAMILY_NONE;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCodecWmfMetaBrush_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCodecWmfMetaBrush)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCodecWmfMetaBrush, color_, ComItextpdfTextBaseColor *)
 
@@ -70,5 +70,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaBrush, HS_BDIAGONAL, ji
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaBrush, HS_CROSS, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfCodecWmfMetaBrush, HS_DIAGCROSS, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCodecWmfMetaBrush_init(ComItextpdfTextPdfCodecWmfMetaBrush *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCodecWmfMetaBrush *new_ComItextpdfTextPdfCodecWmfMetaBrush_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCodecWmfMetaBrush)
 
 #endif // _ComItextpdfTextPdfCodecWmfMetaBrush_H_

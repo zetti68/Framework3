@@ -6,13 +6,12 @@
 #ifndef _ComItextpdfTextPdfFontsOtfFontReadingException_H_
 #define _ComItextpdfTextPdfFontsOtfFontReadingException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-#define ComItextpdfTextPdfFontsOtfFontReadingException_serialVersionUID 1LL
+@interface ComItextpdfTextPdfFontsOtfFontReadingException : JavaLangException
 
-@interface ComItextpdfTextPdfFontsOtfFontReadingException : JavaLangException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
@@ -21,8 +20,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsOtfFontReadingException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsOtfFontReadingException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsOtfFontReadingException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfFontReadingException_initWithNSString_(ComItextpdfTextPdfFontsOtfFontReadingException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfFontReadingException *new_ComItextpdfTextPdfFontsOtfFontReadingException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsOtfFontReadingException_initWithNSString_withJavaLangException_(ComItextpdfTextPdfFontsOtfFontReadingException *self, NSString *message, JavaLangException *e);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsOtfFontReadingException *new_ComItextpdfTextPdfFontsOtfFontReadingException_initWithNSString_withJavaLangException_(NSString *message, JavaLangException *e) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsOtfFontReadingException)
 
 #endif // _ComItextpdfTextPdfFontsOtfFontReadingException_H_

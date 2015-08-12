@@ -6,17 +6,14 @@
 #ifndef _ComItextpdfTextIoWindowRandomAccessSource_H_
 #define _ComItextpdfTextIoWindowRandomAccessSource_H_
 
-@class IOSByteArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/io/RandomAccessSource.h"
 
-@interface ComItextpdfTextIoWindowRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource > {
- @public
-  id<ComItextpdfTextIoRandomAccessSource> source_;
-  jlong offset_;
-  jlong length__;
-}
+@class IOSByteArray;
+
+@interface ComItextpdfTextIoWindowRandomAccessSource : NSObject < ComItextpdfTextIoRandomAccessSource >
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
                                                    withLong:(jlong)offset;
@@ -24,6 +21,8 @@
 - (instancetype)initWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)source
                                                    withLong:(jlong)offset
                                                    withLong:(jlong)length;
+
+- (void)close;
 
 - (jint)getWithLong:(jlong)position;
 
@@ -34,14 +33,18 @@
 
 - (jlong)length;
 
-- (void)close;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextIoWindowRandomAccessSource *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoWindowRandomAccessSource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoWindowRandomAccessSource)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextIoWindowRandomAccessSource, source_, id<ComItextpdfTextIoRandomAccessSource>)
+FOUNDATION_EXPORT void ComItextpdfTextIoWindowRandomAccessSource_initWithComItextpdfTextIoRandomAccessSource_withLong_(ComItextpdfTextIoWindowRandomAccessSource *self, id<ComItextpdfTextIoRandomAccessSource> source, jlong offset);
+
+FOUNDATION_EXPORT ComItextpdfTextIoWindowRandomAccessSource *new_ComItextpdfTextIoWindowRandomAccessSource_initWithComItextpdfTextIoRandomAccessSource_withLong_(id<ComItextpdfTextIoRandomAccessSource> source, jlong offset) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextIoWindowRandomAccessSource_initWithComItextpdfTextIoRandomAccessSource_withLong_withLong_(ComItextpdfTextIoWindowRandomAccessSource *self, id<ComItextpdfTextIoRandomAccessSource> source, jlong offset, jlong length);
+
+FOUNDATION_EXPORT ComItextpdfTextIoWindowRandomAccessSource *new_ComItextpdfTextIoWindowRandomAccessSource_initWithComItextpdfTextIoRandomAccessSource_withLong_withLong_(id<ComItextpdfTextIoRandomAccessSource> source, jlong offset, jlong length) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoWindowRandomAccessSource)
 
 #endif // _ComItextpdfTextIoWindowRandomAccessSource_H_

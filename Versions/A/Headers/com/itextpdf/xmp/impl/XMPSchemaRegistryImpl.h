@@ -6,47 +6,44 @@
 #ifndef _ComItextpdfXmpImplXMPSchemaRegistryImpl_H_
 #define _ComItextpdfXmpImplXMPSchemaRegistryImpl_H_
 
-@class ComItextpdfXmpOptionsAliasOptions;
-@class IOSObjectArray;
-@class JavaUtilRegexPattern;
-@protocol JavaUtilMap;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/XMPConst.h"
 #include "com/itextpdf/xmp/XMPSchemaRegistry.h"
-#include "com/itextpdf/xmp/properties/XMPAliasInfo.h"
 
-@interface ComItextpdfXmpImplXMPSchemaRegistryImpl : NSObject < ComItextpdfXmpXMPSchemaRegistry, ComItextpdfXmpXMPConst > {
- @public
-  id<JavaUtilMap> namespaceToPrefixMap_;
-  id<JavaUtilMap> prefixToNamespaceMap_;
-  id<JavaUtilMap> aliasMap_;
-  JavaUtilRegexPattern *p_;
-}
+@class ComItextpdfXmpOptionsAliasOptions;
+@class IOSObjectArray;
+@protocol ComItextpdfXmpPropertiesXMPAliasInfo;
+@protocol JavaUtilMap;
+
+@interface ComItextpdfXmpImplXMPSchemaRegistryImpl : NSObject < ComItextpdfXmpXMPSchemaRegistry, ComItextpdfXmpXMPConst >
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (NSString *)registerNamespaceWithNSString:(NSString *)namespaceURI
-                               withNSString:(NSString *)suggestedPrefix;
-
 - (void)deleteNamespaceWithNSString:(NSString *)namespaceURI;
-
-- (NSString *)getNamespacePrefixWithNSString:(NSString *)namespaceURI;
-
-- (NSString *)getNamespaceURIWithNSString:(NSString *)namespacePrefix;
-
-- (id<JavaUtilMap>)getNamespaces;
-
-- (id<JavaUtilMap>)getPrefixes;
-
-- (void)registerStandardNamespaces;
-
-- (id<ComItextpdfXmpPropertiesXMPAliasInfo>)resolveAliasWithNSString:(NSString *)aliasNS
-                                                        withNSString:(NSString *)aliasProp;
 
 - (id<ComItextpdfXmpPropertiesXMPAliasInfo>)findAliasWithNSString:(NSString *)qname;
 
 - (IOSObjectArray *)findAliasesWithNSString:(NSString *)aliasNS;
+
+- (id<JavaUtilMap>)getAliases;
+
+- (NSString *)getNamespacePrefixWithNSString:(NSString *)namespaceURI;
+
+- (id<JavaUtilMap>)getNamespaces;
+
+- (NSString *)getNamespaceURIWithNSString:(NSString *)namespacePrefix;
+
+- (id<JavaUtilMap>)getPrefixes;
+
+- (NSString *)registerNamespaceWithNSString:(NSString *)namespaceURI
+                               withNSString:(NSString *)suggestedPrefix;
+
+- (id<ComItextpdfXmpPropertiesXMPAliasInfo>)resolveAliasWithNSString:(NSString *)aliasNS
+                                                        withNSString:(NSString *)aliasProp;
+
+#pragma mark Package-Private
 
 - (void)registerAliasWithNSString:(NSString *)aliasNS
                      withNSString:(NSString *)aliasProp
@@ -54,51 +51,14 @@
                      withNSString:(NSString *)actualProp
 withComItextpdfXmpOptionsAliasOptions:(ComItextpdfXmpOptionsAliasOptions *)aliasForm;
 
-- (id<JavaUtilMap>)getAliases;
-
-- (void)registerStandardAliases;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPSchemaRegistryImpl *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPSchemaRegistryImpl_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpImplXMPSchemaRegistryImpl)
 
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl, namespaceToPrefixMap_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl, prefixToNamespaceMap_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl, aliasMap_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl, p_, JavaUtilRegexPattern *)
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPSchemaRegistryImpl_init(ComItextpdfXmpImplXMPSchemaRegistryImpl *self);
 
-@interface ComItextpdfXmpImplXMPSchemaRegistryImpl_$1 : NSObject < ComItextpdfXmpPropertiesXMPAliasInfo > {
- @public
-  NSString *val$actualNS_;
-  NSString *val$actualPrefix_;
-  NSString *val$actualProp_;
-  ComItextpdfXmpOptionsAliasOptions *val$aliasOpts_;
-}
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPSchemaRegistryImpl *new_ComItextpdfXmpImplXMPSchemaRegistryImpl_init() NS_RETURNS_RETAINED;
 
-- (NSString *)getNamespace;
-
-- (NSString *)getPrefix;
-
-- (NSString *)getPropName;
-
-- (ComItextpdfXmpOptionsAliasOptions *)getAliasForm;
-
-- (NSString *)description;
-
-- (instancetype)initWithNSString:(NSString *)capture$0
-                    withNSString:(NSString *)capture$1
-                    withNSString:(NSString *)capture$2
-withComItextpdfXmpOptionsAliasOptions:(ComItextpdfXmpOptionsAliasOptions *)capture$3;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfXmpImplXMPSchemaRegistryImpl_$1_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl_$1, val$actualNS_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl_$1, val$actualPrefix_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl_$1, val$actualProp_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSchemaRegistryImpl_$1, val$aliasOpts_, ComItextpdfXmpOptionsAliasOptions *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPSchemaRegistryImpl)
 
 #endif // _ComItextpdfXmpImplXMPSchemaRegistryImpl_H_

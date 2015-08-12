@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfXmpXMPDateTime_H_
 #define _ComItextpdfXmpXMPDateTime_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Comparable.h"
+
 @class JavaUtilCalendar;
 @class JavaUtilTimeZone;
 
-#import "JreEmulation.h"
-#include "java/lang/Comparable.h"
-
 @protocol ComItextpdfXmpXMPDateTime < JavaLangComparable, NSObject, JavaObject >
+
 - (jint)getYear;
 
 - (void)setYearWithInt:(jint)year;
@@ -57,6 +58,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPDateTime_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPDateTime)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPDateTime)
 
 #endif // _ComItextpdfXmpXMPDateTime_H_

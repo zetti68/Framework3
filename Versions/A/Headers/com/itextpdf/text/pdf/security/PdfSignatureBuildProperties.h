@@ -6,22 +6,31 @@
 #ifndef _ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_H_
 #define _ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_H_
 
-@class ComItextpdfTextPdfSecurityPdfSignatureAppDictionary;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfSecurityPdfSignatureBuildProperties : ComItextpdfTextPdfPdfDictionary {
-}
+@class ComItextpdfTextPdfSecurityPdfSignatureAppDictionary;
+
+@interface ComItextpdfTextPdfSecurityPdfSignatureBuildProperties : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (void)setSignatureCreatorWithNSString:(NSString *)name;
 
+#pragma mark Package-Private
+
 - (ComItextpdfTextPdfSecurityPdfSignatureAppDictionary *)getPdfSignatureAppProperty;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityPdfSignatureBuildProperties)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_init(ComItextpdfTextPdfSecurityPdfSignatureBuildProperties *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityPdfSignatureBuildProperties *new_ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityPdfSignatureBuildProperties)
 
 #endif // _ComItextpdfTextPdfSecurityPdfSignatureBuildProperties_H_

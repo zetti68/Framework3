@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfBorderArray_H_
 #define _ComItextpdfTextPdfPdfBorderArray_H_
 
-@class ComItextpdfTextPdfPdfDashPattern;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfArray.h"
 
-@interface ComItextpdfTextPdfPdfBorderArray : ComItextpdfTextPdfPdfArray {
-}
+@class ComItextpdfTextPdfPdfDashPattern;
+
+@interface ComItextpdfTextPdfPdfBorderArray : ComItextpdfTextPdfPdfArray
+
+#pragma mark Public
 
 - (instancetype)initWithFloat:(jfloat)hRadius
                     withFloat:(jfloat)vRadius
@@ -23,9 +24,21 @@
                     withFloat:(jfloat)width
 withComItextpdfTextPdfPdfDashPattern:(ComItextpdfTextPdfPdfDashPattern *)dash;
 
+#pragma mark Package-Private
+
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfBorderArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfBorderArray)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBorderArray_initWithFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfBorderArray *self, jfloat hRadius, jfloat vRadius, jfloat width);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBorderArray *new_ComItextpdfTextPdfPdfBorderArray_initWithFloat_withFloat_withFloat_(jfloat hRadius, jfloat vRadius, jfloat width) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfBorderArray_initWithFloat_withFloat_withFloat_withComItextpdfTextPdfPdfDashPattern_(ComItextpdfTextPdfPdfBorderArray *self, jfloat hRadius, jfloat vRadius, jfloat width, ComItextpdfTextPdfPdfDashPattern *dash);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfBorderArray *new_ComItextpdfTextPdfPdfBorderArray_initWithFloat_withFloat_withFloat_withComItextpdfTextPdfPdfDashPattern_(jfloat hRadius, jfloat vRadius, jfloat width, ComItextpdfTextPdfPdfDashPattern *dash) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfBorderArray)
 
 #endif // _ComItextpdfTextPdfPdfBorderArray_H_

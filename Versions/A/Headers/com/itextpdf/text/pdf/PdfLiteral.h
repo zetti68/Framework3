@@ -6,41 +6,60 @@
 #ifndef _ComItextpdfTextPdfPdfLiteral_H_
 #define _ComItextpdfTextPdfPdfLiteral_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfObject.h"
+
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfObject.h"
+@interface ComItextpdfTextPdfPdfLiteral : ComItextpdfTextPdfPdfObject
 
-@interface ComItextpdfTextPdfPdfLiteral : ComItextpdfTextPdfPdfObject {
- @public
-  jlong position_;
-}
-
-- (instancetype)initWithNSString:(NSString *)text;
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)b;
 
 - (instancetype)initWithInt:(jint)size;
 
 - (instancetype)initWithInt:(jint)type
-               withNSString:(NSString *)text;
-
-- (instancetype)initWithInt:(jint)type
               withByteArray:(IOSByteArray *)b;
 
-- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
+- (instancetype)initWithInt:(jint)type
+               withNSString:(NSString *)text;
+
+- (instancetype)initWithNSString:(NSString *)text;
 
 - (jlong)getPosition;
 
 - (jint)getPosLength;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfLiteral *)other;
+- (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                      withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfLiteral_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfLiteral)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLiteral_initWithNSString_(ComItextpdfTextPdfPdfLiteral *self, NSString *text);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *new_ComItextpdfTextPdfPdfLiteral_initWithNSString_(NSString *text) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLiteral_initWithByteArray_(ComItextpdfTextPdfPdfLiteral *self, IOSByteArray *b);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *new_ComItextpdfTextPdfPdfLiteral_initWithByteArray_(IOSByteArray *b) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLiteral_initWithInt_(ComItextpdfTextPdfPdfLiteral *self, jint size);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *new_ComItextpdfTextPdfPdfLiteral_initWithInt_(jint size) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLiteral_initWithInt_withNSString_(ComItextpdfTextPdfPdfLiteral *self, jint type, NSString *text);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *new_ComItextpdfTextPdfPdfLiteral_initWithInt_withNSString_(jint type, NSString *text) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLiteral_initWithInt_withByteArray_(ComItextpdfTextPdfPdfLiteral *self, jint type, IOSByteArray *b);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLiteral *new_ComItextpdfTextPdfPdfLiteral_initWithInt_withByteArray_(jint type, IOSByteArray *b) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfLiteral)
 
 #endif // _ComItextpdfTextPdfPdfLiteral_H_

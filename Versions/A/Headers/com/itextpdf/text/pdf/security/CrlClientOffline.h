@@ -6,19 +6,17 @@
 #ifndef _ComItextpdfTextPdfSecurityCrlClientOffline_H_
 #define _ComItextpdfTextPdfSecurityCrlClientOffline_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/CrlClient.h"
+
 @class IOSByteArray;
 @class JavaSecurityCertCRL;
 @class JavaSecurityCertX509Certificate;
-@class JavaUtilArrayList;
 @protocol JavaUtilCollection;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/CrlClient.h"
+@interface ComItextpdfTextPdfSecurityCrlClientOffline : NSObject < ComItextpdfTextPdfSecurityCrlClient >
 
-@interface ComItextpdfTextPdfSecurityCrlClientOffline : NSObject < ComItextpdfTextPdfSecurityCrlClient > {
- @public
-  JavaUtilArrayList *crls_;
-}
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)crlEncoded;
 
@@ -27,12 +25,18 @@
 - (id<JavaUtilCollection>)getEncodedWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)checkCert
                                                            withNSString:(NSString *)url;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityCrlClientOffline *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityCrlClientOffline_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityCrlClientOffline)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityCrlClientOffline, crls_, JavaUtilArrayList *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOffline_initWithByteArray_(ComItextpdfTextPdfSecurityCrlClientOffline *self, IOSByteArray *crlEncoded);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOffline *new_ComItextpdfTextPdfSecurityCrlClientOffline_initWithByteArray_(IOSByteArray *crlEncoded) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCrlClientOffline_initWithJavaSecurityCertCRL_(ComItextpdfTextPdfSecurityCrlClientOffline *self, JavaSecurityCertCRL *crl);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCrlClientOffline *new_ComItextpdfTextPdfSecurityCrlClientOffline_initWithJavaSecurityCertCRL_(JavaSecurityCertCRL *crl) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityCrlClientOffline)
 
 #endif // _ComItextpdfTextPdfSecurityCrlClientOffline_H_

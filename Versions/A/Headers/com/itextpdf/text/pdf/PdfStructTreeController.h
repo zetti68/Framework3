@@ -6,124 +6,108 @@
 #ifndef _ComItextpdfTextPdfPdfStructTreeController_H_
 #define _ComItextpdfTextPdfPdfStructTreeController_H_
 
-@class ComItextpdfTextPdfPdfArray;
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextPdfPdfCopy;
 @class ComItextpdfTextPdfPdfDictionary;
-@class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfNumber;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfReader;
-@class ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum;
-@class ComItextpdfTextPdfPdfStructureTreeRoot;
-
-#import "JreEmulation.h"
-#include "java/lang/Enum.h"
 
 @interface ComItextpdfTextPdfPdfStructTreeController : NSObject {
  @public
-  ComItextpdfTextPdfPdfDictionary *structTreeRoot_;
-  ComItextpdfTextPdfPdfCopy *writer_;
-  ComItextpdfTextPdfPdfStructureTreeRoot *structureTreeRoot_;
-  ComItextpdfTextPdfPdfDictionary *parentTree_;
   ComItextpdfTextPdfPdfReader *reader_;
-  ComItextpdfTextPdfPdfDictionary *roleMap_;
-  ComItextpdfTextPdfPdfDictionary *sourceRoleMap_;
-  ComItextpdfTextPdfPdfDictionary *sourceClassMap_;
-  ComItextpdfTextPdfPdfIndirectReference *nullReference_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                      withComItextpdfTextPdfPdfCopy:(ComItextpdfTextPdfPdfCopy *)writer;
-
-- (void)setReaderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+#pragma mark Public
 
 + (jboolean)checkTaggedWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-+ (ComItextpdfTextPdfPdfObject *)getDirectObjectWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
-
-- (void)copyStructTreeForPageWithComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)sourceArrayNumber
-                                                     withInt:(jint)newArrayNumber OBJC_METHOD_FAMILY_NONE;
-
-- (ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)copyPageMarksWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)parentTree
-                                                                               withComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)arrayNumber
-                                                                                                       withInt:(jint)newArrayNumber OBJC_METHOD_FAMILY_NONE;
-
-- (ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)findAndCopyMarksWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)pages
-                                                                                                     withInt:(jint)arrayNumber
-                                                                                                     withInt:(jint)newArrayNumber;
-
-+ (ComItextpdfTextPdfPdfDictionary *)getKDictWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)obj;
-
-- (void)addKidWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)obj;
-
-+ (ComItextpdfTextPdfPdfArray *)getDirectArrayWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)inArg;
-
-+ (ComItextpdfTextPdfPdfDictionary *)getDirectDictWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)inArg;
 
 + (jboolean)compareObjectsWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value1
                           withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value2;
 
-- (void)addClassWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+- (void)copyStructTreeForPageWithComItextpdfTextPdfPdfNumber:(ComItextpdfTextPdfPdfNumber *)sourceArrayNumber
+                                                     withInt:(jint)newArrayNumber OBJC_METHOD_FAMILY_NONE;
 
-- (void)addRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structType;
++ (ComItextpdfTextPdfPdfObject *)getDirectObjectWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+
+#pragma mark Protected
+
+- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                      withComItextpdfTextPdfPdfCopy:(ComItextpdfTextPdfPdfCopy *)writer;
+
+- (void)addClassWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
 
 - (void)addKidWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)parent
                   withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)kid;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfStructTreeController *)other;
+- (void)addRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)structType;
+
+- (void)setReaderWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+#pragma mark Package-Private
+
++ (ComItextpdfTextPdfPdfDictionary *)getKDictWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)obj;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfStructTreeController_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfStructTreeController)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, structTreeRoot_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, writer_, ComItextpdfTextPdfPdfCopy *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, structureTreeRoot_, ComItextpdfTextPdfPdfStructureTreeRoot *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, parentTree_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, reader_, ComItextpdfTextPdfPdfReader *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, roleMap_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, sourceRoleMap_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, sourceClassMap_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfStructTreeController, nullReference_, ComItextpdfTextPdfPdfIndirectReference *)
 
-typedef enum {
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfStructTreeController_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfCopy_(ComItextpdfTextPdfPdfStructTreeController *self, ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfCopy *writer);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructTreeController *new_ComItextpdfTextPdfPdfStructTreeController_initWithComItextpdfTextPdfPdfReader_withComItextpdfTextPdfPdfCopy_(ComItextpdfTextPdfPdfReader *reader, ComItextpdfTextPdfPdfCopy *writer) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfStructTreeController_checkTaggedWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfObject *ComItextpdfTextPdfPdfStructTreeController_getDirectObjectWithComItextpdfTextPdfPdfObject_(ComItextpdfTextPdfPdfObject *object);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDictionary *ComItextpdfTextPdfPdfStructTreeController_getKDictWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *obj);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfStructTreeController_compareObjectsWithComItextpdfTextPdfPdfObject_withComItextpdfTextPdfPdfObject_(ComItextpdfTextPdfPdfObject *value1, ComItextpdfTextPdfPdfObject *value2);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfStructTreeController)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextPdfPdfStructTreeController_returnType) {
   ComItextpdfTextPdfPdfStructTreeController_returnType_BELOW = 0,
   ComItextpdfTextPdfPdfStructTreeController_returnType_FOUND = 1,
   ComItextpdfTextPdfPdfStructTreeController_returnType_ABOVE = 2,
   ComItextpdfTextPdfPdfStructTreeController_returnType_NOTFOUND = 3,
-} ComItextpdfTextPdfPdfStructTreeController_returnType;
+};
 
-@interface ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values();
 
 + (ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values_[];
 
 #define ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_BELOW ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values_[ComItextpdfTextPdfPdfStructTreeController_returnType_BELOW]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, BELOW, ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, BELOW)
 
 #define ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_FOUND ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values_[ComItextpdfTextPdfPdfStructTreeController_returnType_FOUND]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, FOUND, ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, FOUND)
 
 #define ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_ABOVE ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values_[ComItextpdfTextPdfPdfStructTreeController_returnType_ABOVE]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, ABOVE, ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, ABOVE)
 
 #define ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_NOTFOUND ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum_values_[ComItextpdfTextPdfPdfStructTreeController_returnType_NOTFOUND]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, NOTFOUND, ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum, NOTFOUND)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfStructTreeController_returnTypeEnum)
 
 #endif // _ComItextpdfTextPdfPdfStructTreeController_H_

@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextXmlSimpleparserNewLineHandler_H_
 #define _ComItextpdfTextXmlSimpleparserNewLineHandler_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextXmlSimpleparserNewLineHandler < NSObject, JavaObject >
 
@@ -14,6 +14,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlSimpleparserNewLineHandler_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlSimpleparserNewLineHandler)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserNewLineHandler)
 
 #endif // _ComItextpdfTextXmlSimpleparserNewLineHandler_H_

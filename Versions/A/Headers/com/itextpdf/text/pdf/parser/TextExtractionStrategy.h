@@ -6,14 +6,17 @@
 #ifndef _ComItextpdfTextPdfParserTextExtractionStrategy_H_
 #define _ComItextpdfTextPdfParserTextExtractionStrategy_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/parser/RenderListener.h"
 
 @protocol ComItextpdfTextPdfParserTextExtractionStrategy < ComItextpdfTextPdfParserRenderListener, NSObject, JavaObject >
+
 - (NSString *)getResultantText;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserTextExtractionStrategy_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserTextExtractionStrategy)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserTextExtractionStrategy)
 
 #endif // _ComItextpdfTextPdfParserTextExtractionStrategy_H_

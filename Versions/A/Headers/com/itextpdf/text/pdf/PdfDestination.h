@@ -6,24 +6,23 @@
 #ifndef _ComItextpdfTextPdfPdfDestination_H_
 #define _ComItextpdfTextPdfPdfDestination_H_
 
-@class ComItextpdfTextPdfPdfIndirectReference;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfArray.h"
 
+@class ComItextpdfTextPdfPdfIndirectReference;
+
+#define ComItextpdfTextPdfPdfDestination_XYZ 0
 #define ComItextpdfTextPdfPdfDestination_FIT 1
+#define ComItextpdfTextPdfPdfDestination_FITH 2
+#define ComItextpdfTextPdfPdfDestination_FITV 3
+#define ComItextpdfTextPdfPdfDestination_FITR 4
 #define ComItextpdfTextPdfPdfDestination_FITB 5
 #define ComItextpdfTextPdfPdfDestination_FITBH 6
 #define ComItextpdfTextPdfPdfDestination_FITBV 7
-#define ComItextpdfTextPdfPdfDestination_FITH 2
-#define ComItextpdfTextPdfPdfDestination_FITR 4
-#define ComItextpdfTextPdfPdfDestination_FITV 3
-#define ComItextpdfTextPdfPdfDestination_XYZ 0
 
-@interface ComItextpdfTextPdfPdfDestination : ComItextpdfTextPdfPdfArray {
- @public
-  jboolean status_;
-}
+@interface ComItextpdfTextPdfPdfDestination : ComItextpdfTextPdfPdfArray
+
+#pragma mark Public
 
 - (instancetype)initWithInt:(jint)type;
 
@@ -43,16 +42,16 @@
 
 - (instancetype)initWithNSString:(NSString *)dest;
 
-- (jboolean)hasPage;
-
 - (jboolean)addPageWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)page;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfDestination *)other;
+- (jboolean)hasPage;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfDestination_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfDestination)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDestination, XYZ, jint)
 
@@ -69,5 +68,27 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDestination, FITB, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDestination, FITBH, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDestination, FITBV, jint)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDestination_initWithInt_(ComItextpdfTextPdfPdfDestination *self, jint type);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDestination *new_ComItextpdfTextPdfPdfDestination_initWithInt_(jint type) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_(ComItextpdfTextPdfPdfDestination *self, jint type, jfloat parameter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDestination *new_ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_(jint type, jfloat parameter) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfDestination *self, jint type, jfloat left, jfloat top, jfloat zoom);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDestination *new_ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_withFloat_withFloat_(jint type, jfloat left, jfloat top, jfloat zoom) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfDestination *self, jint type, jfloat left, jfloat bottom, jfloat right, jfloat top);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDestination *new_ComItextpdfTextPdfPdfDestination_initWithInt_withFloat_withFloat_withFloat_withFloat_(jint type, jfloat left, jfloat bottom, jfloat right, jfloat top) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDestination_initWithNSString_(ComItextpdfTextPdfPdfDestination *self, NSString *dest);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDestination *new_ComItextpdfTextPdfPdfDestination_initWithNSString_(NSString *dest) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDestination)
 
 #endif // _ComItextpdfTextPdfPdfDestination_H_

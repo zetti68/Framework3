@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfAwtGeomNoninvertibleTransformException_H_
 #define _ComItextpdfAwtGeomNoninvertibleTransformException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/Exception.h"
 
-#define ComItextpdfAwtGeomNoninvertibleTransformException_serialVersionUID 6137225240503990466LL
+@interface ComItextpdfAwtGeomNoninvertibleTransformException : JavaLangException
 
-@interface ComItextpdfAwtGeomNoninvertibleTransformException : JavaLangException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)s;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomNoninvertibleTransformException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomNoninvertibleTransformException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomNoninvertibleTransformException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomNoninvertibleTransformException_initWithNSString_(ComItextpdfAwtGeomNoninvertibleTransformException *self, NSString *s);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomNoninvertibleTransformException *new_ComItextpdfAwtGeomNoninvertibleTransformException_initWithNSString_(NSString *s) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomNoninvertibleTransformException)
 
 #endif // _ComItextpdfAwtGeomNoninvertibleTransformException_H_

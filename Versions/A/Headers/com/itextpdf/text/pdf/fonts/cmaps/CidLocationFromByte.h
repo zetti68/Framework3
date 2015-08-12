@@ -6,27 +6,28 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCidLocationFromByte_H_
 #define _ComItextpdfTextPdfFontsCmapsCidLocationFromByte_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/fonts/cmaps/CidLocation.h"
+
 @class ComItextpdfTextPdfPRTokeniser;
 @class IOSByteArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/fonts/cmaps/CidLocation.h"
+@interface ComItextpdfTextPdfFontsCmapsCidLocationFromByte : NSObject < ComItextpdfTextPdfFontsCmapsCidLocation >
 
-@interface ComItextpdfTextPdfFontsCmapsCidLocationFromByte : NSObject < ComItextpdfTextPdfFontsCmapsCidLocation > {
- @public
-  IOSByteArray *data_;
-}
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)data;
 
 - (ComItextpdfTextPdfPRTokeniser *)getLocationWithNSString:(NSString *)location;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfFontsCmapsCidLocationFromByte *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfFontsCmapsCidLocationFromByte_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCidLocationFromByte)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfFontsCmapsCidLocationFromByte, data_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCidLocationFromByte_initWithByteArray_(ComItextpdfTextPdfFontsCmapsCidLocationFromByte *self, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCidLocationFromByte *new_ComItextpdfTextPdfFontsCmapsCidLocationFromByte_initWithByteArray_(IOSByteArray *data) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCidLocationFromByte)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCidLocationFromByte_H_

@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfPdfImportedPage_H_
 #define _ComItextpdfTextPdfPdfImportedPage_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfTemplate.h"
+
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfBaseFont;
 @class ComItextpdfTextPdfPdfContentByte;
@@ -16,9 +19,6 @@
 @class ComItextpdfTextPdfPdfTransparencyGroup;
 @class ComItextpdfTextPdfPdfWriter;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfTemplate.h"
-
 @interface ComItextpdfTextPdfPdfImportedPage : ComItextpdfTextPdfPdfTemplate {
  @public
   ComItextpdfTextPdfPdfReaderInstance *readerInstance_;
@@ -27,15 +27,7 @@
   jboolean toCopy_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPdfReaderInstance:(ComItextpdfTextPdfPdfReaderInstance *)readerInstance
-                            withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                    withInt:(jint)pageNumber;
-
-- (ComItextpdfTextPdfPdfImportedPage *)getFromReader;
-
-- (jint)getPageNumber;
-
-- (jint)getRotation;
+#pragma mark Public
 
 - (void)addImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                withFloat:(jfloat)a
@@ -57,33 +49,49 @@
 
 - (ComItextpdfTextPdfPdfStream *)getFormXObjectWithInt:(jint)compressionLevel;
 
+- (ComItextpdfTextPdfPdfImportedPage *)getFromReader;
+
+- (jint)getPageNumber;
+
+- (jint)getRotation;
+
+- (jboolean)isToCopy;
+
 - (void)setColorFillWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
                                              withFloat:(jfloat)tint;
 
 - (void)setColorStrokeWithComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)sp
                                                withFloat:(jfloat)tint;
 
-- (ComItextpdfTextPdfPdfObject *)getResources;
+- (void)setCopied;
 
 - (void)setFontAndSizeWithComItextpdfTextPdfBaseFont:(ComItextpdfTextPdfBaseFont *)bf
                                            withFloat:(jfloat)size;
 
 - (void)setGroupWithComItextpdfTextPdfPdfTransparencyGroup:(ComItextpdfTextPdfPdfTransparencyGroup *)group;
 
-- (void)throwError;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfPdfReaderInstance:(ComItextpdfTextPdfPdfReaderInstance *)readerInstance
+                            withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                    withInt:(jint)pageNumber;
 
 - (ComItextpdfTextPdfPdfReaderInstance *)getPdfReaderInstance;
 
-- (jboolean)isToCopy;
+- (ComItextpdfTextPdfPdfObject *)getResources;
 
-- (void)setCopied;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfImportedPage *)other;
+- (void)throwError;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfImportedPage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfImportedPage)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfImportedPage, readerInstance_, ComItextpdfTextPdfPdfReaderInstance *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfImportedPage_initWithComItextpdfTextPdfPdfReaderInstance_withComItextpdfTextPdfPdfWriter_withInt_(ComItextpdfTextPdfPdfImportedPage *self, ComItextpdfTextPdfPdfReaderInstance *readerInstance, ComItextpdfTextPdfPdfWriter *writer, jint pageNumber);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfImportedPage *new_ComItextpdfTextPdfPdfImportedPage_initWithComItextpdfTextPdfPdfReaderInstance_withComItextpdfTextPdfPdfWriter_withInt_(ComItextpdfTextPdfPdfReaderInstance *readerInstance, ComItextpdfTextPdfPdfWriter *writer, jint pageNumber) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfImportedPage)
 
 #endif // _ComItextpdfTextPdfPdfImportedPage_H_

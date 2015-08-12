@@ -6,53 +6,25 @@
 #ifndef _ComItextpdfTextPdfLanguagesArabicLigaturizer_H_
 #define _ComItextpdfTextPdfLanguagesArabicLigaturizer_H_
 
-@class ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct;
-@class IOSCharArray;
-@class IOSObjectArray;
-@class JavaLangStringBuffer;
-@class JavaUtilHashMap;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/languages/LanguageProcessor.h"
 
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ALEF 0x0627
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ALEFHAMZA 0x0623
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ALEFHAMZABELOW 0x0625
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ALEFMADDA 0x0622
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ALEFMAKSURA 0x0649
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DAMMA 0x064f
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_AN2EN 64
+@class ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct;
+@class IOSCharArray;
+@class JavaLangStringBuffer;
+
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_nothing 0
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_novowel 1
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_composedtashkeel 4
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_lig 8
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_EN2AN 32
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_EN2AN_INIT_AL 128
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_AN2EN 64
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_EN2AN_INIT_LR 96
+#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_EN2AN_INIT_AL 128
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_MASK 224
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGITS_RESERVED 160
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGIT_TYPE_AN 0
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGIT_TYPE_AN_EXTENDED 256
 #define ComItextpdfTextPdfLanguagesArabicLigaturizer_DIGIT_TYPE_MASK 256
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_FARSIYEH 0x06cc
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_FATHA 0x064e
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_HAMZA 0x0621
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_HAMZAABOVE 0x0654
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_HAMZABELOW 0x0655
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_KASRA 0x0650
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_LAM 0x0644
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_LAM_ALEF 0xfefb
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_LAM_ALEFHAMZA 0xfef7
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_LAM_ALEFHAMZABELOW 0xfef9
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_LAM_ALEFMADDA 0xfef5
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_MADDA 0x0653
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_SHADDA 0x0651
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_TATWEEL 0x0640
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_WAW 0x0648
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_WAWHAMZA 0x0624
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_YEH 0x064a
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_YEHHAMZA 0x0626
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ZWJ 0x200d
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_composedtashkeel 4
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_lig 8
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_nothing 0
-#define ComItextpdfTextPdfLanguagesArabicLigaturizer_ar_novowel 1
 
 @interface ComItextpdfTextPdfLanguagesArabicLigaturizer : NSObject < ComItextpdfTextPdfLanguagesLanguageProcessor > {
  @public
@@ -60,28 +32,12 @@
   jint runDirection_;
 }
 
-+ (jboolean)isVowelWithChar:(jchar)s;
+#pragma mark Public
 
-+ (jchar)charshapeWithChar:(jchar)s
-                   withInt:(jint)which;
+- (instancetype)init;
 
-+ (jint)shapecountWithChar:(jchar)s;
-
-+ (jint)ligatureWithChar:(jchar)newchar
-withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)oldchar;
-
-+ (void)copycstostringWithJavaLangStringBuffer:(JavaLangStringBuffer *)string
-withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)s
-                                       withInt:(jint)level OBJC_METHOD_FAMILY_NONE;
-
-+ (void)doubleligWithJavaLangStringBuffer:(JavaLangStringBuffer *)string
-                                  withInt:(jint)level;
-
-+ (jboolean)connects_to_leftWithComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)a;
-
-+ (void)shapeWithCharArray:(IOSCharArray *)text
-  withJavaLangStringBuffer:(JavaLangStringBuffer *)string
-                   withInt:(jint)level;
+- (instancetype)initWithInt:(jint)runDirection
+                    withInt:(jint)options;
 
 + (jint)arabic_shapeWithCharArray:(IOSCharArray *)src
                           withInt:(jint)srcoffset
@@ -91,10 +47,39 @@ withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfL
                           withInt:(jint)destlength
                           withInt:(jint)level;
 
+- (jboolean)isRTL;
+
+- (NSString *)processWithNSString:(NSString *)s;
+
 + (void)processNumbersWithCharArray:(IOSCharArray *)text
                             withInt:(jint)offset
                             withInt:(jint)length
                             withInt:(jint)options;
+
+#pragma mark Package-Private
+
++ (jchar)charshapeWithChar:(jchar)s
+                   withInt:(jint)which;
+
++ (jboolean)connects_to_leftWithComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)a;
+
++ (void)copycstostringWithJavaLangStringBuffer:(JavaLangStringBuffer *)string
+withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)s
+                                       withInt:(jint)level OBJC_METHOD_FAMILY_NONE;
+
++ (void)doubleligWithJavaLangStringBuffer:(JavaLangStringBuffer *)string
+                                  withInt:(jint)level;
+
++ (jboolean)isVowelWithChar:(jchar)s;
+
++ (jint)ligatureWithChar:(jchar)newchar
+withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)oldchar;
+
++ (void)shapeWithCharArray:(IOSCharArray *)text
+  withJavaLangStringBuffer:(JavaLangStringBuffer *)string
+                   withInt:(jint)level;
+
++ (jint)shapecountWithChar:(jchar)s;
 
 + (void)shapeToArabicDigitsWithContextWithCharArray:(IOSCharArray *)dest
                                             withInt:(jint)start
@@ -102,78 +87,9 @@ withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct:(ComItextpdfTextPdfL
                                            withChar:(jchar)digitBase
                                         withBoolean:(jboolean)lastStrongWasAL;
 
-- (instancetype)init;
-
-- (instancetype)initWithInt:(jint)runDirection
-                    withInt:(jint)options;
-
-- (NSString *)processWithNSString:(NSString *)s;
-
-- (jboolean)isRTL;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLanguagesArabicLigaturizer *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfLanguagesArabicLigaturizer_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfLanguagesArabicLigaturizer)
-
-FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfLanguagesArabicLigaturizer_maptable_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, maptable_, JavaUtilHashMap *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, maptable_, JavaUtilHashMap *)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ALEF, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ALEFHAMZA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ALEFHAMZABELOW, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ALEFMADDA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, LAM, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, HAMZA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, TATWEEL, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ZWJ, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, HAMZAABOVE, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, HAMZABELOW, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, WAWHAMZA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, YEHHAMZA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, WAW, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ALEFMAKSURA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, YEH, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, FARSIYEH, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, SHADDA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, KASRA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, FATHA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DAMMA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, MADDA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, LAM_ALEF, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, LAM_ALEFHAMZA, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, LAM_ALEFHAMZABELOW, jchar)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, LAM_ALEFMADDA, jchar)
-
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfLanguagesArabicLigaturizer_chartable_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, chartable_, IOSObjectArray *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, ar_nothing, jint)
 
@@ -191,8 +107,6 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGITS_
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGITS_EN2AN_INIT_AL, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGITS_RESERVED, jint)
-
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGITS_MASK, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGIT_TYPE_AN, jint)
@@ -200,6 +114,38 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGIT_T
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGIT_TYPE_AN_EXTENDED, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGIT_TYPE_MASK, jint)
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfLanguagesArabicLigaturizer_isVowelWithChar_(jchar s);
+
+FOUNDATION_EXPORT jchar ComItextpdfTextPdfLanguagesArabicLigaturizer_charshapeWithChar_withInt_(jchar s, jint which);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfLanguagesArabicLigaturizer_shapecountWithChar_(jchar s);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfLanguagesArabicLigaturizer_ligatureWithChar_withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_(jchar newchar, ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *oldchar);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_copycstostringWithJavaLangStringBuffer_withComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_withInt_(JavaLangStringBuffer *string, ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *s, jint level);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_doubleligWithJavaLangStringBuffer_withInt_(JavaLangStringBuffer *string, jint level);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfLanguagesArabicLigaturizer_connects_to_leftWithComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *a);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_shapeWithCharArray_withJavaLangStringBuffer_withInt_(IOSCharArray *text, JavaLangStringBuffer *string, jint level);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfLanguagesArabicLigaturizer_arabic_shapeWithCharArray_withInt_withInt_withCharArray_withInt_withInt_withInt_(IOSCharArray *src, jint srcoffset, jint srclength, IOSCharArray *dest, jint destoffset, jint destlength, jint level);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_processNumbersWithCharArray_withInt_withInt_withInt_(IOSCharArray *text, jint offset, jint length, jint options);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_shapeToArabicDigitsWithContextWithCharArray_withInt_withInt_withChar_withBoolean_(IOSCharArray *dest, jint start, jint length, jchar digitBase, jboolean lastStrongWasAL);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_init(ComItextpdfTextPdfLanguagesArabicLigaturizer *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLanguagesArabicLigaturizer *new_ComItextpdfTextPdfLanguagesArabicLigaturizer_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_initWithInt_withInt_(ComItextpdfTextPdfLanguagesArabicLigaturizer *self, jint runDirection, jint options);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLanguagesArabicLigaturizer *new_ComItextpdfTextPdfLanguagesArabicLigaturizer_initWithInt_withInt_(jint runDirection, jint options) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesArabicLigaturizer)
 
 @interface ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct : NSObject {
  @public
@@ -210,12 +156,18 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfLanguagesArabicLigaturizer, DIGIT_T
   jint numshapes_;
 }
 
-- (instancetype)init;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_init(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct *new_ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesArabicLigaturizer_charstruct)
 
 #endif // _ComItextpdfTextPdfLanguagesArabicLigaturizer_H_

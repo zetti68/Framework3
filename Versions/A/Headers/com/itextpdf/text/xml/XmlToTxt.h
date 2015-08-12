@@ -6,41 +6,51 @@
 #ifndef _ComItextpdfTextXmlXmlToTxt_H_
 #define _ComItextpdfTextXmlXmlToTxt_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
+
 @class JavaIoInputStream;
 @class JavaLangStringBuffer;
 @protocol JavaUtilMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.h"
 
 @interface ComItextpdfTextXmlXmlToTxt : NSObject < ComItextpdfTextXmlSimpleparserSimpleXMLDocHandler > {
  @public
   JavaLangStringBuffer *buf_;
 }
 
+#pragma mark Public
+
+- (void)endDocument;
+
+- (void)endElementWithNSString:(NSString *)tag;
+
 + (NSString *)parseWithJavaIoInputStream:(JavaIoInputStream *)is;
 
-- (instancetype)init;
-
-- (NSString *)description;
+- (void)startDocument;
 
 - (void)startElementWithNSString:(NSString *)tag
                  withJavaUtilMap:(id<JavaUtilMap>)h;
 
-- (void)endElementWithNSString:(NSString *)tag;
-
-- (void)startDocument;
-
-- (void)endDocument;
-
 - (void)textWithNSString:(NSString *)str;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextXmlXmlToTxt *)other;
+- (NSString *)description;
+
+#pragma mark Protected
+
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmlToTxt_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmlToTxt)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextXmlXmlToTxt, buf_, JavaLangStringBuffer *)
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmlToTxt_parseWithJavaIoInputStream_(JavaIoInputStream *is);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmlToTxt_init(ComItextpdfTextXmlXmlToTxt *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmlToTxt *new_ComItextpdfTextXmlXmlToTxt_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmlToTxt)
 
 #endif // _ComItextpdfTextXmlXmlToTxt_H_

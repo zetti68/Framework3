@@ -6,159 +6,38 @@
 #ifndef _ComItextpdfXmpImplXMPSerializerRDF_H_
 #define _ComItextpdfXmpImplXMPSerializerRDF_H_
 
-@class ComItextpdfXmpImplCountOutputStream;
-@class ComItextpdfXmpImplXMPMetaImpl;
-@class ComItextpdfXmpImplXMPNode;
+#include "J2ObjC_header.h"
+
 @class ComItextpdfXmpOptionsSerializeOptions;
-@class IOSObjectArray;
 @class JavaIoOutputStream;
-@class JavaIoOutputStreamWriter;
 @protocol ComItextpdfXmpXMPMeta;
 @protocol JavaUtilSet;
 
-#import "JreEmulation.h"
+@interface ComItextpdfXmpImplXMPSerializerRDF : NSObject
 
-#define ComItextpdfXmpImplXMPSerializerRDF_DEFAULT_PAD 2048
+#pragma mark Public
 
-@interface ComItextpdfXmpImplXMPSerializerRDF : NSObject {
- @public
-  ComItextpdfXmpImplXMPMetaImpl *xmp_;
-  ComItextpdfXmpImplCountOutputStream *outputStream_;
-  JavaIoOutputStreamWriter *writer_;
-  ComItextpdfXmpOptionsSerializeOptions *options_;
-  jint unicodeSize_;
-  jint padding_;
-}
+- (instancetype)init;
 
 - (void)serializeWithComItextpdfXmpXMPMeta:(id<ComItextpdfXmpXMPMeta>)xmp
                     withJavaIoOutputStream:(JavaIoOutputStream *)outArg
  withComItextpdfXmpOptionsSerializeOptions:(ComItextpdfXmpOptionsSerializeOptions *)options;
 
-- (void)addPaddingWithInt:(jint)tailLength;
+#pragma mark Protected
 
 - (void)checkOptionsConsistence;
 
-- (NSString *)serializeAsRDF;
-
-- (void)serializeCanonicalRDFSchemasWithInt:(jint)level;
-
-- (void)writeTreeName;
-
-- (void)serializeCompactRDFSchemasWithInt:(jint)level;
-
-- (jboolean)serializeCompactRDFAttrPropsWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)parentNode
-                                                              withInt:(jint)indent;
-
-- (void)serializeCompactRDFElementPropsWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)parentNode
-                                                             withInt:(jint)indent;
-
-- (IOSObjectArray *)serializeCompactRDFSimplePropWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
-- (void)serializeCompactRDFArrayPropWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
-                                                          withInt:(jint)indent;
-
-- (jboolean)serializeCompactRDFStructPropWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
-                                                               withInt:(jint)indent
-                                                           withBoolean:(jboolean)hasRDFResourceQual;
-
-- (void)serializeCompactRDFGeneralQualifierWithInt:(jint)indent
-                     withComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
-- (void)serializeCanonicalRDFSchemaWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)schemaNode
-                                                         withInt:(jint)level;
-
-- (void)declareUsedNamespacesWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
-                                           withJavaUtilSet:(id<JavaUtilSet>)usedPrefixes
-                                                   withInt:(jint)indent;
-
-- (void)declareNamespaceWithNSString:(NSString *)prefix
-                        withNSString:(NSString *)namespace_
-                     withJavaUtilSet:(id<JavaUtilSet>)usedPrefixes
-                             withInt:(jint)indent;
-
-- (void)startOuterRDFDescriptionWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)schemaNode
-                                                      withInt:(jint)level;
-
-- (void)endOuterRDFDescriptionWithInt:(jint)level;
-
-- (void)serializeCanonicalRDFPropertyWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node
-                                                       withBoolean:(jboolean)useCanonicalRDF
-                                                       withBoolean:(jboolean)emitAsRDFValue
-                                                           withInt:(jint)indent;
-
-- (void)emitRDFArrayTagWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)arrayNode
-                                         withBoolean:(jboolean)isStartTag
-                                             withInt:(jint)indent;
-
-- (void)appendNodeValueWithNSString:(NSString *)value
-                        withBoolean:(jboolean)forAttribute;
-
-- (jboolean)canBeRDFAttrPropWithComItextpdfXmpImplXMPNode:(ComItextpdfXmpImplXMPNode *)node;
-
-- (void)writeIndentWithInt:(jint)times;
-
-- (void)writeWithInt:(jint)c;
-
-- (void)writeWithNSString:(NSString *)str;
-
-- (void)writeCharsWithInt:(jint)number
-                 withChar:(jchar)c;
-
-- (void)writeNewline;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfXmpImplXMPSerializerRDF *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfXmpImplXMPSerializerRDF_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfXmpImplXMPSerializerRDF)
-
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSerializerRDF, xmp_, ComItextpdfXmpImplXMPMetaImpl *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSerializerRDF, outputStream_, ComItextpdfXmpImplCountOutputStream *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSerializerRDF, writer_, JavaIoOutputStreamWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfXmpImplXMPSerializerRDF, options_, ComItextpdfXmpOptionsSerializeOptions *)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, DEFAULT_PAD, jint)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_PACKET_HEADER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, PACKET_HEADER_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_PACKET_TRAILER_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, PACKET_TRAILER_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_PACKET_TRAILER2_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, PACKET_TRAILER2_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_XMPMETA_START_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_XMPMETA_START_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_XMPMETA_END_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_XMPMETA_END_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_RDF_START_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_RDF_START_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_RDF_END_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_RDF_END_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_SCHEMA_START_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_SCHEMA_START_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_SCHEMA_END_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_SCHEMA_END_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_STRUCT_START_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_STRUCT_START_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_STRUCT_END_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_STRUCT_END_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfXmpImplXMPSerializerRDF_RDF_EMPTY_STRUCT_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_EMPTY_STRUCT_, NSString *)
 
 FOUNDATION_EXPORT id<JavaUtilSet> ComItextpdfXmpImplXMPSerializerRDF_RDF_ATTR_QUALIFIER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpImplXMPSerializerRDF, RDF_ATTR_QUALIFIER_, id<JavaUtilSet>)
+
+FOUNDATION_EXPORT void ComItextpdfXmpImplXMPSerializerRDF_init(ComItextpdfXmpImplXMPSerializerRDF *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpImplXMPSerializerRDF *new_ComItextpdfXmpImplXMPSerializerRDF_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpImplXMPSerializerRDF)
 
 #endif // _ComItextpdfXmpImplXMPSerializerRDF_H_

@@ -6,50 +6,36 @@
 #ifndef _ComItextpdfTextPdfInternalPdfViewerPreferencesImp_H_
 #define _ComItextpdfTextPdfInternalPdfViewerPreferencesImp_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/interfaces/PdfViewerPreferences.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/interfaces/PdfViewerPreferences.h"
+@interface ComItextpdfTextPdfInternalPdfViewerPreferencesImp : NSObject < ComItextpdfTextPdfInterfacesPdfViewerPreferences >
 
-#define ComItextpdfTextPdfInternalPdfViewerPreferencesImp_viewerPreferencesMask 16773120
+#pragma mark Public
 
-@interface ComItextpdfTextPdfInternalPdfViewerPreferencesImp : NSObject < ComItextpdfTextPdfInterfacesPdfViewerPreferences > {
- @public
-  jint pageLayoutAndMode_;
-  ComItextpdfTextPdfPdfDictionary *viewerPreferences_;
-}
+- (instancetype)init;
+
+- (void)addToCatalogWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)catalog;
+
+- (void)addViewerPreferenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                         withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
 - (jint)getPageLayoutAndMode;
 
 - (ComItextpdfTextPdfPdfDictionary *)getViewerPreferences;
 
-- (void)setViewerPreferencesWithInt:(jint)preferences;
-
-- (jint)getIndexWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (jboolean)isPossibleValueWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)value
-                      withComItextpdfTextPdfPdfNameArray:(IOSObjectArray *)accepted;
-
-- (void)addViewerPreferenceWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                         withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (void)addToCatalogWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)catalog;
-
 + (ComItextpdfTextPdfInternalPdfViewerPreferencesImp *)getViewerPreferencesWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)catalog;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfInternalPdfViewerPreferencesImp *)other;
+- (void)setViewerPreferencesWithInt:(jint)preferences;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfInternalPdfViewerPreferencesImp_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfInternalPdfViewerPreferencesImp)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp, viewerPreferences_, ComItextpdfTextPdfPdfDictionary *)
 
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfInternalPdfViewerPreferencesImp_VIEWER_PREFERENCES_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp, VIEWER_PREFERENCES_, IOSObjectArray *)
@@ -69,6 +55,12 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp, PR
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfInternalPdfViewerPreferencesImp_DUPLEX_PREFERENCES_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp, DUPLEX_PREFERENCES_, IOSObjectArray *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp, viewerPreferencesMask, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfInternalPdfViewerPreferencesImp *ComItextpdfTextPdfInternalPdfViewerPreferencesImp_getViewerPreferencesWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *catalog);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfInternalPdfViewerPreferencesImp_init(ComItextpdfTextPdfInternalPdfViewerPreferencesImp *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfInternalPdfViewerPreferencesImp *new_ComItextpdfTextPdfInternalPdfViewerPreferencesImp_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInternalPdfViewerPreferencesImp)
 
 #endif // _ComItextpdfTextPdfInternalPdfViewerPreferencesImp_H_

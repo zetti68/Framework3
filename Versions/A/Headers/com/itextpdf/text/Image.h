@@ -6,11 +6,17 @@
 #ifndef _ComItextpdfTextImage_H_
 #define _ComItextpdfTextImage_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Rectangle.h"
+#include "com/itextpdf/text/api/Indentable.h"
+#include "com/itextpdf/text/api/Spaceable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+#include "com/itextpdf/text/pdf/interfaces/IAlternateDescription.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextAnnotation;
 @class ComItextpdfTextPdfICC_Profile;
 @class ComItextpdfTextPdfPRIndirectReference;
-@class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
@@ -25,37 +31,30 @@
 @class JavaUtilHashMap;
 @protocol ComItextpdfTextPdfPdfOCG;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Rectangle.h"
-#include "com/itextpdf/text/api/Indentable.h"
-#include "com/itextpdf/text/api/Spaceable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-#include "com/itextpdf/text/pdf/interfaces/IAlternateDescription.h"
-
+#define ComItextpdfTextImage_DEFAULT 0
+#define ComItextpdfTextImage_RIGHT 2
+#define ComItextpdfTextImage_LEFT 0
+#define ComItextpdfTextImage_MIDDLE 1
+#define ComItextpdfTextImage_TEXTWRAP 4
+#define ComItextpdfTextImage_UNDERLYING 8
 #define ComItextpdfTextImage_AX 0
 #define ComItextpdfTextImage_AY 1
 #define ComItextpdfTextImage_BX 2
 #define ComItextpdfTextImage_BY 3
 #define ComItextpdfTextImage_CX 4
 #define ComItextpdfTextImage_CY 5
-#define ComItextpdfTextImage_DEFAULT 0
 #define ComItextpdfTextImage_DX 6
 #define ComItextpdfTextImage_DY 7
-#define ComItextpdfTextImage_LEFT 0
-#define ComItextpdfTextImage_MIDDLE 1
-#define ComItextpdfTextImage_ORIGINAL_BMP 4
-#define ComItextpdfTextImage_ORIGINAL_GIF 3
-#define ComItextpdfTextImage_ORIGINAL_JBIG2 9
-#define ComItextpdfTextImage_ORIGINAL_JPEG 1
-#define ComItextpdfTextImage_ORIGINAL_JPEG2000 8
 #define ComItextpdfTextImage_ORIGINAL_NONE 0
+#define ComItextpdfTextImage_ORIGINAL_JPEG 1
 #define ComItextpdfTextImage_ORIGINAL_PNG 2
-#define ComItextpdfTextImage_ORIGINAL_PS 7
+#define ComItextpdfTextImage_ORIGINAL_GIF 3
+#define ComItextpdfTextImage_ORIGINAL_BMP 4
 #define ComItextpdfTextImage_ORIGINAL_TIFF 5
 #define ComItextpdfTextImage_ORIGINAL_WMF 6
-#define ComItextpdfTextImage_RIGHT 2
-#define ComItextpdfTextImage_TEXTWRAP 4
-#define ComItextpdfTextImage_UNDERLYING 8
+#define ComItextpdfTextImage_ORIGINAL_PS 7
+#define ComItextpdfTextImage_ORIGINAL_JPEG2000 8
+#define ComItextpdfTextImage_ORIGINAL_JBIG2 9
 
 @interface ComItextpdfTextImage : ComItextpdfTextRectangle < ComItextpdfTextApiIndentable, ComItextpdfTextApiSpaceable, ComItextpdfTextPdfInterfacesIAccessibleElement, ComItextpdfTextPdfInterfacesIAlternateDescription > {
  @public
@@ -76,15 +75,11 @@
   JavaLangLong *mySerialId_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
-  ComItextpdfTextAccessibleElementId *id__;
-  ComItextpdfTextPdfPdfIndirectReference *directReference_;
   jfloat rotationRadians_;
-  jfloat initialRotation_;
   jfloat indentationLeft_;
   jfloat indentationRight_;
   jfloat spacingBefore_;
   jfloat spacingAfter_;
-  jfloat widthPercentage_;
   jboolean scaleToFitLineWhenOverflow_;
   jboolean scaleToFitHeight_;
   ComItextpdfTextAnnotation *annotation_;
@@ -95,45 +90,69 @@
   jboolean deflated_;
   jint dpiX_;
   jint dpiY_;
-  jfloat XYRatio_;
   jint colorspace_;
   jint colortransform_;
   jboolean invert_;
   ComItextpdfTextPdfICC_Profile *profile_;
-  ComItextpdfTextPdfPdfDictionary *additional_;
   jboolean mask_;
   ComItextpdfTextImage *imageMask_;
-  jboolean smask_;
   IOSIntArray *transparency_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
 
-+ (ComItextpdfTextImage *)getInstanceWithJavaNetURL:(JavaNetURL *)url;
+- (jfloat)getAbsoluteX;
 
-+ (ComItextpdfTextImage *)getInstanceWithJavaNetURL:(JavaNetURL *)url
-                                        withBoolean:(jboolean)recoverFromImageError;
+- (jfloat)getAbsoluteY;
 
-+ (ComItextpdfTextImage *)getInstanceWithNSString:(NSString *)filename;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-+ (ComItextpdfTextImage *)getInstanceWithNSString:(NSString *)filename
-                                      withBoolean:(jboolean)recoverFromImageError;
+- (JavaUtilHashMap *)getAccessibleAttributes;
+
+- (ComItextpdfTextPdfPdfDictionary *)getAdditional;
+
+- (jint)getAlignment;
+
+- (NSString *)getAlt;
+
+- (ComItextpdfTextAnnotation *)getAnnotation;
+
+- (jint)getBpc;
+
+- (jint)getColorspace;
+
+- (jint)getColorTransform;
+
+- (jint)getCompressionLevel;
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getDirectReference;
+
+- (jint)getDpiX;
+
+- (jint)getDpiY;
+
+- (ComItextpdfTextPdfICC_Profile *)getICCProfile;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (ComItextpdfTextImage *)getImageMask;
+
+- (jfloat)getImageRotation;
+
+- (jfloat)getIndentationLeft;
+
+- (jfloat)getIndentationRight;
+
+- (jfloat)getInitialRotation;
 
 + (ComItextpdfTextImage *)getInstanceWithByteArray:(IOSByteArray *)imgb;
 
 + (ComItextpdfTextImage *)getInstanceWithByteArray:(IOSByteArray *)imgb
                                        withBoolean:(jboolean)recoverFromImageError;
 
-+ (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
-                                     withInt:(jint)height
-                                     withInt:(jint)components
-                                     withInt:(jint)bpc
-                               withByteArray:(IOSByteArray *)data;
-
-+ (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
-                                     withInt:(jint)height
-                               withByteArray:(IOSByteArray *)data
-                               withByteArray:(IOSByteArray *)globals;
++ (ComItextpdfTextImage *)getInstanceWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
 + (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
                                      withInt:(jint)height
@@ -149,6 +168,17 @@
                                      withInt:(jint)parameters
                                withByteArray:(IOSByteArray *)data
                                 withIntArray:(IOSIntArray *)transparency;
+
++ (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
+                                     withInt:(jint)height
+                               withByteArray:(IOSByteArray *)data
+                               withByteArray:(IOSByteArray *)globals;
+
++ (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
+                                     withInt:(jint)height
+                                     withInt:(jint)components
+                                     withInt:(jint)bpc
+                               withByteArray:(IOSByteArray *)data;
 
 + (ComItextpdfTextImage *)getInstanceWithInt:(jint)width
                                      withInt:(jint)height
@@ -159,233 +189,195 @@
 
 + (ComItextpdfTextImage *)getInstanceWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)getDirectReference;
-
-- (void)setDirectReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)directReference;
-
 + (ComItextpdfTextImage *)getInstanceWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
 
-- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
++ (ComItextpdfTextImage *)getInstanceWithNSString:(NSString *)filename;
 
-+ (ComItextpdfTextImage *)getInstanceWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
++ (ComItextpdfTextImage *)getInstanceWithNSString:(NSString *)filename
+                                      withBoolean:(jboolean)recoverFromImageError;
 
-- (jint)type;
++ (ComItextpdfTextImage *)getInstanceWithJavaNetURL:(JavaNetURL *)url;
 
-- (jboolean)isNestable;
++ (ComItextpdfTextImage *)getInstanceWithJavaNetURL:(JavaNetURL *)url
+                                        withBoolean:(jboolean)recoverFromImageError;
 
-- (jboolean)isJpeg;
+- (id<ComItextpdfTextPdfPdfOCG>)getLayer;
+
+- (JavaLangLong *)getMySerialId;
+
+- (IOSByteArray *)getOriginalData;
+
+- (jint)getOriginalType;
+
+- (jfloat)getPlainHeight;
+
+- (jfloat)getPlainWidth;
+
+- (IOSByteArray *)getRawData;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jfloat)getScaledHeight;
+
+- (jfloat)getScaledWidth;
+
+- (jfloat)getSpacingAfter;
+
+- (jfloat)getSpacingBefore;
+
+- (ComItextpdfTextPdfPdfTemplate *)getTemplateData;
+
+- (IOSIntArray *)getTransparency;
+
+- (JavaNetURL *)getUrl;
+
+- (jfloat)getWidthPercentage;
+
+- (jfloat)getXYRatio;
+
+- (jboolean)hasAbsoluteX;
+
+- (jboolean)hasAbsoluteY;
+
+- (jboolean)hasICCProfile;
+
+- (jboolean)isDeflated;
 
 - (jboolean)isImgRaw;
 
 - (jboolean)isImgTemplate;
 
-- (JavaNetURL *)getUrl;
+- (jboolean)isInline;
 
-- (void)setUrlWithJavaNetURL:(JavaNetURL *)url;
+- (jboolean)isInterpolation;
 
-- (IOSByteArray *)getRawData;
+- (jboolean)isInverted;
 
-- (jint)getBpc;
+- (jboolean)isJpeg;
 
-- (ComItextpdfTextPdfPdfTemplate *)getTemplateData;
+- (jboolean)isMask;
 
-- (void)setTemplateDataWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
+- (jboolean)isMaskCandidate;
 
-- (jint)getAlignment;
+- (jboolean)isNestable;
 
-- (void)setAlignmentWithInt:(jint)alignment;
+- (jboolean)isScaleToFitHeight;
 
-- (NSString *)getAlt;
+- (jboolean)isScaleToFitLineWhenOverflow;
 
-- (void)setAltWithNSString:(NSString *)alt;
+- (jboolean)isSmask;
 
-- (void)setAbsolutePositionWithFloat:(jfloat)absoluteX
-                           withFloat:(jfloat)absoluteY;
+- (void)makeMask;
 
-- (jboolean)hasAbsoluteX;
+- (IOSFloatArray *)matrix;
 
-- (jfloat)getAbsoluteX;
-
-- (jboolean)hasAbsoluteY;
-
-- (jfloat)getAbsoluteY;
-
-- (jfloat)getScaledWidth;
-
-- (jfloat)getScaledHeight;
-
-- (jfloat)getPlainWidth;
-
-- (jfloat)getPlainHeight;
-
-- (void)scaleAbsoluteWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
+- (IOSFloatArray *)matrixWithFloat:(jfloat)scalePercentage;
 
 - (void)scaleAbsoluteWithFloat:(jfloat)newWidth
                      withFloat:(jfloat)newHeight;
 
-- (void)scaleAbsoluteWidthWithFloat:(jfloat)newWidth;
+- (void)scaleAbsoluteWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
 
 - (void)scaleAbsoluteHeightWithFloat:(jfloat)newHeight;
+
+- (void)scaleAbsoluteWidthWithFloat:(jfloat)newWidth;
 
 - (void)scalePercentWithFloat:(jfloat)percent;
 
 - (void)scalePercentWithFloat:(jfloat)percentX
                     withFloat:(jfloat)percentY;
 
-- (void)scaleToFitWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
-
 - (void)scaleToFitWithFloat:(jfloat)fitWidth
                   withFloat:(jfloat)fitHeight;
 
-- (IOSFloatArray *)matrix;
+- (void)scaleToFitWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
 
-- (IOSFloatArray *)matrixWithFloat:(jfloat)scalePercentage;
+- (void)setAbsolutePositionWithFloat:(jfloat)absoluteX
+                           withFloat:(jfloat)absoluteY;
 
-+ (JavaLangLong *)getSerialId;
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaLangLong *)getMySerialId;
+- (void)setAdditionalWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)additional;
 
-- (jfloat)getImageRotation;
+- (void)setAlignmentWithInt:(jint)alignment;
+
+- (void)setAltWithNSString:(NSString *)alt;
+
+- (void)setAnnotationWithComItextpdfTextAnnotation:(ComItextpdfTextAnnotation *)annotation;
+
+- (void)setColorTransformWithInt:(jint)c;
+
+- (void)setCompressionLevelWithInt:(jint)compressionLevel;
+
+- (void)setDeflatedWithBoolean:(jboolean)deflated;
+
+- (void)setDirectReferenceWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)directReference;
+
+- (void)setDpiWithInt:(jint)dpiX
+              withInt:(jint)dpiY;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setImageMaskWithComItextpdfTextImage:(ComItextpdfTextImage *)mask;
+
+- (void)setIndentationLeftWithFloat:(jfloat)f;
+
+- (void)setIndentationRightWithFloat:(jfloat)f;
+
+- (void)setInitialRotationWithFloat:(jfloat)initialRotation;
+
+- (void)setInterpolationWithBoolean:(jboolean)interpolation;
+
+- (void)setInvertedWithBoolean:(jboolean)invert;
+
+- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
+
+- (void)setOriginalDataWithByteArray:(IOSByteArray *)originalData;
+
+- (void)setOriginalTypeWithInt:(jint)originalType;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
 
 - (void)setRotationWithFloat:(jfloat)r;
 
 - (void)setRotationDegreesWithFloat:(jfloat)deg;
 
-- (jfloat)getInitialRotation;
-
-- (void)setInitialRotationWithFloat:(jfloat)initialRotation;
-
-- (jfloat)getIndentationLeft;
-
-- (void)setIndentationLeftWithFloat:(jfloat)f;
-
-- (jfloat)getIndentationRight;
-
-- (void)setIndentationRightWithFloat:(jfloat)f;
-
-- (jfloat)getSpacingBefore;
-
-- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
-
-- (jfloat)getSpacingAfter;
-
-- (void)setSpacingAfterWithFloat:(jfloat)spacing;
-
-- (jfloat)getWidthPercentage;
-
-- (void)setWidthPercentageWithFloat:(jfloat)widthPercentage;
-
-- (jboolean)isScaleToFitLineWhenOverflow;
+- (void)setScaleToFitHeightWithBoolean:(jboolean)scaleToFitHeight;
 
 - (void)setScaleToFitLineWhenOverflowWithBoolean:(jboolean)scaleToFitLineWhenOverflow;
 
-- (jboolean)isScaleToFitHeight;
-
-- (void)setScaleToFitHeightWithBoolean:(jboolean)scaleToFitHeight;
-
-- (void)setAnnotationWithComItextpdfTextAnnotation:(ComItextpdfTextAnnotation *)annotation;
-
-- (ComItextpdfTextAnnotation *)getAnnotation;
-
-- (id<ComItextpdfTextPdfPdfOCG>)getLayer;
-
-- (void)setLayerWithComItextpdfTextPdfPdfOCG:(id<ComItextpdfTextPdfPdfOCG>)layer;
-
-- (jboolean)isInterpolation;
-
-- (void)setInterpolationWithBoolean:(jboolean)interpolation;
-
-- (jint)getOriginalType;
-
-- (void)setOriginalTypeWithInt:(jint)originalType;
-
-- (IOSByteArray *)getOriginalData;
-
-- (void)setOriginalDataWithByteArray:(IOSByteArray *)originalData;
-
-- (jboolean)isDeflated;
-
-- (void)setDeflatedWithBoolean:(jboolean)deflated;
-
-- (jint)getDpiX;
-
-- (jint)getDpiY;
-
-- (void)setDpiWithInt:(jint)dpiX
-              withInt:(jint)dpiY;
-
-- (jfloat)getXYRatio;
-
-- (void)setXYRatioWithFloat:(jfloat)XYRatio;
-
-- (jint)getColorspace;
-
-- (void)setColorTransformWithInt:(jint)c;
-
-- (jint)getColorTransform;
-
-- (jboolean)isInverted;
-
-- (void)setInvertedWithBoolean:(jboolean)invert;
-
-- (void)tagICCWithComItextpdfTextPdfICC_Profile:(ComItextpdfTextPdfICC_Profile *)profile;
-
-- (jboolean)hasICCProfile;
-
-- (ComItextpdfTextPdfICC_Profile *)getICCProfile;
-
-- (ComItextpdfTextPdfPdfDictionary *)getAdditional;
-
-- (void)setAdditionalWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)additional;
-
-- (void)simplifyColorspace;
-
-- (ComItextpdfTextPdfPdfObject *)simplifyColorspaceWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)obj;
-
-- (jboolean)isMask;
-
-- (void)makeMask;
-
-- (jboolean)isMaskCandidate;
-
-- (ComItextpdfTextImage *)getImageMask;
-
-- (void)setImageMaskWithComItextpdfTextImage:(ComItextpdfTextImage *)mask;
-
-- (jboolean)isSmask;
-
 - (void)setSmaskWithBoolean:(jboolean)smask;
 
-- (IOSIntArray *)getTransparency;
+- (void)setSpacingAfterWithFloat:(jfloat)spacing;
+
+- (void)setSpacingBeforeWithFloat:(jfloat)spacing;
+
+- (void)setTemplateDataWithComItextpdfTextPdfPdfTemplate:(ComItextpdfTextPdfPdfTemplate *)template_;
 
 - (void)setTransparencyWithIntArray:(IOSIntArray *)transparency;
 
-- (jint)getCompressionLevel;
+- (void)setUrlWithJavaNetURL:(JavaNetURL *)url;
 
-- (void)setCompressionLevelWithInt:(jint)compressionLevel;
+- (void)setWidthPercentageWithFloat:(jfloat)widthPercentage;
 
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+- (void)setXYRatioWithFloat:(jfloat)XYRatio;
 
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+- (void)simplifyColorspace;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
+- (void)tagICCWithComItextpdfTextPdfICC_Profile:(ComItextpdfTextPdfICC_Profile *)profile;
 
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (jint)type;
 
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+#pragma mark Protected
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-- (jboolean)isInline;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextImage *)other;
++ (JavaLangLong *)getSerialId;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextImage_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextImage)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, url_, JavaNetURL *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, rawData_, IOSByteArray *)
@@ -394,13 +386,10 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextImage, alt_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, mySerialId_, JavaLangLong *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, accessibleAttributes_, JavaUtilHashMap *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextImage, id__, ComItextpdfTextAccessibleElementId *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextImage, directReference_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, annotation_, ComItextpdfTextAnnotation *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, layer_, id<ComItextpdfTextPdfPdfOCG>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, originalData_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, profile_, ComItextpdfTextPdfICC_Profile *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextImage, additional_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, imageMask_, ComItextpdfTextImage *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextImage, transparency_, IOSIntArray *)
 
@@ -455,5 +444,41 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextImage, ORIGINAL_JBIG2, jint)
 FOUNDATION_EXPORT jlong ComItextpdfTextImage_serialId_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextImage, serialId_, jlong)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextImage, serialId_, jlong)
+
+FOUNDATION_EXPORT void ComItextpdfTextImage_initWithJavaNetURL_(ComItextpdfTextImage *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithJavaNetURL_(JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithJavaNetURL_withBoolean_(JavaNetURL *url, jboolean recoverFromImageError);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithNSString_(NSString *filename);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithNSString_withBoolean_(NSString *filename, jboolean recoverFromImageError);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithByteArray_(IOSByteArray *imgb);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithByteArray_withBoolean_(IOSByteArray *imgb, jboolean recoverFromImageError);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithInt_withInt_withInt_withInt_withByteArray_(jint width, jint height, jint components, jint bpc, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithInt_withInt_withByteArray_withByteArray_(jint width, jint height, IOSByteArray *data, IOSByteArray *globals);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithInt_withInt_withBoolean_withInt_withInt_withByteArray_(jint width, jint height, jboolean reverseBits, jint typeCCITT, jint parameters, IOSByteArray *data);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithInt_withInt_withBoolean_withInt_withInt_withByteArray_withIntArray_(jint width, jint height, jboolean reverseBits, jint typeCCITT, jint parameters, IOSByteArray *data, IOSIntArray *transparency);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithInt_withInt_withInt_withInt_withByteArray_withIntArray_(jint width, jint height, jint components, jint bpc, IOSByteArray *data, IOSIntArray *transparency);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithComItextpdfTextPdfPdfTemplate_(ComItextpdfTextPdfPdfTemplate *template_);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfPRIndirectReference *ref);
+
+FOUNDATION_EXPORT void ComItextpdfTextImage_initWithComItextpdfTextImage_(ComItextpdfTextImage *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextImage *ComItextpdfTextImage_getInstanceWithComItextpdfTextImage_(ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT JavaLangLong *ComItextpdfTextImage_getSerialId();
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextImage)
 
 #endif // _ComItextpdfTextImage_H_

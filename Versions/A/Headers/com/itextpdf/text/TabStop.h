@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextTabStop_H_
 #define _ComItextpdfTextTabStop_H_
 
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
+
 @class ComItextpdfTextTabStop_AlignmentEnum;
 @protocol ComItextpdfTextPdfDrawDrawInterface;
-
-#import "JreEmulation.h"
-#include "java/lang/Enum.h"
 
 @interface ComItextpdfTextTabStop : NSObject {
  @public
@@ -20,13 +20,9 @@
   jchar anchorChar_;
 }
 
-+ (ComItextpdfTextTabStop *)newInstanceWithFloat:(jfloat)currentPosition
-                                       withFloat:(jfloat)tabInterval OBJC_METHOD_FAMILY_NONE;
+#pragma mark Public
 
 - (instancetype)initWithFloat:(jfloat)position;
-
-- (instancetype)initWithFloat:(jfloat)position
-withComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)leader;
 
 - (instancetype)initWithFloat:(jfloat)position
 withComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *)alignment;
@@ -34,6 +30,9 @@ withComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *
 - (instancetype)initWithFloat:(jfloat)position
 withComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *)alignment
                      withChar:(jchar)anchorChar;
+
+- (instancetype)initWithFloat:(jfloat)position
+withComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)leader;
 
 - (instancetype)initWithFloat:(jfloat)position
 withComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)leader
@@ -46,72 +45,105 @@ withComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *
 
 - (instancetype)initWithComItextpdfTextTabStop:(ComItextpdfTextTabStop *)tabStop;
 
-- (jfloat)getPosition;
-
-- (void)setPositionWithFloat:(jfloat)position;
-
 - (ComItextpdfTextTabStop_AlignmentEnum *)getAlignment;
-
-- (void)setAlignmentWithComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *)alignment;
-
-- (id<ComItextpdfTextPdfDrawDrawInterface>)getLeader;
-
-- (void)setLeaderWithComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)leader;
 
 - (jchar)getAnchorChar;
 
-- (void)setAnchorCharWithChar:(jchar)anchorChar;
+- (id<ComItextpdfTextPdfDrawDrawInterface>)getLeader;
+
+- (jfloat)getPosition;
 
 - (jfloat)getPositionWithFloat:(jfloat)tabPosition
                      withFloat:(jfloat)currentPosition
                      withFloat:(jfloat)anchorPosition;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextTabStop *)other;
++ (ComItextpdfTextTabStop *)newInstanceWithFloat:(jfloat)currentPosition
+                                       withFloat:(jfloat)tabInterval OBJC_METHOD_FAMILY_NONE;
+
+- (void)setAlignmentWithComItextpdfTextTabStop_AlignmentEnum:(ComItextpdfTextTabStop_AlignmentEnum *)alignment;
+
+- (void)setAnchorCharWithChar:(jchar)anchorChar;
+
+- (void)setLeaderWithComItextpdfTextPdfDrawDrawInterface:(id<ComItextpdfTextPdfDrawDrawInterface>)leader;
+
+- (void)setPositionWithFloat:(jfloat)position;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextTabStop_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextTabStop)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextTabStop, alignment_, ComItextpdfTextTabStop_AlignmentEnum *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextTabStop, leader_, id<ComItextpdfTextPdfDrawDrawInterface>)
 
-typedef enum {
+FOUNDATION_EXPORT ComItextpdfTextTabStop *ComItextpdfTextTabStop_newInstanceWithFloat_withFloat_(jfloat currentPosition, jfloat tabInterval);
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_(ComItextpdfTextTabStop *self, jfloat position);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_(jfloat position) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_(ComItextpdfTextTabStop *self, jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_(jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextTabStop_AlignmentEnum_(ComItextpdfTextTabStop *self, jfloat position, ComItextpdfTextTabStop_AlignmentEnum *alignment);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextTabStop_AlignmentEnum_(jfloat position, ComItextpdfTextTabStop_AlignmentEnum *alignment) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextTabStop_AlignmentEnum_withChar_(ComItextpdfTextTabStop *self, jfloat position, ComItextpdfTextTabStop_AlignmentEnum *alignment, jchar anchorChar);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextTabStop_AlignmentEnum_withChar_(jfloat position, ComItextpdfTextTabStop_AlignmentEnum *alignment, jchar anchorChar) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_withComItextpdfTextTabStop_AlignmentEnum_(ComItextpdfTextTabStop *self, jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader, ComItextpdfTextTabStop_AlignmentEnum *alignment);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_withComItextpdfTextTabStop_AlignmentEnum_(jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader, ComItextpdfTextTabStop_AlignmentEnum *alignment) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_withComItextpdfTextTabStop_AlignmentEnum_withChar_(ComItextpdfTextTabStop *self, jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader, ComItextpdfTextTabStop_AlignmentEnum *alignment, jchar anchorChar);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithFloat_withComItextpdfTextPdfDrawDrawInterface_withComItextpdfTextTabStop_AlignmentEnum_withChar_(jfloat position, id<ComItextpdfTextPdfDrawDrawInterface> leader, ComItextpdfTextTabStop_AlignmentEnum *alignment, jchar anchorChar) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabStop_initWithComItextpdfTextTabStop_(ComItextpdfTextTabStop *self, ComItextpdfTextTabStop *tabStop);
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *new_ComItextpdfTextTabStop_initWithComItextpdfTextTabStop_(ComItextpdfTextTabStop *tabStop) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextTabStop)
+
+typedef NS_ENUM(NSUInteger, ComItextpdfTextTabStop_Alignment) {
   ComItextpdfTextTabStop_Alignment_LEFT = 0,
   ComItextpdfTextTabStop_Alignment_RIGHT = 1,
   ComItextpdfTextTabStop_Alignment_CENTER = 2,
   ComItextpdfTextTabStop_Alignment_ANCHOR = 3,
-} ComItextpdfTextTabStop_Alignment;
+};
 
-@interface ComItextpdfTextTabStop_AlignmentEnum : JavaLangEnum < NSCopying > {
-}
+@interface ComItextpdfTextTabStop_AlignmentEnum : JavaLangEnum < NSCopying >
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal;
+#pragma mark Package-Private
 
 + (IOSObjectArray *)values;
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextTabStop_AlignmentEnum_values();
 
 + (ComItextpdfTextTabStop_AlignmentEnum *)valueOfWithNSString:(NSString *)name;
+FOUNDATION_EXPORT ComItextpdfTextTabStop_AlignmentEnum *ComItextpdfTextTabStop_AlignmentEnum_valueOfWithNSString_(NSString *name);
 
-FOUNDATION_EXPORT ComItextpdfTextTabStop_AlignmentEnum *ComItextpdfTextTabStop_AlignmentEnum_valueOfWithNSString_(NSString *name);- (id)copyWithZone:(NSZone *)zone;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextTabStop_AlignmentEnum_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextTabStop_AlignmentEnum)
 
 FOUNDATION_EXPORT ComItextpdfTextTabStop_AlignmentEnum *ComItextpdfTextTabStop_AlignmentEnum_values_[];
 
 #define ComItextpdfTextTabStop_AlignmentEnum_LEFT ComItextpdfTextTabStop_AlignmentEnum_values_[ComItextpdfTextTabStop_Alignment_LEFT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabStop_AlignmentEnum, LEFT, ComItextpdfTextTabStop_AlignmentEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextTabStop_AlignmentEnum, LEFT)
 
 #define ComItextpdfTextTabStop_AlignmentEnum_RIGHT ComItextpdfTextTabStop_AlignmentEnum_values_[ComItextpdfTextTabStop_Alignment_RIGHT]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabStop_AlignmentEnum, RIGHT, ComItextpdfTextTabStop_AlignmentEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextTabStop_AlignmentEnum, RIGHT)
 
 #define ComItextpdfTextTabStop_AlignmentEnum_CENTER ComItextpdfTextTabStop_AlignmentEnum_values_[ComItextpdfTextTabStop_Alignment_CENTER]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabStop_AlignmentEnum, CENTER, ComItextpdfTextTabStop_AlignmentEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextTabStop_AlignmentEnum, CENTER)
 
 #define ComItextpdfTextTabStop_AlignmentEnum_ANCHOR ComItextpdfTextTabStop_AlignmentEnum_values_[ComItextpdfTextTabStop_Alignment_ANCHOR]
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabStop_AlignmentEnum, ANCHOR, ComItextpdfTextTabStop_AlignmentEnum *)
+J2OBJC_ENUM_CONSTANT_GETTER(ComItextpdfTextTabStop_AlignmentEnum, ANCHOR)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextTabStop_AlignmentEnum)
 
 #endif // _ComItextpdfTextTabStop_H_

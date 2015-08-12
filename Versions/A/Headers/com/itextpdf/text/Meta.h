@@ -6,36 +6,23 @@
 #ifndef _ComItextpdfTextMeta_H_
 #define _ComItextpdfTextMeta_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Element.h"
+
 @class JavaLangStringBuffer;
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Element.h"
+@interface ComItextpdfTextMeta : NSObject < ComItextpdfTextElement >
 
-@interface ComItextpdfTextMeta : NSObject < ComItextpdfTextElement > {
- @public
-  jint type__;
-  JavaLangStringBuffer *content_;
-}
-
-- (instancetype)initWithInt:(jint)type
-               withNSString:(NSString *)content;
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)tag
                     withNSString:(NSString *)content;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
-
-- (jint)type;
+- (JavaLangStringBuffer *)appendWithNSString:(NSString *)string;
 
 - (id<JavaUtilList>)getChunks;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
-
-- (JavaLangStringBuffer *)appendWithNSString:(NSString *)string;
 
 - (NSString *)getContent;
 
@@ -43,13 +30,22 @@
 
 + (jint)getTypeWithNSString:(NSString *)tag;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextMeta *)other;
+- (jboolean)isContent;
+
+- (jboolean)isNestable;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (jint)type;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithInt:(jint)type
+               withNSString:(NSString *)content;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextMeta_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextMeta, content_, JavaLangStringBuffer *)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextMeta)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextMeta_UNKNOWN_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextMeta, UNKNOWN_, NSString *)
@@ -71,5 +67,17 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextMeta, SUBJECT_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextMeta_TITLE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextMeta, TITLE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextMeta_initWithInt_withNSString_(ComItextpdfTextMeta *self, jint type, NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextMeta *new_ComItextpdfTextMeta_initWithInt_withNSString_(jint type, NSString *content) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextMeta_initWithNSString_withNSString_(ComItextpdfTextMeta *self, NSString *tag, NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextMeta *new_ComItextpdfTextMeta_initWithNSString_withNSString_(NSString *tag, NSString *content) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jint ComItextpdfTextMeta_getTypeWithNSString_(NSString *tag);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextMeta)
 
 #endif // _ComItextpdfTextMeta_H_

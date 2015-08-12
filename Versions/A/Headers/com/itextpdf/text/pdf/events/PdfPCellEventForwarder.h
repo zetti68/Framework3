@@ -6,18 +6,22 @@
 #ifndef _ComItextpdfTextPdfEventsPdfPCellEventForwarder_H_
 #define _ComItextpdfTextPdfEventsPdfPCellEventForwarder_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfPCellEvent.h"
+
 @class ComItextpdfTextPdfPdfPCell;
 @class ComItextpdfTextRectangle;
 @class IOSObjectArray;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfPCellEvent.h"
-
 @interface ComItextpdfTextPdfEventsPdfPCellEventForwarder : NSObject < ComItextpdfTextPdfPdfPCellEvent > {
  @public
   JavaUtilArrayList *events_;
 }
+
+#pragma mark Public
+
+- (instancetype)init;
 
 - (void)addCellEventWithComItextpdfTextPdfPdfPCellEvent:(id<ComItextpdfTextPdfPdfPCellEvent>)event;
 
@@ -25,14 +29,16 @@
                     withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)position
        withComItextpdfTextPdfPdfContentByteArray:(IOSObjectArray *)canvases;
 
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsPdfPCellEventForwarder *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsPdfPCellEventForwarder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsPdfPCellEventForwarder)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsPdfPCellEventForwarder, events_, JavaUtilArrayList *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsPdfPCellEventForwarder_init(ComItextpdfTextPdfEventsPdfPCellEventForwarder *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsPdfPCellEventForwarder *new_ComItextpdfTextPdfEventsPdfPCellEventForwarder_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsPdfPCellEventForwarder)
 
 #endif // _ComItextpdfTextPdfEventsPdfPCellEventForwarder_H_

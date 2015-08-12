@@ -6,55 +6,70 @@
 #ifndef _ComItextpdfAwtGeomMiscHashCode_H_
 #define _ComItextpdfAwtGeomMiscHashCode_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 #define ComItextpdfAwtGeomMiscHashCode_EMPTY_HASH_CODE 1
 
-@interface ComItextpdfAwtGeomMiscHashCode : NSObject {
- @public
-  jint hashCode__;
-}
+@interface ComItextpdfAwtGeomMiscHashCode : NSObject
 
-- (NSUInteger)hash;
+#pragma mark Public
 
-+ (jint)combineWithInt:(jint)hashCode
-           withBoolean:(jboolean)value;
+- (instancetype)init;
 
-+ (jint)combineWithInt:(jint)hashCode
-              withLong:(jlong)value;
+- (ComItextpdfAwtGeomMiscHashCode *)appendWithBoolean:(jboolean)value;
 
-+ (jint)combineWithInt:(jint)hashCode
-             withFloat:(jfloat)value;
+- (ComItextpdfAwtGeomMiscHashCode *)appendWithDouble:(jdouble)value;
 
-+ (jint)combineWithInt:(jint)hashCode
-            withDouble:(jdouble)value;
-
-+ (jint)combineWithInt:(jint)hashCode
-                withId:(id)value;
-
-+ (jint)combineWithInt:(jint)hashCode
-               withInt:(jint)value;
+- (ComItextpdfAwtGeomMiscHashCode *)appendWithFloat:(jfloat)value;
 
 - (ComItextpdfAwtGeomMiscHashCode *)appendWithInt:(jint)value;
 
 - (ComItextpdfAwtGeomMiscHashCode *)appendWithLong:(jlong)value;
 
-- (ComItextpdfAwtGeomMiscHashCode *)appendWithFloat:(jfloat)value;
-
-- (ComItextpdfAwtGeomMiscHashCode *)appendWithDouble:(jdouble)value;
-
-- (ComItextpdfAwtGeomMiscHashCode *)appendWithBoolean:(jboolean)value;
-
 - (ComItextpdfAwtGeomMiscHashCode *)appendWithId:(id)value;
 
-- (instancetype)init;
++ (jint)combineWithInt:(jint)hashCode
+           withBoolean:(jboolean)value;
 
-- (void)copyAllFieldsTo:(ComItextpdfAwtGeomMiscHashCode *)other;
++ (jint)combineWithInt:(jint)hashCode
+            withDouble:(jdouble)value;
+
++ (jint)combineWithInt:(jint)hashCode
+             withFloat:(jfloat)value;
+
++ (jint)combineWithInt:(jint)hashCode
+               withInt:(jint)value;
+
++ (jint)combineWithInt:(jint)hashCode
+              withLong:(jlong)value;
+
++ (jint)combineWithInt:(jint)hashCode
+                withId:(id)value;
+
+- (NSUInteger)hash;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomMiscHashCode_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomMiscHashCode)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomMiscHashCode, EMPTY_HASH_CODE, jint)
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withBoolean_(jint hashCode, jboolean value);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withLong_(jint hashCode, jlong value);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withFloat_(jint hashCode, jfloat value);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withDouble_(jint hashCode, jdouble value);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withId_(jint hashCode, id value);
+
+FOUNDATION_EXPORT jint ComItextpdfAwtGeomMiscHashCode_combineWithInt_withInt_(jint hashCode, jint value);
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomMiscHashCode_init(ComItextpdfAwtGeomMiscHashCode *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomMiscHashCode *new_ComItextpdfAwtGeomMiscHashCode_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomMiscHashCode)
 
 #endif // _ComItextpdfAwtGeomMiscHashCode_H_

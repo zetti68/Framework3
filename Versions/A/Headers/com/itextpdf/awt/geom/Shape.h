@@ -6,13 +6,13 @@
 #ifndef _ComItextpdfAwtGeomShape_H_
 #define _ComItextpdfAwtGeomShape_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfAwtGeomPoint2D;
 @class ComItextpdfAwtGeomRectangle2D;
 @class ComItextpdfAwtGeomRectangle;
 @protocol ComItextpdfAwtGeomPathIterator;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfAwtGeomShape < NSObject, JavaObject >
 
@@ -46,6 +46,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomShape_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomShape)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomShape)
 
 #endif // _ComItextpdfAwtGeomShape_H_

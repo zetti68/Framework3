@@ -6,19 +6,15 @@
 #ifndef _ComItextpdfTextPdfLongHashtable_H_
 #define _ComItextpdfTextPdfLongHashtable_H_
 
+#include "J2ObjC_header.h"
+#include "java/util/Iterator.h"
+
 @class IOSLongArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "java/util/Iterator.h"
+@interface ComItextpdfTextPdfLongHashtable : NSObject < NSCopying >
 
-@interface ComItextpdfTextPdfLongHashtable : NSObject < NSCopying > {
- @public
-  IOSObjectArray *table_;
-  jint count_;
-  jint threshold_;
-  jfloat loadFactor_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -27,46 +23,56 @@
 - (instancetype)initWithInt:(jint)initialCapacity
                   withFloat:(jfloat)loadFactor;
 
-- (jint)size;
+- (void)clear;
 
-- (jboolean)isEmpty;
+- (id)clone;
 
 - (jboolean)containsWithLong:(jlong)value;
 
-- (jboolean)containsValueWithLong:(jlong)value;
-
 - (jboolean)containsKeyWithLong:(jlong)key;
+
+- (jboolean)containsValueWithLong:(jlong)value;
 
 - (jlong)getWithLong:(jlong)key;
 
-- (void)rehash;
+- (id<JavaUtilIterator>)getEntryIterator;
+
+- (IOSLongArray *)getKeys;
+
+- (jlong)getOneKey;
+
+- (jboolean)isEmpty;
 
 - (jlong)putWithLong:(jlong)key
             withLong:(jlong)value;
 
 - (jlong)removeWithLong:(jlong)key;
 
-- (void)clear;
-
-- (id<JavaUtilIterator>)getEntryIterator;
+- (jint)size;
 
 - (IOSLongArray *)toOrderedKeys;
 
-- (IOSLongArray *)getKeys;
+#pragma mark Protected
 
-- (jlong)getOneKey;
-
-- (id)clone;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLongHashtable *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (void)rehash;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLongHashtable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLongHashtable)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable, table_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfLongHashtable_init(ComItextpdfTextPdfLongHashtable *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLongHashtable *new_ComItextpdfTextPdfLongHashtable_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLongHashtable_initWithInt_(ComItextpdfTextPdfLongHashtable *self, jint initialCapacity);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLongHashtable *new_ComItextpdfTextPdfLongHashtable_initWithInt_(jint initialCapacity) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLongHashtable_initWithInt_withFloat_(ComItextpdfTextPdfLongHashtable *self, jint initialCapacity, jfloat loadFactor);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLongHashtable *new_ComItextpdfTextPdfLongHashtable_initWithInt_withFloat_(jint initialCapacity, jfloat loadFactor) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLongHashtable)
 
 @interface ComItextpdfTextPdfLongHashtable_Entry : NSObject {
  @public
@@ -76,24 +82,32 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable, table_, IOSObjectArray *)
   ComItextpdfTextPdfLongHashtable_Entry *next_;
 }
 
-- (instancetype)initWithInt:(jint)hash_
-                   withLong:(jlong)key
-                   withLong:(jlong)value
-withComItextpdfTextPdfLongHashtable_Entry:(ComItextpdfTextPdfLongHashtable_Entry *)next;
+#pragma mark Public
 
 - (jlong)getKey;
 
 - (jlong)getValue;
 
-- (id)clone;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLongHashtable_Entry *)other;
+- (instancetype)initWithInt:(jint)hash_
+                   withLong:(jlong)key
+                   withLong:(jlong)value
+withComItextpdfTextPdfLongHashtable_Entry:(ComItextpdfTextPdfLongHashtable_Entry *)next;
+
+- (id)clone;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLongHashtable_Entry_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLongHashtable_Entry)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable_Entry, next_, ComItextpdfTextPdfLongHashtable_Entry *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLongHashtable_Entry_initWithInt_withLong_withLong_withComItextpdfTextPdfLongHashtable_Entry_(ComItextpdfTextPdfLongHashtable_Entry *self, jint hash_, jlong key, jlong value, ComItextpdfTextPdfLongHashtable_Entry *next);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLongHashtable_Entry *new_ComItextpdfTextPdfLongHashtable_Entry_initWithInt_withLong_withLong_withComItextpdfTextPdfLongHashtable_Entry_(jint hash_, jlong key, jlong value, ComItextpdfTextPdfLongHashtable_Entry *next) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLongHashtable_Entry)
 
 @interface ComItextpdfTextPdfLongHashtable_LongHashtableIterator : NSObject < JavaUtilIterator > {
  @public
@@ -102,7 +116,7 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable_Entry, next_, ComItextpdfTex
   ComItextpdfTextPdfLongHashtable_Entry *entry__;
 }
 
-- (instancetype)initWithComItextpdfTextPdfLongHashtable_EntryArray:(IOSObjectArray *)table;
+#pragma mark Public
 
 - (jboolean)hasNext;
 
@@ -110,13 +124,21 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable_Entry, next_, ComItextpdfTex
 
 - (void)remove;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfLongHashtable_LongHashtableIterator *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfLongHashtable_EntryArray:(IOSObjectArray *)table;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLongHashtable_LongHashtableIterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLongHashtable_LongHashtableIterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable_LongHashtableIterator, table_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfLongHashtable_LongHashtableIterator, entry__, ComItextpdfTextPdfLongHashtable_Entry *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfLongHashtable_LongHashtableIterator_initWithComItextpdfTextPdfLongHashtable_EntryArray_(ComItextpdfTextPdfLongHashtable_LongHashtableIterator *self, IOSObjectArray *table);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfLongHashtable_LongHashtableIterator *new_ComItextpdfTextPdfLongHashtable_LongHashtableIterator_initWithComItextpdfTextPdfLongHashtable_EntryArray_(IOSObjectArray *table) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLongHashtable_LongHashtableIterator)
 
 #endif // _ComItextpdfTextPdfLongHashtable_H_

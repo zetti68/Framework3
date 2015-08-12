@@ -6,57 +6,57 @@
 #ifndef _ComItextpdfTextElement_H_
 #define _ComItextpdfTextElement_H_
 
+#include "J2ObjC_header.h"
+
 @protocol ComItextpdfTextElementListener;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextElement_ALIGN_BASELINE 7
-#define ComItextpdfTextElement_ALIGN_BOTTOM 6
-#define ComItextpdfTextElement_ALIGN_CENTER 1
-#define ComItextpdfTextElement_ALIGN_JUSTIFIED 3
-#define ComItextpdfTextElement_ALIGN_JUSTIFIED_ALL 8
-#define ComItextpdfTextElement_ALIGN_LEFT 0
-#define ComItextpdfTextElement_ALIGN_MIDDLE 5
-#define ComItextpdfTextElement_ALIGN_RIGHT 2
-#define ComItextpdfTextElement_ALIGN_TOP 4
-#define ComItextpdfTextElement_ALIGN_UNDEFINED -1
-#define ComItextpdfTextElement_ANCHOR 17
-#define ComItextpdfTextElement_ANNOTATION 29
+#define ComItextpdfTextElement_HEADER 0
+#define ComItextpdfTextElement_TITLE 1
+#define ComItextpdfTextElement_SUBJECT 2
+#define ComItextpdfTextElement_KEYWORDS 3
 #define ComItextpdfTextElement_AUTHOR 4
-#define ComItextpdfTextElement_CCITTG3_1D 257
-#define ComItextpdfTextElement_CCITTG3_2D 258
-#define ComItextpdfTextElement_CCITTG4 256
-#define ComItextpdfTextElement_CCITT_BLACKIS1 1
-#define ComItextpdfTextElement_CCITT_ENCODEDBYTEALIGN 2
-#define ComItextpdfTextElement_CCITT_ENDOFBLOCK 8
-#define ComItextpdfTextElement_CCITT_ENDOFLINE 4
-#define ComItextpdfTextElement_CHAPTER 16
-#define ComItextpdfTextElement_CHUNK 10
+#define ComItextpdfTextElement_PRODUCER 5
 #define ComItextpdfTextElement_CREATIONDATE 6
 #define ComItextpdfTextElement_CREATOR 7
-#define ComItextpdfTextElement_DIV 37
-#define ComItextpdfTextElement_HEADER 0
+#define ComItextpdfTextElement_LANGUAGE 8
+#define ComItextpdfTextElement_CHUNK 10
+#define ComItextpdfTextElement_PHRASE 11
+#define ComItextpdfTextElement_PARAGRAPH 12
+#define ComItextpdfTextElement_SECTION 13
+#define ComItextpdfTextElement_LIST 14
+#define ComItextpdfTextElement_LISTITEM 15
+#define ComItextpdfTextElement_CHAPTER 16
+#define ComItextpdfTextElement_ANCHOR 17
+#define ComItextpdfTextElement_PTABLE 23
+#define ComItextpdfTextElement_ANNOTATION 29
+#define ComItextpdfTextElement_RECTANGLE 30
+#define ComItextpdfTextElement_JPEG 32
+#define ComItextpdfTextElement_JPEG2000 33
 #define ComItextpdfTextElement_IMGRAW 34
 #define ComItextpdfTextElement_IMGTEMPLATE 35
 #define ComItextpdfTextElement_JBIG2 36
-#define ComItextpdfTextElement_JPEG 32
-#define ComItextpdfTextElement_JPEG2000 33
-#define ComItextpdfTextElement_KEYWORDS 3
-#define ComItextpdfTextElement_LANGUAGE 8
-#define ComItextpdfTextElement_LIST 14
-#define ComItextpdfTextElement_LISTITEM 15
+#define ComItextpdfTextElement_DIV 37
 #define ComItextpdfTextElement_MARKED 50
-#define ComItextpdfTextElement_PARAGRAPH 12
-#define ComItextpdfTextElement_PHRASE 11
-#define ComItextpdfTextElement_PRODUCER 5
-#define ComItextpdfTextElement_PTABLE 23
-#define ComItextpdfTextElement_RECTANGLE 30
-#define ComItextpdfTextElement_SECTION 13
-#define ComItextpdfTextElement_SUBJECT 2
-#define ComItextpdfTextElement_TITLE 1
-#define ComItextpdfTextElement_WRITABLE_DIRECT 666
 #define ComItextpdfTextElement_YMARK 55
+#define ComItextpdfTextElement_WRITABLE_DIRECT 666
+#define ComItextpdfTextElement_ALIGN_UNDEFINED -1
+#define ComItextpdfTextElement_ALIGN_LEFT 0
+#define ComItextpdfTextElement_ALIGN_CENTER 1
+#define ComItextpdfTextElement_ALIGN_RIGHT 2
+#define ComItextpdfTextElement_ALIGN_JUSTIFIED 3
+#define ComItextpdfTextElement_ALIGN_TOP 4
+#define ComItextpdfTextElement_ALIGN_MIDDLE 5
+#define ComItextpdfTextElement_ALIGN_BOTTOM 6
+#define ComItextpdfTextElement_ALIGN_BASELINE 7
+#define ComItextpdfTextElement_ALIGN_JUSTIFIED_ALL 8
+#define ComItextpdfTextElement_CCITTG4 256
+#define ComItextpdfTextElement_CCITTG3_1D 257
+#define ComItextpdfTextElement_CCITTG3_2D 258
+#define ComItextpdfTextElement_CCITT_BLACKIS1 1
+#define ComItextpdfTextElement_CCITT_ENCODEDBYTEALIGN 2
+#define ComItextpdfTextElement_CCITT_ENDOFLINE 4
+#define ComItextpdfTextElement_CCITT_ENDOFBLOCK 8
 
 @protocol ComItextpdfTextElement < NSObject, JavaObject >
 
@@ -74,7 +74,7 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextElement)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextElement, HEADER, jint)
 
@@ -167,5 +167,7 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextElement, CCITT_ENCODEDBYTEALIGN, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextElement, CCITT_ENDOFLINE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextElement, CCITT_ENDOFBLOCK, jint)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextElement)
 
 #endif // _ComItextpdfTextElement_H_

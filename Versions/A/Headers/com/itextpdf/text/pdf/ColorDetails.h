@@ -6,13 +6,13 @@
 #ifndef _ComItextpdfTextPdfColorDetails_H_
 #define _ComItextpdfTextPdfColorDetails_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextPdfPdfSpotColor;
 @class ComItextpdfTextPdfPdfWriter;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfColorDetails : NSObject {
  @public
@@ -21,24 +21,32 @@
   ComItextpdfTextPdfPdfSpotColor *spotcolor_;
 }
 
+#pragma mark Public
+
+- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
+
+- (ComItextpdfTextPdfPdfObject *)getSpotColorWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
+
+#pragma mark Package-Private
+
 - (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)colorName
        withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)indirectReference
                withComItextpdfTextPdfPdfSpotColor:(ComItextpdfTextPdfPdfSpotColor *)scolor;
 
-- (ComItextpdfTextPdfPdfIndirectReference *)getIndirectReference;
-
 - (ComItextpdfTextPdfPdfName *)getColorName;
-
-- (ComItextpdfTextPdfPdfObject *)getSpotColorWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfColorDetails *)other;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfColorDetails_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfColorDetails)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColorDetails, indirectReference_, ComItextpdfTextPdfPdfIndirectReference *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColorDetails, colorName_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfColorDetails, spotcolor_, ComItextpdfTextPdfPdfSpotColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfColorDetails_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfPdfSpotColor_(ComItextpdfTextPdfColorDetails *self, ComItextpdfTextPdfPdfName *colorName, ComItextpdfTextPdfPdfIndirectReference *indirectReference, ComItextpdfTextPdfPdfSpotColor *scolor);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfColorDetails *new_ComItextpdfTextPdfColorDetails_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfIndirectReference_withComItextpdfTextPdfPdfSpotColor_(ComItextpdfTextPdfPdfName *colorName, ComItextpdfTextPdfPdfIndirectReference *indirectReference, ComItextpdfTextPdfPdfSpotColor *scolor) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfColorDetails)
 
 #endif // _ComItextpdfTextPdfColorDetails_H_

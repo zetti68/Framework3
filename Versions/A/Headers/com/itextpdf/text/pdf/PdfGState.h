@@ -6,42 +6,42 @@
 #ifndef _ComItextpdfTextPdfPdfGState_H_
 #define _ComItextpdfTextPdfPdfGState_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
+@interface ComItextpdfTextPdfPdfGState : ComItextpdfTextPdfPdfDictionary
 
-@interface ComItextpdfTextPdfPdfGState : ComItextpdfTextPdfPdfDictionary {
-}
+#pragma mark Public
 
-- (void)setOverPrintStrokingWithBoolean:(jboolean)ov;
-
-- (void)setOverPrintNonStrokingWithBoolean:(jboolean)ov;
-
-- (void)setOverPrintModeWithInt:(jint)ov;
-
-- (void)setStrokeOpacityWithFloat:(jfloat)n;
-
-- (void)setFillOpacityWithFloat:(jfloat)n;
+- (instancetype)init;
 
 - (void)setAlphaIsShapeWithBoolean:(jboolean)v;
 
-- (void)setTextKnockoutWithBoolean:(jboolean)v;
-
 - (void)setBlendModeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)bm;
 
+- (void)setFillOpacityWithFloat:(jfloat)n;
+
+- (void)setOverPrintModeWithInt:(jint)ov;
+
+- (void)setOverPrintNonStrokingWithBoolean:(jboolean)ov;
+
+- (void)setOverPrintStrokingWithBoolean:(jboolean)ov;
+
 - (void)setRenderingIntentWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)ri;
+
+- (void)setStrokeOpacityWithFloat:(jfloat)n;
+
+- (void)setTextKnockoutWithBoolean:(jboolean)v;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfGState_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfGState)
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfPdfGState_BM_NORMAL_;
@@ -82,5 +82,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfGState, BM_DIFFERENCE_, ComItext
 
 FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfPdfGState_BM_EXCLUSION_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfGState, BM_EXCLUSION_, ComItextpdfTextPdfPdfName *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfGState_init(ComItextpdfTextPdfPdfGState *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfGState *new_ComItextpdfTextPdfPdfGState_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfGState)
 
 #endif // _ComItextpdfTextPdfPdfGState_H_

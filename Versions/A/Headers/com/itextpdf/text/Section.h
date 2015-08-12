@@ -6,6 +6,13 @@
 #ifndef _ComItextpdfTextSection_H_
 #define _ComItextpdfTextSection_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/LargeElement.h"
+#include "com/itextpdf/text/TextElementArray.h"
+#include "com/itextpdf/text/api/Indentable.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+#include "java/util/ArrayList.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextMarkedSection;
 @class ComItextpdfTextParagraph;
@@ -17,16 +24,8 @@
 @protocol JavaUtilCollection;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/LargeElement.h"
-#include "com/itextpdf/text/TextElementArray.h"
-#include "com/itextpdf/text/api/Indentable.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-#include "java/util/ArrayList.h"
-
 #define ComItextpdfTextSection_NUMBERSTYLE_DOTTED 0
 #define ComItextpdfTextSection_NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT 1
-#define ComItextpdfTextSection_serialVersionUID 3324172577544748043LL
 
 @interface ComItextpdfTextSection : JavaUtilArrayList < ComItextpdfTextTextElementArray, ComItextpdfTextLargeElement, ComItextpdfTextApiIndentable, ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
@@ -46,145 +45,148 @@
   jboolean notAddedYet_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
-                                         withInt:(jint)numberDepth;
-
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
-
-- (jint)type;
-
-- (jboolean)isChapter;
-
-- (jboolean)isSection;
-
-- (id<JavaUtilList>)getChunks;
-
-- (jboolean)isContent;
-
-- (jboolean)isNestable;
+- (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
 - (void)addWithInt:(jint)index
             withId:(id<ComItextpdfTextElement>)element;
 
-- (jboolean)addWithId:(id<ComItextpdfTextElement>)element;
-
 - (jboolean)addAllWithJavaUtilCollection:(id<JavaUtilCollection>)collection;
+
+- (ComItextpdfTextSection *)addSectionWithFloat:(jfloat)indentation
+                   withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
 
 - (ComItextpdfTextSection *)addSectionWithFloat:(jfloat)indentation
                    withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
                                         withInt:(jint)numberDepth;
 
 - (ComItextpdfTextSection *)addSectionWithFloat:(jfloat)indentation
-                   withComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
-
-- (ComItextpdfTextSection *)addSectionWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
-                                                           withInt:(jint)numberDepth;
-
-- (ComItextpdfTextMarkedSection *)addMarkedSection;
-
-- (ComItextpdfTextSection *)addSectionWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+                                   withNSString:(NSString *)title;
 
 - (ComItextpdfTextSection *)addSectionWithFloat:(jfloat)indentation
                                    withNSString:(NSString *)title
                                         withInt:(jint)numberDepth;
 
-- (ComItextpdfTextSection *)addSectionWithNSString:(NSString *)title
-                                           withInt:(jint)numberDepth;
+- (ComItextpdfTextSection *)addSectionWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
 
-- (ComItextpdfTextSection *)addSectionWithFloat:(jfloat)indentation
-                                   withNSString:(NSString *)title;
+- (ComItextpdfTextSection *)addSectionWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
+                                                           withInt:(jint)numberDepth;
 
 - (ComItextpdfTextSection *)addSectionWithNSString:(NSString *)title;
 
-- (void)setTitleWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+- (ComItextpdfTextSection *)addSectionWithNSString:(NSString *)title
+                                           withInt:(jint)numberDepth;
 
-- (ComItextpdfTextParagraph *)getTitle;
+- (jboolean)addWithId:(id<ComItextpdfTextElement>)element;
 
 + (ComItextpdfTextParagraph *)constructTitleWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
                                                    withJavaUtilArrayList:(JavaUtilArrayList *)numbers
                                                                  withInt:(jint)numberDepth
                                                                  withInt:(jint)numberStyle;
 
-- (void)setNumberDepthWithInt:(jint)numberDepth;
+- (void)flushContent;
 
-- (jint)getNumberDepth;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (void)setNumberStyleWithInt:(jint)numberStyle;
-
-- (jint)getNumberStyle;
-
-- (void)setIndentationLeftWithFloat:(jfloat)indentation;
-
-- (jfloat)getIndentationLeft;
-
-- (void)setIndentationRightWithFloat:(jfloat)indentation;
-
-- (jfloat)getIndentationRight;
-
-- (void)setIndentationWithFloat:(jfloat)indentation;
-
-- (jfloat)getIndentation;
-
-- (void)setBookmarkOpenWithBoolean:(jboolean)bookmarkOpen;
-
-- (jboolean)isBookmarkOpen;
-
-- (void)setTriggerNewPageWithBoolean:(jboolean)triggerNewPage;
-
-- (jboolean)isTriggerNewPage;
-
-- (void)setBookmarkTitleWithNSString:(NSString *)bookmarkTitle;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
 - (ComItextpdfTextParagraph *)getBookmarkTitle;
 
-- (void)setChapterNumberWithInt:(jint)number;
+- (id<JavaUtilList>)getChunks;
 
 - (jint)getDepth;
 
-- (void)setNumbersWithInt:(jint)number
-    withJavaUtilArrayList:(JavaUtilArrayList *)numbers;
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (jfloat)getIndentation;
+
+- (jfloat)getIndentationLeft;
+
+- (jfloat)getIndentationRight;
+
+- (jint)getNumberDepth;
+
+- (jint)getNumberStyle;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (ComItextpdfTextParagraph *)getTitle;
+
+- (jboolean)isBookmarkOpen;
+
+- (jboolean)isChapter;
+
+- (jboolean)isComplete;
+
+- (jboolean)isContent;
+
+- (jboolean)isInline;
+
+- (jboolean)isNestable;
 
 - (jboolean)isNotAddedYet;
 
+- (jboolean)isSection;
+
+- (jboolean)isTriggerNewPage;
+
+- (void)newPage OBJC_METHOD_FAMILY_NONE;
+
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+
+- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
+                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
+
+- (void)setBookmarkOpenWithBoolean:(jboolean)bookmarkOpen;
+
+- (void)setBookmarkTitleWithNSString:(NSString *)bookmarkTitle;
+
+- (void)setChapterNumberWithInt:(jint)number;
+
+- (void)setCompleteWithBoolean:(jboolean)complete;
+
+- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
+
+- (void)setIndentationWithFloat:(jfloat)indentation;
+
+- (void)setIndentationLeftWithFloat:(jfloat)indentation;
+
+- (void)setIndentationRightWithFloat:(jfloat)indentation;
+
 - (void)setNotAddedYetWithBoolean:(jboolean)notAddedYet;
+
+- (void)setNumberDepthWithInt:(jint)numberDepth;
+
+- (void)setNumberStyleWithInt:(jint)numberStyle;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setTitleWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title;
+
+- (void)setTriggerNewPageWithBoolean:(jboolean)triggerNewPage;
+
+- (jint)type;
+
+#pragma mark Protected
+
+- (instancetype)init;
+
+- (instancetype)initWithComItextpdfTextParagraph:(ComItextpdfTextParagraph *)title
+                                         withInt:(jint)numberDepth;
+
+- (ComItextpdfTextMarkedSection *)addMarkedSection;
 
 - (jboolean)isAddedCompletely;
 
 - (void)setAddedCompletelyWithBoolean:(jboolean)addedCompletely;
 
-- (void)flushContent;
-
-- (jboolean)isComplete;
-
-- (void)setCompleteWithBoolean:(jboolean)complete;
-
-- (void)newPage OBJC_METHOD_FAMILY_NONE;
-
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
-
-- (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
-                            withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
-
-- (JavaUtilHashMap *)getAccessibleAttributes;
-
-- (ComItextpdfTextPdfPdfName *)getRole;
-
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
-
-- (ComItextpdfTextAccessibleElementId *)getId;
-
-- (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
-
-- (jboolean)isInline;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextSection *)other;
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextSection_init() {}
+J2OBJC_STATIC_INIT(ComItextpdfTextSection)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextSection, title_, ComItextpdfTextParagraph *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextSection, bookmarkTitle_, NSString *)
@@ -194,6 +196,16 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextSection, NUMBERSTYLE_DOTTED, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextSection, NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextSection, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextSection_init(ComItextpdfTextSection *self);
+
+FOUNDATION_EXPORT ComItextpdfTextSection *new_ComItextpdfTextSection_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextSection_initWithComItextpdfTextParagraph_withInt_(ComItextpdfTextSection *self, ComItextpdfTextParagraph *title, jint numberDepth);
+
+FOUNDATION_EXPORT ComItextpdfTextSection *new_ComItextpdfTextSection_initWithComItextpdfTextParagraph_withInt_(ComItextpdfTextParagraph *title, jint numberDepth) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextParagraph *ComItextpdfTextSection_constructTitleWithComItextpdfTextParagraph_withJavaUtilArrayList_withInt_withInt_(ComItextpdfTextParagraph *title, JavaUtilArrayList *numbers, jint numberDepth, jint numberStyle);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextSection)
 
 #endif // _ComItextpdfTextSection_H_

@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfDrawLineSeparator_H_
 #define _ComItextpdfTextPdfDrawLineSeparator_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/draw/VerticalPositionMark.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextPdfPdfContentByte;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/draw/VerticalPositionMark.h"
 
 @interface ComItextpdfTextPdfDrawLineSeparator : ComItextpdfTextPdfDrawVerticalPositionMark {
  @public
@@ -21,6 +21,10 @@
   jint alignment_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (instancetype)initWithFloat:(jfloat)lineWidth
                     withFloat:(jfloat)percentage
  withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)lineColor
@@ -28,8 +32,6 @@
                     withFloat:(jfloat)offset;
 
 - (instancetype)initWithComItextpdfTextFont:(ComItextpdfTextFont *)font;
-
-- (instancetype)init;
 
 - (void)drawWithComItextpdfTextPdfPdfContentByte:(ComItextpdfTextPdfPdfContentByte *)canvas
                                        withFloat:(jfloat)llx
@@ -43,28 +45,40 @@
                                            withFloat:(jfloat)rightX
                                            withFloat:(jfloat)y;
 
-- (jfloat)getLineWidth;
-
-- (void)setLineWidthWithFloat:(jfloat)lineWidth;
-
-- (jfloat)getPercentage;
-
-- (void)setPercentageWithFloat:(jfloat)percentage;
+- (jint)getAlignment;
 
 - (ComItextpdfTextBaseColor *)getLineColor;
 
-- (void)setLineColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+- (jfloat)getLineWidth;
 
-- (jint)getAlignment;
+- (jfloat)getPercentage;
 
 - (void)setAlignmentWithInt:(jint)align;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfDrawLineSeparator *)other;
+- (void)setLineColorWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
+- (void)setLineWidthWithFloat:(jfloat)lineWidth;
+
+- (void)setPercentageWithFloat:(jfloat)percentage;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfDrawLineSeparator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfDrawLineSeparator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfDrawLineSeparator, lineColor_, ComItextpdfTextBaseColor *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawLineSeparator_initWithFloat_withFloat_withComItextpdfTextBaseColor_withInt_withFloat_(ComItextpdfTextPdfDrawLineSeparator *self, jfloat lineWidth, jfloat percentage, ComItextpdfTextBaseColor *lineColor, jint align, jfloat offset);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawLineSeparator *new_ComItextpdfTextPdfDrawLineSeparator_initWithFloat_withFloat_withComItextpdfTextBaseColor_withInt_withFloat_(jfloat lineWidth, jfloat percentage, ComItextpdfTextBaseColor *lineColor, jint align, jfloat offset) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawLineSeparator_initWithComItextpdfTextFont_(ComItextpdfTextPdfDrawLineSeparator *self, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawLineSeparator *new_ComItextpdfTextPdfDrawLineSeparator_initWithComItextpdfTextFont_(ComItextpdfTextFont *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfDrawLineSeparator_init(ComItextpdfTextPdfDrawLineSeparator *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfDrawLineSeparator *new_ComItextpdfTextPdfDrawLineSeparator_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfDrawLineSeparator)
 
 #endif // _ComItextpdfTextPdfDrawLineSeparator_H_

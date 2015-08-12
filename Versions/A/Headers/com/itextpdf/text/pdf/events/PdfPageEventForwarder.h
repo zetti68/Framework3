@@ -6,41 +6,25 @@
 #ifndef _ComItextpdfTextPdfEventsPdfPageEventForwarder_H_
 #define _ComItextpdfTextPdfEventsPdfPageEventForwarder_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfPageEvent.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextParagraph;
 @class ComItextpdfTextPdfPdfWriter;
 @class ComItextpdfTextRectangle;
 @class JavaUtilArrayList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfPageEvent.h"
-
 @interface ComItextpdfTextPdfEventsPdfPageEventForwarder : NSObject < ComItextpdfTextPdfPdfPageEvent > {
  @public
   JavaUtilArrayList *events_;
 }
 
+#pragma mark Public
+
+- (instancetype)init;
+
 - (void)addPageEventWithComItextpdfTextPdfPdfPageEvent:(id<ComItextpdfTextPdfPdfPageEvent>)event;
-
-- (void)onOpenDocumentWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                          withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
-
-- (void)onStartPageWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                       withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
-
-- (void)onEndPageWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                     withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
-
-- (void)onCloseDocumentWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                           withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
-
-- (void)onParagraphWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                       withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
-                                         withFloat:(jfloat)paragraphPosition;
-
-- (void)onParagraphEndWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                          withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
-                                            withFloat:(jfloat)paragraphPosition;
 
 - (void)onChapterWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                      withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
@@ -50,6 +34,28 @@
 - (void)onChapterEndWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                         withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
                                           withFloat:(jfloat)position;
+
+- (void)onCloseDocumentWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                           withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
+
+- (void)onEndPageWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                     withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
+
+- (void)onGenericTagWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                        withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
+                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
+                                       withNSString:(NSString *)text;
+
+- (void)onOpenDocumentWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                          withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
+
+- (void)onParagraphWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                       withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
+                                         withFloat:(jfloat)paragraphPosition;
+
+- (void)onParagraphEndWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                          withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
+                                            withFloat:(jfloat)paragraphPosition;
 
 - (void)onSectionWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                      withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
@@ -61,19 +67,19 @@
                         withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
                                           withFloat:(jfloat)position;
 
-- (void)onGenericTagWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                        withComItextpdfTextDocument:(ComItextpdfTextDocument *)document
-                       withComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rect
-                                       withNSString:(NSString *)text;
-
-- (instancetype)init;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfEventsPdfPageEventForwarder *)other;
+- (void)onStartPageWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                       withComItextpdfTextDocument:(ComItextpdfTextDocument *)document;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfEventsPdfPageEventForwarder_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfEventsPdfPageEventForwarder)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfEventsPdfPageEventForwarder, events_, JavaUtilArrayList *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfEventsPdfPageEventForwarder_init(ComItextpdfTextPdfEventsPdfPageEventForwarder *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfEventsPdfPageEventForwarder *new_ComItextpdfTextPdfEventsPdfPageEventForwarder_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfEventsPdfPageEventForwarder)
 
 #endif // _ComItextpdfTextPdfEventsPdfPageEventForwarder_H_

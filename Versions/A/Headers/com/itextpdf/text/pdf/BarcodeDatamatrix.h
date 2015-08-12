@@ -6,147 +6,62 @@
 #ifndef _ComItextpdfTextPdfBarcodeDatamatrix_H_
 #define _ComItextpdfTextPdfBarcodeDatamatrix_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextImage;
-@class ComItextpdfTextPdfBarcodeDatamatrix_DmParams;
 @class IOSByteArray;
-@class IOSIntArray;
-@class IOSObjectArray;
 @class IOSShortArray;
-@class JavaUtilHashtable;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ASCII 1
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_AUTO 0
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_B256 4
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_C40 2
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_EDIFACT 6
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_EXTENSION 5
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_INVALID_SQUARE 3
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_TEXT_TOO_BIG 1
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_EXTENSION 32
 #define ComItextpdfTextPdfBarcodeDatamatrix_DM_NO_ERROR 0
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_RAW 7
-#define ComItextpdfTextPdfBarcodeDatamatrix_DM_TEST 64
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_TEXT_TOO_BIG 1
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_INVALID_SQUARE 3
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ERROR_EXTENSION 5
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_AUTO 0
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_ASCII 1
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_C40 2
 #define ComItextpdfTextPdfBarcodeDatamatrix_DM_TEXT 3
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_B256 4
 #define ComItextpdfTextPdfBarcodeDatamatrix_DM_X21 5
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_EDIFACT 6
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_RAW 7
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_EXTENSION 32
+#define ComItextpdfTextPdfBarcodeDatamatrix_DM_TEST 64
 
-@interface ComItextpdfTextPdfBarcodeDatamatrix : NSObject {
- @public
-  jint extOut_;
-  IOSShortArray *place_;
-  IOSByteArray *image_;
-  jint height_;
-  jint width_;
-  jint ws_;
-  jint options_;
-}
+@interface ComItextpdfTextPdfBarcodeDatamatrix : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)setBitWithInt:(jint)x
-              withInt:(jint)y
-              withInt:(jint)xByte;
-
-- (void)drawWithByteArray:(IOSByteArray *)data
-                  withInt:(jint)dataSize
-withComItextpdfTextPdfBarcodeDatamatrix_DmParams:(ComItextpdfTextPdfBarcodeDatamatrix_DmParams *)dm;
-
-+ (void)makePaddingWithByteArray:(IOSByteArray *)data
-                         withInt:(jint)position
-                         withInt:(jint)count;
-
-+ (jboolean)isDigitWithInt:(jint)c;
-
-+ (jint)asciiEncodationWithByteArray:(IOSByteArray *)text
-                             withInt:(jint)textOffset
-                             withInt:(jint)textLength
-                       withByteArray:(IOSByteArray *)data
-                             withInt:(jint)dataOffset
-                             withInt:(jint)dataLength;
-
-+ (jint)b256EncodationWithByteArray:(IOSByteArray *)text
-                            withInt:(jint)textOffset
-                            withInt:(jint)textLength
-                      withByteArray:(IOSByteArray *)data
-                            withInt:(jint)dataOffset
-                            withInt:(jint)dataLength;
-
-+ (jint)X12EncodationWithByteArray:(IOSByteArray *)text
-                           withInt:(jint)textOffset
-                           withInt:(jint)textLength
-                     withByteArray:(IOSByteArray *)data
-                           withInt:(jint)dataOffset
-                           withInt:(jint)dataLength;
-
-+ (jint)EdifactEncodationWithByteArray:(IOSByteArray *)text
-                               withInt:(jint)textOffset
-                               withInt:(jint)textLength
-                         withByteArray:(IOSByteArray *)data
-                               withInt:(jint)dataOffset
-                               withInt:(jint)dataLength;
-
-+ (jint)C40OrTextEncodationWithByteArray:(IOSByteArray *)text
-                                 withInt:(jint)textOffset
-                                 withInt:(jint)textLength
-                           withByteArray:(IOSByteArray *)data
-                                 withInt:(jint)dataOffset
-                                 withInt:(jint)dataLength
-                             withBoolean:(jboolean)c40;
-
-+ (jint)getEncodationWithByteArray:(IOSByteArray *)text
-                           withInt:(jint)textOffset
-                           withInt:(jint)textSize
-                     withByteArray:(IOSByteArray *)data
-                           withInt:(jint)dataOffset
-                           withInt:(jint)dataSize
-                           withInt:(jint)options
-                       withBoolean:(jboolean)firstMatch;
-
-+ (jint)getNumberWithByteArray:(IOSByteArray *)text
-                       withInt:(jint)ptrIn
-                       withInt:(jint)n;
-
-- (jint)processExtensionsWithByteArray:(IOSByteArray *)text
-                               withInt:(jint)textOffset
-                               withInt:(jint)textSize
-                         withByteArray:(IOSByteArray *)data;
-
-- (jint)generateWithNSString:(NSString *)text;
+- (ComItextpdfTextImage *)createImage;
 
 - (jint)generateWithByteArray:(IOSByteArray *)text
                       withInt:(jint)textOffset
                       withInt:(jint)textSize;
 
-- (ComItextpdfTextImage *)createImage;
-
-- (IOSByteArray *)getImage;
+- (jint)generateWithNSString:(NSString *)text;
 
 - (jint)getHeight;
 
-- (void)setHeightWithInt:(jint)height;
-
-- (jint)getWidth;
-
-- (void)setWidthWithInt:(jint)width;
-
-- (jint)getWs;
-
-- (void)setWsWithInt:(jint)ws;
+- (IOSByteArray *)getImage;
 
 - (jint)getOptions;
 
+- (jint)getWidth;
+
+- (jint)getWs;
+
+- (void)setHeightWithInt:(jint)height;
+
 - (void)setOptionsWithInt:(jint)options;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBarcodeDatamatrix *)other;
+- (void)setWidthWithInt:(jint)width;
+
+- (void)setWsWithInt:(jint)ws;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeDatamatrix_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeDatamatrix)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcodeDatamatrix, place_, IOSShortArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcodeDatamatrix, image_, IOSByteArray *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix, DM_NO_ERROR, jint)
 
@@ -176,155 +91,48 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix, DM_EXTENSION, ji
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix, DM_TEST, jint)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfBarcodeDatamatrix_dmSizes_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix, dmSizes_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeDatamatrix_init(ComItextpdfTextPdfBarcodeDatamatrix *self);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfBarcodeDatamatrix_x12_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix, x12_, NSString *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeDatamatrix *new_ComItextpdfTextPdfBarcodeDatamatrix_init() NS_RETURNS_RETAINED;
 
-@interface ComItextpdfTextPdfBarcodeDatamatrix_DmParams : NSObject {
- @public
-  jint height_;
-  jint width_;
-  jint heightSection_;
-  jint widthSection_;
-  jint dataSize_;
-  jint dataBlock_;
-  jint errorBlock_;
-}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeDatamatrix)
 
-- (instancetype)initWithInt:(jint)height
-                    withInt:(jint)width
-                    withInt:(jint)heightSection
-                    withInt:(jint)widthSection
-                    withInt:(jint)dataSize
-                    withInt:(jint)dataBlock
-                    withInt:(jint)errorBlock;
+@interface ComItextpdfTextPdfBarcodeDatamatrix_Placement : NSObject
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBarcodeDatamatrix_DmParams *)other;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfBarcodeDatamatrix_DmParams_init() {}
-
-@interface ComItextpdfTextPdfBarcodeDatamatrix_Placement : NSObject {
- @public
-  jint nrow_;
-  jint ncol_;
-  IOSShortArray *array_;
-}
-
-- (instancetype)init;
+#pragma mark Package-Private
 
 + (IOSShortArray *)doPlacementWithInt:(jint)nrow
                               withInt:(jint)ncol;
 
-- (void)moduleWithInt:(jint)row
-              withInt:(jint)col
-              withInt:(jint)chr
-              withInt:(jint)bit;
-
-- (void)utahWithInt:(jint)row
-            withInt:(jint)col
-            withInt:(jint)chr;
-
-- (void)corner1WithInt:(jint)chr;
-
-- (void)corner2WithInt:(jint)chr;
-
-- (void)corner3WithInt:(jint)chr;
-
-- (void)corner4WithInt:(jint)chr;
-
-- (void)ecc200;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBarcodeDatamatrix_Placement *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeDatamatrix_Placement_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeDatamatrix_Placement)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBarcodeDatamatrix_Placement, array_, IOSShortArray *)
+FOUNDATION_EXPORT IOSShortArray *ComItextpdfTextPdfBarcodeDatamatrix_Placement_doPlacementWithInt_withInt_(jint nrow, jint ncol);
 
-FOUNDATION_EXPORT JavaUtilHashtable *ComItextpdfTextPdfBarcodeDatamatrix_Placement_cache_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_Placement, cache_, JavaUtilHashtable *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeDatamatrix_Placement)
 
-@interface ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon : NSObject {
-}
+@interface ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon : NSObject
 
-+ (IOSIntArray *)getPolyWithInt:(jint)nc;
+#pragma mark Package-Private
 
-+ (void)reedSolomonBlockWithByteArray:(IOSByteArray *)wd
-                              withInt:(jint)nd
-                        withByteArray:(IOSByteArray *)ncout
-                              withInt:(jint)nc
-                         withIntArray:(IOSIntArray *)c;
+- (instancetype)init;
 
 + (void)generateECCWithByteArray:(IOSByteArray *)wd
                          withInt:(jint)nd
                          withInt:(jint)datablock
                          withInt:(jint)nc;
 
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon)
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_log_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, log_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_generateECCWithByteArray_withInt_withInt_withInt_(IOSByteArray *wd, jint nd, jint datablock, jint nc);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_alog_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, alog_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_init(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon *self);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly5_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly5_, IOSIntArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon *new_ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly7_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly7_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly10_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly10_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly11_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly11_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly12_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly12_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly14_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly14_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly18_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly18_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly20_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly20_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly24_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly24_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly28_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly28_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly36_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly36_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly42_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly42_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly48_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly48_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly56_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly56_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly62_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly62_, IOSIntArray *)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon_poly68_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon, poly68_, IOSIntArray *)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBarcodeDatamatrix_ReedSolomon)
 
 #endif // _ComItextpdfTextPdfBarcodeDatamatrix_H_

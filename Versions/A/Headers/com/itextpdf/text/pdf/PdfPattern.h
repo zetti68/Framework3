@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfPattern_H_
 #define _ComItextpdfTextPdfPdfPattern_H_
 
-@class ComItextpdfTextPdfPdfPatternPainter;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfStream.h"
 
-@interface ComItextpdfTextPdfPdfPattern : ComItextpdfTextPdfPdfStream {
-}
+@class ComItextpdfTextPdfPdfPatternPainter;
+
+@interface ComItextpdfTextPdfPdfPattern : ComItextpdfTextPdfPdfStream
+
+#pragma mark Package-Private
 
 - (instancetype)initWithComItextpdfTextPdfPdfPatternPainter:(ComItextpdfTextPdfPdfPatternPainter *)painter;
 
@@ -21,6 +22,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPattern_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPattern)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPattern_initWithComItextpdfTextPdfPdfPatternPainter_(ComItextpdfTextPdfPdfPattern *self, ComItextpdfTextPdfPdfPatternPainter *painter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPattern *new_ComItextpdfTextPdfPdfPattern_initWithComItextpdfTextPdfPdfPatternPainter_(ComItextpdfTextPdfPdfPatternPainter *painter) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPattern_initWithComItextpdfTextPdfPdfPatternPainter_withInt_(ComItextpdfTextPdfPdfPattern *self, ComItextpdfTextPdfPdfPatternPainter *painter, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPattern *new_ComItextpdfTextPdfPdfPattern_initWithComItextpdfTextPdfPdfPatternPainter_withInt_(ComItextpdfTextPdfPdfPatternPainter *painter, jint compressionLevel) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPattern)
 
 #endif // _ComItextpdfTextPdfPdfPattern_H_

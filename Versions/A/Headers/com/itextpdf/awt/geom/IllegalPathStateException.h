@@ -6,13 +6,12 @@
 #ifndef _ComItextpdfAwtGeomIllegalPathStateException_H_
 #define _ComItextpdfAwtGeomIllegalPathStateException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
-#define ComItextpdfAwtGeomIllegalPathStateException_serialVersionUID -5158084205220481094LL
+@interface ComItextpdfAwtGeomIllegalPathStateException : JavaLangRuntimeException
 
-@interface ComItextpdfAwtGeomIllegalPathStateException : JavaLangRuntimeException {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -20,8 +19,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfAwtGeomIllegalPathStateException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfAwtGeomIllegalPathStateException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfAwtGeomIllegalPathStateException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfAwtGeomIllegalPathStateException_init(ComItextpdfAwtGeomIllegalPathStateException *self);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomIllegalPathStateException *new_ComItextpdfAwtGeomIllegalPathStateException_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfAwtGeomIllegalPathStateException_initWithNSString_(ComItextpdfAwtGeomIllegalPathStateException *self, NSString *s);
+
+FOUNDATION_EXPORT ComItextpdfAwtGeomIllegalPathStateException *new_ComItextpdfAwtGeomIllegalPathStateException_initWithNSString_(NSString *s) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfAwtGeomIllegalPathStateException)
 
 #endif // _ComItextpdfAwtGeomIllegalPathStateException_H_

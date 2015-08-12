@@ -6,16 +6,19 @@
 #ifndef _ComItextpdfTextPdfPdfPTableEventSplit_H_
 #define _ComItextpdfTextPdfPdfPTableEventSplit_H_
 
-@class ComItextpdfTextPdfPdfPTable;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfPTableEvent.h"
 
+@class ComItextpdfTextPdfPdfPTable;
+
 @protocol ComItextpdfTextPdfPdfPTableEventSplit < ComItextpdfTextPdfPdfPTableEvent, NSObject, JavaObject >
+
 - (void)splitTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPTableEventSplit_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPTableEventSplit)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPTableEventSplit)
 
 #endif // _ComItextpdfTextPdfPdfPTableEventSplit_H_

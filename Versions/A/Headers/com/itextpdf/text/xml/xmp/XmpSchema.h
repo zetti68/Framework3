@@ -6,31 +6,31 @@
 #ifndef _ComItextpdfTextXmlXmpXmpSchema_H_
 #define _ComItextpdfTextXmlXmpXmpSchema_H_
 
+#include "J2ObjC_header.h"
+#include "java/util/Properties.h"
+
 @class ComItextpdfTextXmlXmpLangAlt;
 @class ComItextpdfTextXmlXmpXmpArray;
 @class JavaLangStringBuffer;
-
-#import "JreEmulation.h"
-#include "java/util/Properties.h"
-
-#define ComItextpdfTextXmlXmpXmpSchema_serialVersionUID -176374295948945272LL
 
 @interface ComItextpdfTextXmlXmpXmpSchema : JavaUtilProperties {
  @public
   NSString *xmlns_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithNSString:(NSString *)xmlns;
-
-- (NSString *)description;
-
-- (void)processWithJavaLangStringBuffer:(JavaLangStringBuffer *)buf
-                                 withId:(id)p;
-
-- (NSString *)getXmlns;
 
 - (id)addPropertyWithNSString:(NSString *)key
                  withNSString:(NSString *)value;
+
++ (NSString *)escapeWithNSString:(NSString *)content;
+
+- (NSString *)getXmlns;
+
+- (id)setPropertyWithNSString:(NSString *)key
+withComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)value;
 
 - (id)setPropertyWithNSString:(NSString *)key
                  withNSString:(NSString *)value;
@@ -38,19 +38,23 @@
 - (id)setPropertyWithNSString:(NSString *)key
 withComItextpdfTextXmlXmpXmpArray:(ComItextpdfTextXmlXmpXmpArray *)value;
 
-- (id)setPropertyWithNSString:(NSString *)key
-withComItextpdfTextXmlXmpLangAlt:(ComItextpdfTextXmlXmpLangAlt *)value;
+- (NSString *)description;
 
-+ (NSString *)escapeWithNSString:(NSString *)content;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextXmlXmpXmpSchema *)other;
+- (void)processWithJavaLangStringBuffer:(JavaLangStringBuffer *)buf
+                                 withId:(id)p;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpXmpSchema_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpXmpSchema)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextXmlXmpXmpSchema, xmlns_, NSString *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpSchema, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpSchema_initWithNSString_(ComItextpdfTextXmlXmpXmpSchema *self, NSString *xmlns);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpSchema_escapeWithNSString_(NSString *content);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpXmpSchema)
 
 #endif // _ComItextpdfTextXmlXmpXmpSchema_H_

@@ -6,27 +6,44 @@
 #ifndef _ComItextpdfTextGreekList_H_
 #define _ComItextpdfTextGreekList_H_
 
-@protocol ComItextpdfTextElement;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/List.h"
 
-@interface ComItextpdfTextGreekList : ComItextpdfTextList {
-}
+@protocol ComItextpdfTextElement;
+
+@interface ComItextpdfTextGreekList : ComItextpdfTextList
+
+#pragma mark Public
 
 - (instancetype)init;
-
-- (instancetype)initWithInt:(jint)symbolIndent;
 
 - (instancetype)initWithBoolean:(jboolean)greeklower
                         withInt:(jint)symbolIndent;
 
-- (void)setGreekFont;
+- (instancetype)initWithInt:(jint)symbolIndent;
 
 - (jboolean)addWithComItextpdfTextElement:(id<ComItextpdfTextElement>)o;
 
+#pragma mark Protected
+
+- (void)setGreekFont;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextGreekList_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextGreekList)
+
+FOUNDATION_EXPORT void ComItextpdfTextGreekList_init(ComItextpdfTextGreekList *self);
+
+FOUNDATION_EXPORT ComItextpdfTextGreekList *new_ComItextpdfTextGreekList_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextGreekList_initWithInt_(ComItextpdfTextGreekList *self, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextGreekList *new_ComItextpdfTextGreekList_initWithInt_(jint symbolIndent) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextGreekList_initWithBoolean_withInt_(ComItextpdfTextGreekList *self, jboolean greeklower, jint symbolIndent);
+
+FOUNDATION_EXPORT ComItextpdfTextGreekList *new_ComItextpdfTextGreekList_initWithBoolean_withInt_(jboolean greeklower, jint symbolIndent) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextGreekList)
 
 #endif // _ComItextpdfTextGreekList_H_

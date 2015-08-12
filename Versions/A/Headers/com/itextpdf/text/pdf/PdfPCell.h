@@ -6,6 +6,10 @@
 #ifndef _ComItextpdfTextPdfPdfPCell_H_
 #define _ComItextpdfTextPdfPdfPCell_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/Rectangle.h"
+#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextImage;
 @class ComItextpdfTextPdfColumnText;
@@ -20,222 +24,229 @@
 @protocol ComItextpdfTextPdfPdfPCellEvent;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/Rectangle.h"
-#include "com/itextpdf/text/pdf/interfaces/IAccessibleElement.h"
-
 @interface ComItextpdfTextPdfPdfPCell : ComItextpdfTextRectangle < ComItextpdfTextPdfInterfacesIAccessibleElement > {
  @public
-  ComItextpdfTextPdfColumnText *column_;
-  jint verticalAlignment_;
-  jfloat paddingLeft_;
-  jfloat paddingRight_;
-  jfloat paddingTop_;
-  jfloat paddingBottom_;
-  jfloat fixedHeight_;
-  jfloat minimumHeight_;
-  jboolean noWrap_;
-  ComItextpdfTextPdfPdfPTable *table_;
-  jint colspan_;
-  jint rowspan_;
-  ComItextpdfTextImage *image_;
-  id<ComItextpdfTextPdfPdfPCellEvent> cellEvent_;
-  jboolean useDescender_;
-  jboolean useBorderPadding_;
   ComItextpdfTextPhrase *phrase_;
-  jint rotation_PdfPCell_;
   ComItextpdfTextPdfPdfName *role_;
   JavaUtilHashMap *accessibleAttributes_;
   ComItextpdfTextAccessibleElementId *id__;
   JavaUtilArrayList *headers_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+- (instancetype)init;
 
 - (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
 - (instancetype)initWithComItextpdfTextImage:(ComItextpdfTextImage *)image
                                  withBoolean:(jboolean)fit;
 
+- (instancetype)initWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell;
+
 - (instancetype)initWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
 - (instancetype)initWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table
                      withComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)style;
 
-- (instancetype)initWithComItextpdfTextPdfPdfPCell:(ComItextpdfTextPdfPdfPCell *)cell;
+- (instancetype)initWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
 
 - (void)addElementWithComItextpdfTextElement:(id<ComItextpdfTextElement>)element;
 
-- (ComItextpdfTextPhrase *)getPhrase;
+- (void)addHeaderWithComItextpdfTextPdfPdfPHeaderCell:(ComItextpdfTextPdfPdfPHeaderCell *)header;
 
-- (void)setPhraseWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
 
-- (jint)getHorizontalAlignment;
-
-- (void)setHorizontalAlignmentWithInt:(jint)horizontalAlignment;
-
-- (jint)getVerticalAlignment;
-
-- (void)setVerticalAlignmentWithInt:(jint)verticalAlignment;
-
-- (jfloat)getEffectivePaddingLeft;
-
-- (jfloat)getPaddingLeft;
-
-- (void)setPaddingLeftWithFloat:(jfloat)paddingLeft;
-
-- (jfloat)getEffectivePaddingRight;
-
-- (jfloat)getPaddingRight;
-
-- (void)setPaddingRightWithFloat:(jfloat)paddingRight;
-
-- (jfloat)getEffectivePaddingTop;
-
-- (jfloat)getPaddingTop;
-
-- (void)setPaddingTopWithFloat:(jfloat)paddingTop;
-
-- (jfloat)getEffectivePaddingBottom;
-
-- (jfloat)getPaddingBottom;
-
-- (void)setPaddingBottomWithFloat:(jfloat)paddingBottom;
-
-- (void)setPaddingWithFloat:(jfloat)padding;
-
-- (jboolean)isUseBorderPadding;
-
-- (void)setUseBorderPaddingWithBoolean:(jboolean)use;
-
-- (void)setLeadingWithFloat:(jfloat)fixedLeading
-                  withFloat:(jfloat)multipliedLeading;
-
-- (jfloat)getLeading;
-
-- (jfloat)getMultipliedLeading;
-
-- (void)setIndentWithFloat:(jfloat)indent;
-
-- (jfloat)getIndent;
-
-- (jfloat)getExtraParagraphSpace;
-
-- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
-
-- (void)setFixedHeightWithFloat:(jfloat)fixedHeight;
-
-- (jfloat)getFixedHeight;
-
-- (jboolean)hasFixedHeight;
-
-- (void)setMinimumHeightWithFloat:(jfloat)minimumHeight;
-
-- (jfloat)getMinimumHeight;
-
-- (jboolean)hasMinimumHeight;
-
-- (jboolean)isNoWrap;
-
-- (void)setNoWrapWithBoolean:(jboolean)noWrap;
-
-- (ComItextpdfTextPdfPdfPTable *)getTable;
-
-- (void)setTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
-
-- (jint)getColspan;
-
-- (void)setColspanWithInt:(jint)colspan;
-
-- (jint)getRowspan;
-
-- (void)setRowspanWithInt:(jint)rowspan;
-
-- (void)setFollowingIndentWithFloat:(jfloat)indent;
-
-- (jfloat)getFollowingIndent;
-
-- (void)setRightIndentWithFloat:(jfloat)indent;
-
-- (jfloat)getRightIndent;
-
-- (jfloat)getSpaceCharRatio;
-
-- (void)setSpaceCharRatioWithFloat:(jfloat)spaceCharRatio;
-
-- (void)setRunDirectionWithInt:(jint)runDirection;
-
-- (jint)getRunDirection;
-
-- (ComItextpdfTextImage *)getImage;
-
-- (void)setImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
-
-- (id<ComItextpdfTextPdfPdfPCellEvent>)getCellEvent;
-
-- (void)setCellEventWithComItextpdfTextPdfPdfPCellEvent:(id<ComItextpdfTextPdfPdfPCellEvent>)cellEvent;
+- (JavaUtilHashMap *)getAccessibleAttributes;
 
 - (jint)getArabicOptions;
 
-- (void)setArabicOptionsWithInt:(jint)arabicOptions;
+- (id<ComItextpdfTextPdfPdfPCellEvent>)getCellEvent;
 
-- (jboolean)isUseAscender;
-
-- (void)setUseAscenderWithBoolean:(jboolean)useAscender;
-
-- (jboolean)isUseDescender;
-
-- (void)setUseDescenderWithBoolean:(jboolean)useDescender;
+- (jint)getColspan;
 
 - (ComItextpdfTextPdfColumnText *)getColumn;
 
 - (id<JavaUtilList>)getCompositeElements;
 
-- (void)setColumnWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)column;
+- (jfloat)getEffectivePaddingBottom;
 
-- (jint)getRotation;
+- (jfloat)getEffectivePaddingLeft;
 
-- (void)setRotationWithInt:(jint)rotation;
+- (jfloat)getEffectivePaddingRight;
+
+- (jfloat)getEffectivePaddingTop;
+
+- (jfloat)getExtraParagraphSpace;
+
+- (jfloat)getFixedHeight;
+
+- (jfloat)getFollowingIndent;
+
+- (JavaUtilArrayList *)getHeaders;
+
+- (jint)getHorizontalAlignment;
+
+- (ComItextpdfTextAccessibleElementId *)getId;
+
+- (ComItextpdfTextImage *)getImage;
+
+- (jfloat)getIndent;
+
+- (jfloat)getLeading;
 
 - (jfloat)getMaxHeight;
 
-- (ComItextpdfTextPdfPdfObject *)getAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key;
+- (jfloat)getMinimumHeight;
+
+- (jfloat)getMultipliedLeading;
+
+- (jfloat)getPaddingBottom;
+
+- (jfloat)getPaddingLeft;
+
+- (jfloat)getPaddingRight;
+
+- (jfloat)getPaddingTop;
+
+- (ComItextpdfTextPhrase *)getPhrase;
+
+- (jfloat)getRightIndent;
+
+- (ComItextpdfTextPdfPdfName *)getRole;
+
+- (jint)getRotation;
+
+- (jint)getRowspan;
+
+- (jint)getRunDirection;
+
+- (jfloat)getSpaceCharRatio;
+
+- (ComItextpdfTextPdfPdfPTable *)getTable;
+
+- (jint)getVerticalAlignment;
+
+- (jboolean)hasFixedHeight;
+
+- (jboolean)hasMinimumHeight;
+
+- (jboolean)isInline;
+
+- (jboolean)isNoWrap;
+
+- (jboolean)isUseAscender;
+
+- (jboolean)isUseBorderPadding;
+
+- (jboolean)isUseDescender;
 
 - (void)setAccessibleAttributeWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)key
                             withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)value;
 
-- (JavaUtilHashMap *)getAccessibleAttributes;
+- (void)setArabicOptionsWithInt:(jint)arabicOptions;
 
-- (ComItextpdfTextPdfPdfName *)getRole;
+- (void)setCellEventWithComItextpdfTextPdfPdfPCellEvent:(id<ComItextpdfTextPdfPdfPCellEvent>)cellEvent;
 
-- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+- (void)setColspanWithInt:(jint)colspan;
 
-- (ComItextpdfTextAccessibleElementId *)getId;
+- (void)setColumnWithComItextpdfTextPdfColumnText:(ComItextpdfTextPdfColumnText *)column;
+
+- (void)setExtraParagraphSpaceWithFloat:(jfloat)extraParagraphSpace;
+
+- (void)setFixedHeightWithFloat:(jfloat)fixedHeight;
+
+- (void)setFollowingIndentWithFloat:(jfloat)indent;
+
+- (void)setHorizontalAlignmentWithInt:(jint)horizontalAlignment;
 
 - (void)setIdWithComItextpdfTextAccessibleElementId:(ComItextpdfTextAccessibleElementId *)id_;
 
-- (jboolean)isInline;
+- (void)setImageWithComItextpdfTextImage:(ComItextpdfTextImage *)image;
 
-- (void)addHeaderWithComItextpdfTextPdfPdfPHeaderCell:(ComItextpdfTextPdfPdfPHeaderCell *)header;
+- (void)setIndentWithFloat:(jfloat)indent;
 
-- (JavaUtilArrayList *)getHeaders;
+- (void)setLeadingWithFloat:(jfloat)fixedLeading
+                  withFloat:(jfloat)multipliedLeading;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPCell *)other;
+- (void)setMinimumHeightWithFloat:(jfloat)minimumHeight;
+
+- (void)setNoWrapWithBoolean:(jboolean)noWrap;
+
+- (void)setPaddingWithFloat:(jfloat)padding;
+
+- (void)setPaddingBottomWithFloat:(jfloat)paddingBottom;
+
+- (void)setPaddingLeftWithFloat:(jfloat)paddingLeft;
+
+- (void)setPaddingRightWithFloat:(jfloat)paddingRight;
+
+- (void)setPaddingTopWithFloat:(jfloat)paddingTop;
+
+- (void)setPhraseWithComItextpdfTextPhrase:(ComItextpdfTextPhrase *)phrase;
+
+- (void)setRightIndentWithFloat:(jfloat)indent;
+
+- (void)setRoleWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)role;
+
+- (void)setRotationWithInt:(jint)rotation;
+
+- (void)setRowspanWithInt:(jint)rowspan;
+
+- (void)setRunDirectionWithInt:(jint)runDirection;
+
+- (void)setSpaceCharRatioWithFloat:(jfloat)spaceCharRatio;
+
+- (void)setUseAscenderWithBoolean:(jboolean)useAscender;
+
+- (void)setUseBorderPaddingWithBoolean:(jboolean)use;
+
+- (void)setUseDescenderWithBoolean:(jboolean)useDescender;
+
+- (void)setVerticalAlignmentWithInt:(jint)verticalAlignment;
+
+#pragma mark Package-Private
+
+- (void)setTableWithComItextpdfTextPdfPdfPTable:(ComItextpdfTextPdfPdfPTable *)table;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPCell_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPCell)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, column_, ComItextpdfTextPdfColumnText *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, table_, ComItextpdfTextPdfPdfPTable *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, image_, ComItextpdfTextImage *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, cellEvent_, id<ComItextpdfTextPdfPdfPCellEvent>)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, phrase_, ComItextpdfTextPhrase *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, role_, ComItextpdfTextPdfPdfName *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, accessibleAttributes_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, id__, ComItextpdfTextAccessibleElementId *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPCell, headers_, JavaUtilArrayList *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_init(ComItextpdfTextPdfPdfPCell *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPhrase_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextPhrase *phrase);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPhrase_(ComItextpdfTextPhrase *phrase) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextImage_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextImage *image);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextImage_(ComItextpdfTextImage *image) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextImage_withBoolean_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextImage *image, jboolean fit);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextImage_withBoolean_(ComItextpdfTextImage *image, jboolean fit) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPTable_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextPdfPdfPTable *table);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPTable_(ComItextpdfTextPdfPdfPTable *table) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPTable_withComItextpdfTextPdfPdfPCell_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextPdfPdfPTable *table, ComItextpdfTextPdfPdfPCell *style);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPTable_withComItextpdfTextPdfPdfPCell_(ComItextpdfTextPdfPdfPTable *table, ComItextpdfTextPdfPdfPCell *style) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPCell_(ComItextpdfTextPdfPdfPCell *self, ComItextpdfTextPdfPdfPCell *cell);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPCell *new_ComItextpdfTextPdfPdfPCell_initWithComItextpdfTextPdfPdfPCell_(ComItextpdfTextPdfPdfPCell *cell) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPCell)
 
 #endif // _ComItextpdfTextPdfPdfPCell_H_

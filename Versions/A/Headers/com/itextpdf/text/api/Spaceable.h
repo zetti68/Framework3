@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextApiSpaceable_H_
 #define _ComItextpdfTextApiSpaceable_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextApiSpaceable < NSObject, JavaObject >
 
@@ -20,6 +20,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextApiSpaceable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextApiSpaceable)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextApiSpaceable)
 
 #endif // _ComItextpdfTextApiSpaceable_H_

@@ -6,13 +6,13 @@
 #ifndef _ComItextpdfTextPdfPdfString_H_
 #define _ComItextpdfTextPdfPdfString_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfObject.h"
+
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfObject.h"
 
 @interface ComItextpdfTextPdfPdfString : ComItextpdfTextPdfPdfObject {
  @public
@@ -24,45 +24,65 @@
   jboolean hexWriting_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
+
+- (instancetype)initWithByteArray:(IOSByteArray *)bytes;
 
 - (instancetype)initWithNSString:(NSString *)value;
 
 - (instancetype)initWithNSString:(NSString *)value
                     withNSString:(NSString *)encoding;
 
-- (instancetype)initWithByteArray:(IOSByteArray *)bytes;
+- (IOSByteArray *)getBytes;
+
+- (NSString *)getEncoding;
+
+- (IOSByteArray *)getOriginalBytes;
+
+- (jboolean)isHexWriting;
+
+- (ComItextpdfTextPdfPdfString *)setHexWritingWithBoolean:(jboolean)hexWriting;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 - (NSString *)description;
 
-- (IOSByteArray *)getBytes;
-
 - (NSString *)toUnicodeString;
 
-- (NSString *)getEncoding;
+#pragma mark Package-Private
+
+- (void)decryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
 - (void)setObjNumWithInt:(jint)objNum
                  withInt:(jint)objGen;
 
-- (void)decryptWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-- (IOSByteArray *)getOriginalBytes;
-
-- (ComItextpdfTextPdfPdfString *)setHexWritingWithBoolean:(jboolean)hexWriting;
-
-- (jboolean)isHexWriting;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfString *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfString_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfString)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfString, value_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfString, originalValue_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfString, encoding_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfString_init(ComItextpdfTextPdfPdfString *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfString *new_ComItextpdfTextPdfPdfString_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfString_initWithNSString_(ComItextpdfTextPdfPdfString *self, NSString *value);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfString *new_ComItextpdfTextPdfPdfString_initWithNSString_(NSString *value) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfString_initWithNSString_withNSString_(ComItextpdfTextPdfPdfString *self, NSString *value, NSString *encoding);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfString *new_ComItextpdfTextPdfPdfString_initWithNSString_withNSString_(NSString *value, NSString *encoding) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfString_initWithByteArray_(ComItextpdfTextPdfPdfString *self, IOSByteArray *bytes);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfString *new_ComItextpdfTextPdfPdfString_initWithByteArray_(IOSByteArray *bytes) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfString)
 
 #endif // _ComItextpdfTextPdfPdfString_H_

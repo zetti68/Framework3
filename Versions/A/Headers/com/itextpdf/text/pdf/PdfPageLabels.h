@@ -6,59 +6,52 @@
 #ifndef _ComItextpdfTextPdfPdfPageLabels_H_
 #define _ComItextpdfTextPdfPdfPageLabels_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat;
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSObjectArray;
-@class JavaUtilHashMap;
-
-#import "JreEmulation.h"
 
 #define ComItextpdfTextPdfPdfPageLabels_DECIMAL_ARABIC_NUMERALS 0
-#define ComItextpdfTextPdfPdfPageLabels_EMPTY 5
-#define ComItextpdfTextPdfPdfPageLabels_LOWERCASE_LETTERS 4
+#define ComItextpdfTextPdfPdfPageLabels_UPPERCASE_ROMAN_NUMERALS 1
 #define ComItextpdfTextPdfPdfPageLabels_LOWERCASE_ROMAN_NUMERALS 2
 #define ComItextpdfTextPdfPdfPageLabels_UPPERCASE_LETTERS 3
-#define ComItextpdfTextPdfPdfPageLabels_UPPERCASE_ROMAN_NUMERALS 1
+#define ComItextpdfTextPdfPdfPageLabels_LOWERCASE_LETTERS 4
+#define ComItextpdfTextPdfPdfPageLabels_EMPTY 5
 
-@interface ComItextpdfTextPdfPdfPageLabels : NSObject {
- @public
-  JavaUtilHashMap *map_;
-}
+@interface ComItextpdfTextPdfPdfPageLabels : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (void)addPageLabelWithInt:(jint)page
-                    withInt:(jint)numberStyle
-               withNSString:(NSString *)text
-                    withInt:(jint)firstPage;
+                    withInt:(jint)numberStyle;
 
 - (void)addPageLabelWithInt:(jint)page
                     withInt:(jint)numberStyle
                withNSString:(NSString *)text;
 
 - (void)addPageLabelWithInt:(jint)page
-                    withInt:(jint)numberStyle;
+                    withInt:(jint)numberStyle
+               withNSString:(NSString *)text
+                    withInt:(jint)firstPage;
 
 - (void)addPageLabelWithComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat:(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat *)format;
 
-- (void)removePageLabelWithInt:(jint)page;
-
 - (ComItextpdfTextPdfPdfDictionary *)getDictionaryWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
-
-+ (IOSObjectArray *)getPageLabelsWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
 + (IOSObjectArray *)getPageLabelFormatsWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPageLabels *)other;
++ (IOSObjectArray *)getPageLabelsWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+- (void)removePageLabelWithInt:(jint)page;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfPageLabels_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfPageLabels)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPageLabels, map_, JavaUtilHashMap *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPageLabels, DECIMAL_ARABIC_NUMERALS, jint)
 
@@ -76,6 +69,16 @@ FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPageLabels_numberingStyle
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfPageLabels, numberingStyle_, IOSObjectArray *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfPageLabels, numberingStyle_, IOSObjectArray *)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPageLabels_init(ComItextpdfTextPdfPdfPageLabels *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPageLabels *new_ComItextpdfTextPdfPdfPageLabels_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPageLabels_getPageLabelsWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfPdfPageLabels_getPageLabelFormatsWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPageLabels)
+
 @interface ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat : NSObject {
  @public
   jint physicalPage_;
@@ -84,17 +87,23 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfPageLabels, numberingStyle_, IOS
   jint logicalPage_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithInt:(jint)physicalPage
                     withInt:(jint)numberStyle
                withNSString:(NSString *)prefix
                     withInt:(jint)logicalPage;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat, prefix_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat_initWithInt_withInt_withNSString_withInt_(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat *self, jint physicalPage, jint numberStyle, NSString *prefix, jint logicalPage);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat *new_ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat_initWithInt_withInt_withNSString_withInt_(jint physicalPage, jint numberStyle, NSString *prefix, jint logicalPage) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfPageLabels_PdfPageLabelFormat)
 
 #endif // _ComItextpdfTextPdfPdfPageLabels_H_

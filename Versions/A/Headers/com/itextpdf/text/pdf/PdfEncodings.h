@@ -6,36 +6,36 @@
 #ifndef _ComItextpdfTextPdfPdfEncodings_H_
 #define _ComItextpdfTextPdfPdfEncodings_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfIntHashtable;
 @class IOSByteArray;
 @class IOSCharArray;
 @class JavaUtilHashMap;
+@protocol ComItextpdfTextPdfExtraEncoding;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/ExtraEncoding.h"
+@interface ComItextpdfTextPdfPdfEncodings : NSObject
 
-@interface ComItextpdfTextPdfPdfEncodings : NSObject {
-}
+#pragma mark Public
 
-+ (IOSByteArray *)convertToBytesWithNSString:(NSString *)text
-                                withNSString:(NSString *)encoding;
+- (instancetype)init;
+
++ (void)addExtraEncodingWithNSString:(NSString *)name
+ withComItextpdfTextPdfExtraEncoding:(id<ComItextpdfTextPdfExtraEncoding>)enc;
 
 + (IOSByteArray *)convertToBytesWithChar:(jchar)char1
                             withNSString:(NSString *)encoding;
+
++ (IOSByteArray *)convertToBytesWithNSString:(NSString *)text
+                                withNSString:(NSString *)encoding;
 
 + (NSString *)convertToStringWithByteArray:(IOSByteArray *)bytes
                               withNSString:(NSString *)encoding;
 
 + (jboolean)isPdfDocEncodingWithNSString:(NSString *)text;
 
-+ (void)addExtraEncodingWithNSString:(NSString *)name
- withComItextpdfTextPdfExtraEncoding:(id<ComItextpdfTextPdfExtraEncoding>)enc;
-
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfEncodings_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfEncodings)
 
 FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfPdfEncodings_winansiByteToChar_;
@@ -54,107 +54,20 @@ FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfEncodings_extraEncodings
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings, extraEncodings_, JavaUtilHashMap *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfEncodings, extraEncodings_, JavaUtilHashMap *)
 
-@interface ComItextpdfTextPdfPdfEncodings_WingdingsConversion : NSObject < ComItextpdfTextPdfExtraEncoding > {
-}
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncodings_convertToBytesWithNSString_withNSString_(NSString *text, NSString *encoding);
 
-- (IOSByteArray *)charToByteWithChar:(jchar)char1
-                        withNSString:(NSString *)encoding;
+FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncodings_convertToBytesWithChar_withNSString_(jchar char1, NSString *encoding);
 
-- (IOSByteArray *)charToByteWithNSString:(NSString *)text
-                            withNSString:(NSString *)encoding;
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfEncodings_convertToStringWithByteArray_withNSString_(IOSByteArray *bytes, NSString *encoding);
 
-- (NSString *)byteToCharWithByteArray:(IOSByteArray *)b
-                         withNSString:(NSString *)encoding;
+FOUNDATION_EXPORT jboolean ComItextpdfTextPdfPdfEncodings_isPdfDocEncodingWithNSString_(NSString *text);
 
-- (instancetype)init;
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncodings_addExtraEncodingWithNSString_withComItextpdfTextPdfExtraEncoding_(NSString *name, id<ComItextpdfTextPdfExtraEncoding> enc);
 
-@end
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfEncodings_init(ComItextpdfTextPdfPdfEncodings *self);
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfEncodings_WingdingsConversion_initialized;
-J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfEncodings_WingdingsConversion)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfEncodings *new_ComItextpdfTextPdfPdfEncodings_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfPdfEncodings_WingdingsConversion_table_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_WingdingsConversion, table_, IOSByteArray *)
-
-@interface ComItextpdfTextPdfPdfEncodings_Cp437Conversion : NSObject < ComItextpdfTextPdfExtraEncoding > {
-}
-
-- (IOSByteArray *)charToByteWithNSString:(NSString *)text
-                            withNSString:(NSString *)encoding;
-
-- (IOSByteArray *)charToByteWithChar:(jchar)char1
-                        withNSString:(NSString *)encoding;
-
-- (NSString *)byteToCharWithByteArray:(IOSByteArray *)b
-                         withNSString:(NSString *)encoding;
-
-- (instancetype)init;
-
-@end
-
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfEncodings_Cp437Conversion_initialized;
-J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfEncodings_Cp437Conversion)
-
-FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *ComItextpdfTextPdfPdfEncodings_Cp437Conversion_c2b_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_Cp437Conversion, c2b_, ComItextpdfTextPdfIntHashtable *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfPdfEncodings_Cp437Conversion, c2b_, ComItextpdfTextPdfIntHashtable *)
-
-FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfPdfEncodings_Cp437Conversion_table_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_Cp437Conversion, table_, IOSCharArray *)
-
-@interface ComItextpdfTextPdfPdfEncodings_SymbolConversion : NSObject < ComItextpdfTextPdfExtraEncoding > {
- @public
-  ComItextpdfTextPdfIntHashtable *translation_;
-}
-
-- (instancetype)initWithBoolean:(jboolean)symbol;
-
-- (IOSByteArray *)charToByteWithNSString:(NSString *)text
-                            withNSString:(NSString *)encoding;
-
-- (IOSByteArray *)charToByteWithChar:(jchar)char1
-                        withNSString:(NSString *)encoding;
-
-- (NSString *)byteToCharWithByteArray:(IOSByteArray *)b
-                         withNSString:(NSString *)encoding;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfEncodings_SymbolConversion *)other;
-
-@end
-
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfEncodings_SymbolConversion_initialized;
-J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfEncodings_SymbolConversion)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfEncodings_SymbolConversion, translation_, ComItextpdfTextPdfIntHashtable *)
-
-FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *ComItextpdfTextPdfPdfEncodings_SymbolConversion_t1_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_SymbolConversion, t1_, ComItextpdfTextPdfIntHashtable *)
-
-FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *ComItextpdfTextPdfPdfEncodings_SymbolConversion_t2_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_SymbolConversion, t2_, ComItextpdfTextPdfIntHashtable *)
-
-FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfPdfEncodings_SymbolConversion_table1_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_SymbolConversion, table1_, IOSCharArray *)
-
-FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfPdfEncodings_SymbolConversion_table2_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfEncodings_SymbolConversion, table2_, IOSCharArray *)
-
-@interface ComItextpdfTextPdfPdfEncodings_SymbolTTConversion : NSObject < ComItextpdfTextPdfExtraEncoding > {
-}
-
-- (IOSByteArray *)charToByteWithChar:(jchar)char1
-                        withNSString:(NSString *)encoding;
-
-- (IOSByteArray *)charToByteWithNSString:(NSString *)text
-                            withNSString:(NSString *)encoding;
-
-- (NSString *)byteToCharWithByteArray:(IOSByteArray *)b
-                         withNSString:(NSString *)encoding;
-
-- (instancetype)init;
-
-@end
-
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfEncodings_SymbolTTConversion_init() {}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfEncodings)
 
 #endif // _ComItextpdfTextPdfPdfEncodings_H_

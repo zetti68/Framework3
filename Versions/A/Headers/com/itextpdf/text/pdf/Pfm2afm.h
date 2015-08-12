@@ -6,101 +6,24 @@
 #ifndef _ComItextpdfTextPdfPfm2afm_H_
 #define _ComItextpdfTextPdfPfm2afm_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfRandomAccessFileOrArray;
-@class IOSIntArray;
-@class IOSObjectArray;
 @class JavaIoOutputStream;
-@class JavaIoPrintWriter;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfPfm2afm : NSObject
 
-@interface ComItextpdfTextPdfPfm2afm : NSObject {
- @public
-  ComItextpdfTextPdfRandomAccessFileOrArray *in_;
-  JavaIoPrintWriter *out_;
-  jshort vers_;
-  jint h_len_;
-  NSString *copyright_;
-  jshort type_;
-  jshort points_;
-  jshort verres_;
-  jshort horres_;
-  jshort ascent_;
-  jshort intleading_;
-  jshort extleading_;
-  jbyte italic_;
-  jbyte uline_;
-  jbyte overs_;
-  jshort weight_;
-  jbyte charset_;
-  jshort pixwidth_;
-  jshort pixheight_;
-  jbyte kind_;
-  jshort avgwidth_;
-  jshort maxwidth_;
-  jint firstchar_;
-  jint lastchar_;
-  jbyte defchar_;
-  jbyte brkchar_;
-  jshort widthby_;
-  jint device_;
-  jint face_;
-  jint bits_;
-  jint bitoff_;
-  jshort extlen_;
-  jint psext_;
-  jint chartab_;
-  jint res1_;
-  jint kernpairs_;
-  jint res2_;
-  jint fontname_;
-  jshort capheight_;
-  jshort xheight_;
-  jshort ascender_;
-  jshort descender_;
-  jboolean isMono_;
-  IOSIntArray *Win2PSStd_;
-  IOSIntArray *WinClass_;
-  IOSObjectArray *WinChars_;
-}
-
-- (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)inArg
-                                           withJavaIoOutputStream:(JavaIoOutputStream *)outArg;
+#pragma mark Public
 
 + (void)convertWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)inArg
                                       withJavaIoOutputStream:(JavaIoOutputStream *)outArg;
 
-- (NSString *)readStringWithInt:(jint)n;
-
-- (NSString *)readString;
-
-- (void)outvalWithInt:(jint)n;
-
-- (void)outcharWithInt:(jint)code
-               withInt:(jint)width
-          withNSString:(NSString *)name;
-
-- (void)openpfm;
-
-- (void)putheader;
-
-- (void)putchartab;
-
-- (void)putkerntab;
-
-- (void)puttrailer;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPfm2afm *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPfm2afm_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPfm2afm)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, in_, ComItextpdfTextPdfRandomAccessFileOrArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, out_, JavaIoPrintWriter *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, copyright_, NSString *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, Win2PSStd_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, WinClass_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPfm2afm, WinChars_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPfm2afm_convertWithComItextpdfTextPdfRandomAccessFileOrArray_withJavaIoOutputStream_(ComItextpdfTextPdfRandomAccessFileOrArray *inArg, JavaIoOutputStream *outArg);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPfm2afm)
 
 #endif // _ComItextpdfTextPdfPfm2afm_H_

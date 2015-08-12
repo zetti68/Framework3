@@ -6,43 +6,37 @@
 #ifndef _ComItextpdfTextPdfBidiOrder_H_
 #define _ComItextpdfTextPdfBidiOrder_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSByteArray;
 @class IOSCharArray;
 @class IOSIntArray;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfBidiOrder_AL 4
-#define ComItextpdfTextPdfBidiOrder_AN 11
-#define ComItextpdfTextPdfBidiOrder_B 15
-#define ComItextpdfTextPdfBidiOrder_BN 14
-#define ComItextpdfTextPdfBidiOrder_CS 12
-#define ComItextpdfTextPdfBidiOrder_EN 8
-#define ComItextpdfTextPdfBidiOrder_ES 9
-#define ComItextpdfTextPdfBidiOrder_ET 10
 #define ComItextpdfTextPdfBidiOrder_L 0
 #define ComItextpdfTextPdfBidiOrder_LRE 1
 #define ComItextpdfTextPdfBidiOrder_LRO 2
-#define ComItextpdfTextPdfBidiOrder_NSM 13
-#define ComItextpdfTextPdfBidiOrder_ON 18
-#define ComItextpdfTextPdfBidiOrder_PDF 7
 #define ComItextpdfTextPdfBidiOrder_R 3
+#define ComItextpdfTextPdfBidiOrder_AL 4
 #define ComItextpdfTextPdfBidiOrder_RLE 5
 #define ComItextpdfTextPdfBidiOrder_RLO 6
+#define ComItextpdfTextPdfBidiOrder_PDF 7
+#define ComItextpdfTextPdfBidiOrder_EN 8
+#define ComItextpdfTextPdfBidiOrder_ES 9
+#define ComItextpdfTextPdfBidiOrder_ET 10
+#define ComItextpdfTextPdfBidiOrder_AN 11
+#define ComItextpdfTextPdfBidiOrder_CS 12
+#define ComItextpdfTextPdfBidiOrder_NSM 13
+#define ComItextpdfTextPdfBidiOrder_BN 14
+#define ComItextpdfTextPdfBidiOrder_B 15
 #define ComItextpdfTextPdfBidiOrder_S 16
-#define ComItextpdfTextPdfBidiOrder_TYPE_MAX 18
-#define ComItextpdfTextPdfBidiOrder_TYPE_MIN 0
 #define ComItextpdfTextPdfBidiOrder_WS 17
+#define ComItextpdfTextPdfBidiOrder_ON 18
+#define ComItextpdfTextPdfBidiOrder_TYPE_MIN 0
+#define ComItextpdfTextPdfBidiOrder_TYPE_MAX 18
 
-@interface ComItextpdfTextPdfBidiOrder : NSObject {
- @public
-  IOSByteArray *initialTypes_;
-  IOSByteArray *embeddings_;
-  jbyte paragraphEmbeddingLevel_;
-  jint textLength_;
-  IOSByteArray *resultTypes_;
-  IOSByteArray *resultLevels_;
-}
+@interface ComItextpdfTextPdfBidiOrder : NSObject
+
+#pragma mark Public
 
 - (instancetype)initWithByteArray:(IOSByteArray *)types;
 
@@ -54,38 +48,9 @@
                           withInt:(jint)length
                          withByte:(jbyte)paragraphEmbeddingLevel;
 
+- (jbyte)getBaseLevel;
+
 + (jbyte)getDirectionWithChar:(jchar)c;
-
-- (void)runAlgorithm;
-
-- (void)determineParagraphEmbeddingLevel;
-
-- (void)determineExplicitEmbeddingLevels;
-
-- (jint)removeExplicitCodes;
-
-- (jint)reinsertExplicitCodesWithInt:(jint)textLength;
-
-+ (IOSByteArray *)processEmbeddingsWithByteArray:(IOSByteArray *)resultTypes
-                                        withByte:(jbyte)paragraphEmbeddingLevel;
-
-- (void)resolveWeakTypesWithInt:(jint)start
-                        withInt:(jint)limit
-                       withByte:(jbyte)level
-                       withByte:(jbyte)sor
-                       withByte:(jbyte)eor;
-
-- (void)resolveNeutralTypesWithInt:(jint)start
-                           withInt:(jint)limit
-                          withByte:(jbyte)level
-                          withByte:(jbyte)sor
-                          withByte:(jbyte)eor;
-
-- (void)resolveImplicitLevelsWithInt:(jint)start
-                             withInt:(jint)limit
-                            withByte:(jbyte)level
-                            withByte:(jbyte)sor
-                            withByte:(jbyte)eor;
 
 - (IOSByteArray *)getLevels;
 
@@ -93,50 +58,9 @@
 
 - (IOSIntArray *)getReorderingWithIntArray:(IOSIntArray *)linebreaks;
 
-+ (IOSIntArray *)computeMultilineReorderingWithByteArray:(IOSByteArray *)levels
-                                            withIntArray:(IOSIntArray *)linebreaks;
-
-+ (IOSIntArray *)computeReorderingWithByteArray:(IOSByteArray *)levels;
-
-- (jbyte)getBaseLevel;
-
-+ (jboolean)isWhitespaceWithByte:(jbyte)biditype;
-
-+ (jbyte)typeForLevelWithInt:(jint)level;
-
-- (jint)findRunLimitWithInt:(jint)index
-                    withInt:(jint)limit
-              withByteArray:(IOSByteArray *)validSet;
-
-- (jint)findRunStartWithInt:(jint)index
-              withByteArray:(IOSByteArray *)validSet;
-
-- (void)setTypesWithInt:(jint)start
-                withInt:(jint)limit
-               withByte:(jbyte)newType;
-
-- (void)setLevelsWithInt:(jint)start
-                 withInt:(jint)limit
-                withByte:(jbyte)newLevel;
-
-+ (void)validateTypesWithByteArray:(IOSByteArray *)types;
-
-+ (void)validateParagraphEmbeddingLevelWithByte:(jbyte)paragraphEmbeddingLevel;
-
-+ (void)validateLineBreaksWithIntArray:(IOSIntArray *)linebreaks
-                               withInt:(jint)textLength;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfBidiOrder *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfBidiOrder_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfBidiOrder)
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiOrder, initialTypes_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiOrder, embeddings_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiOrder, resultTypes_, IOSByteArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfBidiOrder, resultLevels_, IOSByteArray *)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiOrder, L, jbyte)
 
@@ -180,11 +104,20 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiOrder, TYPE_MIN, jbyte)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiOrder, TYPE_MAX, jbyte)
 
-FOUNDATION_EXPORT IOSByteArray *ComItextpdfTextPdfBidiOrder_rtypes_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiOrder, rtypes_, IOSByteArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfBidiOrder_initWithByteArray_(ComItextpdfTextPdfBidiOrder *self, IOSByteArray *types);
 
-FOUNDATION_EXPORT IOSCharArray *ComItextpdfTextPdfBidiOrder_baseTypes_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfBidiOrder, baseTypes_, IOSCharArray *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextPdfBidiOrder, baseTypes_, IOSCharArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfBidiOrder *new_ComItextpdfTextPdfBidiOrder_initWithByteArray_(IOSByteArray *types) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBidiOrder_initWithByteArray_withByte_(ComItextpdfTextPdfBidiOrder *self, IOSByteArray *types, jbyte paragraphEmbeddingLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBidiOrder *new_ComItextpdfTextPdfBidiOrder_initWithByteArray_withByte_(IOSByteArray *types, jbyte paragraphEmbeddingLevel) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfBidiOrder_initWithCharArray_withInt_withInt_withByte_(ComItextpdfTextPdfBidiOrder *self, IOSCharArray *text, jint offset, jint length, jbyte paragraphEmbeddingLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfBidiOrder *new_ComItextpdfTextPdfBidiOrder_initWithCharArray_withInt_withInt_withByte_(IOSCharArray *text, jint offset, jint length, jbyte paragraphEmbeddingLevel) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT jbyte ComItextpdfTextPdfBidiOrder_getDirectionWithChar_(jchar c);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfBidiOrder)
 
 #endif // _ComItextpdfTextPdfBidiOrder_H_

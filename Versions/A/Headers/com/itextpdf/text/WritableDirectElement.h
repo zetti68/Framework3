@@ -6,30 +6,35 @@
 #ifndef _ComItextpdfTextWritableDirectElement_H_
 #define _ComItextpdfTextWritableDirectElement_H_
 
-@protocol ComItextpdfTextElementListener;
-@protocol JavaUtilList;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Element.h"
 #include "com/itextpdf/text/api/WriterOperation.h"
 
-@interface ComItextpdfTextWritableDirectElement : NSObject < ComItextpdfTextElement, ComItextpdfTextApiWriterOperation > {
-}
+@protocol ComItextpdfTextElementListener;
+@protocol JavaUtilList;
 
-- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
+@interface ComItextpdfTextWritableDirectElement : NSObject < ComItextpdfTextElement, ComItextpdfTextApiWriterOperation >
 
-- (jint)type;
+#pragma mark Public
+
+- (instancetype)init;
+
+- (id<JavaUtilList>)getChunks;
 
 - (jboolean)isContent;
 
 - (jboolean)isNestable;
 
-- (id<JavaUtilList>)getChunks;
+- (jboolean)processWithComItextpdfTextElementListener:(id<ComItextpdfTextElementListener>)listener;
 
-- (instancetype)init;
+- (jint)type;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextWritableDirectElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextWritableDirectElement)
+
+FOUNDATION_EXPORT void ComItextpdfTextWritableDirectElement_init(ComItextpdfTextWritableDirectElement *self);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextWritableDirectElement)
 
 #endif // _ComItextpdfTextWritableDirectElement_H_

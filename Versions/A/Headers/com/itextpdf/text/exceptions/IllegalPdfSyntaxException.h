@@ -6,20 +6,23 @@
 #ifndef _ComItextpdfTextExceptionsIllegalPdfSyntaxException_H_
 #define _ComItextpdfTextExceptionsIllegalPdfSyntaxException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/IllegalArgumentException.h"
 
-#define ComItextpdfTextExceptionsIllegalPdfSyntaxException_serialVersionUID -643024246596031671LL
+@interface ComItextpdfTextExceptionsIllegalPdfSyntaxException : JavaLangIllegalArgumentException
 
-@interface ComItextpdfTextExceptionsIllegalPdfSyntaxException : JavaLangIllegalArgumentException {
-}
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)message;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextExceptionsIllegalPdfSyntaxException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextExceptionsIllegalPdfSyntaxException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextExceptionsIllegalPdfSyntaxException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextExceptionsIllegalPdfSyntaxException_initWithNSString_(ComItextpdfTextExceptionsIllegalPdfSyntaxException *self, NSString *message);
+
+FOUNDATION_EXPORT ComItextpdfTextExceptionsIllegalPdfSyntaxException *new_ComItextpdfTextExceptionsIllegalPdfSyntaxException_initWithNSString_(NSString *message) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextExceptionsIllegalPdfSyntaxException)
 
 #endif // _ComItextpdfTextExceptionsIllegalPdfSyntaxException_H_

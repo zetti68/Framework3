@@ -6,31 +6,27 @@
 #ifndef _ComItextpdfTextPdfRandomAccessFileOrArray_H_
 #define _ComItextpdfTextPdfRandomAccessFileOrArray_H_
 
+#include "J2ObjC_header.h"
+#include "java/io/DataInput.h"
+
 @class IOSByteArray;
 @class JavaIoInputStream;
 @class JavaNetURL;
 @protocol ComItextpdfTextIoRandomAccessSource;
 
-#import "JreEmulation.h"
-#include "java/io/DataInput.h"
+@interface ComItextpdfTextPdfRandomAccessFileOrArray : NSObject < JavaIoDataInput >
 
-@interface ComItextpdfTextPdfRandomAccessFileOrArray : NSObject < JavaIoDataInput > {
- @public
-  id<ComItextpdfTextIoRandomAccessSource> byteSource_;
-  jlong byteSourcePosition_;
-  jbyte back_;
-  jboolean isBack_;
-}
+#pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)filename;
+- (instancetype)initWithByteArray:(IOSByteArray *)arrayIn;
+
+- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is;
 
 - (instancetype)initWithComItextpdfTextPdfRandomAccessFileOrArray:(ComItextpdfTextPdfRandomAccessFileOrArray *)source;
 
-- (ComItextpdfTextPdfRandomAccessFileOrArray *)createView;
-
-- (id<ComItextpdfTextIoRandomAccessSource>)createSourceView;
-
 - (instancetype)initWithComItextpdfTextIoRandomAccessSource:(id<ComItextpdfTextIoRandomAccessSource>)byteSource;
+
+- (instancetype)initWithNSString:(NSString *)filename;
 
 - (instancetype)initWithNSString:(NSString *)filename
                      withBoolean:(jboolean)forceRead
@@ -38,21 +34,41 @@
 
 - (instancetype)initWithJavaNetURL:(JavaNetURL *)url;
 
-- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is;
+- (void)close;
 
-- (instancetype)initWithByteArray:(IOSByteArray *)arrayIn;
+- (id<ComItextpdfTextIoRandomAccessSource>)createSourceView;
 
-- (id<ComItextpdfTextIoRandomAccessSource>)getByteSource;
+- (ComItextpdfTextPdfRandomAccessFileOrArray *)createView;
+
+- (jlong)getFilePointer;
+
+- (jlong)length;
 
 - (void)pushBackWithByte:(jbyte)b;
 
 - (jint)read;
 
+- (jint)readWithByteArray:(IOSByteArray *)b;
+
 - (jint)readWithByteArray:(IOSByteArray *)b
                   withInt:(jint)off
                   withInt:(jint)len;
 
-- (jint)readWithByteArray:(IOSByteArray *)b;
+- (jboolean)readBoolean;
+
+- (jbyte)readByte;
+
+- (jchar)readChar;
+
+- (jchar)readCharLE;
+
+- (jdouble)readDouble;
+
+- (jdouble)readDoubleLE;
+
+- (jfloat)readFloat;
+
+- (jfloat)readFloatLE;
 
 - (void)readFullyWithByteArray:(IOSByteArray *)b;
 
@@ -60,71 +76,79 @@
                        withInt:(jint)off
                        withInt:(jint)len;
 
-- (jlong)skipWithLong:(jlong)n;
-
-- (jint)skipBytesWithInt:(jint)n;
-
-- (void)reOpen;
-
-- (void)close;
-
-- (jlong)length;
-
-- (void)seekWithLong:(jlong)pos;
-
-- (jlong)getFilePointer;
-
-- (jboolean)readBoolean;
-
-- (jbyte)readByte;
-
-- (jint)readUnsignedByte;
-
-- (jshort)readShort;
-
-- (jshort)readShortLE;
-
-- (jint)readUnsignedShort;
-
-- (jint)readUnsignedShortLE;
-
-- (jchar)readChar;
-
-- (jchar)readCharLE;
-
 - (jint)readInt;
 
 - (jint)readIntLE;
 
-- (jlong)readUnsignedInt;
-
-- (jlong)readUnsignedIntLE;
+- (NSString *)readLine;
 
 - (jlong)readLong;
 
 - (jlong)readLongLE;
 
-- (jfloat)readFloat;
+- (jshort)readShort;
 
-- (jfloat)readFloatLE;
-
-- (jdouble)readDouble;
-
-- (jdouble)readDoubleLE;
-
-- (NSString *)readLine;
-
-- (NSString *)readUTF;
+- (jshort)readShortLE;
 
 - (NSString *)readStringWithInt:(jint)length
                    withNSString:(NSString *)encoding;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfRandomAccessFileOrArray *)other;
+- (jint)readUnsignedByte;
+
+- (jlong)readUnsignedInt;
+
+- (jlong)readUnsignedIntLE;
+
+- (jint)readUnsignedShort;
+
+- (jint)readUnsignedShortLE;
+
+- (NSString *)readUTF;
+
+- (void)reOpen;
+
+- (void)seekWithLong:(jlong)pos;
+
+- (jlong)skipWithLong:(jlong)n;
+
+- (jint)skipBytesWithInt:(jint)n;
+
+#pragma mark Protected
+
+- (id<ComItextpdfTextIoRandomAccessSource>)getByteSource;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfRandomAccessFileOrArray_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfRandomAccessFileOrArray)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfRandomAccessFileOrArray, byteSource_, id<ComItextpdfTextIoRandomAccessSource>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithNSString_(ComItextpdfTextPdfRandomAccessFileOrArray *self, NSString *filename);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithNSString_(NSString *filename) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *self, ComItextpdfTextPdfRandomAccessFileOrArray *source);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithComItextpdfTextPdfRandomAccessFileOrArray_(ComItextpdfTextPdfRandomAccessFileOrArray *source) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithComItextpdfTextIoRandomAccessSource_(ComItextpdfTextPdfRandomAccessFileOrArray *self, id<ComItextpdfTextIoRandomAccessSource> byteSource);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithComItextpdfTextIoRandomAccessSource_(id<ComItextpdfTextIoRandomAccessSource> byteSource) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithNSString_withBoolean_withBoolean_(ComItextpdfTextPdfRandomAccessFileOrArray *self, NSString *filename, jboolean forceRead, jboolean plainRandomAccess);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithNSString_withBoolean_withBoolean_(NSString *filename, jboolean forceRead, jboolean plainRandomAccess) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithJavaNetURL_(ComItextpdfTextPdfRandomAccessFileOrArray *self, JavaNetURL *url);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithJavaNetURL_(JavaNetURL *url) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithJavaIoInputStream_(ComItextpdfTextPdfRandomAccessFileOrArray *self, JavaIoInputStream *is);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithJavaIoInputStream_(JavaIoInputStream *is) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfRandomAccessFileOrArray_initWithByteArray_(ComItextpdfTextPdfRandomAccessFileOrArray *self, IOSByteArray *arrayIn);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfRandomAccessFileOrArray *new_ComItextpdfTextPdfRandomAccessFileOrArray_initWithByteArray_(IOSByteArray *arrayIn) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfRandomAccessFileOrArray)
 
 #endif // _ComItextpdfTextPdfRandomAccessFileOrArray_H_

@@ -6,13 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfMediaClipData_H_
 #define _ComItextpdfTextPdfPdfMediaClipData_H_
 
-@class ComItextpdfTextPdfPdfFileSpecification;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfPdfMediaClipData : ComItextpdfTextPdfPdfDictionary {
-}
+@class ComItextpdfTextPdfPdfFileSpecification;
+
+@interface ComItextpdfTextPdfPdfMediaClipData : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Package-Private
 
 - (instancetype)initWithNSString:(NSString *)file
 withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecification *)fs
@@ -20,6 +21,12 @@ withComItextpdfTextPdfPdfFileSpecification:(ComItextpdfTextPdfPdfFileSpecificati
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfMediaClipData_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfMediaClipData)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfMediaClipData_initWithNSString_withComItextpdfTextPdfPdfFileSpecification_withNSString_(ComItextpdfTextPdfPdfMediaClipData *self, NSString *file, ComItextpdfTextPdfPdfFileSpecification *fs, NSString *mimeType);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfMediaClipData *new_ComItextpdfTextPdfPdfMediaClipData_initWithNSString_withComItextpdfTextPdfPdfFileSpecification_withNSString_(NSString *file, ComItextpdfTextPdfPdfFileSpecification *fs, NSString *mimeType) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfMediaClipData)
 
 #endif // _ComItextpdfTextPdfPdfMediaClipData_H_

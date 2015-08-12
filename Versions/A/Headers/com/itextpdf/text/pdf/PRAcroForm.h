@@ -6,15 +6,15 @@
 #ifndef _ComItextpdfTextPdfPRAcroForm_H_
 #define _ComItextpdfTextPdfPRAcroForm_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfPRAcroForm_FieldInformation;
 @class ComItextpdfTextPdfPRIndirectReference;
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfReader;
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
 
 @interface ComItextpdfTextPdfPRAcroForm : ComItextpdfTextPdfPdfDictionary {
  @public
@@ -24,17 +24,21 @@
   ComItextpdfTextPdfPdfReader *reader_;
 }
 
+#pragma mark Public
+
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
-- (jint)size;
+- (ComItextpdfTextPdfPRAcroForm_FieldInformation *)getFieldWithNSString:(NSString *)name;
 
 - (JavaUtilArrayList *)getFields;
-
-- (ComItextpdfTextPdfPRAcroForm_FieldInformation *)getFieldWithNSString:(NSString *)name;
 
 - (ComItextpdfTextPdfPRIndirectReference *)getRefByNameWithNSString:(NSString *)name;
 
 - (void)readAcroFormWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)root;
+
+- (jint)size;
+
+#pragma mark Protected
 
 - (void)iterateFieldsWithComItextpdfTextPdfPdfArray:(ComItextpdfTextPdfPdfArray *)fieldlist
           withComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)fieldDict
@@ -45,16 +49,20 @@
 
 - (void)pushAttribWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dict;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPRAcroForm *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPRAcroForm_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPRAcroForm)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm, fields_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm, stack_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm, fieldByName_, JavaUtilHashMap *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm, reader_, ComItextpdfTextPdfPdfReader *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRAcroForm_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPRAcroForm *self, ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRAcroForm *new_ComItextpdfTextPdfPRAcroForm_initWithComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPdfReader *reader) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPRAcroForm)
 
 @interface ComItextpdfTextPdfPRAcroForm_FieldInformation : NSObject {
  @public
@@ -63,26 +71,34 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm, reader_, ComItextpdfTextPdfPdf
   ComItextpdfTextPdfPRIndirectReference *ref_;
 }
 
+#pragma mark Public
+
+- (ComItextpdfTextPdfPdfDictionary *)getInfo;
+
+- (NSString *)getName;
+
+- (ComItextpdfTextPdfPRIndirectReference *)getRef;
+
+- (NSString *)getWidgetName;
+
+#pragma mark Package-Private
+
 - (instancetype)initWithNSString:(NSString *)fieldName
 withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)info
 withComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)ref;
 
-- (NSString *)getWidgetName;
-
-- (NSString *)getName;
-
-- (ComItextpdfTextPdfPdfDictionary *)getInfo;
-
-- (ComItextpdfTextPdfPRIndirectReference *)getRef;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPRAcroForm_FieldInformation *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPRAcroForm_FieldInformation_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPRAcroForm_FieldInformation)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm_FieldInformation, fieldName_, NSString *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm_FieldInformation, info_, ComItextpdfTextPdfPdfDictionary *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRAcroForm_FieldInformation, ref_, ComItextpdfTextPdfPRIndirectReference *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRAcroForm_FieldInformation_initWithNSString_withComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfPRAcroForm_FieldInformation *self, NSString *fieldName, ComItextpdfTextPdfPdfDictionary *info, ComItextpdfTextPdfPRIndirectReference *ref);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRAcroForm_FieldInformation *new_ComItextpdfTextPdfPRAcroForm_FieldInformation_initWithNSString_withComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPRIndirectReference_(NSString *fieldName, ComItextpdfTextPdfPdfDictionary *info, ComItextpdfTextPdfPRIndirectReference *ref) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPRAcroForm_FieldInformation)
 
 #endif // _ComItextpdfTextPdfPRAcroForm_H_

@@ -6,19 +6,15 @@
 #ifndef _ComItextpdfTextPdfIntHashtable_H_
 #define _ComItextpdfTextPdfIntHashtable_H_
 
+#include "J2ObjC_header.h"
+#include "java/util/Iterator.h"
+
 @class IOSIntArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
-#include "java/util/Iterator.h"
+@interface ComItextpdfTextPdfIntHashtable : NSObject < NSCopying >
 
-@interface ComItextpdfTextPdfIntHashtable : NSObject < NSCopying > {
- @public
-  IOSObjectArray *table_;
-  jint count_;
-  jint threshold_;
-  jfloat loadFactor_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -27,46 +23,56 @@
 - (instancetype)initWithInt:(jint)initialCapacity
                   withFloat:(jfloat)loadFactor;
 
-- (jint)size;
+- (void)clear;
 
-- (jboolean)isEmpty;
+- (id)clone;
 
 - (jboolean)containsWithInt:(jint)value;
 
-- (jboolean)containsValueWithInt:(jint)value;
-
 - (jboolean)containsKeyWithInt:(jint)key;
+
+- (jboolean)containsValueWithInt:(jint)value;
 
 - (jint)getWithInt:(jint)key;
 
-- (void)rehash;
+- (id<JavaUtilIterator>)getEntryIterator;
+
+- (IOSIntArray *)getKeys;
+
+- (jint)getOneKey;
+
+- (jboolean)isEmpty;
 
 - (jint)putWithInt:(jint)key
            withInt:(jint)value;
 
 - (jint)removeWithInt:(jint)key;
 
-- (void)clear;
-
-- (id<JavaUtilIterator>)getEntryIterator;
+- (jint)size;
 
 - (IOSIntArray *)toOrderedKeys;
 
-- (IOSIntArray *)getKeys;
+#pragma mark Protected
 
-- (jint)getOneKey;
-
-- (id)clone;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfIntHashtable *)other;
-
-- (id)copyWithZone:(NSZone *)zone;
+- (void)rehash;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfIntHashtable_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfIntHashtable)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable, table_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfIntHashtable_init(ComItextpdfTextPdfIntHashtable *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *new_ComItextpdfTextPdfIntHashtable_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfIntHashtable_initWithInt_(ComItextpdfTextPdfIntHashtable *self, jint initialCapacity);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *new_ComItextpdfTextPdfIntHashtable_initWithInt_(jint initialCapacity) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfIntHashtable_initWithInt_withFloat_(ComItextpdfTextPdfIntHashtable *self, jint initialCapacity, jfloat loadFactor);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable *new_ComItextpdfTextPdfIntHashtable_initWithInt_withFloat_(jint initialCapacity, jfloat loadFactor) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfIntHashtable)
 
 @interface ComItextpdfTextPdfIntHashtable_Entry : NSObject {
  @public
@@ -76,24 +82,32 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable, table_, IOSObjectArray *)
   ComItextpdfTextPdfIntHashtable_Entry *next_;
 }
 
-- (instancetype)initWithInt:(jint)hash_
-                    withInt:(jint)key
-                    withInt:(jint)value
-withComItextpdfTextPdfIntHashtable_Entry:(ComItextpdfTextPdfIntHashtable_Entry *)next;
+#pragma mark Public
 
 - (jint)getKey;
 
 - (jint)getValue;
 
-- (id)clone;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfIntHashtable_Entry *)other;
+- (instancetype)initWithInt:(jint)hash_
+                    withInt:(jint)key
+                    withInt:(jint)value
+withComItextpdfTextPdfIntHashtable_Entry:(ComItextpdfTextPdfIntHashtable_Entry *)next;
+
+- (id)clone;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfIntHashtable_Entry_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfIntHashtable_Entry)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable_Entry, next_, ComItextpdfTextPdfIntHashtable_Entry *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfIntHashtable_Entry_initWithInt_withInt_withInt_withComItextpdfTextPdfIntHashtable_Entry_(ComItextpdfTextPdfIntHashtable_Entry *self, jint hash_, jint key, jint value, ComItextpdfTextPdfIntHashtable_Entry *next);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable_Entry *new_ComItextpdfTextPdfIntHashtable_Entry_initWithInt_withInt_withInt_withComItextpdfTextPdfIntHashtable_Entry_(jint hash_, jint key, jint value, ComItextpdfTextPdfIntHashtable_Entry *next) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfIntHashtable_Entry)
 
 @interface ComItextpdfTextPdfIntHashtable_IntHashtableIterator : NSObject < JavaUtilIterator > {
  @public
@@ -102,7 +116,7 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable_Entry, next_, ComItextpdfText
   ComItextpdfTextPdfIntHashtable_Entry *entry__;
 }
 
-- (instancetype)initWithComItextpdfTextPdfIntHashtable_EntryArray:(IOSObjectArray *)table;
+#pragma mark Public
 
 - (jboolean)hasNext;
 
@@ -110,13 +124,21 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable_Entry, next_, ComItextpdfText
 
 - (void)remove;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfIntHashtable_IntHashtableIterator *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithComItextpdfTextPdfIntHashtable_EntryArray:(IOSObjectArray *)table;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfIntHashtable_IntHashtableIterator_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfIntHashtable_IntHashtableIterator)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable_IntHashtableIterator, table_, IOSObjectArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfIntHashtable_IntHashtableIterator, entry__, ComItextpdfTextPdfIntHashtable_Entry *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfIntHashtable_IntHashtableIterator_initWithComItextpdfTextPdfIntHashtable_EntryArray_(ComItextpdfTextPdfIntHashtable_IntHashtableIterator *self, IOSObjectArray *table);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfIntHashtable_IntHashtableIterator *new_ComItextpdfTextPdfIntHashtable_IntHashtableIterator_initWithComItextpdfTextPdfIntHashtable_EntryArray_(IOSObjectArray *table) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfIntHashtable_IntHashtableIterator)
 
 #endif // _ComItextpdfTextPdfIntHashtable_H_

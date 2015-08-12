@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextPdfPdfFileSpecification_H_
 #define _ComItextpdfTextPdfPdfFileSpecification_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfCollectionPdfCollectionItem;
 @class ComItextpdfTextPdfPdfIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
 
 @interface ComItextpdfTextPdfPdfFileSpecification : ComItextpdfTextPdfPdfDictionary {
  @public
@@ -21,21 +21,19 @@
   ComItextpdfTextPdfPdfIndirectReference *ref_;
 }
 
+#pragma mark Public
+
 - (instancetype)init;
 
-+ (ComItextpdfTextPdfPdfFileSpecification *)urlWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                  withNSString:(NSString *)url;
+- (void)addCollectionItemWithComItextpdfTextPdfCollectionPdfCollectionItem:(ComItextpdfTextPdfCollectionPdfCollectionItem *)ci;
+
+- (void)addDescriptionWithNSString:(NSString *)description_
+                       withBoolean:(jboolean)unicode;
 
 + (ComItextpdfTextPdfPdfFileSpecification *)fileEmbeddedWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                            withNSString:(NSString *)filePath
                                                                            withNSString:(NSString *)fileDisplay
                                                                           withByteArray:(IOSByteArray *)fileStore;
-
-+ (ComItextpdfTextPdfPdfFileSpecification *)fileEmbeddedWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-                                                                           withNSString:(NSString *)filePath
-                                                                           withNSString:(NSString *)fileDisplay
-                                                                          withByteArray:(IOSByteArray *)fileStore
-                                                                                withInt:(jint)compressionLevel;
 
 + (ComItextpdfTextPdfPdfFileSpecification *)fileEmbeddedWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                            withNSString:(NSString *)filePath
@@ -50,6 +48,12 @@
                                                                             withBoolean:(jboolean)compress
                                                                            withNSString:(NSString *)mimeType
                                                     withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)fileParameter;
+
++ (ComItextpdfTextPdfPdfFileSpecification *)fileEmbeddedWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                           withNSString:(NSString *)filePath
+                                                                           withNSString:(NSString *)fileDisplay
+                                                                          withByteArray:(IOSByteArray *)fileStore
+                                                                                withInt:(jint)compressionLevel;
 
 + (ComItextpdfTextPdfPdfFileSpecification *)fileEmbeddedWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                                                                            withNSString:(NSString *)filePath
@@ -71,21 +75,37 @@
 
 - (void)setVolatileWithBoolean:(jboolean)volatile_file;
 
-- (void)addDescriptionWithNSString:(NSString *)description_
-                       withBoolean:(jboolean)unicode;
-
-- (void)addCollectionItemWithComItextpdfTextPdfCollectionPdfCollectionItem:(ComItextpdfTextPdfCollectionPdfCollectionItem *)ci;
-
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfFileSpecification *)other;
++ (ComItextpdfTextPdfPdfFileSpecification *)urlWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+                                                                  withNSString:(NSString *)url;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfFileSpecification_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfFileSpecification)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFileSpecification, writer_, ComItextpdfTextPdfPdfWriter *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfFileSpecification, ref_, ComItextpdfTextPdfPdfIndirectReference *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfFileSpecification_init(ComItextpdfTextPdfPdfFileSpecification *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *new_ComItextpdfTextPdfPdfFileSpecification_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_urlWithComItextpdfTextPdfPdfWriter_withNSString_(ComItextpdfTextPdfPdfWriter *writer, NSString *url);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileEmbeddedWithComItextpdfTextPdfPdfWriter_withNSString_withNSString_withByteArray_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath, NSString *fileDisplay, IOSByteArray *fileStore);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileEmbeddedWithComItextpdfTextPdfPdfWriter_withNSString_withNSString_withByteArray_withInt_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath, NSString *fileDisplay, IOSByteArray *fileStore, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileEmbeddedWithComItextpdfTextPdfPdfWriter_withNSString_withNSString_withByteArray_withBoolean_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath, NSString *fileDisplay, IOSByteArray *fileStore, jboolean compress);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileEmbeddedWithComItextpdfTextPdfPdfWriter_withNSString_withNSString_withByteArray_withBoolean_withNSString_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath, NSString *fileDisplay, IOSByteArray *fileStore, jboolean compress, NSString *mimeType, ComItextpdfTextPdfPdfDictionary *fileParameter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileEmbeddedWithComItextpdfTextPdfPdfWriter_withNSString_withNSString_withByteArray_withNSString_withComItextpdfTextPdfPdfDictionary_withInt_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath, NSString *fileDisplay, IOSByteArray *fileStore, NSString *mimeType, ComItextpdfTextPdfPdfDictionary *fileParameter, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfFileSpecification *ComItextpdfTextPdfPdfFileSpecification_fileExternWithComItextpdfTextPdfPdfWriter_withNSString_(ComItextpdfTextPdfPdfWriter *writer, NSString *filePath);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfFileSpecification)
 
 #endif // _ComItextpdfTextPdfPdfFileSpecification_H_

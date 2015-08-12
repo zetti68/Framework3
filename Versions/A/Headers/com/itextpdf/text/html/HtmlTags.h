@@ -6,16 +6,17 @@
 #ifndef _ComItextpdfTextHtmlHtmlTags_H_
 #define _ComItextpdfTextHtmlHtmlTags_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextHtmlHtmlTags : NSObject {
-}
+@interface ComItextpdfTextHtmlHtmlTags : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHtmlHtmlTags_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHtmlHtmlTags)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlTags_A_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlTags, A_, NSString *)
@@ -259,5 +260,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlTags, AFTER_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlTags_BEFORE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlTags, BEFORE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextHtmlHtmlTags_init(ComItextpdfTextHtmlHtmlTags *self);
+
+FOUNDATION_EXPORT ComItextpdfTextHtmlHtmlTags *new_ComItextpdfTextHtmlHtmlTags_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlHtmlTags)
 
 #endif // _ComItextpdfTextHtmlHtmlTags_H_

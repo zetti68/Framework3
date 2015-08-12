@@ -6,61 +6,31 @@
 #ifndef _ComItextpdfTextPdfFontsCmapsCMapParserEx_H_
 #define _ComItextpdfTextPdfFontsCmapsCMapParserEx_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfFontsCmapsAbstractCMap;
-@class ComItextpdfTextPdfPdfName;
-@class IOSByteArray;
-@class JavaUtilArrayList;
 @protocol ComItextpdfTextPdfFontsCmapsCidLocation;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfFontsCmapsCMapParserEx : NSObject
 
-#define ComItextpdfTextPdfFontsCmapsCMapParserEx_MAXLEVEL 10
+#pragma mark Public
 
-@interface ComItextpdfTextPdfFontsCmapsCMapParserEx : NSObject {
-}
+- (instancetype)init;
 
 + (void)parseCidWithNSString:(NSString *)cmapName
 withComItextpdfTextPdfFontsCmapsAbstractCMap:(ComItextpdfTextPdfFontsCmapsAbstractCMap *)cmap
 withComItextpdfTextPdfFontsCmapsCidLocation:(id<ComItextpdfTextPdfFontsCmapsCidLocation>)location;
 
-+ (void)parseCidWithNSString:(NSString *)cmapName
-withComItextpdfTextPdfFontsCmapsAbstractCMap:(ComItextpdfTextPdfFontsCmapsAbstractCMap *)cmap
-withComItextpdfTextPdfFontsCmapsCidLocation:(id<ComItextpdfTextPdfFontsCmapsCidLocation>)location
-                     withInt:(jint)level;
-
-+ (void)encodeSequenceWithInt:(jint)size
-                withByteArray:(IOSByteArray *)seqs
-                     withChar:(jchar)cid
-        withJavaUtilArrayList:(JavaUtilArrayList *)planes;
-
-- (instancetype)init;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfFontsCmapsCMapParserEx_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfFontsCmapsCMapParserEx)
 
-FOUNDATION_EXPORT ComItextpdfTextPdfPdfName *ComItextpdfTextPdfFontsCmapsCMapParserEx_CMAPNAME_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, CMAPNAME_, ComItextpdfTextPdfPdfName *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapParserEx_parseCidWithNSString_withComItextpdfTextPdfFontsCmapsAbstractCMap_withComItextpdfTextPdfFontsCmapsCidLocation_(NSString *cmapName, ComItextpdfTextPdfFontsCmapsAbstractCMap *cmap, id<ComItextpdfTextPdfFontsCmapsCidLocation> location);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_DEF_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, DEF_, NSString *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfFontsCmapsCMapParserEx_init(ComItextpdfTextPdfFontsCmapsCMapParserEx *self);
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_ENDCIDRANGE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, ENDCIDRANGE_, NSString *)
+FOUNDATION_EXPORT ComItextpdfTextPdfFontsCmapsCMapParserEx *new_ComItextpdfTextPdfFontsCmapsCMapParserEx_init() NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_ENDCIDCHAR_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, ENDCIDCHAR_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_ENDBFRANGE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, ENDBFRANGE_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_ENDBFCHAR_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, ENDBFCHAR_, NSString *)
-
-FOUNDATION_EXPORT NSString *ComItextpdfTextPdfFontsCmapsCMapParserEx_USECMAP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, USECMAP_, NSString *)
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfFontsCmapsCMapParserEx, MAXLEVEL, jint)
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfFontsCmapsCMapParserEx)
 
 #endif // _ComItextpdfTextPdfFontsCmapsCMapParserEx_H_

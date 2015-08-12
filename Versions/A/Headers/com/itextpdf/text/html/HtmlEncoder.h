@@ -6,20 +6,17 @@
 #ifndef _ComItextpdfTextHtmlHtmlEncoder_H_
 #define _ComItextpdfTextHtmlHtmlEncoder_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
-@class IOSObjectArray;
-@protocol JavaUtilSet;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextHtmlHtmlEncoder : NSObject
 
-@interface ComItextpdfTextHtmlHtmlEncoder : NSObject {
-}
-
-- (instancetype)init;
-
-+ (NSString *)encodeWithNSString:(NSString *)string;
+#pragma mark Public
 
 + (NSString *)encodeWithComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
++ (NSString *)encodeWithNSString:(NSString *)string;
 
 + (NSString *)getAlignmentWithInt:(jint)alignment;
 
@@ -27,13 +24,16 @@
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextHtmlHtmlEncoder_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextHtmlHtmlEncoder)
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextHtmlHtmlEncoder_HTML_CODE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlEncoder, HTML_CODE_, IOSObjectArray *)
+FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlEncoder_encodeWithNSString_(NSString *string);
 
-FOUNDATION_EXPORT id<JavaUtilSet> ComItextpdfTextHtmlHtmlEncoder_NEWLINETAGS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextHtmlHtmlEncoder, NEWLINETAGS_, id<JavaUtilSet>)
+FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlEncoder_encodeWithComItextpdfTextBaseColor_(ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextHtmlHtmlEncoder_getAlignmentWithInt_(jint alignment);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextHtmlHtmlEncoder_isNewLineTagWithNSString_(NSString *tag);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHtmlHtmlEncoder)
 
 #endif // _ComItextpdfTextHtmlHtmlEncoder_H_

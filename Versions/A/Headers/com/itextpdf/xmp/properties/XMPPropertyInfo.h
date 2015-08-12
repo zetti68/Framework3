@@ -6,12 +6,13 @@
 #ifndef _ComItextpdfXmpPropertiesXMPPropertyInfo_H_
 #define _ComItextpdfXmpPropertiesXMPPropertyInfo_H_
 
-@class ComItextpdfXmpOptionsPropertyOptions;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/properties/XMPProperty.h"
 
+@class ComItextpdfXmpOptionsPropertyOptions;
+
 @protocol ComItextpdfXmpPropertiesXMPPropertyInfo < ComItextpdfXmpPropertiesXMPProperty, NSObject, JavaObject >
+
 - (NSString *)getNamespace;
 
 - (NSString *)getPath;
@@ -22,6 +23,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpPropertiesXMPPropertyInfo_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpPropertiesXMPPropertyInfo)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpPropertiesXMPPropertyInfo)
 
 #endif // _ComItextpdfXmpPropertiesXMPPropertyInfo_H_

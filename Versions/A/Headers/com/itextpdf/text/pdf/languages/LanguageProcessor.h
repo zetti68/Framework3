@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextPdfLanguagesLanguageProcessor_H_
 #define _ComItextpdfTextPdfLanguagesLanguageProcessor_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextPdfLanguagesLanguageProcessor < NSObject, JavaObject >
 
@@ -16,6 +16,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfLanguagesLanguageProcessor_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfLanguagesLanguageProcessor)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfLanguagesLanguageProcessor)
 
 #endif // _ComItextpdfTextPdfLanguagesLanguageProcessor_H_

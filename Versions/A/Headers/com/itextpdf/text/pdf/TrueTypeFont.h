@@ -6,6 +6,9 @@
 #ifndef _ComItextpdfTextPdfTrueTypeFont_H_
 #define _ComItextpdfTextPdfTrueTypeFont_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/BaseFont.h"
+
 @class ComItextpdfTextPdfIntHashtable;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfIndirectReference;
@@ -21,9 +24,6 @@
 @class JavaUtilArrayList;
 @class JavaUtilHashMap;
 @class JavaUtilHashSet;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/BaseFont.h"
 
 @interface ComItextpdfTextPdfTrueTypeFont : ComItextpdfTextPdfBaseFont {
  @public
@@ -56,74 +56,39 @@
   jint underlineThickness_;
 }
 
-- (instancetype)init;
+#pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)ttFile
-                    withNSString:(NSString *)enc
-                     withBoolean:(jboolean)emb
-                   withByteArray:(IOSByteArray *)ttfAfm
-                     withBoolean:(jboolean)justNames
-                     withBoolean:(jboolean)forceRead;
+- (IOSObjectArray *)getAllNameEntries;
 
-+ (NSString *)getTTCNameWithNSString:(NSString *)name;
+- (IOSObjectArray *)getCodePagesSupported;
 
-- (void)fillTables;
+- (IOSObjectArray *)getFamilyFontName;
 
-- (NSString *)getBaseFont;
+- (jfloat)getFontDescriptorWithInt:(jint)key
+                         withFloat:(jfloat)fontSize;
 
-- (IOSObjectArray *)getNamesWithInt:(jint)id_;
+- (IOSObjectArray *)getFullFontName;
 
-- (IOSObjectArray *)getAllNames;
-
-- (void)checkCff;
-
-- (void)processWithByteArray:(IOSByteArray *)ttfAfm
-                 withBoolean:(jboolean)preload;
-
-- (NSString *)readStandardStringWithInt:(jint)length;
-
-- (NSString *)readUnicodeStringWithInt:(jint)length;
-
-- (void)readGlyphWidths;
-
-- (jint)getGlyphWidthWithInt:(jint)glyph;
-
-- (void)readBbox;
-
-- (void)readCMaps;
-
-- (JavaUtilHashMap *)readFormat12;
-
-- (JavaUtilHashMap *)readFormat0;
-
-- (JavaUtilHashMap *)readFormat4;
-
-- (JavaUtilHashMap *)readFormat6;
-
-- (void)readKerning;
+- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
 
 - (jint)getKerningWithInt:(jint)char1
                   withInt:(jint)char2;
 
-- (jint)getRawWidthWithInt:(jint)c
-              withNSString:(NSString *)name;
+- (IOSIntArray *)getMetricsTTWithInt:(jint)c;
 
-- (ComItextpdfTextPdfPdfDictionary *)getFontDescriptorWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontStream
-                                                                                    withNSString:(NSString *)subsetPrefix
-                                                      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)cidset;
+- (NSString *)getPostscriptFontName;
 
-- (ComItextpdfTextPdfPdfDictionary *)getFontBaseTypeWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontDescriptor
-                                                                                  withNSString:(NSString *)subsetPrefix
-                                                                                       withInt:(jint)firstChar
-                                                                                       withInt:(jint)lastChar
-                                                                                 withByteArray:(IOSByteArray *)shortTag;
+- (jboolean)hasKernPairs;
 
-- (IOSByteArray *)getFullFont;
+- (jboolean)setKerningWithInt:(jint)char1
+                      withInt:(jint)char2
+                      withInt:(jint)kern;
 
-- (IOSByteArray *)getSubSetWithJavaUtilHashSet:(JavaUtilHashSet *)glyphs
-                                   withBoolean:(jboolean)subsetp;
+- (void)setPostscriptFontNameWithNSString:(NSString *)name;
 
-+ (IOSIntArray *)compactRangesWithJavaUtilArrayList:(JavaUtilArrayList *)ranges;
+#pragma mark Protected
+
+- (instancetype)init;
 
 - (void)addRangeUniWithJavaUtilHashMap:(JavaUtilHashMap *)longTag
                            withBoolean:(jboolean)includeMetrics
@@ -132,45 +97,81 @@
 - (void)addRangeUniWithJavaUtilHashSet:(JavaUtilHashSet *)longTag
                            withBoolean:(jboolean)subsetp;
 
-- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
-      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
-                               withNSObjectArray:(IOSObjectArray *)params;
++ (IOSIntArray *)compactRangesWithJavaUtilArrayList:(JavaUtilArrayList *)ranges;
 
-- (IOSByteArray *)readCffFont;
+- (ComItextpdfTextPdfPdfDictionary *)getFontBaseTypeWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontDescriptor
+                                                                                  withNSString:(NSString *)subsetPrefix
+                                                                                       withInt:(jint)firstChar
+                                                                                       withInt:(jint)lastChar
+                                                                                 withByteArray:(IOSByteArray *)shortTag;
 
-- (ComItextpdfTextPdfPdfStream *)getFullFontStream;
+- (ComItextpdfTextPdfPdfDictionary *)getFontDescriptorWithComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)fontStream
+                                                                                    withNSString:(NSString *)subsetPrefix
+                                                      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)cidset;
 
-- (jfloat)getFontDescriptorWithInt:(jint)key
-                         withFloat:(jfloat)fontSize;
+- (IOSByteArray *)getFullFont;
 
-- (IOSIntArray *)getMetricsTTWithInt:(jint)c;
-
-- (NSString *)getPostscriptFontName;
-
-- (IOSObjectArray *)getCodePagesSupported;
-
-- (IOSObjectArray *)getFullFontName;
-
-- (IOSObjectArray *)getAllNameEntries;
-
-- (IOSObjectArray *)getFamilyFontName;
-
-- (jboolean)hasKernPairs;
-
-- (void)setPostscriptFontNameWithNSString:(NSString *)name;
-
-- (jboolean)setKerningWithInt:(jint)char1
-                      withInt:(jint)char2
-                      withInt:(jint)kern;
+- (jint)getGlyphWidthWithInt:(jint)glyph;
 
 - (IOSIntArray *)getRawCharBBoxWithInt:(jint)c
                           withNSString:(NSString *)name;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFont *)other;
+- (IOSByteArray *)getSubSetWithJavaUtilHashSet:(JavaUtilHashSet *)glyphs
+                                   withBoolean:(jboolean)subsetp;
+
++ (NSString *)getTTCNameWithNSString:(NSString *)name;
+
+- (IOSByteArray *)readCffFont;
+
+- (void)readGlyphWidths;
+
+- (NSString *)readStandardStringWithInt:(jint)length;
+
+- (NSString *)readUnicodeStringWithInt:(jint)length;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithNSString:(NSString *)ttFile
+                    withNSString:(NSString *)enc
+                     withBoolean:(jboolean)emb
+                   withByteArray:(IOSByteArray *)ttfAfm
+                     withBoolean:(jboolean)justNames
+                     withBoolean:(jboolean)forceRead;
+
+- (void)checkCff;
+
+- (void)fillTables;
+
+- (IOSObjectArray *)getAllNames;
+
+- (NSString *)getBaseFont;
+
+- (IOSObjectArray *)getNamesWithInt:(jint)id_;
+
+- (jint)getRawWidthWithInt:(jint)c
+              withNSString:(NSString *)name;
+
+- (void)processWithByteArray:(IOSByteArray *)ttfAfm
+                 withBoolean:(jboolean)preload;
+
+- (void)readCMaps;
+
+- (JavaUtilHashMap *)readFormat0;
+
+- (JavaUtilHashMap *)readFormat12;
+
+- (JavaUtilHashMap *)readFormat4;
+
+- (JavaUtilHashMap *)readFormat6;
+
+- (void)readKerning;
+
+- (void)writeFontWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
+      withComItextpdfTextPdfPdfIndirectReference:(ComItextpdfTextPdfPdfIndirectReference *)ref
+                               withNSObjectArray:(IOSObjectArray *)params;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfTrueTypeFont_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfTrueTypeFont)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFont, tables_, JavaUtilHashMap *)
@@ -195,6 +196,20 @@ J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFont, familyName_, IOSObjectArray 
 FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfTrueTypeFont_codePages_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFont, codePages_, IOSObjectArray *)
 
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFont_init(ComItextpdfTextPdfTrueTypeFont *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFont *new_ComItextpdfTextPdfTrueTypeFont_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFont_initWithNSString_withNSString_withBoolean_withByteArray_withBoolean_withBoolean_(ComItextpdfTextPdfTrueTypeFont *self, NSString *ttFile, NSString *enc, jboolean emb, IOSByteArray *ttfAfm, jboolean justNames, jboolean forceRead);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFont *new_ComItextpdfTextPdfTrueTypeFont_initWithNSString_withNSString_withBoolean_withByteArray_withBoolean_withBoolean_(NSString *ttFile, NSString *enc, jboolean emb, IOSByteArray *ttfAfm, jboolean justNames, jboolean forceRead) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfTrueTypeFont_getTTCNameWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfTrueTypeFont_compactRangesWithJavaUtilArrayList_(JavaUtilArrayList *ranges);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFont)
+
 @interface ComItextpdfTextPdfTrueTypeFont_FontHeader : NSObject {
  @public
   jint flags_;
@@ -206,13 +221,19 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfTrueTypeFont, codePages_, IOSObject
   jint macStyle_;
 }
 
-- (instancetype)init;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFont_FontHeader *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfTrueTypeFont_FontHeader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfTrueTypeFont_FontHeader)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFont_FontHeader_init(ComItextpdfTextPdfTrueTypeFont_FontHeader *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFont_FontHeader *new_ComItextpdfTextPdfTrueTypeFont_FontHeader_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFont_FontHeader)
 
 @interface ComItextpdfTextPdfTrueTypeFont_HorizontalHeader : NSObject {
  @public
@@ -228,13 +249,19 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfTrueTypeFont_FontHe
   jint numberOfHMetrics_;
 }
 
-- (instancetype)init;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFont_HorizontalHeader *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfTrueTypeFont_HorizontalHeader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfTrueTypeFont_HorizontalHeader)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFont_HorizontalHeader_init(ComItextpdfTextPdfTrueTypeFont_HorizontalHeader *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFont_HorizontalHeader *new_ComItextpdfTextPdfTrueTypeFont_HorizontalHeader_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFont_HorizontalHeader)
 
 @interface ComItextpdfTextPdfTrueTypeFont_WindowsMetrics : NSObject {
  @public
@@ -268,15 +295,21 @@ __attribute__((always_inline)) inline void ComItextpdfTextPdfTrueTypeFont_Horizo
   jint sCapHeight_;
 }
 
-- (instancetype)init;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics *)other;
+- (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfTrueTypeFont_WindowsMetrics_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics, panose_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics, achVendID_, IOSByteArray *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfTrueTypeFont_WindowsMetrics_init(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfTrueTypeFont_WindowsMetrics *new_ComItextpdfTextPdfTrueTypeFont_WindowsMetrics_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfTrueTypeFont_WindowsMetrics)
 
 #endif // _ComItextpdfTextPdfTrueTypeFont_H_

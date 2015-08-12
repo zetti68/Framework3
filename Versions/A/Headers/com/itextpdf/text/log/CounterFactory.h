@@ -6,37 +6,31 @@
 #ifndef _ComItextpdfTextLogCounterFactory_H_
 #define _ComItextpdfTextLogCounterFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class IOSClass;
 @protocol ComItextpdfTextLogCounter;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextLogCounterFactory : NSObject
 
-@interface ComItextpdfTextLogCounterFactory : NSObject {
- @public
-  id<ComItextpdfTextLogCounter> counter_;
-}
-
-- (instancetype)init;
-
-+ (ComItextpdfTextLogCounterFactory *)getInstance;
-
-+ (id<ComItextpdfTextLogCounter>)getCounterWithIOSClass:(IOSClass *)klass;
+#pragma mark Public
 
 - (id<ComItextpdfTextLogCounter>)getCounter;
 
-- (void)setCounterWithComItextpdfTextLogCounter:(id<ComItextpdfTextLogCounter>)counter;
++ (id<ComItextpdfTextLogCounter>)getCounterWithIOSClass:(IOSClass *)klass;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextLogCounterFactory *)other;
++ (ComItextpdfTextLogCounterFactory *)getInstance;
+
+- (void)setCounterWithComItextpdfTextLogCounter:(id<ComItextpdfTextLogCounter>)counter;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextLogCounterFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextLogCounterFactory)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextLogCounterFactory, counter_, id<ComItextpdfTextLogCounter>)
+FOUNDATION_EXPORT ComItextpdfTextLogCounterFactory *ComItextpdfTextLogCounterFactory_getInstance();
 
-FOUNDATION_EXPORT ComItextpdfTextLogCounterFactory *ComItextpdfTextLogCounterFactory_myself_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextLogCounterFactory, myself_, ComItextpdfTextLogCounterFactory *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextLogCounterFactory, myself_, ComItextpdfTextLogCounterFactory *)
+FOUNDATION_EXPORT id<ComItextpdfTextLogCounter> ComItextpdfTextLogCounterFactory_getCounterWithIOSClass_(IOSClass *klass);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogCounterFactory)
 
 #endif // _ComItextpdfTextLogCounterFactory_H_

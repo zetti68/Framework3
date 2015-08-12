@@ -6,34 +6,39 @@
 #ifndef _ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_H_
 #define _ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/ExternalSignatureContainer.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
 @class IOSByteArray;
 @class JavaIoInputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/ExternalSignatureContainer.h"
+@interface ComItextpdfTextPdfSecurityExternalBlankSignatureContainer : NSObject < ComItextpdfTextPdfSecurityExternalSignatureContainer >
 
-@interface ComItextpdfTextPdfSecurityExternalBlankSignatureContainer : NSObject < ComItextpdfTextPdfSecurityExternalSignatureContainer > {
- @public
-  ComItextpdfTextPdfPdfDictionary *sigDic_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)sigDic;
 
 - (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filter
                     withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)subFilter;
 
-- (IOSByteArray *)signWithJavaIoInputStream:(JavaIoInputStream *)data;
-
 - (void)modifySigningDictionaryWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)signDic;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer *)other;
+- (IOSByteArray *)signWithJavaIoInputStream:(JavaIoInputStream *)data;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer, sigDic_, ComItextpdfTextPdfPdfDictionary *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer *self, ComItextpdfTextPdfPdfDictionary *sigDic);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityExternalBlankSignatureContainer *new_ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *sigDic) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer *self, ComItextpdfTextPdfPdfName *filter, ComItextpdfTextPdfPdfName *subFilter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityExternalBlankSignatureContainer *new_ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfName *filter, ComItextpdfTextPdfPdfName *subFilter) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityExternalBlankSignatureContainer)
 
 #endif // _ComItextpdfTextPdfSecurityExternalBlankSignatureContainer_H_

@@ -6,31 +6,35 @@
 #ifndef _ComItextpdfTextPdfPdfNumberTree_H_
 #define _ComItextpdfTextPdfPdfNumberTree_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaUtilHashMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfPdfNumberTree : NSObject
 
-#define ComItextpdfTextPdfPdfNumberTree_leafSize 64
+#pragma mark Public
 
-@interface ComItextpdfTextPdfPdfNumberTree : NSObject {
-}
+- (instancetype)init;
+
++ (JavaUtilHashMap *)readTreeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
 
 + (ComItextpdfTextPdfPdfDictionary *)writeTreeWithJavaUtilHashMap:(JavaUtilHashMap *)items
                                   withComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer;
 
-+ (void)iterateItemsWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic
-                                    withJavaUtilHashMap:(JavaUtilHashMap *)items;
-
-+ (JavaUtilHashMap *)readTreeWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)dic;
-
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfNumberTree_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfNumberTree)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfNumberTree, leafSize, jint)
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDictionary *ComItextpdfTextPdfPdfNumberTree_writeTreeWithJavaUtilHashMap_withComItextpdfTextPdfPdfWriter_(JavaUtilHashMap *items, ComItextpdfTextPdfPdfWriter *writer);
+
+FOUNDATION_EXPORT JavaUtilHashMap *ComItextpdfTextPdfPdfNumberTree_readTreeWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *dic);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfNumberTree_init(ComItextpdfTextPdfPdfNumberTree *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfNumberTree *new_ComItextpdfTextPdfPdfNumberTree_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfNumberTree)
 
 #endif // _ComItextpdfTextPdfPdfNumberTree_H_

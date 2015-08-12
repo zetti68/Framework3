@@ -6,19 +6,21 @@
 #ifndef _ComItextpdfTextPdfSecurityRootStoreVerifier_H_
 #define _ComItextpdfTextPdfSecurityRootStoreVerifier_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/security/CertificateVerifier.h"
+
 @class JavaSecurityCertX509Certificate;
 @class JavaSecurityKeyStore;
 @class JavaUtilDate;
 @protocol ComItextpdfTextLogLogger;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/security/CertificateVerifier.h"
-
 @interface ComItextpdfTextPdfSecurityRootStoreVerifier : ComItextpdfTextPdfSecurityCertificateVerifier {
  @public
   JavaSecurityKeyStore *rootStore_;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfSecurityCertificateVerifier:(ComItextpdfTextPdfSecurityCertificateVerifier *)verifier;
 
@@ -28,16 +30,19 @@
                           withJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)issuerCert
                                              withJavaUtilDate:(JavaUtilDate *)signDate;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfSecurityRootStoreVerifier *)other;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfSecurityRootStoreVerifier_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfSecurityRootStoreVerifier)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfSecurityRootStoreVerifier, rootStore_, JavaSecurityKeyStore *)
 
 FOUNDATION_EXPORT id<ComItextpdfTextLogLogger> ComItextpdfTextPdfSecurityRootStoreVerifier_LOGGER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecurityRootStoreVerifier, LOGGER_, id<ComItextpdfTextLogLogger>)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityRootStoreVerifier_initWithComItextpdfTextPdfSecurityCertificateVerifier_(ComItextpdfTextPdfSecurityRootStoreVerifier *self, ComItextpdfTextPdfSecurityCertificateVerifier *verifier);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityRootStoreVerifier *new_ComItextpdfTextPdfSecurityRootStoreVerifier_initWithComItextpdfTextPdfSecurityCertificateVerifier_(ComItextpdfTextPdfSecurityCertificateVerifier *verifier) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityRootStoreVerifier)
 
 #endif // _ComItextpdfTextPdfSecurityRootStoreVerifier_H_

@@ -6,11 +6,12 @@
 #ifndef _ComItextpdfTextPdfPdfTransparencyGroup_H_
 #define _ComItextpdfTextPdfPdfTransparencyGroup_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfDictionary.h"
 
-@interface ComItextpdfTextPdfPdfTransparencyGroup : ComItextpdfTextPdfPdfDictionary {
-}
+@interface ComItextpdfTextPdfPdfTransparencyGroup : ComItextpdfTextPdfPdfDictionary
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -20,6 +21,12 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfTransparencyGroup_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfTransparencyGroup)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfTransparencyGroup_init(ComItextpdfTextPdfPdfTransparencyGroup *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfTransparencyGroup *new_ComItextpdfTextPdfPdfTransparencyGroup_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfTransparencyGroup)
 
 #endif // _ComItextpdfTextPdfPdfTransparencyGroup_H_

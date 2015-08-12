@@ -6,12 +6,13 @@
 #ifndef _ComItextpdfTextDocListener_H_
 #define _ComItextpdfTextDocListener_H_
 
-@class ComItextpdfTextRectangle;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/ElementListener.h"
 
+@class ComItextpdfTextRectangle;
+
 @protocol ComItextpdfTextDocListener < ComItextpdfTextElementListener, NSObject, JavaObject >
+
 - (void)open;
 
 - (void)close;
@@ -35,6 +36,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextDocListener_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextDocListener)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextDocListener)
 
 #endif // _ComItextpdfTextDocListener_H_

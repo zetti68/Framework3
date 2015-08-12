@@ -6,43 +6,52 @@
 #ifndef _ComItextpdfTextPdfPdfSignature_H_
 #define _ComItextpdfTextPdfPdfSignature_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfDictionary.h"
+
 @class ComItextpdfTextPdfPdfDate;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfSecurityPdfSignatureBuildProperties;
 @class IOSByteArray;
 @class IOSIntArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfDictionary.h"
+@interface ComItextpdfTextPdfPdfSignature : ComItextpdfTextPdfPdfDictionary
 
-@interface ComItextpdfTextPdfPdfSignature : ComItextpdfTextPdfPdfDictionary {
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)filter
                     withComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)subFilter;
 
 - (void)setByteRangeWithIntArray:(IOSIntArray *)range;
 
-- (void)setContentsWithByteArray:(IOSByteArray *)contents;
-
 - (void)setCertWithByteArray:(IOSByteArray *)cert;
 
-- (void)setNameWithNSString:(NSString *)name;
+- (void)setContactWithNSString:(NSString *)name;
+
+- (void)setContentsWithByteArray:(IOSByteArray *)contents;
 
 - (void)setDateWithComItextpdfTextPdfPdfDate:(ComItextpdfTextPdfPdfDate *)date;
 
 - (void)setLocationWithNSString:(NSString *)name;
 
+- (void)setNameWithNSString:(NSString *)name;
+
 - (void)setReasonWithNSString:(NSString *)name;
 
 - (void)setSignatureCreatorWithNSString:(NSString *)name;
 
-- (ComItextpdfTextPdfSecurityPdfSignatureBuildProperties *)getPdfSignatureBuildProperties;
+#pragma mark Package-Private
 
-- (void)setContactWithNSString:(NSString *)name;
+- (ComItextpdfTextPdfSecurityPdfSignatureBuildProperties *)getPdfSignatureBuildProperties;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfSignature_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfSignature)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfSignature_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfSignature *self, ComItextpdfTextPdfPdfName *filter, ComItextpdfTextPdfPdfName *subFilter);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfSignature *new_ComItextpdfTextPdfPdfSignature_initWithComItextpdfTextPdfPdfName_withComItextpdfTextPdfPdfName_(ComItextpdfTextPdfPdfName *filter, ComItextpdfTextPdfPdfName *subFilter) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfSignature)
 
 #endif // _ComItextpdfTextPdfPdfSignature_H_

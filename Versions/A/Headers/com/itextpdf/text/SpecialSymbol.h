@@ -6,25 +6,38 @@
 #ifndef _ComItextpdfTextSpecialSymbol_H_
 #define _ComItextpdfTextSpecialSymbol_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextFont;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextSpecialSymbol : NSObject
 
-@interface ComItextpdfTextSpecialSymbol : NSObject {
-}
+#pragma mark Public
 
-+ (jint)indexWithNSString:(NSString *)string;
+- (instancetype)init;
 
 + (ComItextpdfTextChunk *)getWithChar:(jchar)c
               withComItextpdfTextFont:(ComItextpdfTextFont *)font;
 
 + (jchar)getCorrespondingSymbolWithChar:(jchar)c;
 
-- (instancetype)init;
++ (jint)indexWithNSString:(NSString *)string;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextSpecialSymbol_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextSpecialSymbol)
+
+FOUNDATION_EXPORT jint ComItextpdfTextSpecialSymbol_indexWithNSString_(NSString *string);
+
+FOUNDATION_EXPORT ComItextpdfTextChunk *ComItextpdfTextSpecialSymbol_getWithChar_withComItextpdfTextFont_(jchar c, ComItextpdfTextFont *font);
+
+FOUNDATION_EXPORT jchar ComItextpdfTextSpecialSymbol_getCorrespondingSymbolWithChar_(jchar c);
+
+FOUNDATION_EXPORT void ComItextpdfTextSpecialSymbol_init(ComItextpdfTextSpecialSymbol *self);
+
+FOUNDATION_EXPORT ComItextpdfTextSpecialSymbol *new_ComItextpdfTextSpecialSymbol_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextSpecialSymbol)
 
 #endif // _ComItextpdfTextSpecialSymbol_H_

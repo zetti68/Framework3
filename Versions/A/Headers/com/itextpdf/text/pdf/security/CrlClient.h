@@ -6,10 +6,10 @@
 #ifndef _ComItextpdfTextPdfSecurityCrlClient_H_
 #define _ComItextpdfTextPdfSecurityCrlClient_H_
 
+#include "J2ObjC_header.h"
+
 @class JavaSecurityCertX509Certificate;
 @protocol JavaUtilCollection;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfSecurityCrlClient < NSObject, JavaObject >
 
@@ -18,6 +18,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityCrlClient_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityCrlClient)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityCrlClient)
 
 #endif // _ComItextpdfTextPdfSecurityCrlClient_H_

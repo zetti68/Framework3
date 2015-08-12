@@ -6,22 +6,26 @@
 #ifndef _ComItextpdfTextPdfPdfRectangle_H_
 #define _ComItextpdfTextPdfPdfRectangle_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/NumberArray.h"
+
 @class ComItextpdfAwtGeomAffineTransform;
 @class ComItextpdfTextPdfPdfObject;
 @class ComItextpdfTextRectangle;
 @class IOSFloatArray;
 @class IOSIntArray;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/NumberArray.h"
+@interface ComItextpdfTextPdfPdfRectangle : ComItextpdfTextPdfNumberArray
 
-@interface ComItextpdfTextPdfPdfRectangle : ComItextpdfTextPdfNumberArray {
- @public
-  jfloat llx_;
-  jfloat lly_;
-  jfloat urx_;
-  jfloat ury_;
-}
+#pragma mark Public
+
+- (instancetype)initWithFloat:(jfloat)urx
+                    withFloat:(jfloat)ury;
+
+- (instancetype)initWithFloat:(jfloat)llx
+                    withFloat:(jfloat)lly
+                    withFloat:(jfloat)urx
+                    withFloat:(jfloat)ury;
 
 - (instancetype)initWithFloat:(jfloat)llx
                     withFloat:(jfloat)lly
@@ -29,62 +33,80 @@
                     withFloat:(jfloat)ury
                       withInt:(jint)rotation;
 
-- (instancetype)initWithFloat:(jfloat)llx
-                    withFloat:(jfloat)lly
-                    withFloat:(jfloat)urx
-                    withFloat:(jfloat)ury;
-
 - (instancetype)initWithFloat:(jfloat)urx
                     withFloat:(jfloat)ury
                       withInt:(jint)rotation;
-
-- (instancetype)initWithFloat:(jfloat)urx
-                    withFloat:(jfloat)ury;
-
-- (instancetype)initWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle
-                                         withInt:(jint)rotation;
 
 - (instancetype)initWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle;
 
-- (ComItextpdfTextRectangle *)getRectangle;
-
-- (jboolean)addWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+- (instancetype)initWithComItextpdfTextRectangle:(ComItextpdfTextRectangle *)rectangle
+                                         withInt:(jint)rotation;
 
 - (jboolean)addWithFloatArray:(IOSFloatArray *)values;
 
 - (jboolean)addWithIntArray:(IOSIntArray *)values;
 
+- (jboolean)addWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
+
 - (void)addFirstWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object;
-
-- (jfloat)left;
-
-- (jfloat)right;
-
-- (jfloat)top;
 
 - (jfloat)bottom;
 
-- (jfloat)leftWithInt:(jint)margin;
-
-- (jfloat)rightWithInt:(jint)margin;
-
-- (jfloat)topWithInt:(jint)margin;
-
 - (jfloat)bottomWithInt:(jint)margin;
 
-- (jfloat)width;
+- (ComItextpdfTextRectangle *)getRectangle;
 
 - (jfloat)height;
 
+- (jfloat)left;
+
+- (jfloat)leftWithInt:(jint)margin;
+
+- (jfloat)right;
+
+- (jfloat)rightWithInt:(jint)margin;
+
 - (ComItextpdfTextPdfPdfRectangle *)rotate;
+
+- (jfloat)top;
+
+- (jfloat)topWithInt:(jint)margin;
 
 - (ComItextpdfTextPdfPdfRectangle *)transformWithComItextpdfAwtGeomAffineTransform:(ComItextpdfAwtGeomAffineTransform *)transform;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfRectangle *)other;
+- (jfloat)width;
+
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfRectangle_init() {}
+J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfRectangle)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withFloat_withFloat_withInt_(ComItextpdfTextPdfPdfRectangle *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint rotation);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withFloat_withFloat_withInt_(jfloat llx, jfloat lly, jfloat urx, jfloat ury, jint rotation) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfRectangle *self, jfloat llx, jfloat lly, jfloat urx, jfloat ury);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withFloat_withFloat_(jfloat llx, jfloat lly, jfloat urx, jfloat ury) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withInt_(ComItextpdfTextPdfPdfRectangle *self, jfloat urx, jfloat ury, jint rotation);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_withInt_(jfloat urx, jfloat ury, jint rotation) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_(ComItextpdfTextPdfPdfRectangle *self, jfloat urx, jfloat ury);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithFloat_withFloat_(jfloat urx, jfloat ury) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithComItextpdfTextRectangle_withInt_(ComItextpdfTextPdfPdfRectangle *self, ComItextpdfTextRectangle *rectangle, jint rotation);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithComItextpdfTextRectangle_withInt_(ComItextpdfTextRectangle *rectangle, jint rotation) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfRectangle_initWithComItextpdfTextRectangle_(ComItextpdfTextPdfPdfRectangle *self, ComItextpdfTextRectangle *rectangle);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfRectangle *new_ComItextpdfTextPdfPdfRectangle_initWithComItextpdfTextRectangle_(ComItextpdfTextRectangle *rectangle) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfRectangle)
 
 #endif // _ComItextpdfTextPdfPdfRectangle_H_

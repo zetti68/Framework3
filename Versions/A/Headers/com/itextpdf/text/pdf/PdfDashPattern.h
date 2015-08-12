@@ -6,18 +6,15 @@
 #ifndef _ComItextpdfTextPdfPdfDashPattern_H_
 #define _ComItextpdfTextPdfPdfDashPattern_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfArray.h"
+
 @class ComItextpdfTextPdfPdfWriter;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfArray.h"
+@interface ComItextpdfTextPdfPdfDashPattern : ComItextpdfTextPdfPdfArray
 
-@interface ComItextpdfTextPdfPdfDashPattern : ComItextpdfTextPdfPdfArray {
- @public
-  jfloat dash_;
-  jfloat gap_;
-  jfloat phase_;
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -35,11 +32,29 @@
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfDashPattern *)other;
+#pragma mark Package-Private
 
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfDashPattern_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfDashPattern)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDashPattern_init(ComItextpdfTextPdfPdfDashPattern *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDashPattern *new_ComItextpdfTextPdfPdfDashPattern_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDashPattern_initWithFloat_(ComItextpdfTextPdfPdfDashPattern *self, jfloat dash);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDashPattern *new_ComItextpdfTextPdfPdfDashPattern_initWithFloat_(jfloat dash) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDashPattern_initWithFloat_withFloat_(ComItextpdfTextPdfPdfDashPattern *self, jfloat dash, jfloat gap);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDashPattern *new_ComItextpdfTextPdfPdfDashPattern_initWithFloat_withFloat_(jfloat dash, jfloat gap) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDashPattern_initWithFloat_withFloat_withFloat_(ComItextpdfTextPdfPdfDashPattern *self, jfloat dash, jfloat gap, jfloat phase);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDashPattern *new_ComItextpdfTextPdfPdfDashPattern_initWithFloat_withFloat_withFloat_(jfloat dash, jfloat gap, jfloat phase) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDashPattern)
 
 #endif // _ComItextpdfTextPdfPdfDashPattern_H_

@@ -6,18 +6,25 @@
 #ifndef _ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_H_
 #define _ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/xml/simpleparser/NewLineHandler.h"
 
-@interface ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler : NSObject < ComItextpdfTextXmlSimpleparserNewLineHandler > {
-}
+@interface ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler : NSObject < ComItextpdfTextXmlSimpleparserNewLineHandler >
 
-- (jboolean)isNewLineTagWithNSString:(NSString *)tag;
+#pragma mark Public
 
 - (instancetype)init;
 
+- (jboolean)isNewLineTagWithNSString:(NSString *)tag;
+
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_init(ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler *new_ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler)
 
 #endif // _ComItextpdfTextXmlSimpleparserHandlerNeverNewLineHandler_H_

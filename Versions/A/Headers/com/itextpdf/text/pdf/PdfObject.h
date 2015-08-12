@@ -6,22 +6,22 @@
 #ifndef _ComItextpdfTextPdfPdfObject_H_
 #define _ComItextpdfTextPdfPdfObject_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPRIndirectReference;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
 
-#import "JreEmulation.h"
-
-#define ComItextpdfTextPdfPdfObject_ARRAY 5
 #define ComItextpdfTextPdfPdfObject_BOOLEAN 1
-#define ComItextpdfTextPdfPdfObject_DICTIONARY 6
-#define ComItextpdfTextPdfPdfObject_INDIRECT 10
-#define ComItextpdfTextPdfPdfObject_NAME 4
-#define ComItextpdfTextPdfPdfObject_NULL 8
 #define ComItextpdfTextPdfPdfObject_NUMBER 2
-#define ComItextpdfTextPdfPdfObject_STREAM 7
 #define ComItextpdfTextPdfPdfObject_STRING 3
+#define ComItextpdfTextPdfPdfObject_NAME 4
+#define ComItextpdfTextPdfPdfObject_ARRAY 5
+#define ComItextpdfTextPdfPdfObject_DICTIONARY 6
+#define ComItextpdfTextPdfPdfObject_STREAM 7
+#define ComItextpdfTextPdfPdfObject_NULL 8
+#define ComItextpdfTextPdfPdfObject_INDIRECT 10
 
 @interface ComItextpdfTextPdfPdfObject : NSObject {
  @public
@@ -30,56 +30,58 @@
   ComItextpdfTextPdfPRIndirectReference *indRef_;
 }
 
-- (instancetype)initWithInt:(jint)type;
+#pragma mark Public
 
-- (instancetype)initWithInt:(jint)type
-               withNSString:(NSString *)content;
+- (jboolean)canBeInObjStm;
 
-- (instancetype)initWithInt:(jint)type
-              withByteArray:(IOSByteArray *)bytes;
+- (IOSByteArray *)getBytes;
+
+- (ComItextpdfTextPdfPRIndirectReference *)getIndRef;
+
+- (jboolean)isArray;
+
+- (jboolean)isBoolean;
+
+- (jboolean)isDictionary;
+
+- (jboolean)isIndirect;
+
+- (jboolean)isName;
+
+- (jboolean)isNull;
+
+- (jboolean)isNumber;
+
+- (jboolean)isStream;
+
+- (jboolean)isString;
+
+- (jint)length;
+
+- (void)setIndRefWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)indRef;
 
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
 - (NSString *)description;
 
-- (IOSByteArray *)getBytes;
+- (jint)type;
 
-- (jboolean)canBeInObjStm;
+#pragma mark Protected
 
-- (jint)length;
+- (instancetype)initWithInt:(jint)type;
+
+- (instancetype)initWithInt:(jint)type
+              withByteArray:(IOSByteArray *)bytes;
+
+- (instancetype)initWithInt:(jint)type
+               withNSString:(NSString *)content;
 
 - (void)setContentWithNSString:(NSString *)content;
 
-- (jint)type;
-
-- (jboolean)isNull;
-
-- (jboolean)isBoolean;
-
-- (jboolean)isNumber;
-
-- (jboolean)isString;
-
-- (jboolean)isName;
-
-- (jboolean)isArray;
-
-- (jboolean)isDictionary;
-
-- (jboolean)isStream;
-
-- (jboolean)isIndirect;
-
-- (ComItextpdfTextPdfPRIndirectReference *)getIndRef;
-
-- (void)setIndRefWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)indRef;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfObject *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfObject_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfObject)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfObject, bytes_, IOSByteArray *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfObject, indRef_, ComItextpdfTextPdfPRIndirectReference *)
@@ -110,5 +112,13 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfObject, TEXT_PDFDOCENCODING_, NS
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfObject_TEXT_UNICODE_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfObject, TEXT_UNICODE_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfObject_initWithInt_(ComItextpdfTextPdfPdfObject *self, jint type);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfObject_initWithInt_withNSString_(ComItextpdfTextPdfPdfObject *self, jint type, NSString *content);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfObject_initWithInt_withByteArray_(ComItextpdfTextPdfPdfObject *self, jint type, IOSByteArray *bytes);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfObject)
 
 #endif // _ComItextpdfTextPdfPdfObject_H_

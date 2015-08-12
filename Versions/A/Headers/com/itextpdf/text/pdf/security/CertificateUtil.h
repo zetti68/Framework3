@@ -6,28 +6,45 @@
 #ifndef _ComItextpdfTextPdfSecurityCertificateUtil_H_
 #define _ComItextpdfTextPdfSecurityCertificateUtil_H_
 
+#include "J2ObjC_header.h"
+
 @class JavaSecurityCertCRL;
 @class JavaSecurityCertX509Certificate;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfSecurityCertificateUtil : NSObject
 
-@interface ComItextpdfTextPdfSecurityCertificateUtil : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
+
++ (JavaSecurityCertCRL *)getCRLWithNSString:(NSString *)url;
 
 + (JavaSecurityCertCRL *)getCRLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)certificate;
 
 + (NSString *)getCRLURLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)certificate;
 
-+ (JavaSecurityCertCRL *)getCRLWithNSString:(NSString *)url;
-
 + (NSString *)getOCSPURLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)certificate;
 
 + (NSString *)getTSAURLWithJavaSecurityCertX509Certificate:(JavaSecurityCertX509Certificate *)certificate;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityCertificateUtil_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityCertificateUtil)
+
+FOUNDATION_EXPORT JavaSecurityCertCRL *ComItextpdfTextPdfSecurityCertificateUtil_getCRLWithJavaSecurityCertX509Certificate_(JavaSecurityCertX509Certificate *certificate);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityCertificateUtil_getCRLURLWithJavaSecurityCertX509Certificate_(JavaSecurityCertX509Certificate *certificate);
+
+FOUNDATION_EXPORT JavaSecurityCertCRL *ComItextpdfTextPdfSecurityCertificateUtil_getCRLWithNSString_(NSString *url);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityCertificateUtil_getOCSPURLWithJavaSecurityCertX509Certificate_(JavaSecurityCertX509Certificate *certificate);
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecurityCertificateUtil_getTSAURLWithJavaSecurityCertX509Certificate_(JavaSecurityCertX509Certificate *certificate);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityCertificateUtil_init(ComItextpdfTextPdfSecurityCertificateUtil *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityCertificateUtil *new_ComItextpdfTextPdfSecurityCertificateUtil_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityCertificateUtil)
 
 #endif // _ComItextpdfTextPdfSecurityCertificateUtil_H_

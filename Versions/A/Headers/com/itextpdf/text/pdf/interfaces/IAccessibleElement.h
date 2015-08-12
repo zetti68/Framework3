@@ -6,12 +6,12 @@
 #ifndef _ComItextpdfTextPdfInterfacesIAccessibleElement_H_
 #define _ComItextpdfTextPdfInterfacesIAccessibleElement_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextAccessibleElementId;
 @class ComItextpdfTextPdfPdfName;
 @class ComItextpdfTextPdfPdfObject;
 @class JavaUtilHashMap;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfInterfacesIAccessibleElement < NSObject, JavaObject >
 
@@ -34,6 +34,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesIAccessibleElement_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesIAccessibleElement)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesIAccessibleElement)
 
 #endif // _ComItextpdfTextPdfInterfacesIAccessibleElement_H_

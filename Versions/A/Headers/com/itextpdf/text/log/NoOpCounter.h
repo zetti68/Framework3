@@ -6,13 +6,16 @@
 #ifndef _ComItextpdfTextLogNoOpCounter_H_
 #define _ComItextpdfTextLogNoOpCounter_H_
 
-@class IOSClass;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/log/Counter.h"
 
-@interface ComItextpdfTextLogNoOpCounter : NSObject < ComItextpdfTextLogCounter > {
-}
+@class IOSClass;
+
+@interface ComItextpdfTextLogNoOpCounter : NSObject < ComItextpdfTextLogCounter >
+
+#pragma mark Public
+
+- (instancetype)init;
 
 - (id<ComItextpdfTextLogCounter>)getCounterWithIOSClass:(IOSClass *)klass;
 
@@ -20,10 +23,14 @@
 
 - (void)writtenWithLong:(jlong)l;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextLogNoOpCounter_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextLogNoOpCounter)
+
+FOUNDATION_EXPORT void ComItextpdfTextLogNoOpCounter_init(ComItextpdfTextLogNoOpCounter *self);
+
+FOUNDATION_EXPORT ComItextpdfTextLogNoOpCounter *new_ComItextpdfTextLogNoOpCounter_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextLogNoOpCounter)
 
 #endif // _ComItextpdfTextLogNoOpCounter_H_

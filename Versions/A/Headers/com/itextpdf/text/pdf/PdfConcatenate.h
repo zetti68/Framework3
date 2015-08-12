@@ -6,18 +6,20 @@
 #ifndef _ComItextpdfTextPdfPdfConcatenate_H_
 #define _ComItextpdfTextPdfPdfConcatenate_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextDocument;
 @class ComItextpdfTextPdfPdfCopy;
 @class ComItextpdfTextPdfPdfReader;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfPdfConcatenate : NSObject {
  @public
   ComItextpdfTextDocument *document_;
   ComItextpdfTextPdfPdfCopy *copy__;
 }
+
+#pragma mark Public
 
 - (instancetype)initWithJavaIoOutputStream:(JavaIoOutputStream *)os;
 
@@ -26,19 +28,27 @@
 
 - (jint)addPagesWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
 
+- (void)close;
+
 - (ComItextpdfTextPdfPdfCopy *)getWriter;
 
 - (void)open;
 
-- (void)close;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfConcatenate *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfConcatenate_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfConcatenate)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfConcatenate, document_, ComItextpdfTextDocument *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfConcatenate, copy__, ComItextpdfTextPdfPdfCopy *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfConcatenate_initWithJavaIoOutputStream_(ComItextpdfTextPdfPdfConcatenate *self, JavaIoOutputStream *os);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfConcatenate *new_ComItextpdfTextPdfPdfConcatenate_initWithJavaIoOutputStream_(JavaIoOutputStream *os) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfConcatenate_initWithJavaIoOutputStream_withBoolean_(ComItextpdfTextPdfPdfConcatenate *self, JavaIoOutputStream *os, jboolean smart);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfConcatenate *new_ComItextpdfTextPdfPdfConcatenate_initWithJavaIoOutputStream_withBoolean_(JavaIoOutputStream *os, jboolean smart) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfConcatenate)
 
 #endif // _ComItextpdfTextPdfPdfConcatenate_H_

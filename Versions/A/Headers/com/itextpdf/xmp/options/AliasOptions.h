@@ -6,43 +6,46 @@
 #ifndef _ComItextpdfXmpOptionsAliasOptions_H_
 #define _ComItextpdfXmpOptionsAliasOptions_H_
 
-@class ComItextpdfXmpOptionsPropertyOptions;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/xmp/options/Options.h"
 
+@class ComItextpdfXmpOptionsPropertyOptions;
+
+#define ComItextpdfXmpOptionsAliasOptions_PROP_DIRECT 0
 #define ComItextpdfXmpOptionsAliasOptions_PROP_ARRAY 512
+#define ComItextpdfXmpOptionsAliasOptions_PROP_ARRAY_ORDERED 1024
 #define ComItextpdfXmpOptionsAliasOptions_PROP_ARRAY_ALTERNATE 2048
 #define ComItextpdfXmpOptionsAliasOptions_PROP_ARRAY_ALT_TEXT 4096
-#define ComItextpdfXmpOptionsAliasOptions_PROP_ARRAY_ORDERED 1024
-#define ComItextpdfXmpOptionsAliasOptions_PROP_DIRECT 0
 
-@interface ComItextpdfXmpOptionsAliasOptions : ComItextpdfXmpOptionsOptions {
-}
+@interface ComItextpdfXmpOptionsAliasOptions : ComItextpdfXmpOptionsOptions
+
+#pragma mark Public
 
 - (instancetype)init;
 
 - (instancetype)initWithInt:(jint)options;
 
-- (jboolean)isSimple;
-
 - (jboolean)isArray;
-
-- (ComItextpdfXmpOptionsAliasOptions *)setArrayWithBoolean:(jboolean)value;
-
-- (jboolean)isArrayOrdered;
-
-- (ComItextpdfXmpOptionsAliasOptions *)setArrayOrderedWithBoolean:(jboolean)value;
 
 - (jboolean)isArrayAlternate;
 
-- (ComItextpdfXmpOptionsAliasOptions *)setArrayAlternateWithBoolean:(jboolean)value;
-
 - (jboolean)isArrayAltText;
+
+- (jboolean)isArrayOrdered;
+
+- (jboolean)isSimple;
+
+- (ComItextpdfXmpOptionsAliasOptions *)setArrayWithBoolean:(jboolean)value;
+
+- (ComItextpdfXmpOptionsAliasOptions *)setArrayAlternateWithBoolean:(jboolean)value;
 
 - (ComItextpdfXmpOptionsAliasOptions *)setArrayAltTextWithBoolean:(jboolean)value;
 
+- (ComItextpdfXmpOptionsAliasOptions *)setArrayOrderedWithBoolean:(jboolean)value;
+
 - (ComItextpdfXmpOptionsPropertyOptions *)toPropertyOptions;
+
+#pragma mark Protected
 
 - (NSString *)defineOptionNameWithInt:(jint)option;
 
@@ -50,7 +53,7 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpOptionsAliasOptions_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpOptionsAliasOptions)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsAliasOptions, PROP_DIRECT, jint)
 
@@ -61,5 +64,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsAliasOptions, PROP_ARRAY_ORDERED
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsAliasOptions, PROP_ARRAY_ALTERNATE, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpOptionsAliasOptions, PROP_ARRAY_ALT_TEXT, jint)
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsAliasOptions_init(ComItextpdfXmpOptionsAliasOptions *self);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsAliasOptions *new_ComItextpdfXmpOptionsAliasOptions_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfXmpOptionsAliasOptions_initWithInt_(ComItextpdfXmpOptionsAliasOptions *self, jint options);
+
+FOUNDATION_EXPORT ComItextpdfXmpOptionsAliasOptions *new_ComItextpdfXmpOptionsAliasOptions_initWithInt_(jint options) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpOptionsAliasOptions)
 
 #endif // _ComItextpdfXmpOptionsAliasOptions_H_

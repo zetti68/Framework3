@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfPdfLine_H_
 #define _ComItextpdfTextPdfPdfLine_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextChunk;
 @class ComItextpdfTextListItem;
 @class ComItextpdfTextPdfPdfChunk;
@@ -13,8 +15,6 @@
 @class IOSFloatArray;
 @class JavaUtilArrayList;
 @protocol JavaUtilIterator;
-
-#import "JreEmulation.h"
 
 @interface ComItextpdfTextPdfPdfLine : NSObject {
  @public
@@ -32,10 +32,46 @@
   jfloat tabPosition_;
 }
 
-- (instancetype)initWithFloat:(jfloat)left
-                    withFloat:(jfloat)right
-                      withInt:(jint)alignment
-                    withFloat:(jfloat)height;
+#pragma mark Public
+
+- (void)flush;
+
+- (jfloat)getAscender;
+
+- (ComItextpdfTextPdfPdfChunk *)getChunkWithInt:(jint)idx;
+
+- (jfloat)getDescender;
+
+- (jint)getLastStrokeChunk;
+
+- (jint)getLineLengthUtf32;
+
+- (jfloat)getOriginalWidth;
+
+- (jfloat)getWidthCorrectedWithFloat:(jfloat)charSpacing
+                           withFloat:(jfloat)wordSpacing;
+
+- (jboolean)hasToBeJustified;
+
+- (jboolean)isNewlineSplit;
+
+- (id<JavaUtilIterator>)iterator;
+
+- (jfloat)listIndent;
+
+- (ComItextpdfTextListItem *)listItem;
+
+- (ComItextpdfTextChunk *)listSymbol;
+
+- (void)resetAlignment;
+
+- (void)setListItemWithComItextpdfTextListItem:(ComItextpdfTextListItem *)listItem;
+
+- (jint)size;
+
+- (NSString *)description;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithFloat:(jfloat)left
                     withFloat:(jfloat)originalWidth
@@ -45,72 +81,46 @@
         withJavaUtilArrayList:(JavaUtilArrayList *)line
                   withBoolean:(jboolean)isRTL;
 
+- (instancetype)initWithFloat:(jfloat)left
+                    withFloat:(jfloat)right
+                      withInt:(jint)alignment
+                    withFloat:(jfloat)height;
+
 - (ComItextpdfTextPdfPdfChunk *)addWithComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)chunk;
 
-- (void)addToLineWithComItextpdfTextPdfPdfChunk:(ComItextpdfTextPdfPdfChunk *)chunk;
+- (IOSFloatArray *)getMaxSizeWithFloat:(jfloat)fixedLeading
+                             withFloat:(jfloat)multipliedLeading;
 
-- (jint)size;
-
-- (id<JavaUtilIterator>)iterator;
+- (jint)getSeparatorCount;
 
 - (jfloat)height;
 
 - (jfloat)indentLeft;
 
-- (jboolean)hasToBeJustified;
+- (jboolean)isRTL;
 
-- (void)resetAlignment;
+- (jint)numberOfSpaces;
 
 - (void)setExtraIndentWithFloat:(jfloat)extra;
 
 - (jfloat)widthLeft;
 
-- (jint)numberOfSpaces;
-
-- (void)setListItemWithComItextpdfTextListItem:(ComItextpdfTextListItem *)listItem;
-
-- (ComItextpdfTextChunk *)listSymbol;
-
-- (jfloat)listIndent;
-
-- (ComItextpdfTextListItem *)listItem;
-
-- (NSString *)description;
-
-- (jint)getLineLengthUtf32;
-
-- (jboolean)isNewlineSplit;
-
-- (jint)getLastStrokeChunk;
-
-- (ComItextpdfTextPdfPdfChunk *)getChunkWithInt:(jint)idx;
-
-- (jfloat)getOriginalWidth;
-
-- (IOSFloatArray *)getMaxSizeWithFloat:(jfloat)fixedLeading
-                             withFloat:(jfloat)multipliedLeading;
-
-- (jboolean)isRTL;
-
-- (jint)getSeparatorCount;
-
-- (jfloat)getWidthCorrectedWithFloat:(jfloat)charSpacing
-                           withFloat:(jfloat)wordSpacing;
-
-- (jfloat)getAscender;
-
-- (jfloat)getDescender;
-
-- (void)flush;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPdfLine *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfLine_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfLine)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLine, line_, JavaUtilArrayList *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLine, listItem__, ComItextpdfTextListItem *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPdfLine, tabStop_, ComItextpdfTextTabStop *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLine_initWithFloat_withFloat_withInt_withFloat_(ComItextpdfTextPdfPdfLine *self, jfloat left, jfloat right, jint alignment, jfloat height);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLine *new_ComItextpdfTextPdfPdfLine_initWithFloat_withFloat_withInt_withFloat_(jfloat left, jfloat right, jint alignment, jfloat height) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfLine_initWithFloat_withFloat_withFloat_withInt_withBoolean_withJavaUtilArrayList_withBoolean_(ComItextpdfTextPdfPdfLine *self, jfloat left, jfloat originalWidth, jfloat remainingWidth, jint alignment, jboolean newlineSplit, JavaUtilArrayList *line, jboolean isRTL);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfLine *new_ComItextpdfTextPdfPdfLine_initWithFloat_withFloat_withFloat_withInt_withBoolean_withJavaUtilArrayList_withBoolean_(jfloat left, jfloat originalWidth, jfloat remainingWidth, jint alignment, jboolean newlineSplit, JavaUtilArrayList *line, jboolean isRTL) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfLine)
 
 #endif // _ComItextpdfTextPdfPdfLine_H_

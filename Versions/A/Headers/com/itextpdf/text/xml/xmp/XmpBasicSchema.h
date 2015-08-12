@@ -6,35 +6,32 @@
 #ifndef _ComItextpdfTextXmlXmpXmpBasicSchema_H_
 #define _ComItextpdfTextXmlXmpXmpBasicSchema_H_
 
-@class IOSObjectArray;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/xml/xmp/XmpSchema.h"
 
-#define ComItextpdfTextXmlXmpXmpBasicSchema_serialVersionUID -2416613941622479298LL
+@class IOSObjectArray;
 
-@interface ComItextpdfTextXmlXmpXmpBasicSchema : ComItextpdfTextXmlXmpXmpSchema {
-}
+@interface ComItextpdfTextXmlXmpXmpBasicSchema : ComItextpdfTextXmlXmpXmpSchema
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (void)addCreatorToolWithNSString:(NSString *)creator;
-
 - (void)addCreateDateWithNSString:(NSString *)date;
 
-- (void)addModDateWithNSString:(NSString *)date;
+- (void)addCreatorToolWithNSString:(NSString *)creator;
+
+- (void)addIdentifiersWithNSStringArray:(IOSObjectArray *)id_;
 
 - (void)addMetaDataDateWithNSString:(NSString *)date;
 
-- (void)addIdentifiersWithNSStringArray:(IOSObjectArray *)id_;
+- (void)addModDateWithNSString:(NSString *)date;
 
 - (void)addNicknameWithNSString:(NSString *)name;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpXmpBasicSchema_init() {}
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicSchema, serialVersionUID, jlong)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpXmpBasicSchema)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpBasicSchema_DEFAULT_XPATH_ID_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicSchema, DEFAULT_XPATH_ID_, NSString *)
@@ -68,5 +65,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicSchema, NICKNAME_, NSStr
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpXmpBasicSchema_THUMBNAILS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpXmpBasicSchema, THUMBNAILS_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpXmpBasicSchema_init(ComItextpdfTextXmlXmpXmpBasicSchema *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpXmpBasicSchema *new_ComItextpdfTextXmlXmpXmpBasicSchema_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpXmpBasicSchema)
 
 #endif // _ComItextpdfTextXmlXmpXmpBasicSchema_H_

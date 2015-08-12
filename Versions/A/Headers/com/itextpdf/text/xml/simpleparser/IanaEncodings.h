@@ -6,23 +6,26 @@
 #ifndef _ComItextpdfTextXmlSimpleparserIanaEncodings_H_
 #define _ComItextpdfTextXmlSimpleparserIanaEncodings_H_
 
-@protocol JavaUtilMap;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextXmlSimpleparserIanaEncodings : NSObject
 
-@interface ComItextpdfTextXmlSimpleparserIanaEncodings : NSObject {
-}
-
-+ (NSString *)getJavaEncodingWithNSString:(NSString *)iana;
+#pragma mark Public
 
 - (instancetype)init;
 
++ (NSString *)getJavaEncodingWithNSString:(NSString *)iana;
+
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextXmlSimpleparserIanaEncodings_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextXmlSimpleparserIanaEncodings)
 
-FOUNDATION_EXPORT id<JavaUtilMap> ComItextpdfTextXmlSimpleparserIanaEncodings_MAP_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlSimpleparserIanaEncodings, MAP_, id<JavaUtilMap>)
+FOUNDATION_EXPORT NSString *ComItextpdfTextXmlSimpleparserIanaEncodings_getJavaEncodingWithNSString_(NSString *iana);
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlSimpleparserIanaEncodings_init(ComItextpdfTextXmlSimpleparserIanaEncodings *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlSimpleparserIanaEncodings *new_ComItextpdfTextXmlSimpleparserIanaEncodings_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserIanaEncodings)
 
 #endif // _ComItextpdfTextXmlSimpleparserIanaEncodings_H_

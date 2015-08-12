@@ -6,46 +6,20 @@
 #ifndef _ComItextpdfTextPdfCMapAwareDocumentFont_H_
 #define _ComItextpdfTextPdfCMapAwareDocumentFont_H_
 
-@class ComItextpdfTextPdfFontsCmapsCMapByteCid;
-@class ComItextpdfTextPdfFontsCmapsCMapCidUni;
-@class ComItextpdfTextPdfFontsCmapsCMapToUnicode;
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/DocumentFont.h"
+
 @class ComItextpdfTextPdfPRIndirectReference;
 @class ComItextpdfTextPdfPdfDictionary;
 @class IOSByteArray;
-@class IOSCharArray;
-@protocol JavaUtilMap;
 
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/DocumentFont.h"
+@interface ComItextpdfTextPdfCMapAwareDocumentFont : ComItextpdfTextPdfDocumentFont
 
-@interface ComItextpdfTextPdfCMapAwareDocumentFont : ComItextpdfTextPdfDocumentFont {
- @public
-  ComItextpdfTextPdfPdfDictionary *fontDic_;
-  jint spaceWidth_;
-  ComItextpdfTextPdfFontsCmapsCMapToUnicode *toUnicodeCmap_;
-  ComItextpdfTextPdfFontsCmapsCMapByteCid *byteCid_;
-  ComItextpdfTextPdfFontsCmapsCMapCidUni *cidUni_;
-  IOSCharArray *cidbyte2uni_;
-  id<JavaUtilMap> uni2cid_;
-}
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)font;
 
 - (instancetype)initWithComItextpdfTextPdfPRIndirectReference:(ComItextpdfTextPdfPRIndirectReference *)refFont;
-
-- (void)initFont OBJC_METHOD_FAMILY_NONE;
-
-- (void)processToUnicode;
-
-- (void)processUni2Byte;
-
-- (jint)computeAverageWidth;
-
-- (jint)getWidthWithInt:(jint)char1;
-
-- (NSString *)decodeSingleCIDWithByteArray:(IOSByteArray *)bytes
-                                   withInt:(jint)offset
-                                   withInt:(jint)len;
 
 - (NSString *)decodeWithByteArray:(IOSByteArray *)cidbytes
                           withInt:(jint)offset
@@ -55,17 +29,20 @@
                           withInt:(jint)offset
                           withInt:(jint)len;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfCMapAwareDocumentFont *)other;
+- (jint)getWidthWithInt:(jint)char1;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfCMapAwareDocumentFont_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfCMapAwareDocumentFont)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, fontDic_, ComItextpdfTextPdfPdfDictionary *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, toUnicodeCmap_, ComItextpdfTextPdfFontsCmapsCMapToUnicode *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, byteCid_, ComItextpdfTextPdfFontsCmapsCMapByteCid *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, cidUni_, ComItextpdfTextPdfFontsCmapsCMapCidUni *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, cidbyte2uni_, IOSCharArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfCMapAwareDocumentFont, uni2cid_, id<JavaUtilMap>)
+FOUNDATION_EXPORT void ComItextpdfTextPdfCMapAwareDocumentFont_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfCMapAwareDocumentFont *self, ComItextpdfTextPdfPdfDictionary *font);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCMapAwareDocumentFont *new_ComItextpdfTextPdfCMapAwareDocumentFont_initWithComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPdfDictionary *font) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfCMapAwareDocumentFont_initWithComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfCMapAwareDocumentFont *self, ComItextpdfTextPdfPRIndirectReference *refFont);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfCMapAwareDocumentFont *new_ComItextpdfTextPdfCMapAwareDocumentFont_initWithComItextpdfTextPdfPRIndirectReference_(ComItextpdfTextPdfPRIndirectReference *refFont) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfCMapAwareDocumentFont)
 
 #endif // _ComItextpdfTextPdfCMapAwareDocumentFont_H_

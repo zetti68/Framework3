@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfParserTaggedPdfReaderTool_H_
 #define _ComItextpdfTextPdfParserTaggedPdfReaderTool_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfArray;
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfName;
@@ -14,20 +16,22 @@
 @class JavaIoOutputStream;
 @class JavaIoPrintWriter;
 
-#import "JreEmulation.h"
-
 @interface ComItextpdfTextPdfParserTaggedPdfReaderTool : NSObject {
  @public
   ComItextpdfTextPdfPdfReader *reader_;
   JavaIoPrintWriter *out_;
 }
 
-- (void)convertToXmlWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                             withJavaIoOutputStream:(JavaIoOutputStream *)os
-                                       withNSString:(NSString *)charset;
+#pragma mark Public
+
+- (instancetype)init;
 
 - (void)convertToXmlWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                              withJavaIoOutputStream:(JavaIoOutputStream *)os;
+
+- (void)convertToXmlWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                             withJavaIoOutputStream:(JavaIoOutputStream *)os
+                                       withNSString:(NSString *)charset;
 
 - (void)inspectChildWithComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)k;
 
@@ -38,23 +42,25 @@
 - (void)inspectChildDictionaryWithComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)k
                                                       withBoolean:(jboolean)inspectAttributes;
 
-- (NSString *)xmlNameWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
-
-+ (NSString *)fixTagNameWithNSString:(NSString *)tag;
-
 - (void)parseTagWithNSString:(NSString *)tag
 withComItextpdfTextPdfPdfObject:(ComItextpdfTextPdfPdfObject *)object
 withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)page;
 
-- (instancetype)init;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserTaggedPdfReaderTool *)other;
+- (NSString *)xmlNameWithComItextpdfTextPdfPdfName:(ComItextpdfTextPdfPdfName *)name;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserTaggedPdfReaderTool_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserTaggedPdfReaderTool)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTaggedPdfReaderTool, reader_, ComItextpdfTextPdfPdfReader *)
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserTaggedPdfReaderTool, out_, JavaIoPrintWriter *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserTaggedPdfReaderTool_init(ComItextpdfTextPdfParserTaggedPdfReaderTool *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserTaggedPdfReaderTool *new_ComItextpdfTextPdfParserTaggedPdfReaderTool_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserTaggedPdfReaderTool)
 
 #endif // _ComItextpdfTextPdfParserTaggedPdfReaderTool_H_

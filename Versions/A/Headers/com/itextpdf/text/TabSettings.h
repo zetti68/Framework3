@@ -6,49 +6,63 @@
 #ifndef _ComItextpdfTextTabSettings_H_
 #define _ComItextpdfTextTabSettings_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextTabStop;
 @protocol JavaUtilList;
 
-#import "JreEmulation.h"
-
 #define ComItextpdfTextTabSettings_DEFAULT_TAB_INTERVAL 36.0f
 
-@interface ComItextpdfTextTabSettings : NSObject {
- @public
-  id<JavaUtilList> tabStops_;
-  jfloat tabInterval_;
-}
+@interface ComItextpdfTextTabSettings : NSObject
 
-+ (ComItextpdfTextTabStop *)getTabStopNewInstanceWithFloat:(jfloat)currentPosition
-                            withComItextpdfTextTabSettings:(ComItextpdfTextTabSettings *)tabSettings;
+#pragma mark Public
 
 - (instancetype)init;
 
-- (instancetype)initWithJavaUtilList:(id<JavaUtilList>)tabStops;
-
 - (instancetype)initWithFloat:(jfloat)tabInterval;
+
+- (instancetype)initWithJavaUtilList:(id<JavaUtilList>)tabStops;
 
 - (instancetype)initWithJavaUtilList:(id<JavaUtilList>)tabStops
                            withFloat:(jfloat)tabInterval;
 
-- (id<JavaUtilList>)getTabStops;
-
-- (void)setTabStopsWithJavaUtilList:(id<JavaUtilList>)tabStops;
-
 - (jfloat)getTabInterval;
-
-- (void)setTabIntervalWithFloat:(jfloat)tabInterval;
 
 - (ComItextpdfTextTabStop *)getTabStopNewInstanceWithFloat:(jfloat)currentPosition;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextTabSettings *)other;
++ (ComItextpdfTextTabStop *)getTabStopNewInstanceWithFloat:(jfloat)currentPosition
+                            withComItextpdfTextTabSettings:(ComItextpdfTextTabSettings *)tabSettings;
+
+- (id<JavaUtilList>)getTabStops;
+
+- (void)setTabIntervalWithFloat:(jfloat)tabInterval;
+
+- (void)setTabStopsWithJavaUtilList:(id<JavaUtilList>)tabStops;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextTabSettings_init() {}
-
-J2OBJC_FIELD_SETTER(ComItextpdfTextTabSettings, tabStops_, id<JavaUtilList>)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextTabSettings)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextTabSettings, DEFAULT_TAB_INTERVAL, jfloat)
+
+FOUNDATION_EXPORT ComItextpdfTextTabStop *ComItextpdfTextTabSettings_getTabStopNewInstanceWithFloat_withComItextpdfTextTabSettings_(jfloat currentPosition, ComItextpdfTextTabSettings *tabSettings);
+
+FOUNDATION_EXPORT void ComItextpdfTextTabSettings_init(ComItextpdfTextTabSettings *self);
+
+FOUNDATION_EXPORT ComItextpdfTextTabSettings *new_ComItextpdfTextTabSettings_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabSettings_initWithJavaUtilList_(ComItextpdfTextTabSettings *self, id<JavaUtilList> tabStops);
+
+FOUNDATION_EXPORT ComItextpdfTextTabSettings *new_ComItextpdfTextTabSettings_initWithJavaUtilList_(id<JavaUtilList> tabStops) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabSettings_initWithFloat_(ComItextpdfTextTabSettings *self, jfloat tabInterval);
+
+FOUNDATION_EXPORT ComItextpdfTextTabSettings *new_ComItextpdfTextTabSettings_initWithFloat_(jfloat tabInterval) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextTabSettings_initWithJavaUtilList_withFloat_(ComItextpdfTextTabSettings *self, id<JavaUtilList> tabStops, jfloat tabInterval);
+
+FOUNDATION_EXPORT ComItextpdfTextTabSettings *new_ComItextpdfTextTabSettings_initWithJavaUtilList_withFloat_(id<JavaUtilList> tabStops, jfloat tabInterval) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextTabSettings)
 
 #endif // _ComItextpdfTextTabSettings_H_

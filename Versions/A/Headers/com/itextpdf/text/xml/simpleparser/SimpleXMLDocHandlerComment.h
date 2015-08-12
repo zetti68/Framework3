@@ -6,7 +6,7 @@
 #ifndef _ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment_H_
 #define _ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
 @protocol ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment < NSObject, JavaObject >
 
@@ -14,6 +14,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment)
 
 #endif // _ComItextpdfTextXmlSimpleparserSimpleXMLDocHandlerComment_H_

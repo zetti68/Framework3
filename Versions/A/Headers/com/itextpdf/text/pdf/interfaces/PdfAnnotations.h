@@ -6,11 +6,11 @@
 #ifndef _ComItextpdfTextPdfInterfacesPdfAnnotations_H_
 #define _ComItextpdfTextPdfInterfacesPdfAnnotations_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfAcroForm;
 @class ComItextpdfTextPdfPdfAnnotation;
 @class ComItextpdfTextPdfPdfFormField;
-
-#import "JreEmulation.h"
 
 @protocol ComItextpdfTextPdfInterfacesPdfAnnotations < NSObject, JavaObject >
 
@@ -24,6 +24,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfInterfacesPdfAnnotations_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfInterfacesPdfAnnotations)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfInterfacesPdfAnnotations)
 
 #endif // _ComItextpdfTextPdfInterfacesPdfAnnotations_H_

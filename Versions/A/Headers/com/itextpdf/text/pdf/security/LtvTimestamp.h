@@ -6,22 +6,31 @@
 #ifndef _ComItextpdfTextPdfSecurityLtvTimestamp_H_
 #define _ComItextpdfTextPdfSecurityLtvTimestamp_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfPdfSignatureAppearance;
 @protocol ComItextpdfTextPdfSecurityTSAClient;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfSecurityLtvTimestamp : NSObject
 
-@interface ComItextpdfTextPdfSecurityLtvTimestamp : NSObject {
-}
+#pragma mark Public
+
+- (instancetype)init;
 
 + (void)timestampWithComItextpdfTextPdfPdfSignatureAppearance:(ComItextpdfTextPdfPdfSignatureAppearance *)sap
                       withComItextpdfTextPdfSecurityTSAClient:(id<ComItextpdfTextPdfSecurityTSAClient>)tsa
                                                  withNSString:(NSString *)signatureName;
 
-- (instancetype)init;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecurityLtvTimestamp_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecurityLtvTimestamp)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityLtvTimestamp_timestampWithComItextpdfTextPdfPdfSignatureAppearance_withComItextpdfTextPdfSecurityTSAClient_withNSString_(ComItextpdfTextPdfPdfSignatureAppearance *sap, id<ComItextpdfTextPdfSecurityTSAClient> tsa, NSString *signatureName);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecurityLtvTimestamp_init(ComItextpdfTextPdfSecurityLtvTimestamp *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecurityLtvTimestamp *new_ComItextpdfTextPdfSecurityLtvTimestamp_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecurityLtvTimestamp)
 
 #endif // _ComItextpdfTextPdfSecurityLtvTimestamp_H_

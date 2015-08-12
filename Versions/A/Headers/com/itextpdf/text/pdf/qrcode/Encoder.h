@@ -6,55 +6,66 @@
 #ifndef _ComItextpdfTextPdfQrcodeEncoder_H_
 #define _ComItextpdfTextPdfQrcodeEncoder_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeBitVector;
 @class ComItextpdfTextPdfQrcodeByteArray;
-@class ComItextpdfTextPdfQrcodeByteMatrix;
-@class ComItextpdfTextPdfQrcodeCharacterSetECI;
 @class ComItextpdfTextPdfQrcodeErrorCorrectionLevel;
 @class ComItextpdfTextPdfQrcodeMode;
 @class ComItextpdfTextPdfQrcodeQRCode;
 @class IOSIntArray;
 @protocol JavaUtilMap;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeEncoder : NSObject
 
-@interface ComItextpdfTextPdfQrcodeEncoder : NSObject {
-}
-
-- (instancetype)init;
-
-+ (jint)calculateMaskPenaltyWithComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)encodeWithNSString:(NSString *)content
-withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
-withComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)qrCode;
-
-+ (void)encodeWithNSString:(NSString *)content
-withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
-           withJavaUtilMap:(id<JavaUtilMap>)hints
-withComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)qrCode;
-
-+ (jint)getAlphanumericCodeWithInt:(jint)code;
+#pragma mark Public
 
 + (ComItextpdfTextPdfQrcodeMode *)chooseModeWithNSString:(NSString *)content;
 
 + (ComItextpdfTextPdfQrcodeMode *)chooseModeWithNSString:(NSString *)content
                                             withNSString:(NSString *)encoding;
 
-+ (jboolean)isOnlyDoubleByteKanjiWithNSString:(NSString *)content;
-
-+ (jint)chooseMaskPatternWithComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits
-              withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
-                                                       withInt:(jint)version_
-                        withComItextpdfTextPdfQrcodeByteMatrix:(ComItextpdfTextPdfQrcodeByteMatrix *)matrix;
-
-+ (void)initQRCodeWithInt:(jint)numInputBytes
++ (void)encodeWithNSString:(NSString *)content
 withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
-withComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
-withComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)qrCode OBJC_METHOD_FAMILY_NONE;
+           withJavaUtilMap:(id<JavaUtilMap>)hints
+withComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)qrCode;
 
-+ (void)terminateBitsWithInt:(jint)numDataBytes
++ (void)encodeWithNSString:(NSString *)content
+withComItextpdfTextPdfQrcodeErrorCorrectionLevel:(ComItextpdfTextPdfQrcodeErrorCorrectionLevel *)ecLevel
+withComItextpdfTextPdfQrcodeQRCode:(ComItextpdfTextPdfQrcodeQRCode *)qrCode;
+
+#pragma mark Package-Private
+
++ (void)append8BitBytesWithNSString:(NSString *)content
+withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits
+                       withNSString:(NSString *)encoding;
+
++ (void)appendAlphanumericBytesWithNSString:(NSString *)content
+      withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
+
++ (void)appendBytesWithNSString:(NSString *)content
+withComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
+withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits
+                   withNSString:(NSString *)encoding;
+
++ (void)appendKanjiBytesWithNSString:(NSString *)content
 withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
+
++ (void)appendLengthInfoWithInt:(jint)numLetters
+                        withInt:(jint)version_
+withComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
+withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
+
++ (void)appendModeInfoWithComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
+                 withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
+
++ (void)appendNumericBytesWithNSString:(NSString *)content
+ withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
+
++ (ComItextpdfTextPdfQrcodeByteArray *)generateECBytesWithComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)dataBytes
+                                                                                    withInt:(jint)numEcBytesInBlock;
+
++ (jint)getAlphanumericCodeWithInt:(jint)code;
 
 + (void)getNumDataBytesAndNumECBytesForBlockIDWithInt:(jint)numTotalBytes
                                               withInt:(jint)numDataBytes
@@ -69,47 +80,48 @@ withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
                                                            withInt:(jint)numRSBlocks
                              withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)result;
 
-+ (ComItextpdfTextPdfQrcodeByteArray *)generateECBytesWithComItextpdfTextPdfQrcodeByteArray:(ComItextpdfTextPdfQrcodeByteArray *)dataBytes
-                                                                                    withInt:(jint)numEcBytesInBlock;
-
-+ (void)appendModeInfoWithComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
-                 withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
-
-+ (void)appendLengthInfoWithInt:(jint)numLetters
-                        withInt:(jint)version_
-withComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
++ (void)terminateBitsWithInt:(jint)numDataBytes
 withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
-
-+ (void)appendBytesWithNSString:(NSString *)content
-withComItextpdfTextPdfQrcodeMode:(ComItextpdfTextPdfQrcodeMode *)mode
-withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits
-                   withNSString:(NSString *)encoding;
-
-+ (void)appendNumericBytesWithNSString:(NSString *)content
- withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
-
-+ (void)appendAlphanumericBytesWithNSString:(NSString *)content
-      withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
-
-+ (void)append8BitBytesWithNSString:(NSString *)content
-withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits
-                       withNSString:(NSString *)encoding;
-
-+ (void)appendKanjiBytesWithNSString:(NSString *)content
-withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
-
-+ (void)appendECIWithComItextpdfTextPdfQrcodeCharacterSetECI:(ComItextpdfTextPdfQrcodeCharacterSetECI *)eci
-                       withComItextpdfTextPdfQrcodeBitVector:(ComItextpdfTextPdfQrcodeBitVector *)bits;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeEncoder_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeEncoder)
-
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfQrcodeEncoder_ALPHANUMERIC_TABLE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeEncoder, ALPHANUMERIC_TABLE_, IOSIntArray *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfQrcodeEncoder_DEFAULT_BYTE_MODE_ENCODING_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeEncoder, DEFAULT_BYTE_MODE_ENCODING_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_encodeWithNSString_withComItextpdfTextPdfQrcodeErrorCorrectionLevel_withComItextpdfTextPdfQrcodeQRCode_(NSString *content, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel, ComItextpdfTextPdfQrcodeQRCode *qrCode);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_encodeWithNSString_withComItextpdfTextPdfQrcodeErrorCorrectionLevel_withJavaUtilMap_withComItextpdfTextPdfQrcodeQRCode_(NSString *content, ComItextpdfTextPdfQrcodeErrorCorrectionLevel *ecLevel, id<JavaUtilMap> hints, ComItextpdfTextPdfQrcodeQRCode *qrCode);
+
+FOUNDATION_EXPORT jint ComItextpdfTextPdfQrcodeEncoder_getAlphanumericCodeWithInt_(jint code);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeMode *ComItextpdfTextPdfQrcodeEncoder_chooseModeWithNSString_(NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeMode *ComItextpdfTextPdfQrcodeEncoder_chooseModeWithNSString_withNSString_(NSString *content, NSString *encoding);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_terminateBitsWithInt_withComItextpdfTextPdfQrcodeBitVector_(jint numDataBytes, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_getNumDataBytesAndNumECBytesForBlockIDWithInt_withInt_withInt_withInt_withIntArray_withIntArray_(jint numTotalBytes, jint numDataBytes, jint numRSBlocks, jint blockID, IOSIntArray *numDataBytesInBlock, IOSIntArray *numECBytesInBlock);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_interleaveWithECBytesWithComItextpdfTextPdfQrcodeBitVector_withInt_withInt_withInt_withComItextpdfTextPdfQrcodeBitVector_(ComItextpdfTextPdfQrcodeBitVector *bits, jint numTotalBytes, jint numDataBytes, jint numRSBlocks, ComItextpdfTextPdfQrcodeBitVector *result);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeByteArray *ComItextpdfTextPdfQrcodeEncoder_generateECBytesWithComItextpdfTextPdfQrcodeByteArray_withInt_(ComItextpdfTextPdfQrcodeByteArray *dataBytes, jint numEcBytesInBlock);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendModeInfoWithComItextpdfTextPdfQrcodeMode_withComItextpdfTextPdfQrcodeBitVector_(ComItextpdfTextPdfQrcodeMode *mode, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendLengthInfoWithInt_withInt_withComItextpdfTextPdfQrcodeMode_withComItextpdfTextPdfQrcodeBitVector_(jint numLetters, jint version_, ComItextpdfTextPdfQrcodeMode *mode, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendBytesWithNSString_withComItextpdfTextPdfQrcodeMode_withComItextpdfTextPdfQrcodeBitVector_withNSString_(NSString *content, ComItextpdfTextPdfQrcodeMode *mode, ComItextpdfTextPdfQrcodeBitVector *bits, NSString *encoding);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendNumericBytesWithNSString_withComItextpdfTextPdfQrcodeBitVector_(NSString *content, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendAlphanumericBytesWithNSString_withComItextpdfTextPdfQrcodeBitVector_(NSString *content, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_append8BitBytesWithNSString_withComItextpdfTextPdfQrcodeBitVector_withNSString_(NSString *content, ComItextpdfTextPdfQrcodeBitVector *bits, NSString *encoding);
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeEncoder_appendKanjiBytesWithNSString_withComItextpdfTextPdfQrcodeBitVector_(NSString *content, ComItextpdfTextPdfQrcodeBitVector *bits);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeEncoder)
 
 #endif // _ComItextpdfTextPdfQrcodeEncoder_H_

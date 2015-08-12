@@ -6,27 +6,26 @@
 #ifndef _ComItextpdfTextHeader_H_
 #define _ComItextpdfTextHeader_H_
 
-@class JavaLangStringBuffer;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/Meta.h"
 
-@interface ComItextpdfTextHeader : ComItextpdfTextMeta {
- @public
-  JavaLangStringBuffer *name_;
-}
+@interface ComItextpdfTextHeader : ComItextpdfTextMeta
+
+#pragma mark Public
 
 - (instancetype)initWithNSString:(NSString *)name
                     withNSString:(NSString *)content;
 
 - (NSString *)getName;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextHeader *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextHeader_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextHeader)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextHeader, name_, JavaLangStringBuffer *)
+FOUNDATION_EXPORT void ComItextpdfTextHeader_initWithNSString_withNSString_(ComItextpdfTextHeader *self, NSString *name, NSString *content);
+
+FOUNDATION_EXPORT ComItextpdfTextHeader *new_ComItextpdfTextHeader_initWithNSString_withNSString_(NSString *name, NSString *content) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextHeader)
 
 #endif // _ComItextpdfTextHeader_H_

@@ -6,9 +6,9 @@
 #ifndef _ComItextpdfTextIoRandomAccessSource_H_
 #define _ComItextpdfTextIoRandomAccessSource_H_
 
-@class IOSByteArray;
+#include "J2ObjC_header.h"
 
-#import "JreEmulation.h"
+@class IOSByteArray;
 
 @protocol ComItextpdfTextIoRandomAccessSource < NSObject, JavaObject >
 
@@ -25,6 +25,8 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextIoRandomAccessSource_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextIoRandomAccessSource)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextIoRandomAccessSource)
 
 #endif // _ComItextpdfTextIoRandomAccessSource_H_

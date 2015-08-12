@@ -6,21 +6,16 @@
 #ifndef _ComItextpdfTextPdfParserSimpleTextExtractionStrategy_H_
 #define _ComItextpdfTextPdfParserSimpleTextExtractionStrategy_H_
 
-@class ComItextpdfTextPdfParserImageRenderInfo;
-@class ComItextpdfTextPdfParserTextRenderInfo;
-@class ComItextpdfTextPdfParserVector;
-@class JavaLangStringBuffer;
-@protocol JavaLangCharSequence;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/parser/TextExtractionStrategy.h"
 
-@interface ComItextpdfTextPdfParserSimpleTextExtractionStrategy : NSObject < ComItextpdfTextPdfParserTextExtractionStrategy > {
- @public
-  ComItextpdfTextPdfParserVector *lastStart_;
-  ComItextpdfTextPdfParserVector *lastEnd_;
-  JavaLangStringBuffer *result_;
-}
+@class ComItextpdfTextPdfParserImageRenderInfo;
+@class ComItextpdfTextPdfParserTextRenderInfo;
+@protocol JavaLangCharSequence;
+
+@interface ComItextpdfTextPdfParserSimpleTextExtractionStrategy : NSObject < ComItextpdfTextPdfParserTextExtractionStrategy >
+
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -30,20 +25,22 @@
 
 - (NSString *)getResultantText;
 
-- (void)appendTextChunkWithJavaLangCharSequence:(id<JavaLangCharSequence>)text;
+- (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
 
 - (void)renderTextWithComItextpdfTextPdfParserTextRenderInfo:(ComItextpdfTextPdfParserTextRenderInfo *)renderInfo;
 
-- (void)renderImageWithComItextpdfTextPdfParserImageRenderInfo:(ComItextpdfTextPdfParserImageRenderInfo *)renderInfo;
+#pragma mark Protected
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfParserSimpleTextExtractionStrategy *)other;
+- (void)appendTextChunkWithJavaLangCharSequence:(id<JavaLangCharSequence>)text;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfParserSimpleTextExtractionStrategy_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfParserSimpleTextExtractionStrategy)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserSimpleTextExtractionStrategy, lastStart_, ComItextpdfTextPdfParserVector *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserSimpleTextExtractionStrategy, lastEnd_, ComItextpdfTextPdfParserVector *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfParserSimpleTextExtractionStrategy, result_, JavaLangStringBuffer *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfParserSimpleTextExtractionStrategy_init(ComItextpdfTextPdfParserSimpleTextExtractionStrategy *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfParserSimpleTextExtractionStrategy *new_ComItextpdfTextPdfParserSimpleTextExtractionStrategy_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfParserSimpleTextExtractionStrategy)
 
 #endif // _ComItextpdfTextPdfParserSimpleTextExtractionStrategy_H_

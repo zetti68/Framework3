@@ -6,14 +6,14 @@
 #ifndef _ComItextpdfTextPdfPRStream_H_
 #define _ComItextpdfTextPdfPRStream_H_
 
+#include "J2ObjC_header.h"
+#include "com/itextpdf/text/pdf/PdfStream.h"
+
 @class ComItextpdfTextPdfPdfDictionary;
 @class ComItextpdfTextPdfPdfReader;
 @class ComItextpdfTextPdfPdfWriter;
 @class IOSByteArray;
 @class JavaIoOutputStream;
-
-#import "JreEmulation.h"
-#include "com/itextpdf/text/pdf/PdfStream.h"
 
 @interface ComItextpdfTextPdfPRStream : ComItextpdfTextPdfPdfStream {
  @public
@@ -24,15 +24,7 @@
   jint objGen_;
 }
 
-- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream
-               withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)newDic;
-
-- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream
-               withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)newDic
-                   withComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
-
-- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
-                                           withLong:(jlong)offset;
+#pragma mark Public
 
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                                       withByteArray:(IOSByteArray *)conts;
@@ -40,6 +32,26 @@
 - (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
                                       withByteArray:(IOSByteArray *)conts
                                             withInt:(jint)compressionLevel;
+
+- (instancetype)initWithComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader
+                                           withLong:(jlong)offset;
+
+- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream
+               withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)newDic;
+
+- (instancetype)initWithComItextpdfTextPdfPRStream:(ComItextpdfTextPdfPRStream *)stream
+               withComItextpdfTextPdfPdfDictionary:(ComItextpdfTextPdfPdfDictionary *)newDic
+                   withComItextpdfTextPdfPdfReader:(ComItextpdfTextPdfPdfReader *)reader;
+
+- (IOSByteArray *)getBytes;
+
+- (jint)getLength;
+
+- (jlong)getOffset;
+
+- (ComItextpdfTextPdfPdfReader *)getReader;
+
+- (void)setDataWithByteArray:(IOSByteArray *)data;
 
 - (void)setDataWithByteArray:(IOSByteArray *)data
                  withBoolean:(jboolean)compress;
@@ -50,34 +62,46 @@
 
 - (void)setDataRawWithByteArray:(IOSByteArray *)data;
 
-- (void)setDataWithByteArray:(IOSByteArray *)data;
-
 - (void)setLengthWithInt:(jint)length;
-
-- (jlong)getOffset;
-
-- (jint)getLength;
-
-- (ComItextpdfTextPdfPdfReader *)getReader;
-
-- (IOSByteArray *)getBytes;
 
 - (void)setObjNumWithInt:(jint)objNum
                  withInt:(jint)objGen;
 
-- (jint)getObjNum;
-
-- (jint)getObjGen;
-
 - (void)toPdfWithComItextpdfTextPdfPdfWriter:(ComItextpdfTextPdfPdfWriter *)writer
                       withJavaIoOutputStream:(JavaIoOutputStream *)os;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfPRStream *)other;
+#pragma mark Package-Private
+
+- (jint)getObjGen;
+
+- (jint)getObjNum;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPRStream_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPRStream)
 
 J2OBJC_FIELD_SETTER(ComItextpdfTextPdfPRStream, reader_, ComItextpdfTextPdfPdfReader *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPRStream *self, ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *newDic);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRStream *new_ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_(ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *newDic) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPRStream *self, ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *newDic, ComItextpdfTextPdfPdfReader *reader);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRStream *new_ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPRStream_withComItextpdfTextPdfPdfDictionary_withComItextpdfTextPdfPdfReader_(ComItextpdfTextPdfPRStream *stream, ComItextpdfTextPdfPdfDictionary *newDic, ComItextpdfTextPdfPdfReader *reader) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withLong_(ComItextpdfTextPdfPRStream *self, ComItextpdfTextPdfPdfReader *reader, jlong offset);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRStream *new_ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withLong_(ComItextpdfTextPdfPdfReader *reader, jlong offset) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withByteArray_(ComItextpdfTextPdfPRStream *self, ComItextpdfTextPdfPdfReader *reader, IOSByteArray *conts);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRStream *new_ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withByteArray_(ComItextpdfTextPdfPdfReader *reader, IOSByteArray *conts) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withByteArray_withInt_(ComItextpdfTextPdfPRStream *self, ComItextpdfTextPdfPdfReader *reader, IOSByteArray *conts, jint compressionLevel);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPRStream *new_ComItextpdfTextPdfPRStream_initWithComItextpdfTextPdfPdfReader_withByteArray_withInt_(ComItextpdfTextPdfPdfReader *reader, IOSByteArray *conts, jint compressionLevel) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPRStream)
 
 #endif // _ComItextpdfTextPdfPRStream_H_

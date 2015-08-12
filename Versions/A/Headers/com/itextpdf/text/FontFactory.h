@@ -6,17 +6,54 @@
 #ifndef _ComItextpdfTextFontFactory_H_
 #define _ComItextpdfTextFontFactory_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextBaseColor;
 @class ComItextpdfTextFont;
 @class ComItextpdfTextFontFactoryImp;
 @protocol JavaUtilSet;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextFontFactory : NSObject
 
-@interface ComItextpdfTextFontFactory : NSObject {
-}
+#pragma mark Public
 
-- (instancetype)init;
++ (jboolean)containsWithNSString:(NSString *)fontname;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                   withFloat:(jfloat)size;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                   withFloat:(jfloat)size
+                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                   withFloat:(jfloat)size
+                                     withInt:(jint)style;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                   withFloat:(jfloat)size
+                                     withInt:(jint)style
+                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                withNSString:(NSString *)encoding;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                withNSString:(NSString *)encoding
+                                 withBoolean:(jboolean)embedded;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                withNSString:(NSString *)encoding
+                                 withBoolean:(jboolean)embedded
+                                   withFloat:(jfloat)size;
+
++ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
+                                withNSString:(NSString *)encoding
+                                 withBoolean:(jboolean)embedded
+                                   withFloat:(jfloat)size
+                                     withInt:(jint)style;
 
 + (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
                                 withNSString:(NSString *)encoding
@@ -35,18 +72,12 @@
 
 + (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
                                 withNSString:(NSString *)encoding
-                                 withBoolean:(jboolean)embedded
-                                   withFloat:(jfloat)size
-                                     withInt:(jint)style;
-
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                withNSString:(NSString *)encoding
-                                 withBoolean:(jboolean)embedded
                                    withFloat:(jfloat)size;
 
 + (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
                                 withNSString:(NSString *)encoding
-                                 withBoolean:(jboolean)embedded;
+                                   withFloat:(jfloat)size
+                                     withInt:(jint)style;
 
 + (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
                                 withNSString:(NSString *)encoding
@@ -54,67 +85,34 @@
                                      withInt:(jint)style
                 withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
 
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                withNSString:(NSString *)encoding
-                                   withFloat:(jfloat)size
-                                     withInt:(jint)style;
++ (ComItextpdfTextFontFactoryImp *)getFontImp;
 
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                withNSString:(NSString *)encoding
-                                   withFloat:(jfloat)size;
++ (id<JavaUtilSet>)getRegisteredFamilies;
 
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                withNSString:(NSString *)encoding;
++ (id<JavaUtilSet>)getRegisteredFonts;
 
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                   withFloat:(jfloat)size
-                                     withInt:(jint)style
-                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                   withFloat:(jfloat)size
-                withComItextpdfTextBaseColor:(ComItextpdfTextBaseColor *)color;
-
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                   withFloat:(jfloat)size
-                                     withInt:(jint)style;
-
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname
-                                   withFloat:(jfloat)size;
-
-+ (ComItextpdfTextFont *)getFontWithNSString:(NSString *)fontname;
-
-+ (void)registerFamilyWithNSString:(NSString *)familyName
-                      withNSString:(NSString *)fullName
-                      withNSString:(NSString *)path;
++ (jboolean)isRegisteredWithNSString:(NSString *)fontname;
 
 + (void)register__WithNSString:(NSString *)path;
 
 + (void)register__WithNSString:(NSString *)path
                   withNSString:(NSString *)alias;
 
++ (jint)registerDirectories;
+
 + (jint)registerDirectoryWithNSString:(NSString *)dir;
 
 + (jint)registerDirectoryWithNSString:(NSString *)dir
                           withBoolean:(jboolean)scanSubdirectories;
 
-+ (jint)registerDirectories;
-
-+ (id<JavaUtilSet>)getRegisteredFonts;
-
-+ (id<JavaUtilSet>)getRegisteredFamilies;
-
-+ (jboolean)containsWithNSString:(NSString *)fontname;
-
-+ (jboolean)isRegisteredWithNSString:(NSString *)fontname;
-
-+ (ComItextpdfTextFontFactoryImp *)getFontImp;
++ (void)registerFamilyWithNSString:(NSString *)familyName
+                      withNSString:(NSString *)fullName
+                      withNSString:(NSString *)path;
 
 + (void)setFontImpWithComItextpdfTextFontFactoryImp:(ComItextpdfTextFontFactoryImp *)fontImp;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextFontFactory_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextFontFactory)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextFontFactory_COURIER_;
@@ -162,10 +160,6 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFontFactory, TIMES_BOLDITALIC_, NSStri
 FOUNDATION_EXPORT NSString *ComItextpdfTextFontFactory_ZAPFDINGBATS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFontFactory, ZAPFDINGBATS_, NSString *)
 
-FOUNDATION_EXPORT ComItextpdfTextFontFactoryImp *ComItextpdfTextFontFactory_fontImp_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFontFactory, fontImp_, ComItextpdfTextFontFactoryImp *)
-J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextFontFactory, fontImp_, ComItextpdfTextFontFactoryImp *)
-
 FOUNDATION_EXPORT NSString *ComItextpdfTextFontFactory_defaultEncoding_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFontFactory, defaultEncoding_, NSString *)
 J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextFontFactory, defaultEncoding_, NSString *)
@@ -173,5 +167,59 @@ J2OBJC_STATIC_FIELD_SETTER(ComItextpdfTextFontFactory, defaultEncoding_, NSStrin
 FOUNDATION_EXPORT jboolean ComItextpdfTextFontFactory_defaultEmbedding_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextFontFactory, defaultEmbedding_, jboolean)
 J2OBJC_STATIC_FIELD_REF_GETTER(ComItextpdfTextFontFactory, defaultEmbedding_, jboolean)
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withBoolean_withFloat_withInt_withComItextpdfTextBaseColor_(NSString *fontname, NSString *encoding, jboolean embedded, jfloat size, jint style, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withBoolean_withFloat_withInt_withComItextpdfTextBaseColor_withBoolean_(NSString *fontname, NSString *encoding, jboolean embedded, jfloat size, jint style, ComItextpdfTextBaseColor *color, jboolean cached);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withBoolean_withFloat_withInt_(NSString *fontname, NSString *encoding, jboolean embedded, jfloat size, jint style);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withBoolean_withFloat_(NSString *fontname, NSString *encoding, jboolean embedded, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withBoolean_(NSString *fontname, NSString *encoding, jboolean embedded);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withFloat_withInt_withComItextpdfTextBaseColor_(NSString *fontname, NSString *encoding, jfloat size, jint style, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withFloat_withInt_(NSString *fontname, NSString *encoding, jfloat size, jint style);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_withFloat_(NSString *fontname, NSString *encoding, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withNSString_(NSString *fontname, NSString *encoding);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withFloat_withInt_withComItextpdfTextBaseColor_(NSString *fontname, jfloat size, jint style, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withFloat_withComItextpdfTextBaseColor_(NSString *fontname, jfloat size, ComItextpdfTextBaseColor *color);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withFloat_withInt_(NSString *fontname, jfloat size, jint style);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_withFloat_(NSString *fontname, jfloat size);
+
+FOUNDATION_EXPORT ComItextpdfTextFont *ComItextpdfTextFontFactory_getFontWithNSString_(NSString *fontname);
+
+FOUNDATION_EXPORT void ComItextpdfTextFontFactory_registerFamilyWithNSString_withNSString_withNSString_(NSString *familyName, NSString *fullName, NSString *path);
+
+FOUNDATION_EXPORT void ComItextpdfTextFontFactory_register__WithNSString_(NSString *path);
+
+FOUNDATION_EXPORT void ComItextpdfTextFontFactory_register__WithNSString_withNSString_(NSString *path, NSString *alias);
+
+FOUNDATION_EXPORT jint ComItextpdfTextFontFactory_registerDirectoryWithNSString_(NSString *dir);
+
+FOUNDATION_EXPORT jint ComItextpdfTextFontFactory_registerDirectoryWithNSString_withBoolean_(NSString *dir, jboolean scanSubdirectories);
+
+FOUNDATION_EXPORT jint ComItextpdfTextFontFactory_registerDirectories();
+
+FOUNDATION_EXPORT id<JavaUtilSet> ComItextpdfTextFontFactory_getRegisteredFonts();
+
+FOUNDATION_EXPORT id<JavaUtilSet> ComItextpdfTextFontFactory_getRegisteredFamilies();
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextFontFactory_containsWithNSString_(NSString *fontname);
+
+FOUNDATION_EXPORT jboolean ComItextpdfTextFontFactory_isRegisteredWithNSString_(NSString *fontname);
+
+FOUNDATION_EXPORT ComItextpdfTextFontFactoryImp *ComItextpdfTextFontFactory_getFontImp();
+
+FOUNDATION_EXPORT void ComItextpdfTextFontFactory_setFontImpWithComItextpdfTextFontFactoryImp_(ComItextpdfTextFontFactoryImp *fontImp);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextFontFactory)
 
 #endif // _ComItextpdfTextFontFactory_H_

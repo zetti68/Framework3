@@ -6,13 +6,12 @@
 #ifndef _ComItextpdfTextPdfPdfIsoConformanceException_H_
 #define _ComItextpdfTextPdfPdfIsoConformanceException_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
-#define ComItextpdfTextPdfPdfIsoConformanceException_serialVersionUID -8972376258066225871LL
+@interface ComItextpdfTextPdfPdfIsoConformanceException : JavaLangRuntimeException
 
-@interface ComItextpdfTextPdfPdfIsoConformanceException : JavaLangRuntimeException {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -20,8 +19,16 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfPdfIsoConformanceException_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfPdfIsoConformanceException)
 
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfIsoConformanceException, serialVersionUID, jlong)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfIsoConformanceException_init(ComItextpdfTextPdfPdfIsoConformanceException *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfIsoConformanceException *new_ComItextpdfTextPdfPdfIsoConformanceException_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfIsoConformanceException_initWithNSString_(ComItextpdfTextPdfPdfIsoConformanceException *self, NSString *s);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfIsoConformanceException *new_ComItextpdfTextPdfPdfIsoConformanceException_initWithNSString_(NSString *s) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfIsoConformanceException)
 
 #endif // _ComItextpdfTextPdfPdfIsoConformanceException_H_

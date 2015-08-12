@@ -6,16 +6,17 @@
 #ifndef _ComItextpdfTextPdfSecuritySecurityConstants_H_
 #define _ComItextpdfTextPdfSecuritySecurityConstants_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-@interface ComItextpdfTextPdfSecuritySecurityConstants : NSObject {
-}
+@interface ComItextpdfTextPdfSecuritySecurityConstants : NSObject
+
+#pragma mark Public
 
 - (instancetype)init;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfSecuritySecurityConstants_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfSecuritySecurityConstants)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecuritySecurityConstants_XMLNS_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityConstants, XMLNS_, NSString *)
@@ -160,5 +161,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityConstants, Signatur
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextPdfSecuritySecurityConstants_SigningTimeFormat_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfSecuritySecurityConstants, SigningTimeFormat_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfSecuritySecurityConstants_init(ComItextpdfTextPdfSecuritySecurityConstants *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfSecuritySecurityConstants *new_ComItextpdfTextPdfSecuritySecurityConstants_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfSecuritySecurityConstants)
 
 #endif // _ComItextpdfTextPdfSecuritySecurityConstants_H_

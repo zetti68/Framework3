@@ -6,34 +6,41 @@
 #ifndef _ComItextpdfTextPdfPdfDate_H_
 #define _ComItextpdfTextPdfPdfDate_H_
 
-@class IOSIntArray;
-@class JavaUtilCalendar;
-
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/pdf/PdfString.h"
 
-@interface ComItextpdfTextPdfPdfDate : ComItextpdfTextPdfPdfString {
-}
+@class JavaUtilCalendar;
 
-- (instancetype)initWithJavaUtilCalendar:(JavaUtilCalendar *)d;
+@interface ComItextpdfTextPdfPdfDate : ComItextpdfTextPdfPdfString
+
+#pragma mark Public
 
 - (instancetype)init;
 
-- (NSString *)setLengthWithInt:(jint)i
-                       withInt:(jint)length;
+- (instancetype)initWithJavaUtilCalendar:(JavaUtilCalendar *)d;
+
++ (JavaUtilCalendar *)decodeWithNSString:(NSString *)s;
 
 - (NSString *)getW3CDate;
 
 + (NSString *)getW3CDateWithNSString:(NSString *)d;
 
-+ (JavaUtilCalendar *)decodeWithNSString:(NSString *)s;
-
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfPdfDate_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfPdfDate)
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfPdfDate_DATE_SPACE_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfPdfDate, DATE_SPACE_, IOSIntArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDate_initWithJavaUtilCalendar_(ComItextpdfTextPdfPdfDate *self, JavaUtilCalendar *d);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDate *new_ComItextpdfTextPdfPdfDate_initWithJavaUtilCalendar_(JavaUtilCalendar *d) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfPdfDate_init(ComItextpdfTextPdfPdfDate *self);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfPdfDate *new_ComItextpdfTextPdfPdfDate_init() NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT NSString *ComItextpdfTextPdfPdfDate_getW3CDateWithNSString_(NSString *d);
+
+FOUNDATION_EXPORT JavaUtilCalendar *ComItextpdfTextPdfPdfDate_decodeWithNSString_(NSString *s);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfPdfDate)
 
 #endif // _ComItextpdfTextPdfPdfDate_H_

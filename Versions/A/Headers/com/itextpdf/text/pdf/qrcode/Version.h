@@ -6,6 +6,8 @@
 #ifndef _ComItextpdfTextPdfQrcodeVersion_H_
 #define _ComItextpdfTextPdfQrcodeVersion_H_
 
+#include "J2ObjC_header.h"
+
 @class ComItextpdfTextPdfQrcodeBitMatrix;
 @class ComItextpdfTextPdfQrcodeErrorCorrectionLevel;
 @class ComItextpdfTextPdfQrcodeVersion_ECB;
@@ -13,28 +15,11 @@
 @class IOSIntArray;
 @class IOSObjectArray;
 
-#import "JreEmulation.h"
+@interface ComItextpdfTextPdfQrcodeVersion : NSObject
 
-@interface ComItextpdfTextPdfQrcodeVersion : NSObject {
- @public
-  jint versionNumber_;
-  IOSIntArray *alignmentPatternCenters_;
-  IOSObjectArray *ecBlocks_;
-  jint totalCodewords_;
-}
-
-- (instancetype)initWithInt:(jint)versionNumber
-               withIntArray:(IOSIntArray *)alignmentPatternCenters
-withComItextpdfTextPdfQrcodeVersion_ECBlocks:(ComItextpdfTextPdfQrcodeVersion_ECBlocks *)ecBlocks1
-withComItextpdfTextPdfQrcodeVersion_ECBlocks:(ComItextpdfTextPdfQrcodeVersion_ECBlocks *)ecBlocks2
-withComItextpdfTextPdfQrcodeVersion_ECBlocks:(ComItextpdfTextPdfQrcodeVersion_ECBlocks *)ecBlocks3
-withComItextpdfTextPdfQrcodeVersion_ECBlocks:(ComItextpdfTextPdfQrcodeVersion_ECBlocks *)ecBlocks4;
-
-- (jint)getVersionNumber;
+#pragma mark Public
 
 - (IOSIntArray *)getAlignmentPatternCenters;
-
-- (jint)getTotalCodewords;
 
 - (jint)getDimensionForVersion;
 
@@ -42,37 +27,45 @@ withComItextpdfTextPdfQrcodeVersion_ECBlocks:(ComItextpdfTextPdfQrcodeVersion_EC
 
 + (ComItextpdfTextPdfQrcodeVersion *)getProvisionalVersionForDimensionWithInt:(jint)dimension;
 
+- (jint)getTotalCodewords;
+
 + (ComItextpdfTextPdfQrcodeVersion *)getVersionForNumberWithInt:(jint)versionNumber;
 
-+ (ComItextpdfTextPdfQrcodeVersion *)decodeVersionInformationWithInt:(jint)versionBits;
-
-- (ComItextpdfTextPdfQrcodeBitMatrix *)buildFunctionPattern;
+- (jint)getVersionNumber;
 
 - (NSString *)description;
 
-+ (IOSObjectArray *)buildVersions;
+#pragma mark Package-Private
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeVersion *)other;
+- (ComItextpdfTextPdfQrcodeBitMatrix *)buildFunctionPattern;
+
++ (ComItextpdfTextPdfQrcodeVersion *)decodeVersionInformationWithInt:(jint)versionBits;
 
 @end
 
-FOUNDATION_EXPORT BOOL ComItextpdfTextPdfQrcodeVersion_initialized;
 J2OBJC_STATIC_INIT(ComItextpdfTextPdfQrcodeVersion)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeVersion, alignmentPatternCenters_, IOSIntArray *)
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeVersion, ecBlocks_, IOSObjectArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion *ComItextpdfTextPdfQrcodeVersion_getProvisionalVersionForDimensionWithInt_(jint dimension);
 
-FOUNDATION_EXPORT IOSIntArray *ComItextpdfTextPdfQrcodeVersion_VERSION_DECODE_INFO_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeVersion, VERSION_DECODE_INFO_, IOSIntArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion *ComItextpdfTextPdfQrcodeVersion_getVersionForNumberWithInt_(jint versionNumber);
 
-FOUNDATION_EXPORT IOSObjectArray *ComItextpdfTextPdfQrcodeVersion_VERSIONS_;
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextPdfQrcodeVersion, VERSIONS_, IOSObjectArray *)
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion *ComItextpdfTextPdfQrcodeVersion_decodeVersionInformationWithInt_(jint versionBits);
 
-@interface ComItextpdfTextPdfQrcodeVersion_ECBlocks : NSObject {
- @public
-  jint ecCodewordsPerBlock_;
-  IOSObjectArray *ecBlocks_;
-}
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeVersion)
+
+@interface ComItextpdfTextPdfQrcodeVersion_ECBlocks : NSObject
+
+#pragma mark Public
+
+- (IOSObjectArray *)getECBlocks;
+
+- (jint)getECCodewordsPerBlock;
+
+- (jint)getNumBlocks;
+
+- (jint)getTotalECCodewords;
+
+#pragma mark Package-Private
 
 - (instancetype)initWithInt:(jint)ecCodewordsPerBlock
 withComItextpdfTextPdfQrcodeVersion_ECB:(ComItextpdfTextPdfQrcodeVersion_ECB *)ecBlocks;
@@ -81,39 +74,41 @@ withComItextpdfTextPdfQrcodeVersion_ECB:(ComItextpdfTextPdfQrcodeVersion_ECB *)e
 withComItextpdfTextPdfQrcodeVersion_ECB:(ComItextpdfTextPdfQrcodeVersion_ECB *)ecBlocks1
 withComItextpdfTextPdfQrcodeVersion_ECB:(ComItextpdfTextPdfQrcodeVersion_ECB *)ecBlocks2;
 
-- (jint)getECCodewordsPerBlock;
-
-- (jint)getNumBlocks;
-
-- (jint)getTotalECCodewords;
-
-- (IOSObjectArray *)getECBlocks;
-
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeVersion_ECBlocks *)other;
-
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeVersion_ECBlocks_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeVersion_ECBlocks)
 
-J2OBJC_FIELD_SETTER(ComItextpdfTextPdfQrcodeVersion_ECBlocks, ecBlocks_, IOSObjectArray *)
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeVersion_ECBlocks_initWithInt_withComItextpdfTextPdfQrcodeVersion_ECB_(ComItextpdfTextPdfQrcodeVersion_ECBlocks *self, jint ecCodewordsPerBlock, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks);
 
-@interface ComItextpdfTextPdfQrcodeVersion_ECB : NSObject {
- @public
-  jint count_;
-  jint dataCodewords_;
-}
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion_ECBlocks *new_ComItextpdfTextPdfQrcodeVersion_ECBlocks_initWithInt_withComItextpdfTextPdfQrcodeVersion_ECB_(jint ecCodewordsPerBlock, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks) NS_RETURNS_RETAINED;
 
-- (instancetype)initWithInt:(jint)count
-                    withInt:(jint)dataCodewords;
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeVersion_ECBlocks_initWithInt_withComItextpdfTextPdfQrcodeVersion_ECB_withComItextpdfTextPdfQrcodeVersion_ECB_(ComItextpdfTextPdfQrcodeVersion_ECBlocks *self, jint ecCodewordsPerBlock, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks1, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks2);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion_ECBlocks *new_ComItextpdfTextPdfQrcodeVersion_ECBlocks_initWithInt_withComItextpdfTextPdfQrcodeVersion_ECB_withComItextpdfTextPdfQrcodeVersion_ECB_(jint ecCodewordsPerBlock, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks1, ComItextpdfTextPdfQrcodeVersion_ECB *ecBlocks2) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeVersion_ECBlocks)
+
+@interface ComItextpdfTextPdfQrcodeVersion_ECB : NSObject
+
+#pragma mark Public
 
 - (jint)getCount;
 
 - (jint)getDataCodewords;
 
-- (void)copyAllFieldsTo:(ComItextpdfTextPdfQrcodeVersion_ECB *)other;
+#pragma mark Package-Private
+
+- (instancetype)initWithInt:(jint)count
+                    withInt:(jint)dataCodewords;
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextPdfQrcodeVersion_ECB_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextPdfQrcodeVersion_ECB)
+
+FOUNDATION_EXPORT void ComItextpdfTextPdfQrcodeVersion_ECB_initWithInt_withInt_(ComItextpdfTextPdfQrcodeVersion_ECB *self, jint count, jint dataCodewords);
+
+FOUNDATION_EXPORT ComItextpdfTextPdfQrcodeVersion_ECB *new_ComItextpdfTextPdfQrcodeVersion_ECB_initWithInt_withInt_(jint count, jint dataCodewords) NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextPdfQrcodeVersion_ECB)
 
 #endif // _ComItextpdfTextPdfQrcodeVersion_H_

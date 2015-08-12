@@ -6,13 +6,12 @@
 #ifndef _ComItextpdfTextXmlXmpPdfSchema_H_
 #define _ComItextpdfTextXmlXmpPdfSchema_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 #include "com/itextpdf/text/xml/xmp/XmpSchema.h"
 
-#define ComItextpdfTextXmlXmpPdfSchema_serialVersionUID -1541148669123992185LL
+@interface ComItextpdfTextXmlXmpPdfSchema : ComItextpdfTextXmlXmpXmpSchema
 
-@interface ComItextpdfTextXmlXmpPdfSchema : ComItextpdfTextXmlXmpXmpSchema {
-}
+#pragma mark Public
 
 - (instancetype)init;
 
@@ -24,9 +23,7 @@
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfTextXmlXmpPdfSchema_init() {}
-
-J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfSchema, serialVersionUID, jlong)
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfTextXmlXmpPdfSchema)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpPdfSchema_DEFAULT_XPATH_ID_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfSchema, DEFAULT_XPATH_ID_, NSString *)
@@ -42,5 +39,11 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfSchema, VERSION_, NSString *)
 
 FOUNDATION_EXPORT NSString *ComItextpdfTextXmlXmpPdfSchema_PRODUCER_;
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfTextXmlXmpPdfSchema, PRODUCER_, NSString *)
+
+FOUNDATION_EXPORT void ComItextpdfTextXmlXmpPdfSchema_init(ComItextpdfTextXmlXmpPdfSchema *self);
+
+FOUNDATION_EXPORT ComItextpdfTextXmlXmpPdfSchema *new_ComItextpdfTextXmlXmpPdfSchema_init() NS_RETURNS_RETAINED;
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfTextXmlXmpPdfSchema)
 
 #endif // _ComItextpdfTextXmlXmpPdfSchema_H_

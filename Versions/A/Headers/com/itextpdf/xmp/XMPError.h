@@ -6,27 +6,27 @@
 #ifndef _ComItextpdfXmpXMPError_H_
 #define _ComItextpdfXmpXMPError_H_
 
-#import "JreEmulation.h"
+#include "J2ObjC_header.h"
 
-#define ComItextpdfXmpXMPError_BADINDEX 104
-#define ComItextpdfXmpXMPError_BADOPTIONS 103
-#define ComItextpdfXmpXMPError_BADPARAM 4
-#define ComItextpdfXmpXMPError_BADRDF 202
-#define ComItextpdfXmpXMPError_BADSCHEMA 101
-#define ComItextpdfXmpXMPError_BADSERIALIZE 107
-#define ComItextpdfXmpXMPError_BADSTREAM 204
-#define ComItextpdfXmpXMPError_BADVALUE 5
-#define ComItextpdfXmpXMPError_BADXML 201
-#define ComItextpdfXmpXMPError_BADXMP 203
-#define ComItextpdfXmpXMPError_BADXPATH 102
-#define ComItextpdfXmpXMPError_INTERNALFAILURE 9
 #define ComItextpdfXmpXMPError_UNKNOWN 0
+#define ComItextpdfXmpXMPError_BADPARAM 4
+#define ComItextpdfXmpXMPError_BADVALUE 5
+#define ComItextpdfXmpXMPError_INTERNALFAILURE 9
+#define ComItextpdfXmpXMPError_BADSCHEMA 101
+#define ComItextpdfXmpXMPError_BADXPATH 102
+#define ComItextpdfXmpXMPError_BADOPTIONS 103
+#define ComItextpdfXmpXMPError_BADINDEX 104
+#define ComItextpdfXmpXMPError_BADSERIALIZE 107
+#define ComItextpdfXmpXMPError_BADXML 201
+#define ComItextpdfXmpXMPError_BADRDF 202
+#define ComItextpdfXmpXMPError_BADXMP 203
+#define ComItextpdfXmpXMPError_BADSTREAM 204
 
 @protocol ComItextpdfXmpXMPError < NSObject, JavaObject >
 
 @end
 
-__attribute__((always_inline)) inline void ComItextpdfXmpXMPError_init() {}
+J2OBJC_EMPTY_STATIC_INIT(ComItextpdfXmpXMPError)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPError, UNKNOWN, jint)
 
@@ -53,5 +53,7 @@ J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPError, BADRDF, jint)
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPError, BADXMP, jint)
 
 J2OBJC_STATIC_FIELD_GETTER(ComItextpdfXmpXMPError, BADSTREAM, jint)
+
+J2OBJC_TYPE_LITERAL_HEADER(ComItextpdfXmpXMPError)
 
 #endif // _ComItextpdfXmpXMPError_H_
